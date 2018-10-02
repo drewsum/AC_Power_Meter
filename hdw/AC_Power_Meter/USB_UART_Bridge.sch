@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 10 13
+Sheet 10 15
 Title ""
 Date ""
 Rev ""
@@ -607,6 +607,126 @@ F 1 "+5V_USB" H 8800 4840 50  0000 C CNN
 F 2 "" H 8800 4700 50  0001 C CNN
 F 3 "" H 8800 4700 50  0001 C CNN
 	1    8800 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:C_Custom C?
+U 1 1 5BB2F222
+P 2910 4810
+AR Path="/5BB27BA3/5BB2F222" Ref="C?"  Part="1" 
+AR Path="/5BB27B84/5BB2F222" Ref="C?"  Part="1" 
+AR Path="/5BB27BCC/5BB2F222" Ref="C?"  Part="1" 
+F 0 "C?" H 2935 4910 50  0000 L CNN
+F 1 "0.1uF" H 2935 4710 50  0000 L CNN
+F 2 "" H 2948 4660 50  0001 C CNN
+F 3 "" H 2935 4910 50  0001 C CNN
+F 4 "0603" H 2760 4910 50  0000 R CNN "display_footprint"
+F 5 "50V" H 2760 4810 50  0000 R CNN "Voltage"
+F 6 "X7R" H 2760 4710 50  0000 R CNN "Dielectric"
+F 7 "PN" H 3335 5310 60  0001 C CNN "Digi-Key PN"
+	1    2910 4810
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:C_Custom C?
+U 1 1 5BB2F482
+P 3540 4800
+AR Path="/5BB27BA3/5BB2F482" Ref="C?"  Part="1" 
+AR Path="/5BB27B84/5BB2F482" Ref="C?"  Part="1" 
+AR Path="/5BB27BCC/5BB2F482" Ref="C?"  Part="1" 
+F 0 "C?" H 3565 4900 50  0000 L CNN
+F 1 "0.1uF" H 3565 4700 50  0000 L CNN
+F 2 "" H 3578 4650 50  0001 C CNN
+F 3 "" H 3565 4900 50  0001 C CNN
+F 4 "0603" H 3390 4900 50  0000 R CNN "display_footprint"
+F 5 "50V" H 3390 4800 50  0000 R CNN "Voltage"
+F 6 "X7R" H 3390 4700 50  0000 R CNN "Dielectric"
+F 7 "PN" H 3965 5300 60  0001 C CNN "Digi-Key PN"
+	1    3540 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:C_Custom C?
+U 1 1 5BB2F4D0
+P 4170 4790
+AR Path="/5BB27BA3/5BB2F4D0" Ref="C?"  Part="1" 
+AR Path="/5BB27B84/5BB2F4D0" Ref="C?"  Part="1" 
+AR Path="/5BB27BCC/5BB2F4D0" Ref="C?"  Part="1" 
+F 0 "C?" H 4195 4890 50  0000 L CNN
+F 1 "4.7uF" H 4195 4690 50  0000 L CNN
+F 2 "" H 4208 4640 50  0001 C CNN
+F 3 "" H 4195 4890 50  0001 C CNN
+F 4 "0805" H 4020 4890 50  0000 R CNN "display_footprint"
+F 5 "10V" H 4020 4790 50  0000 R CNN "Voltage"
+F 6 "X7R" H 4020 4690 50  0000 R CNN "Dielectric"
+F 7 "PN" H 4595 5290 60  0001 C CNN "Digi-Key PN"
+	1    4170 4790
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:GND_USB #PWR?
+U 1 1 5BB2F9DC
+P 2910 4960
+F 0 "#PWR?" H 2910 4710 50  0001 C CNN
+F 1 "GND_USB" H 2910 4810 50  0000 C CNN
+F 2 "" H 2910 4960 50  0001 C CNN
+F 3 "" H 2910 4960 50  0001 C CNN
+	1    2910 4960
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:GND_USB #PWR?
+U 1 1 5BB2FA18
+P 3540 4950
+F 0 "#PWR?" H 3540 4700 50  0001 C CNN
+F 1 "GND_USB" H 3540 4800 50  0000 C CNN
+F 2 "" H 3540 4950 50  0001 C CNN
+F 3 "" H 3540 4950 50  0001 C CNN
+	1    3540 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:GND_USB #PWR?
+U 1 1 5BB2FA4D
+P 4170 4940
+F 0 "#PWR?" H 4170 4690 50  0001 C CNN
+F 1 "GND_USB" H 4170 4790 50  0000 C CNN
+F 2 "" H 4170 4940 50  0001 C CNN
+F 3 "" H 4170 4940 50  0001 C CNN
+	1    4170 4940
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:+5V_USB #PWR?
+U 1 1 5BB2FAC3
+P 4170 4640
+F 0 "#PWR?" H 4170 4490 50  0001 C CNN
+F 1 "+5V_USB" H 4170 4780 50  0000 C CNN
+F 2 "" H 4170 4640 50  0001 C CNN
+F 3 "" H 4170 4640 50  0001 C CNN
+	1    4170 4640
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:+5V_USB #PWR?
+U 1 1 5BB2FAFF
+P 3540 4650
+F 0 "#PWR?" H 3540 4500 50  0001 C CNN
+F 1 "+5V_USB" H 3540 4790 50  0000 C CNN
+F 2 "" H 3540 4650 50  0001 C CNN
+F 3 "" H 3540 4650 50  0001 C CNN
+	1    3540 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:+5V_USB #PWR?
+U 1 1 5BB2FB34
+P 2910 4660
+F 0 "#PWR?" H 2910 4510 50  0001 C CNN
+F 1 "+5V_USB" H 2910 4800 50  0000 C CNN
+F 2 "" H 2910 4660 50  0001 C CNN
+F 3 "" H 2910 4660 50  0001 C CNN
+	1    2910 4660
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

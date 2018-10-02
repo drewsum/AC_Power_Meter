@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 1 13
+Sheet 1 15
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -85,5 +85,17 @@ S 2170 6030 500  150
 U 5BB27C33
 F0 "Mechanical" 50
 F1 "Mechanical.sch" 50
+$EndSheet
+$Sheet
+S 2170 6360 500  150 
+U 5BB31311
+F0 "Zero Cross Detect" 50
+F1 "Zero_Cross_Detect.sch" 50
+$EndSheet
+$Sheet
+S 2170 6730 500  150 
+U 5BB31314
+F0 "Output Switch" 50
+F1 "Output_Switch.sch" 50
 $EndSheet
 $EndSCHEMATC
