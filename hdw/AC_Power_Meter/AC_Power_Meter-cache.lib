@@ -37,6 +37,23 @@ X Shield 6 -100 -400 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Connector_Generic:Conn_01x01
+#
+DEF Connector_Generic:Conn_01x01 J 0 40 Y N 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Connector_Generic:Conn_01x01" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*
+$ENDFPLIST
+DRAW
+S -50 5 0 -5 1 1 6 N
+S -50 50 50 -50 1 1 10 f
+X Pin_1 1 -200 0 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Connector_Generic:Conn_01x06
 #
 DEF Connector_Generic:Conn_01x06 J 0 40 Y N 1 F N
@@ -653,6 +670,60 @@ X ~ 4 300 100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Mechanical:Housing
+#
+DEF Mechanical:Housing MK 0 40 Y Y 1 F N
+F0 "MK" 150 0 50 H V L CNN
+F1 "Mechanical:Housing" 150 -75 50 H V L CNN
+F2 "" 50 50 50 H I C CNN
+F3 "" 50 50 50 H I C CNN
+DRAW
+C -175 -125 25 0 1 0 F
+C -75 -125 25 0 1 0 F
+S -200 -25 -50 -75 0 1 0 N
+P 2 0 1 0 -178 -62 -176 -54 N
+P 2 0 1 0 -174 -66 -160 -66 N
+P 2 0 1 0 -174 -48 -172 -38 N
+P 2 0 1 0 -170 -52 -158 -52 N
+P 2 0 1 0 -166 -36 -154 -36 N
+P 2 0 1 0 -154 -64 -152 -54 N
+P 2 0 1 0 -150 -48 -148 -38 N
+P 2 0 1 0 -142 -62 -140 -54 N
+P 2 0 1 0 -138 -66 -124 -66 N
+P 2 0 1 0 -138 -48 -136 -38 N
+P 2 0 1 0 -134 -52 -122 -52 N
+P 2 0 1 0 -130 -36 -118 -36 N
+P 2 0 1 0 -118 -64 -116 -54 N
+P 2 0 1 0 -114 -48 -112 -38 N
+P 2 0 1 0 -106 -62 -104 -54 N
+P 2 0 1 0 -102 -66 -88 -66 N
+P 2 0 1 0 -102 -48 -100 -38 N
+P 2 0 1 0 -98 -52 -86 -52 N
+P 2 0 1 0 -94 -36 -82 -36 N
+P 2 0 1 0 -82 -64 -80 -54 N
+P 2 0 1 0 -78 -48 -76 -38 N
+P 2 0 1 0 -25 0 -25 -175 N
+P 3 0 1 0 -225 0 -25 0 125 150 N
+P 7 0 1 0 -225 0 -225 -175 -25 -175 125 -25 125 150 -75 150 -225 0 f
+ENDDRAW
+ENDDEF
+#
+# Mechanical:MountingHole_Pad
+#
+DEF Mechanical:MountingHole_Pad MH 0 40 N N 1 F N
+F0 "MH" 0 250 50 H V C CNN
+F1 "Mechanical:MountingHole_Pad" 0 175 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ MountingHole*Pad*
+$ENDFPLIST
+DRAW
+C 0 50 50 0 1 50 N
+X 1 1 0 -100 100 U 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # Relay_SolidState:FOD4218
 #
 DEF Relay_SolidState:FOD4218 U 0 40 Y Y 1 F N
@@ -748,6 +819,23 @@ P 2 0 1 0 -30 50 0 100 N
 P 2 0 1 0 0 0 0 100 N
 P 2 0 1 0 0 100 30 50 N
 X +12V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power:Earth_Protective
+#
+DEF ~power:Earth_Protective #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 250 -250 50 H I C CNN
+F1 "power:Earth_Protective" 450 -150 50 H I C CNN
+F2 "" 0 -100 50 H I C CNN
+F3 "" 0 -100 50 H I C CNN
+DRAW
+C 0 -150 100 0 1 0 N
+P 2 0 1 0 -25 -175 25 -175 N
+P 2 0 1 0 -5 -200 5 -200 N
+P 2 0 1 0 0 -150 0 0 N
+P 2 0 1 0 50 -150 -50 -150 N
+X Earth_Protective 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
