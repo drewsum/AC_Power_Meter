@@ -144,8 +144,6 @@ F 3 "" H 3740 3210 50  0000 C CNN
 	1    3740 3210
 	1    0    0    -1  
 $EndComp
-Text GLabel 3340 3410 0    50   Input ~ 0
-ISNS_HT_IN
 Text GLabel 3340 3710 0    50   Output ~ 0
 ISNS_HT_OUT
 $Comp
@@ -466,4 +464,19 @@ ISNS_OUT
 Wire Wire Line
 	7320 3510 7240 3510
 Connection ~ 7240 3510
+$Comp
+L power:HT #PWR?
+U 1 1 5BB463D5
+P 3260 3330
+F 0 "#PWR?" H 3260 3450 50  0001 C CNN
+F 1 "HT" H 3260 3420 50  0000 C CNN
+F 2 "" H 3260 3330 50  0001 C CNN
+F 3 "" H 3260 3330 50  0001 C CNN
+	1    3260 3330
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3260 3330 3260 3410
+Wire Wire Line
+	3260 3410 3340 3410
 $EndSCHEMATC

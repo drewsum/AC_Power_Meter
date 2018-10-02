@@ -14,4 +14,161 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L Custom_Library:C_Custom C?
+U 1 1 5BB476E0
+P 6520 3540
+AR Path="/5BB27BA3/5BB476E0" Ref="C?"  Part="1" 
+AR Path="/5BB27B84/5BB476E0" Ref="C?"  Part="1" 
+AR Path="/5BB27B24/5BB476E0" Ref="C?"  Part="1" 
+AR Path="/5BB27B51/5BB476E0" Ref="C?"  Part="1" 
+F 0 "C?" H 6545 3640 50  0000 L CNN
+F 1 "0.1uF" H 6545 3440 50  0000 L CNN
+F 2 "" H 6558 3390 50  0001 C CNN
+F 3 "" H 6545 3640 50  0001 C CNN
+F 4 "0603" H 6370 3640 50  0000 R CNN "display_footprint"
+F 5 "50V" H 6370 3540 50  0000 R CNN "Voltage"
+F 6 "X7R" H 6370 3440 50  0000 R CNN "Dielectric"
+F 7 "PN" H 6945 4040 60  0001 C CNN "Digi-Key PN"
+	1    6520 3540
+	1    0    0    -1  
+$EndComp
+$Comp
+L Converter_ACDC:TMLM04112 PS?
+U 1 1 5BB47753
+P 5240 3410
+F 0 "PS?" H 5040 3610 50  0000 C CNN
+F 1 "TMLM04112" H 5240 3210 50  0000 C CNN
+F 2 "Converters_DCDC_ACDC:ACDC-Conv_Traco-TMLM-04" H 5240 3110 50  0001 C CNN
+F 3 "https://www.tracopower.com/products/tmlm.pdf" H 5240 3410 50  0001 C CNN
+F 4 "1951-1352-ND" H 5240 3410 50  0001 C CNN "Digi-Key PN"
+	1    5240 3410
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Fuse F?
+U 1 1 5BB4775A
+P 4300 3310
+F 0 "F?" V 4380 3310 50  0000 C CNN
+F 1 "3.15A" V 4225 3310 50  0000 C CNN
+F 2 "" V 4230 3310 50  0001 C CNN
+F 3 "~" H 4300 3310 50  0001 C CNN
+	1    4300 3310
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4450 3310 4840 3310
+$Comp
+L power:GND #PWR?
+U 1 1 5BB47762
+P 5720 3590
+AR Path="/5BB27B1A/5BB47762" Ref="#PWR?"  Part="1" 
+AR Path="/5BB27B51/5BB47762" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 5720 3340 50  0001 C CNN
+F 1 "GND" H 5720 3440 50  0000 C CNN
+F 2 "" H 5720 3590 50  0001 C CNN
+F 3 "" H 5720 3590 50  0001 C CNN
+	1    5720 3590
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5720 3590 5720 3510
+Wire Wire Line
+	5720 3510 5640 3510
+Wire Wire Line
+	6520 3390 6520 3310
+Wire Wire Line
+	6520 3310 5640 3310
+$Comp
+L power:GND #PWR?
+U 1 1 5BB477D9
+P 6520 3690
+AR Path="/5BB27B1A/5BB477D9" Ref="#PWR?"  Part="1" 
+AR Path="/5BB27B51/5BB477D9" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 6520 3440 50  0001 C CNN
+F 1 "GND" H 6520 3540 50  0000 C CNN
+F 2 "" H 6520 3690 50  0001 C CNN
+F 3 "" H 6520 3690 50  0001 C CNN
+	1    6520 3690
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:CP_Tant_Custom C?
+U 1 1 5BB47B13
+P 7250 3540
+F 0 "C?" H 7275 3640 50  0000 L CNN
+F 1 "47uF" H 7275 3440 50  0000 L CNN
+F 2 "" H 7288 3390 50  0001 C CNN
+F 3 "" H 7275 3640 50  0001 C CNN
+F 4 "478-3938-1-ND" H 7250 3540 50  0001 C CNN "Digi-Key PN"
+F 5 "7343" H 7100 3640 50  0000 R CNN "display_footprint"
+F 6 "16V" H 7100 3540 50  0000 R CNN "Voltage"
+F 7 "10%" H 7100 3440 50  0000 R CNN "Tolerance"
+	1    7250 3540
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 3390 7250 3310
+Wire Wire Line
+	7250 3310 6520 3310
+Connection ~ 6520 3310
+$Comp
+L power:GND #PWR?
+U 1 1 5BB47B87
+P 7250 3690
+AR Path="/5BB27B1A/5BB47B87" Ref="#PWR?"  Part="1" 
+AR Path="/5BB27B51/5BB47B87" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 7250 3440 50  0001 C CNN
+F 1 "GND" H 7250 3540 50  0000 C CNN
+F 2 "" H 7250 3690 50  0001 C CNN
+F 3 "" H 7250 3690 50  0001 C CNN
+	1    7250 3690
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR?
+U 1 1 5BB484FE
+P 7250 3230
+F 0 "#PWR?" H 7250 3080 50  0001 C CNN
+F 1 "+12V" H 7250 3370 50  0000 C CNN
+F 2 "" H 7250 3230 50  0001 C CNN
+F 3 "" H 7250 3230 50  0001 C CNN
+	1    7250 3230
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7250 3230 7250 3310
+Connection ~ 7250 3310
+Text Notes 7620 3470 0    50   ~ 0
+Maximum Output Current: 333mA
+$Comp
+L power:HT #PWR?
+U 1 1 5BB48B61
+P 4070 3230
+F 0 "#PWR?" H 4070 3350 50  0001 C CNN
+F 1 "HT" H 4070 3320 50  0000 C CNN
+F 2 "" H 4070 3230 50  0001 C CNN
+F 3 "" H 4070 3230 50  0001 C CNN
+	1    4070 3230
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4070 3230 4070 3310
+Wire Wire Line
+	4070 3310 4150 3310
+$Comp
+L power:NEUT #PWR?
+U 1 1 5BB48BFF
+P 4070 3590
+F 0 "#PWR?" H 4070 3440 50  0001 C CNN
+F 1 "NEUT" H 4070 3740 50  0000 C CNN
+F 2 "" H 4070 3590 50  0001 C CNN
+F 3 "" H 4070 3590 50  0001 C CNN
+	1    4070 3590
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4070 3590 4070 3510
+Wire Wire Line
+	4070 3510 4840 3510
 $EndSCHEMATC
