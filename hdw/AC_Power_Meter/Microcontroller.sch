@@ -277,4 +277,17 @@ Text GLabel 6580 4390 2    60   Output ~ 0
 USB_UART_TX
 Text GLabel 6580 4290 2    60   Input ~ 0
 USB_UART_RX
+Text Notes 540  690  0    100  ~ 20
+8 bit High Performance Enhanced Flash PIC Microcontroller
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF3BA6
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

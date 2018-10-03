@@ -107,4 +107,17 @@ F 4 "283-4372-1-ND" H 5070 3390 50  0001 C CNN "Digi-Key PN"
 	1    5070 3390
 	0    1    1    0   
 $EndComp
+Text Notes 540  690  0    100  ~ 20
+AC Output Connections
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF1768
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

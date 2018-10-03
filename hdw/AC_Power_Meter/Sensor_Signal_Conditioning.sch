@@ -669,4 +669,17 @@ Text GLabel 2490 3400 0    50   Input ~ 0
 ISNS_OUT
 Text Notes 8340 3400 0    50   ~ 0
 66mV/A, with a 1.65V offset\n(2.65V = 15A)
+Text Notes 540  690  0    100  ~ 20
+Current Sensing Peak Detector, ADC Buffer
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF4E2D
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

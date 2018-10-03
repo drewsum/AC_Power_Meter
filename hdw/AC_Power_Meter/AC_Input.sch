@@ -108,4 +108,17 @@ F 3 "~" H 4610 4040 50  0001 C CNN
 $EndComp
 Text Notes 2960 3690 0    50   ~ 0
 From Panel AC Input Socket ->
+Text Notes 540  690  0    100  ~ 20
+AC Input Connections
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF0F7A
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

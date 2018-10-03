@@ -170,8 +170,8 @@ F 4 "296-9854-1-ND" H -110 -660 50  0001 C CNN "Digi-Key PN"
 	1    5260 4110
 	1    0    0    -1  
 $EndComp
-Text Notes 3890 1070 0    100  ~ 20
-Programming Header/ICSP Detection
+Text Notes 540  690  0    100  ~ 20
+Programming Header, ~MCLR~ Reset Filter, ICSP Detection
 $Comp
 L Custom_Library:+3.3V #PWR?
 U 1 1 5BB281E1
@@ -516,6 +516,17 @@ F 1 "GND" H 8390 4940 50  0000 C CNN
 F 2 "" H 8390 5090 50  0001 C CNN
 F 3 "" H 8390 5090 50  0001 C CNN
 	1    8390 5090
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF40D0
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

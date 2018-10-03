@@ -677,6 +677,17 @@ Wire Wire Line
 Wire Wire Line
 	1410 4450 1490 4450
 Connection ~ 1490 4450
-Text Notes 3860 900  0    100  ~ 20
+Text Notes 540  690  0    100  ~ 20
 +3.3V, 750mA, 2MHz Buck Converter
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF3205
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -479,4 +479,17 @@ Wire Wire Line
 	3260 3330 3260 3410
 Wire Wire Line
 	3260 3410 3340 3410
+Text Notes 540  690  0    100  ~ 20
+AC Current Sensor, Signal Buffer
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF1375
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

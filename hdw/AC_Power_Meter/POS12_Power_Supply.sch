@@ -655,4 +655,17 @@ Wire Wire Line
 Connection ~ 5370 2910
 Wire Wire Line
 	5370 2910 5040 2910
+Text Notes 540  690  0    100  ~ 20
++12V 4W Isolated AC/DC Converter, +12V PGOOD Window Comparator
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF23CB
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

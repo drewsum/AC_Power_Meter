@@ -384,17 +384,6 @@ Wire Wire Line
 	7060 2890 6710 2890
 Wire Wire Line
 	6710 2890 6710 2850
-$Comp
-L Custom_Library:74LVC1G17_Power U?
-U 1 1 5BB3F2C2
-P 7010 3870
-F 0 "U?" H 6910 4020 50  0000 R CNN
-F 1 "74LVC1G17" H 7330 3760 50  0000 C CNN
-F 2 "" H 7010 3870 50  0001 C CNN
-F 3 "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf" H 7010 3870 50  0001 C CNN
-	1    7010 3870
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6460 3870 6710 3870
 $Comp
@@ -497,4 +486,51 @@ Zero_Cross_Detect
 Wire Wire Line
 	8190 3870 8110 3870
 Connection ~ 8110 3870
+$Comp
+L Custom_Library:74LVC1G17_Power U?
+U 1 1 5BBD8008
+P 7010 3870
+F 0 "U?" H 7110 4020 50  0000 L CNN
+F 1 "74LVC1G17" H 7110 3720 50  0000 L CNN
+F 2 "TO_SOT_Packages_SMD:SOT-353_SC-70-5" H 7010 3870 50  0001 C CNN
+F 3 "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf" H 7110 4020 50  0001 C CNN
+F 4 "296-11934-1-ND" H 7010 3870 50  0001 C CNN "Digi-Key PN"
+	1    7010 3870
+	1    0    0    -1  
+$EndComp
+Text Notes 540  690  0    100  ~ 20
+Input AC Zero-Cross Detection
+$Comp
+L power:GNDPWR #PWR?
+U 1 1 5BBD88A3
+P 3870 4430
+F 0 "#PWR?" H 3870 4230 50  0001 C CNN
+F 1 "GNDPWR" H 3870 4300 50  0000 C CNN
+F 2 "" H 3870 4380 50  0001 C CNN
+F 3 "" H 3870 4380 50  0001 C CNN
+	1    3870 4430
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 5BBD88DC
+P 3870 4430
+F 0 "#FLG?" H 3870 4505 50  0001 C CNN
+F 1 "PWR_FLAG" H 3870 4580 50  0000 C CNN
+F 2 "" H 3870 4430 50  0001 C CNN
+F 3 "~" H 3870 4430 50  0001 C CNN
+	1    3870 4430
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF815F
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

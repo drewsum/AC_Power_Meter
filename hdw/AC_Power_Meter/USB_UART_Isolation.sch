@@ -18,7 +18,7 @@ Text GLabel 7730 3820 2    60   Output ~ 0
 USB_UART_TX_ISO
 Text GLabel 7730 3720 2    60   Input ~ 0
 USB_UART_RX_ISO
-Text Notes 4610 1130 0    100  ~ 20
+Text Notes 540  690  0    100  ~ 20
 USB UART Isolation
 $Comp
 L Isolator:ISO7321C U?
@@ -312,6 +312,17 @@ F 1 "GND" H 3210 4120 50  0000 C CNN
 F 2 "" H 3210 4270 50  0001 C CNN
 F 3 "" H 3210 4270 50  0001 C CNN
 	1    3210 4270
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mu_Logo:LOGO #G?
+U 1 1 5BBF6DB0
+P 9900 1000
+F 0 "#G?" H 9900 670 60  0001 C CNN
+F 1 "LOGO" H 9900 1330 60  0001 C CNN
+F 2 "" H 9900 1000 50  0001 C CNN
+F 3 "" H 9900 1000 50  0001 C CNN
+	1    9900 1000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
