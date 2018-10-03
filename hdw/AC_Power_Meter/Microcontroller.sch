@@ -280,14 +280,14 @@ USB_UART_RX
 Text Notes 540  690  0    100  ~ 20
 8 bit High Performance Enhanced Flash PIC Microcontroller
 $Comp
-L Mu_Logo:LOGO #G?
-U 1 1 5BBF3BA6
-P 9900 1000
-F 0 "#G?" H 9900 670 60  0001 C CNN
-F 1 "LOGO" H 9900 1330 60  0001 C CNN
-F 2 "" H 9900 1000 50  0001 C CNN
-F 3 "" H 9900 1000 50  0001 C CNN
-	1    9900 1000
+L Custom_Library:MU_Logo #G?
+U 1 1 5BB68D1E
+P 9900 1100
+F 0 "#G?" H 9900 614 60  0001 C CNN
+F 1 "MU_Logo" H 9900 1586 60  0001 C CNN
+F 2 "" H 9900 1100 50  0001 C CNN
+F 3 "" H 9900 1100 50  0001 C CNN
+	1    9900 1100
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
