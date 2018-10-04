@@ -325,4 +325,19 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
+$Comp
+L Custom_Library:C_Custom C?
+U 1 1 5BB59130
+P 5330 4740
+F 0 "C?" H 5355 4840 50  0000 L CNN
+F 1 "C_Custom" H 5355 4640 50  0000 L CNN
+F 2 "" H 5368 4590 50  0001 C CNN
+F 3 "" H 5355 4840 50  0001 C CNN
+F 4 "Foot" H 5180 4840 50  0000 R CNN "display_footprint"
+F 5 "V" H 5180 4740 50  0000 R CNN "Voltage"
+F 6 "Er" H 5180 4640 50  0000 R CNN "Dielectric"
+F 7 "PN" H 5755 5240 60  0001 C CNN "Digi-Key PN"
+	1    5330 4740
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
