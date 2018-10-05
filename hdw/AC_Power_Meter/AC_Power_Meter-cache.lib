@@ -164,6 +164,25 @@ X Pin_6 6 -200 -300 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Connector_Generic:Conn_02x01
+#
+DEF Connector_Generic:Conn_02x01 J 0 40 Y N 1 F N
+F0 "J" 50 100 50 H V C CNN
+F1 "Connector_Generic:Conn_02x01" 50 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*_2x??_*
+$ENDFPLIST
+DRAW
+S -50 5 0 -5 1 1 6 N
+S -50 50 150 -50 1 1 10 f
+S 150 5 100 -5 1 1 6 N
+X Pin_1 1 -200 0 150 R 50 50 1 1 P
+X Pin_2 2 300 0 150 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Converter_ACDC:TMLM04112
 #
 DEF Converter_ACDC:TMLM04112 PS 0 40 Y Y 1 F N
@@ -1251,6 +1270,20 @@ X +12V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
+# power:+3.3VADC
+#
+DEF power:+3.3VADC #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 150 -50 50 H I C CNN
+F1 "power:+3.3VADC" 0 100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 3 0 1 0 0 0 0 40 0 40 N
+P 6 0 1 0 0 40 20 20 0 70 -20 20 0 40 0 40 N
+X +3.3VADC 1 0 0 0 U 50 50 0 0 W N
+ENDDRAW
+ENDDEF
+#
 # power:Earth_Protective
 #
 DEF ~power:Earth_Protective #PWR 0 0 Y Y 1 F P
@@ -1278,6 +1311,19 @@ F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power:GNDA
+#
+DEF power:GNDA #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power:GNDA" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GNDA 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
