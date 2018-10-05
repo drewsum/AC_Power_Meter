@@ -124,7 +124,7 @@ $EndSheet
 Text Notes 540  690  0    100  ~ 20
 Table of Contents:
 Text Notes 4070 780  0    150  ~ 30
-AC Energy Meter/Dimmer
+AC Power Meter/Dimmer
 Text Notes 770  6260 0    100  ~ 0
 1. AC Input\n\n\n2. AC Current Sensor\n\n\n3. AC Output\n\n\n4. +12V Power Supply\n\n\n5. +3.3V Power Supply\n\n\n6. Microcontroller\n\n\n7. Microcontoller Programming\n\n\n8. Sensor Signal Conditioning\n\n\n9. USB UART Bridge\n\n\n10. USB UART Isolation\n\n\n11. OLED Display
 Text Notes 5650 3940 0    100  ~ 0
