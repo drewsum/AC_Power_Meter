@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 5 16
+Sheet 5 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -733,4 +733,73 @@ Wire Wire Line
 Wire Wire Line
 	9070 2890 9070 2970
 Connection ~ 9070 2970
+$Comp
+L Custom_Library:R_Custom R?
+U 1 1 5BC1F9F5
+P 1190 6950
+AR Path="/5BB27BA3/5BC1F9F5" Ref="R?"  Part="1" 
+AR Path="/5BB27B24/5BC1F9F5" Ref="R?"  Part="1" 
+AR Path="/5BB27BB5/5BC1F9F5" Ref="R?"  Part="1" 
+F 0 "R?" H 1110 6950 50  0000 R CNN
+F 1 "3.3k" V 1190 6950 40  0000 C CNN
+F 2 "" H 1190 6950 50  0001 C CNN
+F 3 "" H 1190 6950 50  0001 C CNN
+F 4 "0603" H 1290 7030 50  0000 L CNN "display_footprint"
+F 5 "1%" H 1290 6950 50  0000 L CNN "Tolerance"
+F 6 "1/10W" H 1300 6870 50  0000 L CNN "Wattage"
+F 7 "PN" H 1490 7350 60  0001 C CNN "Digi-Key PN"
+	1    1190 6950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5BC1F9FC
+P 1190 7100
+AR Path="/5BB27B24/5BC1F9FC" Ref="#PWR?"  Part="1" 
+AR Path="/5BB27BB5/5BC1F9FC" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1190 6850 50  0001 C CNN
+F 1 "GND" H 1190 6950 50  0000 C CNN
+F 2 "" H 1190 7100 50  0001 C CNN
+F 3 "" H 1190 7100 50  0001 C CNN
+	1    1190 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:R_Custom R?
+U 1 1 5BC1FA08
+P 1190 6310
+AR Path="/5BB27BA3/5BC1FA08" Ref="R?"  Part="1" 
+AR Path="/5BB27B24/5BC1FA08" Ref="R?"  Part="1" 
+AR Path="/5BB27BB5/5BC1FA08" Ref="R?"  Part="1" 
+F 0 "R?" H 1110 6310 50  0000 R CNN
+F 1 "10k" V 1190 6310 50  0000 C CNN
+F 2 "" H 1190 6310 50  0001 C CNN
+F 3 "" H 1190 6310 50  0001 C CNN
+F 4 "0603" H 1290 6390 50  0000 L CNN "display_footprint"
+F 5 "1%" H 1290 6310 50  0000 L CNN "Tolerance"
+F 6 "1/10W" H 1300 6230 50  0000 L CNN "Wattage"
+F 7 "PN" H 1490 6710 60  0001 C CNN "Digi-Key PN"
+	1    1190 6310
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:+12V #PWR?
+U 1 1 5BC2065A
+P 1190 6160
+F 0 "#PWR?" H 1190 6010 50  0001 C CNN
+F 1 "+12V" H 1190 6300 50  0000 C CNN
+F 2 "" H 1190 6160 50  0001 C CNN
+F 3 "" H 1190 6160 50  0001 C CNN
+	1    1190 6160
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1190 6460 1190 6630
+Text GLabel 1320 6630 2    50   Output ~ 0
+POS12_ADC
+Wire Wire Line
+	1320 6630 1190 6630
+Connection ~ 1190 6630
+Wire Wire Line
+	1190 6630 1190 6800
 $EndSCHEMATC

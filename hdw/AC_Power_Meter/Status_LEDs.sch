@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 16 16
+Sheet 16 17
 Title ""
 Date ""
 Rev ""
@@ -173,7 +173,7 @@ F 7 "PN" H 1730 3030 60  0001 C CNN "Digi-Key PN"
 	1    0    0    -1  
 $EndComp
 Text GLabel 1350 3140 0    50   Input ~ 0
-~Reset
+Active
 $Comp
 L Custom_Library:74LVC1G06_Power U?
 U 1 1 5BB81329

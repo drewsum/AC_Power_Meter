@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 15 16
+Sheet 15 17
 Title ""
 Date ""
 Rev ""
@@ -351,6 +351,17 @@ F 1 "+3.3V" H 3280 4070 50  0000 C CNN
 F 2 "" H 3280 3930 50  0000 C CNN
 F 3 "" H 3280 3930 50  0000 C CNN
 	1    3280 3930
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:Heatsink HS?
+U 1 1 5BC1D984
+P 6260 3190
+F 0 "HS?" H 6260 3390 50  0000 C CNN
+F 1 "Heatsink" H 6260 3140 50  0000 C CNN
+F 2 "" H 6272 3190 50  0001 C CNN
+F 3 "" H 6272 3190 50  0001 C CNN
+	1    6260 3190
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

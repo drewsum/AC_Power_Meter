@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 6 16
+Sheet 6 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -690,4 +690,73 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
+$Comp
+L Custom_Library:R_Custom R?
+U 1 1 5BC21861
+P 2740 6910
+AR Path="/5BB27BA3/5BC21861" Ref="R?"  Part="1" 
+AR Path="/5BB27B51/5BC21861" Ref="R?"  Part="1" 
+AR Path="/5BB7FA89/5BC21861" Ref="R?"  Part="1" 
+AR Path="/5BB27B73/5BC21861" Ref="R?"  Part="1" 
+F 0 "R?" H 2660 6910 50  0000 R CNN
+F 1 "10k" V 2740 6910 50  0000 C CNN
+F 2 "" H 2740 6910 50  0001 C CNN
+F 3 "" H 2740 6910 50  0001 C CNN
+F 4 "0603" H 2840 6990 50  0000 L CNN "display_footprint"
+F 5 "1%" H 2840 6910 50  0000 L CNN "Tolerance"
+F 6 "1/10W" H 2850 6830 50  0000 L CNN "Wattage"
+F 7 "PN" H 3040 7310 60  0001 C CNN "Digi-Key PN"
+	1    2740 6910
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:R_Custom R?
+U 1 1 5BC21957
+P 2740 6390
+AR Path="/5BB27BA3/5BC21957" Ref="R?"  Part="1" 
+AR Path="/5BB27B51/5BC21957" Ref="R?"  Part="1" 
+AR Path="/5BB7FA89/5BC21957" Ref="R?"  Part="1" 
+AR Path="/5BB27B73/5BC21957" Ref="R?"  Part="1" 
+F 0 "R?" H 2660 6390 50  0000 R CNN
+F 1 "10k" V 2740 6390 50  0000 C CNN
+F 2 "" H 2740 6390 50  0001 C CNN
+F 3 "" H 2740 6390 50  0001 C CNN
+F 4 "0603" H 2840 6470 50  0000 L CNN "display_footprint"
+F 5 "1%" H 2840 6390 50  0000 L CNN "Tolerance"
+F 6 "1/10W" H 2850 6310 50  0000 L CNN "Wattage"
+F 7 "PN" H 3040 6790 60  0001 C CNN "Digi-Key PN"
+	1    2740 6390
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:+3.3V #PWR?
+U 1 1 5BC219D1
+P 2740 6240
+F 0 "#PWR?" H 2740 6090 50  0001 C CNN
+F 1 "+3.3V" H 2740 6380 50  0000 C CNN
+F 2 "" H 2740 6240 50  0000 C CNN
+F 3 "" H 2740 6240 50  0000 C CNN
+	1    2740 6240
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5BC21AA2
+P 2740 7060
+F 0 "#PWR?" H 2740 6810 50  0001 C CNN
+F 1 "GND" H 2740 6910 50  0000 C CNN
+F 2 "" H 2740 7060 50  0001 C CNN
+F 3 "" H 2740 7060 50  0001 C CNN
+	1    2740 7060
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2740 6540 2740 6650
+Text GLabel 2890 6650 2    50   Output ~ 0
+POS3P3_ADC
+Wire Wire Line
+	2890 6650 2740 6650
+Connection ~ 2740 6650
+Wire Wire Line
+	2740 6650 2740 6760
 $EndSCHEMATC

@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 13 16
+Sheet 13 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -190,182 +190,6 @@ F 3 "~" H 4490 3140 50  0001 C CNN
 	1    4490 3240
 	1    0    0    -1  
 $EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50D0A
-P 6040 2130
-F 0 "MK?" H 6190 2130 50  0000 L CNN
-F 1 "4-40 Standoff" H 6190 2055 50  0000 L CNN
-F 2 "" H 6090 2180 50  0001 C CNN
-F 3 "" H 6090 2180 50  0001 C CNN
-	1    6040 2130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50DA3
-P 7040 2130
-F 0 "MK?" H 7190 2130 50  0000 L CNN
-F 1 "4-40 Standoff" H 7190 2055 50  0000 L CNN
-F 2 "" H 7090 2180 50  0001 C CNN
-F 3 "" H 7090 2180 50  0001 C CNN
-	1    7040 2130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50E83
-P 8040 2130
-F 0 "MK?" H 8190 2130 50  0000 L CNN
-F 1 "4-40 Standoff" H 8190 2055 50  0000 L CNN
-F 2 "" H 8090 2180 50  0001 C CNN
-F 3 "" H 8090 2180 50  0001 C CNN
-	1    8040 2130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50E8A
-P 9040 2130
-F 0 "MK?" H 9190 2130 50  0000 L CNN
-F 1 "4-40 Standoff" H 9190 2055 50  0000 L CNN
-F 2 "" H 9090 2180 50  0001 C CNN
-F 3 "" H 9090 2180 50  0001 C CNN
-	1    9040 2130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50F1D
-P 6040 3130
-F 0 "MK?" H 6190 3130 50  0000 L CNN
-F 1 "4-40 Standoff" H 6190 3055 50  0000 L CNN
-F 2 "" H 6090 3180 50  0001 C CNN
-F 3 "" H 6090 3180 50  0001 C CNN
-	1    6040 3130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50F24
-P 7040 3130
-F 0 "MK?" H 7190 3130 50  0000 L CNN
-F 1 "4-40 Standoff" H 7190 3055 50  0000 L CNN
-F 2 "" H 7090 3180 50  0001 C CNN
-F 3 "" H 7090 3180 50  0001 C CNN
-	1    7040 3130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50F2B
-P 8040 3130
-F 0 "MK?" H 8190 3130 50  0000 L CNN
-F 1 "4-40 Standoff" H 8190 3055 50  0000 L CNN
-F 2 "" H 8090 3180 50  0001 C CNN
-F 3 "" H 8090 3180 50  0001 C CNN
-	1    8040 3130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB50F32
-P 9040 3130
-F 0 "MK?" H 9190 3130 50  0000 L CNN
-F 1 "4-40 Standoff" H 9190 3055 50  0000 L CNN
-F 2 "" H 9090 3180 50  0001 C CNN
-F 3 "" H 9090 3180 50  0001 C CNN
-	1    9040 3130
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB514ED
-P 6040 4370
-F 0 "MK?" H 6190 4370 50  0000 L CNN
-F 1 "4-40 Screw" H 6190 4295 50  0000 L CNN
-F 2 "" H 6090 4420 50  0001 C CNN
-F 3 "" H 6090 4420 50  0001 C CNN
-	1    6040 4370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB514F4
-P 7040 4370
-F 0 "MK?" H 7190 4370 50  0000 L CNN
-F 1 "4-40 Screw" H 7190 4295 50  0000 L CNN
-F 2 "" H 7090 4420 50  0001 C CNN
-F 3 "" H 7090 4420 50  0001 C CNN
-	1    7040 4370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB514FB
-P 8040 4370
-F 0 "MK?" H 8190 4370 50  0000 L CNN
-F 1 "4-40 Screw" H 8190 4295 50  0000 L CNN
-F 2 "" H 8090 4420 50  0001 C CNN
-F 3 "" H 8090 4420 50  0001 C CNN
-	1    8040 4370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB51502
-P 9040 4370
-F 0 "MK?" H 9190 4370 50  0000 L CNN
-F 1 "4-40 Screw" H 9190 4295 50  0000 L CNN
-F 2 "" H 9090 4420 50  0001 C CNN
-F 3 "" H 9090 4420 50  0001 C CNN
-	1    9040 4370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB51509
-P 6040 5370
-F 0 "MK?" H 6190 5370 50  0000 L CNN
-F 1 "4-40 Screw" H 6190 5295 50  0000 L CNN
-F 2 "" H 6090 5420 50  0001 C CNN
-F 3 "" H 6090 5420 50  0001 C CNN
-	1    6040 5370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB51510
-P 7040 5370
-F 0 "MK?" H 7190 5370 50  0000 L CNN
-F 1 "4-40 Screw" H 7190 5295 50  0000 L CNN
-F 2 "" H 7090 5420 50  0001 C CNN
-F 3 "" H 7090 5420 50  0001 C CNN
-	1    7040 5370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB51517
-P 8040 5370
-F 0 "MK?" H 8190 5370 50  0000 L CNN
-F 1 "4-40 Screw" H 8190 5295 50  0000 L CNN
-F 2 "" H 8090 5420 50  0001 C CNN
-F 3 "" H 8090 5420 50  0001 C CNN
-	1    8040 5370
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Housing MK?
-U 1 1 5BB5151E
-P 9040 5370
-F 0 "MK?" H 9190 5370 50  0000 L CNN
-F 1 "4-40 Screw" H 9190 5295 50  0000 L CNN
-F 2 "" H 9090 5420 50  0001 C CNN
-F 3 "" H 9090 5420 50  0001 C CNN
-	1    9040 5370
-	1    0    0    -1  
-$EndComp
 Text Notes 540  690  0    100  ~ 20
 Mounting Holes and Mechanical Components
 $Comp
@@ -377,6 +201,204 @@ F 1 "MU_Logo" H 9900 1586 60  0001 C CNN
 F 2 "" H 9900 1100 50  0001 C CNN
 F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC10ED5
+P 6470 2210
+F 0 "MK?" H 6470 2310 50  0000 C CNN
+F 1 "4-40 Screw" H 6470 2410 50  0000 C CNN
+F 2 "" H 6470 2460 50  0001 C CNN
+F 3 "" H 6470 2460 50  0001 C CNN
+	1    6470 2210
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC1118A
+P 7220 2210
+F 0 "MK?" H 7220 2310 50  0000 C CNN
+F 1 "4-40 Screw" H 7220 2410 50  0000 C CNN
+F 2 "" H 7220 2460 50  0001 C CNN
+F 3 "" H 7220 2460 50  0001 C CNN
+	1    7220 2210
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC11270
+P 7970 2210
+F 0 "MK?" H 7970 2310 50  0000 C CNN
+F 1 "4-40 Screw" H 7970 2410 50  0000 C CNN
+F 2 "" H 7970 2460 50  0001 C CNN
+F 3 "" H 7970 2460 50  0001 C CNN
+	1    7970 2210
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC11277
+P 8720 2210
+F 0 "MK?" H 8720 2310 50  0000 C CNN
+F 1 "4-40 Screw" H 8720 2410 50  0000 C CNN
+F 2 "" H 8720 2460 50  0001 C CNN
+F 3 "" H 8720 2460 50  0001 C CNN
+	1    8720 2210
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC113EE
+P 6470 2960
+F 0 "MK?" H 6470 3060 50  0000 C CNN
+F 1 "4-40 Screw" H 6470 3160 50  0000 C CNN
+F 2 "" H 6470 3210 50  0001 C CNN
+F 3 "" H 6470 3210 50  0001 C CNN
+	1    6470 2960
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC113F5
+P 7220 2960
+F 0 "MK?" H 7220 3060 50  0000 C CNN
+F 1 "4-40 Screw" H 7220 3160 50  0000 C CNN
+F 2 "" H 7220 3210 50  0001 C CNN
+F 3 "" H 7220 3210 50  0001 C CNN
+	1    7220 2960
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC113FC
+P 7970 2960
+F 0 "MK?" H 7970 3060 50  0000 C CNN
+F 1 "4-40 Screw" H 7970 3160 50  0000 C CNN
+F 2 "" H 7970 3210 50  0001 C CNN
+F 3 "" H 7970 3210 50  0001 C CNN
+	1    7970 2960
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Screw MK?
+U 1 1 5BC11403
+P 8720 2960
+F 0 "MK?" H 8720 3060 50  0000 C CNN
+F 1 "4-40 Screw" H 8720 3160 50  0000 C CNN
+F 2 "" H 8720 3210 50  0001 C CNN
+F 3 "" H 8720 3210 50  0001 C CNN
+	1    8720 2960
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC1193F
+P 6470 3720
+F 0 "MK?" H 6470 3870 50  0000 C CNN
+F 1 "4-40 Standoff" H 6470 3970 50  0000 C CNN
+F 2 "" H 6470 4070 50  0001 C CNN
+F 3 "" H 6470 4070 50  0001 C CNN
+	1    6470 3720
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC12310
+P 7220 3720
+F 0 "MK?" H 7220 3870 50  0000 C CNN
+F 1 "4-40 Standoff" H 7220 3970 50  0000 C CNN
+F 2 "" H 7220 4070 50  0001 C CNN
+F 3 "" H 7220 4070 50  0001 C CNN
+	1    7220 3720
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC1235A
+P 7970 3720
+F 0 "MK?" H 7970 3870 50  0000 C CNN
+F 1 "4-40 Standoff" H 7970 3970 50  0000 C CNN
+F 2 "" H 7970 4070 50  0001 C CNN
+F 3 "" H 7970 4070 50  0001 C CNN
+	1    7970 3720
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC123B2
+P 8720 3720
+F 0 "MK?" H 8720 3870 50  0000 C CNN
+F 1 "4-40 Standoff" H 8720 3970 50  0000 C CNN
+F 2 "" H 8720 4070 50  0001 C CNN
+F 3 "" H 8720 4070 50  0001 C CNN
+	1    8720 3720
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC12534
+P 6470 4470
+F 0 "MK?" H 6470 4620 50  0000 C CNN
+F 1 "4-40 Standoff" H 6470 4720 50  0000 C CNN
+F 2 "" H 6470 4820 50  0001 C CNN
+F 3 "" H 6470 4820 50  0001 C CNN
+	1    6470 4470
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC1253B
+P 7220 4470
+F 0 "MK?" H 7220 4620 50  0000 C CNN
+F 1 "4-40 Standoff" H 7220 4720 50  0000 C CNN
+F 2 "" H 7220 4820 50  0001 C CNN
+F 3 "" H 7220 4820 50  0001 C CNN
+	1    7220 4470
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC12542
+P 7970 4470
+F 0 "MK?" H 7970 4620 50  0000 C CNN
+F 1 "4-40 Standoff" H 7970 4720 50  0000 C CNN
+F 2 "" H 7970 4820 50  0001 C CNN
+F 3 "" H 7970 4820 50  0001 C CNN
+	1    7970 4470
+	1    0    0    -1  
+$EndComp
+$Comp
+L Custom_Library:Standoff MK?
+U 1 1 5BC12549
+P 8720 4470
+F 0 "MK?" H 8720 4620 50  0000 C CNN
+F 1 "4-40 Standoff" H 8720 4720 50  0000 C CNN
+F 2 "" H 8720 4820 50  0001 C CNN
+F 3 "" H 8720 4820 50  0001 C CNN
+	1    8720 4470
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:Housing MK?
+U 1 1 5BC1C7F0
+P 2840 5410
+F 0 "MK?" H 2990 5410 50  0000 L CNN
+F 1 "Housing" H 2990 5335 50  0000 L CNN
+F 2 "" H 2890 5460 50  0001 C CNN
+F 3 "" H 2890 5460 50  0001 C CNN
+	1    2840 5410
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:Housing MK?
+U 1 1 5BC1D3DD
+P 4090 5410
+F 0 "MK?" H 4240 5410 50  0000 L CNN
+F 1 "Lid" H 4240 5335 50  0000 L CNN
+F 2 "" H 4140 5460 50  0001 C CNN
+F 3 "" H 4140 5460 50  0001 C CNN
+	1    4090 5410
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

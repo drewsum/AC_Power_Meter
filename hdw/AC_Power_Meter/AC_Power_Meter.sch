@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 1 16
+Sheet 1 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -115,4 +115,10 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
+$Sheet
+S 2980 7410 500  150 
+U 5BC25FFE
+F0 "Pushbuttons" 50
+F1 "Pushbuttons.sch" 50
+$EndSheet
 $EndSCHEMATC

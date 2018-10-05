@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 7 16
+Sheet 7 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -19,7 +19,7 @@ L Custom_Library:PIC18(L)F67K40-I_PT U?
 U 1 1 5BB27DB5
 P 5330 3640
 F 0 "U?" H 6380 1840 50  0000 R CNN
-F 1 "PIC18LF67K40-I_PT" H 5330 3690 50  0000 C CNN
+F 1 "PIC18LF67K40-I/PT" H 5330 3690 50  0000 C CNN
 F 2 "Housings_QFP:TQFP-64_10x10mm_Pitch0.5mm" H 5330 5740 50  0001 C CNN
 F 3 "" H 4680 4290 50  0001 C CNN
 	1    5330 3640
@@ -290,11 +290,11 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
-Text GLabel 1090 2160 2    50   Output ~ 0
+Text GLabel 4080 4190 0    50   Input ~ 0
 POS12_PGOOD
-Text GLabel 1590 2390 0    50   Output ~ 0
+Text GLabel 4080 4390 0    50   Input ~ 0
 POS3P3_PGOOD
-Text GLabel 1090 2890 2    50   Output ~ 0
+Text GLabel 4080 1890 0    50   Input ~ 0
 ISNS_ADC
 $Comp
 L Custom_Library:R_Custom R?
@@ -406,17 +406,17 @@ Text GLabel 1430 5290 0    50   Output ~ 0
 I2C_SCL
 Text GLabel 4080 2790 0    50   Input ~ 0
 Zero_Cross_Detect
-Text GLabel 2960 1990 0    50   Input ~ 0
+Text GLabel 6580 3690 2    50   Output ~ 0
 SSR_Force
-Text GLabel 2960 2090 0    50   Input ~ 0
+Text GLabel 6580 3790 2    50   Output ~ 0
 SSR_Dim
-Text GLabel 8630 1880 0    50   Input ~ 0
-~Reset
-Text GLabel 8630 4520 0    50   Input ~ 0
+Text GLabel 6580 2790 2    50   Output ~ 0
+Active
+Text GLabel 6580 2890 2    50   Output ~ 0
 Comm_Error
-Text GLabel 8640 2590 0    50   Input ~ 0
+Text GLabel 6580 2990 2    50   Output ~ 0
 Heartbeat
-Text GLabel 8450 3110 0    50   Input ~ 0
+Text GLabel 6580 3090 2    50   Output ~ 0
 ADC_Error
 Wire Wire Line
 	2780 5190 4080 5190
@@ -432,6 +432,8 @@ $Comp
 L Custom_Library:CP_Tant_Custom C?
 U 1 1 5BBF0F15
 P 4950 6890
+AR Path="/5BB27B51/5BBF0F15" Ref="C?"  Part="1" 
+AR Path="/5BB27B84/5BBF0F15" Ref="C?"  Part="1" 
 F 0 "C?" H 4975 6990 50  0000 L CNN
 F 1 "47uF" H 4975 6790 50  0000 L CNN
 F 2 "" H 4988 6740 50  0001 C CNN
@@ -636,4 +638,10 @@ Text GLabel 9750 5970 2    50   Output ~ 0
 CLKIN
 Text GLabel 4080 2590 0    50   Input ~ 0
 CLKIN
+Text GLabel 4080 4290 0    50   Input ~ 0
+POS3P3_ADC
+Text GLabel 4080 4090 0    50   Input ~ 0
+POS12_ADC
+Text GLabel 4080 2890 0    50   Input ~ 0
+Sleep
 $EndSCHEMATC
