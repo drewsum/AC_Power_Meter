@@ -93,7 +93,7 @@ F 3 "~" H 5640 4190 50  0001 C CNN
 $EndComp
 Text GLabel 4840 3390 0    50   Input ~ 0
 TRIAC_HT_OUT
-Text Notes 6460 3790 0    50   ~ 0
+Text Notes 6460 3820 0    50   ~ 0
 -> To Panel AC Output Socket
 $Comp
 L Device:Fuse F?
@@ -120,4 +120,18 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector:Conn_WallSocket_Earth J?
+U 1 1 5BBD4D6A
+P 8270 3790
+F 0 "J?" H 8420 4065 50  0000 C BNN
+F 1 "Output Socket" V 8570 3890 50  0000 C BNN
+F 2 "" H 7970 3890 50  0001 C CNN
+F 3 "~" H 7970 3890 50  0001 C CNN
+	1    8270 3790
+	1    0    0    -1  
+$EndComp
+NoConn ~ 8070 3590
+NoConn ~ 8070 3790
+NoConn ~ 8070 3990
 $EndSCHEMATC

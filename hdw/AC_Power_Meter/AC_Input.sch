@@ -121,4 +121,20 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector:Conn_WallPlug_Earth P?
+U 1 1 5BBD4895
+P 2520 3560
+AR Path="/5BB27C33/5BBD4895" Ref="P?"  Part="1" 
+AR Path="/5BB27B1A/5BBD4895" Ref="P?"  Part="1" 
+F 0 "P?" H 2520 3710 50  0000 C BNN
+F 1 "AC In Socket" V 2320 3560 50  0000 C BNN
+F 2 "" H 2920 3560 50  0001 C CNN
+F 3 "~" H 2920 3560 50  0001 C CNN
+	1    2520 3560
+	1    0    0    -1  
+$EndComp
+NoConn ~ 2820 3460
+NoConn ~ 2820 3660
+NoConn ~ 2820 3860
 $EndSCHEMATC
