@@ -22,7 +22,7 @@ AR Path="/5BB27B24/5BB3EC3B" Ref="U?"  Part="1"
 AR Path="/5BB27BB5/5BB3EC3B" Ref="U904"  Part="1" 
 F 0 "U904" H 9140 3530 50  0000 L CNN
 F 1 "LTC6240IS5" H 9140 3130 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 9140 3330 50  0001 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 9140 3330 50  0001 C CNN
 F 3 "http://www.analog.com/media/en/technical-documentation/data-sheets/624012fe.pdf" H 9140 3330 50  0001 C CNN
 F 4 "LTC6240IS5#TRMPBFCT-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
 	1    9140 3330
@@ -147,7 +147,7 @@ AR Path="/5BB27B24/5BB40150" Ref="U?"  Part="1"
 AR Path="/5BB27BB5/5BB40150" Ref="U903"  Part="1" 
 F 0 "U903" H 4990 3430 50  0000 L CNN
 F 1 "LTC6240IS5" H 4990 3030 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4990 3230 50  0001 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 4990 3230 50  0001 C CNN
 F 3 "http://www.analog.com/media/en/technical-documentation/data-sheets/624012fe.pdf" H 4990 3230 50  0001 C CNN
 F 4 "LTC6240IS5#TRMPBFCT-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
 	1    4990 3230
@@ -480,7 +480,7 @@ AR Path="/5BB27B24/5BB7A6C2" Ref="U?"  Part="1"
 AR Path="/5BB27BB5/5BB7A6C2" Ref="U901"  Part="1" 
 F 0 "U901" H 2660 3330 50  0000 L CNN
 F 1 "LTC6240IS5" H 2660 2930 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 2660 3130 50  0001 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 2660 3130 50  0001 C CNN
 F 3 "http://www.analog.com/media/en/technical-documentation/data-sheets/624012fe.pdf" H 2660 3130 50  0001 C CNN
 F 4 "LTC6240IS5#TRMPBFCT-ND" H -4160 -380 50  0001 C CNN "Digi-Key PN"
 	1    2660 3130
@@ -1021,7 +1021,7 @@ AR Path="/5BB27B24/5BBA5D6F" Ref="U?"  Part="1"
 AR Path="/5BB27BB5/5BBA5D6F" Ref="U902"  Part="1" 
 F 0 "U902" H 2660 6380 50  0000 L CNN
 F 1 "LTC6240IS5" H 2660 5980 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23-5" H 2660 6180 50  0001 C CNN
+F 2 "TO_SOT_Packages_SMD:SOT-23-5" H 2660 6180 50  0001 C CNN
 F 3 "http://www.analog.com/media/en/technical-documentation/data-sheets/624012fe.pdf" H 2660 6180 50  0001 C CNN
 F 4 "LTC6240IS5#TRMPBFCT-ND" H -4160 2670 50  0001 C CNN "Digi-Key PN"
 	1    2660 6180

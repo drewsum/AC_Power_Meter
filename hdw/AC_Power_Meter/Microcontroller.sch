@@ -476,7 +476,7 @@ U 1 1 5BBF1E7B
 P 9450 5970
 F 0 "X701" H 9250 6220 50  0000 L CNN
 F 1 "ASV-16.000MHz" H 9500 5720 50  0000 L CNN
-F 2 "Oscillator:Oscillator_SMD_Abracon_ASV-4Pin_7.0x5.1mm" H 10150 5620 50  0001 C CNN
+F 2 "Oscillators:Oscillator_SMD_Abracon_ASV-4pin_7.0x5.1mm" H 10150 5620 50  0001 C CNN
 F 3 "http://www.abracon.com/Oscillators/ASV.pdf" H 9350 5970 50  0001 C CNN
 F 4 "535-10072-1-ND" H 9450 5970 50  0001 C CNN "Digi-Key PN"
 	1    9450 5970
