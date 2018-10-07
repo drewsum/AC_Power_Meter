@@ -26,10 +26,6 @@ Wire Wire Line
 	7990 1860 8190 1860
 Connection ~ 8190 2060
 Wire Wire Line
-	7690 2460 7690 3180
-Wire Wire Line
-	7790 2460 7790 3280
-Wire Wire Line
 	8680 2060 8680 2140
 Wire Wire Line
 	8190 2060 8190 2980
@@ -62,8 +58,6 @@ Wire Wire Line
 Wire Wire Line
 	3490 2740 3490 2780
 Connection ~ 3390 2740
-Wire Wire Line
-	7690 3180 9200 3180
 $Comp
 L Device:Ferrite_Bead L1001
 U 1 1 5B520B93
@@ -80,8 +74,6 @@ Wire Wire Line
 	8930 3410 8930 2980
 Wire Wire Line
 	8930 2980 8570 2980
-Wire Wire Line
-	7790 3280 9200 3280
 Wire Wire Line
 	8930 2980 9200 2980
 Connection ~ 8930 2980
@@ -150,15 +142,9 @@ Wire Wire Line
 Connection ~ 3390 3720
 Wire Wire Line
 	5500 3180 5860 3180
-Connection ~ 7690 3180
-Wire Wire Line
-	7790 3280 6620 3280
-Connection ~ 7790 3280
 Wire Wire Line
 	5860 3570 5860 3180
 Connection ~ 5860 3180
-Wire Wire Line
-	5860 3180 7690 3180
 Wire Wire Line
 	6620 3570 6620 3280
 Connection ~ 6620 3280
@@ -1178,4 +1164,18 @@ Wire Wire Line
 	9830 3630 9600 3630
 Wire Wire Line
 	9600 3630 9600 3580
+Wire Wire Line
+	5860 3180 7790 3180
+Wire Wire Line
+	7690 2460 7690 3280
+Connection ~ 7690 3280
+Wire Wire Line
+	7690 3280 6620 3280
+Wire Wire Line
+	7690 3280 9200 3280
+Wire Wire Line
+	7790 3180 7790 2460
+Connection ~ 7790 3180
+Wire Wire Line
+	7790 3180 9200 3180
 $EndSCHEMATC
