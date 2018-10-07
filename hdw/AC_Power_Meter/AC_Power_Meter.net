@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source "C:\\Users\\Drew Maatman\\Documents\\KiCad Projects\\Projects\\AC_Power_Meter\\hdw\\AC_Power_Meter\\AC_Power_Meter.sch")
-    (date "10/6/2018 9:11:46 PM")
+    (date "10/6/2018 9:28:37 PM")
     (tool "Eeschema (5.0.0)")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -246,6 +246,34 @@
       (libsource (lib Connector) (part Conn_WallPlug_Earth) (description "3-pin general wall plug, with Earth wire (110VAC, 220VAC)"))
       (sheetpath (names "/AC Input/") (tstamps /5BB27B1A/))
       (tstamp 5BBD4895))
+    (comp (ref MK201)
+      (value "4-40 Screw")
+      (fields
+        (field (name "Digi-Key PN") 36-9502-ND))
+      (libsource (lib Custom_Library) (part Screw) (description ""))
+      (sheetpath (names "/AC Input/") (tstamps /5BB27B1A/))
+      (tstamp 5BBA935B))
+    (comp (ref MK203)
+      (value "4-40 Screw")
+      (fields
+        (field (name "Digi-Key PN") 36-9502-ND))
+      (libsource (lib Custom_Library) (part Screw) (description ""))
+      (sheetpath (names "/AC Input/") (tstamps /5BB27B1A/))
+      (tstamp 5BBA9363))
+    (comp (ref MK202)
+      (value Nut)
+      (fields
+        (field (name "Digi-Key PN") 36-4694-ND))
+      (libsource (lib Custom_Library) (part Nut) (description "Hardware, Standoff"))
+      (sheetpath (names "/AC Input/") (tstamps /5BB27B1A/))
+      (tstamp 5BBAE4E8))
+    (comp (ref MK204)
+      (value Nut)
+      (fields
+        (field (name "Digi-Key PN") 36-4694-ND))
+      (libsource (lib Custom_Library) (part Nut) (description "Hardware, Standoff"))
+      (sheetpath (names "/AC Input/") (tstamps /5BB27B1A/))
+      (tstamp 5BBAEFC1))
     (comp (ref C301)
       (value 0.1uF)
       (footprint Capacitors_SMD:C_0603)
@@ -2164,13 +2192,6 @@
       (libsource (lib Custom_Library) (part Screw) (description ""))
       (sheetpath (names /Mechanical/) (tstamps /5BB27C33/))
       (tstamp 5BC113EE))
-    (comp (ref MK1308)
-      (value "4-40 Screw")
-      (fields
-        (field (name "Digi-Key PN") 36-9900-ND))
-      (libsource (lib Custom_Library) (part Screw) (description ""))
-      (sheetpath (names /Mechanical/) (tstamps /5BB27C33/))
-      (tstamp 5BC113F5))
     (comp (ref MK1312)
       (value "4-40 Screw")
       (fields
@@ -2220,13 +2241,6 @@
       (libsource (lib Custom_Library) (part Standoff) (description "Hardware, Standoff"))
       (sheetpath (names /Mechanical/) (tstamps /5BB27C33/))
       (tstamp 5BC12534))
-    (comp (ref MK1310)
-      (value "4-40 Standoff")
-      (fields
-        (field (name "Digi-Key PN") 36-8400-ND))
-      (libsource (lib Custom_Library) (part Standoff) (description "Hardware, Standoff"))
-      (sheetpath (names /Mechanical/) (tstamps /5BB27C33/))
-      (tstamp 5BC1253B))
     (comp (ref MK1314)
       (value "4-40 Standoff")
       (fields
@@ -3432,6 +3446,11 @@
       (pins
         (pin (num 1) (name 1) (type passive))
         (pin (num 2) (name 2) (type passive))))
+    (libpart (lib Custom_Library) (part Nut)
+      (description "Hardware, Standoff")
+      (fields
+        (field (name Reference) MK)
+        (field (name Value) Nut)))
     (libpart (lib Custom_Library) (part "PIC18(L)F67K40-I_PT")
       (footprints
         (fp QFN*1EP*8x8mm*Pitch0.65mm*))

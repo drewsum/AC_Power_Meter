@@ -88,18 +88,6 @@ F 4 "36-9900-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:Screw MK1308
-U 1 1 5BC113F5
-P 7220 2960
-F 0 "MK1308" H 7220 3060 50  0000 C CNN
-F 1 "4-40 Screw" H 7220 3160 50  0000 C CNN
-F 2 "" H 7220 3210 50  0001 C CNN
-F 3 "" H 7220 3210 50  0001 C CNN
-F 4 "36-9900-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
-	1    7220 2960
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:Screw MK1312
 U 1 1 5BC113FC
 P 7970 2960
@@ -181,18 +169,6 @@ F 2 "" H 6470 4820 50  0001 C CNN
 F 3 "" H 6470 4820 50  0001 C CNN
 F 4 "36-8400-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
 	1    6470 4470
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:Standoff MK1310
-U 1 1 5BC1253B
-P 7220 4470
-F 0 "MK1310" H 7220 4620 50  0000 C CNN
-F 1 "4-40 Standoff" H 7220 4720 50  0000 C CNN
-F 2 "" H 7220 4820 50  0001 C CNN
-F 3 "" H 7220 4820 50  0001 C CNN
-F 4 "36-8400-ND" H 0   0   50  0001 C CNN "Digi-Key PN"
-	1    7220 4470
 	1    0    0    -1  
 $EndComp
 $Comp
