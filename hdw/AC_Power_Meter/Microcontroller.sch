@@ -291,9 +291,9 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
-Text GLabel 6580 1990 2    50   Input ~ 0
+Text GLabel 4080 3990 0    50   Input ~ 0
 POS12_PGOOD
-Text GLabel 6580 2190 2    50   Input ~ 0
+Text GLabel 4080 3890 0    50   Input ~ 0
 POS3P3_PGOOD
 Text GLabel 4080 1890 0    50   Input ~ 0
 ISNS_ADC
@@ -407,7 +407,7 @@ Text GLabel 1440 4290 0    50   BiDi ~ 0
 I2C_SDA
 Text GLabel 1440 4390 0    50   Output ~ 0
 I2C_SCL
-Text GLabel 4080 2790 0    50   Input ~ 0
+Text GLabel 4080 2390 0    50   Input ~ 0
 Zero_Cross_Detect
 Text GLabel 6580 3690 2    50   Output ~ 0
 SSR_Force
@@ -638,9 +638,9 @@ Text GLabel 4080 2590 0    50   Input ~ 0
 CLKIN
 Text GLabel 6580 2090 2    50   Input ~ 0
 POS3P3_ADC
-Text GLabel 6580 1890 2    50   Input ~ 0
+Text GLabel 4080 2290 0    50   Input ~ 0
 POS12_ADC
-Text GLabel 4080 2890 0    50   Input ~ 0
+Text GLabel 4080 2790 0    50   Input ~ 0
 SW_Toggle
 $Comp
 L power:+3.3VADC #PWR0710
@@ -665,8 +665,6 @@ F 3 "" H 4080 2090 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 NoConn ~ 4080 1990
-NoConn ~ 4080 2290
-NoConn ~ 4080 2390
 NoConn ~ 4080 2490
 NoConn ~ 4080 2990
 NoConn ~ 4080 3090
@@ -674,8 +672,6 @@ NoConn ~ 4080 3190
 NoConn ~ 4080 3290
 NoConn ~ 4080 3690
 NoConn ~ 4080 3790
-NoConn ~ 4080 3890
-NoConn ~ 4080 3990
 NoConn ~ 4080 4090
 NoConn ~ 4080 4190
 NoConn ~ 4080 4590
@@ -707,4 +703,8 @@ Wire Wire Line
 Connection ~ 2790 4290
 NoConn ~ 4080 5190
 NoConn ~ 4080 5290
+NoConn ~ 4080 2890
+NoConn ~ 6580 1990
+NoConn ~ 6580 2190
+NoConn ~ 6580 1890
 $EndSCHEMATC

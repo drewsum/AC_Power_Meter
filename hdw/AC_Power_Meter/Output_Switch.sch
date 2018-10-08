@@ -58,7 +58,7 @@ F 7 "311-220HRCT-ND" H 4090 3780 60  0001 C CNN "Digi-Key PN"
 $EndComp
 Wire Wire Line
 	3940 3380 4310 3380
-Text GLabel 1580 3330 0    50   Input ~ 0
+Text GLabel 1580 3430 0    50   Input ~ 0
 SSR_Force
 $Comp
 L Triac_Thyristor:BT139-600 Q1501
@@ -292,7 +292,7 @@ F 3 "" H 1790 3850 50  0001 C CNN
 	1    1790 3850
 	1    0    0    -1  
 $EndComp
-Text GLabel 1580 3430 0    50   Input ~ 0
+Text GLabel 1580 3330 0    50   Input ~ 0
 SSR_Dim
 Wire Wire Line
 	1580 3330 1790 3330
