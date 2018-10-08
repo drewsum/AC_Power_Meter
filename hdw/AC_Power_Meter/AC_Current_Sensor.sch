@@ -144,7 +144,7 @@ F 3 "" H 5350 3240 50  0000 C CNN
 	1    5350 3240
 	1    0    0    -1  
 $EndComp
-Text GLabel 4950 3440 0    50   Output ~ 0
+Text GLabel 4950 3740 0    50   Output ~ 0
 ISNS_HT_OUT
 $Comp
 L Custom_Library:+3.3V #PWR?
@@ -229,18 +229,18 @@ Text Notes 3530 4440 0    50   ~ 0
 $Comp
 L power:HT #PWR0301
 U 1 1 5BB463D5
-P 4870 3660
-F 0 "#PWR0301" H 4870 3780 50  0001 C CNN
-F 1 "HT" H 4870 3750 50  0000 C CNN
-F 2 "" H 4870 3660 50  0001 C CNN
-F 3 "" H 4870 3660 50  0001 C CNN
-	1    4870 3660
+P 4870 3360
+F 0 "#PWR0301" H 4870 3480 50  0001 C CNN
+F 1 "HT" H 4870 3450 50  0000 C CNN
+F 2 "" H 4870 3360 50  0001 C CNN
+F 3 "" H 4870 3360 50  0001 C CNN
+	1    4870 3360
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4870 3660 4870 3740
+	4870 3360 4870 3440
 Wire Wire Line
-	4870 3740 4950 3740
+	4870 3440 4950 3440
 Text Notes 540  690  0    100  ~ 20
 AC Current Sensor
 $Comp
