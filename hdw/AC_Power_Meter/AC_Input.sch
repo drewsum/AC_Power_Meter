@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 2 18
+Sheet 2 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -79,9 +79,9 @@ U 1 1 5BB4D19A
 P 4610 3240
 F 0 "J201" H 4610 3340 50  0000 C CNN
 F 1 "HT_IN" H 4610 3140 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 4610 3240 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 4610 3240 50  0001 C CNN
 F 3 "~" H 4610 3240 50  0001 C CNN
-F 4 "732-3214-ND" H 4610 3240 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 4610 3240 50  0001 C CNN "Digi-Key PN"
 	1    4610 3240
 	-1   0    0    -1  
 $EndComp
@@ -91,9 +91,9 @@ U 1 1 5BB4D248
 P 4610 3640
 F 0 "J202" H 4610 3740 50  0000 C CNN
 F 1 "NEUT_IN" H 4610 3540 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 4610 3640 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 4610 3640 50  0001 C CNN
 F 3 "~" H 4610 3640 50  0001 C CNN
-F 4 "732-3214-ND" H 4610 3640 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 4610 3640 50  0001 C CNN "Digi-Key PN"
 	1    4610 3640
 	-1   0    0    -1  
 $EndComp
@@ -103,9 +103,9 @@ U 1 1 5BB4D2A4
 P 4610 4040
 F 0 "J203" H 4610 4140 50  0000 C CNN
 F 1 "EARTH_IN" H 4610 3940 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 4610 4040 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 4610 4040 50  0001 C CNN
 F 3 "~" H 4610 4040 50  0001 C CNN
-F 4 "732-3214-ND" H 4610 4040 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 4610 4040 50  0001 C CNN "Digi-Key PN"
 	1    4610 4040
 	-1   0    0    -1  
 $EndComp

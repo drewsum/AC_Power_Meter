@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 6 18
+Sheet 6 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -153,7 +153,7 @@ F 3 "" H 2295 3380 50  0001 C CNN
 F 4 "0805" H 2120 3380 50  0000 R CNN "display_footprint"
 F 5 "25V" H 2120 3280 50  0000 R CNN "Voltage"
 F 6 "X7R" H 2120 3180 50  0000 R CNN "Dielectric"
-F 7 "587-2990-1-ND" H 2695 3780 60  0001 C CNN "Digi-Key PN"
+F 7 "478-10056-1-ND" H 2695 3780 60  0001 C CNN "Digi-Key PN"
 	1    2270 3280
 	1    0    0    -1  
 $EndComp
@@ -205,41 +205,6 @@ Wire Wire Line
 Connection ~ 2970 3050
 Wire Wire Line
 	2970 3050 3620 3050
-$Comp
-L Custom_Library:R_Custom R?
-U 1 1 5BBA41B9
-P 2950 4220
-AR Path="/5BB27BA3/5BBA41B9" Ref="R?"  Part="1" 
-AR Path="/5BB27B51/5BBA41B9" Ref="R?"  Part="1" 
-AR Path="/5BB7FA89/5BBA41B9" Ref="R?"  Part="1" 
-AR Path="/5BB27B73/5BBA41B9" Ref="R604"  Part="1" 
-F 0 "R604" H 2870 4220 50  0000 R CNN
-F 1 "10k" V 2950 4220 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" H 2950 4220 50  0001 C CNN
-F 3 "" H 2950 4220 50  0001 C CNN
-F 4 "0603" H 3050 4300 50  0000 L CNN "display_footprint"
-F 5 "1%" H 3050 4220 50  0000 L CNN "Tolerance"
-F 6 "1/10W" H 3060 4140 50  0000 L CNN "Wattage"
-F 7 "RHM10KADCT-ND" H 3250 4620 60  0001 C CNN "Digi-Key PN"
-	1    2950 4220
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0611
-U 1 1 5BBA4231
-P 2950 4070
-F 0 "#PWR0611" H 2950 3920 50  0001 C CNN
-F 1 "+3.3V" H 2950 4210 50  0000 C CNN
-F 2 "" H 2950 4070 50  0000 C CNN
-F 3 "" H 2950 4070 50  0000 C CNN
-	1    2950 4070
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3960 4450 2950 4450
-Wire Wire Line
-	2950 4450 2950 4370
-Connection ~ 2950 4450
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BBA50E7
@@ -561,122 +526,10 @@ F 3 "" H 1595 3380 50  0001 C CNN
 F 4 "0805" H 1420 3380 50  0000 R CNN "display_footprint"
 F 5 "25V" H 1420 3280 50  0000 R CNN "Voltage"
 F 6 "X7R" H 1420 3180 50  0000 R CNN "Dielectric"
-F 7 "587-2990-1-ND" H 1995 3780 60  0001 C CNN "Digi-Key PN"
+F 7 "478-10056-1-ND" H 1995 3780 60  0001 C CNN "Digi-Key PN"
 	1    1570 3280
 	1    0    0    -1  
 $EndComp
-Text GLabel 1410 4450 0    50   Output ~ 0
-POS3P3_PGOOD
-$Comp
-L Custom_Library:74LVC1G17_Power U601
-U 1 1 5BBB8208
-P 2390 4450
-F 0 "U601" H 2490 4600 50  0000 L CNN
-F 1 "74LVC1G17" H 2490 4300 50  0000 L CNN
-F 2 "TO_SOT_Packages_SMD:SOT-353_SC-70-5" H 2390 4450 50  0001 C CNN
-F 3 "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf" H 2490 4600 50  0001 C CNN
-F 4 "296-11934-1-ND" H 2390 4450 50  0001 C CNN "Digi-Key PN"
-	1    2390 4450
-	-1   0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0608
-U 1 1 5BBB82D1
-P 2390 4550
-F 0 "#PWR0608" H 2390 4300 50  0001 C CNN
-F 1 "GND" H 2390 4400 50  0000 C CNN
-F 2 "" H 2390 4550 50  0001 C CNN
-F 3 "" H 2390 4550 50  0001 C CNN
-	1    2390 4550
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0607
-U 1 1 5BBB8333
-P 2390 4350
-F 0 "#PWR0607" H 2390 4200 50  0001 C CNN
-F 1 "+3.3V" H 2390 4490 50  0000 C CNN
-F 2 "" H 2390 4350 50  0000 C CNN
-F 3 "" H 2390 4350 50  0000 C CNN
-	1    2390 4350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:C_Custom C602
-U 1 1 5BBB8788
-P 2190 5150
-F 0 "C602" H 2215 5250 50  0000 L CNN
-F 1 "0.1uF" H 2215 5050 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0603" H 2228 5000 50  0001 C CNN
-F 3 "" H 2215 5250 50  0001 C CNN
-F 4 "0603" H 2040 5250 50  0000 R CNN "display_footprint"
-F 5 "50V" H 2040 5150 50  0000 R CNN "Voltage"
-F 6 "X7R" H 2040 5050 50  0000 R CNN "Dielectric"
-F 7 "490-8020-1-ND" H 2615 5650 60  0001 C CNN "Digi-Key PN"
-	1    2190 5150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0605
-U 1 1 5BBB8855
-P 2190 5300
-F 0 "#PWR0605" H 2190 5050 50  0001 C CNN
-F 1 "GND" H 2190 5150 50  0000 C CNN
-F 2 "" H 2190 5300 50  0001 C CNN
-F 3 "" H 2190 5300 50  0001 C CNN
-	1    2190 5300
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0604
-U 1 1 5BBB88AC
-P 2190 5000
-F 0 "#PWR0604" H 2190 4850 50  0001 C CNN
-F 1 "+3.3V" H 2190 5140 50  0000 C CNN
-F 2 "" H 2190 5000 50  0000 C CNN
-F 3 "" H 2190 5000 50  0000 C CNN
-	1    2190 5000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2690 4450 2950 4450
-$Comp
-L Custom_Library:R_Custom R?
-U 1 1 5BBBB118
-P 1490 4830
-AR Path="/5BB27BA3/5BBBB118" Ref="R?"  Part="1" 
-AR Path="/5BB27B51/5BBBB118" Ref="R?"  Part="1" 
-AR Path="/5BB7FA89/5BBBB118" Ref="R?"  Part="1" 
-AR Path="/5BB27B73/5BBBB118" Ref="R601"  Part="1" 
-F 0 "R601" H 1410 4830 50  0000 R CNN
-F 1 "10k" V 1490 4830 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" H 1490 4830 50  0001 C CNN
-F 3 "" H 1490 4830 50  0001 C CNN
-F 4 "0603" H 1590 4910 50  0000 L CNN "display_footprint"
-F 5 "1%" H 1590 4830 50  0000 L CNN "Tolerance"
-F 6 "1/10W" H 1600 4750 50  0000 L CNN "Wattage"
-F 7 "RHM10KADCT-ND" H 1790 5230 60  0001 C CNN "Digi-Key PN"
-	1    1490 4830
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0601
-U 1 1 5BBBB16E
-P 1490 4980
-F 0 "#PWR0601" H 1490 4730 50  0001 C CNN
-F 1 "GND" H 1490 4830 50  0000 C CNN
-F 2 "" H 1490 4980 50  0001 C CNN
-F 3 "" H 1490 4980 50  0001 C CNN
-	1    1490 4980
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2140 4450 1490 4450
-Wire Wire Line
-	1490 4450 1490 4680
-Wire Wire Line
-	1410 4450 1490 4450
-Connection ~ 1490 4450
 Text Notes 540  690  0    100  ~ 20
 +3.3V, 750mA, 2MHz Buck Converter
 $Comp
@@ -759,4 +612,5 @@ Wire Wire Line
 Connection ~ 2740 6650
 Wire Wire Line
 	2740 6650 2740 6760
+NoConn ~ 3960 4450
 $EndSCHEMATC

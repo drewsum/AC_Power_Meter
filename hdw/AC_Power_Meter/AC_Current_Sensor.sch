@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 3 18
+Sheet 3 17
 Title ""
 Date "2018-10-01"
 Rev "A"

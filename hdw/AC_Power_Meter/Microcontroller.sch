@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 7 18
+Sheet 7 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -291,10 +291,6 @@ F 3 "" H 9900 1100 50  0001 C CNN
 	1    9900 1100
 	1    0    0    -1  
 $EndComp
-Text GLabel 4080 3990 0    50   Input ~ 0
-POS12_PGOOD
-Text GLabel 4080 3890 0    50   Input ~ 0
-POS3P3_PGOOD
 Text GLabel 4080 1890 0    50   Input ~ 0
 ISNS_ADC
 $Comp
@@ -425,45 +421,6 @@ Wire Wire Line
 	2790 4290 1740 4290
 Wire Wire Line
 	1740 4390 2040 4390
-$Comp
-L Custom_Library:CP_Tant_Custom C?
-U 1 1 5BBF0F15
-P 4590 7010
-AR Path="/5BB27B51/5BBF0F15" Ref="C?"  Part="1" 
-AR Path="/5BB27B84/5BBF0F15" Ref="C707"  Part="1" 
-F 0 "C707" H 4615 7110 50  0000 L CNN
-F 1 "47uF" H 4615 6910 50  0000 L CNN
-F 2 "Capacitors_Tantalum_SMD:CP_Tantalum_Case-X_EIA-7343-43_Reflow" H 4628 6860 50  0001 C CNN
-F 3 "" H 4615 7110 50  0001 C CNN
-F 4 "478-3938-1-ND" H 4590 7010 50  0001 C CNN "Digi-Key PN"
-F 5 "7343" H 4440 7110 50  0000 R CNN "display_footprint"
-F 6 "16V" H 4440 7010 50  0000 R CNN "Voltage"
-F 7 "10%" H 4440 6910 50  0000 R CNN "Tolerance"
-	1    4590 7010
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0708
-U 1 1 5BBF1696
-P 4590 7160
-F 0 "#PWR0708" H 4590 6910 50  0001 C CNN
-F 1 "GND" H 4590 7010 50  0000 C CNN
-F 2 "" H 4590 7160 50  0001 C CNN
-F 3 "" H 4590 7160 50  0001 C CNN
-	1    4590 7160
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0707
-U 1 1 5BBF16B9
-P 4590 6860
-F 0 "#PWR0707" H 4590 6710 50  0001 C CNN
-F 1 "+3.3V" H 4590 7000 50  0000 C CNN
-F 2 "" H 4590 6860 50  0000 C CNN
-F 3 "" H 4590 6860 50  0000 C CNN
-	1    4590 6860
-	1    0    0    -1  
-$EndComp
 $Comp
 L Oscillator:ASV-xxxMHz X701
 U 1 1 5BBF1E7B
@@ -640,8 +597,6 @@ Text GLabel 6580 2090 2    50   Input ~ 0
 POS3P3_ADC
 Text GLabel 4080 2290 0    50   Input ~ 0
 POS12_ADC
-Text GLabel 4080 2790 0    50   Input ~ 0
-SW_Toggle
 $Comp
 L power:+3.3VADC #PWR0710
 U 1 1 5BB8B55F
@@ -707,4 +662,7 @@ NoConn ~ 4080 2890
 NoConn ~ 6580 1990
 NoConn ~ 6580 2190
 NoConn ~ 6580 1890
+NoConn ~ 4080 2790
+NoConn ~ 4080 3890
+NoConn ~ 4080 3990
 $EndSCHEMATC

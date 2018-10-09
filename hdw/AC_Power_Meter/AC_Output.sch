@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 4 18
+Sheet 4 17
 Title ""
 Date "2018-10-01"
 Rev "A"
@@ -60,9 +60,9 @@ AR Path="/5BB27B1A/5BB4DDF0" Ref="J?"  Part="1"
 AR Path="/5BB27B36/5BB4DDF0" Ref="J401"  Part="1" 
 F 0 "J401" H 5640 3490 50  0000 C CNN
 F 1 "HT_OUT" H 5640 3290 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 5640 3390 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 5640 3390 50  0001 C CNN
 F 3 "~" H 5640 3390 50  0001 C CNN
-F 4 "732-3214-ND" H 5640 3390 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 5640 3390 50  0001 C CNN "Digi-Key PN"
 	1    5640 3390
 	1    0    0    -1  
 $EndComp
@@ -74,9 +74,9 @@ AR Path="/5BB27B1A/5BB4DDF7" Ref="J?"  Part="1"
 AR Path="/5BB27B36/5BB4DDF7" Ref="J402"  Part="1" 
 F 0 "J402" H 5640 3890 50  0000 C CNN
 F 1 "NEUT_OUT" H 5640 3690 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 5640 3790 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 5640 3790 50  0001 C CNN
 F 3 "~" H 5640 3790 50  0001 C CNN
-F 4 "732-3214-ND" H 5640 3790 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 5640 3790 50  0001 C CNN "Digi-Key PN"
 	1    5640 3790
 	1    0    0    -1  
 $EndComp
@@ -88,14 +88,12 @@ AR Path="/5BB27B1A/5BB4DDFE" Ref="J?"  Part="1"
 AR Path="/5BB27B36/5BB4DDFE" Ref="J403"  Part="1" 
 F 0 "J403" H 5640 4290 50  0000 C CNN
 F 1 "EARTH_OUT" H 5640 4090 50  0000 C CNN
-F 2 "Custom Footprints Library:Wuerth_7461096_M4_Shank_9pos" H 5640 4190 50  0001 C CNN
+F 2 "Custom Footprints Library:Keystone_8191" H 5640 4190 50  0001 C CNN
 F 3 "~" H 5640 4190 50  0001 C CNN
-F 4 "732-3214-ND" H 5640 4190 50  0001 C CNN "Digi-Key PN"
+F 4 "36-8191-ND" H 5640 4190 50  0001 C CNN "Digi-Key PN"
 	1    5640 4190
 	1    0    0    -1  
 $EndComp
-Text GLabel 4840 3390 0    50   Input ~ 0
-TRIAC_HT_OUT
 Text Notes 6460 3820 0    50   ~ 0
 -> To Panel AC Output Socket
 $Comp
@@ -138,4 +136,6 @@ $EndComp
 NoConn ~ 8070 3590
 NoConn ~ 8070 3790
 NoConn ~ 8070 3990
+Text GLabel 4840 3390 0    50   Input ~ 0
+TRIAC_HT_OUT
 $EndSCHEMATC
