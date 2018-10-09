@@ -730,4 +730,8 @@ Wire Wire Line
 	3630 4740 3630 4820
 Wire Wire Line
 	3630 5280 3630 5200
+Text GLabel 7550 4090 0    50   Input ~ 0
+~MRST
+Wire Wire Line
+	7550 4090 8220 4090
 $EndSCHEMATC
