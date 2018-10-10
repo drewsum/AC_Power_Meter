@@ -86,12 +86,6 @@ U 5BB27C33
 F0 "Mechanical" 50
 F1 "Mechanical.sch" 50
 $EndSheet
-$Sheet
-S 7720 2850 500  150 
-U 5BB7FA89
-F0 "Status LEDs" 50
-F1 "Status_LEDs.sch" 50
-$EndSheet
 $Comp
 L Custom_Library:MU_Logo #G101
 U 1 1 5BB67CD7
@@ -112,12 +106,6 @@ Text Notes 770  6260 0    100  ~ 0
 Text Notes 5660 3480 0    100  ~ 0
 12. Mechanical\n\n\n13. Zero Cross Detect\n\n\n14. Output Switch\n\n\n15. Status LEDs\n\n\n17. Firmware Notes
 $Sheet
-S 7720 3350 500  150 
-U 5BB83979
-F0 "Firmware Notes" 50
-F1 "Firmware_Notes.sch" 50
-$EndSheet
-$Sheet
 S 7720 1940 500  150 
 U 5BBE5EA4
 F0 "Zero Cross Detect" 50
@@ -128,5 +116,17 @@ S 7720 2440 500  150
 U 5BBE5EA9
 F0 "Output Switch" 50
 F1 "Output_Switch.sch" 50
+$EndSheet
+$Sheet
+S 7720 2850 500  150 
+U 5BB7FA89
+F0 "Status LEDs" 50
+F1 "Status_LEDs.sch" 50
+$EndSheet
+$Sheet
+S 7720 3350 500  150 
+U 5BB83979
+F0 "Firmware Notes" 50
+F1 "Firmware_Notes.sch" 50
 $EndSheet
 $EndSCHEMATC
