@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17458 `(v ~T0 @X0 0 tf ]
-[v F17461 `(v ~T0 @X0 0 tf ]
+[v F17556 `(v ~T0 @X0 0 tf ]
+[v F17559 `(v ~T0 @X0 0 tf ]
 "29043 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1350 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1350 . LATF0 LATF1 LATF2 LATF3 LATF4 LATF5 LATF6 LATF7 ]
@@ -12,12 +12,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1349 . . . ]
 "29064
 [v _LATFbits `VS1349 ~T0 @X0 0 e@3966 ]
+"77 main.c
+[c E17316 0 4 34 60 61 62 63 .. ]
+[n E17316 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+"26604 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[v _ADPCH `Vuc ~T0 @X0 0 e@3935 ]
+"223 mcc_generated_files/adcc.h
+[v _ADCC_GetConversionResult `(ui ~T0 @X0 0 ef ]
+"161
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17316 ]
+"191
+[v _ADCC_IsConversionDone `(uc ~T0 @X0 0 ef ]
 [p mainexit ]
-"71 mcc_generated_files/mcc.h
+[v F17273 `(v ~T0 @X0 1 tf1`ul ]
+"164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
+[v __delay `JF17273 ~T0 @X0 0 e ]
+[p i __delay ]
+"73 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-[v F17386 `(v ~T0 @X0 0 tf ]
+[v F17457 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
-[v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17386 ]
+[v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17457 ]
+[v F17380 `(v ~T0 @X0 0 tf ]
+"846 mcc_generated_files/adcc.h
+[v _ADCC_SetADIInterruptHandler `(v ~T0 @X0 0 ef1`*F17380 ]
+[v F17484 `(v ~T0 @X0 0 tf ]
+"385 mcc_generated_files/tmr7.h
+[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17484 ]
 "40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
@@ -32,8 +53,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1980 . . . . ]
 "40517
 [v _INTCONbits `VS1980 ~T0 @X0 0 e@4082 ]
-"87 ring_buffer_interface.h
-[v _ringBufferPull `(v ~T0 @X0 0 ef ]
+"147 ring_buffer_interface.h
+[v _terminal_clearTerminal `(v ~T0 @X0 0 ef ]
+"148
+[v _terminal_setCursorHome `(v ~T0 @X0 0 ef ]
+"159
+[v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
+"112
+[v _terminal_ringBufferPull `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16023,8 +16050,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 216: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 228: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 300: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 312: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -16055,6 +16082,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 132: void INTERRUPT_Initialize (void);
+[; ;adcc.h: 72: typedef uint16_t adc_result_t;
+[; ;adcc.h: 89: typedef enum
+[; ;adcc.h: 90: {
+[; ;adcc.h: 91: ISNS_ADC = 0x0,
+[; ;adcc.h: 92: POS12_ADC = 0x4,
+[; ;adcc.h: 93: POS3P3_ADC = 0x22,
+[; ;adcc.h: 94: channel_VSS = 0x3C,
+[; ;adcc.h: 95: channel_Temp = 0x3D,
+[; ;adcc.h: 96: channel_DAC1 = 0x3E,
+[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
+[; ;adcc.h: 98: } adcc_channel_t;
+[; ;adcc.h: 132: void ADCC_Initialize(void);
+[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
+[; ;adcc.h: 191: bool ADCC_IsConversionDone();
+[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
+[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+[; ;adcc.h: 279: void ADCC_StopConversion(void);
+[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
+[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
+[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
+[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
+[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
+[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
+[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
+[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
+[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
+[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
+[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
+[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
+[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
+[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
+[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
+[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
+[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
+[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
+[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
+[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
+[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ISR(void);
+[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
 [; ;tmr6.h: 79: typedef enum
 [; ;tmr6.h: 80: {
 [; ;tmr6.h: 89: TMR6_ROP_STARTS_TMRON,
@@ -16115,6 +16183,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;tmr7.h: 100: void TMR7_Initialize(void);
+[; ;tmr7.h: 129: void TMR7_StartTimer(void);
+[; ;tmr7.h: 161: void TMR7_StopTimer(void);
+[; ;tmr7.h: 196: uint16_t TMR7_ReadTimer(void);
+[; ;tmr7.h: 235: void TMR7_WriteTimer(uint16_t timerVal);
+[; ;tmr7.h: 271: void TMR7_Reload(void);
+[; ;tmr7.h: 310: void TMR7_StartSinglePulseAcquisition(void);
+[; ;tmr7.h: 349: uint8_t TMR7_CheckGateValueStatus(void);
+[; ;tmr7.h: 367: void TMR7_ISR(void);
+[; ;tmr7.h: 385: void TMR7_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr7.h: 403: extern void (*TMR7_InterruptHandler)(void);
+[; ;tmr7.h: 421: void TMR7_DefaultInterruptHandler(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -16148,10 +16228,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17458 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17556 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17461 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17559 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16163,9 +16243,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 97: void PMD_Initialize(void);
+[; ;mcc.h: 73: void SYSTEM_Initialize(void);
+[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 99: void PMD_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -16242,86 +16322,222 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
 [; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
 [; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
-[; ;ring_buffer_LUT.h: 22: extern volatile bit USB_DTR;
 [; ;ring_buffer_LUT.h: 49: void ringBufferLUT(char * line);
 [; ;ring_buffer_interface.h: 40: extern volatile bit eusart2RxStringReady;
 [; ;ring_buffer_interface.h: 43: extern volatile uint8_t eusart2RxCount;
 [; ;ring_buffer_interface.h: 46: extern volatile uint8_t eusart2RxHead;
 [; ;ring_buffer_interface.h: 47: extern volatile uint8_t eusart2RxTail;
-[; ;ring_buffer_interface.h: 50: extern volatile bit USB_DTR;
-"54 ring_buffer_interface.h
+"52 ring_buffer_interface.h
 [v _line `uc ~T0 @X0 -> 64 `i e ]
-[; ;ring_buffer_interface.h: 54: char line[64];
-[; ;ring_buffer_interface.h: 87: void ringBufferPull(void);
-[; ;ring_buffer_interface.h: 117: void printResetMessage(void);
-"50 main.c
+[; ;ring_buffer_interface.h: 52: char line[64];
+[; ;ring_buffer_interface.h: 56: typedef enum {
+[; ;ring_buffer_interface.h: 58: NORMAL,
+[; ;ring_buffer_interface.h: 59: BOLD,
+[; ;ring_buffer_interface.h: 60: UNDERSCORE,
+[; ;ring_buffer_interface.h: 61: BLINK,
+[; ;ring_buffer_interface.h: 62: REVERSE,
+[; ;ring_buffer_interface.h: 63: CONCEALED
+[; ;ring_buffer_interface.h: 65: } text_attribute_t;
+[; ;ring_buffer_interface.h: 68: typedef enum {
+[; ;ring_buffer_interface.h: 70: BLACK,
+[; ;ring_buffer_interface.h: 71: RED,
+[; ;ring_buffer_interface.h: 72: GREEN,
+[; ;ring_buffer_interface.h: 73: YELLOW,
+[; ;ring_buffer_interface.h: 74: BLUE,
+[; ;ring_buffer_interface.h: 75: MAGENTA,
+[; ;ring_buffer_interface.h: 76: CYAN,
+[; ;ring_buffer_interface.h: 77: WHITE
+[; ;ring_buffer_interface.h: 79: } text_color_t;
+[; ;ring_buffer_interface.h: 112: void terminal_ringBufferPull(void);
+[; ;ring_buffer_interface.h: 142: void terminal_printResetMessage(void);
+[; ;ring_buffer_interface.h: 147: void terminal_clearTerminal(void);
+[; ;ring_buffer_interface.h: 148: void terminal_setCursorHome(void);
+[; ;ring_buffer_interface.h: 149: void terminal_clearLine(void);
+[; ;ring_buffer_interface.h: 150: void terminal_saveCursor(void);
+[; ;ring_buffer_interface.h: 151: void terminal_returnCursor(void);
+[; ;ring_buffer_interface.h: 154: void terminal_textAttributes(text_color_t foreground_color,
+[; ;ring_buffer_interface.h: 155: text_color_t background_color,
+[; ;ring_buffer_interface.h: 156: text_attribute_t input_attribute);
+[; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
+[; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
+"53 main.c
 [v _eusart2RxStringReady `Vb ~T0 @X0 1 e ]
 [i _eusart2RxStringReady
 -> 0 `i
 ]
-[; ;main.c: 50: volatile bit eusart2RxStringReady = 0;
-"55
+[; ;main.c: 53: volatile bit eusart2RxStringReady = 0;
+"56
+[v _POS3P3_ADC_Result `f ~T0 @X0 1 e ]
+[; ;main.c: 56: float POS3P3_ADC_Result;
+"57
+[v _POS12_ADC_Result `f ~T0 @X0 1 e ]
+[; ;main.c: 57: float POS12_ADC_Result;
+"64
 [v _heartbeatTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 55: void heartbeatTimerCallback(void) {
+[; ;main.c: 64: void heartbeatTimerCallback(void) {
 [e :U _heartbeatTimerCallback ]
 [f ]
-[; ;main.c: 58: LATFbits.LATF2 = !LATFbits.LATF2;
-"58
+[; ;main.c: 67: LATFbits.LATF2 = !LATFbits.LATF2;
+"67
 [e = . . _LATFbits 0 2 -> -> ! != -> . . _LATFbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 61: asm(" clrwdt");
-"61
+[; ;main.c: 70: asm(" clrwdt");
+"70
 [; <"  clrwdt ;# ">
-[; ;main.c: 63: }
-"63
+[; ;main.c: 72: }
+"72
 [e :UE 2016 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"72
-[v _main `(v ~T0 @X0 1 ef ]
-"73
+"75
+[v _ADCCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 72: void main(void)
-[; ;main.c: 73: {
+[; ;main.c: 75: void ADCCallback(void) {
+[e :U _ADCCallback ]
+[f ]
+"77
+[v _currentADCChannel `E17316 ~T0 @X0 1 a ]
+[; ;main.c: 77: adcc_channel_t currentADCChannel = ADPCH;
+[e = _currentADCChannel -> _ADPCH `E17316 ]
+[; ;main.c: 79: switch (currentADCChannel) {
+"79
+[e $U 2019  ]
+{
+[; ;main.c: 81: case POS3P3_ADC:
+"81
+[e :U 2020 ]
+[; ;main.c: 82: POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0;
+"82
+[e = _POS3P3_ADC_Result -> * * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 .2.0 `f ]
+[; ;main.c: 83: break;
+"83
+[e $U 2018  ]
+[; ;main.c: 85: case POS12_ADC:
+"85
+[e :U 2021 ]
+[; ;main.c: 86: POS12_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 4.0303030303;
+"86
+[e = _POS12_ADC_Result -> * * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 .4.0303030303 `f ]
+[; ;main.c: 87: break;
+"87
+[e $U 2018  ]
+[; ;main.c: 89: default:
+"89
+[e :U 2022 ]
+[; ;main.c: 90: LATFbits.LATF3 = 1;
+"90
+[e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 91: break;
+"91
+[e $U 2018  ]
+"93
+}
+[; ;main.c: 93: }
+[e $U 2018  ]
+"79
+[e :U 2019 ]
+[e [\ _currentADCChannel , $ . `E17316 2 2020
+ , $ . `E17316 1 2021
+ 2022 ]
+"93
+[e :U 2018 ]
+[; ;main.c: 95: }
+"95
+[e :UE 2017 ]
+}
+"98
+[v _acquisitionTimerCallback `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 98: void acquisitionTimerCallback(void) {
+[e :U _acquisitionTimerCallback ]
+[f ]
+[; ;main.c: 101: ADCC_StartConversion(POS3P3_ADC);
+"101
+[e ( _ADCC_StartConversion (1 . `E17316 2 ]
+[; ;main.c: 104: while(!ADCC_IsConversionDone());
+"104
+[e $U 2024  ]
+[e :U 2025 ]
+[e :U 2024 ]
+[e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> -> -> 0 `i `uc `i 2025  ]
+[e :U 2026 ]
+[; ;main.c: 107: ADCC_StartConversion(POS12_ADC);
+"107
+[e ( _ADCC_StartConversion (1 . `E17316 1 ]
+[; ;main.c: 110: while(!ADCC_IsConversionDone());
+"110
+[e $U 2027  ]
+[e :U 2028 ]
+[e :U 2027 ]
+[e $ ! != -> ( _ADCC_IsConversionDone ..  `i -> -> -> 0 `i `uc `i 2028  ]
+[e :U 2029 ]
+[; ;main.c: 112: }
+"112
+[e :UE 2023 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"119
+[v _main `(v ~T0 @X0 1 ef ]
+"120
+{
+[; ;main.c: 119: void main(void)
+[; ;main.c: 120: {
 [e :U _main ]
 [f ]
-[; ;main.c: 75: SYSTEM_Initialize();
-"75
+[; ;main.c: 124: _delay((unsigned long)((250)*(64000000/4000.0)));
+"124
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 127: SYSTEM_Initialize();
+"127
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 78: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"78
+[; ;main.c: 130: TMR6_SetInterruptHandler(heartbeatTimerCallback);
+"130
 [e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 81: (INTCONbits.GIEH = 1);
-"81
+[; ;main.c: 133: ADCC_SetADIInterruptHandler(ADCCallback);
+"133
+[e ( _ADCC_SetADIInterruptHandler (1 &U _ADCCallback ]
+[; ;main.c: 136: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+"136
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 139: (INTCONbits.GIEH = 1);
+"139
 [e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 84: (INTCONbits.GIEL = 1);
-"84
+[; ;main.c: 142: (INTCONbits.GIEL = 1);
+"142
 [e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 87: while (1)
-"87
-[e :U 2019 ]
-[; ;main.c: 88: {
-"88
+[; ;main.c: 146: terminal_clearTerminal();
+"146
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 147: terminal_setCursorHome();
+"147
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 148: terminal_textAttributesReset();
+"148
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 151: while (1)
+"151
+[e :U 2032 ]
+[; ;main.c: 152: {
+"152
 {
-[; ;main.c: 92: if (eusart2RxStringReady) {
-"92
-[e $ ! _eusart2RxStringReady 2021  ]
+[; ;main.c: 155: if (eusart2RxStringReady) {
+"155
+[e $ ! _eusart2RxStringReady 2034  ]
 {
-[; ;main.c: 94: ringBufferPull();
-"94
-[e ( _ringBufferPull ..  ]
-"96
+[; ;main.c: 157: terminal_ringBufferPull();
+"157
+[e ( _terminal_ringBufferPull ..  ]
+"159
 }
-[e :U 2021 ]
-"98
+[e :U 2034 ]
+"161
 }
-[e :U 2018 ]
-"87
-[e $U 2019  ]
-[e :U 2020 ]
-[; ;main.c: 96: }
-[; ;main.c: 98: }
-[; ;main.c: 99: }
-"99
-[e :UE 2017 ]
+[e :U 2031 ]
+"151
+[e $U 2032  ]
+[e :U 2033 ]
+[; ;main.c: 159: }
+[; ;main.c: 161: }
+[; ;main.c: 162: }
+"162
+[e :UE 2030 ]
 }

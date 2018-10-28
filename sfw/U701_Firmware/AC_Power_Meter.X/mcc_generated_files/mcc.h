@@ -52,7 +52,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "interrupt_manager.h"
+#include "adcc.h"
 #include "tmr6.h"
+#include "tmr7.h"
 #include "eusart2.h"
 
 

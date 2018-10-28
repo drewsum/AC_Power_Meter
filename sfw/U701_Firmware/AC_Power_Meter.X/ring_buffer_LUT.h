@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <xc.h>
 
+#include "ring_buffer_interface.h"
+
 #ifndef RING_BUFFER_LUT_H
 #define	RING_BUFFER_LUT_H
 
@@ -18,8 +20,6 @@
 extern "C" {
 #endif
    
-// Bit that states if USB is active or not
-extern volatile bit USB_DTR;
     
 /*
   @Summary

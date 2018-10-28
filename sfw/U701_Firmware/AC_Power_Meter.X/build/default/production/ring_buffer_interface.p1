@@ -1,6 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17458 `(v ~T0 @X0 0 tf ]
-[v F17461 `(v ~T0 @X0 0 tf ]
+[v F17556 `(v ~T0 @X0 0 tf ]
+[v F17559 `(v ~T0 @X0 0 tf ]
+"7 ring_buffer_interface.c
+[c E17800 0 1 2 3 4 5 .. ]
+[n E17800 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+"8
+[c E17808 0 1 2 3 4 5 6 7 .. ]
+[n E17808 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 "80 mcc_generated_files/eusart2.h
 [v _eusart2RxCount `Vuc ~T0 @X0 0 e ]
 "281
@@ -17,6 +23,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ringBufferLUT `(v ~T0 @X0 0 ef1`*uc ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"39 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
+[v _strncpy `(*uc ~T0 @X0 0 ef3`*uc`*Cuc`ui ]
+"36
+[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16006,8 +16016,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 216: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 228: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 300: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 312: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -16038,6 +16048,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 132: void INTERRUPT_Initialize (void);
+[; ;adcc.h: 72: typedef uint16_t adc_result_t;
+[; ;adcc.h: 89: typedef enum
+[; ;adcc.h: 90: {
+[; ;adcc.h: 91: ISNS_ADC = 0x0,
+[; ;adcc.h: 92: POS12_ADC = 0x4,
+[; ;adcc.h: 93: POS3P3_ADC = 0x22,
+[; ;adcc.h: 94: channel_VSS = 0x3C,
+[; ;adcc.h: 95: channel_Temp = 0x3D,
+[; ;adcc.h: 96: channel_DAC1 = 0x3E,
+[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
+[; ;adcc.h: 98: } adcc_channel_t;
+[; ;adcc.h: 132: void ADCC_Initialize(void);
+[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
+[; ;adcc.h: 191: bool ADCC_IsConversionDone();
+[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
+[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+[; ;adcc.h: 279: void ADCC_StopConversion(void);
+[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
+[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
+[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
+[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
+[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
+[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
+[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
+[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
+[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
+[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
+[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
+[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
+[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
+[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
+[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
+[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
+[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
+[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
+[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
+[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
+[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ISR(void);
+[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
 [; ;tmr6.h: 79: typedef enum
 [; ;tmr6.h: 80: {
 [; ;tmr6.h: 89: TMR6_ROP_STARTS_TMRON,
@@ -16098,6 +16149,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;tmr7.h: 100: void TMR7_Initialize(void);
+[; ;tmr7.h: 129: void TMR7_StartTimer(void);
+[; ;tmr7.h: 161: void TMR7_StopTimer(void);
+[; ;tmr7.h: 196: uint16_t TMR7_ReadTimer(void);
+[; ;tmr7.h: 235: void TMR7_WriteTimer(uint16_t timerVal);
+[; ;tmr7.h: 271: void TMR7_Reload(void);
+[; ;tmr7.h: 310: void TMR7_StartSinglePulseAcquisition(void);
+[; ;tmr7.h: 349: uint8_t TMR7_CheckGateValueStatus(void);
+[; ;tmr7.h: 367: void TMR7_ISR(void);
+[; ;tmr7.h: 385: void TMR7_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr7.h: 403: extern void (*TMR7_InterruptHandler)(void);
+[; ;tmr7.h: 421: void TMR7_DefaultInterruptHandler(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -16131,10 +16194,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17458 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17556 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17461 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17559 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16146,9 +16209,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 71: void SYSTEM_Initialize(void);
-[; ;mcc.h: 84: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 97: void PMD_Initialize(void);
+[; ;mcc.h: 73: void SYSTEM_Initialize(void);
+[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 99: void PMD_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -16225,30 +16288,65 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
 [; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
 [; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
-[; ;ring_buffer_LUT.h: 22: extern volatile bit USB_DTR;
 [; ;ring_buffer_LUT.h: 49: void ringBufferLUT(char * line);
 [; ;ring_buffer_interface.h: 40: extern volatile bit eusart2RxStringReady;
 [; ;ring_buffer_interface.h: 43: extern volatile uint8_t eusart2RxCount;
 [; ;ring_buffer_interface.h: 46: extern volatile uint8_t eusart2RxHead;
 [; ;ring_buffer_interface.h: 47: extern volatile uint8_t eusart2RxTail;
-[; ;ring_buffer_interface.h: 50: extern volatile bit USB_DTR;
-"54 ring_buffer_interface.h
+"52 ring_buffer_interface.h
 [v _line `uc ~T0 @X0 -> 64 `i e ]
-[; ;ring_buffer_interface.h: 54: char line[64];
-[; ;ring_buffer_interface.h: 87: void ringBufferPull(void);
-[; ;ring_buffer_interface.h: 117: void printResetMessage(void);
-"8 ring_buffer_interface.c
-[v _ringBufferPull `(v ~T0 @X0 1 ef ]
+[; ;ring_buffer_interface.h: 52: char line[64];
+[; ;ring_buffer_interface.h: 56: typedef enum {
+[; ;ring_buffer_interface.h: 58: NORMAL,
+[; ;ring_buffer_interface.h: 59: BOLD,
+[; ;ring_buffer_interface.h: 60: UNDERSCORE,
+[; ;ring_buffer_interface.h: 61: BLINK,
+[; ;ring_buffer_interface.h: 62: REVERSE,
+[; ;ring_buffer_interface.h: 63: CONCEALED
+[; ;ring_buffer_interface.h: 65: } text_attribute_t;
+[; ;ring_buffer_interface.h: 68: typedef enum {
+[; ;ring_buffer_interface.h: 70: BLACK,
+[; ;ring_buffer_interface.h: 71: RED,
+[; ;ring_buffer_interface.h: 72: GREEN,
+[; ;ring_buffer_interface.h: 73: YELLOW,
+[; ;ring_buffer_interface.h: 74: BLUE,
+[; ;ring_buffer_interface.h: 75: MAGENTA,
+[; ;ring_buffer_interface.h: 76: CYAN,
+[; ;ring_buffer_interface.h: 77: WHITE
+[; ;ring_buffer_interface.h: 79: } text_color_t;
+[; ;ring_buffer_interface.h: 112: void terminal_ringBufferPull(void);
+[; ;ring_buffer_interface.h: 142: void terminal_printResetMessage(void);
+[; ;ring_buffer_interface.h: 147: void terminal_clearTerminal(void);
+[; ;ring_buffer_interface.h: 148: void terminal_setCursorHome(void);
+[; ;ring_buffer_interface.h: 149: void terminal_clearLine(void);
+[; ;ring_buffer_interface.h: 150: void terminal_saveCursor(void);
+[; ;ring_buffer_interface.h: 151: void terminal_returnCursor(void);
+[; ;ring_buffer_interface.h: 154: void terminal_textAttributes(text_color_t foreground_color,
+[; ;ring_buffer_interface.h: 155: text_color_t background_color,
+[; ;ring_buffer_interface.h: 156: text_attribute_t input_attribute);
+[; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
+[; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
+"7 ring_buffer_interface.c
+[v _attribute `E17800 ~T0 @X0 1 e ]
+[; ;ring_buffer_interface.c: 7: text_attribute_t attribute;
+"8
+[v _foreground_color `E17808 ~T0 @X0 1 e ]
+[; ;ring_buffer_interface.c: 8: text_color_t foreground_color;
+"9
+[v _background_color `E17808 ~T0 @X0 1 e ]
+[; ;ring_buffer_interface.c: 9: text_color_t background_color;
+"12
+[v _terminal_ringBufferPull `(v ~T0 @X0 1 ef ]
 {
-[; ;ring_buffer_interface.c: 8: void ringBufferPull(void) {
-[e :U _ringBufferPull ]
+[; ;ring_buffer_interface.c: 12: void terminal_ringBufferPull(void) {
+[e :U _terminal_ringBufferPull ]
 [f ]
-"10
+"14
 [v _charNumber `i ~T0 @X0 1 a ]
-[; ;ring_buffer_interface.c: 10: int charNumber = eusart2RxCount;
+[; ;ring_buffer_interface.c: 14: int charNumber = eusart2RxCount;
 [e = _charNumber -> _eusart2RxCount `i ]
-[; ;ring_buffer_interface.c: 13: for (int index = 0; index < 64; index++) {
-"13
+[; ;ring_buffer_interface.c: 17: for (int index = 0; index < 64; index++) {
+"17
 {
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
@@ -16256,99 +16354,545 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2018  ]
 [e :U 2017 ]
 {
-[; ;ring_buffer_interface.c: 15: line[index] = '\0';
-"15
+[; ;ring_buffer_interface.c: 19: line[index] = '\0';
+"19
 [e = *U + &U _line * -> -> _index `ui `ux -> -> # *U &U _line `ui `ux -> -> 0 `ui `uc ]
-"17
+"21
 }
-"13
+"17
 [e ++ _index -> 1 `i ]
 [e $ < _index -> 64 `i 2017  ]
 [e :U 2018 ]
-"17
+"21
 }
-[; ;ring_buffer_interface.c: 17: }
-[; ;ring_buffer_interface.c: 20: for(int index = 0; index < charNumber; index++){
-"20
+[; ;ring_buffer_interface.c: 21: }
+[; ;ring_buffer_interface.c: 24: for(int index = 0; index < charNumber; index++){
+"24
 {
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
 [e $U 2023  ]
 [e :U 2020 ]
 {
-[; ;ring_buffer_interface.c: 22: line[index] = EUSART2_Read();
-"22
+[; ;ring_buffer_interface.c: 26: line[index] = EUSART2_Read();
+"26
 [e = *U + &U _line * -> -> _index `ui `ux -> -> # *U &U _line `ui `ux ( _EUSART2_Read ..  ]
-"24
+"28
 }
-"20
+"24
 [e ++ _index -> 1 `i ]
 [e :U 2023 ]
 [e $ < _index _charNumber 2020  ]
 [e :U 2021 ]
-"24
+"28
 }
-[; ;ring_buffer_interface.c: 24: }
-[; ;ring_buffer_interface.c: 27: eusart2RxTail = eusart2RxHead;
-"27
-[e = _eusart2RxTail _eusart2RxHead ]
-[; ;ring_buffer_interface.c: 30: while((line[strlen(line) - 1] == (int) '\n') ||
-[; ;ring_buffer_interface.c: 31: (line[strlen(line) - 1] == (int) '\r')) {
+[; ;ring_buffer_interface.c: 28: }
+[; ;ring_buffer_interface.c: 31: eusart2RxTail = eusart2RxHead;
 "31
+[e = _eusart2RxTail _eusart2RxHead ]
+[; ;ring_buffer_interface.c: 34: while((line[strlen(line) - 1] == (int) '\n') ||
+[; ;ring_buffer_interface.c: 35: (line[strlen(line) - 1] == (int) '\r')) {
+"35
 [e $U 2024  ]
 [e :U 2025 ]
 {
-[; ;ring_buffer_interface.c: 34: line[strlen(line) - 1] = '\0';
-"34
+[; ;ring_buffer_interface.c: 38: line[strlen(line) - 1] = '\0';
+"38
 [e = *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux -> -> 0 `ui `uc ]
-"36
+"40
 }
 [e :U 2024 ]
-"30
+"34
 [e $ || == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 10 `ui `i == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 13 `ui `i 2025  ]
 [e :U 2026 ]
-[; ;ring_buffer_interface.c: 36: }
-[; ;ring_buffer_interface.c: 40: eusart2RxStringReady = 0;
-"40
+[; ;ring_buffer_interface.c: 40: }
+[; ;ring_buffer_interface.c: 44: eusart2RxStringReady = 0;
+"44
 [e = _eusart2RxStringReady -> -> 0 `i `b ]
-[; ;ring_buffer_interface.c: 43: ringBufferLUT(line);
-"43
+[; ;ring_buffer_interface.c: 47: ringBufferLUT(line);
+"47
 [e ( _ringBufferLUT (1 &U _line ]
-[; ;ring_buffer_interface.c: 46: }
-"46
+[; ;ring_buffer_interface.c: 50: }
+"50
 [e :UE 2016 ]
 }
-"50
-[v _printResetMessage `(v ~T0 @X0 1 ef ]
-{
-[; ;ring_buffer_interface.c: 50: void printResetMessage(void) {
-[e :U _printResetMessage ]
-[f ]
-[; ;ring_buffer_interface.c: 54: printf("\033[2J");
 "54
+[v _terminal_printResetMessage `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 54: void terminal_printResetMessage(void) {
+[e :U _terminal_printResetMessage ]
+[f ]
+[; ;ring_buffer_interface.c: 58: printf("\033[2J");
+"58
 [e ( _printf :s 1C ]
-[; ;ring_buffer_interface.c: 57: printf("\033[H");
-"57
+[; ;ring_buffer_interface.c: 61: printf("\033[H");
+"61
 [e ( _printf :s 2C ]
-[; ;ring_buffer_interface.c: 60: printf("    Boot complete\n\r"
-[; ;ring_buffer_interface.c: 61: "    PIC18F67K40 mTouch Test Board\n\r"
-[; ;ring_buffer_interface.c: 62: "    Evaluates the mTouch capacitive touch library distributed by Microchip\n\r"
-[; ;ring_buffer_interface.c: 63: "    Sets the state of five LEDs based on mTouch capacitive pushbuttons\n\r"
-[; ;ring_buffer_interface.c: 64: "    Baud rate: 115200 bps\n\r"
-[; ;ring_buffer_interface.c: 65: "    No parity, 8 bits, no flow control, 1 stop bit\n\r"
-[; ;ring_buffer_interface.c: 66: "    Commands are case sensitive\n\r"
-[; ;ring_buffer_interface.c: 67: "    Enter a command, or enter Help for list of commands\n\r");
-"67
-[e ( _printf :s 3C ]
-[; ;ring_buffer_interface.c: 71: printf("\n\r");
+[; ;ring_buffer_interface.c: 64: printf("    Boot complete\n\r"
+[; ;ring_buffer_interface.c: 65: "    PIC18F67K40 mTouch Test Board\n\r"
+[; ;ring_buffer_interface.c: 66: "    Evaluates the mTouch capacitive touch library distributed by Microchip\n\r"
+[; ;ring_buffer_interface.c: 67: "    Sets the state of five LEDs based on mTouch capacitive pushbuttons\n\r"
+[; ;ring_buffer_interface.c: 68: "    Baud rate: 115200 bps\n\r"
+[; ;ring_buffer_interface.c: 69: "    No parity, 8 bits, no flow control, 1 stop bit\n\r"
+[; ;ring_buffer_interface.c: 70: "    Commands are case sensitive\n\r"
+[; ;ring_buffer_interface.c: 71: "    Enter a command, or enter Help for list of commands\n\r");
 "71
+[e ( _printf :s 3C ]
+[; ;ring_buffer_interface.c: 75: printf("\n\r");
+"75
 [e ( _printf :s 4C ]
-[; ;ring_buffer_interface.c: 73: }
-"73
+[; ;ring_buffer_interface.c: 77: }
+"77
 [e :UE 2027 ]
 }
-[p f _printf 8388608 ]
+"80
+[v _terminal_clearTerminal `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 80: void terminal_clearTerminal(void) {
+[e :U _terminal_clearTerminal ]
+[f ]
+[; ;ring_buffer_interface.c: 81: printf("\033[2J");
+"81
+[e ( _printf :s 5C ]
+[; ;ring_buffer_interface.c: 82: }
+"82
+[e :UE 2028 ]
+}
+"85
+[v _terminal_setCursorHome `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 85: void terminal_setCursorHome(void) {
+[e :U _terminal_setCursorHome ]
+[f ]
+[; ;ring_buffer_interface.c: 86: printf("\033[H");
+"86
+[e ( _printf :s 6C ]
+[; ;ring_buffer_interface.c: 87: }
+"87
+[e :UE 2029 ]
+}
+"90
+[v _terminal_clearLine `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 90: void terminal_clearLine(void) {
+[e :U _terminal_clearLine ]
+[f ]
+[; ;ring_buffer_interface.c: 91: printf("\033[K");
+"91
+[e ( _printf :s 7C ]
+[; ;ring_buffer_interface.c: 92: }
+"92
+[e :UE 2030 ]
+}
+"95
+[v _terminal_saveCursor `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 95: void terminal_saveCursor(void) {
+[e :U _terminal_saveCursor ]
+[f ]
+[; ;ring_buffer_interface.c: 96: printf("\033[s");
+"96
+[e ( _printf :s 8C ]
+[; ;ring_buffer_interface.c: 97: }
+"97
+[e :UE 2031 ]
+}
+"100
+[v _terminal_returnCursor `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 100: void terminal_returnCursor(void) {
+[e :U _terminal_returnCursor ]
+[f ]
+[; ;ring_buffer_interface.c: 101: printf("\033[u");
+"101
+[e ( _printf :s 9C ]
+[; ;ring_buffer_interface.c: 102: }
+"102
+[e :UE 2032 ]
+}
+"115
+[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E17808`E17808`E17800 ]
+"117
+{
+[; ;ring_buffer_interface.c: 115: void terminal_textAttributes(text_color_t foreground_color,
+[; ;ring_buffer_interface.c: 116: text_color_t background_color,
+[; ;ring_buffer_interface.c: 117: text_attribute_t input_attribute) {
+[e :U _terminal_textAttributes ]
+[v _foreground_color `E17808 ~T0 @X0 1 r1 ]
+[v _background_color `E17808 ~T0 @X0 1 r2 ]
+[v _input_attribute `E17800 ~T0 @X0 1 r3 ]
+[f ]
+"119
+[v _output_buff `uc ~T0 @X0 -> 15 `i a ]
+[; ;ring_buffer_interface.c: 119: char output_buff[15];
+[; ;ring_buffer_interface.c: 121: strncpy(output_buff, "\033[", sizeof(output_buff));
+"121
+[e ( _strncpy (3 , , &U _output_buff :s 10C -> # _output_buff `ui ]
+[; ;ring_buffer_interface.c: 123: switch (input_attribute) {
+"123
+[e $U 2035  ]
+{
+[; ;ring_buffer_interface.c: 125: case NORMAL:
+"125
+[e :U 2036 ]
+[; ;ring_buffer_interface.c: 126: strcat(output_buff,"0");
+"126
+[e ( _strcat (2 , &U _output_buff :s 11C ]
+[; ;ring_buffer_interface.c: 127: break;
+"127
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 128: case BOLD:
+"128
+[e :U 2037 ]
+[; ;ring_buffer_interface.c: 129: strcat(output_buff,"1");
+"129
+[e ( _strcat (2 , &U _output_buff :s 12C ]
+[; ;ring_buffer_interface.c: 130: break;
+"130
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 131: case UNDERSCORE:
+"131
+[e :U 2038 ]
+[; ;ring_buffer_interface.c: 132: strcat(output_buff,"4");
+"132
+[e ( _strcat (2 , &U _output_buff :s 13C ]
+[; ;ring_buffer_interface.c: 133: break;
+"133
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 134: case BLINK:
+"134
+[e :U 2039 ]
+[; ;ring_buffer_interface.c: 135: strcat(output_buff,"5");
+"135
+[e ( _strcat (2 , &U _output_buff :s 14C ]
+[; ;ring_buffer_interface.c: 136: break;
+"136
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 137: case REVERSE:
+"137
+[e :U 2040 ]
+[; ;ring_buffer_interface.c: 138: strcat(output_buff,"7");
+"138
+[e ( _strcat (2 , &U _output_buff :s 15C ]
+[; ;ring_buffer_interface.c: 139: break;
+"139
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 140: case CONCEALED:
+"140
+[e :U 2041 ]
+[; ;ring_buffer_interface.c: 141: strcat(output_buff,"8");
+"141
+[e ( _strcat (2 , &U _output_buff :s 16C ]
+[; ;ring_buffer_interface.c: 142: break;
+"142
+[e $U 2034  ]
+[; ;ring_buffer_interface.c: 144: default:
+"144
+[e :U 2042 ]
+[; ;ring_buffer_interface.c: 145: strcat(output_buff,"0");
+"145
+[e ( _strcat (2 , &U _output_buff :s 17C ]
+[; ;ring_buffer_interface.c: 146: break;
+"146
+[e $U 2034  ]
+"147
+}
+[; ;ring_buffer_interface.c: 147: }
+[e $U 2034  ]
+"123
+[e :U 2035 ]
+[e [\ _input_attribute , $ . `E17800 0 2036
+ , $ . `E17800 1 2037
+ , $ . `E17800 2 2038
+ , $ . `E17800 3 2039
+ , $ . `E17800 4 2040
+ , $ . `E17800 5 2041
+ 2042 ]
+"147
+[e :U 2034 ]
+[; ;ring_buffer_interface.c: 149: strcat(output_buff,";");
+"149
+[e ( _strcat (2 , &U _output_buff :s 18C ]
+[; ;ring_buffer_interface.c: 151: switch (foreground_color) {
+"151
+[e $U 2044  ]
+{
+[; ;ring_buffer_interface.c: 153: case BLACK:
+"153
+[e :U 2045 ]
+[; ;ring_buffer_interface.c: 154: strcat(output_buff,"30");
+"154
+[e ( _strcat (2 , &U _output_buff :s 19C ]
+[; ;ring_buffer_interface.c: 155: break;
+"155
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 156: case RED:
+"156
+[e :U 2046 ]
+[; ;ring_buffer_interface.c: 157: strcat(output_buff,"31");
+"157
+[e ( _strcat (2 , &U _output_buff :s 20C ]
+[; ;ring_buffer_interface.c: 158: break;
+"158
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 159: case GREEN:
+"159
+[e :U 2047 ]
+[; ;ring_buffer_interface.c: 160: strcat(output_buff,"32");
+"160
+[e ( _strcat (2 , &U _output_buff :s 21C ]
+[; ;ring_buffer_interface.c: 161: break;
+"161
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 162: case YELLOW:
+"162
+[e :U 2048 ]
+[; ;ring_buffer_interface.c: 163: strcat(output_buff,"33");
+"163
+[e ( _strcat (2 , &U _output_buff :s 22C ]
+[; ;ring_buffer_interface.c: 164: break;
+"164
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 165: case BLUE:
+"165
+[e :U 2049 ]
+[; ;ring_buffer_interface.c: 166: strcat(output_buff,"34");
+"166
+[e ( _strcat (2 , &U _output_buff :s 23C ]
+[; ;ring_buffer_interface.c: 167: break;
+"167
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 168: case MAGENTA:
+"168
+[e :U 2050 ]
+[; ;ring_buffer_interface.c: 169: strcat(output_buff,"35");
+"169
+[e ( _strcat (2 , &U _output_buff :s 24C ]
+[; ;ring_buffer_interface.c: 170: break;
+"170
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 171: case CYAN:
+"171
+[e :U 2051 ]
+[; ;ring_buffer_interface.c: 172: strcat(output_buff,"36");
+"172
+[e ( _strcat (2 , &U _output_buff :s 25C ]
+[; ;ring_buffer_interface.c: 173: break;
+"173
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 174: case WHITE:
+"174
+[e :U 2052 ]
+[; ;ring_buffer_interface.c: 175: strcat(output_buff,"37");
+"175
+[e ( _strcat (2 , &U _output_buff :s 26C ]
+[; ;ring_buffer_interface.c: 176: break;
+"176
+[e $U 2043  ]
+[; ;ring_buffer_interface.c: 178: default:
+"178
+[e :U 2053 ]
+[; ;ring_buffer_interface.c: 179: strcat(output_buff,"37");
+"179
+[e ( _strcat (2 , &U _output_buff :s 27C ]
+[; ;ring_buffer_interface.c: 180: break;
+"180
+[e $U 2043  ]
+"181
+}
+[; ;ring_buffer_interface.c: 181: }
+[e $U 2043  ]
+"151
+[e :U 2044 ]
+[e [\ _foreground_color , $ . `E17808 0 2045
+ , $ . `E17808 1 2046
+ , $ . `E17808 2 2047
+ , $ . `E17808 3 2048
+ , $ . `E17808 4 2049
+ , $ . `E17808 5 2050
+ , $ . `E17808 6 2051
+ , $ . `E17808 7 2052
+ 2053 ]
+"181
+[e :U 2043 ]
+[; ;ring_buffer_interface.c: 183: strcat(output_buff,";");
+"183
+[e ( _strcat (2 , &U _output_buff :s 28C ]
+[; ;ring_buffer_interface.c: 185: switch (background_color) {
+"185
+[e $U 2055  ]
+{
+[; ;ring_buffer_interface.c: 187: case BLACK:
+"187
+[e :U 2056 ]
+[; ;ring_buffer_interface.c: 188: strcat(output_buff,"40");
+"188
+[e ( _strcat (2 , &U _output_buff :s 29C ]
+[; ;ring_buffer_interface.c: 189: break;
+"189
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 190: case RED:
+"190
+[e :U 2057 ]
+[; ;ring_buffer_interface.c: 191: strcat(output_buff,"41");
+"191
+[e ( _strcat (2 , &U _output_buff :s 30C ]
+[; ;ring_buffer_interface.c: 192: break;
+"192
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 193: case GREEN:
+"193
+[e :U 2058 ]
+[; ;ring_buffer_interface.c: 194: strcat(output_buff,"42");
+"194
+[e ( _strcat (2 , &U _output_buff :s 31C ]
+[; ;ring_buffer_interface.c: 195: break;
+"195
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 196: case YELLOW:
+"196
+[e :U 2059 ]
+[; ;ring_buffer_interface.c: 197: strcat(output_buff,"43");
+"197
+[e ( _strcat (2 , &U _output_buff :s 32C ]
+[; ;ring_buffer_interface.c: 198: break;
+"198
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 199: case BLUE:
+"199
+[e :U 2060 ]
+[; ;ring_buffer_interface.c: 200: strcat(output_buff,"44");
+"200
+[e ( _strcat (2 , &U _output_buff :s 33C ]
+[; ;ring_buffer_interface.c: 201: break;
+"201
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 202: case MAGENTA:
+"202
+[e :U 2061 ]
+[; ;ring_buffer_interface.c: 203: strcat(output_buff,"45");
+"203
+[e ( _strcat (2 , &U _output_buff :s 34C ]
+[; ;ring_buffer_interface.c: 204: break;
+"204
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 205: case CYAN:
+"205
+[e :U 2062 ]
+[; ;ring_buffer_interface.c: 206: strcat(output_buff,"46");
+"206
+[e ( _strcat (2 , &U _output_buff :s 35C ]
+[; ;ring_buffer_interface.c: 207: break;
+"207
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 208: case WHITE:
+"208
+[e :U 2063 ]
+[; ;ring_buffer_interface.c: 209: strcat(output_buff,"47");
+"209
+[e ( _strcat (2 , &U _output_buff :s 36C ]
+[; ;ring_buffer_interface.c: 210: break;
+"210
+[e $U 2054  ]
+[; ;ring_buffer_interface.c: 212: default:
+"212
+[e :U 2064 ]
+[; ;ring_buffer_interface.c: 213: strcat(output_buff,"47");
+"213
+[e ( _strcat (2 , &U _output_buff :s 37C ]
+[; ;ring_buffer_interface.c: 214: break;
+"214
+[e $U 2054  ]
+"215
+}
+[; ;ring_buffer_interface.c: 215: }
+[e $U 2054  ]
+"185
+[e :U 2055 ]
+[e [\ _background_color , $ . `E17808 0 2056
+ , $ . `E17808 1 2057
+ , $ . `E17808 2 2058
+ , $ . `E17808 3 2059
+ , $ . `E17808 4 2060
+ , $ . `E17808 5 2061
+ , $ . `E17808 6 2062
+ , $ . `E17808 7 2063
+ 2064 ]
+"215
+[e :U 2054 ]
+[; ;ring_buffer_interface.c: 217: strcat(output_buff,"m");
+"217
+[e ( _strcat (2 , &U _output_buff :s 38C ]
+[; ;ring_buffer_interface.c: 219: printf(output_buff);
+"219
+[e ( _printf -> &U _output_buff `*Cuc ]
+[; ;ring_buffer_interface.c: 220: }
+"220
+[e :UE 2033 ]
+}
+"223
+[v _terminal_textAttributesReset `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 223: void terminal_textAttributesReset(void) {
+[e :U _terminal_textAttributesReset ]
+[f ]
+[; ;ring_buffer_interface.c: 225: terminal_textAttributes(WHITE, BLACK, NORMAL);
+"225
+[e ( _terminal_textAttributes (3 , , . `E17808 7 . `E17808 0 . `E17800 0 ]
+[; ;ring_buffer_interface.c: 227: }
+"227
+[e :UE 2065 ]
+}
+"230
+[v _terminal_printNewline `(v ~T0 @X0 1 ef ]
+{
+[; ;ring_buffer_interface.c: 230: void terminal_printNewline(void) {
+[e :U _terminal_printNewline ]
+[f ]
+[; ;ring_buffer_interface.c: 232: printf("\n\r");
+"232
+[e ( _printf :s 39C ]
+[; ;ring_buffer_interface.c: 234: }
+"234
+[e :UE 2066 ]
+}
+[p f _printf 9437696 ]
+[a 9C 27 91 117 0 ]
+[a 8C 27 91 115 0 ]
+[a 38C 109 0 ]
+[a 10C 27 91 0 ]
+[a 7C 27 91 75 0 ]
 [a 1C 27 91 50 74 0 ]
+[a 5C 27 91 50 74 0 ]
 [a 2C 27 91 72 0 ]
+[a 6C 27 91 72 0 ]
+[a 18C 59 0 ]
+[a 28C 59 0 ]
+[a 16C 56 0 ]
+[a 36C 52 55 0 ]
+[a 37C 52 55 0 ]
+[a 26C 51 55 0 ]
+[a 27C 51 55 0 ]
+[a 15C 55 0 ]
+[a 35C 52 54 0 ]
+[a 25C 51 54 0 ]
+[a 34C 52 53 0 ]
+[a 24C 51 53 0 ]
+[a 14C 53 0 ]
+[a 33C 52 52 0 ]
+[a 23C 51 52 0 ]
+[a 13C 52 0 ]
+[a 32C 52 51 0 ]
+[a 22C 51 51 0 ]
+[a 31C 52 50 0 ]
+[a 21C 51 50 0 ]
+[a 30C 52 49 0 ]
+[a 20C 51 49 0 ]
+[a 12C 49 0 ]
+[a 29C 52 48 0 ]
+[a 19C 51 48 0 ]
+[a 11C 48 0 ]
+[a 17C 48 0 ]
 [a 3C 32 32 32 32 66 111 111 116 32 99 111 109 112 108 101 116 101 10 13 32 32 32 32 80 73 67 49 56 70 54 55 75 52 48 32 109 84 111 117 99 104 32 84 101 115 116 32 66 111 97 114 100 10 13 32 32 32 32 69 118 97 108 117 97 116 101 115 32 116 104 101 32 109 84 111 117 99 104 32 99 97 112 97 99 105 116 105 118 101 32 116 111 117 99 104 32 108 105 98 114 97 114 121 32 100 105 115 116 114 105 98 117 116 101 100 32 98 121 32 77 105 99 114 111 99 104 105 112 10 13 32 32 32 32 83 101 116 115 32 116 104 101 32 115 116 97 116 101 32 111 102 32 102 105 118 101 32 76 69 68 115 32 98 97 115 101 100 32 111 110 32 109 84 111 117 99 104 32 99 97 112 97 99 105 116 105 118 101 32 112 117 115 104 98 117 116 116 111 110 115 10 13 32 32 32 32 66 97 117 100 32 114 97 116 101 58 32 49 49 53 50 48 48 32 98 112 115 10 13 32 32 32 32 78 111 32 112 97 114 105 116 121 44 32 56 32 98 105 116 115 44 32 110 111 32 102 108 111 119 32 99 111 110 116 114 111 108 44 32 49 32 115 116 111 112 32 98 105 116 10 13 32 32 32 32 67 111 109 109 97 110 100 115 32 97 114 101 32 99 97 115 101 32 115 101 110 115 105 116 105 118 101 10 13 32 32 32 32 69 110 116 101 114 32 97 32 99 111 109 109 97 110 100 44 32 111 114 32 101 110 116 101 114 32 72 101 108 112 32 102 111 114 32 108 105 115 116 32 111 102 32 99 111 109 109 97 110 100 115 10 13 0 ]
 [a 4C 10 13 0 ]
+[a 39C 10 13 0 ]

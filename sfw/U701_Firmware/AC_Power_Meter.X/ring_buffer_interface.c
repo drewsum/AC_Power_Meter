@@ -3,9 +3,13 @@
 
 #include "ring_buffer_interface.h"
 
+// Text attribute enums
+text_attribute_t attribute;
+text_color_t foreground_color;
+text_color_t background_color;
 
 
-void ringBufferPull(void) {
+void terminal_ringBufferPull(void) {
 
     int charNumber = eusart2RxCount;
             
@@ -47,7 +51,7 @@ void ringBufferPull(void) {
 
 // This message is printed to the terminal on reset of microcontroller
 // Can be left blank
-void printResetMessage(void) {
+void terminal_printResetMessage(void) {
  
 
         // Clear the screen
@@ -70,5 +74,162 @@ void printResetMessage(void) {
         // Get some space on terminal
         printf("\n\r");
         
+}
+
+// This function clears the terminal
+void terminal_clearTerminal(void) {
+    printf("\033[2J");
+}
+
+// This function moves the terminal cursor to top left corner
+void terminal_setCursorHome(void) {
+    printf("\033[H");
+}
+
+// This function clears the line the cursor is currently at on the terminal
+void terminal_clearLine(void) {
+    printf("\033[K");
+}
+
+// This function saves the current cursor position on the terminal
+void terminal_saveCursor(void) {
+    printf("\033[s");
+}
+
+// This function returns the cursor to saved position on terminal
+void terminal_returnCursor(void) {
+    printf("\033[u");
+}
+
+// Text attributes function
+// See attributes enums in "ring_buffer_interface.h"
+// Call like so:
+/*
+
+    terminal_textAttributes(<TEXT COLOR (ALL CAPS)>, 
+                            <BACKGROUND COLOR (ALL CAPS)>, 
+                            <TEXT EFFECT (ALL CAPS)>);
+
+*/
+
+void terminal_textAttributes(text_color_t foreground_color,
+        text_color_t background_color,
+        text_attribute_t input_attribute) {
+    
+    char output_buff[15];
+    
+    strncpy(output_buff, "\033[", sizeof(output_buff));
+    
+    switch (input_attribute) {
+     
+        case NORMAL:
+            strcat(output_buff,"0"); 
+            break;
+        case BOLD:
+            strcat(output_buff,"1");
+            break;
+        case UNDERSCORE:
+            strcat(output_buff,"4");
+            break;
+        case BLINK:
+            strcat(output_buff,"5");
+            break;
+        case REVERSE:
+            strcat(output_buff,"7");
+            break;
+        case CONCEALED:
+            strcat(output_buff,"8");
+            break;
+
+        default:
+            strcat(output_buff,"0");
+            break;
+    }
+    
+    strcat(output_buff,";");
+    
+    switch (foreground_color) {
+     
+        case BLACK:
+            strcat(output_buff,"30");
+            break;
+        case RED:
+            strcat(output_buff,"31");
+            break;
+        case GREEN:
+            strcat(output_buff,"32");
+            break;
+        case YELLOW:
+            strcat(output_buff,"33");
+            break;
+        case BLUE:
+            strcat(output_buff,"34");
+            break;
+        case MAGENTA:
+            strcat(output_buff,"35");
+            break;
+        case CYAN:
+            strcat(output_buff,"36");
+            break;
+        case WHITE:
+            strcat(output_buff,"37");
+            break;
+            
+        default:
+            strcat(output_buff,"37");
+            break;
+    }
+    
+    strcat(output_buff,";");
+    
+    switch (background_color) {
+     
+        case BLACK:
+            strcat(output_buff,"40");
+            break;
+        case RED:
+            strcat(output_buff,"41");
+            break;
+        case GREEN:
+            strcat(output_buff,"42");
+            break;
+        case YELLOW:
+            strcat(output_buff,"43");
+            break;
+        case BLUE:
+            strcat(output_buff,"44");
+            break;
+        case MAGENTA:
+            strcat(output_buff,"45");
+            break;
+        case CYAN:
+            strcat(output_buff,"46");
+            break;
+        case WHITE:
+            strcat(output_buff,"47");
+            break;
+            
+        default:
+            strcat(output_buff,"47");
+            break;
+    }
+    
+    strcat(output_buff,"m");
+    
+    printf(output_buff);
+}
+
+// Reset text attributes to white text, black background, no effects
+void terminal_textAttributesReset(void) {
+ 
+    terminal_textAttributes(WHITE, BLACK, NORMAL);
+    
+}
+
+// Print newline on terminal
+void terminal_printNewline(void) {
+
+    printf("\n\r");
+    
 }
 

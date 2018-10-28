@@ -53,7 +53,9 @@ void SYSTEM_Initialize(void)
     PMD_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    TMR7_Initialize();
     TMR6_Initialize();
+    ADCC_Initialize();
     EUSART2_Initialize();
 }
 

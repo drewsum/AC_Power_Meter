@@ -46,12 +46,37 @@ extern volatile uint8_t eusart2RxCount;
 extern volatile uint8_t eusart2RxHead;
 extern volatile uint8_t eusart2RxTail;
 
-// Bit that states if USB is active or not
-extern volatile bit USB_DTR;
 
 // Received String from EUSART rx ring buffer, this is what we actually compare
 // against command strings
 char line[EUSART_2_RX_BUFFER_SIZE];
+
+
+// Enumeration holding attributes data for setting text fanciness
+typedef enum {
+    
+    NORMAL,
+    BOLD,
+    UNDERSCORE,
+    BLINK,
+    REVERSE,
+    CONCEALED
+            
+} text_attribute_t;
+
+// Enumeration for setting text color attributes
+typedef enum {
+    
+    BLACK,
+    RED,
+    GREEN,
+    YELLOW,
+    BLUE,
+    MAGENTA,
+    CYAN,
+    WHITE
+            
+} text_color_t;
 
 
 /*
@@ -84,7 +109,7 @@ char line[EUSART_2_RX_BUFFER_SIZE];
   @Example
 
 */
-void ringBufferPull(void);
+void terminal_ringBufferPull(void);
 
 /*
   @Summary
@@ -114,8 +139,27 @@ void ringBufferPull(void);
   @Example
 
 */
-void printResetMessage(void);
+void terminal_printResetMessage(void);
     
+
+
+// Terminal manipulation functions
+void terminal_clearTerminal(void);  // clears the whole terminal
+void terminal_setCursorHome(void);  // Sets cursor to home position
+void terminal_clearLine(void);      // clears the current line where the cursor appears
+void terminal_saveCursor(void);     // Saves the current position of the cursor
+void terminal_returnCursor(void);   // Returns the cursor to saved position
+
+// Text attributes function
+void terminal_textAttributes(text_color_t foreground_color,
+        text_color_t background_color,
+        text_attribute_t input_attribute);
+
+// Reset to white foreground, black background, no fancy stuff
+void terminal_textAttributesReset(void);
+
+// Misc functions
+void terminal_printNewline(void);
 
 
 

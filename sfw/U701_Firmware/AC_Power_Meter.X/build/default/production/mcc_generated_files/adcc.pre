@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "mcc_generated_files/adcc.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -21222,12 +21222,6 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 300 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-
-# 312
-void PIN_MANAGER_IOC(void);
-
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdint.h"
 typedef signed char int8_t;
 
@@ -21320,9 +21314,6 @@ typedef uint16_t uintptr_t;
 
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdbool.h"
 typedef unsigned char bool;
-
-# 132 "mcc_generated_files/interrupt_manager.h"
-void INTERRUPT_Initialize (void);
 
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
@@ -21429,599 +21420,259 @@ void ADCC_ISR(void);
 # 881
 void ADCC_DefaultInterruptHandler(void);
 
-# 79 "mcc_generated_files/tmr6.h"
-typedef enum
+# 57 "mcc_generated_files/adcc.c"
+void (*ADCC_ADI_InterruptHandler)(void);
+
+# 63
+void ADCC_Initialize(void)
 {
 
-# 89
-TMR6_ROP_STARTS_TMRON,
 
-# 94
-TMR6_ROP_STARTS_TMRON_ERSHIGH,
+ADLTHL = 0x00;
 
-# 99
-TMR6_ROP_STARTS_TMRON_ERSLOW,
+ADLTHH = 0x00;
 
-# 104
-TMR6_ROP_RESETS_ERSBOTHEDGE,
+ADUTHL = 0x00;
 
-# 109
-TMR6_ROP_RESETS_ERSRISINGEDGE,
+ADUTHH = 0x00;
 
-# 114
-TMR6_ROP_RESETS_ERSFALLINGEDGE,
+ADSTPTL = 0x00;
 
-# 119
-TMR6_ROP_RESETS_ERSLOW,
+ADSTPTH = 0x00;
 
-# 124
-TMR6_ROP_RESETS_ERSHIGH,
+ADRPT = 0x00;
 
-# 135
-TMR6_OS_STARTS_TMRON,
+ADPCH = 0x00;
 
-# 140
-TMR6_OS_STARTS_ERSRISINGEDGE ,
+ADCAP = 0x00;
 
-# 145
-TMR6_OS_STARTS_ERSFALLINGEDGE ,
+ADCON1 = 0x00;
 
-# 150
-TMR6_OS_STARTS_ERSBOTHEDGE,
+ADCON2 = 0x04;
 
-# 156
-TMR6_OS_STARTS_ERSFIRSTRISINGEDGE,
+ADCON3 = 0x00;
 
-# 162
-TMR6_OS_STARTS_ERSFIRSTFALLINGEDGE,
+ADSTAT = 0x00;
 
-# 168
-TMR6_OS_STARTS_ERSRISINGEDGEDETECT,
+ADREF = 0x12;
 
-# 173
-TMR6_OS_STARTS_ERSFALLINGEDGEDETECT,
+ADACT = 0x00;
 
-# 178
-TMR6_OS_STARTS_TMRON_ERSHIGH = 0x16,
+ADCLK = 0x00;
 
-# 183
-TMR6_OS_STARTS_TMRON_ERSLOW = 0x17,
+ADCON0 = 0x94;
 
-# 192
-TMR6_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+ADACQ = 0x00;
 
-# 197
-TMR6_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
 
-# 203
-TMR6_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+PIR1bits.ADIF = 0;
 
-} TMR6_HLT_MODE;
+PIE1bits.ADIE = 1;
 
-# 220
-typedef enum
+ADCC_SetADIInterruptHandler(ADCC_DefaultInterruptHandler);
+
+}
+
+void ADCC_StartConversion(adcc_channel_t channel)
 {
 
-# 224
-TMR6_T6INPPS,
+ADPCH = channel;
 
-# 228
-TMR6_T2POSTSCALED,
 
-# 232
-TMR6_T4POSTSCALED,
+ADCON0bits.ADON = 1;
 
-# 236
-TMR6_RESERVED,
 
-# 240
-TMR6_T8POSTSCALED,
+ADCON0bits.ADGO = 1;
+}
 
-# 243
-TMR6_CCP1_OUT,
-
-# 247
-TMR6_CCP2_OUT,
-
-# 251
-TMR6_CCP3_OUT,
-
-# 255
-TMR6_CCP4_OUT,
-
-# 259
-TMR6_CCP5_OUT,
-
-# 263
-TMR6_PWM6_OUT,
-
-# 267
-TMR6_PWM7_OUT,
-
-# 271
-TMR6_C1_OUT_SYNC,
-
-# 275
-TMR6_C2_OUT_SYNC,
-
-# 279
-TMR6_C3_OUT_SYNC,
-
-# 283
-TMR6_ZCD_OUTPUT
-
-} TMR6_HLT_EXT_RESET_SOURCE;
-
-# 327
-void TMR6_Initialize(void);
-
-# 363
-void TMR6_ModeSet(TMR6_HLT_MODE mode);
-
-# 398
-void TMR6_ExtResetSourceSet(TMR6_HLT_EXT_RESET_SOURCE reset);
-
-# 427
-void TMR6_Start(void);
-
-# 456
-void TMR6_StartTimer(void);
-
-# 488
-void TMR6_Stop(void);
-
-# 520
-void TMR6_StopTimer(void);
-
-# 555
-uint8_t TMR6_Counter8BitGet(void);
-
-# 590
-uint8_t TMR6_ReadTimer(void);
-
-# 629
-void TMR6_Counter8BitSet(uint8_t timerVal);
-
-# 668
-void TMR6_WriteTimer(uint8_t timerVal);
-
-# 720
-void TMR6_Period8BitSet(uint8_t periodVal);
-
-# 772
-void TMR6_LoadPeriodRegister(uint8_t periodVal);
-
-# 790
-void TMR6_ISR(void);
-
-# 808
-void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 826
-extern void (*TMR6_InterruptHandler)(void);
-
-# 844
-void TMR6_DefaultInterruptHandler(void);
-
-# 100 "mcc_generated_files/tmr7.h"
-void TMR7_Initialize(void);
-
-# 129
-void TMR7_StartTimer(void);
-
-# 161
-void TMR7_StopTimer(void);
-
-# 196
-uint16_t TMR7_ReadTimer(void);
-
-# 235
-void TMR7_WriteTimer(uint16_t timerVal);
-
-# 271
-void TMR7_Reload(void);
-
-# 310
-void TMR7_StartSinglePulseAcquisition(void);
-
-# 349
-uint8_t TMR7_CheckGateValueStatus(void);
-
-# 367
-void TMR7_ISR(void);
-
-# 385
-void TMR7_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 403
-extern void (*TMR7_InterruptHandler)(void);
-
-# 421
-void TMR7_DefaultInterruptHandler(void);
-
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\__size_t.h"
-typedef unsigned size_t;
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h"
-struct __prbuf
+bool ADCC_IsConversionDone()
 {
-char * ptr;
-void (* func)(char);
-};
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\errno.h"
-extern int errno;
+return ((unsigned char)(!ADCON0bits.ADGO));
+}
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\conio.h"
-extern void init_uart(void);
+adc_result_t ADCC_GetConversionResult(void)
+{
 
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
+return ((adc_result_t)((ADRESH << 8) + ADRESL));
+}
 
-extern __bit kbhit(void);
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel)
+{
 
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
+ADPCH = channel;
 
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
 
+ADCON0bits.ADON = 1;
 
 
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+ADCON0bits.ADCONT = 0;
 
 
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
+ADCON0bits.ADGO = 1;
 
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
 
-# 79 "mcc_generated_files/eusart2.h"
-extern volatile uint8_t eusart2TxBufferRemaining;
-extern volatile uint8_t eusart2RxCount;
-
-# 86
-void (*EUSART2_TxDefaultInterruptHandler)(void);
-void (*EUSART2_RxDefaultInterruptHandler)(void);
-
-# 109
-void EUSART2_Initialize(void);
-
-# 162
-uint8_t EUSART2_is_tx_ready(void);
-
-# 214
-uint8_t EUSART2_is_rx_ready(void);
-
-# 261
-bool EUSART2_is_tx_done(void);
-
-# 281
-uint8_t EUSART2_Read(void);
-
-# 301
-void EUSART2_Write(uint8_t txData);
-
-# 322
-void EUSART2_Transmit_ISR(void);
-
-# 343
-void EUSART2_Receive_ISR(void);
-
-# 363
-void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
-
-# 383
-void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-
-# 73 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-
-# 86
-void OSCILLATOR_Initialize(void);
-
-# 99
-void PMD_Initialize(void);
-
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 36
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
-typedef unsigned short wchar_t;
-
-# 15
-typedef struct {
-int rem;
-int quot;
-} div_t;
-typedef struct {
-unsigned rem;
-unsigned quot;
-} udiv_t;
-typedef struct {
-long quot;
-long rem;
-} ldiv_t;
-typedef struct {
-unsigned long quot;
-unsigned long rem;
-} uldiv_t;
-
-# 53
-extern double atof(const char *);
-extern double strtod(const char *, const char **);
-extern int atoi(const char *);
-extern unsigned xtoi(const char *);
-extern long atol(const char *);
-extern long strtol(const char *, char **, int);
-
-extern int rand(void);
-extern void srand(unsigned int);
-extern void * calloc(size_t, size_t);
-extern div_t div(int numer, int denom);
-extern udiv_t udiv(unsigned numer, unsigned denom);
-extern ldiv_t ldiv(long numer, long denom);
-extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-extern unsigned int _rotl(unsigned int value, unsigned int shift);
-extern unsigned int _rotr(unsigned int value, unsigned int shift);
-
-
-
-
-extern void * malloc(size_t);
-extern void free(void *);
-extern void * realloc(void *, size_t);
-
-# 86
-extern int atexit(void (*)(void));
-extern char * getenv(const char *);
-extern char ** environ;
-extern int system(char *);
-extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-extern int abs(int);
-extern long labs(long);
-
-extern char * itoa(char * buf, int val, int base);
-extern char * utoa(char * buf, unsigned val, int base);
-
-
-
-
-extern char * ltoa(char * buf, long val, int base);
-extern char * ultoa(char * buf, unsigned long val, int base);
-
-extern char * ftoa(float f, int * status);
-
-# 49 "ring_buffer_LUT.h"
-void ringBufferLUT(char * line);
-
-# 40 "ring_buffer_interface.h"
-extern volatile bit eusart2RxStringReady;
-
-
-extern volatile uint8_t eusart2RxCount;
-
-
-extern volatile uint8_t eusart2RxHead;
-extern volatile uint8_t eusart2RxTail;
-
-
-
-
-char line[64];
-
-
-
-typedef enum {
-
-NORMAL,
-BOLD,
-UNDERSCORE,
-BLINK,
-REVERSE,
-CONCEALED
-
-} text_attribute_t;
-
-
-typedef enum {
-
-BLACK,
-RED,
-GREEN,
-YELLOW,
-BLUE,
-MAGENTA,
-CYAN,
-WHITE
-
-} text_color_t;
-
-# 112
-void terminal_ringBufferPull(void);
-
-# 142
-void terminal_printResetMessage(void);
-
-
-
-
-void terminal_clearTerminal(void);
-void terminal_setCursorHome(void);
-void terminal_clearLine(void);
-void terminal_saveCursor(void);
-void terminal_returnCursor(void);
-
-
-void terminal_textAttributes(text_color_t foreground_color,
-text_color_t background_color,
-text_attribute_t input_attribute);
-
-
-void terminal_textAttributesReset(void);
-
-
-void terminal_printNewline(void);
-
-# 53 "main.c"
-volatile bit eusart2RxStringReady = 0;
-
-
-float POS3P3_ADC_Result;
-float POS12_ADC_Result;
-
-# 64
-void heartbeatTimerCallback(void) {
-
-
-LATFbits.LATF2 = !LATFbits.LATF2;
-
-
+while (ADCON0bits.ADGO)
+{
 asm(" clrwdt");
-
 }
 
 
-void ADCCallback(void) {
 
-adcc_channel_t currentADCChannel = ADPCH;
-
-switch (currentADCChannel) {
-
-case POS3P3_ADC:
-POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0;
-break;
-
-case POS12_ADC:
-POS12_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 4.0303030303;
-break;
-
-default:
-LATFbits.LATF3 = 1;
-break;
-
+return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
 
-}
-
-
-void acquisitionTimerCallback(void) {
-
-
-ADCC_StartConversion(POS3P3_ADC);
-
-
-while(!ADCC_IsConversionDone());
-
-
-ADCC_StartConversion(POS12_ADC);
-
-
-while(!ADCC_IsConversionDone());
-
-}
-
-# 119
-void main(void)
+void ADCC_StopConversion(void)
 {
 
+ADCON0bits.ADGO = 0;
+}
 
-
-_delay((unsigned long)((250)*(64000000/4000.0)));
-
-
-SYSTEM_Initialize();
-
-
-TMR6_SetInterruptHandler(heartbeatTimerCallback);
-
-
-ADCC_SetADIInterruptHandler(ADCCallback);
-
-
-TMR7_SetInterruptHandler(acquisitionTimerCallback);
-
-
-(INTCONbits.GIEH = 1);
-
-
-(INTCONbits.GIEL = 1);
-
-
-
-terminal_clearTerminal();
-terminal_setCursorHome();
-terminal_textAttributesReset();
-
-
-while (1)
+void ADCC_SetStopOnInterrupt(void)
 {
 
-
-if (eusart2RxStringReady) {
-
-terminal_ringBufferPull();
-
+ADCON3bits.ADSOI = 1;
 }
 
+void ADCC_DischargeSampleCapacitor(void)
+{
+
+ADPCH = 0x3c;
 }
+
+void ADCC_LoadAcquisitionRegister(uint8_t acquisitionValue)
+{
+
+ADACQ = acquisitionValue;
+}
+
+void ADCC_SetPrechargeTime(uint8_t prechargeTime)
+{
+
+ADPRE = prechargeTime;
+}
+
+void ADCC_SetRepeatCount(uint8_t repeatCount)
+{
+
+ADRPT = repeatCount;
+}
+
+uint8_t ADCC_GetCurrentCountofConversions(void)
+{
+
+return ADCNT;
+}
+
+void ADCC_ClearAccumulator(void)
+{
+
+ADCON2bits.ADACLR = 1;
+}
+
+uint16_t ADCC_GetAccumulatorValue(void)
+{
+
+return ((uint16_t)((ADACCH << 8) + ADACCL));
+}
+
+bool ADCC_HasAccumulatorOverflowed(void)
+{
+
+return ADSTATbits.ADAOV;
+}
+
+uint16_t ADCC_GetFilterValue(void)
+{
+
+return ((uint16_t)((ADFLTRH << 8) + ADFLTRL));
+}
+
+uint16_t ADCC_GetPreviousResult(void)
+{
+
+return ((uint16_t)((ADPREVH << 8) + ADPREVL));
+}
+
+void ADCC_DefineSetPoint(uint16_t setPoint)
+{
+
+ADSTPTH = setPoint >> 8;
+ADSTPTL = setPoint;
+}
+
+void ADCC_SetUpperThreshold(uint16_t upperThreshold)
+{
+
+ADUTHH = upperThreshold >> 8;
+ADUTHL = upperThreshold;
+}
+
+void ADCC_SetLowerThreshold(uint16_t lowerThreshold)
+{
+
+ADLTHH = lowerThreshold >> 8;
+ADLTHL = lowerThreshold;
+}
+
+uint16_t ADCC_GetErrorCalculation(void)
+{
+
+return ((uint16_t)((ADERRH << 8) + ADERRL));
+}
+
+void ADCC_EnableDoubleSampling(void)
+{
+
+ADCON1bits.ADDSEN = 1;
+}
+
+void ADCC_EnableContinuousConversion(void)
+{
+
+ADCON0bits.ADCONT = 1;
+}
+
+void ADCC_DisableContinuousConversion(void)
+{
+
+ADCON0bits.ADCONT = 0;
+}
+
+bool ADCC_HasErrorCrossedUpperThreshold(void)
+{
+
+return ADSTATbits.ADUTHR;
+}
+
+bool ADCC_HasErrorCrossedLowerThreshold(void)
+{
+
+return ADSTATbits.ADLTHR;
+}
+
+uint8_t ADCC_GetConversionStageStatus(void)
+{
+
+return ADSTATbits.ADSTAT;
+}
+
+void ADCC_ISR(void)
+{
+
+PIR1bits.ADIF = 0;
+
+if (ADCC_ADI_InterruptHandler)
+ADCC_ADI_InterruptHandler();
+}
+
+void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void)){
+ADCC_ADI_InterruptHandler = InterruptHandler;
+}
+
+void ADCC_DefaultInterruptHandler(void){
+
+
 }
 
