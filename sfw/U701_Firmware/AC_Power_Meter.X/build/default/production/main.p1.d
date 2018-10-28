@@ -1,6 +1,7 @@
  build/default/production/main.d  \
  build/default/production/main.p1:  \
  main.c  \
+mcc_generated_files/fvr.h  \
 pin_macros.h  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/eusart2.h  \

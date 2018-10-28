@@ -44,6 +44,8 @@
 // Includes
 #include "mcc_generated_files/mcc.h"
 
+#include <math.h>
+
 #include "pin_macros.h"
 #include "ring_buffer_interface.h"
 
@@ -52,10 +54,16 @@
 // ring buffer ready flag
 volatile bit eusart2RxStringReady = 0;
 
-// POS3P3 ADC Conversion Result
-float POS3P3_ADC_Result;
-float POS12_ADC_Result;
+// On time counter, increments with heartbeat
+unsigned long on_time = 0;
 
+// ADC Double Precision Post Processing Variables
+double FVR_ADC_Result;
+double ADC_Result_Scaling;
+double POS3P3_ADC_Result;
+double POS12_ADC_Result;
+double Temp_ADC_Result;
+double Temp_ADC_Offset = -267.409;
 
 // Callback Functions
 
@@ -66,26 +74,44 @@ void heartbeatTimerCallback(void) {
     // Toggle heartbeat pin
     HEARTBEAT_PIN = !HEARTBEAT_PIN;
     
+    // increment ontime
+    on_time++;
+    
     // Kick the dog
     CLRWDT();
     
 }
 
 // Callback function for ADCC interrupts
-void ADCCallback(void) {
+void ADC_postProcessingCallback(void) {
  
     adcc_channel_t currentADCChannel = ADPCH;
     
     switch (currentADCChannel) {
         
+        // FVR Buffer 1 ADC post processing
+        case channel_FVR_buf1:
+            FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+            ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+            
+            break;
+        
+        // POS3P3_ADC Post Processing
         case POS3P3_ADC:
-            POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0;
+            POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
             break;
             
+        // POS12 ADC Post Processing
         case POS12_ADC:
-            POS12_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 4.0303030303;
+            POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
             break;
             
+        // Internal temperature indicator ADC post processing
+        case channel_Temp:
+            Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+            break;
+            
+        // Default case, there was an error
         default:
             ADC_ERROR_PIN = HIGH;
             break;
@@ -96,6 +122,12 @@ void ADCCallback(void) {
 
 // Acquisition callback
 void acquisitionTimerCallback(void) {
+    
+    // Measure FVR buffer 1 with ADC
+    ADCC_StartConversion(channel_FVR_buf1);
+    
+    // Wait for previous conversion to finish
+    while(!ADCC_IsConversionDone());
     
     // Measure POS3P3 With ADC
     ADCC_StartConversion(POS3P3_ADC);
@@ -108,6 +140,13 @@ void acquisitionTimerCallback(void) {
     
     // Wait for previous conversion to finish
     while(!ADCC_IsConversionDone());
+    
+    // Measure temperature with ADC
+    ADCC_StartConversion(channel_Temp);
+    
+    // Wait for previous conversion to finish
+    while(!ADCC_IsConversionDone());
+    
     
 }
 
@@ -130,7 +169,7 @@ void main(void)
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
     // Call ADC callback upon ADCC interrupt
-    ADCC_SetADIInterruptHandler(ADCCallback);
+    ADCC_SetADIInterruptHandler(ADC_postProcessingCallback);
     
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);

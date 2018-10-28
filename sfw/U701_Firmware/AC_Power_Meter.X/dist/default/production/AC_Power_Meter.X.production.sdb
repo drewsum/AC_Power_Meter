@@ -46,7 +46,17 @@ TMR6_C2_OUT_SYNC 13
 TMR6_C3_OUT_SYNC 14
 TMR6_ZCD_OUTPUT 15
 ]
-"77 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"113 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
+[e E17310 . `uc
+ISNS_ADC 0
+POS12_ADC 4
+POS3P3_ADC 34
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
+"88 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [e E17316 . `uc
 ISNS_ADC 0
 POS12_ADC 4
@@ -57,7 +67,7 @@ channel_DAC1 62
 channel_FVR_buf1 63
 ]
 "7 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
-[e E17800 . `uc
+[e E17804 . `uc
 NORMAL 0
 BOLD 1
 UNDERSCORE 2
@@ -66,7 +76,7 @@ REVERSE 4
 CONCEALED 5
 ]
 "8
-[e E17808 . `uc
+[e E17812 . `uc
 BLACK 0
 RED 1
 GREEN 2
@@ -76,8 +86,8 @@ MAGENTA 5
 CYAN 6
 WHITE 7
 ]
-"52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
-[e E17834 . `uc
+"55 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+[e E17838 . `uc
 BLACK 0
 RED 1
 GREEN 2
@@ -87,23 +97,13 @@ MAGENTA 5
 CYAN 6
 WHITE 7
 ]
-[e E17826 . `uc
+[e E17830 . `uc
 NORMAL 0
 BOLD 1
 UNDERSCORE 2
 BLINK 3
 REVERSE 4
 CONCEALED 5
-]
-"113 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
-[e E17310 . `uc
-ISNS_ADC 0
-POS12_ADC 4
-POS3P3_ADC 34
-channel_VSS 60
-channel_Temp 61
-channel_DAC1 62
-channel_FVR_buf1 63
 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
@@ -181,13 +181,13 @@ channel_FVR_buf1 63
 [v i2___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"72 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
-"75
-[v _ADCCallback ADCCallback `(v  1 e 1 0 ]
-"98
+"86
+[v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
+"124
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
-"119
+"158
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -221,6 +221,8 @@ channel_FVR_buf1 63
 [v _EUSART2_SetTxInterruptHandler EUSART2_SetTxInterruptHandler `(v  1 e 1 0 ]
 "268
 [v _EUSART2_SetRxInterruptHandler EUSART2_SetRxInterruptHandler `(v  1 e 1 0 ]
+"58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 "77
@@ -229,9 +231,9 @@ channel_FVR_buf1 63
 [v _INTERRUPT_InterruptManagerLow INTERRUPT_InterruptManagerLow `IIL(v  1 e 1 0 ]
 "50 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
-"62
+"63
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
-"80
+"81
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
@@ -273,23 +275,25 @@ channel_FVR_buf1 63
 [v _terminal_textAttributes terminal_textAttributes `(v  1 e 1 0 ]
 "223
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
-"16 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"230
+[v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
+"19 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 "2752 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _RX2PPS RX2PPS `VEuc  1 e 1 @3601 ]
-[s S195 . 1 `uc 1 ADIP 1 0 :1:0 
+[s S199 . 1 `uc 1 ADIP 1 0 :1:0 
 `uc 1 ADTIP 1 0 :1:1 
 `uc 1 . 1 0 :4:2 
 `uc 1 CSWIP 1 0 :1:6 
 `uc 1 OSCFIP 1 0 :1:7 
 ]
 "4060
-[s S201 . 1 `uc 1 . 1 0 :7:0 
+[s S205 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 PSPIP 1 0 :1:7 
 ]
-[u S204 . 1 `S195 1 . 1 0 `S201 1 . 1 0 ]
-[v _IPR1bits IPR1bits `VES204  1 e 1 @3616 ]
-[s S163 . 1 `uc 1 SSP1IP 1 0 :1:0 
+[u S208 . 1 `S199 1 . 1 0 `S205 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES208  1 e 1 @3616 ]
+[s S167 . 1 `uc 1 SSP1IP 1 0 :1:0 
 `uc 1 BCL1IP 1 0 :1:1 
 `uc 1 SSP2IP 1 0 :1:2 
 `uc 1 BCL2IP 1 0 :1:3 
@@ -299,14 +303,14 @@ channel_FVR_buf1 63
 `uc 1 RC2IP 1 0 :1:7 
 ]
 "4167
-[s S172 . 1 `uc 1 . 1 0 :1:0 
+[s S176 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIP 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIP 1 0 :1:4 
 ]
-[u S177 . 1 `S163 1 . 1 0 `S172 1 . 1 0 ]
-[v _IPR3bits IPR3bits `VES177  1 e 1 @3618 ]
-[s S217 . 1 `uc 1 TMR1IP 1 0 :1:0 
+[u S181 . 1 `S167 1 . 1 0 `S176 1 . 1 0 ]
+[v _IPR3bits IPR3bits `VES181  1 e 1 @3618 ]
+[s S221 . 1 `uc 1 TMR1IP 1 0 :1:0 
 `uc 1 TMR2IP 1 0 :1:1 
 `uc 1 TMR3IP 1 0 :1:2 
 `uc 1 TMR4IP 1 0 :1:3 
@@ -316,27 +320,27 @@ channel_FVR_buf1 63
 `uc 1 TMR8IP 1 0 :1:7 
 ]
 "4304
-[s S226 . 1 `uc 1 CCH05 1 0 :1:0 
+[s S230 . 1 `uc 1 CCH05 1 0 :1:0 
 `uc 1 CCH15 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 EVPOL05 1 0 :1:3 
 `uc 1 EVPOL15 1 0 :1:4 
 ]
-[u S232 . 1 `S217 1 . 1 0 `S226 1 . 1 0 ]
-[v _IPR5bits IPR5bits `VES232  1 e 1 @3620 ]
-[s S328 . 1 `uc 1 ADIE 1 0 :1:0 
+[u S236 . 1 `S221 1 . 1 0 `S230 1 . 1 0 ]
+[v _IPR5bits IPR5bits `VES236  1 e 1 @3620 ]
+[s S332 . 1 `uc 1 ADIE 1 0 :1:0 
 `uc 1 ADTIE 1 0 :1:1 
 `uc 1 . 1 0 :4:2 
 `uc 1 CSWIE 1 0 :1:6 
 `uc 1 OSCFIE 1 0 :1:7 
 ]
 "4608
-[s S334 . 1 `uc 1 . 1 0 :7:0 
+[s S338 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[u S337 . 1 `S328 1 . 1 0 `S334 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES337  1 e 1 @3626 ]
-[s S251 . 1 `uc 1 SSP1IE 1 0 :1:0 
+[u S341 . 1 `S332 1 . 1 0 `S338 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES341  1 e 1 @3626 ]
+[s S255 . 1 `uc 1 SSP1IE 1 0 :1:0 
 `uc 1 BCL1IE 1 0 :1:1 
 `uc 1 SSP2IE 1 0 :1:2 
 `uc 1 BCL2IE 1 0 :1:3 
@@ -346,20 +350,20 @@ channel_FVR_buf1 63
 `uc 1 RC2IE 1 0 :1:7 
 ]
 "4722
-[s S260 . 1 `uc 1 RXB0IE 1 0 :1:0 
+[s S264 . 1 `uc 1 RXB0IE 1 0 :1:0 
 `uc 1 RXB1IE 1 0 :1:1 
 `uc 1 TXB0IE 1 0 :1:2 
 `uc 1 TXB1IE 1 0 :1:3 
 `uc 1 TXB2IE 1 0 :1:4 
 ]
-[s S266 . 1 `uc 1 . 1 0 :1:0 
+[s S270 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIE 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIE 1 0 :1:4 
 ]
-[u S271 . 1 `S251 1 . 1 0 `S260 1 . 1 0 `S266 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES271  1 e 1 @3628 ]
-[s S376 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S275 . 1 `S255 1 . 1 0 `S264 1 . 1 0 `S270 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES275  1 e 1 @3628 ]
+[s S380 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 TMR3IE 1 0 :1:2 
 `uc 1 TMR4IE 1 0 :1:3 
@@ -369,21 +373,21 @@ channel_FVR_buf1 63
 `uc 1 TMR8IE 1 0 :1:7 
 ]
 "4869
-[u S385 . 1 `S376 1 . 1 0 ]
-[v _PIE5bits PIE5bits `VES385  1 e 1 @3630 ]
-[s S350 . 1 `uc 1 ADIF 1 0 :1:0 
+[u S389 . 1 `S380 1 . 1 0 ]
+[v _PIE5bits PIE5bits `VES389  1 e 1 @3630 ]
+[s S354 . 1 `uc 1 ADIF 1 0 :1:0 
 `uc 1 ADTIF 1 0 :1:1 
 `uc 1 . 1 0 :4:2 
 `uc 1 CSWIF 1 0 :1:6 
 `uc 1 OSCFIF 1 0 :1:7 
 ]
 "5153
-[s S356 . 1 `uc 1 . 1 0 :7:0 
+[s S360 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 PSPIF 1 0 :1:7 
 ]
-[u S359 . 1 `S350 1 . 1 0 `S356 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES359  1 e 1 @3636 ]
-[s S296 . 1 `uc 1 SSP1IF 1 0 :1:0 
+[u S363 . 1 `S354 1 . 1 0 `S360 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES363  1 e 1 @3636 ]
+[s S300 . 1 `uc 1 SSP1IF 1 0 :1:0 
 `uc 1 BCL1IF 1 0 :1:1 
 `uc 1 SSP2IF 1 0 :1:2 
 `uc 1 BCL2IF 1 0 :1:3 
@@ -393,14 +397,14 @@ channel_FVR_buf1 63
 `uc 1 RC2IF 1 0 :1:7 
 ]
 "5260
-[s S305 . 1 `uc 1 . 1 0 :1:0 
+[s S309 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RXBNIF 1 0 :1:1 
 `uc 1 . 1 0 :2:2 
 `uc 1 TXBNIF 1 0 :1:4 
 ]
-[u S310 . 1 `S296 1 . 1 0 `S305 1 . 1 0 ]
-[v _PIR3bits PIR3bits `VES310  1 e 1 @3638 ]
-[s S397 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S314 . 1 `S300 1 . 1 0 `S309 1 . 1 0 ]
+[v _PIR3bits PIR3bits `VES314  1 e 1 @3638 ]
+[s S401 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 TMR3IF 1 0 :1:2 
 `uc 1 TMR4IF 1 0 :1:3 
@@ -410,8 +414,8 @@ channel_FVR_buf1 63
 `uc 1 TMR8IF 1 0 :1:7 
 ]
 "5382
-[u S406 . 1 `S397 1 . 1 0 ]
-[v _PIR5bits PIR5bits `VES406  1 e 1 @3640 ]
+[u S410 . 1 `S401 1 . 1 0 ]
+[v _PIR5bits PIR5bits `VES410  1 e 1 @3640 ]
 "6184
 [v _OSCCON1 OSCCON1 `VEuc  1 e 1 @3651 ]
 "6324
@@ -496,6 +500,26 @@ channel_FVR_buf1 63
 [v _ODCONH ODCONH `VEuc  1 e 1 @3775 ]
 "12872
 [v _WPUH WPUH `VEuc  1 e 1 @3776 ]
+"13086
+[v _FVRCON FVRCON `VEuc  1 e 1 @3780 ]
+[s S1773 . 1 `uc 1 ADFVR 1 0 :2:0 
+`uc 1 CDAFVR 1 0 :2:2 
+`uc 1 TSRNG 1 0 :1:4 
+`uc 1 TSEN 1 0 :1:5 
+`uc 1 RDY 1 0 :1:6 
+`uc 1 EN 1 0 :1:7 
+]
+"13110
+[s S1780 . 1 `uc 1 ADFVR0 1 0 :1:0 
+`uc 1 ADFVR1 1 0 :1:1 
+`uc 1 CDAFVR0 1 0 :1:2 
+`uc 1 CDAFVR1 1 0 :1:3 
+`uc 1 . 1 0 :2:4 
+`uc 1 FVRRDY 1 0 :1:6 
+`uc 1 FVREN 1 0 :1:7 
+]
+[u S1788 . 1 `S1773 1 . 1 0 `S1780 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES1788  1 e 1 @3780 ]
 "16852
 [v _RC2REG RC2REG `VEuc  1 e 1 @3825 ]
 "16890
@@ -506,7 +530,7 @@ channel_FVR_buf1 63
 [v _SP2BRGH SP2BRGH `VEuc  1 e 1 @3828 ]
 "17011
 [v _RC2STA RC2STA `VEuc  1 e 1 @3829 ]
-[s S869 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S873 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -516,19 +540,19 @@ channel_FVR_buf1 63
 `uc 1 SPEN 1 0 :1:7 
 ]
 "17044
-[s S878 . 1 `uc 1 . 1 0 :6:0 
+[s S882 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_92 1 0 :1:6 
 ]
-[s S881 . 1 `uc 1 . 1 0 :6:0 
+[s S885 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC92 1 0 :1:6 
 ]
-[s S884 . 1 `uc 1 RCD82 1 0 :1:0 
+[s S888 . 1 `uc 1 RCD82 1 0 :1:0 
 ]
-[u S886 . 1 `S869 1 . 1 0 `S878 1 . 1 0 `S881 1 . 1 0 `S884 1 . 1 0 ]
-[v _RC2STAbits RC2STAbits `VES886  1 e 1 @3829 ]
+[u S890 . 1 `S873 1 . 1 0 `S882 1 . 1 0 `S885 1 . 1 0 `S888 1 . 1 0 ]
+[v _RC2STAbits RC2STAbits `VES890  1 e 1 @3829 ]
 "17185
 [v _TX2STA TX2STA `VEuc  1 e 1 @3830 ]
-[s S835 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S839 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -538,13 +562,13 @@ channel_FVR_buf1 63
 `uc 1 CSRC 1 0 :1:7 
 ]
 "17214
-[s S844 . 1 `uc 1 . 1 0 :6:0 
+[s S848 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_92 1 0 :1:6 
 ]
-[s S847 . 1 `uc 1 TXD82 1 0 :1:0 
+[s S851 . 1 `uc 1 TXD82 1 0 :1:0 
 ]
-[u S849 . 1 `S835 1 . 1 0 `S844 1 . 1 0 `S847 1 . 1 0 ]
-[v _TX2STAbits TX2STAbits `VES849  1 e 1 @3830 ]
+[u S853 . 1 `S839 1 . 1 0 `S848 1 . 1 0 `S851 1 . 1 0 ]
+[v _TX2STAbits TX2STAbits `VES853  1 e 1 @3830 ]
 "17341
 [v _BAUD2CON BAUD2CON `VEuc  1 e 1 @3831 ]
 "22235
@@ -553,42 +577,42 @@ channel_FVR_buf1 63
 [v _TMR7H TMR7H `VEuc  1 e 1 @3887 ]
 "22525
 [v _T7CON T7CON `VEuc  1 e 1 @3888 ]
-[s S1609 . 1 `uc 1 . 1 0 :2:0 
+[s S1303 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_SYNC 1 0 :1:2 
 ]
 "22564
-[s S1612 . 1 `uc 1 ON 1 0 :1:0 
+[s S1306 . 1 `uc 1 ON 1 0 :1:0 
 `uc 1 RD16 1 0 :1:1 
 `uc 1 nSYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 CKPS 1 0 :2:4 
 ]
-[s S1618 . 1 `uc 1 . 1 0 :2:0 
+[s S1312 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T7SYNC 1 0 :1:2 
 ]
-[s S1621 . 1 `uc 1 TMR7ON 1 0 :1:0 
+[s S1315 . 1 `uc 1 TMR7ON 1 0 :1:0 
 `uc 1 T7RD16 1 0 :1:1 
 `uc 1 nT7SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T7CKPS0 1 0 :1:4 
 `uc 1 T7CKPS1 1 0 :1:5 
 ]
-[s S1628 . 1 `uc 1 . 1 0 :4:0 
+[s S1322 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CKPS0 1 0 :1:4 
 `uc 1 CKPS1 1 0 :1:5 
 ]
-[s S1632 . 1 `uc 1 . 1 0 :1:0 
+[s S1326 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RD167 1 0 :1:1 
 ]
-[u S1635 . 1 `S1609 1 . 1 0 `S1612 1 . 1 0 `S1618 1 . 1 0 `S1621 1 . 1 0 `S1628 1 . 1 0 `S1632 1 . 1 0 ]
-[v _T7CONbits T7CONbits `VES1635  1 e 1 @3888 ]
+[u S1329 . 1 `S1303 1 . 1 0 `S1306 1 . 1 0 `S1312 1 . 1 0 `S1315 1 . 1 0 `S1322 1 . 1 0 `S1326 1 . 1 0 ]
+[v _T7CONbits T7CONbits `VES1329  1 e 1 @3888 ]
 "22639
 [v _T7GCON T7GCON `VEuc  1 e 1 @3889 ]
-[s S1669 . 1 `uc 1 . 1 0 :3:0 
+[s S1363 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 GGO_NOT_DONE 1 0 :1:3 
 ]
 "22681
-[s S1672 . 1 `uc 1 . 1 0 :2:0 
+[s S1366 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 GVAL 1 0 :1:2 
 `uc 1 GGO_nDONE 1 0 :1:3 
 `uc 1 GSPM 1 0 :1:4 
@@ -596,10 +620,10 @@ channel_FVR_buf1 63
 `uc 1 GPOL 1 0 :1:6 
 `uc 1 GE 1 0 :1:7 
 ]
-[s S1680 . 1 `uc 1 . 1 0 :3:0 
+[s S1374 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T7GGO_NOT_DONE 1 0 :1:3 
 ]
-[s S1683 . 1 `uc 1 . 1 0 :2:0 
+[s S1377 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T7GVAL 1 0 :1:2 
 `uc 1 T7GGO_nDONE 1 0 :1:3 
 `uc 1 T7GSPM 1 0 :1:4 
@@ -607,11 +631,11 @@ channel_FVR_buf1 63
 `uc 1 T7GPOL 1 0 :1:6 
 `uc 1 T7GE 1 0 :1:7 
 ]
-[s S1691 . 1 `uc 1 . 1 0 :3:0 
+[s S1385 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T7GGO 1 0 :1:3 
 ]
-[u S1694 . 1 `S1669 1 . 1 0 `S1672 1 . 1 0 `S1680 1 . 1 0 `S1683 1 . 1 0 `S1691 1 . 1 0 ]
-[v _T7GCONbits T7GCONbits `VES1694  1 e 1 @3889 ]
+[u S1388 . 1 `S1363 1 . 1 0 `S1366 1 . 1 0 `S1374 1 . 1 0 `S1377 1 . 1 0 `S1385 1 . 1 0 ]
+[v _T7GCONbits T7GCONbits `VES1388  1 e 1 @3889 ]
 "22871
 [v _T7GATE T7GATE `VEuc  1 e 1 @3890 ]
 "23037
@@ -624,24 +648,24 @@ channel_FVR_buf1 63
 [v _ADREF ADREF `VEuc  1 e 1 @3928 ]
 "26225
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @3929 ]
-[s S1489 . 1 `uc 1 ADDSEN 1 0 :1:0 
+[s S1179 . 1 `uc 1 ADDSEN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 ADGPOL 1 0 :1:5 
 `uc 1 ADIPEN 1 0 :1:6 
 `uc 1 ADPPOL 1 0 :1:7 
 ]
 "26239
-[u S1495 . 1 `S1489 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES1495  1 e 1 @3929 ]
+[u S1185 . 1 `S1179 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES1185  1 e 1 @3929 ]
 "26264
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @3930 ]
-[s S1425 . 1 `uc 1 ADMD 1 0 :3:0 
+[s S1115 . 1 `uc 1 ADMD 1 0 :3:0 
 `uc 1 ADACLR 1 0 :1:3 
 `uc 1 ADCRS 1 0 :3:4 
 `uc 1 ADPSIS 1 0 :1:7 
 ]
 "26286
-[s S1430 . 1 `uc 1 ADMD0 1 0 :1:0 
+[s S1120 . 1 `uc 1 ADMD0 1 0 :1:0 
 `uc 1 ADMD1 1 0 :1:1 
 `uc 1 ADMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -649,16 +673,16 @@ channel_FVR_buf1 63
 `uc 1 ADCRS1 1 0 :1:5 
 `uc 1 ADCRS2 1 0 :1:6 
 ]
-[u S1438 . 1 `S1425 1 . 1 0 `S1430 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES1438  1 e 1 @3930 ]
+[u S1128 . 1 `S1115 1 . 1 0 `S1120 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES1128  1 e 1 @3930 ]
 "26341
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @3931 ]
-[s S1395 . 1 `uc 1 ADTMD 1 0 :3:0 
+[s S1085 . 1 `uc 1 ADTMD 1 0 :3:0 
 `uc 1 ADSOI 1 0 :1:3 
 `uc 1 ADCALC 1 0 :3:4 
 ]
 "26362
-[s S1399 . 1 `uc 1 ADTMD0 1 0 :1:0 
+[s S1089 . 1 `uc 1 ADTMD0 1 0 :1:0 
 `uc 1 ADTMD1 1 0 :1:1 
 `uc 1 ADTMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -666,8 +690,8 @@ channel_FVR_buf1 63
 `uc 1 ADCALC1 1 0 :1:5 
 `uc 1 ADCALC2 1 0 :1:6 
 ]
-[u S1407 . 1 `S1395 1 . 1 0 `S1399 1 . 1 0 ]
-[v _ADCON3bits ADCON3bits `VES1407  1 e 1 @3931 ]
+[u S1097 . 1 `S1085 1 . 1 0 `S1089 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES1097  1 e 1 @3931 ]
 "26412
 [v _ADACQ ADACQ `VEuc  1 e 1 @3932 ]
 "26482
@@ -678,7 +702,7 @@ channel_FVR_buf1 63
 [v _ADPCH ADPCH `VEuc  1 e 1 @3935 ]
 "26662
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @3936 ]
-[s S1341 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S1031 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -688,21 +712,21 @@ channel_FVR_buf1 63
 `uc 1 ADON 1 0 :1:7 
 ]
 "26697
-[s S1350 . 1 `uc 1 GO 1 0 :1:0 
+[s S1040 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 ]
-[s S1354 . 1 `uc 1 DONE 1 0 :1:0 
+[s S1044 . 1 `uc 1 DONE 1 0 :1:0 
 ]
-[s S1356 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
+[s S1046 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
 ]
-[s S1358 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S1048 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 ]
-[s S1360 . 1 `uc 1 . 1 0 :7:0 
+[s S1050 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 ADCAL 1 0 :1:7 
 ]
-[u S1363 . 1 `S1341 1 . 1 0 `S1350 1 . 1 0 `S1354 1 . 1 0 `S1356 1 . 1 0 `S1358 1 . 1 0 `S1360 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES1363  1 e 1 @3936 ]
+[u S1053 . 1 `S1031 1 . 1 0 `S1040 1 . 1 0 `S1044 1 . 1 0 `S1046 1 . 1 0 `S1048 1 . 1 0 `S1050 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES1053  1 e 1 @3936 ]
 "26764
 [v _ADPREVL ADPREVL `VEuc  1 e 1 @3937 ]
 "26834
@@ -713,7 +737,7 @@ channel_FVR_buf1 63
 [v _ADRESH ADRESH `VEuc  1 e 1 @3940 ]
 "27043
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @3941 ]
-[s S1457 . 1 `uc 1 ADSTAT 1 0 :3:0 
+[s S1147 . 1 `uc 1 ADSTAT 1 0 :3:0 
 `uc 1 . 1 0 :1:3 
 `uc 1 ADMATH 1 0 :1:4 
 `uc 1 ADLTHR 1 0 :1:5 
@@ -721,12 +745,12 @@ channel_FVR_buf1 63
 `uc 1 ADAOV 1 0 :1:7 
 ]
 "27063
-[s S1464 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+[s S1154 . 1 `uc 1 ADSTAT0 1 0 :1:0 
 `uc 1 ADSTAT1 1 0 :1:1 
 `uc 1 ADSTAT2 1 0 :1:2 
 ]
-[u S1468 . 1 `S1457 1 . 1 0 `S1464 1 . 1 0 ]
-[v _ADSTATbits ADSTATbits `VES1468  1 e 1 @3941 ]
+[u S1158 . 1 `S1147 1 . 1 0 `S1154 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES1158  1 e 1 @3941 ]
 "27108
 [v _ADRPT ADRPT `VEuc  1 e 1 @3942 ]
 "27178
@@ -767,7 +791,7 @@ channel_FVR_buf1 63
 [v _LATE LATE `VEuc  1 e 1 @3965 ]
 "29037
 [v _LATF LATF `VEuc  1 e 1 @3966 ]
-[s S966 . 1 `uc 1 LATF0 1 0 :1:0 
+[s S1458 . 1 `uc 1 LATF0 1 0 :1:0 
 `uc 1 LATF1 1 0 :1:1 
 `uc 1 LATF2 1 0 :1:2 
 `uc 1 LATF3 1 0 :1:3 
@@ -777,7 +801,7 @@ channel_FVR_buf1 63
 `uc 1 LATF7 1 0 :1:7 
 ]
 "29064
-[s S975 . 1 `uc 1 LF0 1 0 :1:0 
+[s S1467 . 1 `uc 1 LF0 1 0 :1:0 
 `uc 1 LF1 1 0 :1:1 
 `uc 1 LF2 1 0 :1:2 
 `uc 1 LF3 1 0 :1:3 
@@ -786,8 +810,8 @@ channel_FVR_buf1 63
 `uc 1 LF6 1 0 :1:6 
 `uc 1 LF7 1 0 :1:7 
 ]
-[u S984 . 1 `S966 1 . 1 0 `S975 1 . 1 0 ]
-[v _LATFbits LATFbits `VES984  1 e 1 @3966 ]
+[u S1476 . 1 `S1458 1 . 1 0 `S1467 1 . 1 0 ]
+[v _LATFbits LATFbits `VES1476  1 e 1 @3966 ]
 "29149
 [v _LATG LATG `VEuc  1 e 1 @3967 ]
 "29238
@@ -818,12 +842,12 @@ channel_FVR_buf1 63
 [v _PR6 PR6 `VEuc  1 e 1 @4016 ]
 "34907
 [v _T6CON T6CON `VEuc  1 e 1 @4017 ]
-[s S676 . 1 `uc 1 OUTPS 1 0 :4:0 
+[s S680 . 1 `uc 1 OUTPS 1 0 :4:0 
 `uc 1 CKPS 1 0 :3:4 
 `uc 1 ON 1 0 :1:7 
 ]
 "34943
-[s S680 . 1 `uc 1 OUTPS0 1 0 :1:0 
+[s S684 . 1 `uc 1 OUTPS0 1 0 :1:0 
 `uc 1 OUTPS1 1 0 :1:1 
 `uc 1 OUTPS2 1 0 :1:2 
 `uc 1 OUTPS3 1 0 :1:3 
@@ -832,12 +856,12 @@ channel_FVR_buf1 63
 `uc 1 CKPS2 1 0 :1:6 
 ]
 "34943
-[s S688 . 1 `uc 1 T6OUTPS 1 0 :4:0 
+[s S692 . 1 `uc 1 T6OUTPS 1 0 :4:0 
 `uc 1 T6CKPS 1 0 :3:4 
 `uc 1 T6ON 1 0 :1:7 
 ]
 "34943
-[s S692 . 1 `uc 1 T6OUTPS0 1 0 :1:0 
+[s S696 . 1 `uc 1 T6OUTPS0 1 0 :1:0 
 `uc 1 T6OUTPS1 1 0 :1:1 
 `uc 1 T6OUTPS2 1 0 :1:2 
 `uc 1 T6OUTPS3 1 0 :1:3 
@@ -847,69 +871,69 @@ channel_FVR_buf1 63
 `uc 1 TMR6ON 1 0 :1:7 
 ]
 "34943
-[u S701 . 1 `S676 1 . 1 0 `S680 1 . 1 0 `S688 1 . 1 0 `S692 1 . 1 0 ]
+[u S705 . 1 `S680 1 . 1 0 `S684 1 . 1 0 `S692 1 . 1 0 `S696 1 . 1 0 ]
 "34943
 "34943
-[v _T6CONbits T6CONbits `VES701  1 e 1 @4017 ]
+[v _T6CONbits T6CONbits `VES705  1 e 1 @4017 ]
 "35053
 [v _T6HLT T6HLT `VEuc  1 e 1 @4018 ]
-[s S575 . 1 `uc 1 MODE 1 0 :5:0 
+[s S579 . 1 `uc 1 MODE 1 0 :5:0 
 `uc 1 CKSYNC 1 0 :1:5 
 `uc 1 CKPOL 1 0 :1:6 
 `uc 1 PSYNC 1 0 :1:7 
 ]
 "35086
-[s S580 . 1 `uc 1 MODE0 1 0 :1:0 
+[s S584 . 1 `uc 1 MODE0 1 0 :1:0 
 `uc 1 MODE1 1 0 :1:1 
 `uc 1 MODE2 1 0 :1:2 
 `uc 1 MODE3 1 0 :1:3 
 `uc 1 MODE4 1 0 :1:4 
 ]
 "35086
-[s S586 . 1 `uc 1 T6MODE 1 0 :5:0 
+[s S590 . 1 `uc 1 T6MODE 1 0 :5:0 
 `uc 1 T6CKSYNC 1 0 :1:5 
 `uc 1 T6CKPOL 1 0 :1:6 
 `uc 1 T6PSYNC 1 0 :1:7 
 ]
 "35086
-[s S591 . 1 `uc 1 T6MODE0 1 0 :1:0 
+[s S595 . 1 `uc 1 T6MODE0 1 0 :1:0 
 `uc 1 T6MODE1 1 0 :1:1 
 `uc 1 T6MODE2 1 0 :1:2 
 `uc 1 T6MODE3 1 0 :1:3 
 `uc 1 T6MODE4 1 0 :1:4 
 ]
 "35086
-[u S597 . 1 `S575 1 . 1 0 `S580 1 . 1 0 `S586 1 . 1 0 `S591 1 . 1 0 ]
+[u S601 . 1 `S579 1 . 1 0 `S584 1 . 1 0 `S590 1 . 1 0 `S595 1 . 1 0 ]
 "35086
 "35086
-[v _T6HLTbits T6HLTbits `VES597  1 e 1 @4018 ]
+[v _T6HLTbits T6HLTbits `VES601  1 e 1 @4018 ]
 "35181
 [v _T6CLKCON T6CLKCON `VEuc  1 e 1 @4019 ]
 "35261
 [v _T6RST T6RST `VEuc  1 e 1 @4020 ]
-[s S642 . 1 `uc 1 RSEL 1 0 :4:0 
+[s S646 . 1 `uc 1 RSEL 1 0 :4:0 
 ]
 "35286
-[s S644 . 1 `uc 1 RSEL0 1 0 :1:0 
+[s S648 . 1 `uc 1 RSEL0 1 0 :1:0 
 `uc 1 RSEL1 1 0 :1:1 
 `uc 1 RSEL2 1 0 :1:2 
 `uc 1 RSEL3 1 0 :1:3 
 ]
 "35286
-[s S649 . 1 `uc 1 T6RSEL 1 0 :4:0 
+[s S653 . 1 `uc 1 T6RSEL 1 0 :4:0 
 ]
 "35286
-[s S651 . 1 `uc 1 T6RSEL0 1 0 :1:0 
+[s S655 . 1 `uc 1 T6RSEL0 1 0 :1:0 
 `uc 1 T6RSEL1 1 0 :1:1 
 `uc 1 T6RSEL2 1 0 :1:2 
 `uc 1 T6RSEL3 1 0 :1:3 
 ]
 "35286
-[u S656 . 1 `S642 1 . 1 0 `S644 1 . 1 0 `S649 1 . 1 0 `S651 1 . 1 0 ]
+[u S660 . 1 `S646 1 . 1 0 `S648 1 . 1 0 `S653 1 . 1 0 `S655 1 . 1 0 ]
 "35286
 "35286
-[v _T6RSTbits T6RSTbits `VES656  1 e 1 @4020 ]
-[s S124 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[v _T6RSTbits T6RSTbits `VES660  1 e 1 @4020 ]
+[s S128 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 INT3EDG 1 0 :1:3 
@@ -919,20 +943,20 @@ channel_FVR_buf1 63
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "40517
-[s S133 . 1 `uc 1 . 1 0 :6:0 
+[s S137 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "40517
-[s S137 . 1 `uc 1 . 1 0 :6:0 
+[s S141 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "40517
-[u S141 . 1 `S124 1 . 1 0 `S133 1 . 1 0 `S137 1 . 1 0 ]
+[u S145 . 1 `S128 1 . 1 0 `S137 1 . 1 0 `S141 1 . 1 0 ]
 "40517
 "40517
-[v _INTCONbits INTCONbits `VES141  1 e 1 @4082 ]
+[v _INTCONbits INTCONbits `VES145  1 e 1 @4082 ]
 "43693
 [v _PLLR PLLR `VEb  1 e 0 @29232 ]
 "354 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
@@ -941,12 +965,22 @@ channel_FVR_buf1 63
 [v __powers_ _powers_ `C[13]d  1 e 39 0 ]
 "39
 [v __npowers_ _npowers_ `C[13]d  1 e 39 0 ]
-"53 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"55 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _eusart2RxStringReady eusart2RxStringReady `VEb  1 e 0 0 ]
-"56
-[v _POS3P3_ADC_Result POS3P3_ADC_Result `f  1 e 3 0 ]
-"57
-[v _POS12_ADC_Result POS12_ADC_Result `f  1 e 3 0 ]
+"58
+[v _on_time on_time `ul  1 e 4 0 ]
+"61
+[v _FVR_ADC_Result FVR_ADC_Result `d  1 e 3 0 ]
+"62
+[v _ADC_Result_Scaling ADC_Result_Scaling `d  1 e 3 0 ]
+"63
+[v _POS3P3_ADC_Result POS3P3_ADC_Result `d  1 e 3 0 ]
+"64
+[v _POS12_ADC_Result POS12_ADC_Result `d  1 e 3 0 ]
+"65
+[v _Temp_ADC_Result Temp_ADC_Result `d  1 e 3 0 ]
+"66
+[v _Temp_ADC_Offset Temp_ADC_Offset `d  1 e 3 0 ]
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_ADI_InterruptHandler ADCC_ADI_InterruptHandler `*.38(v  1 e 3 0 ]
 "62 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
@@ -977,10 +1011,10 @@ channel_FVR_buf1 63
 [v _TMR7_InterruptHandler TMR7_InterruptHandler `*.38(v  1 e 3 0 ]
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.h
 [v _line line `[64]uc  1 e 64 0 ]
-"119 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"158 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"162
+"201
 } 0
 "85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
@@ -991,27 +1025,27 @@ channel_FVR_buf1 63
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
 {
 "24
-[v terminal_ringBufferPull@index_1170 index `i  1 a 2 18 ]
+[v terminal_ringBufferPull@index_1652 index `i  1 a 2 2 ]
 "17
-[v terminal_ringBufferPull@index index `i  1 a 2 20 ]
+[v terminal_ringBufferPull@index index `i  1 a 2 4 ]
 "14
-[v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 16 ]
+[v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 0 ]
 "50
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strlen.c
 [v _strlen strlen `(ui  1 e 2 0 ]
 {
 "6
-[v strlen@cp cp `*.39Cuc  1 a 2 45 ]
+[v strlen@cp cp `*.39Cuc  1 a 2 68 ]
 "4
-[v strlen@s s `*.39Cuc  1 p 2 41 ]
+[v strlen@s s `*.39Cuc  1 p 2 64 ]
 "13
 } 0
-"16 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"19 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-[v ringBufferLUT@line line `*.39uc  1 p 2 54 ]
-"119
+[v ringBufferLUT@line line `*.39uc  1 p 2 110 ]
+"184
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1022,53 +1056,58 @@ channel_FVR_buf1 63
 [v _terminal_textAttributes terminal_textAttributes `(v  1 e 1 0 ]
 {
 "117
-[v terminal_textAttributes@foreground_color foreground_color `E17808  1 a 1 wreg ]
+[v terminal_textAttributes@foreground_color foreground_color `E17812  1 a 1 wreg ]
 "119
-[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 1 ]
+[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 95 ]
 "117
-[v terminal_textAttributes@foreground_color foreground_color `E17808  1 a 1 wreg ]
-[v terminal_textAttributes@background_color background_color `E17808  1 p 1 52 ]
-[v terminal_textAttributes@input_attribute input_attribute `E17800  1 p 1 53 ]
+[v terminal_textAttributes@foreground_color foreground_color `E17812  1 a 1 wreg ]
+[v terminal_textAttributes@background_color background_color `E17812  1 p 1 92 ]
+[v terminal_textAttributes@input_attribute input_attribute `E17804  1 p 1 93 ]
 "121
-[v terminal_textAttributes@foreground_color foreground_color `E17808  1 a 1 0 ]
+[v terminal_textAttributes@foreground_color foreground_color `E17812  1 a 1 94 ]
 "220
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strncpy.c
 [v _strncpy strncpy `(*.39uc  1 e 2 0 ]
 {
 "15
-[v strncpy@cp cp `*.39uc  1 a 2 47 ]
+[v strncpy@cp cp `*.39uc  1 a 2 0 ]
 "8
-[v strncpy@to to `*.39uc  1 p 2 41 ]
-[v strncpy@from from `*.32Cuc  1 p 2 43 ]
-[v strncpy@size size `ui  1 p 2 45 ]
+[v strncpy@to to `*.39uc  1 p 2 64 ]
+[v strncpy@from from `*.32Cuc  1 p 2 66 ]
+[v strncpy@size size `ui  1 p 2 68 ]
 "27
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
 [v _strcat strcat `(*.39uc  1 e 2 0 ]
 {
 "15
-[v strcat@cp cp `*.39uc  1 a 2 45 ]
+[v strcat@cp cp `*.39uc  1 a 2 68 ]
 "8
-[v strcat@to to `*.39uc  1 p 2 41 ]
-[v strcat@from from `*.32Cuc  1 p 2 43 ]
+[v strcat@to to `*.39uc  1 p 2 64 ]
+[v strcat@from from `*.32Cuc  1 p 2 66 ]
 "26
+} 0
+"230 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
+[v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
+{
+"234
 } 0
 "33 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcmp.c
 [v _strcmp strcmp `(i  1 e 2 0 ]
 {
 "35
-[v strcmp@r r `c  1 a 1 46 ]
+[v strcmp@r r `c  1 a 1 69 ]
 "33
-[v strcmp@s1 s1 `*.39Cuc  1 p 2 41 ]
-[v strcmp@s2 s2 `*.32Cuc  1 p 2 43 ]
+[v strcmp@s1 s1 `*.39Cuc  1 p 2 64 ]
+[v strcmp@s2 s2 `*.32Cuc  1 p 2 66 ]
 "42
 } 0
 "130 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Read EUSART2_Read `(uc  1 e 1 0 ]
 {
 "132
-[v EUSART2_Read@readValue readValue `uc  1 a 1 41 ]
+[v EUSART2_Read@readValue readValue `uc  1 a 1 64 ]
 "149
 } 0
 "80 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
@@ -1079,24 +1118,24 @@ channel_FVR_buf1 63
 "464 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 {
-[u S1801 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[u S1855 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
 "526
-[v printf@tmpval tmpval `S1801  1 a 4 44 ]
+[v printf@tmpval tmpval `S1855  1 a 4 84 ]
 "528
-[v printf@val val `ul  1 a 4 38 ]
+[v printf@val val `ul  1 a 4 78 ]
 "516
-[v printf@fval fval `d  1 a 3 48 ]
-[v printf@exp exp `i  1 a 2 42 ]
+[v printf@fval fval `d  1 a 3 88 ]
+[v printf@exp exp `i  1 a 2 82 ]
 "504
-[v printf@prec prec `i  1 a 2 36 ]
+[v printf@prec prec `i  1 a 2 76 ]
 "508
-[v printf@flag flag `us  1 a 2 34 ]
+[v printf@flag flag `us  1 a 2 74 ]
 "466
-[v printf@ap ap `[1]*.39v  1 a 2 32 ]
+[v printf@ap ap `[1]*.39v  1 a 2 72 ]
 "499
-[v printf@c c `c  1 a 1 51 ]
+[v printf@c c `c  1 a 1 91 ]
 "464
-[v printf@f f `*.34Cuc  1 p 2 18 ]
+[v printf@f f `*.34Cuc  1 p 2 57 ]
 "1541
 } 0
 "425
@@ -1105,7 +1144,7 @@ channel_FVR_buf1 63
 [v scale@scl scl `c  1 a 1 wreg ]
 [v scale@scl scl `c  1 a 1 wreg ]
 "428
-[v scale@scl scl `c  1 a 1 82 ]
+[v scale@scl scl `c  1 a 1 35 ]
 "441
 } 0
 "180 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
@@ -1114,7 +1153,7 @@ channel_FVR_buf1 63
 [v putch@txData txData `uc  1 a 1 wreg ]
 [v putch@txData txData `uc  1 a 1 wreg ]
 "182
-[v putch@txData txData `uc  1 a 1 42 ]
+[v putch@txData txData `uc  1 a 1 65 ]
 "183
 } 0
 "151
@@ -1122,7 +1161,7 @@ channel_FVR_buf1 63
 {
 [v EUSART2_Write@txData txData `uc  1 a 1 wreg ]
 [v EUSART2_Write@txData txData `uc  1 a 1 wreg ]
-[v EUSART2_Write@txData txData `uc  1 a 1 41 ]
+[v EUSART2_Write@txData txData `uc  1 a 1 64 ]
 "173
 } 0
 "409 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
@@ -1131,170 +1170,170 @@ channel_FVR_buf1 63
 [v fround@prec prec `uc  1 a 1 wreg ]
 [v fround@prec prec `uc  1 a 1 wreg ]
 "413
-[v fround@prec prec `uc  1 a 1 85 ]
+[v fround@prec prec `uc  1 a 1 38 ]
 "418
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 {
 "17
-[v ___wmul@product product `ui  1 a 2 59 ]
+[v ___wmul@product product `ui  1 a 2 12 ]
 "15
-[v ___wmul@multiplier multiplier `ui  1 p 2 55 ]
-[v ___wmul@multiplicand multiplicand `ui  1 p 2 57 ]
+[v ___wmul@multiplier multiplier `ui  1 p 2 8 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 10 ]
 "53
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 {
 "65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 71 ]
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 24 ]
 "64
-[v ___ftmul@sign sign `uc  1 a 1 75 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 74 ]
-[v ___ftmul@exp exp `uc  1 a 1 70 ]
+[v ___ftmul@sign sign `uc  1 a 1 28 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 27 ]
+[v ___ftmul@exp exp `uc  1 a 1 23 ]
 "62
-[v ___ftmul@f1 f1 `f  1 p 3 61 ]
-[v ___ftmul@f2 f2 `f  1 p 3 64 ]
+[v ___ftmul@f1 f1 `f  1 p 3 14 ]
+[v ___ftmul@f2 f2 `f  1 p 3 17 ]
 "157
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
 {
 "11
-[v ___awmod@sign sign `uc  1 a 1 46 ]
-[v ___awmod@counter counter `uc  1 a 1 45 ]
+[v ___awmod@sign sign `uc  1 a 1 69 ]
+[v ___awmod@counter counter `uc  1 a 1 68 ]
 "8
-[v ___awmod@dividend dividend `i  1 p 2 41 ]
-[v ___awmod@divisor divisor `i  1 p 2 43 ]
+[v ___awmod@dividend dividend `i  1 p 2 64 ]
+[v ___awmod@divisor divisor `i  1 p 2 66 ]
 "35
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 {
 "11
-[v ___awdiv@quotient quotient `i  1 a 2 53 ]
+[v ___awdiv@quotient quotient `i  1 a 2 6 ]
 "12
-[v ___awdiv@sign sign `uc  1 a 1 52 ]
-[v ___awdiv@counter counter `uc  1 a 1 51 ]
+[v ___awdiv@sign sign `uc  1 a 1 5 ]
+[v ___awdiv@counter counter `uc  1 a 1 4 ]
 "8
-[v ___awdiv@dividend dividend `i  1 p 2 47 ]
-[v ___awdiv@divisor divisor `i  1 p 2 49 ]
+[v ___awdiv@dividend dividend `i  1 p 2 0 ]
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
 "42
 } 0
 "60 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftdivl.c
 [v __tdiv_to_l_ _tdiv_to_l_ `(ul  1 e 4 0 ]
 {
 "63
-[v __tdiv_to_l_@quot quot `ul  1 a 4 50 ]
+[v __tdiv_to_l_@quot quot `ul  1 a 4 3 ]
 "62
-[v __tdiv_to_l_@exp1 exp1 `uc  1 a 1 55 ]
-[v __tdiv_to_l_@cntr cntr `uc  1 a 1 54 ]
+[v __tdiv_to_l_@exp1 exp1 `uc  1 a 1 8 ]
+[v __tdiv_to_l_@cntr cntr `uc  1 a 1 7 ]
 "60
-[v __tdiv_to_l_@f1 f1 `f  1 p 3 41 ]
-[v __tdiv_to_l_@f2 f2 `f  1 p 3 44 ]
+[v __tdiv_to_l_@f1 f1 `f  1 p 3 64 ]
+[v __tdiv_to_l_@f2 f2 `f  1 p 3 67 ]
 "101
 } 0
 "60 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fldivl.c
 [v __div_to_l_ _div_to_l_ `(ul  1 e 4 0 ]
 {
 "63
-[v __div_to_l_@quot quot `ul  1 a 4 47 ]
+[v __div_to_l_@quot quot `ul  1 a 4 0 ]
 "62
-[v __div_to_l_@exp1 exp1 `uc  1 a 1 52 ]
-[v __div_to_l_@cntr cntr `uc  1 a 1 51 ]
+[v __div_to_l_@exp1 exp1 `uc  1 a 1 5 ]
+[v __div_to_l_@cntr cntr `uc  1 a 1 4 ]
 "60
-[v __div_to_l_@f1 f1 `d  1 p 3 41 ]
-[v __div_to_l_@f2 f2 `d  1 p 3 44 ]
+[v __div_to_l_@f1 f1 `d  1 p 3 64 ]
+[v __div_to_l_@f2 f2 `d  1 p 3 67 ]
 "101
 } 0
 "35 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lltoft.c
 [v ___lltoft __lltoft `(f  1 e 3 0 ]
 {
 "37
-[v ___lltoft@exp exp `uc  1 a 1 57 ]
+[v ___lltoft@exp exp `uc  1 a 1 69 ]
 "35
-[v ___lltoft@c c `ul  1 p 4 49 ]
+[v ___lltoft@c c `ul  1 p 4 3 ]
 "46
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\llmod.c
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 {
 "11
-[v ___llmod@counter counter `uc  1 a 1 49 ]
+[v ___llmod@counter counter `uc  1 a 1 69 ]
 "8
-[v ___llmod@dividend dividend `ul  1 p 4 41 ]
-[v ___llmod@divisor divisor `ul  1 p 4 45 ]
+[v ___llmod@dividend dividend `ul  1 p 4 8 ]
+[v ___llmod@divisor divisor `ul  1 p 4 12 ]
 "26
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "11
-[v ___lldiv@quotient quotient `ul  1 a 4 49 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 64 ]
 "12
-[v ___lldiv@counter counter `uc  1 a 1 53 ]
+[v ___lldiv@counter counter `uc  1 a 1 68 ]
 "8
-[v ___lldiv@dividend dividend `ul  1 p 4 41 ]
-[v ___lldiv@divisor divisor `ul  1 p 4 45 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 0 ]
+[v ___lldiv@divisor divisor `ul  1 p 4 4 ]
 "31
 } 0
 "44 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
 {
 "47
-[v ___fttol@lval lval `ul  1 a 4 6 ]
+[v ___fttol@lval lval `ul  1 a 4 39 ]
 "46
-[v ___fttol@exp1 exp1 `uc  1 a 1 10 ]
-[v ___fttol@sign1 sign1 `uc  1 a 1 5 ]
+[v ___fttol@exp1 exp1 `uc  1 a 1 43 ]
+[v ___fttol@sign1 sign1 `uc  1 a 1 38 ]
 "44
-[v ___fttol@f1 f1 `f  1 p 3 83 ]
+[v ___fttol@f1 f1 `f  1 p 3 29 ]
 "73
 } 0
 "20 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 3 0 ]
 {
-[v ___ftsub@f1 f1 `f  1 p 3 12 ]
-[v ___ftsub@f2 f2 `f  1 p 3 15 ]
+[v ___ftsub@f1 f1 `f  1 p 3 51 ]
+[v ___ftsub@f2 f2 `f  1 p 3 54 ]
 "27
 } 0
 "86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
 {
 "88
-[v ___ftadd@exp1 exp1 `uc  1 a 1 11 ]
-[v ___ftadd@exp2 exp2 `uc  1 a 1 10 ]
-[v ___ftadd@sign sign `uc  1 a 1 9 ]
+[v ___ftadd@exp1 exp1 `uc  1 a 1 50 ]
+[v ___ftadd@exp2 exp2 `uc  1 a 1 49 ]
+[v ___ftadd@sign sign `uc  1 a 1 48 ]
 "86
-[v ___ftadd@f1 f1 `f  1 p 3 0 ]
-[v ___ftadd@f2 f2 `f  1 p 3 3 ]
+[v ___ftadd@f1 f1 `f  1 p 3 39 ]
+[v ___ftadd@f2 f2 `f  1 p 3 42 ]
 "148
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 {
-[v ___ftpack@arg arg `um  1 p 3 41 ]
-[v ___ftpack@exp exp `uc  1 p 1 44 ]
-[v ___ftpack@sign sign `uc  1 p 1 45 ]
+[v ___ftpack@arg arg `um  1 p 3 64 ]
+[v ___ftpack@exp exp `uc  1 p 1 67 ]
+[v ___ftpack@sign sign `uc  1 p 1 68 ]
 "86
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
 {
-[v ___ftneg@f1 f1 `f  1 p 3 41 ]
+[v ___ftneg@f1 f1 `f  1 p 3 64 ]
 "20
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
 {
-[v ___ftge@ff1 ff1 `f  1 p 3 41 ]
-[v ___ftge@ff2 ff2 `f  1 p 3 44 ]
+[v ___ftge@ff1 ff1 `f  1 p 3 64 ]
+[v ___ftge@ff2 ff2 `f  1 p 3 67 ]
 "13
 } 0
 "50 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
-"60
+"61
 } 0
 "64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v _TMR7_Initialize TMR7_Initialize `(v  1 e 1 0 ]
@@ -1304,7 +1343,7 @@ channel_FVR_buf1 63
 "178
 [v _TMR7_SetInterruptHandler TMR7_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v TMR7_SetInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 41 ]
+[v TMR7_SetInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 64 ]
 "180
 } 0
 "64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr6.c
@@ -1315,28 +1354,33 @@ channel_FVR_buf1 63
 "178
 [v _TMR6_SetInterruptHandler TMR6_SetInterruptHandler `(v  1 e 1 0 ]
 {
-[v TMR6_SetInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 41 ]
+[v TMR6_SetInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 64 ]
 "180
 } 0
-"80 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
+"81 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
-"94
+"95
 } 0
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "138
 } 0
-"62 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
+"63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
-"78
+"79
 } 0
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize INTERRUPT_Initialize `(v  1 e 1 0 ]
 {
 "75
+} 0
+"58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
+{
+"62
 } 0
 "77 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Initialize EUSART2_Initialize `(v  1 e 1 0 ]
@@ -1346,13 +1390,13 @@ channel_FVR_buf1 63
 "264
 [v _EUSART2_SetTxInterruptHandler EUSART2_SetTxInterruptHandler `(v  1 e 1 0 ]
 {
-[v EUSART2_SetTxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 41 ]
+[v EUSART2_SetTxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 64 ]
 "266
 } 0
 "268
 [v _EUSART2_SetRxInterruptHandler EUSART2_SetRxInterruptHandler `(v  1 e 1 0 ]
 {
-[v EUSART2_SetRxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 41 ]
+[v EUSART2_SetRxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 64 ]
 "270
 } 0
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
@@ -1363,7 +1407,7 @@ channel_FVR_buf1 63
 "306
 [v _ADCC_SetADIInterruptHandler ADCC_SetADIInterruptHandler `(v  1 e 1 0 ]
 {
-[v ADCC_SetADIInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 41 ]
+[v ADCC_SetADIInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 64 ]
 "308
 } 0
 "94 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/interrupt_manager.c
@@ -1381,10 +1425,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"98 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"124 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
 {
-"112
+"151
 } 0
 "112 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -1392,7 +1436,7 @@ channel_FVR_buf1 63
 [v ADCC_StartConversion@channel channel `E17310  1 a 1 wreg ]
 [v ADCC_StartConversion@channel channel `E17310  1 a 1 wreg ]
 "115
-[v ADCC_StartConversion@channel channel `E17310  1 a 1 18 ]
+[v ADCC_StartConversion@channel channel `E17310  1 a 1 41 ]
 "122
 } 0
 "124
@@ -1403,7 +1447,7 @@ channel_FVR_buf1 63
 "127 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v _TMR7_WriteTimer TMR7_WriteTimer `(v  1 e 1 0 ]
 {
-[v TMR7_WriteTimer@timerVal timerVal `ui  1 p 2 18 ]
+[v TMR7_WriteTimer@timerVal timerVal `ui  1 p 2 41 ]
 "147
 } 0
 "165 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr6.c
@@ -1416,10 +1460,10 @@ channel_FVR_buf1 63
 {
 "185
 } 0
-"64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"72 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 {
-"72
+"83
 } 0
 "185 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Transmit_ISR EUSART2_Transmit_ISR `(v  1 e 1 0 ]
@@ -1439,16 +1483,16 @@ channel_FVR_buf1 63
 "464 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]
 {
-[u S1801 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
-[v i2printf@tmpval printf `S1801  1 a 4 86 ]
-[v i2printf@val printf `ul  1 a 4 80 ]
-[v i2printf@fval printf `d  1 a 3 90 ]
-[v i2printf@exp printf `i  1 a 2 84 ]
-[v i2printf@prec printf `i  1 a 2 78 ]
-[v i2printf@flag printf `us  1 a 2 76 ]
-[v i2printf@ap printf `[1]*.39v  1 a 2 74 ]
-[v i2printf@c printf `c  1 a 1 93 ]
-[v i2printf@f f `*.34Cuc  1 p 2 63 ]
+[u S1855 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[v i2printf@tmpval printf `S1855  1 a 4 15 ]
+[v i2printf@val printf `ul  1 a 4 9 ]
+[v i2printf@fval printf `d  1 a 3 19 ]
+[v i2printf@exp printf `i  1 a 2 13 ]
+[v i2printf@prec printf `i  1 a 2 7 ]
+[v i2printf@flag printf `us  1 a 2 5 ]
+[v i2printf@ap printf `[1]*.39v  1 a 2 3 ]
+[v i2printf@c printf `c  1 a 1 22 ]
+[v i2printf@f f `*.34Cuc  1 p 2 72 ]
 "1541
 } 0
 "425
@@ -1457,7 +1501,7 @@ channel_FVR_buf1 63
 [v i2scale@scl scl `c  1 a 1 wreg ]
 [v i2scale@scl scl `c  1 a 1 wreg ]
 "428
-[v i2scale@scl scl `c  1 a 1 41 ]
+[v i2scale@scl scl `c  1 a 1 50 ]
 "441
 } 0
 "180 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
@@ -1483,7 +1527,7 @@ channel_FVR_buf1 63
 [v i2fround@prec prec `uc  1 a 1 wreg ]
 [v i2fround@prec prec `uc  1 a 1 wreg ]
 "413
-[v i2fround@prec prec `uc  1 a 1 44 ]
+[v i2fround@prec prec `uc  1 a 1 53 ]
 "418
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul16.c
@@ -1543,9 +1587,9 @@ channel_FVR_buf1 63
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\llmod.c
 [v i2___llmod __llmod `(ul  1 e 4 0 ]
 {
-[v i2___llmod@counter __llmod `uc  1 a 1 8 ]
-[v i2___llmod@dividend dividend `ul  1 p 4 0 ]
-[v i2___llmod@divisor divisor `ul  1 p 4 4 ]
+[v i2___llmod@counter __llmod `uc  1 a 1 21 ]
+[v i2___llmod@dividend dividend `ul  1 p 4 13 ]
+[v i2___llmod@divisor divisor `ul  1 p 4 17 ]
 "26
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
@@ -1560,34 +1604,18 @@ channel_FVR_buf1 63
 "44 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fttol.c
 [v i2___fttol __fttol `(l  1 e 4 0 ]
 {
-[v i2___fttol@lval __fttol `ul  1 a 4 45 ]
-[v i2___fttol@exp1 __fttol `uc  1 a 1 49 ]
-[v i2___fttol@sign1 __fttol `uc  1 a 1 44 ]
-[v i2___fttol@f1 f1 `f  1 p 3 35 ]
+[v i2___fttol@lval __fttol `ul  1 a 4 54 ]
+[v i2___fttol@exp1 __fttol `uc  1 a 1 58 ]
+[v i2___fttol@sign1 __fttol `uc  1 a 1 53 ]
+[v i2___fttol@f1 f1 `f  1 p 3 44 ]
 "73
 } 0
 "20 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftsub.c
 [v i2___ftsub __ftsub `(f  1 e 3 0 ]
 {
-[v i2___ftsub@f1 f1 `f  1 p 3 57 ]
-[v i2___ftsub@f2 f2 `f  1 p 3 60 ]
+[v i2___ftsub@f1 f1 `f  1 p 3 66 ]
+[v i2___ftsub@f2 f2 `f  1 p 3 69 ]
 "27
-} 0
-"86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
-[v i2___ftadd __ftadd `(f  1 e 3 0 ]
-{
-[v i2___ftadd@exp1 __ftadd `uc  1 a 1 56 ]
-[v i2___ftadd@exp2 __ftadd `uc  1 a 1 55 ]
-[v i2___ftadd@sign __ftadd `uc  1 a 1 54 ]
-[v i2___ftadd@f1 f1 `f  1 p 3 45 ]
-[v i2___ftadd@f2 f2 `f  1 p 3 48 ]
-"148
-} 0
-"15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftneg.c
-[v i2___ftneg __ftneg `(f  1 e 3 0 ]
-{
-[v i2___ftneg@f1 f1 `f  1 p 3 0 ]
-"20
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftge.c
 [v i2___ftge __ftge `(b  1 e 0 0 ]
@@ -1606,29 +1634,59 @@ channel_FVR_buf1 63
 {
 "313
 } 0
-"75 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
-[v _ADCCallback ADCCallback `(v  1 e 1 0 ]
+"86 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+[v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
 {
-"77
-[v ADCCallback@currentADCChannel currentADCChannel `E17316  1 a 1 35 ]
-"95
+"88
+[v ADC_postProcessingCallback@currentADCChannel currentADCChannel `E17316  1 a 1 75 ]
+"121
+} 0
+"15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftneg.c
+[v i2___ftneg __ftneg `(f  1 e 3 0 ]
+{
+[v i2___ftneg@f1 f1 `f  1 p 3 26 ]
+"20
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
 [v i2___ftmul __ftmul `(f  1 e 3 0 ]
 {
-[v i2___ftmul@f3_as_product __ftmul `um  1 a 3 30 ]
-[v i2___ftmul@sign __ftmul `uc  1 a 1 34 ]
-[v i2___ftmul@cntr __ftmul `uc  1 a 1 33 ]
-[v i2___ftmul@exp __ftmul `uc  1 a 1 29 ]
-[v i2___ftmul@f1 f1 `f  1 p 3 20 ]
-[v i2___ftmul@f2 f2 `f  1 p 3 23 ]
+[v i2___ftmul@f3_as_product __ftmul `um  1 a 3 39 ]
+[v i2___ftmul@sign __ftmul `uc  1 a 1 43 ]
+[v i2___ftmul@cntr __ftmul `uc  1 a 1 42 ]
+[v i2___ftmul@exp __ftmul `uc  1 a 1 38 ]
+[v i2___ftmul@f1 f1 `f  1 p 3 29 ]
+[v i2___ftmul@f2 f2 `f  1 p 3 32 ]
 "157
+} 0
+"86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
+[v i2___ftadd __ftadd `(f  1 e 3 0 ]
+{
+[v i2___ftadd@exp1 __ftadd `uc  1 a 1 65 ]
+[v i2___ftadd@exp2 __ftadd `uc  1 a 1 64 ]
+[v i2___ftadd@sign __ftadd `uc  1 a 1 63 ]
+[v i2___ftadd@f1 f1 `f  1 p 3 54 ]
+[v i2___ftadd@f2 f2 `f  1 p 3 57 ]
+"148
 } 0
 "28 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 {
 [v ___lwtoft@c c `ui  1 p 2 8 ]
 "31
+} 0
+"54 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+{
+"60
+[v ___ftdiv@f3 f3 `f  1 a 3 21 ]
+"59
+[v ___ftdiv@sign sign `uc  1 a 1 25 ]
+[v ___ftdiv@exp exp `uc  1 a 1 24 ]
+[v ___ftdiv@cntr cntr `uc  1 a 1 20 ]
+"54
+[v ___ftdiv@f1 f1 `f  1 p 3 11 ]
+[v ___ftdiv@f2 f2 `f  1 p 3 14 ]
+"86
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\float.c
 [v i2___ftpack __ftpack `(f  1 e 3 0 ]

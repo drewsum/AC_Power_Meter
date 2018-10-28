@@ -57,7 +57,7 @@
 
 // CONFIG2L
 #pragma config MCLRE = EXTMCLR    // Master Clear Enable bit->If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR 
-#pragma config PWRTE = OFF    // Power-up Timer Enable bit->Power up timer disabled
+#pragma config PWRTE = ON    // Power-up Timer Enable bit->Power up timer enabled
 #pragma config LPBOREN = OFF    // Low-power BOR enable bit->ULPBOR disabled
 #pragma config BOREN = SBORDIS    // Brown-out Reset Enable bits->Brown-out Reset enabled , SBOREN bit is ignored
 
@@ -91,7 +91,7 @@
 #pragma config WRTC = OFF    // Configuration Register Write Protection bit->Configuration registers (300000-30000Bh) not write-protected
 #pragma config WRTB = OFF    // Boot Block Write Protection bit->Boot Block (000000-0007FFh) not write-protected
 #pragma config WRTD = OFF    // Data EEPROM Write Protection bit->Data EEPROM not write-protected
-#pragma config SCANE = ON    // Scanner Enable bit->Scanner module is available for use, SCANMD bit can control the module
+#pragma config SCANE = OFF    // Scanner Enable bit->Scanner module is NOT available for use, SCANMD bit is ignored
 #pragma config LVP = OFF    // Low Voltage Programming Enable bit->HV on MCLR/VPP must be used for programming
 
 // CONFIG5L

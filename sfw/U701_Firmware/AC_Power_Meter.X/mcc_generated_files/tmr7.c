@@ -74,11 +74,11 @@ void TMR7_Initialize(void)
     //CS HFINTOSC; 
     T7CLK = 0x03;
 
-    //TMR7H 2; 
-    TMR7H = 0x02;
+    //TMR7H 60; 
+    TMR7H = 0x3C;
 
-    //TMR7L 24; 
-    TMR7L = 0x18;
+    //TMR7L 176; 
+    TMR7L = 0xB0;
 
     // Load the TMR value to reload variable
     timer7ReloadVal=(uint16_t)((TMR7H << 8) | TMR7L);
@@ -92,8 +92,8 @@ void TMR7_Initialize(void)
     // Set Default Interrupt Handler
     TMR7_SetInterruptHandler(TMR7_DefaultInterruptHandler);
 
-    // CKPS 1:4; nT7SYNC synchronize; TMR7ON enabled; T7RD16 disabled; 
-    T7CON = 0x21;
+    // CKPS 1:8; nT7SYNC synchronize; TMR7ON enabled; T7RD16 disabled; 
+    T7CON = 0x31;
 }
 
 void TMR7_StartTimer(void)

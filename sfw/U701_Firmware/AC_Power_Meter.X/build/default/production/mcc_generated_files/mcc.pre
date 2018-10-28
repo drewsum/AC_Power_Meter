@@ -21429,6 +21429,12 @@ void ADCC_ISR(void);
 # 881
 void ADCC_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 79 "mcc_generated_files/tmr6.h"
 typedef enum
 {
@@ -21740,13 +21746,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 73 "mcc_generated_files/mcc.h"
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 86
+# 87
 void OSCILLATOR_Initialize(void);
 
-# 99
+# 100
 void PMD_Initialize(void);
 
 # 50 "mcc_generated_files/mcc.c"
@@ -21756,6 +21762,7 @@ INTERRUPT_Initialize();
 PMD_Initialize();
 PIN_MANAGER_Initialize();
 OSCILLATOR_Initialize();
+FVR_Initialize();
 TMR7_Initialize();
 TMR6_Initialize();
 ADCC_Initialize();

@@ -21429,6 +21429,12 @@ void ADCC_ISR(void);
 # 881
 void ADCC_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 79 "mcc_generated_files/tmr6.h"
 typedef enum
 {
@@ -21740,14 +21746,42 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 73 "mcc_generated_files/mcc.h"
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 86
+# 87
 void OSCILLATOR_Initialize(void);
 
-# 99
+# 100
 void PMD_Initialize(void);
+
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
 
 # 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
@@ -21921,18 +21955,28 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 53 "main.c"
+# 55 "main.c"
 volatile bit eusart2RxStringReady = 0;
 
 
-float POS3P3_ADC_Result;
-float POS12_ADC_Result;
+unsigned long on_time = 0;
 
-# 64
+
+double FVR_ADC_Result;
+double ADC_Result_Scaling;
+double POS3P3_ADC_Result;
+double POS12_ADC_Result;
+double Temp_ADC_Result;
+double Temp_ADC_Offset = -267.409;
+
+# 72
 void heartbeatTimerCallback(void) {
 
 
 LATFbits.LATF2 = !LATFbits.LATF2;
+
+
+on_time++;
 
 
 asm(" clrwdt");
@@ -21940,19 +21984,34 @@ asm(" clrwdt");
 }
 
 
-void ADCCallback(void) {
+void ADC_postProcessingCallback(void) {
 
 adcc_channel_t currentADCChannel = ADPCH;
 
 switch (currentADCChannel) {
 
-case POS3P3_ADC:
-POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0;
+
+case channel_FVR_buf1:
+FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+
 break;
 
-case POS12_ADC:
-POS12_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 4.0303030303;
+
+case POS3P3_ADC:
+POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
 break;
+
+
+case POS12_ADC:
+POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+break;
+
+
+case channel_Temp:
+Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+break;
+
 
 default:
 LATFbits.LATF3 = 1;
@@ -21966,6 +22025,12 @@ break;
 void acquisitionTimerCallback(void) {
 
 
+ADCC_StartConversion(channel_FVR_buf1);
+
+
+while(!ADCC_IsConversionDone());
+
+
 ADCC_StartConversion(POS3P3_ADC);
 
 
@@ -21977,9 +22042,16 @@ ADCC_StartConversion(POS12_ADC);
 
 while(!ADCC_IsConversionDone());
 
+
+ADCC_StartConversion(channel_Temp);
+
+
+while(!ADCC_IsConversionDone());
+
+
 }
 
-# 119
+# 158
 void main(void)
 {
 
@@ -21994,7 +22066,7 @@ SYSTEM_Initialize();
 TMR6_SetInterruptHandler(heartbeatTimerCallback);
 
 
-ADCC_SetADIInterruptHandler(ADCCallback);
+ADCC_SetADIInterruptHandler(ADC_postProcessingCallback);
 
 
 TMR7_SetInterruptHandler(acquisitionTimerCallback);

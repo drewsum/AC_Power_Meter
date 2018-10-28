@@ -16129,12 +16129,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr7.c: 75: T7CLK = 0x03;
 "75
 [e = _T7CLK -> -> 3 `i `uc ]
-[; ;tmr7.c: 78: TMR7H = 0x02;
+[; ;tmr7.c: 78: TMR7H = 0x3C;
 "78
-[e = _TMR7H -> -> 2 `i `uc ]
-[; ;tmr7.c: 81: TMR7L = 0x18;
+[e = _TMR7H -> -> 60 `i `uc ]
+[; ;tmr7.c: 81: TMR7L = 0xB0;
 "81
-[e = _TMR7L -> -> 24 `i `uc ]
+[e = _TMR7L -> -> 176 `i `uc ]
 [; ;tmr7.c: 84: timer7ReloadVal=(uint16_t)((TMR7H << 8) | TMR7L);
 "84
 [e = _timer7ReloadVal -> | << -> _TMR7H `i -> 8 `i -> _TMR7L `i `ui ]
@@ -16147,9 +16147,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr7.c: 93: TMR7_SetInterruptHandler(TMR7_DefaultInterruptHandler);
 "93
 [e ( _TMR7_SetInterruptHandler (1 &U _TMR7_DefaultInterruptHandler ]
-[; ;tmr7.c: 96: T7CON = 0x21;
+[; ;tmr7.c: 96: T7CON = 0x31;
 "96
-[e = _T7CON -> -> 33 `i `uc ]
+[e = _T7CON -> -> 49 `i `uc ]
 [; ;tmr7.c: 97: }
 "97
 [e :UE 2011 ]

@@ -21370,10 +21370,10 @@ T7GATE = 0x00;
 T7CLK = 0x03;
 
 
-TMR7H = 0x02;
+TMR7H = 0x3C;
 
 
-TMR7L = 0x18;
+TMR7L = 0xB0;
 
 
 timer7ReloadVal=(uint16_t)((TMR7H << 8) | TMR7L);
@@ -21388,7 +21388,7 @@ PIE5bits.TMR7IE = 1;
 TMR7_SetInterruptHandler(TMR7_DefaultInterruptHandler);
 
 
-T7CON = 0x21;
+T7CON = 0x31;
 }
 
 void TMR7_StartTimer(void)
