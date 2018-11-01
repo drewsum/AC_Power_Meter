@@ -53,6 +53,34 @@ extern __bit iscntrl(char);
 extern char toupper(char);
 extern char tolower(char);
 
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -21376,6 +21404,42 @@ typedef unsigned char bool;
 # 132 "mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
 
+# 100 "mcc_generated_files/tmr5.h"
+void TMR5_Initialize(void);
+
+# 129
+void TMR5_StartTimer(void);
+
+# 161
+void TMR5_StopTimer(void);
+
+# 196
+uint16_t TMR5_ReadTimer(void);
+
+# 235
+void TMR5_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR5_Reload(void);
+
+# 310
+void TMR5_StartSinglePulseAcquisition(void);
+
+# 349
+uint8_t TMR5_CheckGateValueStatus(void);
+
+# 367
+void TMR5_ISR(void);
+
+# 385
+void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 403
+extern void (*TMR5_InterruptHandler)(void);
+
+# 421
+void TMR5_DefaultInterruptHandler(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21795,13 +21859,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 74 "mcc_generated_files/mcc.h"
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 87
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 100
+# 101
 void PMD_Initialize(void);
 
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
@@ -21944,7 +22008,7 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 8 "ring_buffer_LUT.c"
+# 14 "ring_buffer_LUT.c"
 extern text_attribute_t attribute;
 extern text_color_t foreground_color;
 extern text_color_t background_color;
@@ -21955,10 +22019,14 @@ extern double POS12_ADC_Result;
 extern double Temp_ADC_Result;
 extern double FVR_ADC_Result;
 extern unsigned long on_time;
+extern double Imeas;
+extern double Irms;
+extern double Vrms;
+extern double TRIAC_Firing_Angle;
 
 void ringBufferLUT(char * line) {
 
-# 25
+# 35
 if((0 == strcmp(line, "Reset"))) {
 
 
@@ -22065,6 +22133,178 @@ terminal_printNewline();
 }
 
 
+else if ((0 == strcmp(line, "Measure Detected Current?"))) {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Measured Current is %.3f Amps\n\r", Imeas);
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Measure RMS Current?"))) {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("RMS Output Current is %.3f Arms\n\r", Irms);
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Enable Dimming"))) {
+
+
+LATGbits.LATG0 = 0;
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("TRIAC output dimming has been enabled\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Disable Dimming"))) {
+
+
+LATGbits.LATG0 = 1;
+LATGbits.LATG1 = 1;
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("TRIAC output dimming has been disabled\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Enable Load"))) {
+
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Load has been enabled\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Disable Load"))) {
+
+LATGbits.LATG1 = 0;
+LATGbits.LATG0 = 0;
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Load has been disabled\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else if ((strstr(line, "Set Dimming Percentage "))) {
+
+
+char arg_buff[3];
+
+
+for (int index = 0; index <= 3; index++) {
+
+arg_buff[index] = line[index + 23];
+
+}
+
+int percentage = atoi(arg_buff);
+
+
+if ( (percentage >= 100) ||
+(percentage <= 0)) {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+
+else {
+
+
+TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * 3.14159265358979323846;
+double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
+
+
+terminal_printNewline();
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Dimming has been set to %d percent\n\r", percentage);
+printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
+
+}
+
+
 else if((0 == strcmp(line, "On Time?"))) {
 
 
@@ -22081,6 +22321,8 @@ terminal_printNewline();
 }
 
 
+
+
 else if((0 == strcmp(line, "Help"))) {
 
 
@@ -22094,8 +22336,16 @@ printf("List of supported commands:\n\r"
 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+"   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
+"   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
+"   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
 "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
 "   On Time?: Returns device on time since last device reset\n\r"
+"   Enable Dimming: Enable TRIAC output dimming\n\r"
+"   Disable Dimming: Disable TRIAC output dimming\n\r"
+"   Enable Load: Enables the output TRIAC with or without dimming\n\r"
+"   Disable Load: Disables the output TRIAC completely\n\r"
+"   Set Dimming Percentage <x>: Sets the output dimming percentage as x percent\n\r"
 "   Help: This message, lists commands\n\r");
 
 

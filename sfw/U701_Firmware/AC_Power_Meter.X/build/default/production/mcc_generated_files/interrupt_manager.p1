@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17560 `(v ~T0 @X0 0 tf ]
-[v F17563 `(v ~T0 @X0 0 tf ]
+[v F17587 `(v ~T0 @X0 0 tf ]
+[v F17590 `(v ~T0 @X0 0 tf ]
 "40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
@@ -26,17 +26,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S239 . . . ]
 "4167
 [v _IPR3bits `VS239 ~T0 @X0 0 e@3618 ]
-"4048
-[s S234 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S234 . ADIP ADTIP . CSWIP OSCFIP ]
-"4055
-[s S235 :7 `uc 1 :1 `uc 1 ]
-[n S235 . . PSPIP ]
-"4047
-[u S233 `S234 1 `S235 1 ]
-[n S233 . . . ]
-"4060
-[v _IPR1bits `VS233 ~T0 @X0 0 e@3616 ]
 "4286
 [s S246 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S246 . TMR1IP TMR2IP TMR3IP TMR4IP TMR5IP TMR6IP TMR7IP TMR8IP ]
@@ -48,6 +37,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S245 . . . ]
 "4304
 [v _IPR5bits `VS245 ~T0 @X0 0 e@3620 ]
+"4048
+[s S234 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S234 . ADIP ADTIP . CSWIP OSCFIP ]
+"4055
+[s S235 :7 `uc 1 :1 `uc 1 ]
+[n S235 . . PSPIP ]
+"4047
+[u S233 `S234 1 `S235 1 ]
+[n S233 . . . ]
+"4060
+[v _IPR1bits `VS233 ~T0 @X0 0 e@3616 ]
 [t ~ __interrupt . k ]
 [t T12 __interrupt  ]
 "4698
@@ -75,7 +75,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S288 . . . ]
 "5260
 [v _PIR3bits `VS288 ~T0 @X0 0 e@3638 ]
-"4596
+"4858
+[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S271 . TMR1IE TMR2IE TMR3IE TMR4IE TMR5IE TMR6IE TMR7IE TMR8IE ]
+"4857
+[u S270 `S271 1 ]
+[n S270 . . ]
+"4869
+[v _PIE5bits `VS270 ~T0 @X0 0 e@3630 ]
+"5371
+[s S294 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S294 . TMR1IF TMR2IF TMR3IF TMR4IF TMR5IF TMR6IF TMR7IF TMR8IF ]
+"5370
+[u S293 `S294 1 ]
+[n S293 . . ]
+"5382
+[v _PIR5bits `VS293 ~T0 @X0 0 e@3640 ]
+"367 mcc_generated_files/tmr5.h
+[v _TMR5_ISR `(v ~T0 @X0 0 ef ]
+"4596 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S259 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S259 . ADIE ADTIE . CSWIE OSCFIE ]
 "4603
@@ -100,22 +118,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "862 mcc_generated_files/adcc.h
 [v _ADCC_ISR `(v ~T0 @X0 0 ef ]
 [t T13 __interrupt low_priority  ]
-"4858 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
-[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S271 . TMR1IE TMR2IE TMR3IE TMR4IE TMR5IE TMR6IE TMR7IE TMR8IE ]
-"4857
-[u S270 `S271 1 ]
-[n S270 . . ]
-"4869
-[v _PIE5bits `VS270 ~T0 @X0 0 e@3630 ]
-"5371
-[s S294 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S294 . TMR1IF TMR2IF TMR3IF TMR4IF TMR5IF TMR6IF TMR7IF TMR8IF ]
-"5370
-[u S293 `S294 1 ]
-[n S293 . . ]
-"5382
-[v _PIR5bits `VS293 ~T0 @X0 0 e@3640 ]
 "790 mcc_generated_files/tmr6.h
 [v _TMR6_ISR `(v ~T0 @X0 0 ef ]
 "367 mcc_generated_files/tmr7.h
@@ -16141,6 +16143,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;tmr5.h: 100: void TMR5_Initialize(void);
+[; ;tmr5.h: 129: void TMR5_StartTimer(void);
+[; ;tmr5.h: 161: void TMR5_StopTimer(void);
+[; ;tmr5.h: 196: uint16_t TMR5_ReadTimer(void);
+[; ;tmr5.h: 235: void TMR5_WriteTimer(uint16_t timerVal);
+[; ;tmr5.h: 271: void TMR5_Reload(void);
+[; ;tmr5.h: 310: void TMR5_StartSinglePulseAcquisition(void);
+[; ;tmr5.h: 349: uint8_t TMR5_CheckGateValueStatus(void);
+[; ;tmr5.h: 367: void TMR5_ISR(void);
+[; ;tmr5.h: 385: void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr5.h: 403: extern void (*TMR5_InterruptHandler)(void);
+[; ;tmr5.h: 421: void TMR5_DefaultInterruptHandler(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16289,10 +16303,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17560 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17587 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17563 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17590 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16304,9 +16318,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 74: void SYSTEM_Initialize(void);
-[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 100: void PMD_Initialize(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void PMD_Initialize(void);
 "52 mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
 "53
@@ -16321,136 +16335,154 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupt_manager.c: 60: IPR3bits.RC2IP = 1;
 "60
 [e = . . _IPR3bits 0 7 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 63: IPR1bits.ADIP = 1;
+[; ;interrupt_manager.c: 63: IPR5bits.TMR5IP = 1;
 "63
+[e = . . _IPR5bits 0 4 -> -> 1 `i `uc ]
+[; ;interrupt_manager.c: 66: IPR1bits.ADIP = 1;
+"66
 [e = . . _IPR1bits 0 0 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 67: IPR5bits.TMR6IP = 0;
-"67
-[e = . . _IPR5bits 0 5 -> -> 0 `i `uc ]
-[; ;interrupt_manager.c: 70: IPR3bits.TX2IP = 0;
+[; ;interrupt_manager.c: 70: IPR5bits.TMR6IP = 0;
 "70
-[e = . . _IPR3bits 0 6 -> -> 0 `i `uc ]
-[; ;interrupt_manager.c: 73: IPR5bits.TMR7IP = 0;
+[e = . . _IPR5bits 0 5 -> -> 0 `i `uc ]
+[; ;interrupt_manager.c: 73: IPR3bits.TX2IP = 0;
 "73
+[e = . . _IPR3bits 0 6 -> -> 0 `i `uc ]
+[; ;interrupt_manager.c: 76: IPR5bits.TMR7IP = 0;
+"76
 [e = . . _IPR5bits 0 6 -> -> 0 `i `uc ]
-[; ;interrupt_manager.c: 75: }
-"75
+[; ;interrupt_manager.c: 78: }
+"78
 [e :UE 2012 ]
 }
 [v $root$_INTERRUPT_InterruptManagerHigh `(v ~T0 @X0 0 e ]
-"77
-[v _INTERRUPT_InterruptManagerHigh `(v ~T12 @X0 1 ef ]
-"78
-{
-[; ;interrupt_manager.c: 77: void __interrupt() INTERRUPT_InterruptManagerHigh (void)
-[; ;interrupt_manager.c: 78: {
-[e :U _INTERRUPT_InterruptManagerHigh ]
-[f ]
-[; ;interrupt_manager.c: 80: if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
 "80
-[e $ ! && == -> . . _PIE3bits 0 7 `i -> 1 `i == -> . . _PIR3bits 0 7 `i -> 1 `i 2014  ]
-[; ;interrupt_manager.c: 81: {
+[v _INTERRUPT_InterruptManagerHigh `(v ~T12 @X0 1 ef ]
 "81
 {
-[; ;interrupt_manager.c: 82: EUSART2_RxDefaultInterruptHandler();
-"82
-[e ( *U _EUSART2_RxDefaultInterruptHandler ..  ]
+[; ;interrupt_manager.c: 80: void __interrupt() INTERRUPT_InterruptManagerHigh (void)
+[; ;interrupt_manager.c: 81: {
+[e :U _INTERRUPT_InterruptManagerHigh ]
+[f ]
+[; ;interrupt_manager.c: 83: if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
 "83
-}
-[; ;interrupt_manager.c: 83: }
-[e $U 2015  ]
+[e $ ! && == -> . . _PIE3bits 0 7 `i -> 1 `i == -> . . _PIR3bits 0 7 `i -> 1 `i 2014  ]
+[; ;interrupt_manager.c: 84: {
 "84
-[e :U 2014 ]
-[; ;interrupt_manager.c: 84: else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
-[e $ ! && == -> . . _PIE1bits 0 0 `i -> 1 `i == -> . . _PIR1bits 0 0 `i -> 1 `i 2016  ]
-[; ;interrupt_manager.c: 85: {
+{
+[; ;interrupt_manager.c: 85: EUSART2_RxDefaultInterruptHandler();
 "85
-{
-[; ;interrupt_manager.c: 86: ADCC_ISR();
+[e ( *U _EUSART2_RxDefaultInterruptHandler ..  ]
 "86
-[e ( _ADCC_ISR ..  ]
+}
+[; ;interrupt_manager.c: 86: }
+[e $U 2015  ]
 "87
-}
-[; ;interrupt_manager.c: 87: }
-[e $U 2017  ]
+[e :U 2014 ]
+[; ;interrupt_manager.c: 87: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2016  ]
+[; ;interrupt_manager.c: 88: {
 "88
-[e :U 2016 ]
-[; ;interrupt_manager.c: 88: else
-[; ;interrupt_manager.c: 89: {
-"89
 {
-"91
+[; ;interrupt_manager.c: 89: TMR5_ISR();
+"89
+[e ( _TMR5_ISR ..  ]
+"90
 }
+[; ;interrupt_manager.c: 90: }
+[e $U 2017  ]
+"91
+[e :U 2016 ]
+[; ;interrupt_manager.c: 91: else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
+[e $ ! && == -> . . _PIE1bits 0 0 `i -> 1 `i == -> . . _PIR1bits 0 0 `i -> 1 `i 2018  ]
+[; ;interrupt_manager.c: 92: {
+"92
+{
+[; ;interrupt_manager.c: 93: ADCC_ISR();
+"93
+[e ( _ADCC_ISR ..  ]
+"94
+}
+[; ;interrupt_manager.c: 94: }
+[e $U 2019  ]
+"95
+[e :U 2018 ]
+[; ;interrupt_manager.c: 95: else
+[; ;interrupt_manager.c: 96: {
+"96
+{
+"98
+}
+[e :U 2019 ]
 [e :U 2017 ]
 [e :U 2015 ]
-[; ;interrupt_manager.c: 91: }
-[; ;interrupt_manager.c: 92: }
-"92
+[; ;interrupt_manager.c: 98: }
+[; ;interrupt_manager.c: 99: }
+"99
 [e :UE 2013 ]
 }
 [v $root$_INTERRUPT_InterruptManagerLow `(v ~T0 @X0 0 e ]
-"94
-[v _INTERRUPT_InterruptManagerLow `(v ~T13 @X0 1 ef ]
-"95
-{
-[; ;interrupt_manager.c: 94: void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
-[; ;interrupt_manager.c: 95: {
-[e :U _INTERRUPT_InterruptManagerLow ]
-[f ]
-[; ;interrupt_manager.c: 97: if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
-"97
-[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2019  ]
-[; ;interrupt_manager.c: 98: {
-"98
-{
-[; ;interrupt_manager.c: 99: TMR6_ISR();
-"99
-[e ( _TMR6_ISR ..  ]
-"100
-}
-[; ;interrupt_manager.c: 100: }
-[e $U 2020  ]
 "101
-[e :U 2019 ]
-[; ;interrupt_manager.c: 101: else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2021  ]
-[; ;interrupt_manager.c: 102: {
+[v _INTERRUPT_InterruptManagerLow `(v ~T13 @X0 1 ef ]
 "102
 {
-[; ;interrupt_manager.c: 103: EUSART2_TxDefaultInterruptHandler();
-"103
-[e ( *U _EUSART2_TxDefaultInterruptHandler ..  ]
+[; ;interrupt_manager.c: 101: void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
+[; ;interrupt_manager.c: 102: {
+[e :U _INTERRUPT_InterruptManagerLow ]
+[f ]
+[; ;interrupt_manager.c: 104: if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
 "104
-}
-[; ;interrupt_manager.c: 104: }
-[e $U 2022  ]
+[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2021  ]
+[; ;interrupt_manager.c: 105: {
 "105
-[e :U 2021 ]
-[; ;interrupt_manager.c: 105: else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 6 `i -> 1 `i == -> . . _PIR5bits 0 6 `i -> 1 `i 2023  ]
-[; ;interrupt_manager.c: 106: {
+{
+[; ;interrupt_manager.c: 106: TMR6_ISR();
 "106
-{
-[; ;interrupt_manager.c: 107: TMR7_ISR();
+[e ( _TMR6_ISR ..  ]
 "107
-[e ( _TMR7_ISR ..  ]
+}
+[; ;interrupt_manager.c: 107: }
+[e $U 2022  ]
 "108
-}
-[; ;interrupt_manager.c: 108: }
-[e $U 2024  ]
+[e :U 2021 ]
+[; ;interrupt_manager.c: 108: else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2023  ]
+[; ;interrupt_manager.c: 109: {
 "109
-[e :U 2023 ]
-[; ;interrupt_manager.c: 109: else
-[; ;interrupt_manager.c: 110: {
-"110
 {
-"112
+[; ;interrupt_manager.c: 110: EUSART2_TxDefaultInterruptHandler();
+"110
+[e ( *U _EUSART2_TxDefaultInterruptHandler ..  ]
+"111
 }
+[; ;interrupt_manager.c: 111: }
+[e $U 2024  ]
+"112
+[e :U 2023 ]
+[; ;interrupt_manager.c: 112: else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
+[e $ ! && == -> . . _PIE5bits 0 6 `i -> 1 `i == -> . . _PIR5bits 0 6 `i -> 1 `i 2025  ]
+[; ;interrupt_manager.c: 113: {
+"113
+{
+[; ;interrupt_manager.c: 114: TMR7_ISR();
+"114
+[e ( _TMR7_ISR ..  ]
+"115
+}
+[; ;interrupt_manager.c: 115: }
+[e $U 2026  ]
+"116
+[e :U 2025 ]
+[; ;interrupt_manager.c: 116: else
+[; ;interrupt_manager.c: 117: {
+"117
+{
+"119
+}
+[e :U 2026 ]
 [e :U 2024 ]
 [e :U 2022 ]
-[e :U 2020 ]
-[; ;interrupt_manager.c: 112: }
-[; ;interrupt_manager.c: 113: }
-"113
-[e :UE 2018 ]
+[; ;interrupt_manager.c: 119: }
+[; ;interrupt_manager.c: 120: }
+"120
+[e :UE 2020 ]
 }

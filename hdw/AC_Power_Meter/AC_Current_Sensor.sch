@@ -213,7 +213,7 @@ F 3 "" H 6670 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 3530 4440 0    50   ~ 0
-5.35 ARMS Max to support full output swing of conditioning stages
+3.787 Peak Amps Max to support full output swing of conditioning stages
 $Comp
 L power:HT #PWR0301
 U 1 1 5BB463D5

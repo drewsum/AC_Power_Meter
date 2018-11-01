@@ -356,6 +356,24 @@ continue;
 # 548
 flag = 0;
 
+# 611
+if(*f == '.') {
+flag |= 0x4000;
+f++;
+
+# 620
+{
+prec = 0;
+while(isdigit((unsigned)*f))
+prec = prec*10 + *f++ - '0';
+}
+} else {
+prec = 0;
+
+flag |= 0x1000;
+
+}
+
 # 635
 switch(c = *f++) {
 
@@ -372,12 +390,27 @@ case 'd':
 case 'i':
 break;
 
+# 750
+dostring:
+
+
+if(prec && prec < len)
+len = prec;
+
+# 767
+while(len--)
+(putch(*cp++) );
+
+# 774
+continue;
+
 # 802
 default:
 
-# 809
-(putch(c) );
-continue;
+
+cp = (char *)&c;
+len = 1;
+goto dostring;
 
 # 822
 }
@@ -385,7 +418,8 @@ continue;
 
 if(flag & (0x700)) {
 
-# 829
+if(flag & 0x1000)
+
 prec = 6;
 fval = (*(double *)__va_arg((*(double **)ap), (double)0));
 if(fval < 0.0) {
@@ -508,10 +542,20 @@ val = -val;
 
 }
 
+# 1290
+if(prec == 0 && val == 0)
+prec++;
+
 # 1305
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(val < dpowers[c])
 break;
+
+# 1339
+if(c < prec)
+c = prec;
+else if(prec < c)
+prec = c;
 
 # 1422
 {
@@ -523,9 +567,7 @@ if(flag & 0x03)
 # 1469
 }
 
-
-prec = c;
-
+# 1474
 while(prec--) {
 
 # 1478

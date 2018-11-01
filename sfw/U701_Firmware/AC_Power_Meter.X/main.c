@@ -49,7 +49,10 @@
 #include "pin_macros.h"
 #include "ring_buffer_interface.h"
 
-// Global Variables
+// Global Variables/Macros
+
+// Pi
+#define M_PI acos(-1.0)
 
 // ring buffer ready flag
 volatile bit eusart2RxStringReady = 0;
@@ -64,8 +67,55 @@ double POS3P3_ADC_Result;
 double POS12_ADC_Result;
 double Temp_ADC_Result;
 double Temp_ADC_Offset = -267.409;
+double Vpk = 169.7056274847714;
+double Ipk;
+double Imeas;
+double Irms;
+double Vrms;
+double TRIAC_Firing_Angle = 0.0;    // in radians
 
-// Callback Functions
+// more global variables
+uint16_t dimming_period = 0;
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+// Calculate RMS from peak value for phase cutting
+// Pass 'Peak' parameter as peak value
+// Pass 'Angle' parameter as triac firing angle in radians
+double peakToRMS(double Peak, double Angle) {
+
+    // Start with a blank slate
+    double RMS = 0.0;
+    
+    // Calculate RMS from phase angle and peak value
+    RMS = 2.0 * M_PI;
+    RMS = RMS - (2.0 * Angle);
+    RMS = RMS + sin(2.0 * Angle);
+    RMS = RMS / (4.0 * M_PI);
+    RMS = sqrt(RMS);
+    RMS = Peak * RMS;
+    return RMS;
+    
+}
+
+// Back-calculate peak current value from measured cut waveform
+double currentMeasuredToPeak(double Measured, double Angle) {
+ 
+    // Start with a blank slate
+    double Peak = 0.0;
+    
+    // Calculate peak value by backtracking through waveform
+    Peak = sin(Angle);
+    Peak = Measured / Peak;
+    return Peak;
+    
+}
+
+
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>> Callback Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
 // This function is called upon TMR6 ISR and toggles the heartbeat LED, as well
 // as resets the watchdog timer
@@ -74,7 +124,7 @@ void heartbeatTimerCallback(void) {
     // Toggle heartbeat pin
     HEARTBEAT_PIN = !HEARTBEAT_PIN;
     
-    // increment ontime
+    // increment on time counter
     on_time++;
     
     // Kick the dog
@@ -93,12 +143,37 @@ void ADC_postProcessingCallback(void) {
         case channel_FVR_buf1:
             FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
             ADC_Result_Scaling = 2.048/FVR_ADC_Result;
-            
             break;
         
         // POS3P3_ADC Post Processing
         case POS3P3_ADC:
             POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
+            break;
+            
+        case ISNS_ADC:
+            Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+            
+            // If our phase is controlled, convert measured current to peak current
+            // and peak current to RMS current using TRIAC firing angle
+            if (SSR_FORCE_PIN != 1) {
+                
+                Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+                Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+                Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
+                
+            }
+            
+            // Ignore phase cutting if we're all the way on, convert raw peak value to RMS
+            else {
+             
+                Ipk = Imeas;
+                Irms = peakToRMS(Ipk, 0.0);
+                Vrms = peakToRMS(Vpk, 0.0);
+                
+            }
+            
+            
+            
             break;
             
         // POS12 ADC Post Processing
@@ -135,6 +210,12 @@ void acquisitionTimerCallback(void) {
     // Wait for previous conversion to finish
     while(!ADCC_IsConversionDone());
     
+    // Measure Current Sensor With ADC
+    ADCC_StartConversion(ISNS_ADC);
+    
+    // Wait for previous conversion to finish
+    while(!ADCC_IsConversionDone());
+    
     // Measure POS12 with ADC
     ADCC_StartConversion(POS12_ADC);
     
@@ -152,9 +233,9 @@ void acquisitionTimerCallback(void) {
 
 
 
-/*
-                         Main application
- */
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>> Main Application <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
 void main(void)
 {
     
@@ -164,6 +245,9 @@ void main(void)
     
     // Initialize the device
     SYSTEM_Initialize();
+    
+    // Force SSR on
+    SSR_FORCE_PIN = 1;
 
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);

@@ -21324,6 +21324,42 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdbool.h"
 typedef unsigned char bool;
 
+# 100 "mcc_generated_files/tmr5.h"
+void TMR5_Initialize(void);
+
+# 129
+void TMR5_StartTimer(void);
+
+# 161
+void TMR5_StopTimer(void);
+
+# 196
+uint16_t TMR5_ReadTimer(void);
+
+# 235
+void TMR5_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR5_Reload(void);
+
+# 310
+void TMR5_StartSinglePulseAcquisition(void);
+
+# 349
+uint8_t TMR5_CheckGateValueStatus(void);
+
+# 367
+void TMR5_ISR(void);
+
+# 385
+void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 403
+extern void (*TMR5_InterruptHandler)(void);
+
+# 421
+void TMR5_DefaultInterruptHandler(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21746,13 +21782,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 74 "mcc_generated_files/mcc.h"
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 87
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 100
+# 101
 void PMD_Initialize(void);
 
 # 52 "mcc_generated_files/interrupt_manager.c"
@@ -21765,6 +21801,9 @@ INTCONbits.IPEN = 1;
 
 
 IPR3bits.RC2IP = 1;
+
+
+IPR5bits.TMR5IP = 1;
 
 
 IPR1bits.ADIP = 1;
@@ -21787,6 +21826,10 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
 {
 EUSART2_RxDefaultInterruptHandler();
+}
+else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+{
+TMR5_ISR();
 }
 else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
 {

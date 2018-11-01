@@ -59,6 +59,9 @@ void  INTERRUPT_Initialize (void)
     // RCI - high priority
     IPR3bits.RC2IP = 1;
 
+    // TMRI - high priority
+    IPR5bits.TMR5IP = 1;
+
     // ADI - high priority
     IPR1bits.ADIP = 1;
 
@@ -80,6 +83,10 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
     {
         EUSART2_RxDefaultInterruptHandler();
+    }
+    else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+    {
+        TMR5_ISR();
     }
     else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
     {

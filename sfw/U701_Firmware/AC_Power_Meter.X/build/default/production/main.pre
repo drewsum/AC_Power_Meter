@@ -21324,6 +21324,42 @@ typedef unsigned char bool;
 # 132 "mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
 
+# 100 "mcc_generated_files/tmr5.h"
+void TMR5_Initialize(void);
+
+# 129
+void TMR5_StartTimer(void);
+
+# 161
+void TMR5_StopTimer(void);
+
+# 196
+uint16_t TMR5_ReadTimer(void);
+
+# 235
+void TMR5_WriteTimer(uint16_t timerVal);
+
+# 271
+void TMR5_Reload(void);
+
+# 310
+void TMR5_StartSinglePulseAcquisition(void);
+
+# 349
+uint8_t TMR5_CheckGateValueStatus(void);
+
+# 367
+void TMR5_ISR(void);
+
+# 385
+void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 403
+extern void (*TMR5_InterruptHandler)(void);
+
+# 421
+void TMR5_DefaultInterruptHandler(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21746,13 +21782,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 74 "mcc_generated_files/mcc.h"
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 87
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 100
+# 101
 void PMD_Initialize(void);
 
 # 30 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h"
@@ -21955,7 +21991,7 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 55 "main.c"
+# 58 "main.c"
 volatile bit eusart2RxStringReady = 0;
 
 
@@ -21968,8 +22004,47 @@ double POS3P3_ADC_Result;
 double POS12_ADC_Result;
 double Temp_ADC_Result;
 double Temp_ADC_Offset = -267.409;
+double Vpk = 169.7056274847714;
+double Ipk;
+double Imeas;
+double Irms;
+double Vrms;
+double TRIAC_Firing_Angle = 0.0;
 
-# 72
+
+uint16_t dimming_period = 0;
+
+# 86
+double peakToRMS(double Peak, double Angle) {
+
+
+double RMS = 0.0;
+
+
+RMS = 2.0 * acos(-1.0);
+RMS = RMS - (2.0 * Angle);
+RMS = RMS + sin(2.0 * Angle);
+RMS = RMS / (4.0 * acos(-1.0));
+RMS = sqrt(RMS);
+RMS = Peak * RMS;
+return RMS;
+
+}
+
+
+double currentMeasuredToPeak(double Measured, double Angle) {
+
+
+double Peak = 0.0;
+
+
+Peak = sin(Angle);
+Peak = Measured / Peak;
+return Peak;
+
+}
+
+# 122
 void heartbeatTimerCallback(void) {
 
 
@@ -21994,12 +22069,37 @@ switch (currentADCChannel) {
 case channel_FVR_buf1:
 FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
 ADC_Result_Scaling = 2.048/FVR_ADC_Result;
-
 break;
 
 
 case POS3P3_ADC:
 POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
+break;
+
+case ISNS_ADC:
+Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+
+
+
+if (LATGbits.LATG0 != 1) {
+
+Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
+
+}
+
+
+else {
+
+Ipk = Imeas;
+Irms = peakToRMS(Ipk, 0.0);
+Vrms = peakToRMS(Vpk, 0.0);
+
+}
+
+
+
 break;
 
 
@@ -22037,6 +22137,12 @@ ADCC_StartConversion(POS3P3_ADC);
 while(!ADCC_IsConversionDone());
 
 
+ADCC_StartConversion(ISNS_ADC);
+
+
+while(!ADCC_IsConversionDone());
+
+
 ADCC_StartConversion(POS12_ADC);
 
 
@@ -22051,7 +22157,7 @@ while(!ADCC_IsConversionDone());
 
 }
 
-# 158
+# 239
 void main(void)
 {
 
@@ -22061,6 +22167,9 @@ _delay((unsigned long)((250)*(64000000/4000.0)));
 
 
 SYSTEM_Initialize();
+
+
+LATGbits.LATG0 = 1;
 
 
 TMR6_SetInterruptHandler(heartbeatTimerCallback);

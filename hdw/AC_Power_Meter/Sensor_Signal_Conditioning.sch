@@ -1012,7 +1012,7 @@ Wire Wire Line
 Wire Wire Line
 	9200 2680 9560 2680
 Text Notes 8500 5340 0    50   ~ 0
-ISNS_ADC Scaling: 5.35ARMS/V
+ISNS_ADC Scaling: 3.787Apk/2V
 $Comp
 L Custom_Library:LTC6240IS5 U?
 U 1 1 5BBA5D6F

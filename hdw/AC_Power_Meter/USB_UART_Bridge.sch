@@ -776,4 +776,6 @@ Wire Wire Line
 Connection ~ 7790 3180
 Wire Wire Line
 	7790 3180 9200 3180
+Text Notes 2030 6200 0    75   ~ 0
+USB COM Port Settings:\nBaud Rate: 115200 bps\nData Width: 8 bit\nParity: None\nStop Bits: 1 bit\nFlow Control: None
 $EndSCHEMATC

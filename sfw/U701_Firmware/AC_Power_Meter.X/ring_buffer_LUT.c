@@ -1,8 +1,14 @@
 
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 #include "ring_buffer_LUT.h"
+#include "pin_macros.h"
+
+#ifndef M_PI
+    #define M_PI acos(-1.0)
+#endif
 
 // Text attribute enums
 extern text_attribute_t attribute;
@@ -15,6 +21,10 @@ extern double POS12_ADC_Result;
 extern double Temp_ADC_Result;
 extern double FVR_ADC_Result;
 extern unsigned long on_time;
+extern double Imeas;
+extern double Irms;
+extern double Vrms;
+extern double TRIAC_Firing_Angle;
 
 void ringBufferLUT(char * line) {
 
@@ -127,6 +137,178 @@ void ringBufferLUT(char * line) {
         
     }
     
+    // Report measured current
+    else if ((0 == strcmp(line, "Measure Detected Current?"))) {
+
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Measured Current is %.3f Amps\n\r", Imeas);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Report RMS output current
+    else if ((0 == strcmp(line, "Measure RMS Current?"))) {
+     
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("RMS Output Current is %.3f Arms\n\r", Irms);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Report RMS output voltage
+    else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
+     
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Enable triac dimming
+    else if ((0 == strcmp(line, "Enable Dimming"))) {
+     
+        // Disable forcing of TRIAC conduction
+        SSR_FORCE_PIN = 0;
+        
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("TRIAC output dimming has been enabled\n\r");
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Disable triac dimming
+    else if ((0 == strcmp(line, "Disable Dimming"))) {
+     
+        // Force TRIAC conduction
+        SSR_FORCE_PIN = 1;
+        SSR_DIM_PIN = 1;
+        
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("TRIAC output dimming has been disabled\n\r");
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Enable load
+    else if ((0 == strcmp(line, "Enable Load"))) {
+     
+        
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Load has been enabled\n\r");
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // disable load
+    else if ((0 == strcmp(line, "Disable Load"))) {
+     
+        SSR_DIM_PIN = 0;
+        SSR_FORCE_PIN = 0;
+        
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Load has been disabled\n\r");
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
+    // Set dimming percentage
+    else if ((strstr(line, "Set Dimming Percentage "))) {
+     
+        // argument buffer holds characters that make up argument
+        char arg_buff[3];
+        
+        // Parse the argument
+        for (int index = 0; index <= 3; index++) {
+         
+            arg_buff[index] = line[index + 23];
+            
+        }
+        
+        int percentage = atoi(arg_buff);
+                
+        // If the user has entered bad data
+        if (    (percentage >= 100) || 
+                (percentage <= 0)) {
+            
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to red and print help message
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
+            // set text color to yellow and print help message
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();
+
+        }
+        
+        // If data checks out
+        else {
+            
+            // Calculate TRIAC firing angle
+            TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * M_PI;
+            double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
+            
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to yellow and print help message
+            terminal_textAttributes(CYAN, BLACK, NORMAL);
+            printf("Dimming has been set to %d percent\n\r", percentage);
+            printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();
+
+        }
+        
+    }
+    
     // Report microcontroller on time since last reset
     else if((0 == strcmp(line, "On Time?"))) {
      
@@ -142,6 +324,8 @@ void ringBufferLUT(char * line) {
         
         
     }
+    
+    
 
     // help, print options
     else if((0 == strcmp(line, "Help"))) {
@@ -157,8 +341,16 @@ void ringBufferLUT(char * line) {
                 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
                 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
                 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+                "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
+                "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
+                "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
                 "   On Time?: Returns device on time since last device reset\n\r"
+                "   Enable Dimming: Enable TRIAC output dimming\n\r"
+                "   Disable Dimming: Disable TRIAC output dimming\n\r"
+                "   Enable Load: Enables the output TRIAC with or without dimming\n\r"
+                "   Disable Load: Disables the output TRIAC completely\n\r"
+                "   Set Dimming Percentage <x>: Sets the output dimming percentage as x percent\n\r"
                 "   Help: This message, lists commands\n\r");
         
         // Get some space on terminal
