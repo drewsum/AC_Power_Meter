@@ -16,16 +16,18 @@ extern text_color_t foreground_color;
 extern text_color_t background_color;
 
 // Printable/changeable variables
-extern double POS3P3_ADC_Result;
-extern double POS12_ADC_Result;
-extern double Temp_ADC_Result;
-extern double FVR_ADC_Result;
-extern unsigned long on_time;
-extern double Imeas;
-extern double Irms;
-extern double Vrms;
-extern double TRIAC_Firing_Angle;
+extern volatile double POS3P3_ADC_Result;
+extern volatile double POS12_ADC_Result;
+extern volatile double Temp_ADC_Result;
+extern volatile double FVR_ADC_Result;
+extern volatile double AVSS_ADC_Result;
+extern volatile unsigned long on_time;
+extern volatile double Imeas;
+extern volatile double Irms;
+extern volatile double Vrms;
+extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
+extern volatile bit load_enable;
 
 void ringBufferLUT(char * line) {
 
@@ -138,6 +140,22 @@ void ringBufferLUT(char * line) {
         
     }
     
+    // Report VSS ADC Conversion Result
+    else if((0 == strcmp(line, "Measure AVSS?"))) {
+     
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+        
+    }
+    
     // Report measured current
     else if ((0 == strcmp(line, "Measure Detected Current?"))) {
 
@@ -222,13 +240,15 @@ void ringBufferLUT(char * line) {
     // Enable load
     else if ((0 == strcmp(line, "Enable Load"))) {
      
-        
+        SSR_FORCE_PIN = 1;
+        SSR_DIM_PIN = 0;
+        load_enable = 1;
         
         // Get some space on terminal
         terminal_printNewline();
         // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Load has been enabled\n\r");
+        printf("Load has been enabled, dimming disabled\n\r");
         // Reset to white foreground
         terminal_textAttributesReset();
         // Get some space on terminal
@@ -241,6 +261,7 @@ void ringBufferLUT(char * line) {
      
         SSR_DIM_PIN = 0;
         SSR_FORCE_PIN = 0;
+        load_enable = 0;
         
         // Get some space on terminal
         terminal_printNewline();
@@ -255,7 +276,7 @@ void ringBufferLUT(char * line) {
     }
     
     // Set dimming percentage
-    else if ((strstr(line, "Set Dimming Percentage "))) {
+    else if ((strstr(line, "Set Dimming Percentage: "))) {
      
         // argument buffer holds characters that make up argument
         char arg_buff[3];
@@ -263,7 +284,7 @@ void ringBufferLUT(char * line) {
         // Parse the argument
         for (int index = 0; index < 3; index++) {
          
-            arg_buff[index] = line[index + 23];
+            arg_buff[index] = line[index + 24];
             
         }
         
@@ -303,7 +324,7 @@ void ringBufferLUT(char * line) {
             terminal_textAttributes(CYAN, BLACK, NORMAL);
             printf("Dimming has been set to %d percent\n\r", percentage);
             printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
-            printf("This corresponds to a 16 bit timer period value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
+            printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
             // Reset to white foreground
             terminal_textAttributesReset();
             // Get some space on terminal
@@ -349,12 +370,13 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
+                "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
                 "   On Time?: Returns device on time since last device reset\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
                 "   Disable Dimming: Disable TRIAC output dimming\n\r"
-                "   Enable Load: Enables the output TRIAC with or without dimming\n\r"
+                "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
                 "   Disable Load: Disables the output TRIAC completely\n\r"
-                "   Set Dimming Percentage <x>: Sets the output dimming percentage as x percent\n\r"
+                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
                 "   Help: This message, lists commands\n\r");
         
         // Get some space on terminal

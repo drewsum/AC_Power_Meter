@@ -58,24 +58,27 @@
 volatile bit eusart2RxStringReady = 0;
 
 // On time counter, increments with heartbeat
-unsigned long on_time = 0;
+volatile unsigned long on_time = 0;
 
 // ADC Double Precision Post Processing Variables
-double FVR_ADC_Result;
-double ADC_Result_Scaling;
-double POS3P3_ADC_Result;
-double POS12_ADC_Result;
-double Temp_ADC_Result;
-double Temp_ADC_Offset = -267.409;
-double Vpk = 169.7056274847714;
-double Ipk;
-double Imeas;
-double Irms;
-double Vrms;
-double TRIAC_Firing_Angle = 0.0;    // in radians
+volatile double FVR_ADC_Result;
+volatile double AVSS_ADC_Result;
+volatile double ADC_Result_Scaling;
+volatile double POS3P3_ADC_Result;
+volatile double POS12_ADC_Result;
+volatile double Temp_ADC_Result;
+volatile double Temp_ADC_Offset = -267.409;
+double Vpk_const = 169.7056274847714;
+volatile double Vpk;
+volatile double Ipk;
+volatile double Imeas;
+volatile double Irms;
+volatile double Vrms;
+volatile double TRIAC_Firing_Angle = 0.0;    // in radians
 
 // more global variables
-unsigned int dimming_period = 0;    // Maximum is 0xFFFF;
+volatile unsigned int dimming_period = 0;    // Maximum is 0xFFFF which corresponds to 0% on time;
+volatile bit load_enable = 0;
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -101,7 +104,7 @@ double peakToRMS(double Peak, double Angle) {
 
 // Back-calculate peak current value from measured cut waveform
 double currentMeasuredToPeak(double Measured, double Angle) {
- 
+    
     // Start with a blank slate
     double Peak = 0.0;
     
@@ -139,15 +142,19 @@ void ADC_postProcessingCallback(void) {
     
     switch (currentADCChannel) {
         
-        // FVR Buffer 1 ADC post processing
-        case channel_FVR_buf1:
-            FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
-            ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+        case channel_VSS:
+            AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
             break;
         
+        // FVR Buffer 1 ADC post processing
+        case channel_FVR_buf1:
+            FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
+            ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+            break;
+            
         // POS3P3_ADC Post Processing
         case POS3P3_ADC:
-            POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
+            POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
             break;
             
         case ISNS_ADC:
@@ -157,7 +164,36 @@ void ADC_postProcessingCallback(void) {
             // and peak current to RMS current using TRIAC firing angle
             if (SSR_FORCE_PIN != 1) {
                 
-                Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+
+                // Only measure if load is enabled, set peak values to 0.0 otherwise
+
+                if (load_enable) {
+
+                    // If we're dimming more than 50%, the peak current will still be the measured current
+                    if (dimming_period < 0x7FEE) {
+
+                        Ipk = Imeas;
+
+                    }
+
+                    // If we're dimming less than 50%, peak current needs to be calculated
+                    else {
+
+                        Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+
+                    }
+
+                    Vpk = Vpk_const;
+
+                }
+
+                else {
+
+                    Ipk = 0.0;
+                    Vpk = 0.0;
+
+                }
+                 
                 Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
                 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
                 
@@ -168,12 +204,9 @@ void ADC_postProcessingCallback(void) {
              
                 Ipk = Imeas;
                 Irms = peakToRMS(Ipk, 0.0);
-                Vrms = peakToRMS(Vpk, 0.0);
+                Vrms = peakToRMS(Vpk_const, 0.0);
                 
             }
-            
-            
-            
             break;
             
         // POS12 ADC Post Processing
@@ -197,6 +230,13 @@ void ADC_postProcessingCallback(void) {
 
 // Acquisition callback
 void acquisitionTimerCallback(void) {
+    
+    // Measure VSS with ADC
+    ADCC_StartConversion(channel_VSS);
+    
+    // Wait for previous conversion to finish
+    while(!ADCC_IsConversionDone());    
+    
     
     // Measure FVR buffer 1 with ADC
     ADCC_StartConversion(channel_FVR_buf1);
@@ -246,8 +286,10 @@ void main(void)
     // Initialize the device
     SYSTEM_Initialize();
     
-    // Force SSR on
-    SSR_FORCE_PIN = 1;
+    // Force SSR off at startup
+    SSR_FORCE_PIN = 0;
+    SSR_DIM_PIN = 0;
+    load_enable = 0;
 
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);

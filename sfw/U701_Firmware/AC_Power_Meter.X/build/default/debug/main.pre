@@ -21995,26 +21995,29 @@ void terminal_printNewline(void);
 volatile bit eusart2RxStringReady = 0;
 
 
-unsigned long on_time = 0;
+volatile unsigned long on_time = 0;
 
 
-double FVR_ADC_Result;
-double ADC_Result_Scaling;
-double POS3P3_ADC_Result;
-double POS12_ADC_Result;
-double Temp_ADC_Result;
-double Temp_ADC_Offset = -267.409;
-double Vpk = 169.7056274847714;
-double Ipk;
-double Imeas;
-double Irms;
-double Vrms;
-double TRIAC_Firing_Angle = 0.0;
+volatile double FVR_ADC_Result;
+volatile double AVSS_ADC_Result;
+volatile double ADC_Result_Scaling;
+volatile double POS3P3_ADC_Result;
+volatile double POS12_ADC_Result;
+volatile double Temp_ADC_Result;
+volatile double Temp_ADC_Offset = -267.409;
+double Vpk_const = 169.7056274847714;
+volatile double Vpk;
+volatile double Ipk;
+volatile double Imeas;
+volatile double Irms;
+volatile double Vrms;
+volatile double TRIAC_Firing_Angle = 0.0;
 
 
-uint16_t dimming_period = 0;
+volatile unsigned int dimming_period = 0;
+volatile bit load_enable = 0;
 
-# 86
+# 89
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22044,7 +22047,7 @@ return Peak;
 
 }
 
-# 122
+# 125
 void heartbeatTimerCallback(void) {
 
 
@@ -22065,15 +22068,19 @@ adcc_channel_t currentADCChannel = ADPCH;
 
 switch (currentADCChannel) {
 
+case channel_VSS:
+AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+break;
+
 
 case channel_FVR_buf1:
-FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
 ADC_Result_Scaling = 2.048/FVR_ADC_Result;
 break;
 
 
 case POS3P3_ADC:
-POS3P3_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) * 2.0 * ADC_Result_Scaling;
+POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
 break;
 
 case ISNS_ADC:
@@ -22083,7 +22090,36 @@ Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0
 
 if (LATGbits.LATG0 != 1) {
 
+
+
+
+if (load_enable) {
+
+
+if (dimming_period < 0x7FEE) {
+
+Ipk = Imeas;
+
+}
+
+
+else {
+
 Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+
+}
+
+Vpk = Vpk_const;
+
+}
+
+else {
+
+Ipk = 0.0;
+Vpk = 0.0;
+
+}
+
 Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 
@@ -22097,9 +22133,6 @@ Irms = peakToRMS(Ipk, 0.0);
 Vrms = peakToRMS(Vpk, 0.0);
 
 }
-
-
-
 break;
 
 
@@ -22123,6 +22156,13 @@ break;
 
 
 void acquisitionTimerCallback(void) {
+
+
+ADCC_StartConversion(channel_VSS);
+
+
+while(!ADCC_IsConversionDone());
+
 
 
 ADCC_StartConversion(channel_FVR_buf1);
@@ -22157,7 +22197,7 @@ while(!ADCC_IsConversionDone());
 
 }
 
-# 239
+# 279
 void main(void)
 {
 
@@ -22169,7 +22209,9 @@ _delay((unsigned long)((250)*(64000000/4000.0)));
 SYSTEM_Initialize();
 
 
-LATGbits.LATG0 = 1;
+LATGbits.LATG0 = 0;
+LATGbits.LATG1 = 0;
+load_enable = 0;
 
 
 TMR6_SetInterruptHandler(heartbeatTimerCallback);
