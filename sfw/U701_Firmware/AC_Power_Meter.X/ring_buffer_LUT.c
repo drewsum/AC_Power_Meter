@@ -25,6 +25,7 @@ extern volatile unsigned long on_time;
 extern volatile double Imeas;
 extern volatile double Irms;
 extern volatile double Vrms;
+extern volatile double Avg_Power;
 extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
@@ -201,6 +202,21 @@ void ringBufferLUT(char * line) {
         
     }
     
+    // Report output power
+    else if ((0 == strcmp(line, "Measure Power?"))) {
+     
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+    }
+    
     // Enable triac dimming
     else if ((0 == strcmp(line, "Enable Dimming"))) {
      
@@ -359,25 +375,34 @@ void ringBufferLUT(char * line) {
         terminal_printNewline();
         // set text color to yellow and print help message
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
-        printf("List of supported commands:\n\r"
+        printf("List of supported commands:\n\r\n\r"
+                
+                "Housekeeping Commands:\n\r"
                 "   Reset: Clears the terminal and resets the micro\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
-                "   *IDN?: Returns device identification\n\r"
+                "   *IDN?: Returns device identification string\n\r"
+                "   On Time?: Returns device on time since last device reset\n\r"
+                "   Help: This message, lists supported commands\n\r\n\r"
+                
+                "Housekeeping Measurement Commands:\n\r"
                 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
                 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
                 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+                "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
+                "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r\n\r"
+                
+                "Primary Measurement Commands:\n\r"
                 "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
-                "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-                "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
-                "   On Time?: Returns device on time since last device reset\n\r"
+                "   Measure Power?: Returns the calculated output power in Watts\n\r\n\r"
+                
+                "Output Control Commands:\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
                 "   Disable Dimming: Disable TRIAC output dimming\n\r"
                 "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
                 "   Disable Load: Disables the output TRIAC completely\n\r"
-                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
-                "   Help: This message, lists commands\n\r");
+                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r");
         
         // Get some space on terminal
         terminal_printNewline();
@@ -386,7 +411,7 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("IDN string appears in green\n\r");
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Measurements responses appear in cyan\n\r");
+        printf("Measurement responses appear in cyan\n\r");
         terminal_textAttributes(RED, BLACK, NORMAL);
         printf("Errors appear in red\n\r");
         terminal_textAttributesReset();

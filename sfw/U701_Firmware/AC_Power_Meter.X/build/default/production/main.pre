@@ -22011,13 +22011,14 @@ volatile double Ipk;
 volatile double Imeas;
 volatile double Irms;
 volatile double Vrms;
+volatile double Avg_Power;
 volatile double TRIAC_Firing_Angle = 0.0;
 
 
 volatile unsigned int dimming_period = 0;
 volatile bit load_enable = 0;
 
-# 89
+# 90
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22047,7 +22048,7 @@ return Peak;
 
 }
 
-# 125
+# 126
 void heartbeatTimerCallback(void) {
 
 
@@ -22122,6 +22123,7 @@ Vpk = 0.0;
 
 Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
+Avg_Power = Vrms * Irms;
 
 }
 
@@ -22131,6 +22133,7 @@ else {
 Ipk = Imeas;
 Irms = peakToRMS(Ipk, 0.0);
 Vrms = peakToRMS(Vpk_const, 0.0);
+Avg_Power = Vrms * Irms;
 
 }
 break;
@@ -22197,7 +22200,7 @@ while(!ADCC_IsConversionDone());
 
 }
 
-# 279
+# 282
 void main(void)
 {
 

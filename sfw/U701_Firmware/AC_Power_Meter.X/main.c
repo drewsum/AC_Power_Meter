@@ -74,6 +74,7 @@ volatile double Ipk;
 volatile double Imeas;
 volatile double Irms;
 volatile double Vrms;
+volatile double Avg_Power;
 volatile double TRIAC_Firing_Angle = 0.0;    // in radians
 
 // more global variables
@@ -196,6 +197,7 @@ void ADC_postProcessingCallback(void) {
                  
                 Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
                 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
+                Avg_Power = Vrms * Irms;
                 
             }
             
@@ -205,6 +207,7 @@ void ADC_postProcessingCallback(void) {
                 Ipk = Imeas;
                 Irms = peakToRMS(Ipk, 0.0);
                 Vrms = peakToRMS(Vpk_const, 0.0);
+                Avg_Power = Vrms * Irms;
                 
             }
             break;
