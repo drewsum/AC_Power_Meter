@@ -41,7 +41,7 @@
     SOFTWARE.
 */
 
-// Includes
+/*>>>>>>>>>>>>>>>>>>>>>>>>> File Inclusions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 #include "mcc_generated_files/mcc.h"
 
 #include <math.h>
@@ -49,37 +49,37 @@
 #include "pin_macros.h"
 #include "ring_buffer_interface.h"
 
-// Global Variables/Macros
+/*>>>>>>>>>>>>>>>>>>>>>>>>> Global variables / Macros <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
 // Pi
 #define M_PI acos(-1.0)
 
-// ring buffer ready flag
-volatile bit eusart2RxStringReady = 0;
-
-// On time counter, increments with heartbeat
-volatile unsigned long on_time = 0;
-
 // ADC Double Precision Post Processing Variables
-volatile double FVR_ADC_Result;
-volatile double AVSS_ADC_Result;
-volatile double ADC_Result_Scaling;
-volatile double POS3P3_ADC_Result;
-volatile double POS12_ADC_Result;
-volatile double Temp_ADC_Result;
-volatile double Temp_ADC_Offset = -267.409;
-double Vpk_const = 169.7056274847714;
-volatile double Vpk;
-volatile double Ipk;
-volatile double Imeas;
-volatile double Irms;
-volatile double Vrms;
-volatile double Avg_Power;
-volatile double TRIAC_Firing_Angle = 0.0;    // in radians
+volatile double FVR_ADC_Result;                 // Measured FVR voltage in volts, should be 2.048 (used for ADC calibration)
+volatile double AVSS_ADC_Result;                // Measured AVSS voltage in volts (should be close to zero)
+volatile double ADC_Result_Scaling;             // Scaling factor on ADC measurements from AVSS and FVR values
+volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
+volatile double POS12_ADC_Result;               // POS12 Measurement in volts
+volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
+volatile double Temp_ADC_Offset = -267.409;     // Temp ADC result offset in degrees centigrade
+double Vpk_const = sqrt(2) * 120.0;             // Peak voltage in volts
+volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
+volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
+volatile double Imeas;                          // Measured current in amps
+double Irms_offset = -0.113;                    // RMS current offset in amps
+volatile double Irms;                           // RMS output current in amps
+volatile double Vrms;                           // Calculated RMS output voltage in volts
+volatile double Avg_Power;                      // Calculated output power in watts
+volatile double TRIAC_Firing_Angle = 90.0;      // firing angle in radians
 
 // more global variables
-volatile unsigned int dimming_period = 0;    // Maximum is 0xFFFF which corresponds to 0% on time;
-volatile bit load_enable = 0;
+volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time;
+volatile bit load_enable = 0;                   // Load enabled flag
+volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
+volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
+volatile unsigned long load_on_time = 0;        // Load on time in seconds
+
+
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -129,7 +129,14 @@ void heartbeatTimerCallback(void) {
     HEARTBEAT_PIN = !HEARTBEAT_PIN;
     
     // increment on time counter
-    on_time++;
+    dev_on_time++;
+    
+    // If the load is enabled, increment counter
+    if (load_enable) {
+    
+        load_on_time++;
+    
+    }
     
     // Kick the dog
     CLRWDT();
@@ -195,7 +202,7 @@ void ADC_postProcessingCallback(void) {
 
                 }
                  
-                Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+                Irms = peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset;
                 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
                 Avg_Power = Vrms * Irms;
                 
@@ -205,7 +212,7 @@ void ADC_postProcessingCallback(void) {
             else {
              
                 Ipk = Imeas;
-                Irms = peakToRMS(Ipk, 0.0);
+                Irms = peakToRMS(Ipk, 0.0) + Irms_offset;
                 Vrms = peakToRMS(Vpk_const, 0.0);
                 Avg_Power = Vrms * Irms;
                 

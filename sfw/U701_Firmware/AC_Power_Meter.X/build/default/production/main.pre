@@ -21992,12 +21992,6 @@ void terminal_textAttributesReset(void);
 void terminal_printNewline(void);
 
 # 58 "main.c"
-volatile bit eusart2RxStringReady = 0;
-
-
-volatile unsigned long on_time = 0;
-
-
 volatile double FVR_ADC_Result;
 volatile double AVSS_ADC_Result;
 volatile double ADC_Result_Scaling;
@@ -22009,14 +22003,18 @@ double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
 volatile double Imeas;
+double Irms_offset = -0.113;
 volatile double Irms;
 volatile double Vrms;
 volatile double Avg_Power;
-volatile double TRIAC_Firing_Angle = 0.0;
+volatile double TRIAC_Firing_Angle = 90.0;
 
 
-volatile unsigned int dimming_period = 0;
+volatile unsigned int dimming_period = 0x7FEE;
 volatile bit load_enable = 0;
+volatile bit eusart2RxStringReady = 0;
+volatile unsigned long dev_on_time = 0;
+volatile unsigned long load_on_time = 0;
 
 # 90
 double peakToRMS(double Peak, double Angle) {
@@ -22055,7 +22053,14 @@ void heartbeatTimerCallback(void) {
 LATFbits.LATF2 = !LATFbits.LATF2;
 
 
-on_time++;
+dev_on_time++;
+
+
+if (load_enable) {
+
+load_on_time++;
+
+}
 
 
 asm(" clrwdt");
@@ -22121,7 +22126,7 @@ Vpk = 0.0;
 
 }
 
-Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+Irms = peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset;
 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 Avg_Power = Vrms * Irms;
 
@@ -22131,7 +22136,7 @@ Avg_Power = Vrms * Irms;
 else {
 
 Ipk = Imeas;
-Irms = peakToRMS(Ipk, 0.0);
+Irms = peakToRMS(Ipk, 0.0) + Irms_offset;
 Vrms = peakToRMS(Vpk_const, 0.0);
 Avg_Power = Vrms * Irms;
 
@@ -22200,7 +22205,7 @@ while(!ADCC_IsConversionDone());
 
 }
 
-# 282
+# 289
 void main(void)
 {
 

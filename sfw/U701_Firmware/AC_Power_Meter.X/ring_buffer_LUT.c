@@ -21,7 +21,8 @@ extern volatile double POS12_ADC_Result;
 extern volatile double Temp_ADC_Result;
 extern volatile double FVR_ADC_Result;
 extern volatile double AVSS_ADC_Result;
-extern volatile unsigned long on_time;
+extern volatile unsigned long dev_on_time;
+extern volatile unsigned long load_on_time;
 extern volatile double Imeas;
 extern volatile double Irms;
 extern volatile double Vrms;
@@ -351,19 +352,33 @@ void ringBufferLUT(char * line) {
     }
     
     // Report microcontroller on time since last reset
-    else if((0 == strcmp(line, "On Time?"))) {
+    else if((0 == strcmp(line, "Device On Time?"))) {
      
         // Get some space on terminal
         terminal_printNewline();
         // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Device on time since last reset condition is %d seconds\n\r", on_time);
+        printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
         // Reset to white foreground
         terminal_textAttributesReset();
         // Get some space on terminal
         terminal_printNewline();
-        
-        
+         
+    }
+    
+    // Report load on time since last reset
+    else if((0 == strcmp(line, "Load On Time?"))) {
+     
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+         
     }
     
     
@@ -381,7 +396,7 @@ void ringBufferLUT(char * line) {
                 "   Reset: Clears the terminal and resets the micro\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
                 "   *IDN?: Returns device identification string\n\r"
-                "   On Time?: Returns device on time since last device reset\n\r"
+                "   Device On Time?: Returns device on time since last device reset\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
                 "Housekeeping Measurement Commands:\n\r"
@@ -395,14 +410,16 @@ void ringBufferLUT(char * line) {
                 "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
-                "   Measure Power?: Returns the calculated output power in Watts\n\r\n\r"
+                "   Measure Power?: Returns the calculated output power in Watts\n\r"
+                "   Load On Time?: Returns load on time since last device reset in seconds\n\r\n\r"
                 
                 "Output Control Commands:\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
                 "   Disable Dimming: Disable TRIAC output dimming\n\r"
                 "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
                 "   Disable Load: Disables the output TRIAC completely\n\r"
-                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r");
+                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
+                );
         
         // Get some space on terminal
         terminal_printNewline();

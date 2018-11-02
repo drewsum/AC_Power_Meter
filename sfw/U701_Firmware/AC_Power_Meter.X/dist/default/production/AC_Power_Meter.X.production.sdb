@@ -56,7 +56,7 @@ channel_Temp 61
 channel_DAC1 62
 channel_FVR_buf1 63
 ]
-"142 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"149 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [e E17343 . `uc
 ISNS_ADC 0
 POS12_ADC 4
@@ -86,7 +86,7 @@ MAGENTA 5
 CYAN 6
 WHITE 7
 ]
-"69 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"70 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [e E17924 . `uc
 BLACK 0
 RED 1
@@ -221,11 +221,11 @@ CONCEALED 5
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 3 0 ]
 "126
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
-"140
+"147
 [v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
-"235
+"242
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
-"282
+"289
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -325,7 +325,7 @@ CONCEALED 5
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
 "230
 [v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
-"33 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"34 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 "2752 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _RX2PPS RX2PPS `VEuc  1 e 1 @3601 ]
@@ -1094,43 +1094,47 @@ CONCEALED 5
 "39
 [v __npowers_ _npowers_ `C[13]d  1 e 39 0 ]
 "58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
-[v _eusart2RxStringReady eusart2RxStringReady `VEb  1 e 0 0 ]
-"61
-[v _on_time on_time `VEul  1 e 4 0 ]
-"64
 [v _FVR_ADC_Result FVR_ADC_Result `VEd  1 e 3 0 ]
-"65
+"59
 [v _AVSS_ADC_Result AVSS_ADC_Result `VEd  1 e 3 0 ]
-"66
+"60
 [v _ADC_Result_Scaling ADC_Result_Scaling `VEd  1 e 3 0 ]
-"67
+"61
 [v _POS3P3_ADC_Result POS3P3_ADC_Result `VEd  1 e 3 0 ]
-"68
+"62
 [v _POS12_ADC_Result POS12_ADC_Result `VEd  1 e 3 0 ]
-"69
+"63
 [v _Temp_ADC_Result Temp_ADC_Result `VEd  1 e 3 0 ]
-"70
+"64
 [v _Temp_ADC_Offset Temp_ADC_Offset `VEd  1 e 3 0 ]
-"71
+"65
 [v _Vpk_const Vpk_const `d  1 e 3 0 ]
-"72
+"66
 [v _Vpk Vpk `VEd  1 e 3 0 ]
-"73
+"67
 [v _Ipk Ipk `VEd  1 e 3 0 ]
-"74
+"68
 [v _Imeas Imeas `VEd  1 e 3 0 ]
-"75
+"69
+[v _Irms_offset Irms_offset `d  1 e 3 0 ]
+"70
 [v _Irms Irms `VEd  1 e 3 0 ]
-"76
+"71
 [v _Vrms Vrms `VEd  1 e 3 0 ]
-"77
+"72
 [v _Avg_Power Avg_Power `VEd  1 e 3 0 ]
-"78
+"73
 [v _TRIAC_Firing_Angle TRIAC_Firing_Angle `VEd  1 e 3 0 ]
-"81
+"76
 [v _dimming_period dimming_period `VEui  1 e 2 0 ]
-"82
+"77
 [v _load_enable load_enable `VEb  1 e 0 0 ]
+"78
+[v _eusart2RxStringReady eusart2RxStringReady `VEb  1 e 0 0 ]
+"79
+[v _dev_on_time dev_on_time `VEul  1 e 4 0 ]
+"80
+[v _load_on_time load_on_time `VEul  1 e 4 0 ]
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_ADI_InterruptHandler ADCC_ADI_InterruptHandler `*.38(v  1 e 3 0 ]
 "62 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
@@ -1165,10 +1169,10 @@ CONCEALED 5
 [v _TMR7_InterruptHandler TMR7_InterruptHandler `*.38(v  1 e 3 0 ]
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.h
 [v _line line `[64]uc  1 e 64 0 ]
-"282 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"289 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"330
+"337
 } 0
 "85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
@@ -1179,27 +1183,27 @@ CONCEALED 5
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
 {
 "24
-[v terminal_ringBufferPull@index_1976 index `i  1 a 2 179 ]
+[v terminal_ringBufferPull@index_1978 index `i  1 a 2 179 ]
 "17
 [v terminal_ringBufferPull@index index `i  1 a 2 181 ]
 "14
 [v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 177 ]
 "50
 } 0
-"33 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"34 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-"334
+"335
 [v ringBufferLUT@angle_degrees angle_degrees `d  1 a 3 164 ]
-"301
+"302
 [v ringBufferLUT@index index `i  1 a 2 170 ]
-"298
+"299
 [v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 167 ]
-"307
+"308
 [v ringBufferLUT@percentage percentage `i  1 a 2 172 ]
-"33
+"34
 [v ringBufferLUT@line line `*.39uc  1 p 2 160 ]
-"423
+"444
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1341,9 +1345,9 @@ CONCEALED 5
 [v printf@idx idx `uc  1 a 1 117 ]
 "528
 [v printf@val val `ul  1 a 4 132 ]
-[u S2209 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[u S2214 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
 "526
-[v printf@tmpval tmpval `S2209  1 a 4 128 ]
+[v printf@tmpval tmpval `S2214  1 a 4 128 ]
 "516
 [v printf@fval fval `d  1 a 3 136 ]
 "504
@@ -1671,10 +1675,10 @@ CONCEALED 5
 {
 "185
 } 0
-"235 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"242 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
 {
-"275
+"282
 } 0
 "112 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -1709,7 +1713,7 @@ CONCEALED 5
 "126 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 {
-"137
+"144
 } 0
 "185 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Transmit_ISR EUSART2_Transmit_ISR `(v  1 e 1 0 ]
@@ -1746,8 +1750,8 @@ CONCEALED 5
 [v i2_printf printf `(i  1 e 2 0 ]
 {
 [v i2printf@val printf `ul  1 a 4 35 ]
-[u S2209 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
-[v i2printf@tmpval printf `S2209  1 a 4 28 ]
+[u S2214 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[v i2printf@tmpval printf `S2214  1 a 4 28 ]
 [v i2printf@fval printf `d  1 a 3 32 ]
 [v i2printf@prec printf `i  1 a 2 39 ]
 [v i2printf@exp printf `i  1 a 2 26 ]
@@ -1877,12 +1881,12 @@ CONCEALED 5
 {
 "313
 } 0
-"140 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"147 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
 {
-"142
+"149
 [v ADC_postProcessingCallback@currentADCChannel currentADCChannel `E17343  1 a 1 79 ]
-"232
+"239
 } 0
 "90
 [v _peakToRMS peakToRMS `(d  1 e 3 0 ]
