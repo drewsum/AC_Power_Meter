@@ -75,7 +75,7 @@ double Vrms;
 double TRIAC_Firing_Angle = 0.0;    // in radians
 
 // more global variables
-uint16_t dimming_period = 0;
+unsigned int dimming_period = 0;    // Maximum is 0xFFFF;
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */

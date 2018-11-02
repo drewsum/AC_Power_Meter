@@ -264,6 +264,13 @@ const static unsigned long dpowers[] = {1, 10, 100, 1000, 10000,
 
 };
 
+
+const static unsigned long hexpowers[] = {1, 0x10, 0x100, 0x1000,
+
+0x10000, 0x100000, 0x1000000, 0x10000000
+
+};
+
 # 388
 extern const double _powers_[], _npowers_[];
 
@@ -390,6 +397,17 @@ case 'd':
 case 'i':
 break;
 
+# 712
+case 'X':
+
+# 718
+case 'x':
+
+
+flag |= 0x80;
+
+break;
+
 # 750
 dostring:
 
@@ -412,7 +430,12 @@ cp = (char *)&c;
 len = 1;
 goto dostring;
 
-# 822
+# 817
+case 'u':
+flag |= 0xC0;
+break;
+
+
 }
 
 
@@ -529,7 +552,11 @@ prec--;
 continue;
 }
 
-# 1253
+
+
+
+if((flag & (0xC0)) == 0x00)
+
 {
 
 # 1259
@@ -542,16 +569,54 @@ val = -val;
 
 }
 
-# 1290
+else
+
+
+
+
+{
+
+# 1286
+val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
+}
+
+
 if(prec == 0 && val == 0)
 prec++;
 
-# 1305
+
+switch((unsigned char)(flag & (0xC0))) {
+
+
+
+
+case 0x00:
+
+
+case 0xC0:
+
+
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(val < dpowers[c])
 break;
 
-# 1339
+break;
+
+
+
+
+case 0x80:
+
+for(c = 1 ; c != sizeof hexpowers/sizeof hexpowers[0] ; c++)
+if(val < hexpowers[c])
+break;
+
+break;
+
+# 1336
+}
+
+
 if(c < prec)
 c = prec;
 else if(prec < c)
@@ -570,11 +635,37 @@ if(flag & 0x03)
 # 1474
 while(prec--) {
 
-# 1478
+switch((unsigned char)(flag & (0xC0)))
+
 {
 
-# 1489
+
+
+
+case 0x00:
+
+
+case 0xC0:
+
+
 c = (val / dpowers[prec]) % 10 + '0';
+
+break;
+
+# 1497
+case 0x80:
+
+{
+unsigned char idx = (val / hexpowers[prec]) & 0xF;
+
+
+
+c = "0123456789ABCDEF"[idx];
+
+# 1508
+}
+
+break;
 
 # 1523
 }

@@ -22023,10 +22023,11 @@ extern double Imeas;
 extern double Irms;
 extern double Vrms;
 extern double TRIAC_Firing_Angle;
+extern unsigned int dimming_period;
 
 void ringBufferLUT(char * line) {
 
-# 35
+# 36
 if((0 == strcmp(line, "Reset"))) {
 
 
@@ -22255,7 +22256,7 @@ else if ((strstr(line, "Set Dimming Percentage "))) {
 char arg_buff[3];
 
 
-for (int index = 0; index <= 3; index++) {
+for (int index = 0; index < 3; index++) {
 
 arg_buff[index] = line[index + 23];
 
@@ -22288,6 +22289,7 @@ else {
 
 TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * 3.14159265358979323846;
 double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
+dimming_period = (100 - percentage) * (0xFFFF / 100);
 
 
 terminal_printNewline();
@@ -22295,6 +22297,7 @@ terminal_printNewline();
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Dimming has been set to %d percent\n\r", percentage);
 printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
+printf("This corresponds to a 16 bit period value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
 
 terminal_textAttributesReset();
 

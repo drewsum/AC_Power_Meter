@@ -15,7 +15,7 @@ extern text_attribute_t attribute;
 extern text_color_t foreground_color;
 extern text_color_t background_color;
 
-// Printable variables
+// Printable/changeable variables
 extern double POS3P3_ADC_Result;
 extern double POS12_ADC_Result;
 extern double Temp_ADC_Result;
@@ -25,6 +25,7 @@ extern double Imeas;
 extern double Irms;
 extern double Vrms;
 extern double TRIAC_Firing_Angle;
+extern unsigned int dimming_period;
 
 void ringBufferLUT(char * line) {
 
@@ -205,7 +206,6 @@ void ringBufferLUT(char * line) {
      
         // Force TRIAC conduction
         SSR_FORCE_PIN = 1;
-        SSR_DIM_PIN = 1;
         
         // Get some space on terminal
         terminal_printNewline();
@@ -222,6 +222,7 @@ void ringBufferLUT(char * line) {
     // Enable load
     else if ((0 == strcmp(line, "Enable Load"))) {
      
+        
         
         // Get some space on terminal
         terminal_printNewline();
@@ -260,7 +261,7 @@ void ringBufferLUT(char * line) {
         char arg_buff[3];
         
         // Parse the argument
-        for (int index = 0; index <= 3; index++) {
+        for (int index = 0; index < 3; index++) {
          
             arg_buff[index] = line[index + 23];
             
@@ -280,6 +281,7 @@ void ringBufferLUT(char * line) {
             // set text color to yellow and print help message
             terminal_textAttributes(YELLOW, BLACK, NORMAL);
             printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
+            printf("Enter 'Help' for list of available commands\n\r");
             // Reset to white foreground
             terminal_textAttributesReset();
             // Get some space on terminal
@@ -293,6 +295,7 @@ void ringBufferLUT(char * line) {
             // Calculate TRIAC firing angle
             TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * M_PI;
             double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
+            dimming_period = (100 - percentage) * (0xFFFF / 100);
             
             // Get some space on terminal
             terminal_printNewline();
@@ -300,6 +303,7 @@ void ringBufferLUT(char * line) {
             terminal_textAttributes(CYAN, BLACK, NORMAL);
             printf("Dimming has been set to %d percent\n\r", percentage);
             printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
+            printf("This corresponds to a 16 bit timer period value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
             // Reset to white foreground
             terminal_textAttributesReset();
             // Get some space on terminal
