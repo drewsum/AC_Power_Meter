@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17587 `(v ~T0 @X0 0 tf ]
-[v F17590 `(v ~T0 @X0 0 tf ]
+[v F17607 `(v ~T0 @X0 0 tf ]
+[v F17610 `(v ~T0 @X0 0 tf ]
 "40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
@@ -16155,49 +16155,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.h: 385: void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr5.h: 403: extern void (*TMR5_InterruptHandler)(void);
 [; ;tmr5.h: 421: void TMR5_DefaultInterruptHandler(void);
-[; ;adcc.h: 72: typedef uint16_t adc_result_t;
-[; ;adcc.h: 89: typedef enum
-[; ;adcc.h: 90: {
-[; ;adcc.h: 91: ISNS_ADC = 0x0,
-[; ;adcc.h: 92: POS12_ADC = 0x4,
-[; ;adcc.h: 93: POS3P3_ADC = 0x22,
-[; ;adcc.h: 94: channel_VSS = 0x3C,
-[; ;adcc.h: 95: channel_Temp = 0x3D,
-[; ;adcc.h: 96: channel_DAC1 = 0x3E,
-[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
-[; ;adcc.h: 98: } adcc_channel_t;
-[; ;adcc.h: 132: void ADCC_Initialize(void);
-[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
-[; ;adcc.h: 191: bool ADCC_IsConversionDone();
-[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
-[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-[; ;adcc.h: 279: void ADCC_StopConversion(void);
-[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
-[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
-[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
-[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
-[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
-[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
-[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
-[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
-[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
-[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
-[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
-[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
-[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
-[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
-[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
-[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
-[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
-[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
-[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
-[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
-[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
-[; ;adcc.h: 862: void ADCC_ISR(void);
-[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;tmr6.h: 79: typedef enum
 [; ;tmr6.h: 80: {
 [; ;tmr6.h: 89: TMR6_ROP_STARTS_TMRON,
@@ -16258,6 +16215,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;adcc.h: 72: typedef uint16_t adc_result_t;
+[; ;adcc.h: 89: typedef enum
+[; ;adcc.h: 90: {
+[; ;adcc.h: 91: ISNS_ADC = 0x0,
+[; ;adcc.h: 92: POS12_ADC = 0x4,
+[; ;adcc.h: 93: POS3P3_ADC = 0x22,
+[; ;adcc.h: 94: channel_VSS = 0x3C,
+[; ;adcc.h: 95: channel_Temp = 0x3D,
+[; ;adcc.h: 96: channel_DAC1 = 0x3E,
+[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
+[; ;adcc.h: 98: } adcc_channel_t;
+[; ;adcc.h: 132: void ADCC_Initialize(void);
+[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
+[; ;adcc.h: 191: bool ADCC_IsConversionDone();
+[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
+[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+[; ;adcc.h: 279: void ADCC_StopConversion(void);
+[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
+[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
+[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
+[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
+[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
+[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
+[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
+[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
+[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
+[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
+[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
+[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
+[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
+[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
+[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
+[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
+[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
+[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
+[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
+[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
+[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ISR(void);
+[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
+[; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
+[; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
+[; ;memory.h: 193: int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
+[; ;memory.h: 218: void FLASH_EraseBlock(uint32_t baseAddr);
+[; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[; ;memory.h: 277: void MEMORY_Tasks(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16303,10 +16311,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17587 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17607 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17590 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17610 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16318,9 +16326,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 75: void SYSTEM_Initialize(void);
-[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 101: void PMD_Initialize(void);
+[; ;mcc.h: 76: void SYSTEM_Initialize(void);
+[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 102: void PMD_Initialize(void);
 "52 mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_Initialize `(v ~T0 @X0 1 ef ]
 "53

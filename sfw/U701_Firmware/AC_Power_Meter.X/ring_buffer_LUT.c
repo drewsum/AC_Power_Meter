@@ -5,6 +5,9 @@
 
 #include "ring_buffer_LUT.h"
 #include "pin_macros.h"
+#include "mcc_generated_files/memory.h"
+#include "device_IDs.h"
+
 
 #ifndef M_PI
     #define M_PI acos(-1.0)
@@ -71,6 +74,27 @@ void ringBufferLUT(char * line) {
         // Tell term who we are
         printf("AC Power Meter\n\r");
         printf("Marquette University ELEN 3035 Final Project\n\r");
+        // Reset to white text
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+
+    }
+    
+    // print Device ID
+    else if((0 == strcmp(line, "Device ID?"))) {
+
+        // Get some space on terminal
+        terminal_printNewline();
+        // Set to green text
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+        // Grab and print device ID from flash
+        printf("Flash memory device ID is: 0x%X. This corresponds to a device "
+                "part number of %s\n\r",
+                getDeviceID(),
+                getDeviceIDString(getDeviceID));
+
         // Reset to white text
         terminal_textAttributesReset();
         // Get some space on terminal
@@ -392,14 +416,15 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
         printf("List of supported commands:\n\r\n\r"
                 
-                "Housekeeping Commands:\n\r"
+                "Device Commands:\n\r"
                 "   Reset: Clears the terminal and resets the micro\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
                 "   *IDN?: Returns device identification string\n\r"
                 "   Device On Time?: Returns device on time since last device reset\n\r"
+                "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
-                "Housekeeping Measurement Commands:\n\r"
+                "Device Measurement Commands:\n\r"
                 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
                 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
                 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
@@ -426,7 +451,7 @@ void ringBufferLUT(char * line) {
         printf("Help messages appear in yellow\n\r");
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("IDN string appears in green\n\r");
+        printf("System parameters appears in green\n\r");
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Measurement responses appear in cyan\n\r");
         terminal_textAttributes(RED, BLACK, NORMAL);

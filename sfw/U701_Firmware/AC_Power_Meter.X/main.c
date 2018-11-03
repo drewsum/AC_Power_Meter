@@ -62,7 +62,7 @@ volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
 volatile double POS12_ADC_Result;               // POS12 Measurement in volts
 volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
 volatile double Temp_ADC_Offset = -267.409;     // Temp ADC result offset in degrees centigrade
-double Vpk_const = sqrt(2) * 120.0;             // Peak voltage in volts
+double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2) * 120
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
 volatile double Imeas;                          // Measured current in amps

@@ -1,38 +1,42 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17757 `(v ~T0 @X0 0 tf ]
-[v F17760 `(v ~T0 @X0 0 tf ]
+[v F17777 `(v ~T0 @X0 0 tf ]
+[v F17780 `(v ~T0 @X0 0 tf ]
 "45 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "162 ring_buffer_interface.h
 [v _terminal_printNewline `(v ~T0 @X0 0 ef ]
-"70 ring_buffer_LUT.c
-[c E17924 0 1 2 3 4 5 6 7 .. ]
-[n E17924 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
-[c E17916 0 1 2 3 4 5 .. ]
-[n E17916 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+"73 ring_buffer_LUT.c
+[c E17944 0 1 2 3 4 5 6 7 .. ]
+[n E17944 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E17936 0 1 2 3 4 5 .. ]
+[n E17936 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
 "154 ring_buffer_interface.h
-[v _terminal_textAttributes `(v ~T0 @X0 0 ef3`E17924`E17924`E17916 ]
+[v _terminal_textAttributes `(v ~T0 @X0 0 ef3`E17944`E17944`E17936 ]
 "159
 [v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
-"19 ring_buffer_LUT.c
+"39 device_IDs.h
+[v _getDeviceID `(ui ~T0 @X0 0 ef ]
+"43
+[v _getDeviceIDString `(*uc ~T0 @X0 0 ef1`ui ]
+"22 ring_buffer_LUT.c
 [v _POS3P3_ADC_Result `Vd ~T0 @X0 0 e ]
-"20
-[v _POS12_ADC_Result `Vd ~T0 @X0 0 e ]
-"21
-[v _Temp_ADC_Result `Vd ~T0 @X0 0 e ]
-"22
-[v _FVR_ADC_Result `Vd ~T0 @X0 0 e ]
 "23
-[v _AVSS_ADC_Result `Vd ~T0 @X0 0 e ]
+[v _POS12_ADC_Result `Vd ~T0 @X0 0 e ]
+"24
+[v _Temp_ADC_Result `Vd ~T0 @X0 0 e ]
+"25
+[v _FVR_ADC_Result `Vd ~T0 @X0 0 e ]
 "26
-[v _Imeas `Vd ~T0 @X0 0 e ]
-"27
-[v _Irms `Vd ~T0 @X0 0 e ]
-"28
-[v _Vrms `Vd ~T0 @X0 0 e ]
+[v _AVSS_ADC_Result `Vd ~T0 @X0 0 e ]
 "29
+[v _Imeas `Vd ~T0 @X0 0 e ]
+"30
+[v _Irms `Vd ~T0 @X0 0 e ]
+"31
+[v _Vrms `Vd ~T0 @X0 0 e ]
+"32
 [v _Avg_Power `Vd ~T0 @X0 0 e ]
 "29155 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1353 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -45,19 +49,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1352 . . . ]
 "29173
 [v _LATGbits `VS1352 ~T0 @X0 0 e@3967 ]
-"32 ring_buffer_LUT.c
+"35 ring_buffer_LUT.c
 [v _load_enable `Vb ~T0 @X0 0 e ]
 "53 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strstr `(*uc ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
-"30 ring_buffer_LUT.c
+"33 ring_buffer_LUT.c
 [v _TRIAC_Firing_Angle `Vd ~T0 @X0 0 e ]
-"31
+"34
 [v _dimming_period `ui ~T0 @X0 0 e ]
-"24
+"27
 [v _dev_on_time `Vul ~T0 @X0 0 e ]
-"25
+"28
 [v _load_on_time `Vul ~T0 @X0 0 e ]
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
@@ -16158,49 +16162,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr5.h: 385: void TMR5_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr5.h: 403: extern void (*TMR5_InterruptHandler)(void);
 [; ;tmr5.h: 421: void TMR5_DefaultInterruptHandler(void);
-[; ;adcc.h: 72: typedef uint16_t adc_result_t;
-[; ;adcc.h: 89: typedef enum
-[; ;adcc.h: 90: {
-[; ;adcc.h: 91: ISNS_ADC = 0x0,
-[; ;adcc.h: 92: POS12_ADC = 0x4,
-[; ;adcc.h: 93: POS3P3_ADC = 0x22,
-[; ;adcc.h: 94: channel_VSS = 0x3C,
-[; ;adcc.h: 95: channel_Temp = 0x3D,
-[; ;adcc.h: 96: channel_DAC1 = 0x3E,
-[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
-[; ;adcc.h: 98: } adcc_channel_t;
-[; ;adcc.h: 132: void ADCC_Initialize(void);
-[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
-[; ;adcc.h: 191: bool ADCC_IsConversionDone();
-[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
-[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-[; ;adcc.h: 279: void ADCC_StopConversion(void);
-[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
-[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
-[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
-[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
-[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
-[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
-[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
-[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
-[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
-[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
-[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
-[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
-[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
-[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
-[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
-[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
-[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
-[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
-[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
-[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
-[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
-[; ;adcc.h: 862: void ADCC_ISR(void);
-[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;tmr6.h: 79: typedef enum
 [; ;tmr6.h: 80: {
 [; ;tmr6.h: 89: TMR6_ROP_STARTS_TMRON,
@@ -16261,6 +16222,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;adcc.h: 72: typedef uint16_t adc_result_t;
+[; ;adcc.h: 89: typedef enum
+[; ;adcc.h: 90: {
+[; ;adcc.h: 91: ISNS_ADC = 0x0,
+[; ;adcc.h: 92: POS12_ADC = 0x4,
+[; ;adcc.h: 93: POS3P3_ADC = 0x22,
+[; ;adcc.h: 94: channel_VSS = 0x3C,
+[; ;adcc.h: 95: channel_Temp = 0x3D,
+[; ;adcc.h: 96: channel_DAC1 = 0x3E,
+[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
+[; ;adcc.h: 98: } adcc_channel_t;
+[; ;adcc.h: 132: void ADCC_Initialize(void);
+[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
+[; ;adcc.h: 191: bool ADCC_IsConversionDone();
+[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
+[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+[; ;adcc.h: 279: void ADCC_StopConversion(void);
+[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
+[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
+[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
+[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
+[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
+[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
+[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
+[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
+[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
+[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
+[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
+[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
+[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
+[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
+[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
+[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
+[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
+[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
+[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
+[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
+[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ISR(void);
+[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
+[; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
+[; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
+[; ;memory.h: 193: int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
+[; ;memory.h: 218: void FLASH_EraseBlock(uint32_t baseAddr);
+[; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[; ;memory.h: 277: void MEMORY_Tasks(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16305,10 +16317,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17757 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17777 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17760 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17780 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16320,9 +16332,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 75: void SYSTEM_Initialize(void);
-[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 101: void PMD_Initialize(void);
+[; ;mcc.h: 76: void SYSTEM_Initialize(void);
+[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 102: void PMD_Initialize(void);
 [; ;stdlib.h: 7: typedef unsigned short wchar_t;
 [; ;stdlib.h: 15: typedef struct {
 [; ;stdlib.h: 16: int rem;
@@ -16411,661 +16423,692 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 156: text_attribute_t input_attribute);
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
-[; ;ring_buffer_LUT.c: 14: extern text_attribute_t attribute;
-[; ;ring_buffer_LUT.c: 15: extern text_color_t foreground_color;
-[; ;ring_buffer_LUT.c: 16: extern text_color_t background_color;
-[; ;ring_buffer_LUT.c: 19: extern volatile double POS3P3_ADC_Result;
-[; ;ring_buffer_LUT.c: 20: extern volatile double POS12_ADC_Result;
-[; ;ring_buffer_LUT.c: 21: extern volatile double Temp_ADC_Result;
-[; ;ring_buffer_LUT.c: 22: extern volatile double FVR_ADC_Result;
-[; ;ring_buffer_LUT.c: 23: extern volatile double AVSS_ADC_Result;
-[; ;ring_buffer_LUT.c: 24: extern volatile unsigned long dev_on_time;
-[; ;ring_buffer_LUT.c: 25: extern volatile unsigned long load_on_time;
-[; ;ring_buffer_LUT.c: 26: extern volatile double Imeas;
-[; ;ring_buffer_LUT.c: 27: extern volatile double Irms;
-[; ;ring_buffer_LUT.c: 28: extern volatile double Vrms;
-[; ;ring_buffer_LUT.c: 29: extern volatile double Avg_Power;
-[; ;ring_buffer_LUT.c: 30: extern volatile double TRIAC_Firing_Angle;
-[; ;ring_buffer_LUT.c: 31: extern unsigned int dimming_period;
-[; ;ring_buffer_LUT.c: 32: extern volatile bit load_enable;
-"34 ring_buffer_LUT.c
+[; ;device_IDs.h: 39: uint16_t getDeviceID(void);
+[; ;device_IDs.h: 43: char* getDeviceIDString(uint16_t inputDevID);
+[; ;ring_buffer_LUT.c: 17: extern text_attribute_t attribute;
+[; ;ring_buffer_LUT.c: 18: extern text_color_t foreground_color;
+[; ;ring_buffer_LUT.c: 19: extern text_color_t background_color;
+[; ;ring_buffer_LUT.c: 22: extern volatile double POS3P3_ADC_Result;
+[; ;ring_buffer_LUT.c: 23: extern volatile double POS12_ADC_Result;
+[; ;ring_buffer_LUT.c: 24: extern volatile double Temp_ADC_Result;
+[; ;ring_buffer_LUT.c: 25: extern volatile double FVR_ADC_Result;
+[; ;ring_buffer_LUT.c: 26: extern volatile double AVSS_ADC_Result;
+[; ;ring_buffer_LUT.c: 27: extern volatile unsigned long dev_on_time;
+[; ;ring_buffer_LUT.c: 28: extern volatile unsigned long load_on_time;
+[; ;ring_buffer_LUT.c: 29: extern volatile double Imeas;
+[; ;ring_buffer_LUT.c: 30: extern volatile double Irms;
+[; ;ring_buffer_LUT.c: 31: extern volatile double Vrms;
+[; ;ring_buffer_LUT.c: 32: extern volatile double Avg_Power;
+[; ;ring_buffer_LUT.c: 33: extern volatile double TRIAC_Firing_Angle;
+[; ;ring_buffer_LUT.c: 34: extern unsigned int dimming_period;
+[; ;ring_buffer_LUT.c: 35: extern volatile bit load_enable;
+"37 ring_buffer_LUT.c
 [v _ringBufferLUT `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;ring_buffer_LUT.c: 34: void ringBufferLUT(char * line) {
+[; ;ring_buffer_LUT.c: 37: void ringBufferLUT(char * line) {
 [e :U _ringBufferLUT ]
 [v _line `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;ring_buffer_LUT.c: 40: if((0 == strcmp(line, "Reset"))) {
-"40
+[; ;ring_buffer_LUT.c: 43: if((0 == strcmp(line, "Reset"))) {
+"43
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 1C 2017  ]
 {
-[; ;ring_buffer_LUT.c: 43: printf("\033[2J");
-"43
-[e ( _printf :s 2C ]
-[; ;ring_buffer_LUT.c: 46: printf("\033[H");
+[; ;ring_buffer_LUT.c: 46: printf("\033[2J");
 "46
-[e ( _printf :s 3C ]
-[; ;ring_buffer_LUT.c: 49: asm("reset");
+[e ( _printf :s 2C ]
+[; ;ring_buffer_LUT.c: 49: printf("\033[H");
 "49
+[e ( _printf :s 3C ]
+[; ;ring_buffer_LUT.c: 52: asm("reset");
+"52
 [; <" reset ;# ">
-"51
-}
-[; ;ring_buffer_LUT.c: 51: }
-[e $U 2018  ]
 "54
+}
+[; ;ring_buffer_LUT.c: 54: }
+[e $U 2018  ]
+"57
 [e :U 2017 ]
-[; ;ring_buffer_LUT.c: 54: else if((0 == strcmp(line, "Clear"))) {
+[; ;ring_buffer_LUT.c: 57: else if((0 == strcmp(line, "Clear"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 4C 2019  ]
 {
-[; ;ring_buffer_LUT.c: 57: printf("\033[2J");
-"57
-[e ( _printf :s 5C ]
-[; ;ring_buffer_LUT.c: 60: printf("\033[H");
+[; ;ring_buffer_LUT.c: 60: printf("\033[2J");
 "60
+[e ( _printf :s 5C ]
+[; ;ring_buffer_LUT.c: 63: printf("\033[H");
+"63
 [e ( _printf :s 6C ]
-"62
-}
-[; ;ring_buffer_LUT.c: 62: }
-[e $U 2020  ]
 "65
+}
+[; ;ring_buffer_LUT.c: 65: }
+[e $U 2020  ]
+"68
 [e :U 2019 ]
-[; ;ring_buffer_LUT.c: 65: else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
+[; ;ring_buffer_LUT.c: 68: else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
 [e $ ! || == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 7C == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 8C 2021  ]
 {
-[; ;ring_buffer_LUT.c: 68: terminal_printNewline();
-"68
+[; ;ring_buffer_LUT.c: 71: terminal_printNewline();
+"71
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 70: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"70
-[e ( _terminal_textAttributes (3 , , . `E17924 2 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 72: printf("AC Power Meter\n\r");
-"72
-[e ( _printf :s 9C ]
-[; ;ring_buffer_LUT.c: 73: printf("Marquette University ELEN 3035 Final Project\n\r");
+[; ;ring_buffer_LUT.c: 73: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "73
-[e ( _printf :s 10C ]
-[; ;ring_buffer_LUT.c: 75: terminal_textAttributesReset();
+[e ( _terminal_textAttributes (3 , , . `E17944 2 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 75: printf("AC Power Meter\n\r");
 "75
+[e ( _printf :s 9C ]
+[; ;ring_buffer_LUT.c: 76: printf("Marquette University ELEN 3035 Final Project\n\r");
+"76
+[e ( _printf :s 10C ]
+[; ;ring_buffer_LUT.c: 78: terminal_textAttributesReset();
+"78
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 77: terminal_printNewline();
-"77
+[; ;ring_buffer_LUT.c: 80: terminal_printNewline();
+"80
 [e ( _terminal_printNewline ..  ]
-"79
-}
-[; ;ring_buffer_LUT.c: 79: }
-[e $U 2022  ]
 "82
+}
+[; ;ring_buffer_LUT.c: 82: }
+[e $U 2022  ]
+"85
 [e :U 2021 ]
-[; ;ring_buffer_LUT.c: 82: else if((0 == strcmp(line, "Measure POS3P3?"))) {
+[; ;ring_buffer_LUT.c: 85: else if((0 == strcmp(line, "Device ID?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 11C 2023  ]
 {
-[; ;ring_buffer_LUT.c: 85: terminal_printNewline();
-"85
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 87: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"87
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 88: printf("+3.3V rail measured as +%f Volts\n\r", POS3P3_ADC_Result);
+[; ;ring_buffer_LUT.c: 88: terminal_printNewline();
 "88
-[e ( _printf , (. :s 12C _POS3P3_ADC_Result ]
-[; ;ring_buffer_LUT.c: 90: terminal_textAttributesReset();
-"90
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 92: terminal_printNewline();
-"92
 [e ( _terminal_printNewline ..  ]
-"95
-}
-[; ;ring_buffer_LUT.c: 95: }
-[e $U 2024  ]
-"98
-[e :U 2023 ]
-[; ;ring_buffer_LUT.c: 98: else if((0 == strcmp(line, "Measure POS12?"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 13C 2025  ]
-{
+[; ;ring_buffer_LUT.c: 90: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"90
+[e ( _terminal_textAttributes (3 , , . `E17944 2 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 93: printf("Flash memory device ID is: 0x%X. This corresponds to a device "
+[; ;ring_buffer_LUT.c: 94: "part number of %s\n\r",
+[; ;ring_buffer_LUT.c: 95: getDeviceID(),
+[; ;ring_buffer_LUT.c: 96: getDeviceIDString(getDeviceID));
+"96
+[e ( _printf , , (. :s 12C ( _getDeviceID ..  -> ( _getDeviceIDString (1 -> &U _getDeviceID `ui `*Cuc ]
+[; ;ring_buffer_LUT.c: 99: terminal_textAttributesReset();
+"99
+[e ( _terminal_textAttributesReset ..  ]
 [; ;ring_buffer_LUT.c: 101: terminal_printNewline();
 "101
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 103: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "103
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 104: printf("+12V rail measured as +%f Volts\n\r", POS12_ADC_Result);
-"104
-[e ( _printf , (. :s 14C _POS12_ADC_Result ]
-[; ;ring_buffer_LUT.c: 106: terminal_textAttributesReset();
-"106
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 108: terminal_printNewline();
-"108
-[e ( _terminal_printNewline ..  ]
-"111
 }
-[; ;ring_buffer_LUT.c: 111: }
-[e $U 2026  ]
+[; ;ring_buffer_LUT.c: 103: }
+[e $U 2024  ]
+"106
+[e :U 2023 ]
+[; ;ring_buffer_LUT.c: 106: else if((0 == strcmp(line, "Measure POS3P3?"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 13C 2025  ]
+{
+[; ;ring_buffer_LUT.c: 109: terminal_printNewline();
+"109
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 111: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"111
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 112: printf("+3.3V rail measured as +%f Volts\n\r", POS3P3_ADC_Result);
+"112
+[e ( _printf , (. :s 14C _POS3P3_ADC_Result ]
+[; ;ring_buffer_LUT.c: 114: terminal_textAttributesReset();
 "114
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 116: terminal_printNewline();
+"116
+[e ( _terminal_printNewline ..  ]
+"119
+}
+[; ;ring_buffer_LUT.c: 119: }
+[e $U 2026  ]
+"122
 [e :U 2025 ]
-[; ;ring_buffer_LUT.c: 114: else if((0 == strcmp(line, "Measure Die Temp?"))) {
+[; ;ring_buffer_LUT.c: 122: else if((0 == strcmp(line, "Measure POS12?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 15C 2027  ]
 {
-[; ;ring_buffer_LUT.c: 117: terminal_printNewline();
-"117
+[; ;ring_buffer_LUT.c: 125: terminal_printNewline();
+"125
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 119: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"119
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 120: printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
-"120
-[e ( _printf , (. :s 16C _Temp_ADC_Result ]
-[; ;ring_buffer_LUT.c: 122: terminal_textAttributesReset();
-"122
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 124: terminal_printNewline();
-"124
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 127: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "127
-}
-[; ;ring_buffer_LUT.c: 127: }
-[e $U 2028  ]
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 128: printf("+12V rail measured as +%f Volts\n\r", POS12_ADC_Result);
+"128
+[e ( _printf , (. :s 16C _POS12_ADC_Result ]
+[; ;ring_buffer_LUT.c: 130: terminal_textAttributesReset();
 "130
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 132: terminal_printNewline();
+"132
+[e ( _terminal_printNewline ..  ]
+"135
+}
+[; ;ring_buffer_LUT.c: 135: }
+[e $U 2028  ]
+"138
 [e :U 2027 ]
-[; ;ring_buffer_LUT.c: 130: else if((0 == strcmp(line, "Measure FVR?"))) {
+[; ;ring_buffer_LUT.c: 138: else if((0 == strcmp(line, "Measure Die Temp?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 17C 2029  ]
 {
-[; ;ring_buffer_LUT.c: 133: terminal_printNewline();
-"133
+[; ;ring_buffer_LUT.c: 141: terminal_printNewline();
+"141
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 135: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"135
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 136: printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
-"136
-[e ( _printf , (. :s 18C _FVR_ADC_Result ]
-[; ;ring_buffer_LUT.c: 138: terminal_textAttributesReset();
-"138
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 140: terminal_printNewline();
-"140
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 143: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "143
-}
-[; ;ring_buffer_LUT.c: 143: }
-[e $U 2030  ]
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 144: printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
+"144
+[e ( _printf , (. :s 18C _Temp_ADC_Result ]
+[; ;ring_buffer_LUT.c: 146: terminal_textAttributesReset();
 "146
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 148: terminal_printNewline();
+"148
+[e ( _terminal_printNewline ..  ]
+"151
+}
+[; ;ring_buffer_LUT.c: 151: }
+[e $U 2030  ]
+"154
 [e :U 2029 ]
-[; ;ring_buffer_LUT.c: 146: else if((0 == strcmp(line, "Measure AVSS?"))) {
+[; ;ring_buffer_LUT.c: 154: else if((0 == strcmp(line, "Measure FVR?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 19C 2031  ]
 {
-[; ;ring_buffer_LUT.c: 149: terminal_printNewline();
-"149
+[; ;ring_buffer_LUT.c: 157: terminal_printNewline();
+"157
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 151: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"151
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 152: printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
-"152
-[e ( _printf , (. :s 20C _AVSS_ADC_Result ]
-[; ;ring_buffer_LUT.c: 154: terminal_textAttributesReset();
-"154
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 156: terminal_printNewline();
-"156
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 159: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "159
-}
-[; ;ring_buffer_LUT.c: 159: }
-[e $U 2032  ]
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 160: printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
+"160
+[e ( _printf , (. :s 20C _FVR_ADC_Result ]
+[; ;ring_buffer_LUT.c: 162: terminal_textAttributesReset();
 "162
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 164: terminal_printNewline();
+"164
+[e ( _terminal_printNewline ..  ]
+"167
+}
+[; ;ring_buffer_LUT.c: 167: }
+[e $U 2032  ]
+"170
 [e :U 2031 ]
-[; ;ring_buffer_LUT.c: 162: else if ((0 == strcmp(line, "Measure Detected Current?"))) {
+[; ;ring_buffer_LUT.c: 170: else if((0 == strcmp(line, "Measure AVSS?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 21C 2033  ]
 {
-[; ;ring_buffer_LUT.c: 165: terminal_printNewline();
-"165
+[; ;ring_buffer_LUT.c: 173: terminal_printNewline();
+"173
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 167: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"167
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 168: printf("Measured Current is %.3f Amps\n\r", Imeas);
-"168
-[e ( _printf , (. :s 22C _Imeas ]
-[; ;ring_buffer_LUT.c: 170: terminal_textAttributesReset();
-"170
+[; ;ring_buffer_LUT.c: 175: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"175
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 176: printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
+"176
+[e ( _printf , (. :s 22C _AVSS_ADC_Result ]
+[; ;ring_buffer_LUT.c: 178: terminal_textAttributesReset();
+"178
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 172: terminal_printNewline();
-"172
-[e ( _terminal_printNewline ..  ]
-"174
-}
-[; ;ring_buffer_LUT.c: 174: }
-[e $U 2034  ]
-"177
-[e :U 2033 ]
-[; ;ring_buffer_LUT.c: 177: else if ((0 == strcmp(line, "Measure RMS Current?"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 23C 2035  ]
-{
 [; ;ring_buffer_LUT.c: 180: terminal_printNewline();
 "180
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 182: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"182
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 183: printf("RMS Output Current is %.3f Arms\n\r", Irms);
 "183
-[e ( _printf , (. :s 24C _Irms ]
-[; ;ring_buffer_LUT.c: 185: terminal_textAttributesReset();
-"185
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 187: terminal_printNewline();
-"187
-[e ( _terminal_printNewline ..  ]
-"189
 }
-[; ;ring_buffer_LUT.c: 189: }
-[e $U 2036  ]
+[; ;ring_buffer_LUT.c: 183: }
+[e $U 2034  ]
+"186
+[e :U 2033 ]
+[; ;ring_buffer_LUT.c: 186: else if ((0 == strcmp(line, "Measure Detected Current?"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 23C 2035  ]
+{
+[; ;ring_buffer_LUT.c: 189: terminal_printNewline();
+"189
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 191: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"191
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 192: printf("Measured Current is %.3f Amps\n\r", Imeas);
 "192
+[e ( _printf , (. :s 24C _Imeas ]
+[; ;ring_buffer_LUT.c: 194: terminal_textAttributesReset();
+"194
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 196: terminal_printNewline();
+"196
+[e ( _terminal_printNewline ..  ]
+"198
+}
+[; ;ring_buffer_LUT.c: 198: }
+[e $U 2036  ]
+"201
 [e :U 2035 ]
-[; ;ring_buffer_LUT.c: 192: else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
+[; ;ring_buffer_LUT.c: 201: else if ((0 == strcmp(line, "Measure RMS Current?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 25C 2037  ]
 {
-[; ;ring_buffer_LUT.c: 195: terminal_printNewline();
-"195
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 197: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"197
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 198: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
-"198
-[e ( _printf , (. :s 26C _Vrms ]
-[; ;ring_buffer_LUT.c: 200: terminal_textAttributesReset();
-"200
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 202: terminal_printNewline();
-"202
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 204: terminal_printNewline();
 "204
-}
-[; ;ring_buffer_LUT.c: 204: }
-[e $U 2038  ]
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 206: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"206
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 207: printf("RMS Output Current is %.3f Arms\n\r", Irms);
 "207
+[e ( _printf , (. :s 26C _Irms ]
+[; ;ring_buffer_LUT.c: 209: terminal_textAttributesReset();
+"209
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 211: terminal_printNewline();
+"211
+[e ( _terminal_printNewline ..  ]
+"213
+}
+[; ;ring_buffer_LUT.c: 213: }
+[e $U 2038  ]
+"216
 [e :U 2037 ]
-[; ;ring_buffer_LUT.c: 207: else if ((0 == strcmp(line, "Measure Power?"))) {
+[; ;ring_buffer_LUT.c: 216: else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 27C 2039  ]
 {
-[; ;ring_buffer_LUT.c: 210: terminal_printNewline();
-"210
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 212: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"212
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 213: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
-"213
-[e ( _printf , (. :s 28C _Avg_Power ]
-[; ;ring_buffer_LUT.c: 215: terminal_textAttributesReset();
-"215
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 217: terminal_printNewline();
-"217
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 219: terminal_printNewline();
 "219
-}
-[; ;ring_buffer_LUT.c: 219: }
-[e $U 2040  ]
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 221: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"221
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 222: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
 "222
+[e ( _printf , (. :s 28C _Vrms ]
+[; ;ring_buffer_LUT.c: 224: terminal_textAttributesReset();
+"224
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 226: terminal_printNewline();
+"226
+[e ( _terminal_printNewline ..  ]
+"228
+}
+[; ;ring_buffer_LUT.c: 228: }
+[e $U 2040  ]
+"231
 [e :U 2039 ]
-[; ;ring_buffer_LUT.c: 222: else if ((0 == strcmp(line, "Enable Dimming"))) {
+[; ;ring_buffer_LUT.c: 231: else if ((0 == strcmp(line, "Measure Power?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 29C 2041  ]
 {
-[; ;ring_buffer_LUT.c: 225: LATGbits.LATG0 = 0;
-"225
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;ring_buffer_LUT.c: 228: terminal_printNewline();
-"228
+[; ;ring_buffer_LUT.c: 234: terminal_printNewline();
+"234
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 230: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"230
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 231: printf("TRIAC output dimming has been enabled\n\r");
-"231
-[e ( _printf :s 30C ]
-[; ;ring_buffer_LUT.c: 233: terminal_textAttributesReset();
-"233
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 235: terminal_printNewline();
-"235
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 236: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"236
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 237: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
 "237
+[e ( _printf , (. :s 30C _Avg_Power ]
+[; ;ring_buffer_LUT.c: 239: terminal_textAttributesReset();
+"239
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 241: terminal_printNewline();
+"241
+[e ( _terminal_printNewline ..  ]
+"243
 }
-[; ;ring_buffer_LUT.c: 237: }
+[; ;ring_buffer_LUT.c: 243: }
 [e $U 2042  ]
-"240
+"246
 [e :U 2041 ]
-[; ;ring_buffer_LUT.c: 240: else if ((0 == strcmp(line, "Disable Dimming"))) {
+[; ;ring_buffer_LUT.c: 246: else if ((0 == strcmp(line, "Enable Dimming"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 31C 2043  ]
 {
-[; ;ring_buffer_LUT.c: 243: LATGbits.LATG0 = 1;
-"243
-[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
-[; ;ring_buffer_LUT.c: 246: terminal_printNewline();
-"246
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 248: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"248
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 249: printf("TRIAC output dimming has been disabled\n\r");
+[; ;ring_buffer_LUT.c: 249: LATGbits.LATG0 = 0;
 "249
-[e ( _printf :s 32C ]
-[; ;ring_buffer_LUT.c: 251: terminal_textAttributesReset();
-"251
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 253: terminal_printNewline();
-"253
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;ring_buffer_LUT.c: 252: terminal_printNewline();
+"252
 [e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 254: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"254
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 255: printf("TRIAC output dimming has been enabled\n\r");
 "255
+[e ( _printf :s 32C ]
+[; ;ring_buffer_LUT.c: 257: terminal_textAttributesReset();
+"257
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 259: terminal_printNewline();
+"259
+[e ( _terminal_printNewline ..  ]
+"261
 }
-[; ;ring_buffer_LUT.c: 255: }
+[; ;ring_buffer_LUT.c: 261: }
 [e $U 2044  ]
-"258
+"264
 [e :U 2043 ]
-[; ;ring_buffer_LUT.c: 258: else if ((0 == strcmp(line, "Enable Load"))) {
+[; ;ring_buffer_LUT.c: 264: else if ((0 == strcmp(line, "Disable Dimming"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 33C 2045  ]
 {
-[; ;ring_buffer_LUT.c: 260: LATGbits.LATG0 = 1;
-"260
-[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
-[; ;ring_buffer_LUT.c: 261: LATGbits.LATG1 = 0;
-"261
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;ring_buffer_LUT.c: 262: load_enable = 1;
-"262
-[e = _load_enable -> -> 1 `i `b ]
-[; ;ring_buffer_LUT.c: 265: terminal_printNewline();
-"265
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 267: terminal_textAttributes(CYAN, BLACK, NORMAL);
+[; ;ring_buffer_LUT.c: 267: LATGbits.LATG0 = 1;
 "267
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 268: printf("Load has been enabled, dimming disabled\n\r");
-"268
-[e ( _printf :s 34C ]
-[; ;ring_buffer_LUT.c: 270: terminal_textAttributesReset();
+[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
+[; ;ring_buffer_LUT.c: 270: terminal_printNewline();
 "270
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 272: terminal_printNewline();
-"272
 [e ( _terminal_printNewline ..  ]
-"274
-}
-[; ;ring_buffer_LUT.c: 274: }
-[e $U 2046  ]
+[; ;ring_buffer_LUT.c: 272: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"272
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 273: printf("TRIAC output dimming has been disabled\n\r");
+"273
+[e ( _printf :s 34C ]
+[; ;ring_buffer_LUT.c: 275: terminal_textAttributesReset();
+"275
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 277: terminal_printNewline();
 "277
+[e ( _terminal_printNewline ..  ]
+"279
+}
+[; ;ring_buffer_LUT.c: 279: }
+[e $U 2046  ]
+"282
 [e :U 2045 ]
-[; ;ring_buffer_LUT.c: 277: else if ((0 == strcmp(line, "Disable Load"))) {
+[; ;ring_buffer_LUT.c: 282: else if ((0 == strcmp(line, "Enable Load"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 35C 2047  ]
 {
-[; ;ring_buffer_LUT.c: 279: LATGbits.LATG1 = 0;
-"279
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;ring_buffer_LUT.c: 280: LATGbits.LATG0 = 0;
-"280
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;ring_buffer_LUT.c: 281: load_enable = 0;
-"281
-[e = _load_enable -> -> 0 `i `b ]
-[; ;ring_buffer_LUT.c: 284: terminal_printNewline();
+[; ;ring_buffer_LUT.c: 284: LATGbits.LATG0 = 1;
 "284
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 286: terminal_textAttributes(CYAN, BLACK, NORMAL);
+[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
+[; ;ring_buffer_LUT.c: 285: LATGbits.LATG1 = 0;
+"285
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;ring_buffer_LUT.c: 286: load_enable = 1;
 "286
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 287: printf("Load has been disabled\n\r");
-"287
-[e ( _printf :s 36C ]
-[; ;ring_buffer_LUT.c: 289: terminal_textAttributesReset();
+[e = _load_enable -> -> 1 `i `b ]
+[; ;ring_buffer_LUT.c: 289: terminal_printNewline();
 "289
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 291: terminal_printNewline();
-"291
 [e ( _terminal_printNewline ..  ]
-"293
-}
-[; ;ring_buffer_LUT.c: 293: }
-[e $U 2048  ]
+[; ;ring_buffer_LUT.c: 291: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"291
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 292: printf("Load has been enabled, dimming disabled\n\r");
+"292
+[e ( _printf :s 36C ]
+[; ;ring_buffer_LUT.c: 294: terminal_textAttributesReset();
+"294
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 296: terminal_printNewline();
 "296
+[e ( _terminal_printNewline ..  ]
+"298
+}
+[; ;ring_buffer_LUT.c: 298: }
+[e $U 2048  ]
+"301
 [e :U 2047 ]
-[; ;ring_buffer_LUT.c: 296: else if ((strstr(line, "Set Dimming Percentage: "))) {
-[e $ ! != ( _strstr (2 , -> _line `*Cuc :s 37C -> -> 0 `i `*uc 2049  ]
+[; ;ring_buffer_LUT.c: 301: else if ((0 == strcmp(line, "Disable Load"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 37C 2049  ]
 {
-"299
-[v _arg_buff `uc ~T0 @X0 -> 3 `i a ]
-[; ;ring_buffer_LUT.c: 299: char arg_buff[3];
-[; ;ring_buffer_LUT.c: 302: for (int index = 0; index < 3; index++) {
-"302
-{
-[v _index `i ~T0 @X0 1 a ]
-[e = _index -> 0 `i ]
-[e $ < _index -> 3 `i 2050  ]
-[e $U 2051  ]
-[e :U 2050 ]
-{
-[; ;ring_buffer_LUT.c: 304: arg_buff[index] = line[index + 24];
+[; ;ring_buffer_LUT.c: 303: LATGbits.LATG1 = 0;
+"303
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;ring_buffer_LUT.c: 304: LATGbits.LATG0 = 0;
 "304
-[e = *U + &U _arg_buff * -> -> _index `ui `ux -> -> # *U &U _arg_buff `ui `ux *U + _line * -> + _index -> 24 `i `x -> -> # *U _line `i `x ]
-"306
-}
-"302
-[e ++ _index -> 1 `i ]
-[e $ < _index -> 3 `i 2050  ]
-[e :U 2051 ]
-"306
-}
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;ring_buffer_LUT.c: 305: load_enable = 0;
+"305
+[e = _load_enable -> -> 0 `i `b ]
+[; ;ring_buffer_LUT.c: 308: terminal_printNewline();
 "308
-[v _percentage `i ~T0 @X0 1 a ]
-[; ;ring_buffer_LUT.c: 306: }
-[; ;ring_buffer_LUT.c: 308: int percentage = atoi(arg_buff);
-[e = _percentage ( _atoi (1 -> &U _arg_buff `*Cuc ]
-[; ;ring_buffer_LUT.c: 311: if ( (percentage >= 100) ||
-[; ;ring_buffer_LUT.c: 312: (percentage <= 0)) {
-"312
-[e $ ! || >= _percentage -> 100 `i <= _percentage -> 0 `i 2053  ]
-{
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 310: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"310
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 311: printf("Load has been disabled\n\r");
+"311
+[e ( _printf :s 38C ]
+[; ;ring_buffer_LUT.c: 313: terminal_textAttributesReset();
+"313
+[e ( _terminal_textAttributesReset ..  ]
 [; ;ring_buffer_LUT.c: 315: terminal_printNewline();
 "315
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 317: terminal_textAttributes(RED, BLACK, NORMAL);
 "317
-[e ( _terminal_textAttributes (3 , , . `E17924 1 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 318: printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
-"318
-[e ( _printf :s 38C ]
-[; ;ring_buffer_LUT.c: 320: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"320
-[e ( _terminal_textAttributes (3 , , . `E17924 3 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 321: printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
-"321
-[e ( _printf :s 39C ]
-[; ;ring_buffer_LUT.c: 322: printf("Enter 'Help' for list of available commands\n\r");
-"322
-[e ( _printf :s 40C ]
-[; ;ring_buffer_LUT.c: 324: terminal_textAttributesReset();
-"324
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 326: terminal_printNewline();
-"326
-[e ( _terminal_printNewline ..  ]
-"328
 }
-[; ;ring_buffer_LUT.c: 328: }
-[e $U 2054  ]
-"331
-[e :U 2053 ]
-[; ;ring_buffer_LUT.c: 331: else {
+[; ;ring_buffer_LUT.c: 317: }
+[e $U 2050  ]
+"320
+[e :U 2049 ]
+[; ;ring_buffer_LUT.c: 320: else if ((strstr(line, "Set Dimming Percentage: "))) {
+[e $ ! != ( _strstr (2 , -> _line `*Cuc :s 39C -> -> 0 `i `*uc 2051  ]
 {
-[; ;ring_buffer_LUT.c: 334: TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * 3.14159265358979323846;
-"334
-[e = _TRIAC_Firing_Angle * / - .100.0 -> _percentage `d .100.0 .3.14159265358979323846 ]
-"335
-[v _angle_degrees `d ~T0 @X0 1 a ]
-[; ;ring_buffer_LUT.c: 335: double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
-[e = _angle_degrees * _TRIAC_Firing_Angle / .180.0 .3.14159265358979323846 ]
-[; ;ring_buffer_LUT.c: 336: dimming_period = (100 - percentage) * (0xFFFF / 100);
+"323
+[v _arg_buff `uc ~T0 @X0 -> 3 `i a ]
+[; ;ring_buffer_LUT.c: 323: char arg_buff[3];
+[; ;ring_buffer_LUT.c: 326: for (int index = 0; index < 3; index++) {
+"326
+{
+[v _index `i ~T0 @X0 1 a ]
+[e = _index -> 0 `i ]
+[e $ < _index -> 3 `i 2052  ]
+[e $U 2053  ]
+[e :U 2052 ]
+{
+[; ;ring_buffer_LUT.c: 328: arg_buff[index] = line[index + 24];
+"328
+[e = *U + &U _arg_buff * -> -> _index `ui `ux -> -> # *U &U _arg_buff `ui `ux *U + _line * -> + _index -> 24 `i `x -> -> # *U _line `i `x ]
+"330
+}
+"326
+[e ++ _index -> 1 `i ]
+[e $ < _index -> 3 `i 2052  ]
+[e :U 2053 ]
+"330
+}
+"332
+[v _percentage `i ~T0 @X0 1 a ]
+[; ;ring_buffer_LUT.c: 330: }
+[; ;ring_buffer_LUT.c: 332: int percentage = atoi(arg_buff);
+[e = _percentage ( _atoi (1 -> &U _arg_buff `*Cuc ]
+[; ;ring_buffer_LUT.c: 335: if ( (percentage >= 100) ||
+[; ;ring_buffer_LUT.c: 336: (percentage <= 0)) {
 "336
-[e = _dimming_period * -> - -> 100 `i _percentage `ui / -> 65535 `ui -> -> 100 `i `ui ]
+[e $ ! || >= _percentage -> 100 `i <= _percentage -> 0 `i 2055  ]
+{
 [; ;ring_buffer_LUT.c: 339: terminal_printNewline();
 "339
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 341: terminal_textAttributes(CYAN, BLACK, NORMAL);
+[; ;ring_buffer_LUT.c: 341: terminal_textAttributes(RED, BLACK, NORMAL);
 "341
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 342: printf("Dimming has been set to %d percent\n\r", percentage);
+[e ( _terminal_textAttributes (3 , , . `E17944 1 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 342: printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
 "342
-[e ( _printf , (. :s 41C _percentage ]
-[; ;ring_buffer_LUT.c: 343: printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
-"343
-[e ( _printf , , (. :s 42C _TRIAC_Firing_Angle _angle_degrees ]
-[; ;ring_buffer_LUT.c: 344: printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
+[e ( _printf :s 40C ]
+[; ;ring_buffer_LUT.c: 344: terminal_textAttributes(YELLOW, BLACK, NORMAL);
 "344
-[e ( _printf , , (. :s 43C _dimming_period _dimming_period ]
-[; ;ring_buffer_LUT.c: 346: terminal_textAttributesReset();
+[e ( _terminal_textAttributes (3 , , . `E17944 3 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 345: printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
+"345
+[e ( _printf :s 41C ]
+[; ;ring_buffer_LUT.c: 346: printf("Enter 'Help' for list of available commands\n\r");
 "346
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 348: terminal_printNewline();
+[e ( _printf :s 42C ]
+[; ;ring_buffer_LUT.c: 348: terminal_textAttributesReset();
 "348
-[e ( _terminal_printNewline ..  ]
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 350: terminal_printNewline();
 "350
-}
-[e :U 2054 ]
+[e ( _terminal_printNewline ..  ]
 "352
 }
-[; ;ring_buffer_LUT.c: 350: }
 [; ;ring_buffer_LUT.c: 352: }
-[e $U 2055  ]
+[e $U 2056  ]
 "355
-[e :U 2049 ]
-[; ;ring_buffer_LUT.c: 355: else if((0 == strcmp(line, "Device On Time?"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 44C 2056  ]
+[e :U 2055 ]
+[; ;ring_buffer_LUT.c: 355: else {
 {
-[; ;ring_buffer_LUT.c: 358: terminal_printNewline();
+[; ;ring_buffer_LUT.c: 358: TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * 3.14159265358979323846;
 "358
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 360: terminal_textAttributes(CYAN, BLACK, NORMAL);
+[e = _TRIAC_Firing_Angle * / - .100.0 -> _percentage `d .100.0 .3.14159265358979323846 ]
+"359
+[v _angle_degrees `d ~T0 @X0 1 a ]
+[; ;ring_buffer_LUT.c: 359: double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
+[e = _angle_degrees * _TRIAC_Firing_Angle / .180.0 .3.14159265358979323846 ]
+[; ;ring_buffer_LUT.c: 360: dimming_period = (100 - percentage) * (0xFFFF / 100);
 "360
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 361: printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
-"361
-[e ( _printf , (. :s 45C _dev_on_time ]
-[; ;ring_buffer_LUT.c: 363: terminal_textAttributesReset();
+[e = _dimming_period * -> - -> 100 `i _percentage `ui / -> 65535 `ui -> -> 100 `i `ui ]
+[; ;ring_buffer_LUT.c: 363: terminal_printNewline();
 "363
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 365: terminal_printNewline();
-"365
 [e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 365: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"365
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 366: printf("Dimming has been set to %d percent\n\r", percentage);
+"366
+[e ( _printf , (. :s 43C _percentage ]
+[; ;ring_buffer_LUT.c: 367: printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 "367
-}
-[; ;ring_buffer_LUT.c: 367: }
-[e $U 2057  ]
+[e ( _printf , , (. :s 44C _TRIAC_Firing_Angle _angle_degrees ]
+[; ;ring_buffer_LUT.c: 368: printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
+"368
+[e ( _printf , , (. :s 45C _dimming_period _dimming_period ]
+[; ;ring_buffer_LUT.c: 370: terminal_textAttributesReset();
 "370
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 372: terminal_printNewline();
+"372
+[e ( _terminal_printNewline ..  ]
+"374
+}
 [e :U 2056 ]
-[; ;ring_buffer_LUT.c: 370: else if((0 == strcmp(line, "Load On Time?"))) {
+"376
+}
+[; ;ring_buffer_LUT.c: 374: }
+[; ;ring_buffer_LUT.c: 376: }
+[e $U 2057  ]
+"379
+[e :U 2051 ]
+[; ;ring_buffer_LUT.c: 379: else if((0 == strcmp(line, "Device On Time?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 46C 2058  ]
 {
-[; ;ring_buffer_LUT.c: 373: terminal_printNewline();
-"373
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 375: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"375
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 376: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
-"376
-[e ( _printf , (. :s 47C _load_on_time ]
-[; ;ring_buffer_LUT.c: 378: terminal_textAttributesReset();
-"378
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 380: terminal_printNewline();
-"380
-[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 382: terminal_printNewline();
 "382
-}
-[; ;ring_buffer_LUT.c: 382: }
-[e $U 2059  ]
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 384: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"384
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 385: printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
+"385
+[e ( _printf , (. :s 47C _dev_on_time ]
+[; ;ring_buffer_LUT.c: 387: terminal_textAttributesReset();
 "387
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 389: terminal_printNewline();
+"389
+[e ( _terminal_printNewline ..  ]
+"391
+}
+[; ;ring_buffer_LUT.c: 391: }
+[e $U 2059  ]
+"394
 [e :U 2058 ]
-[; ;ring_buffer_LUT.c: 387: else if((0 == strcmp(line, "Help"))) {
+[; ;ring_buffer_LUT.c: 394: else if((0 == strcmp(line, "Load On Time?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 48C 2060  ]
 {
-[; ;ring_buffer_LUT.c: 390: terminal_printNewline();
-"390
+[; ;ring_buffer_LUT.c: 397: terminal_printNewline();
+"397
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 392: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"392
-[e ( _terminal_textAttributes (3 , , . `E17924 3 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 393: printf("List of supported commands:\n\r\n\r"
-[; ;ring_buffer_LUT.c: 395: "Housekeeping Commands:\n\r"
-[; ;ring_buffer_LUT.c: 396: "   Reset: Clears the terminal and resets the micro\n\r"
-[; ;ring_buffer_LUT.c: 397: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
-[; ;ring_buffer_LUT.c: 398: "   *IDN?: Returns device identification string\n\r"
-[; ;ring_buffer_LUT.c: 399: "   Device On Time?: Returns device on time since last device reset\n\r"
-[; ;ring_buffer_LUT.c: 400: "   Help: This message, lists supported commands\n\r\n\r"
-[; ;ring_buffer_LUT.c: 402: "Housekeeping Measurement Commands:\n\r"
-[; ;ring_buffer_LUT.c: 403: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 404: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 405: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
-[; ;ring_buffer_LUT.c: 406: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-[; ;ring_buffer_LUT.c: 407: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r\n\r"
-[; ;ring_buffer_LUT.c: 409: "Primary Measurement Commands:\n\r"
-[; ;ring_buffer_LUT.c: 410: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
-[; ;ring_buffer_LUT.c: 411: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 412: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 413: "   Measure Power?: Returns the calculated output power in Watts\n\r"
-[; ;ring_buffer_LUT.c: 414: "   Load On Time?: Returns load on time since last device reset in seconds\n\r\n\r"
-[; ;ring_buffer_LUT.c: 416: "Output Control Commands:\n\r"
-[; ;ring_buffer_LUT.c: 417: "   Enable Dimming: Enable TRIAC output dimming\n\r"
-[; ;ring_buffer_LUT.c: 418: "   Disable Dimming: Disable TRIAC output dimming\n\r"
-[; ;ring_buffer_LUT.c: 419: "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
-[; ;ring_buffer_LUT.c: 420: "   Disable Load: Disables the output TRIAC completely\n\r"
-[; ;ring_buffer_LUT.c: 421: "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
-[; ;ring_buffer_LUT.c: 422: );
-"422
-[e ( _printf :s 49C ]
-[; ;ring_buffer_LUT.c: 425: terminal_printNewline();
-"425
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 426: printf("Help messages appear in yellow\n\r");
-"426
-[e ( _printf :s 50C ]
-[; ;ring_buffer_LUT.c: 428: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"428
-[e ( _terminal_textAttributes (3 , , . `E17924 2 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 429: printf("IDN string appears in green\n\r");
-"429
-[e ( _printf :s 51C ]
-[; ;ring_buffer_LUT.c: 430: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"430
-[e ( _terminal_textAttributes (3 , , . `E17924 6 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 431: printf("Measurement responses appear in cyan\n\r");
-"431
-[e ( _printf :s 52C ]
-[; ;ring_buffer_LUT.c: 432: terminal_textAttributes(RED, BLACK, NORMAL);
-"432
-[e ( _terminal_textAttributes (3 , , . `E17924 1 . `E17924 0 . `E17916 0 ]
-[; ;ring_buffer_LUT.c: 433: printf("Errors appear in red\n\r");
-"433
-[e ( _printf :s 53C ]
-[; ;ring_buffer_LUT.c: 434: terminal_textAttributesReset();
-"434
+[; ;ring_buffer_LUT.c: 399: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"399
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 400: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+"400
+[e ( _printf , (. :s 49C _load_on_time ]
+[; ;ring_buffer_LUT.c: 402: terminal_textAttributesReset();
+"402
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 435: printf("User input appears in white\n\r");
-"435
-[e ( _printf :s 54C ]
-[; ;ring_buffer_LUT.c: 438: terminal_printNewline();
-"438
+[; ;ring_buffer_LUT.c: 404: terminal_printNewline();
+"404
 [e ( _terminal_printNewline ..  ]
-"440
+"406
 }
+[; ;ring_buffer_LUT.c: 406: }
+[e $U 2061  ]
+"411
 [e :U 2060 ]
-"444
+[; ;ring_buffer_LUT.c: 411: else if((0 == strcmp(line, "Help"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 50C 2062  ]
+{
+[; ;ring_buffer_LUT.c: 414: terminal_printNewline();
+"414
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 416: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"416
+[e ( _terminal_textAttributes (3 , , . `E17944 3 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 417: printf("List of supported commands:\n\r\n\r"
+[; ;ring_buffer_LUT.c: 419: "Device Commands:\n\r"
+[; ;ring_buffer_LUT.c: 420: "   Reset: Clears the terminal and resets the micro\n\r"
+[; ;ring_buffer_LUT.c: 421: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
+[; ;ring_buffer_LUT.c: 422: "   *IDN?: Returns device identification string\n\r"
+[; ;ring_buffer_LUT.c: 423: "   Device On Time?: Returns device on time since last device reset\n\r"
+[; ;ring_buffer_LUT.c: 424: "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 425: "   Help: This message, lists supported commands\n\r\n\r"
+[; ;ring_buffer_LUT.c: 427: "Device Measurement Commands:\n\r"
+[; ;ring_buffer_LUT.c: 428: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 429: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 430: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+[; ;ring_buffer_LUT.c: 431: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
+[; ;ring_buffer_LUT.c: 432: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r\n\r"
+[; ;ring_buffer_LUT.c: 434: "Primary Measurement Commands:\n\r"
+[; ;ring_buffer_LUT.c: 435: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
+[; ;ring_buffer_LUT.c: 436: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 437: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 438: "   Measure Power?: Returns the calculated output power in Watts\n\r"
+[; ;ring_buffer_LUT.c: 439: "   Load On Time?: Returns load on time since last device reset in seconds\n\r\n\r"
+[; ;ring_buffer_LUT.c: 441: "Output Control Commands:\n\r"
+[; ;ring_buffer_LUT.c: 442: "   Enable Dimming: Enable TRIAC output dimming\n\r"
+[; ;ring_buffer_LUT.c: 443: "   Disable Dimming: Disable TRIAC output dimming\n\r"
+[; ;ring_buffer_LUT.c: 444: "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
+[; ;ring_buffer_LUT.c: 445: "   Disable Load: Disables the output TRIAC completely\n\r"
+[; ;ring_buffer_LUT.c: 446: "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
+[; ;ring_buffer_LUT.c: 447: );
+"447
+[e ( _printf :s 51C ]
+[; ;ring_buffer_LUT.c: 450: terminal_printNewline();
+"450
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 451: printf("Help messages appear in yellow\n\r");
+"451
+[e ( _printf :s 52C ]
+[; ;ring_buffer_LUT.c: 453: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"453
+[e ( _terminal_textAttributes (3 , , . `E17944 2 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 454: printf("System parameters appears in green\n\r");
+"454
+[e ( _printf :s 53C ]
+[; ;ring_buffer_LUT.c: 455: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"455
+[e ( _terminal_textAttributes (3 , , . `E17944 6 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 456: printf("Measurement responses appear in cyan\n\r");
+"456
+[e ( _printf :s 54C ]
+[; ;ring_buffer_LUT.c: 457: terminal_textAttributes(RED, BLACK, NORMAL);
+"457
+[e ( _terminal_textAttributes (3 , , . `E17944 1 . `E17944 0 . `E17936 0 ]
+[; ;ring_buffer_LUT.c: 458: printf("Errors appear in red\n\r");
+"458
+[e ( _printf :s 55C ]
+[; ;ring_buffer_LUT.c: 459: terminal_textAttributesReset();
+"459
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 460: printf("User input appears in white\n\r");
+"460
+[e ( _printf :s 56C ]
+[; ;ring_buffer_LUT.c: 463: terminal_printNewline();
+"463
+[e ( _terminal_printNewline ..  ]
+"465
+}
+[e :U 2062 ]
+"469
+[e :U 2061 ]
 [e :U 2059 ]
 [e :U 2057 ]
-[e :U 2055 ]
+[e :U 2050 ]
 [e :U 2048 ]
 [e :U 2046 ]
 [e :U 2044 ]
@@ -17082,62 +17125,64 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2022 ]
 [e :U 2020 ]
 [e :U 2018 ]
-[; ;ring_buffer_LUT.c: 440: }
-[; ;ring_buffer_LUT.c: 444: }
+[; ;ring_buffer_LUT.c: 465: }
+[; ;ring_buffer_LUT.c: 469: }
 [e :UE 2016 ]
 }
-[p f _printf 10560640 ]
+[p f _printf 10822784 ]
 [a 1C 82 101 115 101 116 0 ]
 [a 4C 67 108 101 97 114 0 ]
-[a 48C 72 101 108 112 0 ]
-[a 31C 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
-[a 29C 69 110 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
-[a 35C 68 105 115 97 98 108 101 32 76 111 97 100 0 ]
-[a 33C 69 110 97 98 108 101 32 76 111 97 100 0 ]
+[a 50C 72 101 108 112 0 ]
+[a 33C 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
+[a 31C 69 110 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
+[a 37C 68 105 115 97 98 108 101 32 76 111 97 100 0 ]
+[a 35C 69 110 97 98 108 101 32 76 111 97 100 0 ]
 [a 8C 73 68 78 0 ]
 [a 2C 27 91 50 74 0 ]
 [a 5C 27 91 50 74 0 ]
 [a 3C 27 91 72 0 ]
 [a 6C 27 91 72 0 ]
-[a 21C 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 0 ]
-[a 23C 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 0 ]
-[a 27C 77 101 97 115 117 114 101 32 80 111 119 101 114 63 0 ]
-[a 15C 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 0 ]
-[a 44C 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 0 ]
-[a 46C 76 111 97 100 32 79 110 32 84 105 109 101 63 0 ]
-[a 25C 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 0 ]
-[a 19C 77 101 97 115 117 114 101 32 65 86 83 83 63 0 ]
-[a 17C 77 101 97 115 117 114 101 32 70 86 82 63 0 ]
+[a 23C 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 0 ]
+[a 25C 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 0 ]
+[a 29C 77 101 97 115 117 114 101 32 80 111 119 101 114 63 0 ]
+[a 17C 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 0 ]
+[a 46C 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 0 ]
+[a 48C 76 111 97 100 32 79 110 32 84 105 109 101 63 0 ]
+[a 27C 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 0 ]
+[a 21C 77 101 97 115 117 114 101 32 65 86 83 83 63 0 ]
+[a 19C 77 101 97 115 117 114 101 32 70 86 82 63 0 ]
 [a 7C 42 73 68 78 63 0 ]
-[a 11C 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 0 ]
-[a 13C 77 101 97 115 117 114 101 32 80 79 83 49 50 63 0 ]
-[a 37C 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 0 ]
-[a 50C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
-[a 49C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 10 13 72 111 117 115 101 107 101 101 112 105 110 103 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 10 13 72 111 117 115 101 107 101 101 112 105 110 103 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 0 ]
-[a 41C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 100 32 112 101 114 99 101 110 116 10 13 0 ]
+[a 11C 68 101 118 105 99 101 32 73 68 63 0 ]
+[a 13C 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 0 ]
+[a 15C 77 101 97 115 117 114 101 32 80 79 83 49 50 63 0 ]
+[a 39C 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 0 ]
+[a 52C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
+[a 51C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 10 13 68 101 118 105 99 101 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 10 13 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 0 ]
+[a 43C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 100 32 112 101 114 99 101 110 116 10 13 0 ]
 [a 10C 77 97 114 113 117 101 116 116 101 32 85 110 105 118 101 114 115 105 116 121 32 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 10 13 0 ]
-[a 12C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 102 32 86 111 108 116 115 10 13 0 ]
-[a 14C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 102 32 86 111 108 116 115 10 13 0 ]
-[a 18C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 102 32 86 111 108 116 115 10 13 0 ]
-[a 22C 77 101 97 115 117 114 101 100 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 109 112 115 10 13 0 ]
-[a 26C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
-[a 24C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
-[a 28C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
-[a 47C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
-[a 45C 68 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 114 101 115 101 116 32 99 111 110 100 105 116 105 111 110 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
-[a 39C 73 102 32 121 111 117 39 100 32 108 105 107 101 32 116 111 32 99 111 109 112 108 101 116 101 108 121 32 101 110 97 98 108 101 32 111 114 32 100 105 115 97 98 108 101 32 116 104 101 32 108 111 97 100 44 32 100 105 115 97 98 108 101 32 100 105 109 109 105 110 103 32 97 110 100 32 117 115 101 32 114 101 115 112 101 99 116 105 118 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
-[a 40C 69 110 116 101 114 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 118 97 105 108 97 98 108 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 14C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 102 32 86 111 108 116 115 10 13 0 ]
+[a 16C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 102 32 86 111 108 116 115 10 13 0 ]
+[a 20C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 102 32 86 111 108 116 115 10 13 0 ]
+[a 24C 77 101 97 115 117 114 101 100 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 109 112 115 10 13 0 ]
+[a 28C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
+[a 26C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 30C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
+[a 49C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
+[a 47C 68 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 114 101 115 101 116 32 99 111 110 100 105 116 105 111 110 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
+[a 41C 73 102 32 121 111 117 39 100 32 108 105 107 101 32 116 111 32 99 111 109 112 108 101 116 101 108 121 32 101 110 97 98 108 101 32 111 114 32 100 105 115 97 98 108 101 32 116 104 101 32 108 111 97 100 44 32 100 105 115 97 98 108 101 32 100 105 109 109 105 110 103 32 97 110 100 32 117 115 101 32 114 101 115 112 101 99 116 105 118 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 42C 69 110 116 101 114 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 118 97 105 108 97 98 108 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 12C 70 108 97 115 104 32 109 101 109 111 114 121 32 100 101 118 105 99 101 32 73 68 32 105 115 58 32 48 120 37 88 46 32 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 100 101 118 105 99 101 32 112 97 114 116 32 110 117 109 98 101 114 32 111 102 32 37 115 10 13 0 ]
 [a 9C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 10 13 0 ]
-[a 51C 73 68 78 32 115 116 114 105 110 103 32 97 112 112 101 97 114 115 32 105 110 32 103 114 101 101 110 10 13 0 ]
-[a 52C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
-[a 54C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
-[a 53C 69 114 114 111 114 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
-[a 32C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
-[a 36C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
-[a 34C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 44 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 0 ]
-[a 30C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 10 13 0 ]
-[a 16C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 102 67 10 13 0 ]
-[a 20C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 32 98 121 32 65 68 67 10 13 0 ]
-[a 38C 69 82 82 79 82 58 32 80 108 101 97 115 101 32 115 101 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 116 111 32 97 110 32 105 110 116 101 103 101 114 32 103 114 101 97 116 101 114 32 116 104 97 110 32 48 32 97 110 100 32 108 101 115 115 32 116 104 97 110 32 49 48 48 10 13 0 ]
-[a 42C 67 97 108 99 117 108 97 116 101 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 32 105 115 32 37 46 51 102 32 114 97 100 105 97 110 115 32 40 37 46 51 102 32 100 101 103 114 101 101 115 41 10 13 0 ]
-[a 43C 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 49 54 32 98 105 116 32 116 105 109 101 114 32 112 114 101 45 108 111 97 100 32 118 97 108 117 101 32 111 102 32 48 120 37 88 32 40 37 117 32 76 83 66 115 41 32 10 13 0 ]
+[a 53C 83 121 115 116 101 109 32 112 97 114 97 109 101 116 101 114 115 32 97 112 112 101 97 114 115 32 105 110 32 103 114 101 101 110 10 13 0 ]
+[a 54C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
+[a 56C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
+[a 55C 69 114 114 111 114 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
+[a 34C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 38C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 36C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 44 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 32C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 10 13 0 ]
+[a 18C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 102 67 10 13 0 ]
+[a 22C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 32 98 121 32 65 68 67 10 13 0 ]
+[a 40C 69 82 82 79 82 58 32 80 108 101 97 115 101 32 115 101 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 116 111 32 97 110 32 105 110 116 101 103 101 114 32 103 114 101 97 116 101 114 32 116 104 97 110 32 48 32 97 110 100 32 108 101 115 115 32 116 104 97 110 32 49 48 48 10 13 0 ]
+[a 44C 67 97 108 99 117 108 97 116 101 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 32 105 115 32 37 46 51 102 32 114 97 100 105 97 110 115 32 40 37 46 51 102 32 100 101 103 114 101 101 115 41 10 13 0 ]
+[a 45C 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 49 54 32 98 105 116 32 116 105 109 101 114 32 112 114 101 45 108 111 97 100 32 118 97 108 117 101 32 111 102 32 48 120 37 88 32 40 37 117 32 76 83 66 115 41 32 10 13 0 ]

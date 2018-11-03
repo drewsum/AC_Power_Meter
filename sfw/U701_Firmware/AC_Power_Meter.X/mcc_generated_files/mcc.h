@@ -53,9 +53,10 @@
 #include <stdbool.h>
 #include "interrupt_manager.h"
 #include "tmr5.h"
+#include "tmr6.h"
 #include "adcc.h"
 #include "fvr.h"
-#include "tmr6.h"
+#include "memory.h"
 #include "tmr7.h"
 #include "eusart2.h"
 

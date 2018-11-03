@@ -5,7 +5,9 @@ mcc_generated_files/fvr.h  \
 pin_macros.h  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/eusart2.h  \
+device_IDs.h  \
 mcc_generated_files/device_config.h  \
+mcc_generated_files/memory.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/tmr5.h  \
 mcc_generated_files/tmr6.h  \
