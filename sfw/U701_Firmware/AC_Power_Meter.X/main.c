@@ -47,7 +47,10 @@
 #include <math.h>
 
 #include "pin_macros.h"
+#include "device_IDs.h"
+#include "cause_of_reset.h"
 #include "ring_buffer_interface.h"
+
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Global variables / Macros <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -78,6 +81,7 @@ volatile bit load_enable = 0;                   // Load enabled flag
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
+volatile bit adc_error_flag = 0;
 
 
 
@@ -144,28 +148,70 @@ void heartbeatTimerCallback(void) {
 }
 
 // Callback function for ADCC interrupts
-void ADC_postProcessingCallback(void) {
+void ADCPostProcessingCallback(void) {
  
     adcc_channel_t currentADCChannel = ADPCH;
     
     switch (currentADCChannel) {
         
         case channel_VSS:
+            
             AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+            
+            if (AVSS_ADC_Result > 0.01) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
             break;
         
         // FVR Buffer 1 ADC post processing
         case channel_FVR_buf1:
+            
             FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
             ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+            
+            if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
+            
             break;
             
         // POS3P3_ADC Post Processing
         case POS3P3_ADC:
+            
             POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+            
+            if (POS3P3_ADC_Result > 3.5) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
             break;
             
+        // current sensor ADC post processing
         case ISNS_ADC:
+            
             Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
             
             // If our phase is controlled, convert measured current to peak current
@@ -217,21 +263,64 @@ void ADC_postProcessingCallback(void) {
                 Avg_Power = Vrms * Irms;
                 
             }
+
+            if (Irms > 5.0) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
             break;
             
         // POS12 ADC Post Processing
         case POS12_ADC:
+            
             POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+            
+            if (POS12_ADC_Result > 13.6) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
             break;
             
         // Internal temperature indicator ADC post processing
         case channel_Temp:
+            
             Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+            
+            if (Temp_ADC_Result > 40.0) {
+             
+                ADC_ERROR_PIN = HIGH;
+                adc_error_flag = 1;
+                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+                PIE5bits.TMR7IE == 0;
+                TMR7_StopTimer();
+                return;
+                
+            }
+            
             break;
             
         // Default case, there was an error
+        // This should not happen
         default:
             ADC_ERROR_PIN = HIGH;
+            adc_error_flag = 1;
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE == 0;
+            TMR7_StopTimer();
             break;
         
     }
@@ -245,39 +334,103 @@ void acquisitionTimerCallback(void) {
     ADCC_StartConversion(channel_VSS);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());    
-    
+    while(!ADCC_IsConversionDone()) {
+     
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE = 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+        
+    }
     
     // Measure FVR buffer 1 with ADC
     ADCC_StartConversion(channel_FVR_buf1);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());
+    while(!ADCC_IsConversionDone()) {
+        
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE = 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+
+    }
     
     // Measure POS3P3 With ADC
     ADCC_StartConversion(POS3P3_ADC);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());
+    while(!ADCC_IsConversionDone()) {
+        
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE = 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+
+    }
     
     // Measure Current Sensor With ADC
     ADCC_StartConversion(ISNS_ADC);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());
+    while(!ADCC_IsConversionDone()) {
+        
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE = 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+
+    }
     
     // Measure POS12 with ADC
     ADCC_StartConversion(POS12_ADC);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());
+    while(!ADCC_IsConversionDone()) {
+        
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE = 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+
+    }
     
     // Measure temperature with ADC
     ADCC_StartConversion(channel_Temp);
     
     // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone());
-    
+    while(!ADCC_IsConversionDone()) {
+        
+        if (adc_error_flag) {
+         
+            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
+            PIE5bits.TMR7IE == 0;
+            TMR7_StopTimer();
+            return;
+            
+        }
+
+    }
     
 }
 
@@ -305,7 +458,7 @@ void main(void)
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
     // Call ADC callback upon ADCC interrupt
-    ADCC_SetADIInterruptHandler(ADC_postProcessingCallback);
+    ADCC_SetADIInterruptHandler(ADCPostProcessingCallback);
     
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);

@@ -56,7 +56,7 @@ channel_Temp 61
 channel_DAC1 62
 channel_FVR_buf1 63
 ]
-"149 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"153 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [e E17421 . `uc
 ISNS_ADC 0
 POS12_ADC 4
@@ -86,7 +86,17 @@ MAGENTA 5
 CYAN 6
 WHITE 7
 ]
-"73 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"39 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+[e E17592 . `uc
+ISNS_ADC 0
+POS12_ADC 4
+POS3P3_ADC 34
+channel_VSS 60
+channel_Temp 61
+channel_DAC1 62
+channel_FVR_buf1 63
+]
+"77
 [e E17944 . `uc
 BLACK 0
 RED 1
@@ -104,6 +114,36 @@ UNDERSCORE 2
 BLINK 3
 REVERSE 4
 CONCEALED 5
+]
+"81
+[e E17989 reset_t `uc
+Power_On_Reset 0
+Brown_Out_Reset 1
+Master_Clear_Reset 2
+Master_Clear_Sleep_Reset 3
+Watch_Dog_Timer_Reset 4
+Watch_Dog_Timer_Sleep_Reset 5
+Windowed_Watch_Dog_Timer_Reset 6
+Interrupt_Wake_Up_From_Sleep 7
+RESET_Instruction_Executed 8
+Stack_Overflow_Reset 9
+Stack_Underflow_Reset 10
+VREG_or_ULP_Ready_Fault_Reset 11
+]
+"12 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
+[e E17455 reset_t `uc
+Power_On_Reset 0
+Brown_Out_Reset 1
+Master_Clear_Reset 2
+Master_Clear_Sleep_Reset 3
+Watch_Dog_Timer_Reset 4
+Watch_Dog_Timer_Sleep_Reset 5
+Windowed_Watch_Dog_Timer_Reset 6
+Interrupt_Wake_Up_From_Sleep 7
+RESET_Instruction_Executed 8
+Stack_Overflow_Reset 9
+Stack_Underflow_Reset 10
+VREG_or_ULP_Ready_Fault_Reset 11
 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\acos.c
 [v _acos acos `(d  1 e 3 0 ]
@@ -173,6 +213,8 @@ CONCEALED 5
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
 [v _isdigit isdigit `(b  1 e 0 0 ]
 [v i2_isdigit isdigit `(b  1 e 0 0 ]
+"17 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
+[v _utoa utoa `(*.39uc  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 [v i2___lldiv __lldiv `(ul  1 e 4 0 ]
@@ -182,6 +224,10 @@ CONCEALED 5
 "35 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lltoft.c
 [v ___lltoft __lltoft `(f  1 e 3 0 ]
 [v i2___lltoft __lltoft `(f  1 e 3 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "28 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwtoft.c
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sin.c
@@ -217,21 +263,33 @@ CONCEALED 5
 [v i2___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
+"14 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
+[v _getCauseOfReset getCauseOfReset `(E17989  1 e 1 0 ]
+"372
+[v _getCauseOfResetString getCauseOfResetString `(*.32Tuc  1 e 2 0 ]
 "4 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
 [v _getDeviceID getDeviceID `(ui  1 e 2 0 ]
-"13
+"12
+[v _getMajorRevisionID getMajorRevisionID `(uc  1 e 1 0 ]
+"23
+[v _getMinorRevisionID getMinorRevisionID `(uc  1 e 1 0 ]
+"34
 [v _getDeviceIDString getDeviceIDString `(*.39uc  1 e 2 0 ]
-"90 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"62
+[v _getRevisionIDString getRevisionIDString `(*.39uc  1 e 2 0 ]
+"89
+[v _getUserID getUserID `(ui  1 e 2 0 ]
+"94 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _peakToRMS peakToRMS `(d  1 e 3 0 ]
-"107
+"111
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 3 0 ]
-"126
+"130
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
-"147
-[v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
-"242
+"151
+[v _ADCPostProcessingCallback ADCPostProcessingCallback `(v  1 e 1 0 ]
+"331
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
-"289
+"442
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -247,23 +305,23 @@ CONCEALED 5
 [v _ADCC_SetADIInterruptHandler ADCC_SetADIInterruptHandler `(v  1 e 1 0 ]
 "310
 [v _ADCC_DefaultInterruptHandler ADCC_DefaultInterruptHandler `(v  1 e 1 0 ]
-"77 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"79 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Initialize EUSART2_Initialize `(v  1 e 1 0 ]
-"130
+"137
 [v _EUSART2_Read EUSART2_Read `(uc  1 e 1 0 ]
-"151
+"161
 [v _EUSART2_Write EUSART2_Write `(v  1 e 1 0 ]
 [v i2_EUSART2_Write EUSART2_Write `(v  1 e 1 0 ]
-"180
+"193
 [v _putch putch `(v  1 e 1 0 ]
 [v i2_putch putch `(v  1 e 1 0 ]
-"185
+"198
 [v _EUSART2_Transmit_ISR EUSART2_Transmit_ISR `(v  1 e 1 0 ]
-"204
+"217
 [v _EUSART2_Receive_ISR EUSART2_Receive_ISR `(v  1 e 1 0 ]
-"264
+"280
 [v _EUSART2_SetTxInterruptHandler EUSART2_SetTxInterruptHandler `(v  1 e 1 0 ]
-"268
+"284
 [v _EUSART2_SetRxInterruptHandler EUSART2_SetRxInterruptHandler `(v  1 e 1 0 ]
 "58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/fvr.c
 [v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
@@ -319,6 +377,11 @@ CONCEALED 5
 [v _TMR6_DefaultInterruptHandler TMR6_DefaultInterruptHandler `(v  1 e 1 0 ]
 "64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v _TMR7_Initialize TMR7_Initialize `(v  1 e 1 0 ]
+"99
+[v _TMR7_StartTimer TMR7_StartTimer `(v  1 e 1 0 ]
+"105
+[v _TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
+[v i2_TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
 "127
 [v _TMR7_WriteTimer TMR7_WriteTimer `(v  1 e 1 0 ]
 "164
@@ -339,7 +402,7 @@ CONCEALED 5
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
 "230
 [v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
-"37 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"41 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 "2752 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _RX2PPS RX2PPS `VEuc  1 e 1 @3601 ]
@@ -478,17 +541,17 @@ CONCEALED 5
 "5382
 [u S366 . 1 `S357 1 . 1 0 ]
 [v _PIR5bits PIR5bits `VES366  1 e 1 @3640 ]
-[s S1775 . 1 `uc 1 CWGIF 1 0 :1:0 
+[s S1823 . 1 `uc 1 CWGIF 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 NVMIF 1 0 :1:5 
 `uc 1 CRCIF 1 0 :1:6 
 `uc 1 SCANIF 1 0 :1:7 
 ]
 "5526
-[s S1781 . 1 `uc 1 CWG1IF 1 0 :1:0 
+[s S1829 . 1 `uc 1 CWG1IF 1 0 :1:0 
 ]
-[u S1783 . 1 `S1775 1 . 1 0 `S1781 1 . 1 0 ]
-[v _PIR8bits PIR8bits `VES1783  1 e 1 @3643 ]
+[u S1831 . 1 `S1823 1 . 1 0 `S1829 1 . 1 0 ]
+[v _PIR8bits PIR8bits `VES1831  1 e 1 @3643 ]
 "6184
 [v _OSCCON1 OSCCON1 `VEuc  1 e 1 @3651 ]
 "6324
@@ -575,7 +638,7 @@ CONCEALED 5
 [v _WPUH WPUH `VEuc  1 e 1 @3776 ]
 "13086
 [v _FVRCON FVRCON `VEuc  1 e 1 @3780 ]
-[s S1465 . 1 `uc 1 ADFVR 1 0 :2:0 
+[s S1513 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 CDAFVR 1 0 :2:2 
 `uc 1 TSRNG 1 0 :1:4 
 `uc 1 TSEN 1 0 :1:5 
@@ -583,7 +646,7 @@ CONCEALED 5
 `uc 1 EN 1 0 :1:7 
 ]
 "13110
-[s S1472 . 1 `uc 1 ADFVR0 1 0 :1:0 
+[s S1520 . 1 `uc 1 ADFVR0 1 0 :1:0 
 `uc 1 ADFVR1 1 0 :1:1 
 `uc 1 CDAFVR0 1 0 :1:2 
 `uc 1 CDAFVR1 1 0 :1:3 
@@ -591,8 +654,8 @@ CONCEALED 5
 `uc 1 FVRRDY 1 0 :1:6 
 `uc 1 FVREN 1 0 :1:7 
 ]
-[u S1480 . 1 `S1465 1 . 1 0 `S1472 1 . 1 0 ]
-[v _FVRCONbits FVRCONbits `VES1480  1 e 1 @3780 ]
+[u S1528 . 1 `S1513 1 . 1 0 `S1520 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES1528  1 e 1 @3780 ]
 "16852
 [v _RC2REG RC2REG `VEuc  1 e 1 @3825 ]
 "16890
@@ -603,7 +666,7 @@ CONCEALED 5
 [v _SP2BRGH SP2BRGH `VEuc  1 e 1 @3828 ]
 "17011
 [v _RC2STA RC2STA `VEuc  1 e 1 @3829 ]
-[s S881 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S921 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -613,19 +676,19 @@ CONCEALED 5
 `uc 1 SPEN 1 0 :1:7 
 ]
 "17044
-[s S890 . 1 `uc 1 . 1 0 :6:0 
+[s S930 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_92 1 0 :1:6 
 ]
-[s S893 . 1 `uc 1 . 1 0 :6:0 
+[s S933 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC92 1 0 :1:6 
 ]
-[s S896 . 1 `uc 1 RCD82 1 0 :1:0 
+[s S936 . 1 `uc 1 RCD82 1 0 :1:0 
 ]
-[u S898 . 1 `S881 1 . 1 0 `S890 1 . 1 0 `S893 1 . 1 0 `S896 1 . 1 0 ]
-[v _RC2STAbits RC2STAbits `VES898  1 e 1 @3829 ]
+[u S938 . 1 `S921 1 . 1 0 `S930 1 . 1 0 `S933 1 . 1 0 `S936 1 . 1 0 ]
+[v _RC2STAbits RC2STAbits `VES938  1 e 1 @3829 ]
 "17185
 [v _TX2STA TX2STA `VEuc  1 e 1 @3830 ]
-[s S847 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S887 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -635,13 +698,13 @@ CONCEALED 5
 `uc 1 CSRC 1 0 :1:7 
 ]
 "17214
-[s S856 . 1 `uc 1 . 1 0 :6:0 
+[s S896 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_92 1 0 :1:6 
 ]
-[s S859 . 1 `uc 1 TXD82 1 0 :1:0 
+[s S899 . 1 `uc 1 TXD82 1 0 :1:0 
 ]
-[u S861 . 1 `S847 1 . 1 0 `S856 1 . 1 0 `S859 1 . 1 0 ]
-[v _TX2STAbits TX2STAbits `VES861  1 e 1 @3830 ]
+[u S901 . 1 `S887 1 . 1 0 `S896 1 . 1 0 `S899 1 . 1 0 ]
+[v _TX2STAbits TX2STAbits `VES901  1 e 1 @3830 ]
 "17341
 [v _BAUD2CON BAUD2CON `VEuc  1 e 1 @3831 ]
 "22235
@@ -650,42 +713,42 @@ CONCEALED 5
 [v _TMR7H TMR7H `VEuc  1 e 1 @3887 ]
 "22525
 [v _T7CON T7CON `VEuc  1 e 1 @3888 ]
-[s S1311 . 1 `uc 1 . 1 0 :2:0 
+[s S1359 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_SYNC 1 0 :1:2 
 ]
 "22564
-[s S1314 . 1 `uc 1 ON 1 0 :1:0 
+[s S1362 . 1 `uc 1 ON 1 0 :1:0 
 `uc 1 RD16 1 0 :1:1 
 `uc 1 nSYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 CKPS 1 0 :2:4 
 ]
-[s S1320 . 1 `uc 1 . 1 0 :2:0 
+[s S1368 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T7SYNC 1 0 :1:2 
 ]
-[s S1323 . 1 `uc 1 TMR7ON 1 0 :1:0 
+[s S1371 . 1 `uc 1 TMR7ON 1 0 :1:0 
 `uc 1 T7RD16 1 0 :1:1 
 `uc 1 nT7SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T7CKPS0 1 0 :1:4 
 `uc 1 T7CKPS1 1 0 :1:5 
 ]
-[s S1330 . 1 `uc 1 . 1 0 :4:0 
+[s S1378 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CKPS0 1 0 :1:4 
 `uc 1 CKPS1 1 0 :1:5 
 ]
-[s S1334 . 1 `uc 1 . 1 0 :1:0 
+[s S1382 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RD167 1 0 :1:1 
 ]
-[u S1337 . 1 `S1311 1 . 1 0 `S1314 1 . 1 0 `S1320 1 . 1 0 `S1323 1 . 1 0 `S1330 1 . 1 0 `S1334 1 . 1 0 ]
-[v _T7CONbits T7CONbits `VES1337  1 e 1 @3888 ]
+[u S1385 . 1 `S1359 1 . 1 0 `S1362 1 . 1 0 `S1368 1 . 1 0 `S1371 1 . 1 0 `S1378 1 . 1 0 `S1382 1 . 1 0 ]
+[v _T7CONbits T7CONbits `VES1385  1 e 1 @3888 ]
 "22639
 [v _T7GCON T7GCON `VEuc  1 e 1 @3889 ]
-[s S1371 . 1 `uc 1 . 1 0 :3:0 
+[s S1419 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 GGO_NOT_DONE 1 0 :1:3 
 ]
 "22681
-[s S1374 . 1 `uc 1 . 1 0 :2:0 
+[s S1422 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 GVAL 1 0 :1:2 
 `uc 1 GGO_nDONE 1 0 :1:3 
 `uc 1 GSPM 1 0 :1:4 
@@ -693,10 +756,10 @@ CONCEALED 5
 `uc 1 GPOL 1 0 :1:6 
 `uc 1 GE 1 0 :1:7 
 ]
-[s S1382 . 1 `uc 1 . 1 0 :3:0 
+[s S1430 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T7GGO_NOT_DONE 1 0 :1:3 
 ]
-[s S1385 . 1 `uc 1 . 1 0 :2:0 
+[s S1433 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T7GVAL 1 0 :1:2 
 `uc 1 T7GGO_nDONE 1 0 :1:3 
 `uc 1 T7GSPM 1 0 :1:4 
@@ -704,11 +767,11 @@ CONCEALED 5
 `uc 1 T7GPOL 1 0 :1:6 
 `uc 1 T7GE 1 0 :1:7 
 ]
-[s S1393 . 1 `uc 1 . 1 0 :3:0 
+[s S1441 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T7GGO 1 0 :1:3 
 ]
-[u S1396 . 1 `S1371 1 . 1 0 `S1374 1 . 1 0 `S1382 1 . 1 0 `S1385 1 . 1 0 `S1393 1 . 1 0 ]
-[v _T7GCONbits T7GCONbits `VES1396  1 e 1 @3889 ]
+[u S1444 . 1 `S1419 1 . 1 0 `S1422 1 . 1 0 `S1430 1 . 1 0 `S1433 1 . 1 0 `S1441 1 . 1 0 ]
+[v _T7GCONbits T7GCONbits `VES1444  1 e 1 @3889 ]
 "22871
 [v _T7GATE T7GATE `VEuc  1 e 1 @3890 ]
 "23037
@@ -721,24 +784,24 @@ CONCEALED 5
 [v _ADREF ADREF `VEuc  1 e 1 @3928 ]
 "26225
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @3929 ]
-[s S1187 . 1 `uc 1 ADDSEN 1 0 :1:0 
+[s S1235 . 1 `uc 1 ADDSEN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 ADGPOL 1 0 :1:5 
 `uc 1 ADIPEN 1 0 :1:6 
 `uc 1 ADPPOL 1 0 :1:7 
 ]
 "26239
-[u S1193 . 1 `S1187 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES1193  1 e 1 @3929 ]
+[u S1241 . 1 `S1235 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES1241  1 e 1 @3929 ]
 "26264
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @3930 ]
-[s S1123 . 1 `uc 1 ADMD 1 0 :3:0 
+[s S1171 . 1 `uc 1 ADMD 1 0 :3:0 
 `uc 1 ADACLR 1 0 :1:3 
 `uc 1 ADCRS 1 0 :3:4 
 `uc 1 ADPSIS 1 0 :1:7 
 ]
 "26286
-[s S1128 . 1 `uc 1 ADMD0 1 0 :1:0 
+[s S1176 . 1 `uc 1 ADMD0 1 0 :1:0 
 `uc 1 ADMD1 1 0 :1:1 
 `uc 1 ADMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -746,16 +809,16 @@ CONCEALED 5
 `uc 1 ADCRS1 1 0 :1:5 
 `uc 1 ADCRS2 1 0 :1:6 
 ]
-[u S1136 . 1 `S1123 1 . 1 0 `S1128 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES1136  1 e 1 @3930 ]
+[u S1184 . 1 `S1171 1 . 1 0 `S1176 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES1184  1 e 1 @3930 ]
 "26341
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @3931 ]
-[s S1093 . 1 `uc 1 ADTMD 1 0 :3:0 
+[s S1141 . 1 `uc 1 ADTMD 1 0 :3:0 
 `uc 1 ADSOI 1 0 :1:3 
 `uc 1 ADCALC 1 0 :3:4 
 ]
 "26362
-[s S1097 . 1 `uc 1 ADTMD0 1 0 :1:0 
+[s S1145 . 1 `uc 1 ADTMD0 1 0 :1:0 
 `uc 1 ADTMD1 1 0 :1:1 
 `uc 1 ADTMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -763,8 +826,8 @@ CONCEALED 5
 `uc 1 ADCALC1 1 0 :1:5 
 `uc 1 ADCALC2 1 0 :1:6 
 ]
-[u S1105 . 1 `S1093 1 . 1 0 `S1097 1 . 1 0 ]
-[v _ADCON3bits ADCON3bits `VES1105  1 e 1 @3931 ]
+[u S1153 . 1 `S1141 1 . 1 0 `S1145 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES1153  1 e 1 @3931 ]
 "26412
 [v _ADACQ ADACQ `VEuc  1 e 1 @3932 ]
 "26482
@@ -775,7 +838,7 @@ CONCEALED 5
 [v _ADPCH ADPCH `VEuc  1 e 1 @3935 ]
 "26662
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @3936 ]
-[s S1039 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S1087 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -785,21 +848,21 @@ CONCEALED 5
 `uc 1 ADON 1 0 :1:7 
 ]
 "26697
-[s S1048 . 1 `uc 1 GO 1 0 :1:0 
+[s S1096 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 ]
-[s S1052 . 1 `uc 1 DONE 1 0 :1:0 
+[s S1100 . 1 `uc 1 DONE 1 0 :1:0 
 ]
-[s S1054 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
+[s S1102 . 1 `uc 1 GO_NOT_DONE 1 0 :1:0 
 ]
-[s S1056 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S1104 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 ]
-[s S1058 . 1 `uc 1 . 1 0 :7:0 
+[s S1106 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 ADCAL 1 0 :1:7 
 ]
-[u S1061 . 1 `S1039 1 . 1 0 `S1048 1 . 1 0 `S1052 1 . 1 0 `S1054 1 . 1 0 `S1056 1 . 1 0 `S1058 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES1061  1 e 1 @3936 ]
+[u S1109 . 1 `S1087 1 . 1 0 `S1096 1 . 1 0 `S1100 1 . 1 0 `S1102 1 . 1 0 `S1104 1 . 1 0 `S1106 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES1109  1 e 1 @3936 ]
 "26764
 [v _ADPREVL ADPREVL `VEuc  1 e 1 @3937 ]
 "26834
@@ -810,7 +873,7 @@ CONCEALED 5
 [v _ADRESH ADRESH `VEuc  1 e 1 @3940 ]
 "27043
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @3941 ]
-[s S1155 . 1 `uc 1 ADSTAT 1 0 :3:0 
+[s S1203 . 1 `uc 1 ADSTAT 1 0 :3:0 
 `uc 1 . 1 0 :1:3 
 `uc 1 ADMATH 1 0 :1:4 
 `uc 1 ADLTHR 1 0 :1:5 
@@ -818,12 +881,12 @@ CONCEALED 5
 `uc 1 ADAOV 1 0 :1:7 
 ]
 "27063
-[s S1162 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+[s S1210 . 1 `uc 1 ADSTAT0 1 0 :1:0 
 `uc 1 ADSTAT1 1 0 :1:1 
 `uc 1 ADSTAT2 1 0 :1:2 
 ]
-[u S1166 . 1 `S1155 1 . 1 0 `S1162 1 . 1 0 ]
-[v _ADSTATbits ADSTATbits `VES1166  1 e 1 @3941 ]
+[u S1214 . 1 `S1203 1 . 1 0 `S1210 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES1214  1 e 1 @3941 ]
 "27108
 [v _ADRPT ADRPT `VEuc  1 e 1 @3942 ]
 "27178
@@ -858,7 +921,7 @@ CONCEALED 5
 [v _NVMADRH NVMADRH `VEuc  1 e 1 @3957 ]
 "28321
 [v _NVMDAT NVMDAT `VEuc  1 e 1 @3958 ]
-[s S1702 . 1 `uc 1 RD 1 0 :1:0 
+[s S1750 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -867,12 +930,12 @@ CONCEALED 5
 `uc 1 NVMREG 1 0 :2:6 
 ]
 "28412
-[s S1710 . 1 `uc 1 . 1 0 :6:0 
+[s S1758 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 NVMREG0 1 0 :1:6 
 `uc 1 NVMREG1 1 0 :1:7 
 ]
-[u S1714 . 1 `S1702 1 . 1 0 `S1710 1 . 1 0 ]
-[v _NVMCON1bits NVMCON1bits `VES1714  1 e 1 @3959 ]
+[u S1762 . 1 `S1750 1 . 1 0 `S1758 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES1762  1 e 1 @3959 ]
 "28457
 [v _NVMCON2 NVMCON2 `VEuc  1 e 1 @3960 ]
 "28477
@@ -887,7 +950,7 @@ CONCEALED 5
 [v _LATE LATE `VEuc  1 e 1 @3965 ]
 "29037
 [v _LATF LATF `VEuc  1 e 1 @3966 ]
-[s S1855 . 1 `uc 1 LATF0 1 0 :1:0 
+[s S797 . 1 `uc 1 LATF0 1 0 :1:0 
 `uc 1 LATF1 1 0 :1:1 
 `uc 1 LATF2 1 0 :1:2 
 `uc 1 LATF3 1 0 :1:3 
@@ -897,7 +960,7 @@ CONCEALED 5
 `uc 1 LATF7 1 0 :1:7 
 ]
 "29064
-[s S1864 . 1 `uc 1 LF0 1 0 :1:0 
+[s S806 . 1 `uc 1 LF0 1 0 :1:0 
 `uc 1 LF1 1 0 :1:1 
 `uc 1 LF2 1 0 :1:2 
 `uc 1 LF3 1 0 :1:3 
@@ -906,11 +969,11 @@ CONCEALED 5
 `uc 1 LF6 1 0 :1:6 
 `uc 1 LF7 1 0 :1:7 
 ]
-[u S1873 . 1 `S1855 1 . 1 0 `S1864 1 . 1 0 ]
-[v _LATFbits LATFbits `VES1873  1 e 1 @3966 ]
+[u S815 . 1 `S797 1 . 1 0 `S806 1 . 1 0 ]
+[v _LATFbits LATFbits `VES815  1 e 1 @3966 ]
 "29149
 [v _LATG LATG `VEuc  1 e 1 @3967 ]
-[s S1905 . 1 `uc 1 LATG0 1 0 :1:0 
+[s S1948 . 1 `uc 1 LATG0 1 0 :1:0 
 `uc 1 LATG1 1 0 :1:1 
 `uc 1 LATG2 1 0 :1:2 
 `uc 1 LATG3 1 0 :1:3 
@@ -920,14 +983,14 @@ CONCEALED 5
 `uc 1 LATG7 1 0 :1:7 
 ]
 "29173
-[s S1914 . 1 `uc 1 LG0 1 0 :1:0 
+[s S1957 . 1 `uc 1 LG0 1 0 :1:0 
 `uc 1 LG1 1 0 :1:1 
 `uc 1 LG2 1 0 :1:2 
 `uc 1 LG3 1 0 :1:3 
 `uc 1 LG4 1 0 :1:4 
 ]
-[u S1920 . 1 `S1905 1 . 1 0 `S1914 1 . 1 0 ]
-[v _LATGbits LATGbits `VES1920  1 e 1 @3967 ]
+[u S1963 . 1 `S1948 1 . 1 0 `S1957 1 . 1 0 ]
+[v _LATGbits LATGbits `VES1963  1 e 1 @3967 ]
 "29238
 [v _LATH LATH `VEuc  1 e 1 @3968 ]
 "29338
@@ -1055,11 +1118,11 @@ CONCEALED 5
 [v _T5CON T5CON `VEuc  1 e 1 @4035 ]
 "36761
 "36761
-[s S1558 . 1 `uc 1 . 1 0 :2:0 
+[s S1606 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T5SYNC 1 0 :1:2 
 ]
 "36761
-[s S1561 . 1 `uc 1 TMR5ON 1 0 :1:0 
+[s S1609 . 1 `uc 1 TMR5ON 1 0 :1:0 
 `uc 1 T5RD16 1 0 :1:1 
 `uc 1 nT5SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -1068,23 +1131,23 @@ CONCEALED 5
 ]
 "36761
 "36761
-[s S1572 . 1 `uc 1 . 1 0 :1:0 
+[s S1620 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RD165 1 0 :1:1 
 ]
 "36761
-[u S1575 . 1 `S1311 1 . 1 0 `S1314 1 . 1 0 `S1558 1 . 1 0 `S1561 1 . 1 0 `S1330 1 . 1 0 `S1572 1 . 1 0 ]
+[u S1623 . 1 `S1359 1 . 1 0 `S1362 1 . 1 0 `S1606 1 . 1 0 `S1609 1 . 1 0 `S1378 1 . 1 0 `S1620 1 . 1 0 ]
 "36761
 "36761
-[v _T5CONbits T5CONbits `VES1575  1 e 1 @4035 ]
+[v _T5CONbits T5CONbits `VES1623  1 e 1 @4035 ]
 "36836
 [v _T5GCON T5GCON `VEuc  1 e 1 @4036 ]
 "36878
 "36878
-[s S1620 . 1 `uc 1 . 1 0 :3:0 
+[s S1668 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T5GGO_NOT_DONE 1 0 :1:3 
 ]
 "36878
-[s S1623 . 1 `uc 1 . 1 0 :2:0 
+[s S1671 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T5GVAL 1 0 :1:2 
 `uc 1 T5GGO_nDONE 1 0 :1:3 
 `uc 1 T5GSPM 1 0 :1:4 
@@ -1093,18 +1156,96 @@ CONCEALED 5
 `uc 1 T5GE 1 0 :1:7 
 ]
 "36878
-[s S1631 . 1 `uc 1 . 1 0 :3:0 
+[s S1679 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T5GGO 1 0 :1:3 
 ]
 "36878
-[u S1634 . 1 `S1371 1 . 1 0 `S1374 1 . 1 0 `S1620 1 . 1 0 `S1623 1 . 1 0 `S1631 1 . 1 0 ]
+[u S1682 . 1 `S1419 1 . 1 0 `S1422 1 . 1 0 `S1668 1 . 1 0 `S1671 1 . 1 0 `S1679 1 . 1 0 ]
 "36878
 "36878
-[v _T5GCONbits T5GCONbits `VES1634  1 e 1 @4036 ]
+[v _T5GCONbits T5GCONbits `VES1682  1 e 1 @4036 ]
 "37068
 [v _T5GATE T5GATE `VEuc  1 e 1 @4037 ]
 "37210
 [v _T5CLK T5CLK `VEuc  1 e 1 @4038 ]
+[s S2570 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+]
+"39822
+[s S2572 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_POR 1 0 :1:1 
+]
+"39822
+[s S2575 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_RI 1 0 :1:2 
+]
+"39822
+[s S2578 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_RMCLR 1 0 :1:3 
+]
+"39822
+[s S2581 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 NOT_RWDT 1 0 :1:4 
+]
+"39822
+[s S2584 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_WDTWV 1 0 :1:5 
+]
+"39822
+[s S2587 . 1 `uc 1 nBOR 1 0 :1:0 
+`uc 1 nPOR 1 0 :1:1 
+`uc 1 nRI 1 0 :1:2 
+`uc 1 nRMCLR 1 0 :1:3 
+`uc 1 nRWDT 1 0 :1:4 
+`uc 1 nWDTWV 1 0 :1:5 
+`uc 1 STKUNF 1 0 :1:6 
+`uc 1 STKOVF 1 0 :1:7 
+]
+"39822
+[s S2596 . 1 `uc 1 BOR 1 0 :1:0 
+`uc 1 POR 1 0 :1:1 
+`uc 1 RI 1 0 :1:2 
+`uc 1 RMCLR 1 0 :1:3 
+`uc 1 RWDT 1 0 :1:4 
+`uc 1 WDTWV 1 0 :1:5 
+]
+"39822
+[u S2603 . 1 `S2570 1 . 1 0 `S2572 1 . 1 0 `S2575 1 . 1 0 `S2578 1 . 1 0 `S2581 1 . 1 0 `S2584 1 . 1 0 `S2587 1 . 1 0 `S2596 1 . 1 0 ]
+"39822
+"39822
+[v _PCON0bits PCON0bits `VES2603  1 e 1 @4055 ]
+[s S2515 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 NOT_PD 1 0 :1:5 
+]
+"39963
+[s S2518 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_TO 1 0 :1:6 
+]
+"39963
+[s S2521 . 1 `uc 1 C 1 0 :1:0 
+`uc 1 DC 1 0 :1:1 
+`uc 1 Z 1 0 :1:2 
+`uc 1 OV 1 0 :1:3 
+`uc 1 N 1 0 :1:4 
+`uc 1 nPD 1 0 :1:5 
+`uc 1 nTO 1 0 :1:6 
+]
+"39963
+[s S2529 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 PD 1 0 :1:5 
+`uc 1 TO 1 0 :1:6 
+]
+"39963
+[s S2533 . 1 `uc 1 CARRY 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 ZERO 1 0 :1:2 
+`uc 1 OVERFLOW 1 0 :1:3 
+`uc 1 NEGATIVE 1 0 :1:4 
+]
+"39963
+[u S2539 . 1 `S2515 1 . 1 0 `S2518 1 . 1 0 `S2521 1 . 1 0 `S2529 1 . 1 0 `S2533 1 . 1 0 ]
+"39963
+"39963
+[v _STATUSbits STATUSbits `VES2539  1 e 1 @4056 ]
 [s S132 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1149,65 +1290,69 @@ CONCEALED 5
 [v __powers_ _powers_ `C[13]d  1 e 39 0 ]
 "39
 [v __npowers_ _npowers_ `C[13]d  1 e 39 0 ]
-"58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"12 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
+[v _reset_cause reset_cause `E17455  1 e 1 0 ]
+"61 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _FVR_ADC_Result FVR_ADC_Result `VEd  1 e 3 0 ]
-"59
-[v _AVSS_ADC_Result AVSS_ADC_Result `VEd  1 e 3 0 ]
-"60
-[v _ADC_Result_Scaling ADC_Result_Scaling `VEd  1 e 3 0 ]
-"61
-[v _POS3P3_ADC_Result POS3P3_ADC_Result `VEd  1 e 3 0 ]
 "62
-[v _POS12_ADC_Result POS12_ADC_Result `VEd  1 e 3 0 ]
+[v _AVSS_ADC_Result AVSS_ADC_Result `VEd  1 e 3 0 ]
 "63
-[v _Temp_ADC_Result Temp_ADC_Result `VEd  1 e 3 0 ]
+[v _ADC_Result_Scaling ADC_Result_Scaling `VEd  1 e 3 0 ]
 "64
-[v _Temp_ADC_Offset Temp_ADC_Offset `VEd  1 e 3 0 ]
+[v _POS3P3_ADC_Result POS3P3_ADC_Result `VEd  1 e 3 0 ]
 "65
-[v _Vpk_const Vpk_const `d  1 e 3 0 ]
+[v _POS12_ADC_Result POS12_ADC_Result `VEd  1 e 3 0 ]
 "66
-[v _Vpk Vpk `VEd  1 e 3 0 ]
+[v _Temp_ADC_Result Temp_ADC_Result `VEd  1 e 3 0 ]
 "67
-[v _Ipk Ipk `VEd  1 e 3 0 ]
+[v _Temp_ADC_Offset Temp_ADC_Offset `VEd  1 e 3 0 ]
 "68
-[v _Imeas Imeas `VEd  1 e 3 0 ]
+[v _Vpk_const Vpk_const `d  1 e 3 0 ]
 "69
-[v _Irms_offset Irms_offset `d  1 e 3 0 ]
+[v _Vpk Vpk `VEd  1 e 3 0 ]
 "70
-[v _Irms Irms `VEd  1 e 3 0 ]
+[v _Ipk Ipk `VEd  1 e 3 0 ]
 "71
-[v _Vrms Vrms `VEd  1 e 3 0 ]
+[v _Imeas Imeas `VEd  1 e 3 0 ]
 "72
-[v _Avg_Power Avg_Power `VEd  1 e 3 0 ]
+[v _Irms_offset Irms_offset `d  1 e 3 0 ]
 "73
-[v _TRIAC_Firing_Angle TRIAC_Firing_Angle `VEd  1 e 3 0 ]
+[v _Irms Irms `VEd  1 e 3 0 ]
+"74
+[v _Vrms Vrms `VEd  1 e 3 0 ]
+"75
+[v _Avg_Power Avg_Power `VEd  1 e 3 0 ]
 "76
-[v _dimming_period dimming_period `VEui  1 e 2 0 ]
-"77
-[v _load_enable load_enable `VEb  1 e 0 0 ]
-"78
-[v _eusart2RxStringReady eusart2RxStringReady `VEb  1 e 0 0 ]
+[v _TRIAC_Firing_Angle TRIAC_Firing_Angle `VEd  1 e 3 0 ]
 "79
-[v _dev_on_time dev_on_time `VEul  1 e 4 0 ]
+[v _dimming_period dimming_period `VEui  1 e 2 0 ]
 "80
+[v _load_enable load_enable `VEb  1 e 0 0 ]
+"81
+[v _eusart2RxStringReady eusart2RxStringReady `VEb  1 e 0 0 ]
+"82
+[v _dev_on_time dev_on_time `VEul  1 e 4 0 ]
+"83
 [v _load_on_time load_on_time `VEul  1 e 4 0 ]
+"84
+[v _adc_error_flag adc_error_flag `VEb  1 e 0 0 ]
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_ADI_InterruptHandler ADCC_ADI_InterruptHandler `*.38(v  1 e 3 0 ]
-"62 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _eusart2TxHead eusart2TxHead `VEuc  1 e 1 0 ]
-"63
-[v _eusart2TxTail eusart2TxTail `VEuc  1 e 1 0 ]
-"64
-[v _eusart2TxBuffer eusart2TxBuffer `VE[128]uc  1 e 128 0 ]
 "65
-[v _eusart2TxBufferRemaining eusart2TxBufferRemaining `VEuc  1 e 1 0 ]
+[v _eusart2TxTail eusart2TxTail `VEuc  1 e 1 0 ]
+"66
+[v _eusart2TxBuffer eusart2TxBuffer `VE[128]uc  1 e 128 0 ]
 "67
-[v _eusart2RxHead eusart2RxHead `VEuc  1 e 1 0 ]
-"68
-[v _eusart2RxTail eusart2RxTail `VEuc  1 e 1 0 ]
+[v _eusart2TxBufferRemaining eusart2TxBufferRemaining `VEuc  1 e 1 0 ]
 "69
-[v _eusart2RxBuffer eusart2RxBuffer `VE[64]uc  1 e 64 0 ]
+[v _eusart2RxHead eusart2RxHead `VEuc  1 e 1 0 ]
 "70
+[v _eusart2RxTail eusart2RxTail `VEuc  1 e 1 0 ]
+"71
+[v _eusart2RxBuffer eusart2RxBuffer `VE[64]uc  1 e 64 0 ]
+"72
 [v _eusart2RxCount eusart2RxCount `VEuc  1 e 1 0 ]
 "86 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.h
 [v _EUSART2_TxDefaultInterruptHandler EUSART2_TxDefaultInterruptHandler `*.38(v  1 e 3 0 ]
@@ -1225,10 +1370,12 @@ CONCEALED 5
 [v _TMR7_InterruptHandler TMR7_InterruptHandler `*.38(v  1 e 3 0 ]
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.h
 [v _line line `[64]uc  1 e 64 0 ]
-"289 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"39 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+[v _current_adc_channel current_adc_channel `E17592  1 e 1 0 ]
+"442 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"337
+"490
 } 0
 "85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
@@ -1239,27 +1386,31 @@ CONCEALED 5
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
 {
 "24
-[v terminal_ringBufferPull@index_2114 index `i  1 a 2 179 ]
+[v terminal_ringBufferPull@index_2151 index `i  1 a 2 173 ]
 "17
-[v terminal_ringBufferPull@index index `i  1 a 2 181 ]
+[v terminal_ringBufferPull@index index `i  1 a 2 175 ]
 "14
-[v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 177 ]
+[v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 171 ]
 "50
 } 0
-"37 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"41 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-"359
-[v ringBufferLUT@angle_degrees angle_degrees `d  1 a 3 164 ]
-"326
-[v ringBufferLUT@index index `i  1 a 2 170 ]
-"323
-[v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 167 ]
-"332
-[v ringBufferLUT@percentage percentage `i  1 a 2 172 ]
-"37
-[v ringBufferLUT@line line `*.39uc  1 p 2 160 ]
-"469
+"527
+[v ringBufferLUT@angle_degrees angle_degrees `d  1 a 3 22 ]
+"494
+[v ringBufferLUT@index index `i  1 a 2 28 ]
+"188
+[v ringBufferLUT@channel_name channel_name `[22]uc  1 a 22 0 ]
+"158
+[v ringBufferLUT@userID userID `i  1 a 2 32 ]
+"491
+[v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 25 ]
+"500
+[v ringBufferLUT@percentage percentage `i  1 a 2 30 ]
+"41
+[v ringBufferLUT@line line `*.39uc  1 p 2 162 ]
+"642
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1272,13 +1423,13 @@ CONCEALED 5
 "117
 [v terminal_textAttributes@foreground_color foreground_color `E17859  1 a 1 wreg ]
 "119
-[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 145 ]
+[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 147 ]
 "117
 [v terminal_textAttributes@foreground_color foreground_color `E17859  1 a 1 wreg ]
-[v terminal_textAttributes@background_color background_color `E17859  1 p 1 142 ]
-[v terminal_textAttributes@input_attribute input_attribute `E17851  1 p 1 143 ]
+[v terminal_textAttributes@background_color background_color `E17859  1 p 1 144 ]
+[v terminal_textAttributes@input_attribute input_attribute `E17851  1 p 1 145 ]
 "121
-[v terminal_textAttributes@foreground_color foreground_color `E17859  1 a 1 144 ]
+[v terminal_textAttributes@foreground_color foreground_color `E17859  1 a 1 146 ]
 "220
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strncpy.c
@@ -1291,16 +1442,6 @@ CONCEALED 5
 [v strncpy@from from `*.32Cuc  1 p 2 25 ]
 [v strncpy@size size `ui  1 p 2 27 ]
 "27
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
-[v _strcat strcat `(*.39uc  1 e 2 0 ]
-{
-"15
-[v strcat@cp cp `*.39uc  1 a 2 27 ]
-"8
-[v strcat@to to `*.39uc  1 p 2 23 ]
-[v strcat@from from `*.32Cuc  1 p 2 25 ]
-"26
 } 0
 "230 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
@@ -1348,14 +1489,104 @@ CONCEALED 5
 [v strcmp@s2 s2 `*.32Cuc  1 p 2 25 ]
 "42
 } 0
-"13 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
+"89 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
+[v _getUserID getUserID `(ui  1 e 2 0 ]
+{
+[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
+"92
+[v getUserID@initialOffset initialOffset `ui  1 a 2 39 ]
+"95
+[v getUserID@IDOffset IDOffset `uc  1 a 1 41 ]
+"89
+[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
+"92
+[v getUserID@inputUserID inputUserID `uc  1 a 1 38 ]
+"101
+} 0
+"62
+[v _getRevisionIDString getRevisionIDString `(*.39uc  1 e 2 0 ]
+{
+[v getRevisionIDString@inputMajRevID inputMajRevID `uc  1 a 1 wreg ]
+"64
+[v getRevisionIDString@returnString returnString `[4]uc  1 a 4 43 ]
+"75
+[v getRevisionIDString@MinRevStr MinRevStr `[2]uc  1 a 2 47 ]
+"70
+[v getRevisionIDString@MajRevStr MajRevStr `[1]uc  1 a 1 50 ]
+"62
+[v getRevisionIDString@inputMajRevID inputMajRevID `uc  1 a 1 wreg ]
+[v getRevisionIDString@inputMinRevID inputMinRevID `uc  1 p 1 39 ]
+"71
+[v getRevisionIDString@inputMajRevID inputMajRevID `uc  1 a 1 49 ]
+"87
+} 0
+"17 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\itoa.c
+[v _utoa utoa `(*.39uc  1 e 2 0 ]
+{
+"19
+[v utoa@v v `ui  1 a 2 36 ]
+"20
+[v utoa@c c `uc  1 a 1 38 ]
+"17
+[v utoa@buf buf `*.39uc  1 p 2 30 ]
+[v utoa@val val `ui  1 p 2 32 ]
+[v utoa@base base `i  1 p 2 34 ]
+"37
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter counter `uc  1 a 1 27 ]
+"8
+[v ___lwmod@dividend dividend `ui  1 p 2 23 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 25 ]
+"26
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 28 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 27 ]
+"8
+[v ___lwdiv@dividend dividend `ui  1 p 2 23 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 25 ]
+"31
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
+[v _strcat strcat `(*.39uc  1 e 2 0 ]
+{
+"15
+[v strcat@cp cp `*.39uc  1 a 2 27 ]
+"8
+[v strcat@to to `*.39uc  1 p 2 23 ]
+[v strcat@from from `*.34Cuc  1 p 2 25 ]
+"26
+} 0
+"23 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
+[v _getMinorRevisionID getMinorRevisionID `(uc  1 e 1 0 ]
+{
+"26
+[v getMinorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 34 ]
+"31
+} 0
+"12
+[v _getMajorRevisionID getMajorRevisionID `(uc  1 e 1 0 ]
+{
+"15
+[v getMajorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 37 ]
+"20
+} 0
+"34
 [v _getDeviceIDString getDeviceIDString `(*.39uc  1 e 2 0 ]
 {
-"16
+"37
 [v getDeviceIDString@returnString returnString `[12]uc  1 a 12 33 ]
-"13
+"34
 [v getDeviceIDString@inputDevID inputDevID `ui  1 p 2 29 ]
-"39
+"60
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcpy.c
 [v _strcpy strcpy `(*.39uc  1 e 2 0 ]
@@ -1364,7 +1595,7 @@ CONCEALED 5
 [v strcpy@cp cp `*.39uc  1 a 2 27 ]
 "8
 [v strcpy@to to `*.39uc  1 p 2 23 ]
-[v strcpy@from from `*.32Cuc  1 p 2 25 ]
+[v strcpy@from from `*.34Cuc  1 p 2 25 ]
 "24
 } 0
 "4 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
@@ -1383,6 +1614,24 @@ CONCEALED 5
 {
 [v FLASH_ReadByte@flashAddr flashAddr `ul  1 p 4 23 ]
 "69
+} 0
+"372 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
+[v _getCauseOfResetString getCauseOfResetString `(*.32Tuc  1 e 2 0 ]
+{
+[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
+"375
+[v getCauseOfResetString@strings strings `[12]*.32Cuc  1 a 24 25 ]
+"372
+[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
+[v getCauseOfResetString@F17476 F17476 `[12]*.32Cuc  1 s 24 F17476 ]
+"388
+[v getCauseOfResetString@r r `E17455  1 a 1 49 ]
+"391
+} 0
+"14
+[v _getCauseOfReset getCauseOfReset `(E17989  1 e 1 0 ]
+{
+"369
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\atoi.c
 [v _atoi atoi `(i  1 e 2 0 ]
@@ -1418,12 +1667,17 @@ CONCEALED 5
 [v ___awtoft@c c `i  1 p 2 31 ]
 "42
 } 0
-"130 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"99 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
+[v _TMR7_StartTimer TMR7_StartTimer `(v  1 e 1 0 ]
+{
+"103
+} 0
+"137 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Read EUSART2_Read `(uc  1 e 1 0 ]
 {
-"132
+"139
 [v EUSART2_Read@readValue readValue `uc  1 a 1 23 ]
-"149
+"159
 } 0
 "80 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_clearTerminal terminal_clearTerminal `(v  1 e 1 0 ]
@@ -1434,28 +1688,28 @@ CONCEALED 5
 [v _printf printf `(i  1 e 2 0 ]
 {
 "1500
-[v printf@idx idx `uc  1 a 1 117 ]
+[v printf@idx idx `uc  1 a 1 119 ]
 "528
-[v printf@val val `ul  1 a 4 132 ]
-[u S2377 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[v printf@val val `ul  1 a 4 134 ]
+[u S2724 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
 "526
-[v printf@tmpval tmpval `S2377  1 a 4 128 ]
+[v printf@tmpval tmpval `S2724  1 a 4 130 ]
 "516
-[v printf@fval fval `d  1 a 3 136 ]
+[v printf@fval fval `d  1 a 3 138 ]
 "504
-[v printf@prec prec `i  1 a 2 139 ]
+[v printf@prec prec `i  1 a 2 141 ]
 "516
-[v printf@exp exp `i  1 a 2 126 ]
+[v printf@exp exp `i  1 a 2 128 ]
 "508
-[v printf@flag flag `us  1 a 2 124 ]
+[v printf@flag flag `us  1 a 2 126 ]
 "466
-[v printf@ap ap `[1]*.39v  1 a 2 122 ]
+[v printf@ap ap `[1]*.39v  1 a 2 124 ]
 "530
-[v printf@cp cp `*.34Cuc  1 a 2 120 ]
+[v printf@cp cp `*.34Cuc  1 a 2 122 ]
 "529
-[v printf@len len `ui  1 a 2 118 ]
+[v printf@len len `ui  1 a 2 120 ]
 "499
-[v printf@c c `c  1 a 1 141 ]
+[v printf@c c `c  1 a 1 143 ]
 "464
 [v printf@f f `*.34Cuc  1 p 2 100 ]
 "1541
@@ -1469,22 +1723,22 @@ CONCEALED 5
 [v scale@scl scl `c  1 a 1 91 ]
 "441
 } 0
-"180 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"193 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _putch putch `(v  1 e 1 0 ]
 {
 [v putch@txData txData `uc  1 a 1 wreg ]
 [v putch@txData txData `uc  1 a 1 wreg ]
-"182
+"195
 [v putch@txData txData `uc  1 a 1 24 ]
-"183
+"196
 } 0
-"151
+"161
 [v _EUSART2_Write EUSART2_Write `(v  1 e 1 0 ]
 {
 [v EUSART2_Write@txData txData `uc  1 a 1 wreg ]
 [v EUSART2_Write@txData txData `uc  1 a 1 wreg ]
 [v EUSART2_Write@txData txData `uc  1 a 1 23 ]
-"173
+"186
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
 [v _isdigit isdigit `(b  1 e 0 0 ]
@@ -1724,22 +1978,22 @@ CONCEALED 5
 {
 "62
 } 0
-"77 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"79 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Initialize EUSART2_Initialize `(v  1 e 1 0 ]
 {
-"113
+"120
 } 0
-"264
+"280
 [v _EUSART2_SetTxInterruptHandler EUSART2_SetTxInterruptHandler `(v  1 e 1 0 ]
 {
 [v EUSART2_SetTxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 23 ]
-"266
+"282
 } 0
-"268
+"284
 [v _EUSART2_SetRxInterruptHandler EUSART2_SetRxInterruptHandler `(v  1 e 1 0 ]
 {
 [v EUSART2_SetRxInterruptHandler@interruptHandler interruptHandler `*.38(v  1 p 3 23 ]
-"270
+"286
 } 0
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -1767,10 +2021,15 @@ CONCEALED 5
 {
 "185
 } 0
-"242 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"331 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
 {
-"282
+"435
+} 0
+"105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
+[v _TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
+{
+"109
 } 0
 "112 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -1802,15 +2061,15 @@ CONCEALED 5
 {
 "185
 } 0
-"126 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"130 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 {
-"144
+"148
 } 0
-"185 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"198 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Transmit_ISR EUSART2_Transmit_ISR `(v  1 e 1 0 ]
 {
-"202
+"215
 } 0
 "80 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManagerHigh INTERRUPT_InterruptManagerHigh `IIH(v  1 e 1 0 ]
@@ -1833,17 +2092,17 @@ CONCEALED 5
 {
 "185
 } 0
-"204 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"217 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Receive_ISR EUSART2_Receive_ISR `(v  1 e 1 0 ]
 {
-"262
+"278
 } 0
 "464 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]
 {
 [v i2printf@val printf `ul  1 a 4 35 ]
-[u S2377 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
-[v i2printf@tmpval printf `S2377  1 a 4 28 ]
+[u S2724 . 4 `ul 1 vd 4 0 `d 1 integ 3 0 ]
+[v i2printf@tmpval printf `S2724  1 a 4 28 ]
 [v i2printf@fval printf `d  1 a 3 32 ]
 [v i2printf@prec printf `i  1 a 2 39 ]
 [v i2printf@exp printf `i  1 a 2 26 ]
@@ -1865,22 +2124,22 @@ CONCEALED 5
 [v i2scale@scl scl `c  1 a 1 59 ]
 "441
 } 0
-"180 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
+"193 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v i2_putch putch `(v  1 e 1 0 ]
 {
 [v i2putch@txData txData `uc  1 a 1 wreg ]
 [v i2putch@txData txData `uc  1 a 1 wreg ]
-"182
+"195
 [v i2putch@txData txData `uc  1 a 1 1 ]
-"183
+"196
 } 0
-"151
+"161
 [v i2_EUSART2_Write EUSART2_Write `(v  1 e 1 0 ]
 {
 [v i2EUSART2_Write@txData txData `uc  1 a 1 wreg ]
 [v i2EUSART2_Write@txData txData `uc  1 a 1 wreg ]
 [v i2EUSART2_Write@txData txData `uc  1 a 1 0 ]
-"173
+"186
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\isdigit.c
 [v i2_isdigit isdigit `(b  1 e 0 0 ]
@@ -1973,22 +2232,27 @@ CONCEALED 5
 {
 "313
 } 0
-"147 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
-[v _ADC_postProcessingCallback ADC_postProcessingCallback `(v  1 e 1 0 ]
+"151 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+[v _ADCPostProcessingCallback ADCPostProcessingCallback `(v  1 e 1 0 ]
 {
-"149
-[v ADC_postProcessingCallback@currentADCChannel currentADCChannel `E17421  1 a 1 79 ]
-"239
+"153
+[v ADCPostProcessingCallback@currentADCChannel currentADCChannel `E17421  1 a 1 79 ]
+"328
 } 0
-"90
+"105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
+[v i2_TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
+{
+"109
+} 0
+"94 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _peakToRMS peakToRMS `(d  1 e 3 0 ]
 {
-"93
+"97
 [v peakToRMS@RMS RMS `d  1 a 3 67 ]
-"90
+"94
 [v peakToRMS@Peak Peak `d  1 p 3 52 ]
 [v peakToRMS@Angle Angle `d  1 p 3 55 ]
-"104
+"108
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\acos.c
 [v _acos acos `(d  1 e 3 0 ]
@@ -2045,15 +2309,15 @@ CONCEALED 5
 [v fabs@d d `d  1 p 3 38 ]
 "9
 } 0
-"107 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"111 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 3 0 ]
 {
-"110
+"114
 [v currentMeasuredToPeak@Peak Peak `d  1 a 3 25 ]
-"107
+"111
 [v currentMeasuredToPeak@Measured Measured `d  1 p 3 19 ]
 [v currentMeasuredToPeak@Angle Angle `d  1 p 3 22 ]
-"117
+"121
 } 0
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sin.c
 [v _sin sin `(d  1 e 3 0 ]

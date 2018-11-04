@@ -49,6 +49,8 @@
 */
 #include "eusart2.h"
 
+#include "../pin_macros.h"
+
 /**
   Section: Macro Declarations
 */
@@ -76,6 +78,8 @@ volatile bit eusart2RxStringReady;
 */
 void EUSART2_Initialize(void)
 {
+    COMM_ERROR_PIN = 1;
+    
     // disable interrupts before changing states
     PIE3bits.RC2IE = 0;
     EUSART2_SetRxInterruptHandler(EUSART2_Receive_ISR);
@@ -110,6 +114,9 @@ void EUSART2_Initialize(void)
 
     // enable receive interrupt
     PIE3bits.RC2IE = 1;
+    
+    COMM_ERROR_PIN = 0;
+    
 }
 
 uint8_t EUSART2_is_tx_ready(void)
@@ -134,7 +141,10 @@ uint8_t EUSART2_Read(void)
     while(0 == eusart2RxCount)
     {
         CLRWDT();
+        COMM_ERROR_PIN = 1;
     }
+    
+    COMM_ERROR_PIN = 0;
 
     readValue = eusart2RxBuffer[eusart2RxTail++];
     if(sizeof(eusart2RxBuffer) <= eusart2RxTail)
@@ -153,7 +163,10 @@ void EUSART2_Write(uint8_t txData)
     while(0 == eusart2TxBufferRemaining)
     {
         CLRWDT();
+        COMM_ERROR_PIN = 1;
     }
+    
+    COMM_ERROR_PIN = 0;
 
     if(0 == PIE3bits.TX2IE)
     {
@@ -210,7 +223,10 @@ void EUSART2_Receive_ISR(void)
 
         RC2STAbits.CREN = 0;
         RC2STAbits.CREN = 1;
+        COMM_ERROR_PIN = 1;
     }
+    
+    COMM_ERROR_PIN = 0;
 
     // buffer overruns are ignored
     eusart2RxBuffer[eusart2RxHead++] = RC2REG;

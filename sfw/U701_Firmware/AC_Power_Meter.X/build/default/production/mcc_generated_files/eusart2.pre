@@ -21416,7 +21416,7 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 62 "mcc_generated_files/eusart2.c"
+# 64 "mcc_generated_files/eusart2.c"
 volatile uint8_t eusart2TxHead = 0;
 volatile uint8_t eusart2TxTail = 0;
 volatile uint8_t eusart2TxBuffer[128];
@@ -21429,9 +21429,11 @@ volatile uint8_t eusart2RxCount;
 
 volatile bit eusart2RxStringReady;
 
-# 77
+# 79
 void EUSART2_Initialize(void)
 {
+LATFbits.LATF1 = 1;
+
 
 PIE3bits.RC2IE = 0;
 EUSART2_SetRxInterruptHandler(EUSART2_Receive_ISR);
@@ -21466,6 +21468,9 @@ eusart2RxCount = 0;
 
 
 PIE3bits.RC2IE = 1;
+
+LATFbits.LATF1 = 0;
+
 }
 
 uint8_t EUSART2_is_tx_ready(void)
@@ -21490,7 +21495,10 @@ uint8_t readValue = 0;
 while(0 == eusart2RxCount)
 {
 asm(" clrwdt");
+LATFbits.LATF1 = 1;
 }
+
+LATFbits.LATF1 = 0;
 
 readValue = eusart2RxBuffer[eusart2RxTail++];
 if(sizeof(eusart2RxBuffer) <= eusart2RxTail)
@@ -21509,7 +21517,10 @@ void EUSART2_Write(uint8_t txData)
 while(0 == eusart2TxBufferRemaining)
 {
 asm(" clrwdt");
+LATFbits.LATF1 = 1;
 }
+
+LATFbits.LATF1 = 0;
 
 if(0 == PIE3bits.TX2IE)
 {
@@ -21566,7 +21577,10 @@ if(1 == RC2STAbits.OERR)
 
 RC2STAbits.CREN = 0;
 RC2STAbits.CREN = 1;
+LATFbits.LATF1 = 1;
 }
+
+LATFbits.LATF1 = 0;
 
 
 eusart2RxBuffer[eusart2RxHead++] = RC2REG;
@@ -21576,7 +21590,7 @@ eusart2RxHead = 0;
 }
 eusart2RxCount++;
 
-# 227
+# 243
 if((RC2REG == (int) '\n') || (RC2REG == (int) '\r')) {
 
 eusart2RxStringReady = 1;

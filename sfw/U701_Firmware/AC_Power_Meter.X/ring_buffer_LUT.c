@@ -1,4 +1,5 @@
 
+#include <xc.h>
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
@@ -6,8 +7,9 @@
 #include "ring_buffer_LUT.h"
 #include "pin_macros.h"
 #include "mcc_generated_files/memory.h"
+#include "mcc_generated_files/adcc.h"
 #include "device_IDs.h"
-
+#include "cause_of_reset.h"
 
 #ifndef M_PI
     #define M_PI acos(-1.0)
@@ -33,6 +35,8 @@ extern volatile double Avg_Power;
 extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
+extern volatile bit adc_error_flag;
+adcc_channel_t current_adc_channel;
 
 void ringBufferLUT(char * line) {
 
@@ -61,6 +65,25 @@ void ringBufferLUT(char * line) {
 
         // Move cursor to home
         printf("\033[H");
+
+    }
+    
+    // print Device ID
+    else if((0 == strcmp(line, "Cause of Reset?"))) {
+
+        // Get some space on terminal
+        terminal_printNewline();
+        // Set to green text
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+        // Determine cause of reset and print
+        printf("The cause of the most recent device reset was: %s\n\r",
+                getCauseOfResetString(getCauseOfReset()));
+
+        // Reset to white text
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
 
     }
 
@@ -100,6 +123,151 @@ void ringBufferLUT(char * line) {
         // Get some space on terminal
         terminal_printNewline();
 
+    }
+    
+    // print Revision ID
+    else if((0 == strcmp(line, "Revision ID?"))) {
+
+        // Get some space on terminal
+        terminal_printNewline();
+        // Set to green text
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+        // Grab and print revision ID from flash
+        printf("Flash memory revision ID is: %s\n\r",
+                getRevisionIDString(getMajorRevisionID(),getMinorRevisionID()));
+
+        // Reset to white text
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+
+    }
+    
+    // print User IDs
+    else if((0 == strcmp(line, "User IDs?"))) {
+
+        // Get some space on terminal
+        terminal_printNewline();
+        // Set to green text
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+        printf("The following User IDs have been retrieved from flash memory:\n\r");
+
+        // Loop through all 8 user ID locations in flash
+        for (int userID = 0; userID <= 7; userID++) {
+         
+            printf("    User ID Word %d (Flash address 0x%X): 0x%X\n\r",
+                    userID,
+                    (0x200000 + (2 * userID)),
+                    getUserID(userID));
+            
+        }
+
+        // Reset to white text
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+
+    }
+    
+    // Report POS3P3 ADC Conversion Result
+    else if((0 == strcmp(line, "ADC Error?"))) {
+     
+        if (adc_error_flag) {
+
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to yellow and print help message
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            
+            // Get the current ADC channel enumeration from the ADPCH register
+            current_adc_channel = ADPCH;
+            
+            // buffer string for holding the ADC error channel
+            char channel_name[22];
+            
+            switch (current_adc_channel) {
+             
+                case ISNS_ADC:
+                    strcpy(channel_name, "ISNS");
+                    break;
+                    
+                case POS12_ADC:
+                    strcpy(channel_name, "POS12");
+                    break;
+                    
+                case POS3P3_ADC:
+                    strcpy(channel_name, "POS3P3");
+                    break;
+                    
+                case channel_VSS:
+                    strcpy(channel_name, "Internal AVSS");
+                    break;
+                    
+                case channel_Temp:
+                    strcpy(channel_name, "Internal Temp");
+                    break;
+                    
+                case channel_DAC1:
+                    strcpy(channel_name, "Internal DAC1");
+                    break;
+                    
+                case channel_FVR_buf1:
+                    strcpy(channel_name, "Internal FVR Buffer 1");
+                    break;
+                    
+                default:
+                    strcpy(channel_name, "Spurious channel");
+                    break;
+                
+            }
+            
+            
+            printf("The following channel caused an ADC error: %s\n\r", channel_name);
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();
+
+        }
+        
+        else {
+         
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to yellow and print help message
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("No ADC Error detected\n\r");
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();   
+
+        }
+        
+    }
+    
+    // Clear ADC error
+    else if((0 == strcmp(line, "Clear ADC Error"))) {
+     
+        ADC_ERROR_PIN = LOW;
+        adc_error_flag = 0;
+        // Enable acquisition timer interrupt (TMR7)
+        PIE5bits.TMR7IE == 1;
+        TMR7_StartTimer();
+        
+        // Get some space on terminal
+        terminal_printNewline();
+        // set text color to yellow and print help message
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        printf("Clearing ADC Error\n\r");
+        // Reset to white foreground
+        terminal_textAttributesReset();
+        // Get some space on terminal
+        terminal_printNewline();
+        
+        
     }
     
     // Report POS3P3 ADC Conversion Result
@@ -419,9 +587,14 @@ void ringBufferLUT(char * line) {
                 "Device Commands:\n\r"
                 "   Reset: Clears the terminal and resets the micro\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
+                "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
                 "   *IDN?: Returns device identification string\n\r"
                 "   Device On Time?: Returns device on time since last device reset\n\r"
                 "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
+                "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
+                "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
+                "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
+                "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
                 "Device Measurement Commands:\n\r"

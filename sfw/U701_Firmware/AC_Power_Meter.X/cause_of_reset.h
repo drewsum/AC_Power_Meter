@@ -28,33 +28,37 @@
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
-#ifndef DEVICE_IDS_H
-#define	DEVICE_IDS_H
+#ifndef CAUSE_OF_RESET_H
+#define	CAUSE_OF_RESET_H
 
-#include <xc.h> // include processor files - each processor file is guarded.
+#include <xc.h> // include processor files - each processor file is guarded.  
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include "mcc_generated_files/memory.h"
 
-// This function retrieves the device ID integer from program memory and returns it as an integer
-uint16_t getDeviceID(void);
+// The type of reset, stored in an enumeration
+extern enum reset_t{
+    Power_On_Reset,
+    Brown_Out_Reset,
+    Master_Clear_Reset,
+    Master_Clear_Sleep_Reset,
+    Watch_Dog_Timer_Reset,
+    Watch_Dog_Timer_Sleep_Reset,
+    Windowed_Watch_Dog_Timer_Reset,
+    Interrupt_Wake_Up_From_Sleep,
+    RESET_Instruction_Executed,
+    Stack_Overflow_Reset,
+    Stack_Underflow_Reset,
+    VREG_or_ULP_Ready_Fault_Reset
+};
 
-// These function retrieve the major and minor device revision fields from program memory
-uint8_t getMajorRevisionID(void);
-uint8_t getMinorRevisionID(void);
+// This function returns a pointer to a string describing the cause of the most
+// recent device reset
+enum reset_t getCauseOfReset(void);
 
-// This function returns a string pointer for a string describing the device part number
-// Pass the device ID word located in program memory
-char* getDeviceIDString(uint16_t inputDevID);
+inline char * getCauseOfResetString(enum reset_t r);
 
-// This function returns a string pointer for a string describing the silicon revision ID string
-// Pass the Major ID integer and then the minor ID integer
-// Output string will be formatted as in datasheet: <MajorRev(Letter)><MinorRev(Number)>
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
-
-// This function retrieves a user ID from program memory and returns it as an unsigned int
-// Pass the user ID (0-7) as the argument
-uint16_t getUserID(uint8_t inputUserID);
-
-#endif	/* DEVICE_IDS_H */
+#endif	/* CAUSE_OF_RESET_H */
 

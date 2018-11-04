@@ -21943,6 +21943,48 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
+# 40 "device_IDs.h"
+uint16_t getDeviceID(void);
+
+
+uint8_t getMajorRevisionID(void);
+uint8_t getMinorRevisionID(void);
+
+
+
+char* getDeviceIDString(uint16_t inputDevID);
+
+
+
+
+char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
+
+
+
+uint16_t getUserID(uint8_t inputUserID);
+
+# 42 "cause_of_reset.h"
+extern enum reset_t{
+Power_On_Reset,
+Brown_Out_Reset,
+Master_Clear_Reset,
+Master_Clear_Sleep_Reset,
+Watch_Dog_Timer_Reset,
+Watch_Dog_Timer_Sleep_Reset,
+Windowed_Watch_Dog_Timer_Reset,
+Interrupt_Wake_Up_From_Sleep,
+RESET_Instruction_Executed,
+Stack_Overflow_Reset,
+Stack_Underflow_Reset,
+VREG_or_ULP_Ready_Fault_Reset
+};
+
+
+
+enum reset_t getCauseOfReset(void);
+
+inline char * getCauseOfResetString(enum reset_t r);
+
 # 49 "ring_buffer_LUT.h"
 void ringBufferLUT(char * line);
 
@@ -22014,7 +22056,7 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 58 "main.c"
+# 61 "main.c"
 volatile double FVR_ADC_Result;
 volatile double AVSS_ADC_Result;
 volatile double ADC_Result_Scaling;
@@ -22038,8 +22080,9 @@ volatile bit load_enable = 0;
 volatile bit eusart2RxStringReady = 0;
 volatile unsigned long dev_on_time = 0;
 volatile unsigned long load_on_time = 0;
+volatile bit adc_error_flag = 0;
 
-# 90
+# 94
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22069,7 +22112,7 @@ return Peak;
 
 }
 
-# 126
+# 130
 void heartbeatTimerCallback(void) {
 
 
@@ -22091,28 +22134,70 @@ asm(" clrwdt");
 }
 
 
-void ADC_postProcessingCallback(void) {
+void ADCPostProcessingCallback(void) {
 
 adcc_channel_t currentADCChannel = ADPCH;
 
 switch (currentADCChannel) {
 
 case channel_VSS:
+
 AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+
+if (AVSS_ADC_Result > 0.01) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
 break;
 
 
 case channel_FVR_buf1:
+
 FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
 ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+
+if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
+
 break;
 
 
 case POS3P3_ADC:
+
 POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+
+if (POS3P3_ADC_Result > 3.5) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
 break;
 
+
 case ISNS_ADC:
+
 Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
 
 
@@ -22164,21 +22249,64 @@ Vrms = peakToRMS(Vpk_const, 0.0);
 Avg_Power = Vrms * Irms;
 
 }
+
+if (Irms > 5.0) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
 break;
 
 
 case POS12_ADC:
+
 POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+
+if (POS12_ADC_Result > 13.6) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
 break;
 
 
 case channel_Temp:
+
 Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+
+if (Temp_ADC_Result > 40.0) {
+
+LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
+
+}
+
 break;
+
 
 
 default:
 LATFbits.LATF3 = 1;
+adc_error_flag = 1;
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
 break;
 
 }
@@ -22192,43 +22320,107 @@ void acquisitionTimerCallback(void) {
 ADCC_StartConversion(channel_VSS);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
 
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE = 0;
+TMR7_StopTimer();
+return;
+
+}
+
+}
 
 
 ADCC_StartConversion(channel_FVR_buf1);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
+
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE = 0;
+TMR7_StopTimer();
+return;
+
+}
+
+}
 
 
 ADCC_StartConversion(POS3P3_ADC);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
+
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE = 0;
+TMR7_StopTimer();
+return;
+
+}
+
+}
 
 
 ADCC_StartConversion(ISNS_ADC);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
+
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE = 0;
+TMR7_StopTimer();
+return;
+
+}
+
+}
 
 
 ADCC_StartConversion(POS12_ADC);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
+
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE = 0;
+TMR7_StopTimer();
+return;
+
+}
+
+}
 
 
 ADCC_StartConversion(channel_Temp);
 
 
-while(!ADCC_IsConversionDone());
+while(!ADCC_IsConversionDone()) {
 
+if (adc_error_flag) {
+
+
+PIE5bits.TMR7IE == 0;
+TMR7_StopTimer();
+return;
 
 }
 
-# 289
+}
+
+}
+
+# 442
 void main(void)
 {
 
@@ -22248,7 +22440,7 @@ load_enable = 0;
 TMR6_SetInterruptHandler(heartbeatTimerCallback);
 
 
-ADCC_SetADIInterruptHandler(ADC_postProcessingCallback);
+ADCC_SetADIInterruptHandler(ADCPostProcessingCallback);
 
 
 TMR7_SetInterruptHandler(acquisitionTimerCallback);

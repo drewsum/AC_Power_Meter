@@ -14,5 +14,6 @@ mcc_generated_files/tmr6.h  \
 mcc_generated_files/tmr7.h  \
 mcc_generated_files/pin_manager.h  \
 ring_buffer_interface.h  \
+cause_of_reset.h  \
 ring_buffer_LUT.h  \
 mcc_generated_files/adcc.h 

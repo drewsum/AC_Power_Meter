@@ -1,12 +1,56 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"125 mcc_generated_files/memory.h
-[v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ul ]
-"37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"96 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
-[v _utoa `(*uc ~T0 @X0 0 ef3`*uc`ui`i ]
-"36 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"12 cause_of_reset.c
+[c E17455 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
+[n E17455 reset_t Power_On_Reset Brown_Out_Reset Master_Clear_Reset Master_Clear_Sleep_Reset Watch_Dog_Timer_Reset Watch_Dog_Timer_Sleep_Reset Windowed_Watch_Dog_Timer_Reset Interrupt_Wake_Up_From_Sleep RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset VREG_or_ULP_Ready_Fault_Reset  ]
+"39933 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[s S1935 :5 `uc 1 :1 `uc 1 ]
+[n S1935 . . NOT_PD ]
+"39937
+[s S1936 :6 `uc 1 :1 `uc 1 ]
+[n S1936 . . NOT_TO ]
+"39941
+[s S1937 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1937 . C DC Z OV N nPD nTO ]
+"39950
+[s S1938 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1938 . . PD TO ]
+"39955
+[s S1939 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1939 . CARRY . ZERO OVERFLOW NEGATIVE ]
+"39932
+[u S1934 `S1935 1 `S1936 1 `S1937 1 `S1938 1 `S1939 1 ]
+[n S1934 . . . . . . ]
+"39963
+[v _STATUSbits `VS1934 ~T0 @X0 0 e@4056 ]
+"39780
+[s S1926 :1 `uc 1 ]
+[n S1926 . NOT_BOR ]
+"39783
+[s S1927 :1 `uc 1 :1 `uc 1 ]
+[n S1927 . . NOT_POR ]
+"39787
+[s S1928 :2 `uc 1 :1 `uc 1 ]
+[n S1928 . . NOT_RI ]
+"39791
+[s S1929 :3 `uc 1 :1 `uc 1 ]
+[n S1929 . . NOT_RMCLR ]
+"39795
+[s S1930 :4 `uc 1 :1 `uc 1 ]
+[n S1930 . . NOT_RWDT ]
+"39799
+[s S1931 :5 `uc 1 :1 `uc 1 ]
+[n S1931 . . NOT_WDTWV ]
+"39803
+[s S1932 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1932 . nBOR nPOR nRI nRMCLR nRWDT nWDTWV STKUNF STKOVF ]
+"39813
+[s S1933 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1933 . BOR POR RI RMCLR RWDT WDTWV ]
+"39779
+[u S1925 `S1926 1 `S1927 1 `S1928 1 `S1929 1 `S1930 1 `S1931 1 `S1932 1 `S1933 1 ]
+[n S1925 . . . . . . . . . ]
+"39822
+[v _PCON0bits `VS1925 ~T0 @X0 0 e@4055 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -15996,83 +16040,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
-[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
-[; ;string.h: 16: extern void * memset(void *, int, size_t);
-[; ;string.h: 36: extern char * strcat(char *, const char *);
-[; ;string.h: 37: extern char * strcpy(char *, const char *);
-[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
-[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
-[; ;string.h: 40: extern char * strdup(const char *);
-[; ;string.h: 41: extern char * strtok(char *, const char *);
-[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
-[; ;string.h: 45: extern int strcmp(const char *, const char *);
-[; ;string.h: 46: extern int stricmp(const char *, const char *);
-[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
-[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t);
-[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
-[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
-[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
-[; ;string.h: 52: extern size_t strspn(const char *, const char *);
-[; ;string.h: 53: extern char * strstr(const char *, const char *);
-[; ;string.h: 54: extern char * stristr(const char *, const char *);
-[; ;string.h: 55: extern char * strerror(int);
-[; ;string.h: 56: extern size_t strlen(const char *);
-[; ;string.h: 57: extern char * strchr(const char *, int);
-[; ;string.h: 58: extern char * strichr(const char *, int);
-[; ;string.h: 59: extern char * strrchr(const char *, int);
-[; ;string.h: 60: extern char * strrichr(const char *, int);
-[; ;stdlib.h: 7: typedef unsigned short wchar_t;
-[; ;stdlib.h: 15: typedef struct {
-[; ;stdlib.h: 16: int rem;
-[; ;stdlib.h: 17: int quot;
-[; ;stdlib.h: 18: } div_t;
-[; ;stdlib.h: 19: typedef struct {
-[; ;stdlib.h: 20: unsigned rem;
-[; ;stdlib.h: 21: unsigned quot;
-[; ;stdlib.h: 22: } udiv_t;
-[; ;stdlib.h: 23: typedef struct {
-[; ;stdlib.h: 24: long quot;
-[; ;stdlib.h: 25: long rem;
-[; ;stdlib.h: 26: } ldiv_t;
-[; ;stdlib.h: 27: typedef struct {
-[; ;stdlib.h: 28: unsigned long quot;
-[; ;stdlib.h: 29: unsigned long rem;
-[; ;stdlib.h: 30: } uldiv_t;
-[; ;stdlib.h: 53: extern double atof(const char *);
-[; ;stdlib.h: 54: extern double strtod(const char *, const char **);
-[; ;stdlib.h: 55: extern int atoi(const char *);
-[; ;stdlib.h: 56: extern unsigned xtoi(const char *);
-[; ;stdlib.h: 57: extern long atol(const char *);
-[; ;stdlib.h: 58: extern long strtol(const char *, char **, int);
-[; ;stdlib.h: 60: extern int rand(void);
-[; ;stdlib.h: 61: extern void srand(unsigned int);
-[; ;stdlib.h: 62: extern void * calloc(size_t, size_t);
-[; ;stdlib.h: 63: extern div_t div(int numer, int denom);
-[; ;stdlib.h: 64: extern udiv_t udiv(unsigned numer, unsigned denom);
-[; ;stdlib.h: 65: extern ldiv_t ldiv(long numer, long denom);
-[; ;stdlib.h: 66: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-[; ;stdlib.h: 67: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 68: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 69: extern unsigned int _rotl(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 70: extern unsigned int _rotr(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 75: extern void * malloc(size_t);
-[; ;stdlib.h: 76: extern void free(void *);
-[; ;stdlib.h: 77: extern void * realloc(void *, size_t);
-[; ;stdlib.h: 86: extern int atexit(void (*)(void));
-[; ;stdlib.h: 87: extern char * getenv(const char *);
-[; ;stdlib.h: 88: extern char ** environ;
-[; ;stdlib.h: 89: extern int system(char *);
-[; ;stdlib.h: 90: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-[; ;stdlib.h: 91: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-[; ;stdlib.h: 92: extern int abs(int);
-[; ;stdlib.h: 93: extern long labs(long);
-[; ;stdlib.h: 95: extern char * itoa(char * buf, int val, int base);
-[; ;stdlib.h: 96: extern char * utoa(char * buf, unsigned val, int base);
-[; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
-[; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
-[; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
@@ -16102,193 +16069,398 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
-[; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
-[; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
-[; ;memory.h: 193: int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
-[; ;memory.h: 218: void FLASH_EraseBlock(uint32_t baseAddr);
-[; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-[; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
-[; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;device_IDs.h: 40: uint16_t getDeviceID(void);
-[; ;device_IDs.h: 43: uint8_t getMajorRevisionID(void);
-[; ;device_IDs.h: 44: uint8_t getMinorRevisionID(void);
-[; ;device_IDs.h: 48: char* getDeviceIDString(uint16_t inputDevID);
-[; ;device_IDs.h: 53: char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
-[; ;device_IDs.h: 57: uint16_t getUserID(uint8_t inputUserID);
-"4 device_IDs.c
-[v _getDeviceID `(ui ~T0 @X0 1 ef ]
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stdarg.h: 7: typedef void * va_list[1];
+[; ;stdarg.h: 10: extern void * __va_start(void);
+[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
+[; ;stdio.h: 43: struct __prbuf
+[; ;stdio.h: 44: {
+[; ;stdio.h: 45: char * ptr;
+[; ;stdio.h: 46: void (* func)(char);
+[; ;stdio.h: 47: };
+[; ;errno.h: 29: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void);
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *);
+[; ;conio.h: 24: extern void cputs(const char *);
+[; ;stdio.h: 88: extern int cprintf(char *, ...);
+[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+[; ;stdio.h: 183: extern char * gets(char *);
+[; ;stdio.h: 184: extern int puts(const char *);
+[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
+[; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 36: extern char * strcat(char *, const char *);
+[; ;string.h: 37: extern char * strcpy(char *, const char *);
+[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 40: extern char * strdup(const char *);
+[; ;string.h: 41: extern char * strtok(char *, const char *);
+[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 45: extern int strcmp(const char *, const char *);
+[; ;string.h: 46: extern int stricmp(const char *, const char *);
+[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 52: extern size_t strspn(const char *, const char *);
+[; ;string.h: 53: extern char * strstr(const char *, const char *);
+[; ;string.h: 54: extern char * stristr(const char *, const char *);
+[; ;string.h: 55: extern char * strerror(int);
+[; ;string.h: 56: extern size_t strlen(const char *);
+[; ;string.h: 57: extern char * strchr(const char *, int);
+[; ;string.h: 58: extern char * strichr(const char *, int);
+[; ;string.h: 59: extern char * strrchr(const char *, int);
+[; ;string.h: 60: extern char * strrichr(const char *, int);
+[; ;cause_of_reset.h: 42: extern enum reset_t{
+[; ;cause_of_reset.h: 43: Power_On_Reset,
+[; ;cause_of_reset.h: 44: Brown_Out_Reset,
+[; ;cause_of_reset.h: 45: Master_Clear_Reset,
+[; ;cause_of_reset.h: 46: Master_Clear_Sleep_Reset,
+[; ;cause_of_reset.h: 47: Watch_Dog_Timer_Reset,
+[; ;cause_of_reset.h: 48: Watch_Dog_Timer_Sleep_Reset,
+[; ;cause_of_reset.h: 49: Windowed_Watch_Dog_Timer_Reset,
+[; ;cause_of_reset.h: 50: Interrupt_Wake_Up_From_Sleep,
+[; ;cause_of_reset.h: 51: RESET_Instruction_Executed,
+[; ;cause_of_reset.h: 52: Stack_Overflow_Reset,
+[; ;cause_of_reset.h: 53: Stack_Underflow_Reset,
+[; ;cause_of_reset.h: 54: VREG_or_ULP_Ready_Fault_Reset
+[; ;cause_of_reset.h: 55: };
+[; ;cause_of_reset.h: 59: enum reset_t getCauseOfReset(void);
+[; ;cause_of_reset.h: 61: inline char * getCauseOfResetString(enum reset_t r);
+"12 cause_of_reset.c
+[v _reset_cause `E17455 ~T0 @X0 1 e ]
+[; ;cause_of_reset.c: 12: enum reset_t reset_cause;
+"14
+[v _getCauseOfReset `(E17455 ~T0 @X0 1 ef ]
 {
-[; ;device_IDs.c: 4: uint16_t getDeviceID(void) {
-[e :U _getDeviceID ]
+[; ;cause_of_reset.c: 14: enum reset_t getCauseOfReset(void) {
+[e :U _getCauseOfReset ]
 [f ]
-[; ;device_IDs.c: 8: return FLASH_ReadWord(0x3FFFFE);
-"8
-[e ) ( _FLASH_ReadWord (1 -> -> 4194302 `l `ul ]
-[e $UE 2015  ]
-[; ;device_IDs.c: 10: }
-"10
-[e :UE 2015 ]
-}
-"12
-[v _getMajorRevisionID `(uc ~T0 @X0 1 ef ]
+[; ;cause_of_reset.c: 19: if(
+[; ;cause_of_reset.c: 21: STATUSbits.nTO &&
+[; ;cause_of_reset.c: 22: STATUSbits.nPD &&
+[; ;cause_of_reset.c: 23: !(STATUSbits.N) &&
+[; ;cause_of_reset.c: 25: !(STATUSbits.OV) &&
+[; ;cause_of_reset.c: 26: !(STATUSbits.Z) &&
+[; ;cause_of_reset.c: 27: !(STATUSbits.DC) &&
+[; ;cause_of_reset.c: 28: !(STATUSbits.C) &&
+[; ;cause_of_reset.c: 31: !(PCON0bits.STKOVF) &&
+[; ;cause_of_reset.c: 32: !(PCON0bits.STKUNF) &&
+[; ;cause_of_reset.c: 33: PCON0bits.nWDTWV &&
+[; ;cause_of_reset.c: 34: PCON0bits.nRWDT &&
+[; ;cause_of_reset.c: 36: PCON0bits.nRMCLR &&
+[; ;cause_of_reset.c: 37: PCON0bits.nRI &&
+[; ;cause_of_reset.c: 38: !(PCON0bits.nPOR)
+[; ;cause_of_reset.c: 40: ) {
+"40
+[e $ ! && && && && && && && && && && && && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 2013  ]
 {
-[; ;device_IDs.c: 12: uint8_t getMajorRevisionID(void) {
-[e :U _getMajorRevisionID ]
-[f ]
-"15
-[v _REVID_RAW `ui ~T0 @X0 1 a ]
-[; ;device_IDs.c: 15: uint16_t REVID_RAW = FLASH_ReadWord(0x3FFFFC);
-[e = _REVID_RAW ( _FLASH_ReadWord (1 -> -> 4194300 `l `ul ]
-[; ;device_IDs.c: 18: return (REVID_RAW >> 6) & 0b11111;
-"18
-[e ) -> & >> _REVID_RAW -> 6 `i -> -> 31 `i `ui `uc ]
-[e $UE 2016  ]
-[; ;device_IDs.c: 20: }
-"20
-[e :UE 2016 ]
-}
-"23
-[v _getMinorRevisionID `(uc ~T0 @X0 1 ef ]
-{
-[; ;device_IDs.c: 23: uint8_t getMinorRevisionID(void) {
-[e :U _getMinorRevisionID ]
-[f ]
-"26
-[v _REVID_RAW `ui ~T0 @X0 1 a ]
-[; ;device_IDs.c: 26: uint16_t REVID_RAW = FLASH_ReadWord(0x3FFFFC);
-[e = _REVID_RAW ( _FLASH_ReadWord (1 -> -> 4194300 `l `ul ]
-[; ;device_IDs.c: 29: return REVID_RAW & 0b11111;
-"29
-[e ) -> & _REVID_RAW -> -> 31 `i `ui `uc ]
-[e $UE 2017  ]
-[; ;device_IDs.c: 31: }
-"31
-[e :UE 2017 ]
-}
-"34
-[v _getDeviceIDString `(*uc ~T0 @X0 1 ef1`ui ]
-{
-[; ;device_IDs.c: 34: char* getDeviceIDString(uint16_t inputDevID) {
-[e :U _getDeviceIDString ]
-[v _inputDevID `ui ~T0 @X0 1 r1 ]
-[f ]
-"37
-[v _returnString `uc ~T0 @X0 -> 12 `i a ]
-[; ;device_IDs.c: 37: char returnString[12];
-[; ;device_IDs.c: 41: switch (inputDevID) {
-"41
-[e $U 2020  ]
-{
-[; ;device_IDs.c: 43: case 0x6AC0:
+[; ;cause_of_reset.c: 43: reset_cause = Power_On_Reset;
 "43
-[e :U 2021 ]
-[; ;device_IDs.c: 44: strcpy(returnString, "PIC18F67K40");
-"44
-[e ( _strcpy (2 , &U _returnString :s 1C ]
-[; ;device_IDs.c: 45: break;
+[e = _reset_cause . `E17455 0 ]
 "45
-[e $U 2019  ]
-[; ;device_IDs.c: 47: case 0x6B20:
-"47
-[e :U 2022 ]
-[; ;device_IDs.c: 48: strcpy(returnString, "PIC18LF67K40");
+}
+[; ;cause_of_reset.c: 45: }
+[e $U 2014  ]
 "48
-[e ( _strcpy (2 , &U _returnString :s 2C ]
-[; ;device_IDs.c: 49: break;
-"49
-[e $U 2019  ]
-[; ;device_IDs.c: 51: default:
-"51
-[e :U 2023 ]
-[; ;device_IDs.c: 52: strcpy(returnString, "Undefined");
-"52
-[e ( _strcpy (2 , &U _returnString :s 3C ]
-[; ;device_IDs.c: 53: break;
-"53
-[e $U 2019  ]
-"55
-}
-[; ;device_IDs.c: 55: }
-[e $U 2019  ]
-"41
-[e :U 2020 ]
-[e [\ _inputDevID , $ -> -> 27328 `i `ui 2021
- , $ -> -> 27424 `i `ui 2022
- 2023 ]
-"55
-[e :U 2019 ]
-[; ;device_IDs.c: 58: return *returnString;
-"58
-[e ) -> *U &U _returnString `*uc ]
-[e $UE 2018  ]
-[; ;device_IDs.c: 60: }
-"60
-[e :UE 2018 ]
-}
-"62
-[v _getRevisionIDString `(*uc ~T0 @X0 1 ef2`uc`uc ]
+[e :U 2013 ]
+[; ;cause_of_reset.c: 48: else if(
+[; ;cause_of_reset.c: 50: STATUSbits.nTO &&
+[; ;cause_of_reset.c: 51: STATUSbits.nPD &&
+[; ;cause_of_reset.c: 52: !(STATUSbits.N) &&
+[; ;cause_of_reset.c: 54: !(STATUSbits.OV) &&
+[; ;cause_of_reset.c: 55: !(STATUSbits.Z) &&
+[; ;cause_of_reset.c: 56: !(STATUSbits.DC) &&
+[; ;cause_of_reset.c: 57: !(STATUSbits.C) &&
+[; ;cause_of_reset.c: 60: !(PCON0bits.STKOVF) &&
+[; ;cause_of_reset.c: 61: !(PCON0bits.STKUNF) &&
+[; ;cause_of_reset.c: 62: PCON0bits.nWDTWV &&
+[; ;cause_of_reset.c: 63: PCON0bits.nRWDT &&
+[; ;cause_of_reset.c: 65: PCON0bits.nRMCLR &&
+[; ;cause_of_reset.c: 66: PCON0bits.nRI &&
+[; ;cause_of_reset.c: 68: !(PCON0bits.nBOR)
+[; ;cause_of_reset.c: 69: ) {
+"69
+[e $ ! && && && && && && && && && && && && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 0 `i -> -> -> 0 `i `Vuc `i 2015  ]
 {
-[; ;device_IDs.c: 62: char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID) {
-[e :U _getRevisionIDString ]
-[v _inputMajRevID `uc ~T0 @X0 1 r1 ]
-[v _inputMinRevID `uc ~T0 @X0 1 r2 ]
-[f ]
-"64
-[v _returnString `uc ~T0 @X0 -> 4 `i a ]
-"70
-[v _MajRevStr `uc ~T0 @X0 -> -> 1 `i `ux a ]
-[; ;device_IDs.c: 64: char returnString[4];
-[; ;device_IDs.c: 70: char MajRevStr[1];
-[; ;device_IDs.c: 71: utoa(inputMajRevID, MajRevStr, 10);
-"71
-[e ( _utoa (3 , , -> _inputMajRevID `*uc -> &U _MajRevStr `ui -> 10 `i ]
-[; ;device_IDs.c: 72: MajRevStr[0] += 17;
+[; ;cause_of_reset.c: 72: reset_cause = Brown_Out_Reset;
 "72
-[e =+ *U + &U _MajRevStr * -> -> -> 0 `i `ui `ux -> -> # *U &U _MajRevStr `ui `ux -> -> 17 `i `uc ]
-"75
-[v _MinRevStr `uc ~T0 @X0 -> 2 `i a ]
-[; ;device_IDs.c: 75: char MinRevStr[2];
-[; ;device_IDs.c: 76: utoa(inputMinRevID, MinRevStr, 10);
-"76
-[e ( _utoa (3 , , -> _inputMinRevID `*uc -> &U _MinRevStr `ui -> 10 `i ]
-[; ;device_IDs.c: 79: strcpy(returnString, MajRevStr);
-"79
-[e ( _strcpy (2 , &U _returnString -> &U _MajRevStr `*Cuc ]
-[; ;device_IDs.c: 82: strcat(returnString, MinRevStr);
-"82
-[e ( _strcat (2 , &U _returnString -> &U _MinRevStr `*Cuc ]
-[; ;device_IDs.c: 85: return *returnString;
-"85
-[e ) -> *U &U _returnString `*uc ]
-[e $UE 2024  ]
-[; ;device_IDs.c: 87: }
-"87
-[e :UE 2024 ]
+[e = _reset_cause . `E17455 1 ]
+"74
 }
-"89
-[v _getUserID `(ui ~T0 @X0 1 ef1`uc ]
+[; ;cause_of_reset.c: 74: }
+[e $U 2016  ]
+"77
+[e :U 2015 ]
+[; ;cause_of_reset.c: 77: else if(
+[; ;cause_of_reset.c: 94: !(PCON0bits.nRMCLR)
+[; ;cause_of_reset.c: 98: ) {
+"98
+[e $ ! ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i 2017  ]
 {
-[; ;device_IDs.c: 89: uint16_t getUserID(uint8_t inputUserID) {
-[e :U _getUserID ]
-[v _inputUserID `uc ~T0 @X0 1 r1 ]
-[f ]
-"92
-[v _initialOffset `ui ~T0 @X0 1 a ]
-[; ;device_IDs.c: 92: uint16_t initialOffset = 0x200000;
-[e = _initialOffset -> -> 2097152 `l `ui ]
-"95
-[v _IDOffset `uc ~T0 @X0 1 a ]
-[; ;device_IDs.c: 95: uint8_t IDOffset = inputUserID * 2;
-[e = _IDOffset -> * -> _inputUserID `i -> 2 `i `uc ]
-[; ;device_IDs.c: 97: return FLASH_ReadWord(initialOffset + IDOffset);
-"97
-[e ) ( _FLASH_ReadWord (1 -> + _initialOffset -> _IDOffset `ui `ul ]
-[e $UE 2025  ]
-[; ;device_IDs.c: 101: }
+[; ;cause_of_reset.c: 101: reset_cause = Master_Clear_Reset;
 "101
-[e :UE 2025 ]
+[e = _reset_cause . `E17455 2 ]
+"103
 }
-[a 3C 85 110 100 101 102 105 110 101 100 0 ]
-[a 2C 80 73 67 49 56 76 70 54 55 75 52 48 0 ]
-[a 1C 80 73 67 49 56 70 54 55 75 52 48 0 ]
+[; ;cause_of_reset.c: 103: }
+[e $U 2018  ]
+"106
+[e :U 2017 ]
+[; ;cause_of_reset.c: 106: else if(
+[; ;cause_of_reset.c: 108: STATUSbits.nTO &&
+[; ;cause_of_reset.c: 109: STATUSbits.nPD &&
+[; ;cause_of_reset.c: 123: !(PCON0bits.nRMCLR)
+[; ;cause_of_reset.c: 127: ) {
+"127
+[e $ ! && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i 2019  ]
+{
+[; ;cause_of_reset.c: 130: reset_cause = Master_Clear_Sleep_Reset;
+"130
+[e = _reset_cause . `E17455 3 ]
+"132
+}
+[; ;cause_of_reset.c: 132: }
+[e $U 2020  ]
+"135
+[e :U 2019 ]
+[; ;cause_of_reset.c: 135: else if(
+[; ;cause_of_reset.c: 137: !(STATUSbits.nTO) &&
+[; ;cause_of_reset.c: 150: !(PCON0bits.nRWDT)
+[; ;cause_of_reset.c: 156: ) {
+"156
+[e $ ! && ! != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i 2021  ]
+{
+[; ;cause_of_reset.c: 159: reset_cause = Watch_Dog_Timer_Reset;
+"159
+[e = _reset_cause . `E17455 4 ]
+"161
+}
+[; ;cause_of_reset.c: 161: }
+[e $U 2022  ]
+"164
+[e :U 2021 ]
+[; ;cause_of_reset.c: 164: else if(
+[; ;cause_of_reset.c: 166: !(STATUSbits.nTO) &&
+[; ;cause_of_reset.c: 167: !(STATUSbits.nPD)
+[; ;cause_of_reset.c: 185: ) {
+"185
+[e $ ! && ! != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i 2023  ]
+{
+[; ;cause_of_reset.c: 188: reset_cause = Watch_Dog_Timer_Sleep_Reset;
+"188
+[e = _reset_cause . `E17455 5 ]
+"190
+}
+[; ;cause_of_reset.c: 190: }
+[e $U 2024  ]
+"193
+[e :U 2023 ]
+[; ;cause_of_reset.c: 193: else if(
+[; ;cause_of_reset.c: 207: !(PCON0bits.nWDTWV)
+[; ;cause_of_reset.c: 214: ) {
+"214
+[e $ ! ! != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i 2025  ]
+{
+[; ;cause_of_reset.c: 217: reset_cause = Windowed_Watch_Dog_Timer_Reset;
+"217
+[e = _reset_cause . `E17455 6 ]
+"219
+}
+[; ;cause_of_reset.c: 219: }
+[e $U 2026  ]
+"222
+[e :U 2025 ]
+[; ;cause_of_reset.c: 222: else if(
+[; ;cause_of_reset.c: 224: STATUSbits.nTO &&
+[; ;cause_of_reset.c: 225: !(STATUSbits.nPD) &&
+[; ;cause_of_reset.c: 228: !(STATUSbits.OV)
+[; ;cause_of_reset.c: 243: ) {
+"243
+[e $ ! && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i 2027  ]
+{
+[; ;cause_of_reset.c: 246: reset_cause = Interrupt_Wake_Up_From_Sleep;
+"246
+[e = _reset_cause . `E17455 7 ]
+"248
+}
+[; ;cause_of_reset.c: 248: }
+[e $U 2028  ]
+"251
+[e :U 2027 ]
+[; ;cause_of_reset.c: 251: else if(
+[; ;cause_of_reset.c: 269: !(PCON0bits.nRI)
+[; ;cause_of_reset.c: 272: ) {
+"272
+[e $ ! ! != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i 2029  ]
+{
+[; ;cause_of_reset.c: 275: reset_cause = RESET_Instruction_Executed;
+"275
+[e = _reset_cause . `E17455 8 ]
+"277
+}
+[; ;cause_of_reset.c: 277: }
+[e $U 2030  ]
+"280
+[e :U 2029 ]
+[; ;cause_of_reset.c: 280: else if(
+[; ;cause_of_reset.c: 292: PCON0bits.STKOVF
+[; ;cause_of_reset.c: 301: ) {
+"301
+[e $ ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i 2031  ]
+{
+[; ;cause_of_reset.c: 304: reset_cause = Stack_Overflow_Reset;
+"304
+[e = _reset_cause . `E17455 9 ]
+"306
+}
+[; ;cause_of_reset.c: 306: }
+[e $U 2032  ]
+"309
+[e :U 2031 ]
+[; ;cause_of_reset.c: 309: else if(
+[; ;cause_of_reset.c: 322: PCON0bits.STKUNF
+[; ;cause_of_reset.c: 330: ) {
+"330
+[e $ ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i 2033  ]
+{
+[; ;cause_of_reset.c: 333: reset_cause = Stack_Underflow_Reset;
+"333
+[e = _reset_cause . `E17455 10 ]
+"335
+}
+[; ;cause_of_reset.c: 335: }
+[e $U 2034  ]
+"338
+[e :U 2033 ]
+[; ;cause_of_reset.c: 338: else if(
+[; ;cause_of_reset.c: 342: STATUSbits.N &&
+[; ;cause_of_reset.c: 344: STATUSbits.OV &&
+[; ;cause_of_reset.c: 345: !(STATUSbits.Z) &&
+[; ;cause_of_reset.c: 346: !(STATUSbits.DC) &&
+[; ;cause_of_reset.c: 347: !(STATUSbits.C) &&
+[; ;cause_of_reset.c: 350: !(PCON0bits.STKOVF) &&
+[; ;cause_of_reset.c: 351: !(PCON0bits.STKUNF) &&
+[; ;cause_of_reset.c: 352: PCON0bits.nWDTWV &&
+[; ;cause_of_reset.c: 353: PCON0bits.nRWDT &&
+[; ;cause_of_reset.c: 355: !(PCON0bits.nRMCLR) &&
+[; ;cause_of_reset.c: 356: !(PCON0bits.nRI) &&
+[; ;cause_of_reset.c: 357: PCON0bits.nPOR
+[; ;cause_of_reset.c: 359: ) {
+"359
+[e $ ! && && && && && && && && && && && != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 2035  ]
+{
+[; ;cause_of_reset.c: 362: reset_cause = VREG_or_ULP_Ready_Fault_Reset;
+"362
+[e = _reset_cause . `E17455 11 ]
+"364
+}
+[e :U 2035 ]
+"367
+[e :U 2034 ]
+[e :U 2032 ]
+[e :U 2030 ]
+[e :U 2028 ]
+[e :U 2026 ]
+[e :U 2024 ]
+[e :U 2022 ]
+[e :U 2020 ]
+[e :U 2018 ]
+[e :U 2016 ]
+[e :U 2014 ]
+[; ;cause_of_reset.c: 364: }
+[; ;cause_of_reset.c: 367: return reset_cause;
+[e ) _reset_cause ]
+[e $UE 2012  ]
+[; ;cause_of_reset.c: 369: }
+"369
+[e :UE 2012 ]
+}
+"372
+[v _getCauseOfResetString `(*Tuc ~T0 @X0 1 ef1`E17455 ]
+{
+[; ;cause_of_reset.c: 372: inline char *getCauseOfResetString(enum reset_t r) {
+[e :U _getCauseOfResetString ]
+[v _r `E17455 ~T0 @X0 1 r1 ]
+[f ]
+[v F17476 `*Cuc ~T0 @X0 -> 0 `x s ]
+[i F17476
+:U ..
+"376
+:s 1C
+"377
+:s 2C
+"378
+:s 3C
+"379
+:s 4C
+"380
+:s 5C
+"381
+:s 6C
+"382
+:s 7C
+"383
+:s 8C
+"384
+:s 9C
+"385
+:s 10C
+"386
+:s 11C
+"388
+:s 12C
+..
+]
+"375
+[v _strings `*Cuc ~T0 @X0 12  a ]
+[; ;cause_of_reset.c: 375: const char *strings[] = {
+[; ;cause_of_reset.c: 376: "Power On Reset",
+[; ;cause_of_reset.c: 377: "Brown Out Reset",
+[; ;cause_of_reset.c: 378: "Master Clear Reset",
+[; ;cause_of_reset.c: 379: "Master Clear Sleep Reset",
+[; ;cause_of_reset.c: 380: "Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 381: "Watch Dog Timer Sleep Reset",
+[; ;cause_of_reset.c: 382: "Windowed Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 383: "Interrupt Wake Up From Sleep",
+[; ;cause_of_reset.c: 384: "RESET Instruction Executed",
+[; ;cause_of_reset.c: 385: "Stack Overflow Reset",
+[; ;cause_of_reset.c: 386: "Stack Underflow Reset",
+[; ;cause_of_reset.c: 387: "VREG or ULP Ready Fault Reset"
+[; ;cause_of_reset.c: 388: };
+"388
+[e = _strings F17476 ]
+[; ;cause_of_reset.c: 390: return strings[r];
+"390
+[e ) -> *U + &U _strings * -> _r `ux -> -> # *U &U _strings `ui `ux `*Tuc ]
+[e $UE 2036  ]
+[; ;cause_of_reset.c: 391: }
+"391
+[e :UE 2036 ]
+}
+[a 10C 83 116 97 99 107 32 79 118 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
+[a 11C 83 116 97 99 107 32 85 110 100 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
+[a 2C 66 114 111 119 110 32 79 117 116 32 82 101 115 101 116 0 ]
+[a 12C 86 82 69 71 32 111 114 32 85 76 80 32 82 101 97 100 121 32 70 97 117 108 116 32 82 101 115 101 116 0 ]
+[a 3C 77 97 115 116 101 114 32 67 108 101 97 114 32 82 101 115 101 116 0 ]
+[a 6C 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 83 108 101 101 112 32 82 101 115 101 116 0 ]
+[a 4C 77 97 115 116 101 114 32 67 108 101 97 114 32 83 108 101 101 112 32 82 101 115 101 116 0 ]
+[a 7C 87 105 110 100 111 119 101 100 32 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 86 105 111 108 97 116 105 111 110 32 82 101 115 101 116 0 ]
+[a 5C 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 86 105 111 108 97 116 105 111 110 32 82 101 115 101 116 0 ]
+[a 1C 80 111 119 101 114 32 79 110 32 82 101 115 101 116 0 ]
+[a 8C 73 110 116 101 114 114 117 112 116 32 87 97 107 101 32 85 112 32 70 114 111 109 32 83 108 101 101 112 0 ]
+[a 9C 82 69 83 69 84 32 73 110 115 116 114 117 99 116 105 111 110 32 69 120 101 99 117 116 101 100 0 ]
