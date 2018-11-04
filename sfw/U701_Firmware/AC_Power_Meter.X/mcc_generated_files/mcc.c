@@ -53,6 +53,7 @@ void SYSTEM_Initialize(void)
     PMD_Initialize();
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
+    HLVD_Initialize();
     FVR_Initialize();
     TMR7_Initialize();
     TMR6_Initialize();

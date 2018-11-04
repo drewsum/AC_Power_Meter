@@ -82,6 +82,7 @@ volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
 volatile bit adc_error_flag = 0;
+volatile bit VCC_overvoltage_flag = 0;
 
 
 

@@ -21614,6 +21614,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21719,12 +21725,6 @@ void ADCC_ISR(void);
 # 881
 void ADCC_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
 
@@ -21747,6 +21747,51 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
+
+# 75 "mcc_generated_files/hlvd.h"
+typedef enum
+{
+HLVD_TRIP_POINT_1p85v = 0,
+HLVD_TRIP_POINT_2p06v = 1,
+HLVD_TRIP_POINT_2p26v = 2,
+HLVD_TRIP_POINT_2p47v = 3,
+HLVD_TRIP_POINT_2p57v = 4,
+HLVD_TRIP_POINT_2p78v = 5,
+HLVD_TRIP_POINT_2p88v = 6,
+HLVD_TRIP_POINT_3p09v = 7,
+HLVD_TRIP_POINT_3p4v = 8,
+HLVD_TRIP_POINT_3p6v = 9,
+HLVD_TRIP_POINT_3p71v = 10,
+HLVD_TRIP_POINT_3p91v = 11,
+HLVD_TRIP_POINT_4p12v = 12,
+HLVD_TRIP_POINT_4p32v = 13,
+HLVD_TRIP_POINT_4p83 = 14,
+
+}HLVD_TRIP_POINTS;
+
+extern volatile bit VCC_overvoltage_flag;
+
+# 140
+void HLVD_Initialize(void);
+
+# 179
+void HLVD_Enable(void);
+
+# 202
+void HLVD_Disable(void);
+
+# 224
+bool HLVD_IsBandGapVoltageStable(void);
+
+# 246
+void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+HLVD_TRIP_POINTS trip_points);
+
+# 269
+bool HLVD_OutputStatusGet(void);
+
+# 286
+void HLVD_ISR(void);
 
 # 100 "mcc_generated_files/tmr7.h"
 void TMR7_Initialize(void);
@@ -21882,13 +21927,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 76 "mcc_generated_files/mcc.h"
+# 77 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 89
+# 90
 void OSCILLATOR_Initialize(void);
 
-# 102
+# 103
 void PMD_Initialize(void);
 
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
@@ -22094,11 +22139,12 @@ extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
+extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
 
 void ringBufferLUT(char * line) {
 
-# 47
+# 48
 if((0 == strcmp(line, "Reset"))) {
 
 
@@ -22322,6 +22368,43 @@ terminal_textAttributesReset();
 
 terminal_printNewline();
 
+
+}
+
+
+else if((0 == strcmp(line, "VCC Overvoltage?"))) {
+
+
+if (VCC_overvoltage_flag) {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.40V)\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+
+VCC_overvoltage_flag = 0;
+
+}
+
+else {
+
+
+terminal_printNewline();
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("VCC Overvoltage condition has not occurred\n\r");
+
+terminal_textAttributesReset();
+
+terminal_printNewline();
+
+}
 
 }
 
@@ -22650,6 +22733,7 @@ printf("List of supported commands:\n\r\n\r"
 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+"   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
 "   Help: This message, lists supported commands\n\r\n\r"
 
 "Device Measurement Commands:\n\r"

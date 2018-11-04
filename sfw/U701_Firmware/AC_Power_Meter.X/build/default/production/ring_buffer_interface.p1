@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17607 `(v ~T0 @X0 0 tf ]
-[v F17610 `(v ~T0 @X0 0 tf ]
+[v F17641 `(v ~T0 @X0 0 tf ]
+[v F17644 `(v ~T0 @X0 0 tf ]
 "7 ring_buffer_interface.c
-[c E17851 0 1 2 3 4 5 .. ]
-[n E17851 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+[c E17885 0 1 2 3 4 5 .. ]
+[n E17885 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
 "8
-[c E17859 0 1 2 3 4 5 6 7 .. ]
-[n E17859 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E17893 0 1 2 3 4 5 6 7 .. ]
+[n E17893 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 "80 mcc_generated_files/eusart2.h
 [v _eusart2RxCount `Vuc ~T0 @X0 0 e ]
 "281
@@ -16120,6 +16120,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16161,8 +16163,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ISR(void);
 [; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16171,6 +16171,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
+[; ;hlvd.h: 75: typedef enum
+[; ;hlvd.h: 76: {
+[; ;hlvd.h: 77: HLVD_TRIP_POINT_1p85v = 0,
+[; ;hlvd.h: 78: HLVD_TRIP_POINT_2p06v = 1,
+[; ;hlvd.h: 79: HLVD_TRIP_POINT_2p26v = 2,
+[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p47v = 3,
+[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p57v = 4,
+[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p78v = 5,
+[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p88v = 6,
+[; ;hlvd.h: 84: HLVD_TRIP_POINT_3p09v = 7,
+[; ;hlvd.h: 85: HLVD_TRIP_POINT_3p4v = 8,
+[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p6v = 9,
+[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p71v = 10,
+[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p91v = 11,
+[; ;hlvd.h: 89: HLVD_TRIP_POINT_4p12v = 12,
+[; ;hlvd.h: 90: HLVD_TRIP_POINT_4p32v = 13,
+[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p83 = 14,
+[; ;hlvd.h: 93: }HLVD_TRIP_POINTS;
+[; ;hlvd.h: 95: extern volatile bit VCC_overvoltage_flag;
+[; ;hlvd.h: 140: void HLVD_Initialize(void);
+[; ;hlvd.h: 179: void HLVD_Enable(void);
+[; ;hlvd.h: 202: void HLVD_Disable(void);
+[; ;hlvd.h: 224: bool HLVD_IsBandGapVoltageStable(void);
+[; ;hlvd.h: 246: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.h: 247: HLVD_TRIP_POINTS trip_points);
+[; ;hlvd.h: 269: bool HLVD_OutputStatusGet(void);
+[; ;hlvd.h: 286: void HLVD_ISR(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16216,10 +16243,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17607 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17641 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17610 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17644 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16231,9 +16258,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void PMD_Initialize(void);
+[; ;mcc.h: 77: void SYSTEM_Initialize(void);
+[; ;mcc.h: 90: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 103: void PMD_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -16349,13 +16376,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
 "7 ring_buffer_interface.c
-[v _attribute `E17851 ~T0 @X0 1 e ]
+[v _attribute `E17885 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 7: text_attribute_t attribute;
 "8
-[v _foreground_color `E17859 ~T0 @X0 1 e ]
+[v _foreground_color `E17893 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 8: text_color_t foreground_color;
 "9
-[v _background_color `E17859 ~T0 @X0 1 e ]
+[v _background_color `E17893 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 9: text_color_t background_color;
 "12
 [v _terminal_ringBufferPull `(v ~T0 @X0 1 ef ]
@@ -16533,16 +16560,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2032 ]
 }
 "115
-[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E17859`E17859`E17851 ]
+[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E17893`E17893`E17885 ]
 "117
 {
 [; ;ring_buffer_interface.c: 115: void terminal_textAttributes(text_color_t foreground_color,
 [; ;ring_buffer_interface.c: 116: text_color_t background_color,
 [; ;ring_buffer_interface.c: 117: text_attribute_t input_attribute) {
 [e :U _terminal_textAttributes ]
-[v _foreground_color `E17859 ~T0 @X0 1 r1 ]
-[v _background_color `E17859 ~T0 @X0 1 r2 ]
-[v _input_attribute `E17851 ~T0 @X0 1 r3 ]
+[v _foreground_color `E17893 ~T0 @X0 1 r1 ]
+[v _background_color `E17893 ~T0 @X0 1 r2 ]
+[v _input_attribute `E17885 ~T0 @X0 1 r3 ]
 [f ]
 "119
 [v _output_buff `uc ~T0 @X0 -> 15 `i a ]
@@ -16623,12 +16650,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2034  ]
 "123
 [e :U 2035 ]
-[e [\ _input_attribute , $ . `E17851 0 2036
- , $ . `E17851 1 2037
- , $ . `E17851 2 2038
- , $ . `E17851 3 2039
- , $ . `E17851 4 2040
- , $ . `E17851 5 2041
+[e [\ _input_attribute , $ . `E17885 0 2036
+ , $ . `E17885 1 2037
+ , $ . `E17885 2 2038
+ , $ . `E17885 3 2039
+ , $ . `E17885 4 2040
+ , $ . `E17885 5 2041
  2042 ]
 "147
 [e :U 2034 ]
@@ -16726,14 +16753,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2043  ]
 "151
 [e :U 2044 ]
-[e [\ _foreground_color , $ . `E17859 0 2045
- , $ . `E17859 1 2046
- , $ . `E17859 2 2047
- , $ . `E17859 3 2048
- , $ . `E17859 4 2049
- , $ . `E17859 5 2050
- , $ . `E17859 6 2051
- , $ . `E17859 7 2052
+[e [\ _foreground_color , $ . `E17893 0 2045
+ , $ . `E17893 1 2046
+ , $ . `E17893 2 2047
+ , $ . `E17893 3 2048
+ , $ . `E17893 4 2049
+ , $ . `E17893 5 2050
+ , $ . `E17893 6 2051
+ , $ . `E17893 7 2052
  2053 ]
 "181
 [e :U 2043 ]
@@ -16831,14 +16858,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2054  ]
 "185
 [e :U 2055 ]
-[e [\ _background_color , $ . `E17859 0 2056
- , $ . `E17859 1 2057
- , $ . `E17859 2 2058
- , $ . `E17859 3 2059
- , $ . `E17859 4 2060
- , $ . `E17859 5 2061
- , $ . `E17859 6 2062
- , $ . `E17859 7 2063
+[e [\ _background_color , $ . `E17893 0 2056
+ , $ . `E17893 1 2057
+ , $ . `E17893 2 2058
+ , $ . `E17893 3 2059
+ , $ . `E17893 4 2060
+ , $ . `E17893 5 2061
+ , $ . `E17893 6 2062
+ , $ . `E17893 7 2063
  2064 ]
 "215
 [e :U 2054 ]
@@ -16860,7 +16887,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;ring_buffer_interface.c: 225: terminal_textAttributes(WHITE, BLACK, NORMAL);
 "225
-[e ( _terminal_textAttributes (3 , , . `E17859 7 . `E17859 0 . `E17851 0 ]
+[e ( _terminal_textAttributes (3 , , . `E17893 7 . `E17893 0 . `E17885 0 ]
 [; ;ring_buffer_interface.c: 227: }
 "227
 [e :UE 2065 ]

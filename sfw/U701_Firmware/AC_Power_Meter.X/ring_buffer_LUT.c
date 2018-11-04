@@ -36,6 +36,7 @@ extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
+extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
 
 void ringBufferLUT(char * line) {
@@ -267,6 +268,43 @@ void ringBufferLUT(char * line) {
         // Get some space on terminal
         terminal_printNewline();
         
+        
+    }
+    
+    // Clear ADC error
+    else if((0 == strcmp(line, "VCC Overvoltage?"))) {
+        
+        // If we've seen a VCC overvoltage event
+        if (VCC_overvoltage_flag) {
+        
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to yellow and print help message
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.40V)\n\r");
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();
+            
+            // clear overvoltage flag
+            VCC_overvoltage_flag = 0;
+            
+        }
+        
+        else {
+         
+            // Get some space on terminal
+            terminal_printNewline();
+            // set text color to yellow and print help message
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("VCC Overvoltage condition has not occurred\n\r");
+            // Reset to white foreground
+            terminal_textAttributesReset();
+            // Get some space on terminal
+            terminal_printNewline();   
+            
+        }
         
     }
     
@@ -595,6 +633,7 @@ void ringBufferLUT(char * line) {
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+                "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
                 "Device Measurement Commands:\n\r"

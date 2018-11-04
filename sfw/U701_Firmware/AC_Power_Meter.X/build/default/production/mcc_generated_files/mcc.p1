@@ -1,14 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17607 `(v ~T0 @X0 0 tf ]
-[v F17610 `(v ~T0 @X0 0 tf ]
+[v F17641 `(v ~T0 @X0 0 tf ]
+[v F17644 `(v ~T0 @X0 0 tf ]
 "132 mcc_generated_files/interrupt_manager.h
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
-"102 mcc_generated_files/mcc.h
+"103 mcc_generated_files/mcc.h
 [v _PMD_Initialize `(v ~T0 @X0 0 ef ]
 "300 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
-"89 mcc_generated_files/mcc.h
+"90 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
+"140 mcc_generated_files/hlvd.h
+[v _HLVD_Initialize `(v ~T0 @X0 0 ef ]
 "93 mcc_generated_files/fvr.h
 [v _FVR_Initialize `(v ~T0 @X0 0 ef ]
 "100 mcc_generated_files/tmr7.h
@@ -16138,6 +16140,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16179,8 +16183,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ISR(void);
 [; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16189,6 +16191,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
+[; ;hlvd.h: 75: typedef enum
+[; ;hlvd.h: 76: {
+[; ;hlvd.h: 77: HLVD_TRIP_POINT_1p85v = 0,
+[; ;hlvd.h: 78: HLVD_TRIP_POINT_2p06v = 1,
+[; ;hlvd.h: 79: HLVD_TRIP_POINT_2p26v = 2,
+[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p47v = 3,
+[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p57v = 4,
+[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p78v = 5,
+[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p88v = 6,
+[; ;hlvd.h: 84: HLVD_TRIP_POINT_3p09v = 7,
+[; ;hlvd.h: 85: HLVD_TRIP_POINT_3p4v = 8,
+[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p6v = 9,
+[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p71v = 10,
+[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p91v = 11,
+[; ;hlvd.h: 89: HLVD_TRIP_POINT_4p12v = 12,
+[; ;hlvd.h: 90: HLVD_TRIP_POINT_4p32v = 13,
+[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p83 = 14,
+[; ;hlvd.h: 93: }HLVD_TRIP_POINTS;
+[; ;hlvd.h: 95: extern volatile bit VCC_overvoltage_flag;
+[; ;hlvd.h: 140: void HLVD_Initialize(void);
+[; ;hlvd.h: 179: void HLVD_Enable(void);
+[; ;hlvd.h: 202: void HLVD_Disable(void);
+[; ;hlvd.h: 224: bool HLVD_IsBandGapVoltageStable(void);
+[; ;hlvd.h: 246: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.h: 247: HLVD_TRIP_POINTS trip_points);
+[; ;hlvd.h: 269: bool HLVD_OutputStatusGet(void);
+[; ;hlvd.h: 286: void HLVD_ISR(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16234,10 +16263,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17607 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17641 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17610 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17644 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16249,9 +16278,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 76: void SYSTEM_Initialize(void);
-[; ;mcc.h: 89: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 102: void PMD_Initialize(void);
+[; ;mcc.h: 77: void SYSTEM_Initialize(void);
+[; ;mcc.h: 90: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 103: void PMD_Initialize(void);
 "50 mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
 "51
@@ -16272,96 +16301,99 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 55: OSCILLATOR_Initialize();
 "55
 [e ( _OSCILLATOR_Initialize ..  ]
-[; ;mcc.c: 56: FVR_Initialize();
+[; ;mcc.c: 56: HLVD_Initialize();
 "56
-[e ( _FVR_Initialize ..  ]
-[; ;mcc.c: 57: TMR7_Initialize();
+[e ( _HLVD_Initialize ..  ]
+[; ;mcc.c: 57: FVR_Initialize();
 "57
-[e ( _TMR7_Initialize ..  ]
-[; ;mcc.c: 58: TMR6_Initialize();
+[e ( _FVR_Initialize ..  ]
+[; ;mcc.c: 58: TMR7_Initialize();
 "58
-[e ( _TMR6_Initialize ..  ]
-[; ;mcc.c: 59: ADCC_Initialize();
+[e ( _TMR7_Initialize ..  ]
+[; ;mcc.c: 59: TMR6_Initialize();
 "59
-[e ( _ADCC_Initialize ..  ]
-[; ;mcc.c: 60: TMR5_Initialize();
+[e ( _TMR6_Initialize ..  ]
+[; ;mcc.c: 60: ADCC_Initialize();
 "60
-[e ( _TMR5_Initialize ..  ]
-[; ;mcc.c: 61: EUSART2_Initialize();
+[e ( _ADCC_Initialize ..  ]
+[; ;mcc.c: 61: TMR5_Initialize();
 "61
-[e ( _EUSART2_Initialize ..  ]
-[; ;mcc.c: 62: }
+[e ( _TMR5_Initialize ..  ]
+[; ;mcc.c: 62: EUSART2_Initialize();
 "62
+[e ( _EUSART2_Initialize ..  ]
+[; ;mcc.c: 63: }
+"63
 [e :UE 2012 ]
 }
-"64
-[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
 "65
+[v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
+"66
 {
-[; ;mcc.c: 64: void OSCILLATOR_Initialize(void)
-[; ;mcc.c: 65: {
+[; ;mcc.c: 65: void OSCILLATOR_Initialize(void)
+[; ;mcc.c: 66: {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 67: OSCCON1 = 0x20;
-"67
+[; ;mcc.c: 68: OSCCON1 = 0x20;
+"68
 [e = _OSCCON1 -> -> 32 `i `uc ]
-[; ;mcc.c: 69: OSCCON3 = 0x00;
-"69
+[; ;mcc.c: 70: OSCCON3 = 0x00;
+"70
 [e = _OSCCON3 -> -> 0 `i `uc ]
-[; ;mcc.c: 71: OSCEN = 0x00;
-"71
+[; ;mcc.c: 72: OSCEN = 0x00;
+"72
 [e = _OSCEN -> -> 0 `i `uc ]
-[; ;mcc.c: 73: OSCFRQ = 0x02;
-"73
+[; ;mcc.c: 74: OSCFRQ = 0x02;
+"74
 [e = _OSCFRQ -> -> 2 `i `uc ]
-[; ;mcc.c: 75: OSCTUNE = 0x00;
-"75
+[; ;mcc.c: 76: OSCTUNE = 0x00;
+"76
 [e = _OSCTUNE -> -> 0 `i `uc ]
-[; ;mcc.c: 77: while(PLLR == 0)
-"77
+[; ;mcc.c: 78: while(PLLR == 0)
+"78
 [e $U 2014  ]
 [e :U 2015 ]
-[; ;mcc.c: 78: {
-"78
-{
+[; ;mcc.c: 79: {
 "79
+{
+"80
 }
 [e :U 2014 ]
-"77
+"78
 [e $ == -> _PLLR `i -> 0 `i 2015  ]
 [e :U 2016 ]
-[; ;mcc.c: 79: }
 [; ;mcc.c: 80: }
-"80
+[; ;mcc.c: 81: }
+"81
 [e :UE 2013 ]
 }
-"82
-[v _PMD_Initialize `(v ~T0 @X0 1 ef ]
 "83
+[v _PMD_Initialize `(v ~T0 @X0 1 ef ]
+"84
 {
-[; ;mcc.c: 82: void PMD_Initialize(void)
-[; ;mcc.c: 83: {
+[; ;mcc.c: 83: void PMD_Initialize(void)
+[; ;mcc.c: 84: {
 [e :U _PMD_Initialize ]
 [f ]
-[; ;mcc.c: 85: PMD0 = 0x00;
-"85
+[; ;mcc.c: 86: PMD0 = 0x00;
+"86
 [e = _PMD0 -> -> 0 `i `uc ]
-[; ;mcc.c: 87: PMD1 = 0x00;
-"87
+[; ;mcc.c: 88: PMD1 = 0x00;
+"88
 [e = _PMD1 -> -> 0 `i `uc ]
-[; ;mcc.c: 89: PMD2 = 0x00;
-"89
+[; ;mcc.c: 90: PMD2 = 0x00;
+"90
 [e = _PMD2 -> -> 0 `i `uc ]
-[; ;mcc.c: 91: PMD3 = 0x00;
-"91
+[; ;mcc.c: 92: PMD3 = 0x00;
+"92
 [e = _PMD3 -> -> 0 `i `uc ]
-[; ;mcc.c: 93: PMD4 = 0x00;
-"93
+[; ;mcc.c: 94: PMD4 = 0x00;
+"94
 [e = _PMD4 -> -> 0 `i `uc ]
-[; ;mcc.c: 95: PMD5 = 0x00;
-"95
-[e = _PMD5 -> -> 0 `i `uc ]
-[; ;mcc.c: 96: }
+[; ;mcc.c: 96: PMD5 = 0x00;
 "96
+[e = _PMD5 -> -> 0 `i `uc ]
+[; ;mcc.c: 97: }
+"97
 [e :UE 2017 ]
 }
