@@ -21997,38 +21997,31 @@ uint8_t getMinorRevisionID(void);
 
 
 
-char* getDeviceIDString(uint16_t inputDevID);
-
-
-
-
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
+inline char * getDeviceIDString(uint16_t inputDevID);
 
 
 
 uint16_t getUserID(uint8_t inputUserID);
 
 # 42 "cause_of_reset.h"
-extern enum reset_t{
-Power_On_Reset,
-Brown_Out_Reset,
-Master_Clear_Reset,
-Master_Clear_Sleep_Reset,
-Watch_Dog_Timer_Reset,
-Watch_Dog_Timer_Sleep_Reset,
-Windowed_Watch_Dog_Timer_Reset,
-Interrupt_Wake_Up_From_Sleep,
-RESET_Instruction_Executed,
-Stack_Overflow_Reset,
-Stack_Underflow_Reset,
-VREG_or_ULP_Ready_Fault_Reset
-};
+typedef enum reset_types{
+Undefined_Reset = 0,
+Power_On_Reset = 1,
+Brown_Out_Reset = 2,
+Master_Clear_Reset = 3,
+Watch_Dog_Timer_Reset = 4,
+Windowed_Watch_Dog_Timer_Reset = 5,
+RESET_Instruction_Executed = 6,
+Stack_Overflow_Reset = 7,
+Stack_Underflow_Reset = 8
+} reset_t;
 
 
 
-enum reset_t getCauseOfReset(void);
+reset_t getCauseOfReset(void);
 
-inline char * getCauseOfResetString(enum reset_t r);
+
+inline char * getCauseOfResetString(reset_t r);
 
 # 49 "ring_buffer_LUT.h"
 void ringBufferLUT(char * line);
@@ -22101,7 +22094,18 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 61 "main.c"
+
+# 56 "main.c"
+#pragma config IDLOC0 = 0
+#pragma config IDLOC1 = 1
+#pragma config IDLOC2 = 2
+#pragma config IDLOC3 = 3
+#pragma config IDLOC4 = 4
+#pragma config IDLOC5 = 5
+#pragma config IDLOC6 = 6
+#pragma config IDLOC7 = 7
+
+# 71
 volatile double FVR_ADC_Result;
 volatile double AVSS_ADC_Result;
 volatile double ADC_Result_Scaling;
@@ -22127,8 +22131,9 @@ volatile unsigned long dev_on_time = 0;
 volatile unsigned long load_on_time = 0;
 volatile bit adc_error_flag = 0;
 volatile bit VCC_overvoltage_flag = 0;
+reset_t reset_cause;
 
-# 95
+# 103
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22158,7 +22163,7 @@ return Peak;
 
 }
 
-# 131
+# 139
 void heartbeatTimerCallback(void) {
 
 
@@ -22182,9 +22187,11 @@ asm(" clrwdt");
 
 void ADCPostProcessingCallback(void) {
 
-adcc_channel_t currentADCChannel = ADPCH;
 
-switch (currentADCChannel) {
+adcc_channel_t current_adc_channel = ADPCH;
+
+
+switch (current_adc_channel) {
 
 case channel_VSS:
 
@@ -22466,9 +22473,12 @@ return;
 
 }
 
-# 443
+# 453
 void main(void)
 {
+
+
+reset_cause = getCauseOfReset();
 
 
 
@@ -22497,6 +22507,8 @@ TMR7_SetInterruptHandler(acquisitionTimerCallback);
 
 (INTCONbits.GIEL = 1);
 
+
+VCC_overvoltage_flag = 0;
 
 
 terminal_clearTerminal();

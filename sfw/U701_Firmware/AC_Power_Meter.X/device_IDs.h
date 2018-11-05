@@ -45,12 +45,7 @@ uint8_t getMinorRevisionID(void);
 
 // This function returns a string pointer for a string describing the device part number
 // Pass the device ID word located in program memory
-char* getDeviceIDString(uint16_t inputDevID);
-
-// This function returns a string pointer for a string describing the silicon revision ID string
-// Pass the Major ID integer and then the minor ID integer
-// Output string will be formatted as in datasheet: <MajorRev(Letter)><MinorRev(Number)>
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
+inline char * getDeviceIDString(uint16_t inputDevID);
 
 // This function retrieves a user ID from program memory and returns it as an unsigned int
 // Pass the user ID (0-7) as the argument

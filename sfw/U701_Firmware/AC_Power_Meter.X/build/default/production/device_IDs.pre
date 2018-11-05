@@ -21451,12 +21451,7 @@ uint8_t getMinorRevisionID(void);
 
 
 
-char* getDeviceIDString(uint16_t inputDevID);
-
-
-
-
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
+inline char * getDeviceIDString(uint16_t inputDevID);
 
 
 
@@ -21493,62 +21488,41 @@ return REVID_RAW & 0b11111;
 }
 
 
-char* getDeviceIDString(uint16_t inputDevID) {
+inline char * getDeviceIDString(uint16_t inputDevID) {
 
 
-char returnString[12];
+const char *strings[] = {
+
+"PIC18F67K40",
+"PIC18LF67K40",
+"Undefined"
+
+};
 
 
 
 switch (inputDevID) {
 
 case 0x6AC0:
-strcpy(returnString, "PIC18F67K40");
+return strings[0];
 break;
 
 case 0x6B20:
-strcpy(returnString, "PIC18LF67K40");
+return strings[1];
 break;
 
 default:
-strcpy(returnString, "Undefined");
+return strings[2];
 break;
 
 }
-
-
-return *returnString;
-
-}
-
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID) {
-
-char returnString[4];
-
-# 70
-char MajRevStr[1];
-utoa(inputMajRevID, MajRevStr, 10);
-MajRevStr[0] += 17;
-
-
-char MinRevStr[2];
-utoa(inputMinRevID, MinRevStr, 10);
-
-
-strcpy(returnString, MajRevStr);
-
-
-strcat(returnString, MinRevStr);
-
-
-return *returnString;
 
 }
 
 uint16_t getUserID(uint8_t inputUserID) {
 
 
-uint16_t initialOffset = 0x200000;
+uint32_t initialOffset = 0x200000;
 
 
 uint8_t IDOffset = inputUserID * 2;

@@ -1,28 +1,8 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"12 cause_of_reset.c
-[c E17455 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
-[n E17455 reset_t Power_On_Reset Brown_Out_Reset Master_Clear_Reset Master_Clear_Sleep_Reset Watch_Dog_Timer_Reset Watch_Dog_Timer_Sleep_Reset Windowed_Watch_Dog_Timer_Reset Interrupt_Wake_Up_From_Sleep RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset VREG_or_ULP_Ready_Fault_Reset  ]
-"39933 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
-[s S1935 :5 `uc 1 :1 `uc 1 ]
-[n S1935 . . NOT_PD ]
-"39937
-[s S1936 :6 `uc 1 :1 `uc 1 ]
-[n S1936 . . NOT_TO ]
-"39941
-[s S1937 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1937 . C DC Z OV N nPD nTO ]
-"39950
-[s S1938 :5 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1938 . . PD TO ]
-"39955
-[s S1939 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1939 . CARRY . ZERO OVERFLOW NEGATIVE ]
-"39932
-[u S1934 `S1935 1 `S1936 1 `S1937 1 `S1938 1 `S1939 1 ]
-[n S1934 . . . . . . ]
-"39963
-[v _STATUSbits `VS1934 ~T0 @X0 0 e@4056 ]
-"39780
+"11 cause_of_reset.c
+[c E17455 0 1 2 3 4 5 6 7 8 .. ]
+[n E17455 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
+"39780 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1926 :1 `uc 1 ]
 [n S1926 . NOT_BOR ]
 "39783
@@ -16125,256 +16105,120 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-[; ;cause_of_reset.h: 42: extern enum reset_t{
-[; ;cause_of_reset.h: 43: Power_On_Reset,
-[; ;cause_of_reset.h: 44: Brown_Out_Reset,
-[; ;cause_of_reset.h: 45: Master_Clear_Reset,
-[; ;cause_of_reset.h: 46: Master_Clear_Sleep_Reset,
-[; ;cause_of_reset.h: 47: Watch_Dog_Timer_Reset,
-[; ;cause_of_reset.h: 48: Watch_Dog_Timer_Sleep_Reset,
-[; ;cause_of_reset.h: 49: Windowed_Watch_Dog_Timer_Reset,
-[; ;cause_of_reset.h: 50: Interrupt_Wake_Up_From_Sleep,
-[; ;cause_of_reset.h: 51: RESET_Instruction_Executed,
-[; ;cause_of_reset.h: 52: Stack_Overflow_Reset,
-[; ;cause_of_reset.h: 53: Stack_Underflow_Reset,
-[; ;cause_of_reset.h: 54: VREG_or_ULP_Ready_Fault_Reset
-[; ;cause_of_reset.h: 55: };
-[; ;cause_of_reset.h: 59: enum reset_t getCauseOfReset(void);
-[; ;cause_of_reset.h: 61: inline char * getCauseOfResetString(enum reset_t r);
-"12 cause_of_reset.c
-[v _reset_cause `E17455 ~T0 @X0 1 e ]
-[; ;cause_of_reset.c: 12: enum reset_t reset_cause;
-"14
+[; ;cause_of_reset.h: 42: typedef enum reset_types{
+[; ;cause_of_reset.h: 43: Undefined_Reset = 0,
+[; ;cause_of_reset.h: 44: Power_On_Reset = 1,
+[; ;cause_of_reset.h: 45: Brown_Out_Reset = 2,
+[; ;cause_of_reset.h: 46: Master_Clear_Reset = 3,
+[; ;cause_of_reset.h: 47: Watch_Dog_Timer_Reset = 4,
+[; ;cause_of_reset.h: 48: Windowed_Watch_Dog_Timer_Reset = 5,
+[; ;cause_of_reset.h: 49: RESET_Instruction_Executed = 6,
+[; ;cause_of_reset.h: 50: Stack_Overflow_Reset = 7,
+[; ;cause_of_reset.h: 51: Stack_Underflow_Reset = 8
+[; ;cause_of_reset.h: 52: } reset_t;
+[; ;cause_of_reset.h: 56: reset_t getCauseOfReset(void);
+[; ;cause_of_reset.h: 59: inline char * getCauseOfResetString(reset_t r);
+"11 cause_of_reset.c
 [v _getCauseOfReset `(E17455 ~T0 @X0 1 ef ]
 {
-[; ;cause_of_reset.c: 14: enum reset_t getCauseOfReset(void) {
+[; ;cause_of_reset.c: 11: reset_t getCauseOfReset(void) {
 [e :U _getCauseOfReset ]
 [f ]
-[; ;cause_of_reset.c: 19: if(
-[; ;cause_of_reset.c: 21: STATUSbits.nTO &&
-[; ;cause_of_reset.c: 22: STATUSbits.nPD &&
-[; ;cause_of_reset.c: 23: !(STATUSbits.N) &&
-[; ;cause_of_reset.c: 25: !(STATUSbits.OV) &&
-[; ;cause_of_reset.c: 26: !(STATUSbits.Z) &&
-[; ;cause_of_reset.c: 27: !(STATUSbits.DC) &&
-[; ;cause_of_reset.c: 28: !(STATUSbits.C) &&
-[; ;cause_of_reset.c: 31: !(PCON0bits.STKOVF) &&
-[; ;cause_of_reset.c: 32: !(PCON0bits.STKUNF) &&
-[; ;cause_of_reset.c: 33: PCON0bits.nWDTWV &&
-[; ;cause_of_reset.c: 34: PCON0bits.nRWDT &&
-[; ;cause_of_reset.c: 36: PCON0bits.nRMCLR &&
-[; ;cause_of_reset.c: 37: PCON0bits.nRI &&
-[; ;cause_of_reset.c: 38: !(PCON0bits.nPOR)
-[; ;cause_of_reset.c: 40: ) {
-"40
-[e $ ! && && && && && && && && && && && && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 2013  ]
+"13
+[v _return_reset_cause `E17455 ~T0 @X0 1 a ]
+[; ;cause_of_reset.c: 13: reset_t return_reset_cause;
+[; ;cause_of_reset.c: 18: if (PCON0bits.STKOVF == 1) {
+"18
+[e $ ! == -> . . _PCON0bits 6 7 `i -> 1 `i 2013  ]
 {
-[; ;cause_of_reset.c: 43: reset_cause = Power_On_Reset;
-"43
-[e = _reset_cause . `E17455 0 ]
-"45
+[; ;cause_of_reset.c: 20: return_reset_cause = Stack_Overflow_Reset;
+"20
+[e = _return_reset_cause . `E17455 7 ]
+"22
 }
-[; ;cause_of_reset.c: 45: }
+[; ;cause_of_reset.c: 22: }
 [e $U 2014  ]
-"48
+"24
 [e :U 2013 ]
-[; ;cause_of_reset.c: 48: else if(
-[; ;cause_of_reset.c: 50: STATUSbits.nTO &&
-[; ;cause_of_reset.c: 51: STATUSbits.nPD &&
-[; ;cause_of_reset.c: 52: !(STATUSbits.N) &&
-[; ;cause_of_reset.c: 54: !(STATUSbits.OV) &&
-[; ;cause_of_reset.c: 55: !(STATUSbits.Z) &&
-[; ;cause_of_reset.c: 56: !(STATUSbits.DC) &&
-[; ;cause_of_reset.c: 57: !(STATUSbits.C) &&
-[; ;cause_of_reset.c: 60: !(PCON0bits.STKOVF) &&
-[; ;cause_of_reset.c: 61: !(PCON0bits.STKUNF) &&
-[; ;cause_of_reset.c: 62: PCON0bits.nWDTWV &&
-[; ;cause_of_reset.c: 63: PCON0bits.nRWDT &&
-[; ;cause_of_reset.c: 65: PCON0bits.nRMCLR &&
-[; ;cause_of_reset.c: 66: PCON0bits.nRI &&
-[; ;cause_of_reset.c: 68: !(PCON0bits.nBOR)
-[; ;cause_of_reset.c: 69: ) {
-"69
-[e $ ! && && && && && && && && && && && && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 0 `i -> -> -> 0 `i `Vuc `i 2015  ]
+[; ;cause_of_reset.c: 24: else if (PCON0bits.STKUNF == 1) {
+[e $ ! == -> . . _PCON0bits 6 6 `i -> 1 `i 2015  ]
 {
-[; ;cause_of_reset.c: 72: reset_cause = Brown_Out_Reset;
-"72
-[e = _reset_cause . `E17455 1 ]
-"74
+[; ;cause_of_reset.c: 26: return_reset_cause = Stack_Underflow_Reset;
+"26
+[e = _return_reset_cause . `E17455 8 ]
+"28
 }
-[; ;cause_of_reset.c: 74: }
+[; ;cause_of_reset.c: 28: }
 [e $U 2016  ]
-"77
+"30
 [e :U 2015 ]
-[; ;cause_of_reset.c: 77: else if(
-[; ;cause_of_reset.c: 94: !(PCON0bits.nRMCLR)
-[; ;cause_of_reset.c: 98: ) {
-"98
-[e $ ! ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i 2017  ]
+[; ;cause_of_reset.c: 30: else if (PCON0bits.nWDTWV == 0) {
+[e $ ! == -> . . _PCON0bits 6 5 `i -> 0 `i 2017  ]
 {
-[; ;cause_of_reset.c: 101: reset_cause = Master_Clear_Reset;
-"101
-[e = _reset_cause . `E17455 2 ]
-"103
+[; ;cause_of_reset.c: 32: return_reset_cause = Windowed_Watch_Dog_Timer_Reset;
+"32
+[e = _return_reset_cause . `E17455 5 ]
+"34
 }
-[; ;cause_of_reset.c: 103: }
+[; ;cause_of_reset.c: 34: }
 [e $U 2018  ]
-"106
+"36
 [e :U 2017 ]
-[; ;cause_of_reset.c: 106: else if(
-[; ;cause_of_reset.c: 108: STATUSbits.nTO &&
-[; ;cause_of_reset.c: 109: STATUSbits.nPD &&
-[; ;cause_of_reset.c: 123: !(PCON0bits.nRMCLR)
-[; ;cause_of_reset.c: 127: ) {
-"127
-[e $ ! && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i 2019  ]
+[; ;cause_of_reset.c: 36: else if (PCON0bits.nRMCLR == 0) {
+[e $ ! == -> . . _PCON0bits 6 3 `i -> 0 `i 2019  ]
 {
-[; ;cause_of_reset.c: 130: reset_cause = Master_Clear_Sleep_Reset;
-"130
-[e = _reset_cause . `E17455 3 ]
-"132
+[; ;cause_of_reset.c: 38: return_reset_cause = Master_Clear_Reset;
+"38
+[e = _return_reset_cause . `E17455 3 ]
+"40
 }
-[; ;cause_of_reset.c: 132: }
+[; ;cause_of_reset.c: 40: }
 [e $U 2020  ]
-"135
+"42
 [e :U 2019 ]
-[; ;cause_of_reset.c: 135: else if(
-[; ;cause_of_reset.c: 137: !(STATUSbits.nTO) &&
-[; ;cause_of_reset.c: 150: !(PCON0bits.nRWDT)
-[; ;cause_of_reset.c: 156: ) {
-"156
-[e $ ! && ! != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i 2021  ]
+[; ;cause_of_reset.c: 42: else if (PCON0bits.nRI == 0) {
+[e $ ! == -> . . _PCON0bits 6 2 `i -> 0 `i 2021  ]
 {
-[; ;cause_of_reset.c: 159: reset_cause = Watch_Dog_Timer_Reset;
-"159
-[e = _reset_cause . `E17455 4 ]
-"161
+[; ;cause_of_reset.c: 44: return_reset_cause = RESET_Instruction_Executed;
+"44
+[e = _return_reset_cause . `E17455 6 ]
+"46
 }
-[; ;cause_of_reset.c: 161: }
+[; ;cause_of_reset.c: 46: }
 [e $U 2022  ]
-"164
+"48
 [e :U 2021 ]
-[; ;cause_of_reset.c: 164: else if(
-[; ;cause_of_reset.c: 166: !(STATUSbits.nTO) &&
-[; ;cause_of_reset.c: 167: !(STATUSbits.nPD)
-[; ;cause_of_reset.c: 185: ) {
-"185
-[e $ ! && ! != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i 2023  ]
+[; ;cause_of_reset.c: 48: else if (PCON0bits.nPOR == 0) {
+[e $ ! == -> . . _PCON0bits 6 1 `i -> 0 `i 2023  ]
 {
-[; ;cause_of_reset.c: 188: reset_cause = Watch_Dog_Timer_Sleep_Reset;
-"188
-[e = _reset_cause . `E17455 5 ]
-"190
+[; ;cause_of_reset.c: 50: return_reset_cause = Power_On_Reset;
+"50
+[e = _return_reset_cause . `E17455 1 ]
+"52
 }
-[; ;cause_of_reset.c: 190: }
+[; ;cause_of_reset.c: 52: }
 [e $U 2024  ]
-"193
+"54
 [e :U 2023 ]
-[; ;cause_of_reset.c: 193: else if(
-[; ;cause_of_reset.c: 207: !(PCON0bits.nWDTWV)
-[; ;cause_of_reset.c: 214: ) {
-"214
-[e $ ! ! != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i 2025  ]
+[; ;cause_of_reset.c: 54: else if (PCON0bits.nBOR == 0) {
+[e $ ! == -> . . _PCON0bits 6 0 `i -> 0 `i 2025  ]
 {
-[; ;cause_of_reset.c: 217: reset_cause = Windowed_Watch_Dog_Timer_Reset;
-"217
-[e = _reset_cause . `E17455 6 ]
-"219
+[; ;cause_of_reset.c: 56: return_reset_cause = Brown_Out_Reset;
+"56
+[e = _return_reset_cause . `E17455 2 ]
+"58
 }
-[; ;cause_of_reset.c: 219: }
+[; ;cause_of_reset.c: 58: }
 [e $U 2026  ]
-"222
+"60
 [e :U 2025 ]
-[; ;cause_of_reset.c: 222: else if(
-[; ;cause_of_reset.c: 224: STATUSbits.nTO &&
-[; ;cause_of_reset.c: 225: !(STATUSbits.nPD) &&
-[; ;cause_of_reset.c: 228: !(STATUSbits.OV)
-[; ;cause_of_reset.c: 243: ) {
-"243
-[e $ ! && && != -> . . _STATUSbits 2 6 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 5 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i 2027  ]
+[; ;cause_of_reset.c: 60: else {
 {
-[; ;cause_of_reset.c: 246: reset_cause = Interrupt_Wake_Up_From_Sleep;
-"246
-[e = _reset_cause . `E17455 7 ]
-"248
+[; ;cause_of_reset.c: 62: return_reset_cause = Undefined_Reset;
+"62
+[e = _return_reset_cause . `E17455 0 ]
+"64
 }
-[; ;cause_of_reset.c: 248: }
-[e $U 2028  ]
-"251
-[e :U 2027 ]
-[; ;cause_of_reset.c: 251: else if(
-[; ;cause_of_reset.c: 269: !(PCON0bits.nRI)
-[; ;cause_of_reset.c: 272: ) {
-"272
-[e $ ! ! != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i 2029  ]
-{
-[; ;cause_of_reset.c: 275: reset_cause = RESET_Instruction_Executed;
-"275
-[e = _reset_cause . `E17455 8 ]
-"277
-}
-[; ;cause_of_reset.c: 277: }
-[e $U 2030  ]
-"280
-[e :U 2029 ]
-[; ;cause_of_reset.c: 280: else if(
-[; ;cause_of_reset.c: 292: PCON0bits.STKOVF
-[; ;cause_of_reset.c: 301: ) {
-"301
-[e $ ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i 2031  ]
-{
-[; ;cause_of_reset.c: 304: reset_cause = Stack_Overflow_Reset;
-"304
-[e = _reset_cause . `E17455 9 ]
-"306
-}
-[; ;cause_of_reset.c: 306: }
-[e $U 2032  ]
-"309
-[e :U 2031 ]
-[; ;cause_of_reset.c: 309: else if(
-[; ;cause_of_reset.c: 322: PCON0bits.STKUNF
-[; ;cause_of_reset.c: 330: ) {
-"330
-[e $ ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i 2033  ]
-{
-[; ;cause_of_reset.c: 333: reset_cause = Stack_Underflow_Reset;
-"333
-[e = _reset_cause . `E17455 10 ]
-"335
-}
-[; ;cause_of_reset.c: 335: }
-[e $U 2034  ]
-"338
-[e :U 2033 ]
-[; ;cause_of_reset.c: 338: else if(
-[; ;cause_of_reset.c: 342: STATUSbits.N &&
-[; ;cause_of_reset.c: 344: STATUSbits.OV &&
-[; ;cause_of_reset.c: 345: !(STATUSbits.Z) &&
-[; ;cause_of_reset.c: 346: !(STATUSbits.DC) &&
-[; ;cause_of_reset.c: 347: !(STATUSbits.C) &&
-[; ;cause_of_reset.c: 350: !(PCON0bits.STKOVF) &&
-[; ;cause_of_reset.c: 351: !(PCON0bits.STKUNF) &&
-[; ;cause_of_reset.c: 352: PCON0bits.nWDTWV &&
-[; ;cause_of_reset.c: 353: PCON0bits.nRWDT &&
-[; ;cause_of_reset.c: 355: !(PCON0bits.nRMCLR) &&
-[; ;cause_of_reset.c: 356: !(PCON0bits.nRI) &&
-[; ;cause_of_reset.c: 357: PCON0bits.nPOR
-[; ;cause_of_reset.c: 359: ) {
-"359
-[e $ ! && && && && && && && && && && && != -> . . _STATUSbits 2 4 `i -> -> -> 0 `i `Vuc `i != -> . . _STATUSbits 2 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 2 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 1 `i -> -> -> 0 `i `Vuc `i ! != -> . . _STATUSbits 2 0 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 7 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 6 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 4 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 3 `i -> -> -> 0 `i `Vuc `i ! != -> . . _PCON0bits 6 2 `i -> -> -> 0 `i `Vuc `i != -> . . _PCON0bits 6 1 `i -> -> -> 0 `i `Vuc `i 2035  ]
-{
-[; ;cause_of_reset.c: 362: reset_cause = VREG_or_ULP_Ready_Fault_Reset;
-"362
-[e = _reset_cause . `E17455 11 ]
-"364
-}
-[e :U 2035 ]
-"367
-[e :U 2034 ]
-[e :U 2032 ]
-[e :U 2030 ]
-[e :U 2028 ]
 [e :U 2026 ]
 [e :U 2024 ]
 [e :U 2022 ]
@@ -16382,85 +16226,116 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2018 ]
 [e :U 2016 ]
 [e :U 2014 ]
-[; ;cause_of_reset.c: 364: }
-[; ;cause_of_reset.c: 367: return reset_cause;
-[e ) _reset_cause ]
+[; ;cause_of_reset.c: 64: }
+[; ;cause_of_reset.c: 67: PCON0bits.STKOVF = 0;
+"67
+[e = . . _PCON0bits 6 7 -> -> 0 `i `uc ]
+[; ;cause_of_reset.c: 68: PCON0bits.STKUNF = 0;
+"68
+[e = . . _PCON0bits 6 6 -> -> 0 `i `uc ]
+[; ;cause_of_reset.c: 69: PCON0bits.nWDTWV = 1;
+"69
+[e = . . _PCON0bits 6 5 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 70: PCON0bits.nRWDT = 1;
+"70
+[e = . . _PCON0bits 6 4 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 71: PCON0bits.nRMCLR = 1;
+"71
+[e = . . _PCON0bits 6 3 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 72: PCON0bits.nRI = 1;
+"72
+[e = . . _PCON0bits 6 2 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 73: PCON0bits.nPOR = 1;
+"73
+[e = . . _PCON0bits 6 1 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 74: PCON0bits.nBOR = 1;
+"74
+[e = . . _PCON0bits 6 0 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 76: return return_reset_cause;
+"76
+[e ) _return_reset_cause ]
 [e $UE 2012  ]
-[; ;cause_of_reset.c: 369: }
-"369
+[; ;cause_of_reset.c: 78: }
+"78
 [e :UE 2012 ]
 }
-"372
+"81
 [v _getCauseOfResetString `(*Tuc ~T0 @X0 1 ef1`E17455 ]
 {
-[; ;cause_of_reset.c: 372: inline char *getCauseOfResetString(enum reset_t r) {
+[; ;cause_of_reset.c: 81: inline char *getCauseOfResetString(reset_t r) {
 [e :U _getCauseOfResetString ]
 [v _r `E17455 ~T0 @X0 1 r1 ]
 [f ]
-[v F17476 `*Cuc ~T0 @X0 -> 0 `x s ]
-[i F17476
+"84
+[v F17473 `*uc ~T0 @X0 -> 0 `x s strings ]
+[i F17473
 :U ..
-"376
-:s 1C
-"377
-:s 2C
-"378
-:s 3C
-"379
-:s 4C
-"380
-:s 5C
-"381
-:s 6C
-"382
-:s 7C
-"383
-:s 8C
-"384
-:s 9C
-"385
-:s 10C
-"386
-:s 11C
-"388
-:s 12C
+"85
+-> :s 1C `*uc
+"86
+-> :s 2C `*uc
+"87
+-> :s 3C `*uc
+"88
+-> :s 4C `*uc
+"89
+-> :s 5C `*uc
+"90
+-> :s 6C `*uc
+"91
+-> :s 7C `*uc
+"92
+-> :s 8C `*uc
+"93
+-> :s 9C `*uc
 ..
 ]
-"375
-[v _strings `*Cuc ~T0 @X0 12  a ]
-[; ;cause_of_reset.c: 375: const char *strings[] = {
-[; ;cause_of_reset.c: 376: "Power On Reset",
-[; ;cause_of_reset.c: 377: "Brown Out Reset",
-[; ;cause_of_reset.c: 378: "Master Clear Reset",
-[; ;cause_of_reset.c: 379: "Master Clear Sleep Reset",
-[; ;cause_of_reset.c: 380: "Watch Dog Timer Violation Reset",
-[; ;cause_of_reset.c: 381: "Watch Dog Timer Sleep Reset",
-[; ;cause_of_reset.c: 382: "Windowed Watch Dog Timer Violation Reset",
-[; ;cause_of_reset.c: 383: "Interrupt Wake Up From Sleep",
-[; ;cause_of_reset.c: 384: "RESET Instruction Executed",
-[; ;cause_of_reset.c: 385: "Stack Overflow Reset",
-[; ;cause_of_reset.c: 386: "Stack Underflow Reset",
-[; ;cause_of_reset.c: 387: "VREG or ULP Ready Fault Reset"
-[; ;cause_of_reset.c: 388: };
-"388
-[e = _strings F17476 ]
-[; ;cause_of_reset.c: 390: return strings[r];
-"390
-[e ) -> *U + &U _strings * -> _r `ux -> -> # *U &U _strings `ui `ux `*Tuc ]
-[e $UE 2036  ]
-[; ;cause_of_reset.c: 391: }
-"391
-[e :UE 2036 ]
+[; ;cause_of_reset.c: 84: static char *strings[] = {
+[; ;cause_of_reset.c: 85: "Undefined Reset",
+[; ;cause_of_reset.c: 86: "Power On Reset",
+[; ;cause_of_reset.c: 87: "Brown Out Reset",
+[; ;cause_of_reset.c: 88: "Master Clear Reset",
+[; ;cause_of_reset.c: 89: "Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 90: "Windowed Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 91: "RESET Instruction Executed",
+[; ;cause_of_reset.c: 92: "Stack Overflow Reset",
+[; ;cause_of_reset.c: 93: "Stack Underflow Reset",
+[; ;cause_of_reset.c: 94: };
+[; ;cause_of_reset.c: 97: if (r <= 8) {
+"97
+[e $ ! <= -> _r `i -> 8 `i 2028  ]
+{
+[; ;cause_of_reset.c: 99: return strings[r];
+"99
+[e ) -> *U + &U F17473 * -> _r `ux -> -> # *U &U F17473 `ui `ux `*Tuc ]
+[e $UE 2027  ]
+"101
 }
-[a 10C 83 116 97 99 107 32 79 118 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
-[a 11C 83 116 97 99 107 32 85 110 100 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
-[a 2C 66 114 111 119 110 32 79 117 116 32 82 101 115 101 116 0 ]
-[a 12C 86 82 69 71 32 111 114 32 85 76 80 32 82 101 97 100 121 32 70 97 117 108 116 32 82 101 115 101 116 0 ]
-[a 3C 77 97 115 116 101 114 32 67 108 101 97 114 32 82 101 115 101 116 0 ]
-[a 6C 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 83 108 101 101 112 32 82 101 115 101 116 0 ]
-[a 4C 77 97 115 116 101 114 32 67 108 101 97 114 32 83 108 101 101 112 32 82 101 115 101 116 0 ]
-[a 7C 87 105 110 100 111 119 101 100 32 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 86 105 111 108 97 116 105 111 110 32 82 101 115 101 116 0 ]
+[; ;cause_of_reset.c: 101: }
+[e $U 2029  ]
+"103
+[e :U 2028 ]
+[; ;cause_of_reset.c: 103: else {
+{
+[; ;cause_of_reset.c: 105: return "Undefined Reset";
+"105
+[e ) -> :s 10C `*Tuc ]
+[e $UE 2027  ]
+"107
+}
+[e :U 2029 ]
+[; ;cause_of_reset.c: 107: }
+[; ;cause_of_reset.c: 109: }
+"109
+[e :UE 2027 ]
+}
+[a 8C 83 116 97 99 107 32 79 118 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
+[a 9C 83 116 97 99 107 32 85 110 100 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
+[a 3C 66 114 111 119 110 32 79 117 116 32 82 101 115 101 116 0 ]
+[a 4C 77 97 115 116 101 114 32 67 108 101 97 114 32 82 101 115 101 116 0 ]
+[a 6C 87 105 110 100 111 119 101 100 32 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 86 105 111 108 97 116 105 111 110 32 82 101 115 101 116 0 ]
 [a 5C 87 97 116 99 104 32 68 111 103 32 84 105 109 101 114 32 86 105 111 108 97 116 105 111 110 32 82 101 115 101 116 0 ]
-[a 1C 80 111 119 101 114 32 79 110 32 82 101 115 101 116 0 ]
-[a 8C 73 110 116 101 114 114 117 112 116 32 87 97 107 101 32 85 112 32 70 114 111 109 32 83 108 101 101 112 0 ]
-[a 9C 82 69 83 69 84 32 73 110 115 116 114 117 99 116 105 111 110 32 69 120 101 99 117 116 101 100 0 ]
+[a 2C 80 111 119 101 114 32 79 110 32 82 101 115 101 116 0 ]
+[a 1C 85 110 100 101 102 105 110 101 100 32 82 101 115 101 116 0 ]
+[a 10C 85 110 100 101 102 105 110 101 100 32 82 101 115 101 116 0 ]
+[a 7C 82 69 83 69 84 32 73 110 115 116 114 117 99 116 105 111 110 32 69 120 101 99 117 116 101 100 0 ]

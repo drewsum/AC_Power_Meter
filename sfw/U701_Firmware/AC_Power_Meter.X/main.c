@@ -42,6 +42,7 @@
 */
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> File Inclusions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+#include <xc.h>
 #include "mcc_generated_files/mcc.h"
 
 #include <math.h>
@@ -51,6 +52,15 @@
 #include "cause_of_reset.h"
 #include "ring_buffer_interface.h"
 
+// User IDs
+#pragma config IDLOC0 = 0
+#pragma config IDLOC1 = 1
+#pragma config IDLOC2 = 2
+#pragma config IDLOC3 = 3
+#pragma config IDLOC4 = 4
+#pragma config IDLOC5 = 5
+#pragma config IDLOC6 = 6
+#pragma config IDLOC7 = 7
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Global variables / Macros <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -81,11 +91,9 @@ volatile bit load_enable = 0;                   // Load enabled flag
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
-volatile bit adc_error_flag = 0;
-volatile bit VCC_overvoltage_flag = 0;
-
-
-
+volatile bit adc_error_flag = 0;                // ADC error flag is set upon strange ADC results
+volatile bit VCC_overvoltage_flag = 0;          // VCC overvoltage flag is set upon HLVD interrupt
+reset_t reset_cause;
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -151,9 +159,11 @@ void heartbeatTimerCallback(void) {
 // Callback function for ADCC interrupts
 void ADCPostProcessingCallback(void) {
  
-    adcc_channel_t currentADCChannel = ADPCH;
+    // Current channel is what's left in ADC channel select register
+    adcc_channel_t current_adc_channel = ADPCH;
     
-    switch (currentADCChannel) {
+    // Determine post processing based on current channel
+    switch (current_adc_channel) {
         
         case channel_VSS:
             
@@ -443,6 +453,9 @@ void acquisitionTimerCallback(void) {
 void main(void)
 {
     
+    // Determine the cause of the most recent reset, save to enum
+    reset_cause = getCauseOfReset();
+    
     // Wait a bit before booting to let the reset LED shine a little longer
     // This is helpful for visualizing quick resets
     __delay_ms(250);
@@ -470,6 +483,8 @@ void main(void)
     // Enable low priority global interrupts.
     INTERRUPT_GlobalInterruptLowEnable();
 
+    // Clear VCC overvoltage flag if it triggered on reset
+    VCC_overvoltage_flag = 0;
     
     // Clear terminal, reset cursor, reset text attributes
     terminal_clearTerminal();

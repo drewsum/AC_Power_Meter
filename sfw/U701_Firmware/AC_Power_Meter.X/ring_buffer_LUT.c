@@ -38,6 +38,7 @@ extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
 extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
+extern reset_t reset_cause;
 
 void ringBufferLUT(char * line) {
 
@@ -79,8 +80,8 @@ void ringBufferLUT(char * line) {
         
         // Determine cause of reset and print
         printf("The cause of the most recent device reset was: %s\n\r",
-                getCauseOfResetString(getCauseOfReset()));
-
+                getCauseOfResetString(reset_cause));
+       
         // Reset to white text
         terminal_textAttributesReset();
         // Get some space on terminal
@@ -114,10 +115,10 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Grab and print device ID from flash
-        printf("Flash memory device ID is: 0x%X. This corresponds to a device "
+        printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
                 "part number of %s\n\r",
                 getDeviceID(),
-                getDeviceIDString(getDeviceID));
+                getDeviceIDString(getDeviceID()));
 
         // Reset to white text
         terminal_textAttributesReset();
@@ -135,8 +136,8 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Grab and print revision ID from flash
-        printf("Flash memory revision ID is: %s\n\r",
-                getRevisionIDString(getMajorRevisionID(),getMinorRevisionID()));
+        printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
+                ((char) getMajorRevisionID() + 65),getMinorRevisionID());
 
         // Reset to white text
         terminal_textAttributesReset();
@@ -158,9 +159,9 @@ void ringBufferLUT(char * line) {
         // Loop through all 8 user ID locations in flash
         for (int userID = 0; userID <= 7; userID++) {
          
-            printf("    User ID Word %d (Flash address 0x%X): 0x%X\n\r",
+            printf("    User ID Word %d (Flash address 0x20000%X): 0x%X\n\r",
                     userID,
-                    (0x200000 + (2 * userID)),
+                    (2 * userID),
                     getUserID(userID));
             
         }
@@ -219,7 +220,7 @@ void ringBufferLUT(char * line) {
                     break;
                     
                 default:
-                    strcpy(channel_name, "Spurious channel");
+                    strcpy(channel_name, "Undefined");
                     break;
                 
             }
@@ -275,11 +276,11 @@ void ringBufferLUT(char * line) {
     else if((0 == strcmp(line, "VCC Overvoltage?"))) {
         
         // If we've seen a VCC overvoltage event
-        if (VCC_overvoltage_flag) {
+        if (VCC_overvoltage_flag == 1) {
         
             // Get some space on terminal
             terminal_printNewline();
-            // set text color to yellow and print help message
+            // set text color to red and print message
             terminal_textAttributes(RED, BLACK, NORMAL);
             printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.40V)\n\r");
             // Reset to white foreground
@@ -568,7 +569,7 @@ void ringBufferLUT(char * line) {
             // Get some space on terminal
             terminal_printNewline();
             // set text color to yellow and print help message
-            terminal_textAttributes(CYAN, BLACK, NORMAL);
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("Dimming has been set to %d percent\n\r", percentage);
             printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
             printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
@@ -587,7 +588,7 @@ void ringBufferLUT(char * line) {
         // Get some space on terminal
         terminal_printNewline();
         // set text color to yellow and print help message
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
         // Reset to white foreground
         terminal_textAttributesReset();
@@ -663,7 +664,7 @@ void ringBufferLUT(char * line) {
         printf("Help messages appear in yellow\n\r");
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("System parameters appears in green\n\r");
+        printf("System parameters appear in green\n\r");
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Measurement responses appear in cyan\n\r");
         terminal_textAttributes(RED, BLACK, NORMAL);

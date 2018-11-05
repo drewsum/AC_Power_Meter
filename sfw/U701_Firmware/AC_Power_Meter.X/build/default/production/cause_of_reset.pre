@@ -21411,281 +21411,122 @@ extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
 # 42 "cause_of_reset.h"
-extern enum reset_t{
-Power_On_Reset,
-Brown_Out_Reset,
-Master_Clear_Reset,
-Master_Clear_Sleep_Reset,
-Watch_Dog_Timer_Reset,
-Watch_Dog_Timer_Sleep_Reset,
-Windowed_Watch_Dog_Timer_Reset,
-Interrupt_Wake_Up_From_Sleep,
-RESET_Instruction_Executed,
-Stack_Overflow_Reset,
-Stack_Underflow_Reset,
-VREG_or_ULP_Ready_Fault_Reset
-};
+typedef enum reset_types{
+Undefined_Reset = 0,
+Power_On_Reset = 1,
+Brown_Out_Reset = 2,
+Master_Clear_Reset = 3,
+Watch_Dog_Timer_Reset = 4,
+Windowed_Watch_Dog_Timer_Reset = 5,
+RESET_Instruction_Executed = 6,
+Stack_Overflow_Reset = 7,
+Stack_Underflow_Reset = 8
+} reset_t;
 
 
 
-enum reset_t getCauseOfReset(void);
+reset_t getCauseOfReset(void);
 
-inline char * getCauseOfResetString(enum reset_t r);
 
-# 12 "cause_of_reset.c"
-enum reset_t reset_cause;
+inline char * getCauseOfResetString(reset_t r);
 
-enum reset_t getCauseOfReset(void) {
+# 11 "cause_of_reset.c"
+reset_t getCauseOfReset(void) {
+
+reset_t return_reset_cause;
 
 
 
 
-if(
+if (PCON0bits.STKOVF == 1) {
 
-STATUSbits.nTO &&
-STATUSbits.nPD &&
-!(STATUSbits.N) &&
+return_reset_cause = Stack_Overflow_Reset;
 
-!(STATUSbits.OV) &&
-!(STATUSbits.Z) &&
-!(STATUSbits.DC) &&
-!(STATUSbits.C) &&
+}
 
+else if (PCON0bits.STKUNF == 1) {
 
-!(PCON0bits.STKOVF) &&
-!(PCON0bits.STKUNF) &&
-PCON0bits.nWDTWV &&
-PCON0bits.nRWDT &&
+return_reset_cause = Stack_Underflow_Reset;
 
-PCON0bits.nRMCLR &&
-PCON0bits.nRI &&
-!(PCON0bits.nPOR)
+}
 
-) {
+else if (PCON0bits.nWDTWV == 0) {
 
+return_reset_cause = Windowed_Watch_Dog_Timer_Reset;
 
-reset_cause = Power_On_Reset;
+}
+
+else if (PCON0bits.nRMCLR == 0) {
+
+return_reset_cause = Master_Clear_Reset;
+
+}
+
+else if (PCON0bits.nRI == 0) {
+
+return_reset_cause = RESET_Instruction_Executed;
+
+}
+
+else if (PCON0bits.nPOR == 0) {
+
+return_reset_cause = Power_On_Reset;
+
+}
+
+else if (PCON0bits.nBOR == 0) {
+
+return_reset_cause = Brown_Out_Reset;
+
+}
+
+else {
+
+return_reset_cause = Undefined_Reset;
 
 }
 
 
-else if(
+PCON0bits.STKOVF = 0;
+PCON0bits.STKUNF = 0;
+PCON0bits.nWDTWV = 1;
+PCON0bits.nRWDT = 1;
+PCON0bits.nRMCLR = 1;
+PCON0bits.nRI = 1;
+PCON0bits.nPOR = 1;
+PCON0bits.nBOR = 1;
 
-STATUSbits.nTO &&
-STATUSbits.nPD &&
-!(STATUSbits.N) &&
-
-!(STATUSbits.OV) &&
-!(STATUSbits.Z) &&
-!(STATUSbits.DC) &&
-!(STATUSbits.C) &&
-
-
-!(PCON0bits.STKOVF) &&
-!(PCON0bits.STKUNF) &&
-PCON0bits.nWDTWV &&
-PCON0bits.nRWDT &&
-
-PCON0bits.nRMCLR &&
-PCON0bits.nRI &&
-
-!(PCON0bits.nBOR)
-) {
-
-
-reset_cause = Brown_Out_Reset;
+return return_reset_cause;
 
 }
 
 
-else if(
+inline char *getCauseOfResetString(reset_t r) {
 
-# 94
-!(PCON0bits.nRMCLR)
 
-
-
-) {
-
-
-reset_cause = Master_Clear_Reset;
-
-}
-
-
-else if(
-
-STATUSbits.nTO &&
-STATUSbits.nPD &&
-
-# 123
-!(PCON0bits.nRMCLR)
-
-
-
-) {
-
-
-reset_cause = Master_Clear_Sleep_Reset;
-
-}
-
-
-else if(
-
-!(STATUSbits.nTO) &&
-
-# 150
-!(PCON0bits.nRWDT)
-
-# 156
-) {
-
-
-reset_cause = Watch_Dog_Timer_Reset;
-
-}
-
-
-else if(
-
-!(STATUSbits.nTO) &&
-!(STATUSbits.nPD)
-
-# 185
-) {
-
-
-reset_cause = Watch_Dog_Timer_Sleep_Reset;
-
-}
-
-
-else if(
-
-# 207
-!(PCON0bits.nWDTWV)
-
-# 214
-) {
-
-
-reset_cause = Windowed_Watch_Dog_Timer_Reset;
-
-}
-
-
-else if(
-
-STATUSbits.nTO &&
-!(STATUSbits.nPD) &&
-
-
-!(STATUSbits.OV)
-
-# 243
-) {
-
-
-reset_cause = Interrupt_Wake_Up_From_Sleep;
-
-}
-
-
-else if(
-
-# 269
-!(PCON0bits.nRI)
-
-
-) {
-
-
-reset_cause = RESET_Instruction_Executed;
-
-}
-
-
-else if(
-
-# 292
-PCON0bits.STKOVF
-
-# 301
-) {
-
-
-reset_cause = Stack_Overflow_Reset;
-
-}
-
-
-else if(
-
-# 322
-PCON0bits.STKUNF
-
-# 330
-) {
-
-
-reset_cause = Stack_Underflow_Reset;
-
-}
-
-
-else if(
-
-
-
-STATUSbits.N &&
-
-STATUSbits.OV &&
-!(STATUSbits.Z) &&
-!(STATUSbits.DC) &&
-!(STATUSbits.C) &&
-
-
-!(PCON0bits.STKOVF) &&
-!(PCON0bits.STKUNF) &&
-PCON0bits.nWDTWV &&
-PCON0bits.nRWDT &&
-
-!(PCON0bits.nRMCLR) &&
-!(PCON0bits.nRI) &&
-PCON0bits.nPOR
-
-) {
-
-
-reset_cause = VREG_or_ULP_Ready_Fault_Reset;
-
-}
-
-
-return reset_cause;
-
-}
-
-
-inline char *getCauseOfResetString(enum reset_t r) {
-
-
-const char *strings[] = {
+static char *strings[] = {
+"Undefined Reset",
 "Power On Reset",
 "Brown Out Reset",
 "Master Clear Reset",
-"Master Clear Sleep Reset",
 "Watch Dog Timer Violation Reset",
-"Watch Dog Timer Sleep Reset",
 "Windowed Watch Dog Timer Violation Reset",
-"Interrupt Wake Up From Sleep",
 "RESET Instruction Executed",
 "Stack Overflow Reset",
 "Stack Underflow Reset",
-"VREG or ULP Ready Fault Reset"
 };
 
+
+if (r <= 8) {
+
 return strings[r];
+
 }
 
+else {
+
+return "Undefined Reset";
+
+}
+
+}

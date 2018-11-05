@@ -1,12 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "125 mcc_generated_files/memory.h
 [v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ul ]
-"37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"96 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
-[v _utoa `(*uc ~T0 @X0 0 ef3`*uc`ui`i ]
-"36 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16113,9 +16107,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;device_IDs.h: 40: uint16_t getDeviceID(void);
 [; ;device_IDs.h: 43: uint8_t getMajorRevisionID(void);
 [; ;device_IDs.h: 44: uint8_t getMinorRevisionID(void);
-[; ;device_IDs.h: 48: char* getDeviceIDString(uint16_t inputDevID);
-[; ;device_IDs.h: 53: char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
-[; ;device_IDs.h: 57: uint16_t getUserID(uint8_t inputUserID);
+[; ;device_IDs.h: 48: inline char * getDeviceIDString(uint16_t inputDevID);
+[; ;device_IDs.h: 52: uint16_t getUserID(uint8_t inputUserID);
 "4 device_IDs.c
 [v _getDeviceID `(ui ~T0 @X0 1 ef ]
 {
@@ -16167,127 +16160,103 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2017 ]
 }
 "34
-[v _getDeviceIDString `(*uc ~T0 @X0 1 ef1`ui ]
+[v _getDeviceIDString `(*Tuc ~T0 @X0 1 ef1`ui ]
 {
-[; ;device_IDs.c: 34: char* getDeviceIDString(uint16_t inputDevID) {
+[; ;device_IDs.c: 34: inline char * getDeviceIDString(uint16_t inputDevID) {
 [e :U _getDeviceIDString ]
 [v _inputDevID `ui ~T0 @X0 1 r1 ]
 [f ]
+[v F17550 `*Cuc ~T0 @X0 -> 0 `x s ]
+[i F17550
+:U ..
+"39
+:s 1C
+"40
+:s 2C
+"43
+:s 3C
+..
+]
 "37
-[v _returnString `uc ~T0 @X0 -> 12 `i a ]
-[; ;device_IDs.c: 37: char returnString[12];
-[; ;device_IDs.c: 41: switch (inputDevID) {
-"41
+[v _strings `*Cuc ~T0 @X0 3  a ]
+[; ;device_IDs.c: 37: const char *strings[] = {
+[; ;device_IDs.c: 39: "PIC18F67K40",
+[; ;device_IDs.c: 40: "PIC18LF67K40",
+[; ;device_IDs.c: 41: "Undefined"
+[; ;device_IDs.c: 43: };
+"43
+[e = _strings F17550 ]
+[; ;device_IDs.c: 47: switch (inputDevID) {
+"47
 [e $U 2020  ]
 {
-[; ;device_IDs.c: 43: case 0x6AC0:
-"43
-[e :U 2021 ]
-[; ;device_IDs.c: 44: strcpy(returnString, "PIC18F67K40");
-"44
-[e ( _strcpy (2 , &U _returnString :s 1C ]
-[; ;device_IDs.c: 45: break;
-"45
-[e $U 2019  ]
-[; ;device_IDs.c: 47: case 0x6B20:
-"47
-[e :U 2022 ]
-[; ;device_IDs.c: 48: strcpy(returnString, "PIC18LF67K40");
-"48
-[e ( _strcpy (2 , &U _returnString :s 2C ]
-[; ;device_IDs.c: 49: break;
+[; ;device_IDs.c: 49: case 0x6AC0:
 "49
-[e $U 2019  ]
-[; ;device_IDs.c: 51: default:
+[e :U 2021 ]
+[; ;device_IDs.c: 50: return strings[0];
+"50
+[e ) -> *U + &U _strings * -> -> -> 0 `i `ui `ux -> -> # *U &U _strings `ui `ux `*Tuc ]
+[e $UE 2018  ]
+[; ;device_IDs.c: 51: break;
 "51
-[e :U 2023 ]
-[; ;device_IDs.c: 52: strcpy(returnString, "Undefined");
-"52
-[e ( _strcpy (2 , &U _returnString :s 3C ]
-[; ;device_IDs.c: 53: break;
+[e $U 2019  ]
+[; ;device_IDs.c: 53: case 0x6B20:
 "53
-[e $U 2019  ]
+[e :U 2022 ]
+[; ;device_IDs.c: 54: return strings[1];
+"54
+[e ) -> *U + &U _strings * -> -> -> 1 `i `ui `ux -> -> # *U &U _strings `ui `ux `*Tuc ]
+[e $UE 2018  ]
+[; ;device_IDs.c: 55: break;
 "55
-}
-[; ;device_IDs.c: 55: }
 [e $U 2019  ]
-"41
+[; ;device_IDs.c: 57: default:
+"57
+[e :U 2023 ]
+[; ;device_IDs.c: 58: return strings[2];
+"58
+[e ) -> *U + &U _strings * -> -> -> 2 `i `ui `ux -> -> # *U &U _strings `ui `ux `*Tuc ]
+[e $UE 2018  ]
+[; ;device_IDs.c: 59: break;
+"59
+[e $U 2019  ]
+"61
+}
+[; ;device_IDs.c: 61: }
+[e $U 2019  ]
+"47
 [e :U 2020 ]
 [e [\ _inputDevID , $ -> -> 27328 `i `ui 2021
  , $ -> -> 27424 `i `ui 2022
  2023 ]
-"55
+"61
 [e :U 2019 ]
-[; ;device_IDs.c: 58: return *returnString;
-"58
-[e ) -> *U &U _returnString `*uc ]
-[e $UE 2018  ]
-[; ;device_IDs.c: 60: }
-"60
+[; ;device_IDs.c: 63: }
+"63
 [e :UE 2018 ]
 }
-"62
-[v _getRevisionIDString `(*uc ~T0 @X0 1 ef2`uc`uc ]
-{
-[; ;device_IDs.c: 62: char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID) {
-[e :U _getRevisionIDString ]
-[v _inputMajRevID `uc ~T0 @X0 1 r1 ]
-[v _inputMinRevID `uc ~T0 @X0 1 r2 ]
-[f ]
-"64
-[v _returnString `uc ~T0 @X0 -> 4 `i a ]
-"70
-[v _MajRevStr `uc ~T0 @X0 -> -> 1 `i `ux a ]
-[; ;device_IDs.c: 64: char returnString[4];
-[; ;device_IDs.c: 70: char MajRevStr[1];
-[; ;device_IDs.c: 71: utoa(inputMajRevID, MajRevStr, 10);
-"71
-[e ( _utoa (3 , , -> _inputMajRevID `*uc -> &U _MajRevStr `ui -> 10 `i ]
-[; ;device_IDs.c: 72: MajRevStr[0] += 17;
-"72
-[e =+ *U + &U _MajRevStr * -> -> -> 0 `i `ui `ux -> -> # *U &U _MajRevStr `ui `ux -> -> 17 `i `uc ]
-"75
-[v _MinRevStr `uc ~T0 @X0 -> 2 `i a ]
-[; ;device_IDs.c: 75: char MinRevStr[2];
-[; ;device_IDs.c: 76: utoa(inputMinRevID, MinRevStr, 10);
-"76
-[e ( _utoa (3 , , -> _inputMinRevID `*uc -> &U _MinRevStr `ui -> 10 `i ]
-[; ;device_IDs.c: 79: strcpy(returnString, MajRevStr);
-"79
-[e ( _strcpy (2 , &U _returnString -> &U _MajRevStr `*Cuc ]
-[; ;device_IDs.c: 82: strcat(returnString, MinRevStr);
-"82
-[e ( _strcat (2 , &U _returnString -> &U _MinRevStr `*Cuc ]
-[; ;device_IDs.c: 85: return *returnString;
-"85
-[e ) -> *U &U _returnString `*uc ]
-[e $UE 2024  ]
-[; ;device_IDs.c: 87: }
-"87
-[e :UE 2024 ]
-}
-"89
+"65
 [v _getUserID `(ui ~T0 @X0 1 ef1`uc ]
 {
-[; ;device_IDs.c: 89: uint16_t getUserID(uint8_t inputUserID) {
+[; ;device_IDs.c: 65: uint16_t getUserID(uint8_t inputUserID) {
 [e :U _getUserID ]
 [v _inputUserID `uc ~T0 @X0 1 r1 ]
 [f ]
-"92
-[v _initialOffset `ui ~T0 @X0 1 a ]
-[; ;device_IDs.c: 92: uint16_t initialOffset = 0x200000;
-[e = _initialOffset -> -> 2097152 `l `ui ]
-"95
+"68
+[v _initialOffset `ul ~T0 @X0 1 a ]
+[; ;device_IDs.c: 68: uint32_t initialOffset = 0x200000;
+[e = _initialOffset -> -> 2097152 `l `ul ]
+"71
 [v _IDOffset `uc ~T0 @X0 1 a ]
-[; ;device_IDs.c: 95: uint8_t IDOffset = inputUserID * 2;
+[; ;device_IDs.c: 71: uint8_t IDOffset = inputUserID * 2;
 [e = _IDOffset -> * -> _inputUserID `i -> 2 `i `uc ]
-[; ;device_IDs.c: 97: return FLASH_ReadWord(initialOffset + IDOffset);
-"97
-[e ) ( _FLASH_ReadWord (1 -> + _initialOffset -> _IDOffset `ui `ul ]
-[e $UE 2025  ]
-[; ;device_IDs.c: 101: }
-"101
-[e :UE 2025 ]
+[; ;device_IDs.c: 73: return FLASH_ReadWord(initialOffset + IDOffset);
+"73
+[e ) ( _FLASH_ReadWord (1 + _initialOffset -> _IDOffset `ul ]
+[e $UE 2024  ]
+[; ;device_IDs.c: 77: }
+"77
+[e :UE 2024 ]
 }
 [a 3C 85 110 100 101 102 105 110 101 100 0 ]
 [a 2C 80 73 67 49 56 76 70 54 55 75 52 48 0 ]

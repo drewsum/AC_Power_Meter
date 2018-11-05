@@ -22085,38 +22085,31 @@ uint8_t getMinorRevisionID(void);
 
 
 
-char* getDeviceIDString(uint16_t inputDevID);
-
-
-
-
-char* getRevisionIDString(uint8_t inputMajRevID, uint8_t inputMinRevID);
+inline char * getDeviceIDString(uint16_t inputDevID);
 
 
 
 uint16_t getUserID(uint8_t inputUserID);
 
 # 42 "cause_of_reset.h"
-extern enum reset_t{
-Power_On_Reset,
-Brown_Out_Reset,
-Master_Clear_Reset,
-Master_Clear_Sleep_Reset,
-Watch_Dog_Timer_Reset,
-Watch_Dog_Timer_Sleep_Reset,
-Windowed_Watch_Dog_Timer_Reset,
-Interrupt_Wake_Up_From_Sleep,
-RESET_Instruction_Executed,
-Stack_Overflow_Reset,
-Stack_Underflow_Reset,
-VREG_or_ULP_Ready_Fault_Reset
-};
+typedef enum reset_types{
+Undefined_Reset = 0,
+Power_On_Reset = 1,
+Brown_Out_Reset = 2,
+Master_Clear_Reset = 3,
+Watch_Dog_Timer_Reset = 4,
+Windowed_Watch_Dog_Timer_Reset = 5,
+RESET_Instruction_Executed = 6,
+Stack_Overflow_Reset = 7,
+Stack_Underflow_Reset = 8
+} reset_t;
 
 
 
-enum reset_t getCauseOfReset(void);
+reset_t getCauseOfReset(void);
 
-inline char * getCauseOfResetString(enum reset_t r);
+
+inline char * getCauseOfResetString(reset_t r);
 
 # 19 "ring_buffer_LUT.c"
 extern text_attribute_t attribute;
@@ -22141,10 +22134,11 @@ extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
 extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
+extern reset_t reset_cause;
 
 void ringBufferLUT(char * line) {
 
-# 48
+# 49
 if((0 == strcmp(line, "Reset"))) {
 
 
@@ -22179,7 +22173,7 @@ terminal_textAttributes(GREEN, BLACK, NORMAL);
 
 
 printf("The cause of the most recent device reset was: %s\n\r",
-getCauseOfResetString(getCauseOfReset()));
+getCauseOfResetString(reset_cause));
 
 
 terminal_textAttributesReset();
@@ -22214,10 +22208,10 @@ terminal_printNewline();
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
 
-printf("Flash memory device ID is: 0x%X. This corresponds to a device "
+printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
 "part number of %s\n\r",
 getDeviceID(),
-getDeviceIDString(getDeviceID));
+getDeviceIDString(getDeviceID()));
 
 
 terminal_textAttributesReset();
@@ -22235,8 +22229,8 @@ terminal_printNewline();
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
 
-printf("Flash memory revision ID is: %s\n\r",
-getRevisionIDString(getMajorRevisionID(),getMinorRevisionID()));
+printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
+((char) getMajorRevisionID() + 65),getMinorRevisionID());
 
 
 terminal_textAttributesReset();
@@ -22258,9 +22252,9 @@ printf("The following User IDs have been retrieved from flash memory:\n\r");
 
 for (int userID = 0; userID <= 7; userID++) {
 
-printf("    User ID Word %d (Flash address 0x%X): 0x%X\n\r",
+printf("    User ID Word %d (Flash address 0x20000%X): 0x%X\n\r",
 userID,
-(0x200000 + (2 * userID)),
+(2 * userID),
 getUserID(userID));
 
 }
@@ -22319,7 +22313,7 @@ strcpy(channel_name, "Internal FVR Buffer 1");
 break;
 
 default:
-strcpy(channel_name, "Spurious channel");
+strcpy(channel_name, "Undefined");
 break;
 
 }
@@ -22375,7 +22369,7 @@ terminal_printNewline();
 else if((0 == strcmp(line, "VCC Overvoltage?"))) {
 
 
-if (VCC_overvoltage_flag) {
+if (VCC_overvoltage_flag == 1) {
 
 
 terminal_printNewline();
@@ -22668,7 +22662,7 @@ dimming_period = (100 - percentage) * (0xFFFF / 100);
 
 terminal_printNewline();
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Dimming has been set to %d percent\n\r", percentage);
 printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
@@ -22687,7 +22681,7 @@ else if((0 == strcmp(line, "Device On Time?"))) {
 
 terminal_printNewline();
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
 
 terminal_textAttributesReset();
@@ -22763,7 +22757,7 @@ terminal_printNewline();
 printf("Help messages appear in yellow\n\r");
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("System parameters appears in green\n\r");
+printf("System parameters appear in green\n\r");
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Measurement responses appear in cyan\n\r");
 terminal_textAttributes(RED, BLACK, NORMAL);

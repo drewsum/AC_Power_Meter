@@ -39,26 +39,24 @@
 #include <string.h>
 
 // The type of reset, stored in an enumeration
-extern enum reset_t{
-    Power_On_Reset,
-    Brown_Out_Reset,
-    Master_Clear_Reset,
-    Master_Clear_Sleep_Reset,
-    Watch_Dog_Timer_Reset,
-    Watch_Dog_Timer_Sleep_Reset,
-    Windowed_Watch_Dog_Timer_Reset,
-    Interrupt_Wake_Up_From_Sleep,
-    RESET_Instruction_Executed,
-    Stack_Overflow_Reset,
-    Stack_Underflow_Reset,
-    VREG_or_ULP_Ready_Fault_Reset
-};
+typedef enum reset_types{
+    Undefined_Reset                 = 0,
+    Power_On_Reset                  = 1,
+    Brown_Out_Reset                 = 2,
+    Master_Clear_Reset              = 3,
+    Watch_Dog_Timer_Reset           = 4,
+    Windowed_Watch_Dog_Timer_Reset  = 5,
+    RESET_Instruction_Executed      = 6,
+    Stack_Overflow_Reset            = 7,
+    Stack_Underflow_Reset           = 8
+} reset_t;
 
 // This function returns a pointer to a string describing the cause of the most
 // recent device reset
-enum reset_t getCauseOfReset(void);
+reset_t getCauseOfReset(void);
 
-inline char * getCauseOfResetString(enum reset_t r);
+// This function returns a string describing the given type of reset
+inline char * getCauseOfResetString(reset_t r);
 
 #endif	/* CAUSE_OF_RESET_H */
 
