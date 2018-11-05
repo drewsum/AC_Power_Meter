@@ -58,10 +58,10 @@
 void HLVD_Initialize(void)
 {
     // set the HLVD_Initialize module to the options selected in the User Interface
-     // SEL 3.40; 
-    HLVDCON1 = 0x08;
-     // HLVDINTL enabled; HLVDINTH disabled; HLVDEN enabled; 
-    HLVDCON0 = 0x81;
+     // SEL 3.60; 
+    HLVDCON1 = 0x09;
+     // HLVDINTL disabled; HLVDINTH enabled; HLVDEN enabled; 
+    HLVDCON0 = 0x82;
     
     PIR2bits.HLVDIF = 0;
     // Enable HLVD interrupt.

@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.45\dat\en_msgs.txt -cs \
   -h+dist/default/production\AC_Power_Meter.X.production.sym \
   --cmf=dist/default/production\AC_Power_Meter.X.production.cmf -z \
-  -Q18LF67K40 -oC:\Users\DREWMA~1\AppData\Local\Temp\s7dc.2 \
+  -Q18LF67K40 -oC:\Users\DREWMA~1\AppData\Local\Temp\s4es.2 \
   -Mdist/default/production/AC_Power_Meter.X.production.map -E1 -ver=XC8 \
   -ASTACK=0380h-0de9h -pstack=STACK -ACODE=00h-01FFFFh -ACONST=00h-01FFFFh \
   -ASMALLCONST=0E00h-0EFFhx498 -AMEDIUMCONST=0E00h-0FFFFh,010E00h-01FFFFh \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\DREWMA~1\AppData\Local\Temp\s7dc.obj \
+  C:\Users\DREWMA~1\AppData\Local\Temp\s4es.obj \
   dist/default/production\AC_Power_Meter.X.production.obj 
 
 Object code version is 3.11
@@ -39,7 +39,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\DREWMA~1\AppData\Local\Temp\s7dc.obj
+C:\Users\DREWMA~1\AppData\Local\Temp\s4es.obj
                 init                                10A      10A        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000       10   200000       0
@@ -5430,7 +5430,7 @@ Total ram usage:        0 bytes
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  current_adc_    1   79[BANK0 ] enum E17425
+  current_adc_    1   79[BANK0 ] enum E17421
  Return value:  Size  Location     Type
                   1    wreg      void 
  Registers used:

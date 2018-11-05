@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.45 build -152302408 
-                                                                                               Sun Nov 04 23:33:21 2018
+                                                                                               Mon Nov 05 13:34:26 2018
 
 Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160504
      1                           	processor	18LF67K40
@@ -3301,7 +3301,7 @@ Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160
   3287  00F7A8  20                 	db	32
   3288  00F7A9  33                 	db	51	;'3'
   3289  00F7AA  2E                 	db	46
-  3290  00F7AB  34                 	db	52	;'4'
+  3290  00F7AB  36                 	db	54	;'6'
   3291  00F7AC  30                 	db	48	;'0'
   3292  00F7AD  56                 	db	86	;'V'
   3293  00F7AE  29                 	db	41
@@ -8685,7 +8685,7 @@ Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160
   8645  0104D6  EC19  F099         	call	_terminal_textAttributes
   8646                           
   8647                           ;ring_buffer_LUT.c: 285: printf("VCC Overvoltage condition has occurred (VCC has exceede
-      +                          d 3.40V)\n\r");
+      +                          d 3.60V)\n\r");
   8648  0104DA  0E70               	movlw	low STR_74
   8649  0104DC  0101               	movlb	1	; () banked
   8650  0104DE  6F64               	movwf	printf@f& (0+255),b
@@ -21104,16 +21104,16 @@ Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160
  20742  016E0C                     _HLVD_Initialize:
  20743                           	opt stack 15
  20744                           
- 20745                           ;hlvd.c: 62: HLVDCON1 = 0x08;
+ 20745                           ;hlvd.c: 62: HLVDCON1 = 0x09;
  20746                           
  20747                           ; BSR set to: 14
  20748                           ;incstack = 0
- 20749  016E0C  0E08               	movlw	8
+ 20749  016E0C  0E09               	movlw	9
  20750  016E0E  010E               	movlb	14	; () banked
  20751  016E10  6FC3               	movwf	195,b	;volatile
  20752                           
- 20753                           ;hlvd.c: 64: HLVDCON0 = 0x81;
- 20754  016E12  0E81               	movlw	129
+ 20753                           ;hlvd.c: 64: HLVDCON0 = 0x82;
+ 20754  016E12  0E82               	movlw	130
  20755  016E14  6FC2               	movwf	194,b	;volatile
  20756                           
  20757                           ; BSR set to: 14
@@ -28584,7 +28584,7 @@ Microchip Technology Omniscient Code Generator v1.45 (Free mode) build 201711160
  28014 ;; Parameters:    Size  Location     Type
  28015 ;;		None
  28016 ;; Auto vars:     Size  Location     Type
- 28017 ;;  current_adc_    1   79[BANK0 ] enum E17425
+ 28017 ;;  current_adc_    1   79[BANK0 ] enum E17421
  28018 ;; Return value:  Size  Location     Type
  28019 ;;                  1    wreg      void 
  28020 ;; Registers used:
@@ -42696,7 +42696,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.45 build -152302408 
-Symbol Table                                                                                   Sun Nov 04 23:33:21 2018
+Symbol Table                                                                                   Mon Nov 05 13:34:26 2018
 
                            ??i2_TMR7_StopTimer 0001                       getDeviceIDString@strings 0128  
                                  ___altoft@exp 0054               __end_of_TMR5_SetInterruptHandler 6E62  

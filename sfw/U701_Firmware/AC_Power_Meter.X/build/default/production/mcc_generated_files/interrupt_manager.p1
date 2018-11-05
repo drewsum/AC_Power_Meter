@@ -16250,8 +16250,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16293,6 +16291,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ISR(void);
 [; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);

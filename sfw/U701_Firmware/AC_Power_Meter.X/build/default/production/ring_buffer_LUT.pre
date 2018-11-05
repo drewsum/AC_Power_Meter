@@ -21614,12 +21614,6 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21724,6 +21718,12 @@ void ADCC_ISR(void);
 
 # 881
 void ADCC_DefaultInterruptHandler(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -22375,7 +22375,7 @@ if (VCC_overvoltage_flag == 1) {
 terminal_printNewline();
 
 terminal_textAttributes(RED, BLACK, NORMAL);
-printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.40V)\n\r");
+printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
 
 terminal_textAttributesReset();
 

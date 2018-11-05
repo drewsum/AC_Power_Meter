@@ -282,7 +282,7 @@ void ringBufferLUT(char * line) {
             terminal_printNewline();
             // set text color to red and print message
             terminal_textAttributes(RED, BLACK, NORMAL);
-            printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.40V)\n\r");
+            printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
             // Reset to white foreground
             terminal_textAttributesReset();
             // Get some space on terminal

@@ -22,8 +22,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "29064
 [v _LATFbits `VS1349 ~T0 @X0 0 e@3966 ]
 "163 main.c
-[c E17425 0 4 34 60 61 62 63 .. ]
-[n E17425 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17421 0 4 34 60 61 62 63 .. ]
+[n E17421 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "26604 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _ADPCH `Vuc ~T0 @X0 0 e@3935 ]
 "223 mcc_generated_files/adcc.h
@@ -50,7 +50,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "29173
 [v _LATGbits `VS1352 ~T0 @X0 0 e@3967 ]
 "161 mcc_generated_files/adcc.h
-[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17425 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17421 ]
 "191
 [v _ADCC_IsConversionDone `(uc ~T0 @X0 0 ef ]
 [p mainexit ]
@@ -65,9 +65,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17413 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17413 ]
-[v F17489 `(v ~T0 @X0 0 tf ]
+[v F17485 `(v ~T0 @X0 0 tf ]
 "846 mcc_generated_files/adcc.h
-[v _ADCC_SetADIInterruptHandler `(v ~T0 @X0 0 ef1`*F17489 ]
+[v _ADCC_SetADIInterruptHandler `(v ~T0 @X0 0 ef1`*F17485 ]
 [v F17569 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
 [v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17569 ]
@@ -16186,8 +16186,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16229,6 +16227,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ISR(void);
 [; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16707,9 +16707,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _ADCPostProcessingCallback ]
 [f ]
 "163
-[v _current_adc_channel `E17425 ~T0 @X0 1 a ]
+[v _current_adc_channel `E17421 ~T0 @X0 1 a ]
 [; ;main.c: 163: adcc_channel_t current_adc_channel = ADPCH;
-[e = _current_adc_channel -> _ADPCH `E17425 ]
+[e = _current_adc_channel -> _ADPCH `E17421 ]
 [; ;main.c: 166: switch (current_adc_channel) {
 "166
 [e $U 2022  ]
@@ -17017,12 +17017,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2021  ]
 "166
 [e :U 2022 ]
-[e [\ _current_adc_channel , $ . `E17425 3 2023
- , $ . `E17425 6 2025
- , $ . `E17425 2 2027
- , $ . `E17425 0 2029
- , $ . `E17425 1 2037
- , $ . `E17425 4 2039
+[e [\ _current_adc_channel , $ . `E17421 3 2023
+ , $ . `E17421 6 2025
+ , $ . `E17421 2 2027
+ , $ . `E17421 0 2029
+ , $ . `E17421 1 2037
+ , $ . `E17421 4 2039
  2041 ]
 "337
 [e :U 2021 ]
@@ -17038,7 +17038,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 345: ADCC_StartConversion(channel_VSS);
 "345
-[e ( _ADCC_StartConversion (1 . `E17425 3 ]
+[e ( _ADCC_StartConversion (1 . `E17421 3 ]
 [; ;main.c: 348: while(!ADCC_IsConversionDone()) {
 "348
 [e $U 2043  ]
@@ -17070,7 +17070,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 359: }
 [; ;main.c: 362: ADCC_StartConversion(channel_FVR_buf1);
 "362
-[e ( _ADCC_StartConversion (1 . `E17425 6 ]
+[e ( _ADCC_StartConversion (1 . `E17421 6 ]
 [; ;main.c: 365: while(!ADCC_IsConversionDone()) {
 "365
 [e $U 2047  ]
@@ -17102,7 +17102,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 376: }
 [; ;main.c: 379: ADCC_StartConversion(POS3P3_ADC);
 "379
-[e ( _ADCC_StartConversion (1 . `E17425 2 ]
+[e ( _ADCC_StartConversion (1 . `E17421 2 ]
 [; ;main.c: 382: while(!ADCC_IsConversionDone()) {
 "382
 [e $U 2051  ]
@@ -17134,7 +17134,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 393: }
 [; ;main.c: 396: ADCC_StartConversion(ISNS_ADC);
 "396
-[e ( _ADCC_StartConversion (1 . `E17425 0 ]
+[e ( _ADCC_StartConversion (1 . `E17421 0 ]
 [; ;main.c: 399: while(!ADCC_IsConversionDone()) {
 "399
 [e $U 2055  ]
@@ -17166,7 +17166,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 410: }
 [; ;main.c: 413: ADCC_StartConversion(POS12_ADC);
 "413
-[e ( _ADCC_StartConversion (1 . `E17425 1 ]
+[e ( _ADCC_StartConversion (1 . `E17421 1 ]
 [; ;main.c: 416: while(!ADCC_IsConversionDone()) {
 "416
 [e $U 2059  ]
@@ -17198,7 +17198,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 427: }
 [; ;main.c: 430: ADCC_StartConversion(channel_Temp);
 "430
-[e ( _ADCC_StartConversion (1 . `E17425 4 ]
+[e ( _ADCC_StartConversion (1 . `E17421 4 ]
 [; ;main.c: 433: while(!ADCC_IsConversionDone()) {
 "433
 [e $U 2063  ]
