@@ -1259,30 +1259,30 @@ Stack_Underflow_Reset 8
 [v _T5GATE T5GATE `VEuc  1 e 1 @4037 ]
 "37210
 [v _T5CLK T5CLK `VEuc  1 e 1 @4038 ]
-[s S2765 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S2768 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "39822
-[s S2767 . 1 `uc 1 . 1 0 :1:0 
+[s S2770 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
 "39822
-[s S2770 . 1 `uc 1 . 1 0 :2:0 
+[s S2773 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_RI 1 0 :1:2 
 ]
 "39822
-[s S2773 . 1 `uc 1 . 1 0 :3:0 
+[s S2776 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_RMCLR 1 0 :1:3 
 ]
 "39822
-[s S2776 . 1 `uc 1 . 1 0 :4:0 
+[s S2779 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RWDT 1 0 :1:4 
 ]
 "39822
-[s S2779 . 1 `uc 1 . 1 0 :5:0 
+[s S2782 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_WDTWV 1 0 :1:5 
 ]
 "39822
-[s S2782 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S2785 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nRI 1 0 :1:2 
 `uc 1 nRMCLR 1 0 :1:3 
@@ -1292,7 +1292,7 @@ Stack_Underflow_Reset 8
 `uc 1 STKOVF 1 0 :1:7 
 ]
 "39822
-[s S2791 . 1 `uc 1 BOR 1 0 :1:0 
+[s S2794 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 RI 1 0 :1:2 
 `uc 1 RMCLR 1 0 :1:3 
@@ -1300,10 +1300,10 @@ Stack_Underflow_Reset 8
 `uc 1 WDTWV 1 0 :1:5 
 ]
 "39822
-[u S2798 . 1 `S2765 1 . 1 0 `S2767 1 . 1 0 `S2770 1 . 1 0 `S2773 1 . 1 0 `S2776 1 . 1 0 `S2779 1 . 1 0 `S2782 1 . 1 0 `S2791 1 . 1 0 ]
+[u S2801 . 1 `S2768 1 . 1 0 `S2770 1 . 1 0 `S2773 1 . 1 0 `S2776 1 . 1 0 `S2779 1 . 1 0 `S2782 1 . 1 0 `S2785 1 . 1 0 `S2794 1 . 1 0 ]
 "39822
 "39822
-[v _PCON0bits PCON0bits `VES2798  1 e 1 @4055 ]
+[v _PCON0bits PCON0bits `VES2801  1 e 1 @4055 ]
 [s S136 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1447,29 +1447,6 @@ Stack_Underflow_Reset 8
 {
 "459
 } 0
-"6 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\double_to_EEPROM.c
-[v _writeDoubleToEEPROM writeDoubleToEEPROM `(v  1 e 1 0 ]
-{
-"13
-[v writeDoubleToEEPROM@byte_index byte_index `i  1 a 2 37 ]
-[u S2864 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
-"9
-[v writeDoubleToEEPROM@input_data input_data `S2864  1 a 4 33 ]
-"6
-[v writeDoubleToEEPROM@input_double input_double `d  1 p 4 27 ]
-[v writeDoubleToEEPROM@starting_address starting_address `ui  1 p 2 31 ]
-"19
-} 0
-"168 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/memory.c
-[v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
-{
-"170
-[v DATAEE_WriteByte@GIEBitValue GIEBitValue `uc  1 a 1 26 ]
-"168
-[v DATAEE_WriteByte@bAdd bAdd `ui  1 p 2 23 ]
-[v DATAEE_WriteByte@bData bData `uc  1 p 1 25 ]
-"188
-} 0
 "85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
 {
@@ -1507,7 +1484,30 @@ Stack_Underflow_Reset 8
 [v ringBufferLUT@percentage percentage `i  1 a 2 39 ]
 "49
 [v ringBufferLUT@line line `*.39uc  1 p 2 180 ]
-"598
+"610
+} 0
+"6 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\double_to_EEPROM.c
+[v _writeDoubleToEEPROM writeDoubleToEEPROM `(v  1 e 1 0 ]
+{
+"13
+[v writeDoubleToEEPROM@byte_index byte_index `i  1 a 2 37 ]
+[u S2867 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+"9
+[v writeDoubleToEEPROM@input_data input_data `S2867  1 a 4 33 ]
+"6
+[v writeDoubleToEEPROM@input_double input_double `d  1 p 4 27 ]
+[v writeDoubleToEEPROM@starting_address starting_address `ui  1 p 2 31 ]
+"19
+} 0
+"168 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/memory.c
+[v _DATAEE_WriteByte DATAEE_WriteByte `(v  1 e 1 0 ]
+{
+"170
+[v DATAEE_WriteByte@GIEBitValue GIEBitValue `uc  1 a 1 26 ]
+"168
+[v DATAEE_WriteByte@bAdd bAdd `ui  1 p 2 23 ]
+[v DATAEE_WriteByte@bData bData `uc  1 p 1 25 ]
+"188
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1611,9 +1611,9 @@ Stack_Underflow_Reset 8
 {
 "28
 [v readDoubleFromEEPROM@byte_index byte_index `i  1 a 2 33 ]
-[u S2864 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[u S2867 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
 "25
-[v readDoubleFromEEPROM@output_data output_data `S2864  1 a 4 29 ]
+[v readDoubleFromEEPROM@output_data output_data `S2867  1 a 4 29 ]
 "22
 [v readDoubleFromEEPROM@starting_address starting_address `ui  1 p 2 25 ]
 "37
@@ -1747,9 +1747,9 @@ Stack_Underflow_Reset 8
 [v printf@val val `ul  1 a 4 167 ]
 "516
 [v printf@fval fval `d  1 a 4 163 ]
-[u S2929 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[u S2932 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
 "526
-[v printf@tmpval tmpval `S2929  1 a 4 157 ]
+[v printf@tmpval tmpval `S2932  1 a 4 157 ]
 "504
 [v printf@prec prec `i  1 a 2 175 ]
 "501
@@ -1817,17 +1817,17 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3291 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3294 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S3296 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3299 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3291 1 fAsBytes 4 0 `S3296 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S3299  1 a 4 105 ]
+[s S3299 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3302 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3294 1 fAsBytes 4 0 `S3299 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S3302  1 a 4 105 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 101 ]
-[s S3367 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S3370 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S3370 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3367 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S3370  1 a 2 109 ]
+[u S3373 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3370 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S3373  1 a 2 109 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 100 ]
 "11
@@ -2186,8 +2186,8 @@ Stack_Underflow_Reset 8
 {
 [v i2printf@fval printf `d  1 a 4 69 ]
 [v i2printf@val printf `ul  1 a 4 65 ]
-[u S2929 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
-[v i2printf@tmpval printf `S2929  1 a 4 59 ]
+[u S2932 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[v i2printf@tmpval printf `S2932  1 a 4 59 ]
 [v i2printf@prec printf `i  1 a 2 77 ]
 [v i2printf@width printf `i  1 a 2 75 ]
 [v i2printf@flag printf `us  1 a 2 73 ]
@@ -2362,11 +2362,11 @@ Stack_Underflow_Reset 8
 {
 "14
 [v sqrt@frac frac `ul  1 a 4 37 ]
-[s S3291 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3294 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "11
-[s S3296 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3299 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3291 1 fAsBytes 4 0 `S3296 1 fAsWords 4 0 ]
-[v sqrt@root root `S3299  1 a 4 33 ]
+[s S3299 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3302 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3294 1 fAsBytes 4 0 `S3299 1 fAsWords 4 0 ]
+[v sqrt@root root `S3302  1 a 4 33 ]
 "16
 [v sqrt@grs grs `ul  1 a 4 27 ]
 "15
@@ -2516,14 +2516,14 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v i2___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3291 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S3296 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3299 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3291 1 fAsBytes 4 0 `S3296 1 fAsWords 4 0 ]
-[v i2___flmul@prod __flmul `S3299  1 a 4 66 ]
+[s S3294 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3299 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3302 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3294 1 fAsBytes 4 0 `S3299 1 fAsWords 4 0 ]
+[v i2___flmul@prod __flmul `S3302  1 a 4 66 ]
 [v i2___flmul@grs __flmul `ul  1 a 4 61 ]
-[s S3367 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S3370 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3367 1 nAsBytes 2 0 ]
-[v i2___flmul@temp __flmul `S3370  1 a 2 70 ]
+[s S3370 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S3373 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3370 1 nAsBytes 2 0 ]
+[v i2___flmul@temp __flmul `S3373  1 a 2 70 ]
 [v i2___flmul@bexp __flmul `uc  1 a 1 65 ]
 [v i2___flmul@aexp __flmul `uc  1 a 1 60 ]
 [v i2___flmul@sign __flmul `uc  1 a 1 59 ]

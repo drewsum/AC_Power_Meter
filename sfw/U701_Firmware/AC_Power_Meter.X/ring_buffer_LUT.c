@@ -529,6 +529,18 @@ void ringBufferLUT(char * line) {
          
     }
     
+    // Report maximum recorded output power
+    else if((0 == strcmp(line, "Clear Max Values"))) {
+     
+        writeDoubleToEEPROM(0.0, max_Irms_address);
+        writeDoubleToEEPROM(0.0, max_Power_address);
+        
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        printf("Maximum recorded values erased\n\r");
+        terminal_textAttributesReset();
+         
+    }
+    
     
     // help, print options
     else if((0 == strcmp(line, "Help"))) {
@@ -565,7 +577,7 @@ void ringBufferLUT(char * line) {
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r"
-                "   Max POS3P3? Prints the maximum recorded POS3P3 rail voltage\n\r"
+                "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 
                 "Output Control Commands:\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
