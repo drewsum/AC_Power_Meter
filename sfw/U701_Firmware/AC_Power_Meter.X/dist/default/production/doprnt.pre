@@ -360,10 +360,36 @@ if(c != '%')
 continue;
 }
 
-# 548
+
+width = 0;
+
 flag = 0;
 
-# 611
+for(;;) {
+switch(*f) {
+
+# 579
+case '0':
+flag |= 0x04;
+f++;
+continue;
+
+}
+break;
+}
+
+# 597
+if(isdigit((unsigned)*f)) {
+width = 0;
+do {
+width *= 10;
+width += *f++ - '0';
+} while(isdigit((unsigned)*f));
+
+# 608
+}
+
+
 if(*f == '.') {
 flag |= 0x4000;
 f++;
@@ -433,7 +459,16 @@ dostring:
 if(prec && prec < len)
 len = prec;
 
-# 767
+
+if(width > len)
+width -= len;
+else
+width = 0;
+
+# 764
+while(width--)
+(putch(' ') );
+
 while(len--)
 (putch(*cp++) );
 
@@ -521,10 +556,45 @@ for(c = 1 ; c != (sizeof dpowers/sizeof dpowers[0]) ; c++)
 if(val < dpowers[c])
 break;
 
-# 1175
+
+
+width -= prec + c + exp;
+if(
+
+# 1147
+prec)
+width--;
+if(flag & 0x03)
+width--;
+
+
+if(flag & 0x04) {
+
+
+
+if(flag & 0x03)
+
+(putch('-') );
+
+# 1168
+while(width > 0) {
+(putch('0') );
+width--;
+}
+
+} else
+
 {
 
-# 1188
+# 1180
+while(width > 0) {
+(putch(' ') );
+width--;
+}
+
+
+
+
 if(flag & 0x03)
 
 (putch('-') );
@@ -646,8 +716,49 @@ c = prec;
 else if(prec < c)
 prec = c;
 
-# 1422
+
+if(width && flag & 0x03)
+width--;
+
+if(flag & 0x4000) {
+if(width > prec)
+width -= prec;
+else
+width = 0;
+}
+
+# 1381
+if(width > c)
+width -= c;
+else
+width = 0;
+
+
+if(flag & 0x04) {
+
+
+
+
+if(flag & 0x03)
+(putch('-') );
+
+# 1415
+if(width)
+do
+(putch('0') );
+while(--width);
+
+} else
+
 {
+
+if(width
+
+# 1428
+)
+do
+(putch(' ') );
+while(--width);
 
 # 1438
 if(flag & 0x03)

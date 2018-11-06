@@ -393,7 +393,7 @@ void main(void)
     load_enable = 0;
 
     // Setup ADC digital filter
-    ADCON2bits.ADCRS = 7;           // Strongest filtering/lowest crossover frequency (full send)
+    ADCON2bits.ADCRS = 7;           // Strongest filtering/lowest crossover frequency since we're measuring only DC signals (full send)
     ADCAP            = 20;          // Add 20pF to ADC sampling capacitance
     
     // Call heartbeat function upon timer 6 ISR
@@ -411,9 +411,6 @@ void main(void)
     // Enable low priority global interrupts.
     INTERRUPT_GlobalInterruptLowEnable();
 
-    // Clear VCC overvoltage flag if it triggered on reset
-    VCC_overvoltage_flag = 0;
-    
     // Clear terminal, reset cursor, reset text attributes
     terminal_clearTerminal();
     terminal_setCursorHome();

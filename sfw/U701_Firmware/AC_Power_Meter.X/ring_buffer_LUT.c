@@ -114,7 +114,7 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Grab and print revision ID from flash
-        printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
+        printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
                 ((char) getMajorRevisionID() + 65),getMinorRevisionID());
 
         terminal_textAttributesReset();
@@ -547,7 +547,7 @@ void ringBufferLUT(char * line) {
         
         // Get some space on terminal
         terminal_printNewline();
-        printf("Help messages appear in yellow\n\r");
+        printf("Help messages and neutral responses appear in yellow\n\r");
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("System parameters and affirmative responses appear in green\n\r");
