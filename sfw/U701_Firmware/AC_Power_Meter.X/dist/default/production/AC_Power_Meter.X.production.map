@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.45\dat\en_msgs.txt -cs \
   -h+dist/default/production\AC_Power_Meter.X.production.sym \
   --cmf=dist/default/production\AC_Power_Meter.X.production.cmf -z \
-  -Q18LF67K40 -oC:\Users\DREWMA~1\AppData\Local\Temp\sa2o.2 \
+  -Q18LF67K40 -oC:\Users\DREWMA~1\AppData\Local\Temp\s754.2 \
   -Mdist/default/production/AC_Power_Meter.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=03A3h-0de9h -pstack=STACK -ACODE=00h-01FFFFh \
   -ACONST=00h-01FFFFh -ASMALLCONST=0E00h-0EFFhx498 \
@@ -27,7 +27,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\DREWMA~1\AppData\Local\Temp\sa2o.obj \
+  C:\Users\DREWMA~1\AppData\Local\Temp\s754.obj \
   dist/default/production\AC_Power_Meter.X.production.obj 
 
 Object code version is 3.11
@@ -40,7 +40,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\DREWMA~1\AppData\Local\Temp\sa2o.obj
+C:\Users\DREWMA~1\AppData\Local\Temp\s754.obj
                 init                                10A      10A        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000       10   200000       0
@@ -49,7 +49,7 @@ dist/default/production\AC_Power_Meter.X.production.obj
                 intcodelo                            18       18       F2        C       0
                 intcode                               8        8        6        4       0
                 temp                                 5F       5F        1        1       1
-                mediumconst                        EBBC     EBBC     1444     75DE       0
+                mediumconst                        EBB8     EBB8     1448     75DC       0
                 text121                           18072    18072       14     8000       0
                 text120                           14184    14184      33E     8000       0
                 text119                           13AF6    13AF6      350     8000       0
@@ -326,7 +326,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   SMALLCONST     
 
         CLASS   MEDIUMCONST    
-                mediumconst                        EBBC     EBBC     1444         0
+                mediumconst                        EBB8     EBB8     1448         0
 
         CLASS   COMRAM         
                 temp                                 5F       5F        1         1
@@ -402,7 +402,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 cstackBANK1                    000100  0000E3  0001E3       100       1  BANK1   
                 bssBANK2                       000200  0000DE  0002DE       200       1  BANK2   
                 bssBANK3                       000300  0000A3  0003A3       300       1  BANK3   
-                mediumconst                    00EBBC  001444  010000      75DE       0  MEDIUMCO
+                mediumconst                    00EBB8  001448  010000      75DC       0  MEDIUMCO
                 text3                          010000  00818E  01818E      8000       0  CODE    
                 idloc                          200000  000010  200010    200000       0  IDLOC   
                 config                         300000  00000C  30000C    300000       0  CONFIG  
@@ -429,20 +429,20 @@ UNUSED ADDRESS RANGES
                          0003A3-000DE9              A47
         CODE             000004-000007                4
                          00000E-000017                A
-                         00010E-00EBBB             EAAE
+                         00010E-00EBB7             EAAA
                          01818E-01FFFF             7E72
         CONST            000004-000007                4
                          00000E-000017                A
-                         00010E-00EBBB             EAAE
+                         00010E-00EBB7             EAAA
                          01818E-01FFFF             7E72
         EEDATA           310000-3103FF              400
-        MEDIUMCONST      000E00-00EBBB             DDBC
+        MEDIUMCONST      000E00-00EBB7             DDB8
                          01818E-01FFFF             7E72
         RAM              0001E3-0001FF               1D
                          0002DE-0002FF               22
                          0003A3-000DE9              100
         SFR              000DEF-000FFF              100
-        SMALLCONST       000E00-00EBBB              100
+        SMALLCONST       000E00-00EBB7              100
                          01818E-01FFFF              100
         STACK            0003A3-000DE9              A47
 
@@ -1056,7 +1056,7 @@ __Lintentry                                    intentry     000000
 __Lintret                                      intret       000000
 __Lintsave_regs                                intsave_regs 000000
 __Lirdata                                      irdata       000000
-__Lmediumconst                                 mediumconst  00EBBC
+__Lmediumconst                                 mediumconst  00EBB8
 __LnvBANK2                                     nvBANK2      000000
 __LnvFARRAM                                    nvFARRAM     000000
 __Lnvbit                                       nvbit        000000
@@ -1340,8 +1340,8 @@ __end_of___wmul                                text40       017EAA
 __end_of___xxtofl                              text39       015E3A
 __end_of__div_to_l_                            text38       01631A
 __end_of__initialization                       cinit        0172C4
-__end_of__npowers_                             mediumconst  00EC25
-__end_of__powers_                              mediumconst  00EBF1
+__end_of__npowers_                             mediumconst  00EC21
+__end_of__powers_                              mediumconst  00EBED
 __end_of__tdiv_to_l_                           text37       0160BE
 __end_of_acos                                  text103      017594
 __end_of_acquisitionTimerCallback              text70       016DD2
@@ -1349,7 +1349,7 @@ __end_of_asin                                  text104      0147C6
 __end_of_atan                                  text106      015CE6
 __end_of_atoi                                  text23       016C44
 __end_of_currentMeasuredToPeak                 text108      0173CA
-__end_of_dpowers                               mediumconst  00EC4D
+__end_of_dpowers                               mediumconst  00EC49
 __end_of_eval_poly                             text118      0169B2
 __end_of_fabs                                  text107      017C88
 __end_of_floor                                 text113      0168B2
@@ -1363,7 +1363,7 @@ __end_of_getMajorRevisionID                    text17       017C4C
 __end_of_getMinorRevisionID                    text16       017F20
 __end_of_getUserID                             text15       017B8E
 __end_of_heartbeatTimerCallback                text77       017C10
-__end_of_hexpowers                             mediumconst  00EC6D
+__end_of_hexpowers                             mediumconst  00EC69
 __end_of_isdigit                               text32       017FB2
 __end_of_main                                  text0        01734E
 __end_of_peakToRMS                             text102      015AB0
@@ -1387,8 +1387,8 @@ __end_of_terminal_ringBufferPull               text2        0167A0
 __end_of_terminal_setCursorHome                text1        0180A8
 __end_of_terminal_textAttributes               text5        0137A4
 __end_of_terminal_textAttributesReset          text4        018098
-__end_ofatan@coeff_a                           mediumconst  00EC85
-__end_ofatan@coeff_b                           mediumconst  00ECAD
+__end_ofatan@coeff_a                           mediumconst  00EC81
+__end_ofatan@coeff_b                           mediumconst  00ECA9
 __end_ofi2_EUSART2_Write                       text88       017A72
 __end_ofi2_TMR7_StopTimer                      text101      018186
 __end_ofi2___awdiv                             text92       0171CC
@@ -1411,11 +1411,11 @@ __end_ofi2_isdigit                             text89       017FF0
 __end_ofi2_printf                              text85       0122EA
 __end_ofi2_putch                               text87       01815E
 __end_ofi2_scale                               text86       01343C
-__end_ofsin@coeff_a                            mediumconst  00EC99
-__end_ofsin@coeff_b                            mediumconst  00ECBD
+__end_ofsin@coeff_a                            mediumconst  00EC95
+__end_ofsin@coeff_b                            mediumconst  00ECB9
 __initialization                               cinit        01724E
-__mediumconst                                  mediumconst  00EBBC
-__npowers_                                     mediumconst  00EBF1
+__mediumconst                                  mediumconst  00EBB8
+__npowers_                                     mediumconst  00EBED
 __pbitbssBANK0                                 bitbssBANK0  0007F8
 __pbitbssCOMRAM                                bitbssCOMRAM 0002F0
 __pbssBANK0                                    bssBANK0     0000F0
@@ -1434,9 +1434,9 @@ __pidataBANK2                                  idataBANK2   017F6C
 __pintcode                                     intcode      000008
 __pintcode_body                                intcode_body 016C44
 __pintcodelo                                   intcodelo    000018
-__pmediumconst                                 mediumconst  00EBBC
+__pmediumconst                                 mediumconst  00EBB8
 __pnvBANK2                                     nvBANK2      0002DD
-__powers_                                      mediumconst  00EBBD
+__powers_                                      mediumconst  00EBB9
 __ptext0                                       text0        0172CE
 __ptext1                                       text1        018098
 __ptext10                                      text10       016F22
@@ -1704,7 +1704,7 @@ _currentMeasuredToPeak                         text108      01734E
 _current_adc_channel                           bssBANK1     0001DD
 _dev_on_time                                   bssBANK2     000244
 _dimming_period                                dataBANK0    0000F9
-_dpowers                                       mediumconst  00EC25
+_dpowers                                       mediumconst  00EC21
 _errno                                         bssBANK2     000272
 _eusart2RxBuffer                               bssBANK2     000200
 _eusart2RxCount                                bssBANK1     0001DE
@@ -1731,7 +1731,7 @@ _getMajorRevisionID                            text17       017C10
 _getMinorRevisionID                            text16       017EFA
 _getUserID                                     text15       017B4A
 _heartbeatTimerCallback                        text77       017BD0
-_hexpowers                                     mediumconst  00EC4D
+_hexpowers                                     mediumconst  00EC49
 _isdigit                                       text32       017F90
 _isdigit$3141                                  cstackBANK1  000118
 _line                                          bssBANK2     000279
@@ -1772,8 +1772,8 @@ acos@x                                         cstackBANK0  0000A9
 asin@sgn                                       cstackBANK0  000095
 asin@x                                         cstackBANK0  000091
 asin@y                                         cstackBANK0  0000A1
-atan@coeff_a                                   mediumconst  00EC6D
-atan@coeff_b                                   mediumconst  00EC99
+atan@coeff_a                                   mediumconst  00EC69
+atan@coeff_b                                   mediumconst  00EC95
 atan@f                                         cstackBANK0  00007C
 atan@recip                                     cstackBANK0  000088
 atan@val                                       cstackBANK0  00008D
@@ -1948,8 +1948,8 @@ ringBufferLUT@line                             cstackBANK1  0001BC
 ringBufferLUT@percentage                       cstackBANK3  00039F
 ringBufferLUT@userID                           cstackBANK3  0003A1
 scale@scl                                      cstackBANK1  000177
-sin@coeff_a                                    mediumconst  00EC85
-sin@coeff_b                                    mediumconst  00ECAD
+sin@coeff_a                                    mediumconst  00EC81
+sin@coeff_b                                    mediumconst  00ECA9
 sin@f                                          cstackBANK0  00007E
 sin@sgn                                        cstackBANK0  00008E
 sin@x2                                         cstackBANK0  00008A
@@ -2956,7 +2956,7 @@ Total ram usage:        0 bytes
 		 -> STR_104(102), STR_103(86), STR_101(25), STR_99(42), 
 		 -> STR_97(41), STR_95(40), STR_93(56), STR_91(34), 
 		 -> STR_89(34), STR_87(32), STR_85(37), STR_83(56), 
-		 -> STR_81(34), STR_79(34), STR_77(35), STR_75(45), 
+		 -> STR_81(34), STR_79(36), STR_77(37), STR_75(45), 
 		 -> STR_74(66), STR_72(21), STR_70(24), STR_69(48), 
 		 -> STR_59(54), STR_58(64), STR_56(57), STR_54(85), 
 		 -> STR_52(47), STR_51(17), STR_48(52), STR_46(4), 
@@ -4813,7 +4813,7 @@ Total ram usage:        0 bytes
 		 -> STR_104(102), STR_103(86), STR_101(25), STR_99(42), 
 		 -> STR_97(41), STR_95(40), STR_93(56), STR_91(34), 
 		 -> STR_89(34), STR_87(32), STR_85(37), STR_83(56), 
-		 -> STR_81(34), STR_79(34), STR_77(35), STR_75(45), 
+		 -> STR_81(34), STR_79(36), STR_77(37), STR_75(45), 
 		 -> STR_74(66), STR_72(21), STR_70(24), STR_69(48), 
 		 -> STR_59(54), STR_58(64), STR_56(57), STR_54(85), 
 		 -> STR_52(47), STR_51(17), STR_48(52), STR_46(4), 
@@ -6271,19 +6271,19 @@ mcc_generated_files/tmr5.c estimated size: 181
 shared
 		i2_printf      		CODE           	117CA	0000	2849
 		i2_putch       		CODE           	18154	0000	11
-		__powers_      		MEDIUMCONST    	EBBD	0000	53
-		_dpowers       		MEDIUMCONST    	EC25	0000	41
+		__powers_      		MEDIUMCONST    	EBB9	0000	53
+		_dpowers       		MEDIUMCONST    	EC21	0000	41
 		i2_isdigit     		CODE           	17FD2	0000	31
 		i2___flneg     		CODE           	17E54	0000	47
-		atan@coeff_a   		MEDIUMCONST    	EC6D	0000	25
-		atan@coeff_b   		MEDIUMCONST    	EC99	0000	21
+		atan@coeff_a   		MEDIUMCONST    	EC69	0000	25
+		atan@coeff_b   		MEDIUMCONST    	EC95	0000	21
 		i2___awdiv     		CODE           	17148	0000	133
 		i2___fladd     		CODE           	14184	0000	831
 		i2__tdiv_to_l_ 		CODE           	160BE	0000	307
 		i2___wmul      		CODE           	17F46	0000	39
 		i2___fldiv     		CODE           	15304	0000	693
 		i2__div_to_l_  		CODE           	1631A	0000	297
-		__npowers_     		MEDIUMCONST    	EBF1	0000	53
+		__npowers_     		MEDIUMCONST    	EBED	0000	53
 		i2___fltol     		CODE           	16A90	0000	221
 		i2_TMR7_StopTimer		CODE           	18180	0000	7
 		i2_scale       		CODE           	12FBC	0000	1153
@@ -6293,13 +6293,13 @@ shared
 		i2___awmod     		CODE           	174B6	0000	113
 		i2_EUSART2_Write		CODE           	17A28	0000	75
 		i2___flmul     		CODE           	13AF6	0000	849
-		_hexpowers     		MEDIUMCONST    	EC4D	0000	33
+		_hexpowers     		MEDIUMCONST    	EC49	0000	33
 		i2___llmod     		CODE           	176CE	0000	103
 		i2___xxtofl    		CODE           	15E3A	0000	337
 		i2___flsub     		CODE           	17B02	0000	73
 		i2_fround      		CODE           	155B8	0000	687
-		sin@coeff_a    		MEDIUMCONST    	EC85	0000	21
-		sin@coeff_b    		MEDIUMCONST    	ECAD	0000	17
+		sin@coeff_a    		MEDIUMCONST    	EC81	0000	21
+		sin@coeff_b    		MEDIUMCONST    	ECA9	0000	17
 
 shared estimated size: 9659
 

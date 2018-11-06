@@ -73,45 +73,29 @@ void ringBufferLUT(char * line) {
     // print Device ID
     else if((0 == strcmp(line, "Cause of Reset?"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // Set to green text
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Determine cause of reset and print
         printf("The cause of the most recent device reset was: %s\n\r",
                 getCauseOfResetString(reset_cause));
        
-        // Reset to white text
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
 
     }
 
     // Identification string
     else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
 
-               // Get some space on terminal
-        // terminal_printNewline();
-        // Set to green text
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        // Tell term who we are
         printf("AC Power Meter\n\r");
         printf("Marquette University ELEN 3035 Final Project\n\r");
-        // Reset to white text
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
 
     }
     
     // print Device ID
     else if((0 == strcmp(line, "Device ID?"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // Set to green text
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Grab and print device ID from flash
@@ -120,38 +104,26 @@ void ringBufferLUT(char * line) {
                 getDeviceID(),
                 getDeviceIDString(getDeviceID()));
 
-        // Reset to white text
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
 
     }
     
     // print Revision ID
     else if((0 == strcmp(line, "Revision ID?"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // Set to green text
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         // Grab and print revision ID from flash
         printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
                 ((char) getMajorRevisionID() + 65),getMinorRevisionID());
 
-        // Reset to white text
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
 
     }
     
     // print User IDs
     else if((0 == strcmp(line, "User IDs?"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // Set to green text
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         
         printf("The following User IDs have been retrieved from flash memory:\n\r");
@@ -166,10 +138,7 @@ void ringBufferLUT(char * line) {
             
         }
 
-        // Reset to white text
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
 
     }
     
@@ -178,9 +147,6 @@ void ringBufferLUT(char * line) {
      
         if (adc_error_flag) {
 
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to yellow and print help message
             terminal_textAttributes(RED, BLACK, NORMAL);
             
             // Get the current ADC channel enumeration from the ADPCH register
@@ -227,25 +193,16 @@ void ringBufferLUT(char * line) {
             
             
             printf("The following channel caused an ADC error: %s\n\r", channel_name);
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();
-
+        
         }
         
         else {
          
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to yellow and print help message
             terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("No ADC Error detected\n\r");
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();   
-
+        
         }
         
     }
@@ -259,16 +216,9 @@ void ringBufferLUT(char * line) {
         PIE5bits.TMR7IE == 1;
         TMR7_StartTimer();
         
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Clearing ADC Error\n\r");
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
-        
         
     }
     
@@ -278,15 +228,9 @@ void ringBufferLUT(char * line) {
         // If we've seen a VCC overvoltage event
         if (VCC_overvoltage_flag == 1) {
         
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to red and print message
             terminal_textAttributes(RED, BLACK, NORMAL);
             printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();
             
             // clear overvoltage flag
             VCC_overvoltage_flag = 0;
@@ -295,15 +239,9 @@ void ringBufferLUT(char * line) {
         
         else {
          
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to yellow and print help message
             terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("VCC Overvoltage condition has not occurred\n\r");
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();   
             
         }
         
@@ -311,48 +249,29 @@ void ringBufferLUT(char * line) {
     
     // Report POS3P3 ADC Conversion Result
     else if((0 == strcmp(line, "Measure POS3P3?"))) {
-     
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
+
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("+3.3V rail measured as +%f Volts\n\r", POS3P3_ADC_Result);
-        // Reset to white foreground
+        printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
-        
         
     }
     
     // Report POS12 ADC Conversion Result
     else if((0 == strcmp(line, "Measure POS12?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("+12V rail measured as +%f Volts\n\r", POS12_ADC_Result);
-        // Reset to white foreground
+        printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
-        
         
     }
     
     // Report Die temp ADC Conversion Result
     else if((0 == strcmp(line, "Measure Die Temp?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
+
         
         
     }
@@ -360,92 +279,54 @@ void ringBufferLUT(char * line) {
     // Report FVR buffer 1 ADC Conversion Result
     else if((0 == strcmp(line, "Measure FVR?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
-        
         
     }
     
     // Report VSS ADC Conversion Result
     else if((0 == strcmp(line, "Measure AVSS?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
-        
         
     }
     
     // Report measured current
     else if ((0 == strcmp(line, "Measure Detected Current?"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Measured Current is %.3f Amps\n\r", Imeas);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
     // Report RMS output current
     else if ((0 == strcmp(line, "Measure RMS Current?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("RMS Output Current is %.3f Arms\n\r", Irms);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
     // Report RMS output voltage
     else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
     // Report output power
     else if ((0 == strcmp(line, "Measure Power?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
@@ -455,15 +336,9 @@ void ringBufferLUT(char * line) {
         // Disable forcing of TRIAC conduction
         SSR_FORCE_PIN = 0;
         
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("TRIAC output dimming has been enabled\n\r");
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
@@ -472,16 +347,10 @@ void ringBufferLUT(char * line) {
      
         // Force TRIAC conduction
         SSR_FORCE_PIN = 1;
-        
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
+
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("TRIAC output dimming has been disabled\n\r");
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
@@ -492,15 +361,9 @@ void ringBufferLUT(char * line) {
         SSR_DIM_PIN = 0;
         load_enable = 1;
         
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Load has been enabled, dimming disabled\n\r");
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
@@ -511,15 +374,9 @@ void ringBufferLUT(char * line) {
         SSR_FORCE_PIN = 0;
         load_enable = 0;
         
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Load has been disabled\n\r");
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
         
     }
     
@@ -542,20 +399,13 @@ void ringBufferLUT(char * line) {
         if (    (percentage >= 100) || 
                 (percentage <= 0)) {
             
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to red and print help message
             terminal_textAttributes(RED, BLACK, NORMAL);
             printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
-            // set text color to yellow and print help message
             terminal_textAttributes(YELLOW, BLACK, NORMAL);
             printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
             printf("Enter 'Help' for list of available commands\n\r");
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();
-
+        
         }
         
         // If data checks out
@@ -566,18 +416,12 @@ void ringBufferLUT(char * line) {
             double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
             dimming_period = (100 - percentage) * (0xFFFF / 100);
             
-            // Get some space on terminal
-            // terminal_printNewline();
-            // set text color to yellow and print help message
             terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("Dimming has been set to %d percent\n\r", percentage);
             printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
             printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
-            // Reset to white foreground
             terminal_textAttributesReset();
-            // Get some space on terminal
-            // terminal_printNewline();
-
+            
         }
         
     }
@@ -585,30 +429,18 @@ void ringBufferLUT(char * line) {
     // Report microcontroller on time since last reset
     else if((0 == strcmp(line, "Device On Time?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
          
     }
     
     // Report load on time since last reset
     else if((0 == strcmp(line, "Load On Time?"))) {
      
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
-        // Reset to white foreground
         terminal_textAttributesReset();
-        // Get some space on terminal
-        // terminal_printNewline();
          
     }
     
@@ -617,9 +449,6 @@ void ringBufferLUT(char * line) {
     // help, print options
     else if((0 == strcmp(line, "Help"))) {
 
-        // Get some space on terminal
-        // terminal_printNewline();
-        // set text color to yellow and print help message
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
         printf("List of supported commands:\n\r"
                 
@@ -676,7 +505,5 @@ void ringBufferLUT(char * line) {
         terminal_printNewline();
 
     }
-
-
     
 }

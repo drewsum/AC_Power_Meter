@@ -22166,44 +22166,28 @@ printf("\033[H");
 
 else if((0 == strcmp(line, "Cause of Reset?"))) {
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
 
 printf("The cause of the most recent device reset was: %s\n\r",
 getCauseOfResetString(reset_cause));
 
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-
 printf("AC Power Meter\n\r");
 printf("Marquette University ELEN 3035 Final Project\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Device ID?"))) {
-
-
-
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22213,18 +22197,12 @@ printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
 getDeviceID(),
 getDeviceIDString(getDeviceID()));
 
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Revision ID?"))) {
-
-
-
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22232,18 +22210,12 @@ terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
 ((char) getMajorRevisionID() + 65),getMinorRevisionID());
 
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if((0 == strcmp(line, "User IDs?"))) {
-
-
-
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22259,10 +22231,7 @@ getUserID(userID));
 
 }
 
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22270,9 +22239,6 @@ terminal_textAttributesReset();
 else if((0 == strcmp(line, "ADC Error?"))) {
 
 if (adc_error_flag) {
-
-
-
 
 terminal_textAttributes(RED, BLACK, NORMAL);
 
@@ -22320,24 +22286,15 @@ break;
 
 
 printf("The following channel caused an ADC error: %s\n\r", channel_name);
-
 terminal_textAttributesReset();
-
-
 
 }
 
 else {
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("No ADC Error detected\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22352,16 +22309,9 @@ adc_error_flag = 0;
 PIE5bits.TMR7IE == 1;
 TMR7_StartTimer();
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Clearing ADC Error\n\r");
-
 terminal_textAttributesReset();
-
-
-
 
 }
 
@@ -22371,15 +22321,9 @@ else if((0 == strcmp(line, "VCC Overvoltage?"))) {
 
 if (VCC_overvoltage_flag == 1) {
 
-
-
-
 terminal_textAttributes(RED, BLACK, NORMAL);
 printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
-
 terminal_textAttributesReset();
-
-
 
 
 VCC_overvoltage_flag = 0;
@@ -22388,15 +22332,9 @@ VCC_overvoltage_flag = 0;
 
 else {
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("VCC Overvoltage condition has not occurred\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22405,46 +22343,27 @@ terminal_textAttributesReset();
 
 else if((0 == strcmp(line, "Measure POS3P3?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
-printf("+3.3V rail measured as +%f Volts\n\r", POS3P3_ADC_Result);
-
+printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
 terminal_textAttributesReset();
-
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Measure POS12?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
-printf("+12V rail measured as +%f Volts\n\r", POS12_ADC_Result);
-
+printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
 terminal_textAttributesReset();
-
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Measure Die Temp?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
-
 terminal_textAttributesReset();
-
 
 
 
@@ -22453,92 +22372,54 @@ terminal_textAttributesReset();
 
 else if((0 == strcmp(line, "Measure FVR?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
-
 terminal_textAttributesReset();
-
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Measure AVSS?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
-
 terminal_textAttributesReset();
-
-
-
 
 }
 
 
 else if ((0 == strcmp(line, "Measure Detected Current?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Measured Current is %.3f Amps\n\r", Imeas);
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if ((0 == strcmp(line, "Measure RMS Current?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("RMS Output Current is %.3f Arms\n\r", Irms);
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if ((0 == strcmp(line, "Measure Power?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22548,15 +22429,9 @@ else if ((0 == strcmp(line, "Enable Dimming"))) {
 
 LATGbits.LATG0 = 0;
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("TRIAC output dimming has been enabled\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22566,15 +22441,9 @@ else if ((0 == strcmp(line, "Disable Dimming"))) {
 
 LATGbits.LATG0 = 1;
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("TRIAC output dimming has been disabled\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22585,15 +22454,9 @@ LATGbits.LATG0 = 1;
 LATGbits.LATG1 = 0;
 load_enable = 1;
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load has been enabled, dimming disabled\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22604,15 +22467,9 @@ LATGbits.LATG1 = 0;
 LATGbits.LATG0 = 0;
 load_enable = 0;
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load has been disabled\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22635,19 +22492,12 @@ int percentage = atoi(arg_buff);
 if ( (percentage >= 100) ||
 (percentage <= 0)) {
 
-
-
-
 terminal_textAttributes(RED, BLACK, NORMAL);
 printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
-
 terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("If you'd like to completely enable or disable the load, disable dimming and use respective commands\n\r");
 printf("Enter 'Help' for list of available commands\n\r");
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22659,17 +22509,11 @@ TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * 3.141592653589793
 double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
 dimming_period = (100 - percentage) * (0xFFFF / 100);
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Dimming has been set to %d percent\n\r", percentage);
 printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22678,30 +22522,18 @@ terminal_textAttributesReset();
 
 else if((0 == strcmp(line, "Device On Time?"))) {
 
-
-
-
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
-
 terminal_textAttributesReset();
-
-
 
 }
 
 
 else if((0 == strcmp(line, "Load On Time?"))) {
 
-
-
-
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
-
 terminal_textAttributesReset();
-
-
 
 }
 
@@ -22709,9 +22541,6 @@ terminal_textAttributesReset();
 
 
 else if((0 == strcmp(line, "Help"))) {
-
-
-
 
 terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("List of supported commands:\n\r"
@@ -22769,7 +22598,5 @@ printf("User input appears in white\n\r");
 terminal_printNewline();
 
 }
-
-
 
 }
