@@ -51,6 +51,7 @@
 #include "device_IDs.h"
 #include "cause_of_reset.h"
 #include "ring_buffer_interface.h"
+#include "double_to_EEPROM.h"
 
 // User IDs
 #pragma config IDLOC0 = 0
@@ -95,6 +96,14 @@ volatile bit adc_error_flag = 0;                // ADC error flag is set upon st
 volatile bit VCC_overvoltage_flag = 0;          // VCC overvoltage flag is set upon HLVD interrupt
 reset_t reset_cause;                            // The cause of the most recent reset
 adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
+
+// Values saved in EEPROM:
+volatile double max_Irms = 0.0;
+volatile double max_Power = 0.0;
+
+// EEPROM variable address
+const uint16_t max_Irms_address       = 0x0000;
+const uint16_t max_Power_address      = 0x0004;
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -405,6 +414,10 @@ void main(void)
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);
     
+    // Retrieve saved EEPROM variables
+    max_Irms = readDoubleFromEEPROM(max_Irms_address);
+    max_Power = readDoubleFromEEPROM(max_Power_address);
+    
     // Enable high priority global interrupts
     INTERRUPT_GlobalInterruptHighEnable();
 
@@ -424,6 +437,21 @@ void main(void)
         if (eusart2RxStringReady) {
          
             terminal_ringBufferPull();
+            
+        }
+        
+        // Check if current values are greater than saved values, if they are write over them in EEPROM
+        if (Irms > max_Irms) {
+         
+            writeDoubleToEEPROM(Irms, max_Irms_address);
+            max_Irms = Irms;
+            
+        }
+        
+        if (Avg_Power > max_Power) {
+         
+            writeDoubleToEEPROM(Avg_Power, max_Power_address);
+            max_Power = Avg_Power;
             
         }
         

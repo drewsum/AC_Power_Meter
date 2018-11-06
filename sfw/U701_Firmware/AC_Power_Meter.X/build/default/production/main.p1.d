@@ -1,6 +1,7 @@
  build/default/production/main.d  \
  build/default/production/main.p1:  \
  main.c  \
+double_to_EEPROM.h  \
 mcc_generated_files/fvr.h  \
 pin_macros.h  \
 mcc_generated_files/mcc.h  \

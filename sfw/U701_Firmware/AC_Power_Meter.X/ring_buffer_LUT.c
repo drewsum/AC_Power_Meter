@@ -10,6 +10,7 @@
 #include "mcc_generated_files/adcc.h"
 #include "device_IDs.h"
 #include "cause_of_reset.h"
+#include "double_to_EEPROM.h"
 
 #ifndef M_PI
     #define M_PI acos(-1.0)
@@ -39,6 +40,11 @@ extern volatile bit adc_error_flag;
 extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
+
+// EEPROM variable locations
+// EEPROM variable address
+const uint16_t max_Irms_address   = 0x0000;
+const uint16_t max_Power_address  = 0x0004;
 
 void ringBufferLUT(char * line) {
 
@@ -498,9 +504,32 @@ void ringBufferLUT(char * line) {
         terminal_textAttributesReset();
          
     }
-    
-    
 
+    // Report maximum recorded output current
+    else if((0 == strcmp(line, "Max RMS Current?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_current_print = readDoubleFromEEPROM(max_Irms_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_current_print);
+        terminal_textAttributesReset();
+         
+    }
+    
+    // Report maximum recorded output power
+    else if((0 == strcmp(line, "Max Power?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_Power_print = readDoubleFromEEPROM(max_Power_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded output Power is %.3f Watts\n\r", max_Power_print);
+        terminal_textAttributesReset();
+         
+    }
+    
+    
     // help, print options
     else if((0 == strcmp(line, "Help"))) {
 
@@ -534,6 +563,9 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
+                "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
+                "   Max Power?: Prints the maximum recorded output power\n\r"
+                "   Max POS3P3? Prints the maximum recorded POS3P3 rail voltage\n\r"
                 
                 "Output Control Commands:\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"

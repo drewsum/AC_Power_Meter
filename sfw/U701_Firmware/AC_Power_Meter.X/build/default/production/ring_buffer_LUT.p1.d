@@ -1,6 +1,7 @@
  build/default/production/ring_buffer_LUT.d  \
  build/default/production/ring_buffer_LUT.p1:  \
  ring_buffer_LUT.c  \
+double_to_EEPROM.h  \
 mcc_generated_files/fvr.h  \
 pin_macros.h  \
 mcc_generated_files/mcc.h  \
