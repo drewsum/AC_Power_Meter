@@ -475,7 +475,7 @@ flag |= 0x03;
 }
 exp = 0;
 if( fval!=0) {
-(void)(*(&exp) = ((*(unsigned long *)&fval >> 15) & 255) - 126);
+(void)(*(&exp) = (unsigned char)((*(unsigned long *)&fval >> 23) & 255) - 126);
 exp--;
 exp *= 3;
 exp /= 10;

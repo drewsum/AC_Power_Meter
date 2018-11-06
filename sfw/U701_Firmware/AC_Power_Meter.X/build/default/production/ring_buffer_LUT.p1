@@ -8,8 +8,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"162 ring_buffer_interface.h
-[v _terminal_printNewline `(v ~T0 @X0 0 ef ]
 "79 ring_buffer_LUT.c
 [c E17978 0 1 2 3 4 5 6 7 .. ]
 [n E17978 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
@@ -108,6 +106,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _dev_on_time `Vul ~T0 @X0 0 e ]
 "30
 [v _load_on_time `Vul ~T0 @X0 0 e ]
+"162 ring_buffer_interface.h
+[v _terminal_printNewline `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16580,9 +16580,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 74: else if((0 == strcmp(line, "Cause of Reset?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 7C 2021  ]
 {
-[; ;ring_buffer_LUT.c: 77: terminal_printNewline();
-"77
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 79: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "79
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16593,9 +16590,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 86: terminal_textAttributesReset();
 "86
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 88: terminal_printNewline();
-"88
-[e ( _terminal_printNewline ..  ]
 "90
 }
 [; ;ring_buffer_LUT.c: 90: }
@@ -16605,9 +16599,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 93: else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
 [e $ ! || == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 9C == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 10C 2023  ]
 {
-[; ;ring_buffer_LUT.c: 96: terminal_printNewline();
-"96
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 98: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "98
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16620,9 +16611,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 103: terminal_textAttributesReset();
 "103
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 105: terminal_printNewline();
-"105
-[e ( _terminal_printNewline ..  ]
 "107
 }
 [; ;ring_buffer_LUT.c: 107: }
@@ -16632,9 +16620,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 110: else if((0 == strcmp(line, "Device ID?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 13C 2025  ]
 {
-[; ;ring_buffer_LUT.c: 113: terminal_printNewline();
-"113
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 115: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "115
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16647,9 +16632,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 124: terminal_textAttributesReset();
 "124
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 126: terminal_printNewline();
-"126
-[e ( _terminal_printNewline ..  ]
 "128
 }
 [; ;ring_buffer_LUT.c: 128: }
@@ -16659,9 +16641,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 131: else if((0 == strcmp(line, "Revision ID?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 15C 2027  ]
 {
-[; ;ring_buffer_LUT.c: 134: terminal_printNewline();
-"134
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 136: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "136
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16672,9 +16651,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 143: terminal_textAttributesReset();
 "143
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 145: terminal_printNewline();
-"145
-[e ( _terminal_printNewline ..  ]
 "147
 }
 [; ;ring_buffer_LUT.c: 147: }
@@ -16684,9 +16660,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 150: else if((0 == strcmp(line, "User IDs?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 17C 2029  ]
 {
-[; ;ring_buffer_LUT.c: 153: terminal_printNewline();
-"153
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 155: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "155
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16720,9 +16693,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 170: terminal_textAttributesReset();
 "170
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 172: terminal_printNewline();
-"172
-[e ( _terminal_printNewline ..  ]
 "174
 }
 [; ;ring_buffer_LUT.c: 174: }
@@ -16736,9 +16706,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "179
 [e $ ! _adc_error_flag 2035  ]
 {
-[; ;ring_buffer_LUT.c: 182: terminal_printNewline();
-"182
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 184: terminal_textAttributes(RED, BLACK, NORMAL);
 "184
 [e ( _terminal_textAttributes (3 , , . `E17978 1 . `E17978 0 . `E17970 0 ]
@@ -16846,9 +16813,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 231: terminal_textAttributesReset();
 "231
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 233: terminal_printNewline();
-"233
-[e ( _terminal_printNewline ..  ]
 "235
 }
 [; ;ring_buffer_LUT.c: 235: }
@@ -16857,9 +16821,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2035 ]
 [; ;ring_buffer_LUT.c: 237: else {
 {
-[; ;ring_buffer_LUT.c: 240: terminal_printNewline();
-"240
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 242: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "242
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16869,9 +16830,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 245: terminal_textAttributesReset();
 "245
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 247: terminal_printNewline();
-"247
-[e ( _terminal_printNewline ..  ]
 "249
 }
 [e :U 2046 ]
@@ -16897,9 +16855,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 260: TMR7_StartTimer();
 "260
 [e ( _TMR7_StartTimer ..  ]
-[; ;ring_buffer_LUT.c: 263: terminal_printNewline();
-"263
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 265: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "265
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16909,9 +16864,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 268: terminal_textAttributesReset();
 "268
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 270: terminal_printNewline();
-"270
-[e ( _terminal_printNewline ..  ]
 "273
 }
 [; ;ring_buffer_LUT.c: 273: }
@@ -16925,9 +16877,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "279
 [e $ ! == -> _VCC_overvoltage_flag `i -> 1 `i 2051  ]
 {
-[; ;ring_buffer_LUT.c: 282: terminal_printNewline();
-"282
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 284: terminal_textAttributes(RED, BLACK, NORMAL);
 "284
 [e ( _terminal_textAttributes (3 , , . `E17978 1 . `E17978 0 . `E17970 0 ]
@@ -16937,9 +16886,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 287: terminal_textAttributesReset();
 "287
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 289: terminal_printNewline();
-"289
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 292: VCC_overvoltage_flag = 0;
 "292
 [e = _VCC_overvoltage_flag -> -> 0 `i `b ]
@@ -16951,9 +16897,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2051 ]
 [; ;ring_buffer_LUT.c: 296: else {
 {
-[; ;ring_buffer_LUT.c: 299: terminal_printNewline();
-"299
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 301: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "301
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -16963,9 +16906,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 304: terminal_textAttributesReset();
 "304
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 306: terminal_printNewline();
-"306
-[e ( _terminal_printNewline ..  ]
 "308
 }
 [e :U 2052 ]
@@ -16979,9 +16919,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 313: else if((0 == strcmp(line, "Measure POS3P3?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 36C 2054  ]
 {
-[; ;ring_buffer_LUT.c: 316: terminal_printNewline();
-"316
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 318: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "318
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -16991,9 +16928,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 321: terminal_textAttributesReset();
 "321
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 323: terminal_printNewline();
-"323
-[e ( _terminal_printNewline ..  ]
 "326
 }
 [; ;ring_buffer_LUT.c: 326: }
@@ -17003,9 +16937,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 329: else if((0 == strcmp(line, "Measure POS12?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 38C 2056  ]
 {
-[; ;ring_buffer_LUT.c: 332: terminal_printNewline();
-"332
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 334: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "334
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17015,9 +16946,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 337: terminal_textAttributesReset();
 "337
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 339: terminal_printNewline();
-"339
-[e ( _terminal_printNewline ..  ]
 "342
 }
 [; ;ring_buffer_LUT.c: 342: }
@@ -17027,9 +16955,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 345: else if((0 == strcmp(line, "Measure Die Temp?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 40C 2058  ]
 {
-[; ;ring_buffer_LUT.c: 348: terminal_printNewline();
-"348
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 350: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "350
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17039,9 +16964,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 353: terminal_textAttributesReset();
 "353
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 355: terminal_printNewline();
-"355
-[e ( _terminal_printNewline ..  ]
 "358
 }
 [; ;ring_buffer_LUT.c: 358: }
@@ -17051,9 +16973,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 361: else if((0 == strcmp(line, "Measure FVR?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 42C 2060  ]
 {
-[; ;ring_buffer_LUT.c: 364: terminal_printNewline();
-"364
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 366: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "366
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17063,9 +16982,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 369: terminal_textAttributesReset();
 "369
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 371: terminal_printNewline();
-"371
-[e ( _terminal_printNewline ..  ]
 "374
 }
 [; ;ring_buffer_LUT.c: 374: }
@@ -17075,9 +16991,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 377: else if((0 == strcmp(line, "Measure AVSS?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 44C 2062  ]
 {
-[; ;ring_buffer_LUT.c: 380: terminal_printNewline();
-"380
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 382: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "382
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17087,9 +17000,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 385: terminal_textAttributesReset();
 "385
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 387: terminal_printNewline();
-"387
-[e ( _terminal_printNewline ..  ]
 "390
 }
 [; ;ring_buffer_LUT.c: 390: }
@@ -17099,9 +17009,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 393: else if ((0 == strcmp(line, "Measure Detected Current?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 46C 2064  ]
 {
-[; ;ring_buffer_LUT.c: 396: terminal_printNewline();
-"396
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 398: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "398
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17111,9 +17018,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 401: terminal_textAttributesReset();
 "401
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 403: terminal_printNewline();
-"403
-[e ( _terminal_printNewline ..  ]
 "405
 }
 [; ;ring_buffer_LUT.c: 405: }
@@ -17123,9 +17027,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 408: else if ((0 == strcmp(line, "Measure RMS Current?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 48C 2066  ]
 {
-[; ;ring_buffer_LUT.c: 411: terminal_printNewline();
-"411
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 413: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "413
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17135,9 +17036,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 416: terminal_textAttributesReset();
 "416
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 418: terminal_printNewline();
-"418
-[e ( _terminal_printNewline ..  ]
 "420
 }
 [; ;ring_buffer_LUT.c: 420: }
@@ -17147,9 +17045,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 423: else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 50C 2068  ]
 {
-[; ;ring_buffer_LUT.c: 426: terminal_printNewline();
-"426
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 428: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "428
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17159,9 +17054,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 431: terminal_textAttributesReset();
 "431
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 433: terminal_printNewline();
-"433
-[e ( _terminal_printNewline ..  ]
 "435
 }
 [; ;ring_buffer_LUT.c: 435: }
@@ -17171,9 +17063,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 438: else if ((0 == strcmp(line, "Measure Power?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 52C 2070  ]
 {
-[; ;ring_buffer_LUT.c: 441: terminal_printNewline();
-"441
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 443: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "443
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17183,9 +17072,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 446: terminal_textAttributesReset();
 "446
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 448: terminal_printNewline();
-"448
-[e ( _terminal_printNewline ..  ]
 "450
 }
 [; ;ring_buffer_LUT.c: 450: }
@@ -17198,9 +17084,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 456: LATGbits.LATG0 = 0;
 "456
 [e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;ring_buffer_LUT.c: 459: terminal_printNewline();
-"459
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 461: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "461
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17210,9 +17093,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 464: terminal_textAttributesReset();
 "464
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 466: terminal_printNewline();
-"466
-[e ( _terminal_printNewline ..  ]
 "468
 }
 [; ;ring_buffer_LUT.c: 468: }
@@ -17225,9 +17105,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 474: LATGbits.LATG0 = 1;
 "474
 [e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
-[; ;ring_buffer_LUT.c: 477: terminal_printNewline();
-"477
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 479: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "479
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17237,9 +17114,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 482: terminal_textAttributesReset();
 "482
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 484: terminal_printNewline();
-"484
-[e ( _terminal_printNewline ..  ]
 "486
 }
 [; ;ring_buffer_LUT.c: 486: }
@@ -17258,9 +17132,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 493: load_enable = 1;
 "493
 [e = _load_enable -> -> 1 `i `b ]
-[; ;ring_buffer_LUT.c: 496: terminal_printNewline();
-"496
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 498: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "498
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17270,9 +17141,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 501: terminal_textAttributesReset();
 "501
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 503: terminal_printNewline();
-"503
-[e ( _terminal_printNewline ..  ]
 "505
 }
 [; ;ring_buffer_LUT.c: 505: }
@@ -17291,9 +17159,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 512: load_enable = 0;
 "512
 [e = _load_enable -> -> 0 `i `b ]
-[; ;ring_buffer_LUT.c: 515: terminal_printNewline();
-"515
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 517: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "517
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17303,9 +17168,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 520: terminal_textAttributesReset();
 "520
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 522: terminal_printNewline();
-"522
-[e ( _terminal_printNewline ..  ]
 "524
 }
 [; ;ring_buffer_LUT.c: 524: }
@@ -17348,9 +17210,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "543
 [e $ ! || >= _percentage -> 100 `i <= _percentage -> 0 `i 2084  ]
 {
-[; ;ring_buffer_LUT.c: 546: terminal_printNewline();
-"546
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 548: terminal_textAttributes(RED, BLACK, NORMAL);
 "548
 [e ( _terminal_textAttributes (3 , , . `E17978 1 . `E17978 0 . `E17970 0 ]
@@ -17369,9 +17228,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 555: terminal_textAttributesReset();
 "555
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 557: terminal_printNewline();
-"557
-[e ( _terminal_printNewline ..  ]
 "559
 }
 [; ;ring_buffer_LUT.c: 559: }
@@ -17390,9 +17246,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 567: dimming_period = (100 - percentage) * (0xFFFF / 100);
 "567
 [e = _dimming_period * -> - -> 100 `i _percentage `ui / -> 65535 `ui -> -> 100 `i `ui ]
-[; ;ring_buffer_LUT.c: 570: terminal_printNewline();
-"570
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 572: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "572
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -17408,9 +17261,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 577: terminal_textAttributesReset();
 "577
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 579: terminal_printNewline();
-"579
-[e ( _terminal_printNewline ..  ]
 "581
 }
 [e :U 2085 ]
@@ -17424,9 +17274,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 586: else if((0 == strcmp(line, "Device On Time?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 69C 2087  ]
 {
-[; ;ring_buffer_LUT.c: 589: terminal_printNewline();
-"589
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 591: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "591
 [e ( _terminal_textAttributes (3 , , . `E17978 2 . `E17978 0 . `E17970 0 ]
@@ -17436,9 +17283,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 594: terminal_textAttributesReset();
 "594
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 596: terminal_printNewline();
-"596
-[e ( _terminal_printNewline ..  ]
 "598
 }
 [; ;ring_buffer_LUT.c: 598: }
@@ -17448,9 +17292,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 601: else if((0 == strcmp(line, "Load On Time?"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 71C 2089  ]
 {
-[; ;ring_buffer_LUT.c: 604: terminal_printNewline();
-"604
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 606: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "606
 [e ( _terminal_textAttributes (3 , , . `E17978 6 . `E17978 0 . `E17970 0 ]
@@ -17460,9 +17301,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 609: terminal_textAttributesReset();
 "609
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 611: terminal_printNewline();
-"611
-[e ( _terminal_printNewline ..  ]
 "613
 }
 [; ;ring_buffer_LUT.c: 613: }
@@ -17472,13 +17310,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 618: else if((0 == strcmp(line, "Help"))) {
 [e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 73C 2091  ]
 {
-[; ;ring_buffer_LUT.c: 621: terminal_printNewline();
-"621
-[e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 623: terminal_textAttributes(YELLOW, BLACK, NORMAL);
 "623
 [e ( _terminal_textAttributes (3 , , . `E17978 3 . `E17978 0 . `E17970 0 ]
-[; ;ring_buffer_LUT.c: 624: printf("List of supported commands:\n\r\n\r"
+[; ;ring_buffer_LUT.c: 624: printf("List of supported commands:\n\r"
 [; ;ring_buffer_LUT.c: 626: "Device Commands:\n\r"
 [; ;ring_buffer_LUT.c: 627: "   Reset: Clears the terminal and resets the micro\n\r"
 [; ;ring_buffer_LUT.c: 628: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
@@ -17491,19 +17326,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 635: "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
 [; ;ring_buffer_LUT.c: 636: "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
 [; ;ring_buffer_LUT.c: 637: "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
-[; ;ring_buffer_LUT.c: 638: "   Help: This message, lists supported commands\n\r\n\r"
+[; ;ring_buffer_LUT.c: 638: "   Help: This message, lists supported commands\n\r"
 [; ;ring_buffer_LUT.c: 640: "Device Measurement Commands:\n\r"
 [; ;ring_buffer_LUT.c: 641: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
 [; ;ring_buffer_LUT.c: 642: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
 [; ;ring_buffer_LUT.c: 643: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
 [; ;ring_buffer_LUT.c: 644: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-[; ;ring_buffer_LUT.c: 645: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r\n\r"
+[; ;ring_buffer_LUT.c: 645: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
 [; ;ring_buffer_LUT.c: 647: "Primary Measurement Commands:\n\r"
 [; ;ring_buffer_LUT.c: 648: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
 [; ;ring_buffer_LUT.c: 649: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
 [; ;ring_buffer_LUT.c: 650: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
 [; ;ring_buffer_LUT.c: 651: "   Measure Power?: Returns the calculated output power in Watts\n\r"
-[; ;ring_buffer_LUT.c: 652: "   Load On Time?: Returns load on time since last device reset in seconds\n\r\n\r"
+[; ;ring_buffer_LUT.c: 652: "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
 [; ;ring_buffer_LUT.c: 654: "Output Control Commands:\n\r"
 [; ;ring_buffer_LUT.c: 655: "   Enable Dimming: Enable TRIAC output dimming\n\r"
 [; ;ring_buffer_LUT.c: 656: "   Disable Dimming: Disable TRIAC output dimming\n\r"
@@ -17622,7 +17457,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 27C 73 110 116 101 114 110 97 108 32 70 86 82 32 66 117 102 102 101 114 32 49 0 ]
 [a 62C 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 0 ]
 [a 75C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
-[a 74C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 10 13 68 101 118 105 99 101 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 86 67 67 32 79 118 101 114 118 111 108 116 97 103 101 63 58 32 83 116 97 116 101 115 32 105 102 32 97 32 86 67 67 32 111 118 101 114 118 111 108 116 97 103 101 32 99 111 110 100 105 116 105 111 110 32 104 97 115 32 111 99 99 117 114 114 101 100 32 111 114 32 110 111 116 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 10 13 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 0 ]
+[a 74C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 68 101 118 105 99 101 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 86 67 67 32 79 118 101 114 118 111 108 116 97 103 101 63 58 32 83 116 97 116 101 115 32 105 102 32 97 32 86 67 67 32 111 118 101 114 118 111 108 116 97 103 101 32 99 111 110 100 105 116 105 111 110 32 104 97 115 32 111 99 99 117 114 114 101 100 32 111 114 32 110 111 116 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 0 ]
 [a 66C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 100 32 112 101 114 99 101 110 116 10 13 0 ]
 [a 12C 77 97 114 113 117 101 116 116 101 32 85 110 105 118 101 114 115 105 116 121 32 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 10 13 0 ]
 [a 37C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 102 32 86 111 108 116 115 10 13 0 ]

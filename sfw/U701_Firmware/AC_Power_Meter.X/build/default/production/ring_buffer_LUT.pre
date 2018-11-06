@@ -22167,7 +22167,7 @@ printf("\033[H");
 else if((0 == strcmp(line, "Cause of Reset?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22178,7 +22178,7 @@ getCauseOfResetString(reset_cause));
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22186,7 +22186,7 @@ terminal_printNewline();
 else if((0 == strcmp(line, "*IDN?")) || (0 == strcmp(line, "IDN"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22195,7 +22195,7 @@ printf("Marquette University ELEN 3035 Final Project\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22203,7 +22203,7 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Device ID?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22216,7 +22216,7 @@ getDeviceIDString(getDeviceID()));
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22224,7 +22224,7 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Revision ID?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22235,7 +22235,7 @@ printf("Device silicon revision ID as stored in Flash is: %c%d\n\r",
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22243,7 +22243,7 @@ terminal_printNewline();
 else if((0 == strcmp(line, "User IDs?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
@@ -22262,7 +22262,7 @@ getUserID(userID));
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22272,7 +22272,7 @@ else if((0 == strcmp(line, "ADC Error?"))) {
 if (adc_error_flag) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(RED, BLACK, NORMAL);
 
@@ -22323,21 +22323,21 @@ printf("The following channel caused an ADC error: %s\n\r", channel_name);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
 else {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("No ADC Error detected\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22353,14 +22353,14 @@ PIE5bits.TMR7IE == 1;
 TMR7_StartTimer();
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Clearing ADC Error\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22372,14 +22372,14 @@ else if((0 == strcmp(line, "VCC Overvoltage?"))) {
 if (VCC_overvoltage_flag == 1) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(RED, BLACK, NORMAL);
 printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 VCC_overvoltage_flag = 0;
@@ -22389,14 +22389,14 @@ VCC_overvoltage_flag = 0;
 else {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("VCC Overvoltage condition has not occurred\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22406,14 +22406,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Measure POS3P3?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("+3.3V rail measured as +%f Volts\n\r", POS3P3_ADC_Result);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22422,14 +22422,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Measure POS12?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("+12V rail measured as +%f Volts\n\r", POS12_ADC_Result);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22438,14 +22438,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Measure Die Temp?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22454,14 +22454,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Measure FVR?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22470,14 +22470,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Measure AVSS?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 
 }
@@ -22486,14 +22486,14 @@ terminal_printNewline();
 else if ((0 == strcmp(line, "Measure Detected Current?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Measured Current is %.3f Amps\n\r", Imeas);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22501,14 +22501,14 @@ terminal_printNewline();
 else if ((0 == strcmp(line, "Measure RMS Current?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("RMS Output Current is %.3f Arms\n\r", Irms);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22516,14 +22516,14 @@ terminal_printNewline();
 else if ((0 == strcmp(line, "Measure RMS Voltage?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22531,14 +22531,14 @@ terminal_printNewline();
 else if ((0 == strcmp(line, "Measure Power?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22549,14 +22549,14 @@ else if ((0 == strcmp(line, "Enable Dimming"))) {
 LATGbits.LATG0 = 0;
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("TRIAC output dimming has been enabled\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22567,14 +22567,14 @@ else if ((0 == strcmp(line, "Disable Dimming"))) {
 LATGbits.LATG0 = 1;
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("TRIAC output dimming has been disabled\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22586,14 +22586,14 @@ LATGbits.LATG1 = 0;
 load_enable = 1;
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load has been enabled, dimming disabled\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22605,14 +22605,14 @@ LATGbits.LATG0 = 0;
 load_enable = 0;
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load has been disabled\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22636,7 +22636,7 @@ if ( (percentage >= 100) ||
 (percentage <= 0)) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(RED, BLACK, NORMAL);
 printf("ERROR: Please set dimming percentage to an integer greater than 0 and less than 100\n\r");
@@ -22647,7 +22647,7 @@ printf("Enter 'Help' for list of available commands\n\r");
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22660,7 +22660,7 @@ double angle_degrees = TRIAC_Firing_Angle * (180.0 / 3.14159265358979323846);
 dimming_period = (100 - percentage) * (0xFFFF / 100);
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Dimming has been set to %d percent\n\r", percentage);
@@ -22669,7 +22669,7 @@ printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22679,14 +22679,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Device On Time?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22694,14 +22694,14 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Load On Time?"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
 
 terminal_textAttributesReset();
 
-terminal_printNewline();
+
 
 }
 
@@ -22711,10 +22711,10 @@ terminal_printNewline();
 else if((0 == strcmp(line, "Help"))) {
 
 
-terminal_printNewline();
+
 
 terminal_textAttributes(YELLOW, BLACK, NORMAL);
-printf("List of supported commands:\n\r\n\r"
+printf("List of supported commands:\n\r"
 
 "Device Commands:\n\r"
 "   Reset: Clears the terminal and resets the micro\n\r"
@@ -22728,21 +22728,21 @@ printf("List of supported commands:\n\r\n\r"
 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
 "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
-"   Help: This message, lists supported commands\n\r\n\r"
+"   Help: This message, lists supported commands\n\r"
 
 "Device Measurement Commands:\n\r"
 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
 "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-"   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r\n\r"
+"   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
 
 "Primary Measurement Commands:\n\r"
 "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
 "   Measure Power?: Returns the calculated output power in Watts\n\r"
-"   Load On Time?: Returns load on time since last device reset in seconds\n\r\n\r"
+"   Load On Time?: Returns load on time since last device reset in seconds\n\r"
 
 "Output Control Commands:\n\r"
 "   Enable Dimming: Enable TRIAC output dimming\n\r"

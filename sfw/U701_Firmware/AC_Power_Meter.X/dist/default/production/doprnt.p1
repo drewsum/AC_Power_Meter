@@ -642,9 +642,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "836
 [e $ ! != _fval -> -> 0 `i `d 54  ]
 {
-[; ;doprnt.c: 837: (void)(*(&exp) = ((*(unsigned long *)&fval >> 15) & 255) - 126);
+[; ;doprnt.c: 837: (void)(*(&exp) = (unsigned char)((*(unsigned long *)&fval >> 23) & 255) - 126);
 "837
-[e = *U &U _exp -> - & >> *U -> &U _fval `*ul -> 15 `i -> -> -> 255 `i `l `ul -> -> -> 126 `i `l `ul `i ]
+[e = *U &U _exp - -> -> & >> *U -> &U _fval `*ul -> 23 `i -> -> -> 255 `i `l `ul `uc `i -> 126 `i ]
 [; ;doprnt.c: 838: exp--;
 "838
 [e -- _exp -> 1 `i ]
