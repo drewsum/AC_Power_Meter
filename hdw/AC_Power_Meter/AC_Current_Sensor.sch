@@ -212,20 +212,8 @@ F 3 "" H 6670 4200 50  0001 C CNN
 	1    6670 4200
 	1    0    0    -1  
 $EndComp
-$Comp
-L Sensor_Current:ACS722xLCTR-20AB U301
-U 1 1 5BB31C32
-P 5350 3640
-F 0 "U301" H 5450 4090 50  0000 L CNN
-F 1 "ACS722LLCTR-20AB" H 5450 3990 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 5450 3290 50  0001 L CIN
-F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS722-Datasheet.ashx?la=en" H 5350 3640 50  0001 C CNN
-F 4 "620-1637-1-ND" H 5350 3640 50  0001 C CNN "Digi-Key PN"
-	1    5350 3640
-	1    0    0    -1  
-$EndComp
 Text Notes 3530 4440 0    50   ~ 0
-10.7ARMS Max to support full output swing of conditioning stages
+3.787 Peak Amps Max to support full output swing of conditioning stages
 $Comp
 L power:HT #PWR0301
 U 1 1 5BB463D5
@@ -256,4 +244,16 @@ F 3 "" H 9900 1100 50  0001 C CNN
 $EndComp
 Text GLabel 5750 3440 2    50   Output ~ 0
 ISNS_OUT
+$Comp
+L Sensor_Current:ACS722xLCTR-05AB U301
+U 1 1 5BD3627A
+P 5350 3640
+F 0 "U301" H 5450 4090 50  0000 L CNN
+F 1 "ACS722LLCTR-05AB" H 5450 3990 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5450 3290 50  0001 L CIN
+F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS722-Datasheet.ashx?la=en" H 5350 3640 50  0001 C CNN
+F 4 "620-1634-1-ND" H 5350 3640 50  0001 C CNN "Digi-Key PN"
+	1    5350 3640
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
