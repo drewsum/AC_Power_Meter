@@ -21534,6 +21534,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21631,19 +21637,13 @@ bool ADCC_HasErrorCrossedLowerThreshold(void);
 uint8_t ADCC_GetConversionStageStatus(void);
 
 # 846
-void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
 # 862
-void ADCC_ISR(void);
+void ADCC_ThresholdISR(void);
 
-# 881
+# 880
 void ADCC_DefaultInterruptHandler(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);

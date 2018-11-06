@@ -60,8 +60,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIE1bits `VS258 ~T0 @X0 0 e@3626 ]
 [v F17374 `(v ~T0 @X0 0 tf ]
 "846 mcc_generated_files/adcc.h
-[v _ADCC_SetADIInterruptHandler `(v ~T0 @X0 0 ef1`*F17374 ]
-"881
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17374 ]
+"880
 [v _ADCC_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
 "113 mcc_generated_files/adcc.c
 [c E17310 0 4 34 60 61 62 63 .. ]
@@ -16210,12 +16210,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
 [; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
 [; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
-[; ;adcc.h: 862: void ADCC_ISR(void);
-[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
+[; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ThresholdISR(void);
+[; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
 "57 mcc_generated_files/adcc.c
-[v _ADCC_ADI_InterruptHandler `*F17381 ~T0 @X0 1 e ]
-[; ;adcc.c: 57: void (*ADCC_ADI_InterruptHandler)(void);
+[v _ADCC_ADTI_InterruptHandler `*F17381 ~T0 @X0 1 e ]
+[; ;adcc.c: 57: void (*ADCC_ADTI_InterruptHandler)(void);
 "63
 [v _ADCC_Initialize `(v ~T0 @X0 1 ef ]
 "64
@@ -16242,9 +16242,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.c: 77: ADSTPTH = 0x00;
 "77
 [e = _ADSTPTH -> -> 0 `i `uc ]
-[; ;adcc.c: 79: ADRPT = 0x00;
+[; ;adcc.c: 79: ADRPT = 0xFF;
 "79
-[e = _ADRPT -> -> 0 `i `uc ]
+[e = _ADRPT -> -> 255 `i `uc ]
 [; ;adcc.c: 81: ADPCH = 0x00;
 "81
 [e = _ADPCH -> -> 0 `i `uc ]
@@ -16257,9 +16257,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.c: 87: ADCON2 = 0x04;
 "87
 [e = _ADCON2 -> -> 4 `i `uc ]
-[; ;adcc.c: 89: ADCON3 = 0x00;
+[; ;adcc.c: 89: ADCON3 = 0x5F;
 "89
-[e = _ADCON3 -> -> 0 `i `uc ]
+[e = _ADCON3 -> -> 95 `i `uc ]
 [; ;adcc.c: 91: ADSTAT = 0x00;
 "91
 [e = _ADSTAT -> -> 0 `i `uc ]
@@ -16269,24 +16269,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.c: 95: ADACT = 0x00;
 "95
 [e = _ADACT -> -> 0 `i `uc ]
-[; ;adcc.c: 97: ADCLK = 0x00;
+[; ;adcc.c: 97: ADCLK = 0x1F;
 "97
-[e = _ADCLK -> -> 0 `i `uc ]
-[; ;adcc.c: 99: ADCON0 = 0x94;
+[e = _ADCLK -> -> 31 `i `uc ]
+[; ;adcc.c: 99: ADCON0 = 0xC4;
 "99
-[e = _ADCON0 -> -> 148 `i `uc ]
-[; ;adcc.c: 101: ADACQ = 0x00;
+[e = _ADCON0 -> -> 196 `i `uc ]
+[; ;adcc.c: 101: ADACQ = 0xFF;
 "101
-[e = _ADACQ -> -> 0 `i `uc ]
-[; ;adcc.c: 104: PIR1bits.ADIF = 0;
-"104
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;adcc.c: 106: PIE1bits.ADIE = 1;
-"106
-[e = . . _PIE1bits 0 0 -> -> 1 `i `uc ]
-[; ;adcc.c: 108: ADCC_SetADIInterruptHandler(ADCC_DefaultInterruptHandler);
-"108
-[e ( _ADCC_SetADIInterruptHandler (1 &U _ADCC_DefaultInterruptHandler ]
+[e = _ADACQ -> -> 255 `i `uc ]
+[; ;adcc.c: 105: PIR1bits.ADTIF = 0;
+"105
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+[; ;adcc.c: 107: PIE1bits.ADTIE = 1;
+"107
+[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+[; ;adcc.c: 109: ADCC_SetADTIInterruptHandler(ADCC_DefaultInterruptHandler);
+"109
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCC_DefaultInterruptHandler ]
 [; ;adcc.c: 110: }
 "110
 [e :UE 2011 ]
@@ -16761,41 +16761,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 "295
 [e :UE 2040 ]
 }
-"297
-[v _ADCC_ISR `(v ~T0 @X0 1 ef ]
 "298
+[v _ADCC_ThresholdISR `(v ~T0 @X0 1 ef ]
+"299
 {
-[; ;adcc.c: 297: void ADCC_ISR(void)
-[; ;adcc.c: 298: {
-[e :U _ADCC_ISR ]
+[; ;adcc.c: 298: void ADCC_ThresholdISR(void)
+[; ;adcc.c: 299: {
+[e :U _ADCC_ThresholdISR ]
 [f ]
-[; ;adcc.c: 300: PIR1bits.ADIF = 0;
-"300
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;adcc.c: 302: if (ADCC_ADI_InterruptHandler)
-"302
-[e $ ! != _ADCC_ADI_InterruptHandler -> -> 0 `i `*F17381 2042  ]
-[; ;adcc.c: 303: ADCC_ADI_InterruptHandler();
+[; ;adcc.c: 301: PIR1bits.ADTIF = 0;
+"301
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+[; ;adcc.c: 303: if (ADCC_ADTI_InterruptHandler)
 "303
-[e ( *U _ADCC_ADI_InterruptHandler ..  ]
-[e :U 2042 ]
-[; ;adcc.c: 304: }
+[e $ ! != _ADCC_ADTI_InterruptHandler -> -> 0 `i `*F17381 2042  ]
+[; ;adcc.c: 304: ADCC_ADTI_InterruptHandler();
 "304
+[e ( *U _ADCC_ADTI_InterruptHandler ..  ]
+[e :U 2042 ]
+[; ;adcc.c: 305: }
+"305
 [e :UE 2041 ]
 }
-"306
-[v _ADCC_SetADIInterruptHandler `(v ~T0 @X0 1 ef1`*F17374 ]
+"307
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 1 ef1`*F17374 ]
 {
-[; ;adcc.c: 306: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void)){
-[e :U _ADCC_SetADIInterruptHandler ]
+[; ;adcc.c: 307: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void)){
+[e :U _ADCC_SetADTIInterruptHandler ]
 [v F17419 `(v ~T0 @X0 0 tf ]
 [v _InterruptHandler `*F17419 ~T0 @X0 1 r1 ]
 [f ]
-[; ;adcc.c: 307: ADCC_ADI_InterruptHandler = InterruptHandler;
-"307
-[e = _ADCC_ADI_InterruptHandler _InterruptHandler ]
-[; ;adcc.c: 308: }
+[; ;adcc.c: 308: ADCC_ADTI_InterruptHandler = InterruptHandler;
 "308
+[e = _ADCC_ADTI_InterruptHandler _InterruptHandler ]
+[; ;adcc.c: 309: }
+"309
 [e :UE 2043 ]
 }
 "310

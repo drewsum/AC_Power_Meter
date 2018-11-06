@@ -86,8 +86,8 @@ RESET_Instruction_Executed 6
 Stack_Overflow_Reset 7
 Stack_Underflow_Reset 8
 ]
-"163
-[e E17421 . `uc
+"97
+[e E17425 . `uc
 ISNS_ADC 0
 POS12_ADC 4
 POS3P3_ADC 34
@@ -117,7 +117,7 @@ CYAN 6
 WHITE 7
 ]
 "40 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
-[e E17592 . `uc
+[e E17596 . `uc
 ISNS_ADC 0
 POS12_ADC 4
 POS3P3_ADC 34
@@ -169,6 +169,8 @@ RESET_Instruction_Executed 6
 Stack_Overflow_Reset 7
 Stack_Underflow_Reset 8
 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\acos.c
 [v _acos acos `(d  1 e 4 0 ]
 "9 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\asin.c
@@ -288,30 +290,38 @@ Stack_Underflow_Reset 8
 [v _getDeviceIDString getDeviceIDString `(*.32Tuc  1 e 2 0 ]
 "65
 [v _getUserID getUserID `(ui  1 e 2 0 ]
-"103 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"104 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _peakToRMS peakToRMS `(d  1 e 4 0 ]
-"120
+"121
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 4 0 ]
-"139
+"140
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
-"160
+"161
 [v _ADCPostProcessingCallback ADCPostProcessingCallback `(v  1 e 1 0 ]
-"342
+"359
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
-"453
+"377
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
 "112
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
-"124
-[v _ADCC_IsConversionDone ADCC_IsConversionDone `(uc  1 e 1 0 ]
 "130
 [v _ADCC_GetConversionResult ADCC_GetConversionResult `(ui  1 e 2 0 ]
-"297
-[v _ADCC_ISR ADCC_ISR `(v  1 e 1 0 ]
-"306
-[v _ADCC_SetADIInterruptHandler ADCC_SetADIInterruptHandler `(v  1 e 1 0 ]
+"162
+[v _ADCC_StopConversion ADCC_StopConversion `(v  1 e 1 0 ]
+"174
+[v _ADCC_DischargeSampleCapacitor ADCC_DischargeSampleCapacitor `(v  1 e 1 0 ]
+"204
+[v _ADCC_ClearAccumulator ADCC_ClearAccumulator `(v  1 e 1 0 ]
+"216
+[v _ADCC_HasAccumulatorOverflowed ADCC_HasAccumulatorOverflowed `(uc  1 e 1 0 ]
+"222
+[v _ADCC_GetFilterValue ADCC_GetFilterValue `(ui  1 e 2 0 ]
+"298
+[v _ADCC_ThresholdISR ADCC_ThresholdISR `(v  1 e 1 0 ]
+"307
+[v _ADCC_SetADTIInterruptHandler ADCC_SetADTIInterruptHandler `(v  1 e 1 0 ]
 "310
 [v _ADCC_DefaultInterruptHandler ADCC_DefaultInterruptHandler `(v  1 e 1 0 ]
 "79 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
@@ -390,8 +400,6 @@ Stack_Underflow_Reset 8
 [v _TMR6_DefaultInterruptHandler TMR6_DefaultInterruptHandler `(v  1 e 1 0 ]
 "64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v _TMR7_Initialize TMR7_Initialize `(v  1 e 1 0 ]
-"99
-[v _TMR7_StartTimer TMR7_StartTimer `(v  1 e 1 0 ]
 "105
 [v _TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
 [v i2_TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
@@ -1048,7 +1056,7 @@ Stack_Underflow_Reset 8
 [v _LATFbits LATFbits `VES913  1 e 1 @3966 ]
 "29149
 [v _LATG LATG `VEuc  1 e 1 @3967 ]
-[s S2156 . 1 `uc 1 LATG0 1 0 :1:0 
+[s S2159 . 1 `uc 1 LATG0 1 0 :1:0 
 `uc 1 LATG1 1 0 :1:1 
 `uc 1 LATG2 1 0 :1:2 
 `uc 1 LATG3 1 0 :1:3 
@@ -1058,14 +1066,14 @@ Stack_Underflow_Reset 8
 `uc 1 LATG7 1 0 :1:7 
 ]
 "29173
-[s S2165 . 1 `uc 1 LG0 1 0 :1:0 
+[s S2168 . 1 `uc 1 LG0 1 0 :1:0 
 `uc 1 LG1 1 0 :1:1 
 `uc 1 LG2 1 0 :1:2 
 `uc 1 LG3 1 0 :1:3 
 `uc 1 LG4 1 0 :1:4 
 ]
-[u S2171 . 1 `S2156 1 . 1 0 `S2165 1 . 1 0 ]
-[v _LATGbits LATGbits `VES2171  1 e 1 @3967 ]
+[u S2174 . 1 `S2159 1 . 1 0 `S2168 1 . 1 0 ]
+[v _LATGbits LATGbits `VES2174  1 e 1 @3967 ]
 "29238
 [v _LATH LATH `VEuc  1 e 1 @3968 ]
 "29338
@@ -1243,30 +1251,30 @@ Stack_Underflow_Reset 8
 [v _T5GATE T5GATE `VEuc  1 e 1 @4037 ]
 "37210
 [v _T5CLK T5CLK `VEuc  1 e 1 @4038 ]
-[s S2703 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S2741 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "39822
-[s S2705 . 1 `uc 1 . 1 0 :1:0 
+[s S2743 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
 "39822
-[s S2708 . 1 `uc 1 . 1 0 :2:0 
+[s S2746 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_RI 1 0 :1:2 
 ]
 "39822
-[s S2711 . 1 `uc 1 . 1 0 :3:0 
+[s S2749 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_RMCLR 1 0 :1:3 
 ]
 "39822
-[s S2714 . 1 `uc 1 . 1 0 :4:0 
+[s S2752 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RWDT 1 0 :1:4 
 ]
 "39822
-[s S2717 . 1 `uc 1 . 1 0 :5:0 
+[s S2755 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_WDTWV 1 0 :1:5 
 ]
 "39822
-[s S2720 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S2758 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nRI 1 0 :1:2 
 `uc 1 nRMCLR 1 0 :1:3 
@@ -1276,7 +1284,7 @@ Stack_Underflow_Reset 8
 `uc 1 STKOVF 1 0 :1:7 
 ]
 "39822
-[s S2729 . 1 `uc 1 BOR 1 0 :1:0 
+[s S2767 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 RI 1 0 :1:2 
 `uc 1 RMCLR 1 0 :1:3 
@@ -1284,10 +1292,10 @@ Stack_Underflow_Reset 8
 `uc 1 WDTWV 1 0 :1:5 
 ]
 "39822
-[u S2736 . 1 `S2703 1 . 1 0 `S2705 1 . 1 0 `S2708 1 . 1 0 `S2711 1 . 1 0 `S2714 1 . 1 0 `S2717 1 . 1 0 `S2720 1 . 1 0 `S2729 1 . 1 0 ]
+[u S2774 . 1 `S2741 1 . 1 0 `S2743 1 . 1 0 `S2746 1 . 1 0 `S2749 1 . 1 0 `S2752 1 . 1 0 `S2755 1 . 1 0 `S2758 1 . 1 0 `S2767 1 . 1 0 ]
 "39822
 "39822
-[v _PCON0bits PCON0bits `VES2736  1 e 1 @4055 ]
+[v _PCON0bits PCON0bits `VES2774  1 e 1 @4055 ]
 [s S136 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1380,8 +1388,10 @@ Stack_Underflow_Reset 8
 [v _VCC_overvoltage_flag VCC_overvoltage_flag `VEb  1 e 0 0 ]
 "96
 [v _reset_cause reset_cause `E17948  1 e 1 0 ]
+"97
+[v _next_channel next_channel `E17425  1 e 1 0 ]
 "57 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
-[v _ADCC_ADI_InterruptHandler ADCC_ADI_InterruptHandler `*.38(v  1 e 3 0 ]
+[v _ADCC_ADTI_InterruptHandler ADCC_ADTI_InterruptHandler `*.38(v  1 e 3 0 ]
 "64 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _eusart2TxHead eusart2TxHead `VEuc  1 e 1 0 ]
 "65
@@ -1415,11 +1425,11 @@ Stack_Underflow_Reset 8
 "52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.h
 [v _line line `[64]uc  1 e 64 0 ]
 "40 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
-[v _current_adc_channel current_adc_channel `E17592  1 e 1 0 ]
-"453 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+[v _current_adc_channel current_adc_channel `E17596  1 e 1 0 ]
+"377 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"506
+"434
 } 0
 "85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
@@ -1430,7 +1440,7 @@ Stack_Underflow_Reset 8
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
 {
 "24
-[v terminal_ringBufferPull@index_2365 index `i  1 a 2 197 ]
+[v terminal_ringBufferPull@index_2397 index `i  1 a 2 197 ]
 "17
 [v terminal_ringBufferPull@index index `i  1 a 2 199 ]
 "14
@@ -1440,21 +1450,21 @@ Stack_Underflow_Reset 8
 "43 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-"416
+"471
 [v ringBufferLUT@angle_degrees angle_degrees `d  1 a 4 22 ]
-"390
+"445
 [v ringBufferLUT@index index `i  1 a 2 29 ]
 "156
 [v ringBufferLUT@channel_name channel_name `[22]uc  1 a 22 0 ]
 "132
 [v ringBufferLUT@userID userID `i  1 a 2 33 ]
-"387
+"442
 [v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 26 ]
-"396
+"451
 [v ringBufferLUT@percentage percentage `i  1 a 2 31 ]
 "43
 [v ringBufferLUT@line line `*.39uc  1 p 2 188 ]
-"509
+"566
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1650,10 +1660,10 @@ Stack_Underflow_Reset 8
 [v ___fldiv@a a `d  1 p 4 65 ]
 "184
 } 0
-"99 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
-[v _TMR7_StartTimer TMR7_StartTimer `(v  1 e 1 0 ]
+"105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
+[v _TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
 {
-"103
+"109
 } 0
 "137 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/eusart2.c
 [v _EUSART2_Read EUSART2_Read `(uc  1 e 1 0 ]
@@ -1676,9 +1686,9 @@ Stack_Underflow_Reset 8
 [v printf@fval fval `d  1 a 4 163 ]
 "528
 [v printf@val val `ul  1 a 4 159 ]
-[u S2847 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[u S2885 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
 "526
-[v printf@tmpval tmpval `S2847  1 a 4 155 ]
+[v printf@tmpval tmpval `S2885  1 a 4 155 ]
 "504
 [v printf@prec prec `i  1 a 2 167 ]
 "516
@@ -1744,17 +1754,17 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3207 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3247 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S3212 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3215 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3207 1 fAsBytes 4 0 `S3212 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S3215  1 a 4 105 ]
+[s S3252 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3255 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3247 1 fAsBytes 4 0 `S3252 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S3255  1 a 4 105 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 100 ]
-[s S3283 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S3323 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S3286 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3283 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S3286  1 a 2 109 ]
+[u S3326 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3323 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S3326  1 a 2 109 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 104 ]
 "11
@@ -2006,11 +2016,11 @@ Stack_Underflow_Reset 8
 {
 "110
 } 0
-"306
-[v _ADCC_SetADIInterruptHandler ADCC_SetADIInterruptHandler `(v  1 e 1 0 ]
+"307
+[v _ADCC_SetADTIInterruptHandler ADCC_SetADTIInterruptHandler `(v  1 e 1 0 ]
 {
-[v ADCC_SetADIInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 23 ]
-"308
+[v ADCC_SetADTIInterruptHandler@InterruptHandler InterruptHandler `*.38(v  1 p 3 23 ]
+"309
 } 0
 "104 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManagerLow INTERRUPT_InterruptManagerLow `IIL(v  1 e 1 0 ]
@@ -2027,15 +2037,10 @@ Stack_Underflow_Reset 8
 {
 "185
 } 0
-"342 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"359 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
 {
-"446
-} 0
-"105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
-[v _TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
-{
-"109
+"370
 } 0
 "112 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -2046,10 +2051,15 @@ Stack_Underflow_Reset 8
 [v ADCC_StartConversion@channel channel `E17310  1 a 1 0 ]
 "122
 } 0
-"124
-[v _ADCC_IsConversionDone ADCC_IsConversionDone `(uc  1 e 1 0 ]
+"174
+[v _ADCC_DischargeSampleCapacitor ADCC_DischargeSampleCapacitor `(v  1 e 1 0 ]
 {
-"128
+"178
+} 0
+"204
+[v _ADCC_ClearAccumulator ADCC_ClearAccumulator `(v  1 e 1 0 ]
+{
+"208
 } 0
 "127 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v _TMR7_WriteTimer TMR7_WriteTimer `(v  1 e 1 0 ]
@@ -2067,10 +2077,10 @@ Stack_Underflow_Reset 8
 {
 "185
 } 0
-"139 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"140 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 {
-"157
+"158
 } 0
 "118 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/hlvd.c
 [v _HLVD_ISR HLVD_ISR `(v  1 e 1 0 ]
@@ -2111,19 +2121,19 @@ Stack_Underflow_Reset 8
 "464 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]
 {
-[v i2printf@fval printf `d  1 a 4 61 ]
-[v i2printf@val printf `ul  1 a 4 57 ]
-[u S2847 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
-[v i2printf@tmpval printf `S2847  1 a 4 53 ]
-[v i2printf@prec printf `i  1 a 2 65 ]
-[v i2printf@exp printf `i  1 a 2 51 ]
-[v i2printf@flag printf `us  1 a 2 49 ]
-[v i2printf@ap printf `[1]*.39v  1 a 2 47 ]
-[v i2printf@cp printf `*.34Cuc  1 a 2 45 ]
-[v i2printf@len printf `ui  1 a 2 43 ]
-[v i2printf@c printf `c  1 a 1 67 ]
-[v i2printf@idx printf `uc  1 a 1 42 ]
-[v i2printf@f f `*.34Cuc  1 p 2 30 ]
+[v i2printf@fval printf `d  1 a 4 71 ]
+[v i2printf@val printf `ul  1 a 4 67 ]
+[u S2885 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[v i2printf@tmpval printf `S2885  1 a 4 63 ]
+[v i2printf@prec printf `i  1 a 2 75 ]
+[v i2printf@exp printf `i  1 a 2 61 ]
+[v i2printf@flag printf `us  1 a 2 59 ]
+[v i2printf@ap printf `[1]*.39v  1 a 2 57 ]
+[v i2printf@cp printf `*.34Cuc  1 a 2 55 ]
+[v i2printf@len printf `ui  1 a 2 53 ]
+[v i2printf@c printf `c  1 a 1 77 ]
+[v i2printf@idx printf `uc  1 a 1 52 ]
+[v i2printf@f f `*.34Cuc  1 p 2 40 ]
 "1541
 } 0
 "425
@@ -2234,37 +2244,37 @@ Stack_Underflow_Reset 8
 [v i2___lldiv@divisor divisor `ul  1 p 4 4 ]
 "31
 } 0
-"297 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
-[v _ADCC_ISR ADCC_ISR `(v  1 e 1 0 ]
+"298 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
+[v _ADCC_ThresholdISR ADCC_ThresholdISR `(v  1 e 1 0 ]
 {
-"304
+"305
 } 0
 "310
 [v _ADCC_DefaultInterruptHandler ADCC_DefaultInterruptHandler `(v  1 e 1 0 ]
 {
 "313
 } 0
-"160 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"161 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _ADCPostProcessingCallback ADCPostProcessingCallback `(v  1 e 1 0 ]
 {
-"163
-[v ADCPostProcessingCallback@current_adc_channel current_adc_channel `E17421  1 a 1 117 ]
-"339
+"167
+[v ADCPostProcessingCallback@current_adc_channel current_adc_channel `E17425  1 a 1 117 ]
+"356
 } 0
 "105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr7.c
 [v i2_TMR7_StopTimer TMR7_StopTimer `(v  1 e 1 0 ]
 {
 "109
 } 0
-"103 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"104 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _peakToRMS peakToRMS `(d  1 e 4 0 ]
 {
-"106
+"107
 [v peakToRMS@RMS RMS `d  1 a 4 101 ]
-"103
+"104
 [v peakToRMS@Peak Peak `d  1 p 4 81 ]
 [v peakToRMS@Angle Angle `d  1 p 4 85 ]
-"117
+"118
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\acos.c
 [v _acos acos `(d  1 e 4 0 ]
@@ -2288,11 +2298,11 @@ Stack_Underflow_Reset 8
 {
 "14
 [v sqrt@frac frac `ul  1 a 4 37 ]
-[s S3207 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3247 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "11
-[s S3212 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3215 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3207 1 fAsBytes 4 0 `S3212 1 fAsWords 4 0 ]
-[v sqrt@root root `S3215  1 a 4 33 ]
+[s S3252 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3255 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3247 1 fAsBytes 4 0 `S3252 1 fAsWords 4 0 ]
+[v sqrt@root root `S3255  1 a 4 33 ]
 "16
 [v sqrt@grs grs `ul  1 a 4 27 ]
 "15
@@ -2331,26 +2341,26 @@ Stack_Underflow_Reset 8
 [v fabs@d d `d  1 p 4 47 ]
 "9
 } 0
-"120 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"121 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 4 0 ]
 {
-"123
-[v currentMeasuredToPeak@Peak Peak `d  1 a 4 55 ]
-"120
-[v currentMeasuredToPeak@Measured Measured `d  1 p 4 47 ]
-[v currentMeasuredToPeak@Angle Angle `d  1 p 4 51 ]
-"130
+"124
+[v currentMeasuredToPeak@Peak Peak `d  1 a 4 65 ]
+"121
+[v currentMeasuredToPeak@Measured Measured `d  1 p 4 57 ]
+[v currentMeasuredToPeak@Angle Angle `d  1 p 4 61 ]
+"131
 } 0
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sin.c
 [v _sin sin `(d  1 e 4 0 ]
 {
 "30
-[v sin@x2 x2 `d  1 a 4 42 ]
-[v sin@y y `d  1 a 4 34 ]
+[v sin@x2 x2 `d  1 a 4 52 ]
+[v sin@y y `d  1 a 4 44 ]
 "31
-[v sin@sgn sgn `uc  1 a 1 46 ]
+[v sin@sgn sgn `uc  1 a 1 56 ]
 "13
-[v sin@f f `d  1 p 4 30 ]
+[v sin@f f `d  1 p 4 40 ]
 "15
 [v sin@coeff_a coeff_a `C[5]d  1 s 20 coeff_a ]
 "23
@@ -2360,8 +2370,8 @@ Stack_Underflow_Reset 8
 "245 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcadd.c
 [v i2___flsub __flsub `(d  1 e 4 0 ]
 {
-[v i2___flsub@b b `d  1 p 4 22 ]
-[v i2___flsub@a a `d  1 p 4 26 ]
+[v i2___flsub@b b `d  1 p 4 32 ]
+[v i2___flsub@a a `d  1 p 4 36 ]
 "250
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\flneg.c
@@ -2387,11 +2397,11 @@ Stack_Underflow_Reset 8
 [v _floor floor `(d  1 e 4 0 ]
 {
 "15
-[v floor@i i `d  1 a 4 16 ]
+[v floor@i i `d  1 a 4 26 ]
 "16
-[v floor@expon expon `i  1 a 2 20 ]
+[v floor@expon expon `i  1 a 2 30 ]
 "13
-[v floor@x x `d  1 p 4 12 ]
+[v floor@x x `d  1 p 4 22 ]
 "30
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\xxtofl.c
@@ -2409,9 +2419,9 @@ Stack_Underflow_Reset 8
 "43 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fltol.c
 [v i2___fltol __fltol `(l  1 e 4 0 ]
 {
-[v i2___fltol@exp1 __fltol `uc  1 a 1 81 ]
-[v i2___fltol@sign1 __fltol `uc  1 a 1 80 ]
-[v i2___fltol@f1 f1 `d  1 p 4 72 ]
+[v i2___fltol@exp1 __fltol `uc  1 a 1 21 ]
+[v i2___fltol@sign1 __fltol `uc  1 a 1 20 ]
+[v i2___fltol@f1 f1 `d  1 p 4 12 ]
 "70
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\flge.c
@@ -2442,14 +2452,14 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v i2___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3207 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S3212 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3215 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3207 1 fAsBytes 4 0 `S3212 1 fAsWords 4 0 ]
-[v i2___flmul@prod __flmul `S3215  1 a 4 66 ]
+[s S3247 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3252 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3255 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3247 1 fAsBytes 4 0 `S3252 1 fAsWords 4 0 ]
+[v i2___flmul@prod __flmul `S3255  1 a 4 66 ]
 [v i2___flmul@grs __flmul `ul  1 a 4 61 ]
-[s S3283 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S3286 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3283 1 nAsBytes 2 0 ]
-[v i2___flmul@temp __flmul `S3286  1 a 2 70 ]
+[s S3323 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S3326 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3323 1 nAsBytes 2 0 ]
+[v i2___flmul@temp __flmul `S3326  1 a 2 70 ]
 [v i2___flmul@bexp __flmul `uc  1 a 1 65 ]
 [v i2___flmul@aexp __flmul `uc  1 a 1 60 ]
 [v i2___flmul@sign __flmul `uc  1 a 1 59 ]
@@ -2468,7 +2478,28 @@ Stack_Underflow_Reset 8
 [v i2___fladd@a a `d  1 p 4 89 ]
 "237
 } 0
-"130 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
+"4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+{
+[v abs@a a `i  1 p 2 22 ]
+"9
+} 0
+"162 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
+[v _ADCC_StopConversion ADCC_StopConversion `(v  1 e 1 0 ]
+{
+"166
+} 0
+"216
+[v _ADCC_HasAccumulatorOverflowed ADCC_HasAccumulatorOverflowed `(uc  1 e 1 0 ]
+{
+"220
+} 0
+"222
+[v _ADCC_GetFilterValue ADCC_GetFilterValue `(ui  1 e 2 0 ]
+{
+"226
+} 0
+"130
 [v _ADCC_GetConversionResult ADCC_GetConversionResult `(ui  1 e 2 0 ]
 {
 "134

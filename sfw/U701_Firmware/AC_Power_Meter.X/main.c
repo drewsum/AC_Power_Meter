@@ -74,7 +74,7 @@ volatile double ADC_Result_Scaling;             // Scaling factor on ADC measure
 volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
 volatile double POS12_ADC_Result;               // POS12 Measurement in volts
 volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
-volatile double Temp_ADC_Offset = -267.409;     // Temp ADC result offset in degrees centigrade
+volatile double Temp_ADC_Offset = 631.993725;     // Temp ADC result offset in degrees centigrade
 double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2) * 120
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
@@ -93,7 +93,8 @@ volatile unsigned long dev_on_time = 0;         // On time counter, increments w
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
 volatile bit adc_error_flag = 0;                // ADC error flag is set upon strange ADC results
 volatile bit VCC_overvoltage_flag = 0;          // VCC overvoltage flag is set upon HLVD interrupt
-reset_t reset_cause;
+reset_t reset_cause;                            // The cause of the most recent reset
+adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -159,6 +160,9 @@ void heartbeatTimerCallback(void) {
 // Callback function for ADCC interrupts
 void ADCPostProcessingCallback(void) {
  
+    // If the ADC is still going, shut it off
+    ADCC_StopConversion();
+    
     // Current channel is what's left in ADC channel select register
     adcc_channel_t current_adc_channel = ADPCH;
     
@@ -169,16 +173,18 @@ void ADCPostProcessingCallback(void) {
             
             AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
             
-            if (AVSS_ADC_Result > 0.01) {
+            if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
+            
+            next_channel = channel_FVR_buf1;
             
             break;
         
@@ -188,42 +194,45 @@ void ADCPostProcessingCallback(void) {
             FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
             ADC_Result_Scaling = 2.048/FVR_ADC_Result;
             
-            if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0) {
+            if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
             
+            next_channel = POS3P3_ADC;
             
             break;
             
         // POS3P3_ADC Post Processing
         case POS3P3_ADC:
             
-            POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+            POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
             
-            if (POS3P3_ADC_Result > 3.5) {
+            if (POS3P3_ADC_Result > 3.5  || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
+            
+            next_channel = ISNS_ADC;
             
             break;
             
         // current sensor ADC post processing
         case ISNS_ADC:
             
-            Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+            Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
             
             // If our phase is controlled, convert measured current to peak current
             // and peak current to RMS current using TRIAC firing angle
@@ -238,6 +247,7 @@ void ADCPostProcessingCallback(void) {
                     if (dimming_period < 0x7FEE) {
 
                         Ipk = Imeas;
+                        Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
 
                     }
 
@@ -245,6 +255,7 @@ void ADCPostProcessingCallback(void) {
                     else {
 
                         Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+                        Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
 
                     }
 
@@ -256,10 +267,10 @@ void ADCPostProcessingCallback(void) {
 
                     Ipk = 0.0;
                     Vpk = 0.0;
+                    Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 
                 }
                  
-                Irms = peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset;
                 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
                 Avg_Power = Vrms * Irms;
                 
@@ -269,40 +280,44 @@ void ADCPostProcessingCallback(void) {
             else {
              
                 Ipk = Imeas;
-                Irms = peakToRMS(Ipk, 0.0) + Irms_offset;
+                Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
                 Vrms = peakToRMS(Vpk_const, 0.0);
                 Avg_Power = Vrms * Irms;
                 
             }
 
-            if (Irms > 5.0) {
+            if (Irms > 5.0  || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
+            
+            next_channel = POS12_ADC;
             
             break;
             
         // POS12 ADC Post Processing
         case POS12_ADC:
             
-            POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+            POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
             
-            if (POS12_ADC_Result > 13.6) {
+            if (POS12_ADC_Result > 13.6  || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
+            
+            next_channel = channel_Temp;
             
             break;
             
@@ -311,16 +326,18 @@ void ADCPostProcessingCallback(void) {
             
             Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
             
-            if (Temp_ADC_Result > 40.0) {
+            if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
              
                 ADC_ERROR_PIN = HIGH;
                 adc_error_flag = 1;
                 // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE == 0;
+                PIE5bits.TMR7IE = 0;
                 TMR7_StopTimer();
                 return;
                 
             }
+            
+            next_channel = channel_VSS;
             
             break;
             
@@ -340,108 +357,15 @@ void ADCPostProcessingCallback(void) {
 
 // Acquisition callback
 void acquisitionTimerCallback(void) {
-    
-    // Measure VSS with ADC
-    ADCC_StartConversion(channel_VSS);
-    
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-     
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE = 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
-        
-    }
-    
-    // Measure FVR buffer 1 with ADC
-    ADCC_StartConversion(channel_FVR_buf1);
-    
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-        
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE = 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
 
-    }
+    // Empty sampling cap
+    ADCC_DischargeSampleCapacitor();
     
-    // Measure POS3P3 With ADC
-    ADCC_StartConversion(POS3P3_ADC);
+    // Clear filter accumulator, start fresh with new channel
+    ADCC_ClearAccumulator();
     
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-        
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE = 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
-
-    }
-    
-    // Measure Current Sensor With ADC
-    ADCC_StartConversion(ISNS_ADC);
-    
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-        
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE = 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
-
-    }
-    
-    // Measure POS12 with ADC
-    ADCC_StartConversion(POS12_ADC);
-    
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-        
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE = 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
-
-    }
-    
-    // Measure temperature with ADC
-    ADCC_StartConversion(channel_Temp);
-    
-    // Wait for previous conversion to finish
-    while(!ADCC_IsConversionDone()) {
-        
-        if (adc_error_flag) {
-         
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE == 0;
-            TMR7_StopTimer();
-            return;
-            
-        }
-
-    }
+    // Start conversion with next channel to convert
+    ADCC_StartConversion(next_channel);
     
 }
 
@@ -468,11 +392,15 @@ void main(void)
     SSR_DIM_PIN = 0;
     load_enable = 0;
 
+    // Setup ADC digital filter
+    ADCON2bits.ADCRS = 7;           // Strongest filtering/lowest crossover frequency (full send)
+    ADCAP            = 20;          // Add 20pF to ADC sampling capacitance
+    
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
     // Call ADC callback upon ADCC interrupt
-    ADCC_SetADIInterruptHandler(ADCPostProcessingCallback);
+    ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
     
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);

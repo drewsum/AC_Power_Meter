@@ -21534,6 +21534,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21631,19 +21637,13 @@ bool ADCC_HasErrorCrossedLowerThreshold(void);
 uint8_t ADCC_GetConversionStageStatus(void);
 
 # 846
-void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
 # 862
-void ADCC_ISR(void);
+void ADCC_ThresholdISR(void);
 
-# 881
+# 880
 void ADCC_DefaultInterruptHandler(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -22112,7 +22112,7 @@ volatile double ADC_Result_Scaling;
 volatile double POS3P3_ADC_Result;
 volatile double POS12_ADC_Result;
 volatile double Temp_ADC_Result;
-volatile double Temp_ADC_Offset = -267.409;
+volatile double Temp_ADC_Offset = 631.993725;
 double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
@@ -22132,8 +22132,9 @@ volatile unsigned long load_on_time = 0;
 volatile bit adc_error_flag = 0;
 volatile bit VCC_overvoltage_flag = 0;
 reset_t reset_cause;
+adcc_channel_t next_channel = channel_VSS;
 
-# 103
+# 104
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22163,7 +22164,7 @@ return Peak;
 
 }
 
-# 139
+# 140
 void heartbeatTimerCallback(void) {
 
 
@@ -22188,6 +22189,9 @@ asm(" clrwdt");
 void ADCPostProcessingCallback(void) {
 
 
+ADCC_StopConversion();
+
+
 adcc_channel_t current_adc_channel = ADPCH;
 
 
@@ -22197,16 +22201,18 @@ case channel_VSS:
 
 AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
 
-if (AVSS_ADC_Result > 0.01) {
+if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
+
+next_channel = channel_FVR_buf1;
 
 break;
 
@@ -22216,42 +22222,45 @@ case channel_FVR_buf1:
 FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
 ADC_Result_Scaling = 2.048/FVR_ADC_Result;
 
-if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0) {
+if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
 
+next_channel = POS3P3_ADC;
 
 break;
 
 
 case POS3P3_ADC:
 
-POS3P3_ADC_Result = ((ADCC_GetConversionResult()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
 
-if (POS3P3_ADC_Result > 3.5) {
+if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
+
+next_channel = ISNS_ADC;
 
 break;
 
 
 case ISNS_ADC:
 
-Imeas = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
 
 
 
@@ -22266,6 +22275,7 @@ if (load_enable) {
 if (dimming_period < 0x7FEE) {
 
 Ipk = Imeas;
+Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
 
 }
 
@@ -22273,6 +22283,7 @@ Ipk = Imeas;
 else {
 
 Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
 
 }
 
@@ -22284,10 +22295,10 @@ else {
 
 Ipk = 0.0;
 Vpk = 0.0;
+Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 
 }
 
-Irms = peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset;
 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 Avg_Power = Vrms * Irms;
 
@@ -22297,40 +22308,44 @@ Avg_Power = Vrms * Irms;
 else {
 
 Ipk = Imeas;
-Irms = peakToRMS(Ipk, 0.0) + Irms_offset;
+Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
 Vrms = peakToRMS(Vpk_const, 0.0);
 Avg_Power = Vrms * Irms;
 
 }
 
-if (Irms > 5.0) {
+if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
+
+next_channel = POS12_ADC;
 
 break;
 
 
 case POS12_ADC:
 
-POS12_ADC_Result = (ADCC_GetConversionResult()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
 
-if (POS12_ADC_Result > 13.6) {
+if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
+
+next_channel = channel_Temp;
 
 break;
 
@@ -22339,16 +22354,18 @@ case channel_Temp:
 
 Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
 
-if (Temp_ADC_Result > 40.0) {
+if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 
 LATFbits.LATF3 = 1;
 adc_error_flag = 1;
 
-PIE5bits.TMR7IE == 0;
+PIE5bits.TMR7IE = 0;
 TMR7_StopTimer();
 return;
 
 }
+
+next_channel = channel_VSS;
 
 break;
 
@@ -22370,110 +22387,17 @@ break;
 void acquisitionTimerCallback(void) {
 
 
-ADCC_StartConversion(channel_VSS);
+ADCC_DischargeSampleCapacitor();
 
 
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
+ADCC_ClearAccumulator();
 
 
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
-return;
+ADCC_StartConversion(next_channel);
 
 }
 
-}
-
-
-ADCC_StartConversion(channel_FVR_buf1);
-
-
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
-
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
-return;
-
-}
-
-}
-
-
-ADCC_StartConversion(POS3P3_ADC);
-
-
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
-
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
-return;
-
-}
-
-}
-
-
-ADCC_StartConversion(ISNS_ADC);
-
-
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
-
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
-return;
-
-}
-
-}
-
-
-ADCC_StartConversion(POS12_ADC);
-
-
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
-
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
-return;
-
-}
-
-}
-
-
-ADCC_StartConversion(channel_Temp);
-
-
-while(!ADCC_IsConversionDone()) {
-
-if (adc_error_flag) {
-
-
-PIE5bits.TMR7IE == 0;
-TMR7_StopTimer();
-return;
-
-}
-
-}
-
-}
-
-# 453
+# 377
 void main(void)
 {
 
@@ -22493,10 +22417,14 @@ LATGbits.LATG1 = 0;
 load_enable = 0;
 
 
+ADCON2bits.ADCRS = 7;
+ADCAP = 20;
+
+
 TMR6_SetInterruptHandler(heartbeatTimerCallback);
 
 
-ADCC_SetADIInterruptHandler(ADCPostProcessingCallback);
+ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
 
 
 TMR7_SetInterruptHandler(acquisitionTimerCallback);

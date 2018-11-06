@@ -127,7 +127,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "5153
 [v _PIR1bits `VS282 ~T0 @X0 0 e@3636 ]
 "862 mcc_generated_files/adcc.h
-[v _ADCC_ISR `(v ~T0 @X0 0 ef ]
+[v _ADCC_ThresholdISR `(v ~T0 @X0 0 ef ]
 [t T13 __interrupt low_priority  ]
 "790 mcc_generated_files/tmr6.h
 [v _TMR6_ISR `(v ~T0 @X0 0 ef ]
@@ -16250,6 +16250,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16288,11 +16290,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
 [; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
 [; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;adcc.h: 846: void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
-[; ;adcc.h: 862: void ADCC_ISR(void);
-[; ;adcc.h: 881: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 862: void ADCC_ThresholdISR(void);
+[; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16408,9 +16408,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupt_manager.c: 63: IPR5bits.TMR5IP = 1;
 "63
 [e = . . _IPR5bits 0 4 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 66: IPR1bits.ADIP = 1;
+[; ;interrupt_manager.c: 66: IPR1bits.ADTIP = 1;
 "66
-[e = . . _IPR1bits 0 0 -> -> 1 `i `uc ]
+[e = . . _IPR1bits 0 1 -> -> 1 `i `uc ]
 [; ;interrupt_manager.c: 70: IPR5bits.TMR6IP = 0;
 "70
 [e = . . _IPR5bits 0 5 -> -> 0 `i `uc ]
@@ -16465,14 +16465,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2017  ]
 "94
 [e :U 2016 ]
-[; ;interrupt_manager.c: 94: else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
-[e $ ! && == -> . . _PIE1bits 0 0 `i -> 1 `i == -> . . _PIR1bits 0 0 `i -> 1 `i 2018  ]
+[; ;interrupt_manager.c: 94: else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
+[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 2018  ]
 [; ;interrupt_manager.c: 95: {
 "95
 {
-[; ;interrupt_manager.c: 96: ADCC_ISR();
+[; ;interrupt_manager.c: 96: ADCC_ThresholdISR();
 "96
-[e ( _ADCC_ISR ..  ]
+[e ( _ADCC_ThresholdISR ..  ]
 "97
 }
 [; ;interrupt_manager.c: 97: }

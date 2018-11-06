@@ -21534,6 +21534,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21631,19 +21637,13 @@ bool ADCC_HasErrorCrossedLowerThreshold(void);
 uint8_t ADCC_GetConversionStageStatus(void);
 
 # 846
-void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
 # 862
-void ADCC_ISR(void);
+void ADCC_ThresholdISR(void);
 
-# 881
+# 880
 void ADCC_DefaultInterruptHandler(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -21874,7 +21874,7 @@ IPR3bits.RC2IP = 1;
 IPR5bits.TMR5IP = 1;
 
 
-IPR1bits.ADIP = 1;
+IPR1bits.ADTIP = 1;
 
 
 
@@ -21902,9 +21902,9 @@ else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
 {
 TMR5_ISR();
 }
-else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
+else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
 {
-ADCC_ISR();
+ADCC_ThresholdISR();
 }
 else
 {

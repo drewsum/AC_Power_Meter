@@ -213,8 +213,8 @@ void ringBufferLUT(char * line) {
         ADC_ERROR_PIN = LOW;
         adc_error_flag = 0;
         // Enable acquisition timer interrupt (TMR7)
-        PIE5bits.TMR7IE == 1;
-        TMR7_StartTimer();
+        PIE5bits.TMR7IE = 1;
+        TMR7_StopTimer();
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Clearing ADC Error\n\r");
@@ -269,7 +269,7 @@ void ringBufferLUT(char * line) {
     else if((0 == strcmp(line, "Measure Die Temp?"))) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
+        printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
         terminal_textAttributesReset();
 
         
@@ -280,7 +280,7 @@ void ringBufferLUT(char * line) {
     else if((0 == strcmp(line, "Measure FVR?"))) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
+        printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
         terminal_textAttributesReset();
         
     }
@@ -336,7 +336,7 @@ void ringBufferLUT(char * line) {
         // Disable forcing of TRIAC conduction
         SSR_FORCE_PIN = 0;
         
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("TRIAC output dimming has been enabled\n\r");
         terminal_textAttributesReset();
         
@@ -348,7 +348,7 @@ void ringBufferLUT(char * line) {
         // Force TRIAC conduction
         SSR_FORCE_PIN = 1;
 
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(RED, BLACK, NORMAL);
         printf("TRIAC output dimming has been disabled\n\r");
         terminal_textAttributesReset();
         
@@ -361,11 +361,66 @@ void ringBufferLUT(char * line) {
         SSR_DIM_PIN = 0;
         load_enable = 1;
         
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Load has been enabled, dimming disabled\n\r");
         terminal_textAttributesReset();
         
     }
+    
+    // check if load is enabled
+    else if ((0 == strcmp(line, "Load Enabled?"))) {
+     
+        if  (load_enable == 1) {
+         
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("Load is currently enabled\n\r");
+            terminal_textAttributesReset();
+   
+        }
+        
+        else {
+         
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Load is currently disabled\n\r");
+            terminal_textAttributesReset();
+
+            
+        }
+        
+    }
+    
+    // check if dimming is enabled
+    else if ((0 == strcmp(line, "Dimming Enabled?"))) {
+     
+        if  (load_enable == 1 && SSR_FORCE_PIN != 1) {
+         
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("Dimming is currently enabled\n\r");
+            terminal_textAttributesReset();
+   
+        }
+        
+        else if (load_enable == 1){
+         
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Load is currently enabled, but dimming is disabled\n\r");
+            terminal_textAttributesReset();
+
+        }
+        
+        else {
+         
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Load and dimming are currently disabled\n\r");
+            terminal_textAttributesReset();
+            
+        }
+
+
+        
+    }
+    
+    
     
     // disable load
     else if ((0 == strcmp(line, "Disable Load"))) {
@@ -374,7 +429,7 @@ void ringBufferLUT(char * line) {
         SSR_FORCE_PIN = 0;
         load_enable = 0;
         
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(RED, BLACK, NORMAL);
         printf("Load has been disabled\n\r");
         terminal_textAttributesReset();
         
@@ -438,7 +493,7 @@ void ringBufferLUT(char * line) {
     // Report load on time since last reset
     else if((0 == strcmp(line, "Load On Time?"))) {
      
-        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
         terminal_textAttributesReset();
          
@@ -485,6 +540,8 @@ void ringBufferLUT(char * line) {
                 "   Disable Dimming: Disable TRIAC output dimming\n\r"
                 "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
                 "   Disable Load: Disables the output TRIAC completely\n\r"
+                "   Load Enabled?: Returns if the output load is enabled or disabled\n\r"
+                "   Dimming Enabled?: Returns if dimming of the output load is enabled or not\n\r"
                 "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
                 );
         
@@ -493,11 +550,11 @@ void ringBufferLUT(char * line) {
         printf("Help messages appear in yellow\n\r");
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("System parameters appear in green\n\r");
+        printf("System parameters and affirmative responses appear in green\n\r");
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Measurement responses appear in cyan\n\r");
         terminal_textAttributes(RED, BLACK, NORMAL);
-        printf("Errors appear in red\n\r");
+        printf("Errors and negative responses appear in red\n\r");
         terminal_textAttributesReset();
         printf("User input appears in white\n\r");
         

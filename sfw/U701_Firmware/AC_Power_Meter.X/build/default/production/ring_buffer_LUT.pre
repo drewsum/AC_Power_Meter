@@ -21614,6 +21614,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21711,19 +21717,13 @@ bool ADCC_HasErrorCrossedLowerThreshold(void);
 uint8_t ADCC_GetConversionStageStatus(void);
 
 # 846
-void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void));
+void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
 # 862
-void ADCC_ISR(void);
+void ADCC_ThresholdISR(void);
 
-# 881
+# 880
 void ADCC_DefaultInterruptHandler(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -22306,8 +22306,8 @@ else if((0 == strcmp(line, "Clear ADC Error"))) {
 LATFbits.LATF3 = 0;
 adc_error_flag = 0;
 
-PIE5bits.TMR7IE == 1;
-TMR7_StartTimer();
+PIE5bits.TMR7IE = 1;
+TMR7_StopTimer();
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Clearing ADC Error\n\r");
@@ -22362,7 +22362,7 @@ terminal_textAttributesReset();
 else if((0 == strcmp(line, "Measure Die Temp?"))) {
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
-printf("Die Temperature measured as %fC\n\r", Temp_ADC_Result);
+printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
 terminal_textAttributesReset();
 
 
@@ -22373,7 +22373,7 @@ terminal_textAttributesReset();
 else if((0 == strcmp(line, "Measure FVR?"))) {
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
-printf("Fixed Voltage Reference Buffer 1 measured as %f Volts\n\r", FVR_ADC_Result);
+printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
 terminal_textAttributesReset();
 
 }
@@ -22429,7 +22429,7 @@ else if ((0 == strcmp(line, "Enable Dimming"))) {
 
 LATGbits.LATG0 = 0;
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("TRIAC output dimming has been enabled\n\r");
 terminal_textAttributesReset();
 
@@ -22441,7 +22441,7 @@ else if ((0 == strcmp(line, "Disable Dimming"))) {
 
 LATGbits.LATG0 = 1;
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(RED, BLACK, NORMAL);
 printf("TRIAC output dimming has been disabled\n\r");
 terminal_textAttributesReset();
 
@@ -22454,11 +22454,66 @@ LATGbits.LATG0 = 1;
 LATGbits.LATG1 = 0;
 load_enable = 1;
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Load has been enabled, dimming disabled\n\r");
 terminal_textAttributesReset();
 
 }
+
+
+else if ((0 == strcmp(line, "Load Enabled?"))) {
+
+if (load_enable == 1) {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("Load is currently enabled\n\r");
+terminal_textAttributesReset();
+
+}
+
+else {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Load is currently disabled\n\r");
+terminal_textAttributesReset();
+
+
+}
+
+}
+
+
+else if ((0 == strcmp(line, "Dimming Enabled?"))) {
+
+if (load_enable == 1 && LATGbits.LATG0 != 1) {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("Dimming is currently enabled\n\r");
+terminal_textAttributesReset();
+
+}
+
+else if (load_enable == 1){
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Load is currently enabled, but dimming is disabled\n\r");
+terminal_textAttributesReset();
+
+}
+
+else {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Load and dimming are currently disabled\n\r");
+terminal_textAttributesReset();
+
+}
+
+
+
+}
+
+
 
 
 else if ((0 == strcmp(line, "Disable Load"))) {
@@ -22467,7 +22522,7 @@ LATGbits.LATG1 = 0;
 LATGbits.LATG0 = 0;
 load_enable = 0;
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(RED, BLACK, NORMAL);
 printf("Load has been disabled\n\r");
 terminal_textAttributesReset();
 
@@ -22531,7 +22586,7 @@ terminal_textAttributesReset();
 
 else if((0 == strcmp(line, "Load On Time?"))) {
 
-terminal_textAttributes(CYAN, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
 terminal_textAttributesReset();
 
@@ -22578,6 +22633,8 @@ printf("List of supported commands:\n\r"
 "   Disable Dimming: Disable TRIAC output dimming\n\r"
 "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
 "   Disable Load: Disables the output TRIAC completely\n\r"
+"   Load Enabled?: Returns if the output load is enabled or disabled\n\r"
+"   Dimming Enabled?: Returns if dimming of the output load is enabled or not\n\r"
 "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
 );
 
@@ -22586,11 +22643,11 @@ terminal_printNewline();
 printf("Help messages appear in yellow\n\r");
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("System parameters appear in green\n\r");
+printf("System parameters and affirmative responses appear in green\n\r");
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Measurement responses appear in cyan\n\r");
 terminal_textAttributes(RED, BLACK, NORMAL);
-printf("Errors appear in red\n\r");
+printf("Errors and negative responses appear in red\n\r");
 terminal_textAttributesReset();
 printf("User input appears in white\n\r");
 

@@ -54,7 +54,7 @@
 /**
   Section: ADCC Module Variables
 */
-void (*ADCC_ADI_InterruptHandler)(void);
+void (*ADCC_ADTI_InterruptHandler)(void);
 
 /**
   Section: ADCC Module APIs
@@ -75,8 +75,8 @@ void ADCC_Initialize(void)
     ADSTPTL = 0x00;
     // ADSTPTH 0; 
     ADSTPTH = 0x00;
-    // ADRPT 0; 
-    ADRPT = 0x00;
+    // ADRPT 255; 
+    ADRPT = 0xFF;
     // ADPCH ANA0; 
     ADPCH = 0x00;
     // ADCAP Additional uC disabled; 
@@ -85,28 +85,28 @@ void ADCC_Initialize(void)
     ADCON1 = 0x00;
     // ADCRS 0; ADMD Low_pass_filter_mode; ADACLR disabled; ADPSIS ADRES; 
     ADCON2 = 0x04;
-    // ADCALC First derivative of Single measurement; ADTMD disabled; ADSOI ADGO not cleared; 
-    ADCON3 = 0x00;
+    // ADCALC Filtered value vs setpoint; ADTMD enabled; ADSOI ADGO is cleared; 
+    ADCON3 = 0x5F;
     // ADAOV ACC or ADERR not Overflowed; 
     ADSTAT = 0x00;
     // ADNREF external; ADPREF external; 
     ADREF = 0x12;
     // ADACT disabled; 
     ADACT = 0x00;
-    // ADCS FOSC/2; 
-    ADCLK = 0x00;
-    // ADGO stop; ADFM right; ADON enabled; ADCONT disabled; ADCS FRC; 
-    ADCON0 = 0x94;
-    // ADACQ 0; 
-    ADACQ = 0x00;
+    // ADCS FOSC/64; 
+    ADCLK = 0x1F;
+    // ADGO stop; ADFM right; ADON enabled; ADCONT enabled; ADCS FOSC/ADCLK; 
+    ADCON0 = 0xC4;
+    // ADACQ 255; 
+    ADACQ = 0xFF;
     
-    // Clear the ADC interrupt flag
-    PIR1bits.ADIF = 0;
-    // Enabling ADCC interrupt.
-    PIE1bits.ADIE = 1;
 
-    ADCC_SetADIInterruptHandler(ADCC_DefaultInterruptHandler);
+    // Clear the ADC Threshold interrupt flag
+    PIR1bits.ADTIF = 0;
+    // Enabling ADCC threshold interrupt.
+    PIE1bits.ADTIE = 1;
 
+    ADCC_SetADTIInterruptHandler(ADCC_DefaultInterruptHandler);
 }
 
 void ADCC_StartConversion(adcc_channel_t channel)
@@ -294,19 +294,19 @@ uint8_t ADCC_GetConversionStageStatus(void)
     return ADSTATbits.ADSTAT;
 }
 
-void ADCC_ISR(void)
+
+void ADCC_ThresholdISR(void)
 {
-    // Clear the ADCC interrupt flag
-    PIR1bits.ADIF = 0;
+    // Clear the ADCC Threshold interrupt flag
+    PIR1bits.ADTIF = 0;
 
-    if (ADCC_ADI_InterruptHandler)
-            ADCC_ADI_InterruptHandler();
+    if (ADCC_ADTI_InterruptHandler)
+        ADCC_ADTI_InterruptHandler();
 }
 
-void ADCC_SetADIInterruptHandler(void (* InterruptHandler)(void)){
-    ADCC_ADI_InterruptHandler = InterruptHandler;
+void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void)){
+    ADCC_ADTI_InterruptHandler = InterruptHandler;
 }
-
 void ADCC_DefaultInterruptHandler(void){
     // add your ADCC interrupt custom code
     // or set custom function using ADCC_SetADIInterruptHandler() or ADCC_SetADTIInterruptHandler()

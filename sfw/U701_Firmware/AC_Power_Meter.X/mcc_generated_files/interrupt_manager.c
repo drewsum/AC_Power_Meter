@@ -62,8 +62,8 @@ void  INTERRUPT_Initialize (void)
     // TMRI - high priority
     IPR5bits.TMR5IP = 1;
 
-    // ADI - high priority
-    IPR1bits.ADIP = 1;
+    // ADTI - high priority
+    IPR1bits.ADTIP = 1;
 
 
     // TMRI - low priority
@@ -91,9 +91,9 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     {
         TMR5_ISR();
     }
-    else if(PIE1bits.ADIE == 1 && PIR1bits.ADIF == 1)
+    else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
     {
-        ADCC_ISR();
+        ADCC_ThresholdISR();
     }
     else
     {
