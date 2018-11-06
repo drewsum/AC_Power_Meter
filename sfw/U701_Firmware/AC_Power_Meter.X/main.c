@@ -324,7 +324,7 @@ void ADCPostProcessingCallback(void) {
         // Internal temperature indicator ADC post processing
         case channel_Temp:
             
-            Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+            Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
             
             if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
              

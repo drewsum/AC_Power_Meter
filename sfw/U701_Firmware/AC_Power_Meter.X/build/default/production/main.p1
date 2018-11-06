@@ -17017,9 +17017,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 325: case channel_Temp:
 "325
 [e :U 2039 ]
-[; ;main.c: 327: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+[; ;main.c: 327: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
 "327
-[e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetConversionResult ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
+[e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetFilterValue ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
 [; ;main.c: 329: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 "329
 [e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2040  ]
