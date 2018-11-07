@@ -22147,12 +22147,12 @@ reset_t reset_cause;
 adcc_channel_t next_channel = channel_VSS;
 
 
-volatile double max_Irms = 0.0;
-volatile double max_Power = 0.0;
-volatile double max_POS3P3_ADC_Result = 0.0;
-volatile double max_POS12_ADC_Result = 0.0;
-volatile double max_Temp_ADC_Result = 0.0;
-volatile double max_FVR_ADC_Result = 0.0;
+volatile double max_Irms;
+volatile double max_Power;
+volatile double max_POS3P3_ADC_Result;
+volatile double max_POS12_ADC_Result;
+volatile double max_Temp_ADC_Result;
+volatile double max_FVR_ADC_Result;
 
 
 const uint16_t max_Irms_address = 0x0000;
@@ -22193,7 +22193,7 @@ return Peak;
 }
 
 
-void saveMaxToEEPROM(void) {
+void saveSRAMMaxToEEPROM(void) {
 
 
 
@@ -22230,7 +22230,7 @@ max_FVR_ADC_Result = FVR_ADC_Result;
 }
 
 
-void readMaxFromEEPROM(void) {
+void recoverSRAMMaxFromEEPROM(void) {
 
 max_Irms = readDoubleFromEEPROM(max_Irms_address);
 max_Power = readDoubleFromEEPROM(max_Power_address);
@@ -22507,7 +22507,7 @@ ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
 TMR7_SetInterruptHandler(acquisitionTimerCallback);
 
 
-readMaxFromEEPROM();
+recoverSRAMMaxFromEEPROM();
 
 
 (INTCONbits.GIEH = 1);
@@ -22532,7 +22532,7 @@ terminal_ringBufferPull();
 }
 
 
-saveMaxToEEPROM();
+saveSRAMMaxToEEPROM();
 
 }
 }

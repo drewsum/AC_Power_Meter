@@ -126,7 +126,7 @@ channel_Temp 61
 channel_DAC1 62
 channel_FVR_buf1 63
 ]
-"85
+"93
 [e E17978 . `uc
 BLACK 0
 RED 1
@@ -145,7 +145,7 @@ BLINK 3
 REVERSE 4
 CONCEALED 5
 ]
-"89
+"97
 [e E18020 reset_types `uc
 Undefined_Reset 0
 Power_On_Reset 1
@@ -299,9 +299,9 @@ Stack_Underflow_Reset 8
 "139
 [v _currentMeasuredToPeak currentMeasuredToPeak `(d  1 e 4 0 ]
 "152
-[v _saveMaxToEEPROM saveMaxToEEPROM `(v  1 e 1 0 ]
+[v _saveSRAMMaxToEEPROM saveSRAMMaxToEEPROM `(v  1 e 1 0 ]
 "189
-[v _readMaxFromEEPROM readMaxFromEEPROM `(v  1 e 1 0 ]
+[v _recoverSRAMMaxFromEEPROM recoverSRAMMaxFromEEPROM `(v  1 e 1 0 ]
 "206
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 "227
@@ -435,7 +435,7 @@ Stack_Underflow_Reset 8
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
 "230
 [v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
-"52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"60 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 "2752 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _RX2PPS RX2PPS `VEuc  1 e 1 @3601 ]
@@ -1263,30 +1263,30 @@ Stack_Underflow_Reset 8
 [v _T5GATE T5GATE `VEuc  1 e 1 @4037 ]
 "37210
 [v _T5CLK T5CLK `VEuc  1 e 1 @4038 ]
-[s S2804 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S2812 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "39822
-[s S2806 . 1 `uc 1 . 1 0 :1:0 
+[s S2814 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
 "39822
-[s S2809 . 1 `uc 1 . 1 0 :2:0 
+[s S2817 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_RI 1 0 :1:2 
 ]
 "39822
-[s S2812 . 1 `uc 1 . 1 0 :3:0 
+[s S2820 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_RMCLR 1 0 :1:3 
 ]
 "39822
-[s S2815 . 1 `uc 1 . 1 0 :4:0 
+[s S2823 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RWDT 1 0 :1:4 
 ]
 "39822
-[s S2818 . 1 `uc 1 . 1 0 :5:0 
+[s S2826 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_WDTWV 1 0 :1:5 
 ]
 "39822
-[s S2821 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S2829 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nRI 1 0 :1:2 
 `uc 1 nRMCLR 1 0 :1:3 
@@ -1296,7 +1296,7 @@ Stack_Underflow_Reset 8
 `uc 1 STKOVF 1 0 :1:7 
 ]
 "39822
-[s S2830 . 1 `uc 1 BOR 1 0 :1:0 
+[s S2838 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 RI 1 0 :1:2 
 `uc 1 RMCLR 1 0 :1:3 
@@ -1304,10 +1304,10 @@ Stack_Underflow_Reset 8
 `uc 1 WDTWV 1 0 :1:5 
 ]
 "39822
-[u S2837 . 1 `S2804 1 . 1 0 `S2806 1 . 1 0 `S2809 1 . 1 0 `S2812 1 . 1 0 `S2815 1 . 1 0 `S2818 1 . 1 0 `S2821 1 . 1 0 `S2830 1 . 1 0 ]
+[u S2845 . 1 `S2812 1 . 1 0 `S2814 1 . 1 0 `S2817 1 . 1 0 `S2820 1 . 1 0 `S2823 1 . 1 0 `S2826 1 . 1 0 `S2829 1 . 1 0 `S2838 1 . 1 0 ]
 "39822
 "39822
-[v _PCON0bits PCON0bits `VES2837  1 e 1 @4055 ]
+[v _PCON0bits PCON0bits `VES2845  1 e 1 @4055 ]
 [s S136 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -1450,17 +1450,17 @@ Stack_Underflow_Reset 8
 [v _line line `[64]uc  1 e 64 0 ]
 "41 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _current_adc_channel current_adc_channel `E17596  1 e 1 0 ]
-"45
+"53
 [v _max_Irms_address max_Irms_address `Cui  1 e 2 0 ]
-"46
+"54
 [v _max_Power_address max_Power_address `Cui  1 e 2 0 ]
-"47
+"55
 [v _max_POS3P3_ADC_Result_address max_POS3P3_ADC_Result_address `Cui  1 e 2 0 ]
-"48
+"56
 [v _max_POS12_ADC_Result_address max_POS12_ADC_Result_address `Cui  1 e 2 0 ]
-"49
+"57
 [v _max_Temp_ADC_Result_address max_Temp_ADC_Result_address `Cui  1 e 2 0 ]
-"50
+"58
 [v _max_FVR_ADC_Result_address max_FVR_ADC_Result_address `Cui  1 e 2 0 ]
 "443 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
@@ -1483,36 +1483,36 @@ Stack_Underflow_Reset 8
 [v terminal_ringBufferPull@charNumber charNumber `i  1 a 2 75 ]
 "50
 } 0
-"52 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
+"60 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-"480
+"488
 [v ringBufferLUT@angle_degrees angle_degrees `d  1 a 4 38 ]
-"454
+"462
 [v ringBufferLUT@index index `i  1 a 2 69 ]
-"165
+"173
 [v ringBufferLUT@channel_name channel_name `[22]uc  1 a 22 16 ]
-"141
+"149
 [v ringBufferLUT@userID userID `i  1 a 2 73 ]
-"575
-[v ringBufferLUT@max_voltage_print_2756 max_voltage_print `d  1 a 4 62 ]
-"563
+"583
+[v ringBufferLUT@max_voltage_print_2762 max_voltage_print `d  1 a 4 62 ]
+"571
 [v ringBufferLUT@max_temp_print max_temp_print `d  1 a 4 58 ]
-"551
-[v ringBufferLUT@max_voltage_print_2750 max_voltage_print `d  1 a 4 54 ]
-"539
+"559
+[v ringBufferLUT@max_voltage_print_2756 max_voltage_print `d  1 a 4 54 ]
+"547
 [v ringBufferLUT@max_voltage_print max_voltage_print `d  1 a 4 50 ]
-"527
+"535
 [v ringBufferLUT@max_Power_print max_Power_print `d  1 a 4 46 ]
-"515
+"523
 [v ringBufferLUT@max_current_print max_current_print `d  1 a 4 42 ]
-"451
+"459
 [v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 66 ]
-"460
+"468
 [v ringBufferLUT@percentage percentage `i  1 a 2 71 ]
-"52
+"60
 [v ringBufferLUT@line line `*.39uc  1 p 2 180 ]
-"716
+"792
 } 0
 "223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
@@ -1734,9 +1734,9 @@ Stack_Underflow_Reset 8
 [v printf@val val `ul  1 a 4 167 ]
 "516
 [v printf@fval fval `d  1 a 4 163 ]
-[u S2968 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[u S2976 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
 "526
-[v printf@tmpval tmpval `S2968  1 a 4 157 ]
+[v printf@tmpval tmpval `S2976  1 a 4 157 ]
 "504
 [v printf@prec prec `i  1 a 2 175 ]
 "501
@@ -1804,17 +1804,17 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3330 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3338 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S3335 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3338 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3330 1 fAsBytes 4 0 `S3335 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S3338  1 a 4 105 ]
+[s S3343 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3346 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3338 1 fAsBytes 4 0 `S3343 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S3346  1 a 4 105 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 101 ]
-[s S3406 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S3414 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S3409 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3406 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S3409  1 a 2 109 ]
+[u S3417 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3414 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S3417  1 a 2 109 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 100 ]
 "11
@@ -1963,7 +1963,7 @@ Stack_Underflow_Reset 8
 "20
 } 0
 "152 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
-[v _saveMaxToEEPROM saveMaxToEEPROM `(v  1 e 1 0 ]
+[v _saveSRAMMaxToEEPROM saveSRAMMaxToEEPROM `(v  1 e 1 0 ]
 {
 "186
 } 0
@@ -1972,9 +1972,9 @@ Stack_Underflow_Reset 8
 {
 "13
 [v writeDoubleToEEPROM@byte_index byte_index `i  1 a 2 37 ]
-[u S2903 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[u S2911 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
 "9
-[v writeDoubleToEEPROM@input_data input_data `S2903  1 a 4 33 ]
+[v writeDoubleToEEPROM@input_data input_data `S2911  1 a 4 33 ]
 "6
 [v writeDoubleToEEPROM@input_double input_double `d  1 p 4 27 ]
 [v writeDoubleToEEPROM@starting_address starting_address `ui  1 p 2 31 ]
@@ -1998,7 +1998,7 @@ Stack_Underflow_Reset 8
 "19
 } 0
 "189 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
-[v _readMaxFromEEPROM readMaxFromEEPROM `(v  1 e 1 0 ]
+[v _recoverSRAMMaxFromEEPROM recoverSRAMMaxFromEEPROM `(v  1 e 1 0 ]
 {
 "198
 } 0
@@ -2007,9 +2007,9 @@ Stack_Underflow_Reset 8
 {
 "28
 [v readDoubleFromEEPROM@byte_index byte_index `i  1 a 2 33 ]
-[u S2903 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[u S2911 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
 "25
-[v readDoubleFromEEPROM@output_data output_data `S2903  1 a 4 29 ]
+[v readDoubleFromEEPROM@output_data output_data `S2911  1 a 4 29 ]
 "22
 [v readDoubleFromEEPROM@starting_address starting_address `ui  1 p 2 25 ]
 "37
@@ -2224,8 +2224,8 @@ Stack_Underflow_Reset 8
 {
 [v i2printf@fval printf `d  1 a 4 69 ]
 [v i2printf@val printf `ul  1 a 4 65 ]
-[u S2968 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
-[v i2printf@tmpval printf `S2968  1 a 4 59 ]
+[u S2976 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[v i2printf@tmpval printf `S2976  1 a 4 59 ]
 [v i2printf@prec printf `i  1 a 2 77 ]
 [v i2printf@width printf `i  1 a 2 75 ]
 [v i2printf@flag printf `us  1 a 2 73 ]
@@ -2400,11 +2400,11 @@ Stack_Underflow_Reset 8
 {
 "14
 [v sqrt@frac frac `ul  1 a 4 37 ]
-[s S3330 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3338 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "11
-[s S3335 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3338 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3330 1 fAsBytes 4 0 `S3335 1 fAsWords 4 0 ]
-[v sqrt@root root `S3338  1 a 4 33 ]
+[s S3343 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3346 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3338 1 fAsBytes 4 0 `S3343 1 fAsWords 4 0 ]
+[v sqrt@root root `S3346  1 a 4 33 ]
 "16
 [v sqrt@grs grs `ul  1 a 4 27 ]
 "15
@@ -2554,14 +2554,14 @@ Stack_Underflow_Reset 8
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v i2___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S3330 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S3335 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S3338 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3330 1 fAsBytes 4 0 `S3335 1 fAsWords 4 0 ]
-[v i2___flmul@prod __flmul `S3338  1 a 4 66 ]
+[s S3338 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S3343 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S3346 . 4 `l 1 i 4 0 `d 1 f 4 0 `S3338 1 fAsBytes 4 0 `S3343 1 fAsWords 4 0 ]
+[v i2___flmul@prod __flmul `S3346  1 a 4 66 ]
 [v i2___flmul@grs __flmul `ul  1 a 4 61 ]
-[s S3406 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S3409 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3406 1 nAsBytes 2 0 ]
-[v i2___flmul@temp __flmul `S3409  1 a 2 70 ]
+[s S3414 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S3417 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S3414 1 nAsBytes 2 0 ]
+[v i2___flmul@temp __flmul `S3417  1 a 2 70 ]
 [v i2___flmul@bexp __flmul `uc  1 a 1 65 ]
 [v i2___flmul@aexp __flmul `uc  1 a 1 60 ]
 [v i2___flmul@sign __flmul `uc  1 a 1 59 ]

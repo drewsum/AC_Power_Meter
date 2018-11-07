@@ -98,12 +98,12 @@ reset_t reset_cause;                            // The cause of the most recent 
 adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
 
 // Values saved in EEPROM:
-volatile double max_Irms = 0.0;
-volatile double max_Power = 0.0;
-volatile double max_POS3P3_ADC_Result = 0.0;
-volatile double max_POS12_ADC_Result = 0.0;
-volatile double max_Temp_ADC_Result = 0.0;
-volatile double max_FVR_ADC_Result = 0.0;
+volatile double max_Irms;
+volatile double max_Power;
+volatile double max_POS3P3_ADC_Result;
+volatile double max_POS12_ADC_Result;
+volatile double max_Temp_ADC_Result;
+volatile double max_FVR_ADC_Result;
 
 // EEPROM variable address
 const uint16_t max_Irms_address                 = 0x0000;
@@ -149,7 +149,7 @@ double currentMeasuredToPeak(double Measured, double Angle) {
 }
 
 // This function determines if a new maximum value needs to be written to EEPROM
-void saveMaxToEEPROM(void) {
+void saveSRAMMaxToEEPROM(void) {
  
     // Check if current values are greater than saved values, if they are write over them in EEPROM
     // and copy them to SRAM maximum values
@@ -186,7 +186,7 @@ void saveMaxToEEPROM(void) {
 }
 
 // This function refreshes SRAM variables from save locations in EEPROM
-void readMaxFromEEPROM(void) {
+void recoverSRAMMaxFromEEPROM(void) {
  
     max_Irms                = readDoubleFromEEPROM(max_Irms_address);
     max_Power               = readDoubleFromEEPROM(max_Power_address);
@@ -472,7 +472,7 @@ void main(void)
     TMR7_SetInterruptHandler(acquisitionTimerCallback);
     
     // Retrieve saved EEPROM variables
-    readMaxFromEEPROM();
+    recoverSRAMMaxFromEEPROM();
     
     // Enable high priority global interrupts
     INTERRUPT_GlobalInterruptHighEnable();
@@ -497,7 +497,7 @@ void main(void)
         }
         
         // Save new maximums (if greater than saved) to EEPROM
-        saveMaxToEEPROM();
+        saveSRAMMaxToEEPROM();
         
     }
 }

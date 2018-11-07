@@ -16647,40 +16647,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 98: adcc_channel_t next_channel = channel_VSS;
 "101
 [v _max_Irms `Vd ~T0 @X0 1 e ]
-[i _max_Irms
-.0.0
-]
-[; ;main.c: 101: volatile double max_Irms = 0.0;
+[; ;main.c: 101: volatile double max_Irms;
 "102
 [v _max_Power `Vd ~T0 @X0 1 e ]
-[i _max_Power
-.0.0
-]
-[; ;main.c: 102: volatile double max_Power = 0.0;
+[; ;main.c: 102: volatile double max_Power;
 "103
 [v _max_POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
-[i _max_POS3P3_ADC_Result
-.0.0
-]
-[; ;main.c: 103: volatile double max_POS3P3_ADC_Result = 0.0;
+[; ;main.c: 103: volatile double max_POS3P3_ADC_Result;
 "104
 [v _max_POS12_ADC_Result `Vd ~T0 @X0 1 e ]
-[i _max_POS12_ADC_Result
-.0.0
-]
-[; ;main.c: 104: volatile double max_POS12_ADC_Result = 0.0;
+[; ;main.c: 104: volatile double max_POS12_ADC_Result;
 "105
 [v _max_Temp_ADC_Result `Vd ~T0 @X0 1 e ]
-[i _max_Temp_ADC_Result
-.0.0
-]
-[; ;main.c: 105: volatile double max_Temp_ADC_Result = 0.0;
+[; ;main.c: 105: volatile double max_Temp_ADC_Result;
 "106
 [v _max_FVR_ADC_Result `Vd ~T0 @X0 1 e ]
-[i _max_FVR_ADC_Result
-.0.0
-]
-[; ;main.c: 106: volatile double max_FVR_ADC_Result = 0.0;
+[; ;main.c: 106: volatile double max_FVR_ADC_Result;
 "109
 [v _max_Irms_address `Cui ~T0 @X0 1 e ]
 [i _max_Irms_address
@@ -16782,10 +16764,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2018 ]
 }
 "152
-[v _saveMaxToEEPROM `(v ~T0 @X0 1 ef ]
+[v _saveSRAMMaxToEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 152: void saveMaxToEEPROM(void) {
-[e :U _saveMaxToEEPROM ]
+[; ;main.c: 152: void saveSRAMMaxToEEPROM(void) {
+[e :U _saveSRAMMaxToEEPROM ]
 [f ]
 [; ;main.c: 156: if (Irms > max_Irms) {
 "156
@@ -16876,10 +16858,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2019 ]
 }
 "189
-[v _readMaxFromEEPROM `(v ~T0 @X0 1 ef ]
+[v _recoverSRAMMaxFromEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 189: void readMaxFromEEPROM(void) {
-[e :U _readMaxFromEEPROM ]
+[; ;main.c: 189: void recoverSRAMMaxFromEEPROM(void) {
+[e :U _recoverSRAMMaxFromEEPROM ]
 [f ]
 [; ;main.c: 191: max_Irms = readDoubleFromEEPROM(max_Irms_address);
 "191
@@ -17351,9 +17333,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 472: TMR7_SetInterruptHandler(acquisitionTimerCallback);
 "472
 [e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 475: readMaxFromEEPROM();
+[; ;main.c: 475: recoverSRAMMaxFromEEPROM();
 "475
-[e ( _readMaxFromEEPROM ..  ]
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
 [; ;main.c: 478: (INTCONbits.GIEH = 1);
 "478
 [e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
@@ -17386,9 +17368,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 2056 ]
 [; ;main.c: 497: }
-[; ;main.c: 500: saveMaxToEEPROM();
+[; ;main.c: 500: saveSRAMMaxToEEPROM();
 "500
-[e ( _saveMaxToEEPROM ..  ]
+[e ( _saveSRAMMaxToEEPROM ..  ]
 "502
 }
 [e :U 2053 ]
