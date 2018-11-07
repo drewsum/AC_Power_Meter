@@ -41,10 +41,13 @@ extern volatile bit VCC_overvoltage_flag;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
 
-// EEPROM variable locations
 // EEPROM variable address
-const uint16_t max_Irms_address   = 0x0000;
-const uint16_t max_Power_address  = 0x0004;
+extern const uint16_t max_Irms_address                 = 0x0000;
+extern const uint16_t max_Power_address                = 0x0004;
+extern const uint16_t max_POS3P3_ADC_Result_address    = 0x0008;
+extern const uint16_t max_POS12_ADC_Result_address     = 0x000C;
+extern const uint16_t max_Temp_ADC_Result_address      = 0x0010;
+extern const uint16_t max_FVR_ADC_Result_address       = 0x0014;
 
 void ringBufferLUT(char * line) {
 
@@ -529,11 +532,63 @@ void ringBufferLUT(char * line) {
          
     }
     
+    // Report maximum recorded POS3P3 Voltage
+    else if((0 == strcmp(line, "Max POS3P3 Voltage?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_voltage_print = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded +3.3V Rail Voltage is %.3f Volts\n\r", max_voltage_print);
+        terminal_textAttributesReset();
+         
+    }
+    
+    // Report maximum recorded POS12 Voltage
+    else if((0 == strcmp(line, "Max POS12 Voltage?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_voltage_print = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded +12V Rail Voltage is %.3f Volts\n\r", max_voltage_print);
+        terminal_textAttributesReset();
+         
+    }
+    
+    // Report maximum recorded die temp
+    else if((0 == strcmp(line, "Max Die Temp?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_temp_print = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded Die Temperature is %.3f C\n\r", max_temp_print);
+        terminal_textAttributesReset();
+         
+    }
+    
+    // Report maximum recorded FVR voltage
+    else if((0 == strcmp(line, "Max FVR Voltage?"))) {
+     
+        // Retrieve maximum current from EEPROM
+        double max_voltage_print = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Maximum recorded FVR Buffer Voltage is %.3f Volts\n\r", max_voltage_print);
+        terminal_textAttributesReset();
+         
+    }
+    
     // Report maximum recorded output power
     else if((0 == strcmp(line, "Clear Max Values"))) {
      
         writeDoubleToEEPROM(0.0, max_Irms_address);
         writeDoubleToEEPROM(0.0, max_Power_address);
+        writeDoubleToEEPROM(0.0, max_POS3P3_ADC_Result_address);
+        writeDoubleToEEPROM(0.0, max_POS12_ADC_Result_address);
+        writeDoubleToEEPROM(0.0, max_Temp_ADC_Result_address);
+        writeDoubleToEEPROM(0.0, max_FVR_ADC_Result_address);
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Maximum recorded values erased\n\r");
@@ -542,13 +597,12 @@ void ringBufferLUT(char * line) {
     }
     
     
-    // help, print options
-    else if((0 == strcmp(line, "Help"))) {
-
+    // Different help messages
+    else if((0 == strcmp(line, "Help Device Control Commands"))) {
+     
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
-        printf("List of supported commands:\n\r"
+        printf("List of supported Device Control Commands:\n\r"
                 
-                "Device Commands:\n\r"
                 "   Reset: Clears the terminal and resets the micro\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
                 "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
@@ -560,33 +614,85 @@ void ringBufferLUT(char * line) {
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
                 "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
-                "   Help: This message, lists supported commands\n\r"
+                "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
+                "   Help: This message, lists supported commands\n\r\n\r"
+                );
+        
+        terminal_textAttributesReset();
+        
+    }
+    
+    // Different help messages
+    else if((0 == strcmp(line, "Help Device Measurement Commands"))) {
+     
+        terminal_textAttributes(YELLOW, BLACK, NORMAL);
+        printf("List of supported Device Measurement Commands:\n\r"
                 
-                "Device Measurement Commands:\n\r"
                 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
                 "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
                 "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
                 "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
                 "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
+                "   Max POS3P3 Voltage?: Returns the maximum recorded +3.3V Rail Voltage measured\n\r"
+                "   Max POS12 Voltage?: Returns the maximum recorded +12V Rail Voltage measured\n\r"
+                "   Max Die Temp?: Returns the maximum recorded die temperature measured\n\r"
+                "   Max FVR Voltage?: Returns the maximum recorded FVR Buffer 1 Voltage measured\n\r\n\r"
+                );
+        
+        terminal_textAttributesReset();
+        
+    }
+
+    // Different help messages
+    else if((0 == strcmp(line, "Help Primary Measurement Commands"))) {
+     
+        terminal_textAttributes(YELLOW, BLACK, NORMAL);
+        printf("List of supported Primary Measurement Commands:\n\r"
                 
-                "Primary Measurement Commands:\n\r"
                 "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
-                "   Max Power?: Prints the maximum recorded output power\n\r"
-                "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
+                "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
+                );
+        
+        terminal_textAttributesReset();
+        
+    }
+    
+    // Different help messages
+    else if((0 == strcmp(line, "Help Output Control Commands"))) {
+     
+        terminal_textAttributes(YELLOW, BLACK, NORMAL);
+        printf("List of supported Output Control Commands:\n\r"
                 
-                "Output Control Commands:\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
                 "   Disable Dimming: Disable TRIAC output dimming\n\r"
                 "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
                 "   Disable Load: Disables the output TRIAC completely\n\r"
                 "   Load Enabled?: Returns if the output load is enabled or disabled\n\r"
                 "   Dimming Enabled?: Returns if dimming of the output load is enabled or not\n\r"
-                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r"
+                "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r\n\r"
+                );
+        
+        terminal_textAttributesReset();
+        
+    }
+    
+    
+    // help, print options
+    else if((0 == strcmp(line, "Help"))) {
+
+        terminal_textAttributes(YELLOW, BLACK, NORMAL);
+        printf("Please specify what type of commands you'd like help with:\n\r"
+               "Try 'Help <command set>'\n\r\n\r"
+                "Supported Command Sets:\n\r"
+                "   Device Control Commands: Commands to view and control low level system functionality\n\r"
+                "   Device Measurement Commands: View low level system measurements\n\r"
+                "   Primary Measurement Commands: View high level output measurements and calculations\n\r"
+                "   Output Control Commands: Control the output state and dimming features\n\r"
                 );
         
         // Get some space on terminal

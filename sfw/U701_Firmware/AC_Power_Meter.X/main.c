@@ -100,10 +100,19 @@ adcc_channel_t next_channel = channel_VSS;                    // The next channe
 // Values saved in EEPROM:
 volatile double max_Irms = 0.0;
 volatile double max_Power = 0.0;
+volatile double max_POS3P3_ADC_Result = 0.0;
+volatile double max_POS12_ADC_Result = 0.0;
+volatile double max_Temp_ADC_Result = 0.0;
+volatile double max_FVR_ADC_Result = 0.0;
 
 // EEPROM variable address
-const uint16_t max_Irms_address       = 0x0000;
-const uint16_t max_Power_address      = 0x0004;
+const uint16_t max_Irms_address                 = 0x0000;
+const uint16_t max_Power_address                = 0x0004;
+const uint16_t max_POS3P3_ADC_Result_address    = 0x0008;
+const uint16_t max_POS12_ADC_Result_address     = 0x000C;
+const uint16_t max_Temp_ADC_Result_address      = 0x0010;
+const uint16_t max_FVR_ADC_Result_address       = 0x0014;
+
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -139,6 +148,54 @@ double currentMeasuredToPeak(double Measured, double Angle) {
     
 }
 
+// This function determines if a new maximum value needs to be written to EEPROM
+void saveMaxToEEPROM(void) {
+ 
+    // Check if current values are greater than saved values, if they are write over them in EEPROM
+    // and copy them to SRAM maximum values
+    if (Irms > max_Irms) {
+        writeDoubleToEEPROM(Irms, max_Irms_address);
+        max_Irms = Irms;
+    }
+
+    if (Avg_Power > max_Power) {
+        writeDoubleToEEPROM(Avg_Power, max_Power_address);
+        max_Power = Avg_Power;
+    }
+    
+    if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
+        writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
+        max_POS3P3_ADC_Result = POS3P3_ADC_Result;
+    }
+    
+    if (POS12_ADC_Result > max_POS12_ADC_Result) {
+        writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
+        max_POS12_ADC_Result = POS12_ADC_Result;
+    }
+    
+    if (Temp_ADC_Result > max_Temp_ADC_Result) {
+        writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
+        max_Temp_ADC_Result = Temp_ADC_Result;
+    }
+    
+    if (FVR_ADC_Result > max_FVR_ADC_Result) {
+        writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
+        max_FVR_ADC_Result = FVR_ADC_Result;
+    }
+    
+}
+
+// This function refreshes SRAM variables from save locations in EEPROM
+void readMaxFromEEPROM(void) {
+ 
+    max_Irms                = readDoubleFromEEPROM(max_Irms_address);
+    max_Power               = readDoubleFromEEPROM(max_Power_address);
+    max_POS3P3_ADC_Result   = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
+    max_POS12_ADC_Result    = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
+    max_Temp_ADC_Result     = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
+    max_FVR_ADC_Result      = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+    
+}
 
 
 
@@ -415,8 +472,7 @@ void main(void)
     TMR7_SetInterruptHandler(acquisitionTimerCallback);
     
     // Retrieve saved EEPROM variables
-    max_Irms = readDoubleFromEEPROM(max_Irms_address);
-    max_Power = readDoubleFromEEPROM(max_Power_address);
+    readMaxFromEEPROM();
     
     // Enable high priority global interrupts
     INTERRUPT_GlobalInterruptHighEnable();
@@ -440,20 +496,8 @@ void main(void)
             
         }
         
-        // Check if current values are greater than saved values, if they are write over them in EEPROM
-        if (Irms > max_Irms) {
-         
-            writeDoubleToEEPROM(Irms, max_Irms_address);
-            max_Irms = Irms;
-            
-        }
-        
-        if (Avg_Power > max_Power) {
-         
-            writeDoubleToEEPROM(Avg_Power, max_Power_address);
-            max_Power = Avg_Power;
-            
-        }
+        // Save new maximums (if greater than saved) to EEPROM
+        saveMaxToEEPROM();
         
     }
 }
