@@ -11,6 +11,7 @@ mcc_generated_files/../mcc_generated_files/memory.h  \
 mcc_generated_files/ext_int.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/hlvd.h  \
+mcc_generated_files/tmr4.h  \
 mcc_generated_files/tmr5.h  \
 mcc_generated_files/tmr6.h  \
 mcc_generated_files/tmr7.h  \

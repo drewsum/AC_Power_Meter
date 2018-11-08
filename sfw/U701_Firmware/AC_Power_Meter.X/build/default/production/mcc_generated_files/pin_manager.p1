@@ -16086,8 +16086,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 312: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 324: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 1122: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 1134: void PIN_MANAGER_IOC(void);
 [; ;stdbool.h: 12: typedef unsigned char bool;
 "57 mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 1 ef ]
@@ -16121,30 +16121,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 69: LATH = 0x00;
 "69
 [e = _LATH -> -> 0 `i `uc ]
-[; ;pin_manager.c: 74: TRISE = 0xFF;
+[; ;pin_manager.c: 74: TRISE = 0x04;
 "74
-[e = _TRISE -> -> 255 `i `uc ]
-[; ;pin_manager.c: 75: TRISF = 0xF0;
+[e = _TRISE -> -> 4 `i `uc ]
+[; ;pin_manager.c: 75: TRISF = 0x00;
 "75
-[e = _TRISF -> -> 240 `i `uc ]
-[; ;pin_manager.c: 76: TRISA = 0xFF;
+[e = _TRISF -> -> 0 `i `uc ]
+[; ;pin_manager.c: 76: TRISA = 0xBD;
 "76
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;pin_manager.c: 77: TRISG = 0x5C;
+[e = _TRISA -> -> 189 `i `uc ]
+[; ;pin_manager.c: 77: TRISG = 0x40;
 "77
-[e = _TRISG -> -> 92 `i `uc ]
-[; ;pin_manager.c: 78: TRISB = 0xFF;
+[e = _TRISG -> -> 64 `i `uc ]
+[; ;pin_manager.c: 78: TRISB = 0x00;
 "78
-[e = _TRISB -> -> 255 `i `uc ]
-[; ;pin_manager.c: 79: TRISH = 0x0F;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;pin_manager.c: 79: TRISH = 0x00;
 "79
-[e = _TRISH -> -> 15 `i `uc ]
-[; ;pin_manager.c: 80: TRISC = 0xFF;
+[e = _TRISH -> -> 0 `i `uc ]
+[; ;pin_manager.c: 80: TRISC = 0xC0;
 "80
-[e = _TRISC -> -> 255 `i `uc ]
-[; ;pin_manager.c: 81: TRISD = 0xFF;
+[e = _TRISC -> -> 192 `i `uc ]
+[; ;pin_manager.c: 81: TRISD = 0x00;
 "81
-[e = _TRISD -> -> 255 `i `uc ]
+[e = _TRISD -> -> 0 `i `uc ]
 [; ;pin_manager.c: 86: ANSELD = 0xFF;
 "86
 [e = _ANSELD -> -> 255 `i `uc ]

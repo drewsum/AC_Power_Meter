@@ -470,6 +470,15 @@ void dimmingOnTimeCallback(void) {
     
 }
 
+// This function is called upon TMR4 ISR and saves energy variable into EEPROM
+// This function should be called at a fixed but extremely low frequency
+// to avoid NVM burnout
+void writeEnergyToEEPROMCallback(void) {
+ 
+    writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+    
+}
+
 
 
 
@@ -512,10 +521,12 @@ void main(void)
     // Assign dimming on time callback to timer 5 overflow
     TMR5_SetInterruptHandler(dimmingOnTimeCallback);
     
+    // Assign energy to EEPROM callback function to timer 4 ISR
+    TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+    
     // Disable dimming on startup
     TMR5_StopTimer();
     PIE0bits.INT0IE = 0;
-    
     
     // Retrieve saved EEPROM variables
     recoverSRAMMaxFromEEPROM();

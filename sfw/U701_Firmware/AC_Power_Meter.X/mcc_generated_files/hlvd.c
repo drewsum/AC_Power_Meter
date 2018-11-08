@@ -123,7 +123,14 @@ void HLVD_ISR(void)
     /* TODO : Add interrupt handling code */
     PIR2bits.HLVDIF = 0;
     
+    // Disable BOR until ISR completes
+    SBOREN = 0;
+    
+    // Stash output energy variable into EEPROM
     writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+    
+    // Re-enable BOR
+    SBOREN = 1;
     
 }
 

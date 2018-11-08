@@ -328,7 +328,7 @@ void ringBufferLUT(char * line) {
         
     }
     
-    // Report output power
+    // Report output energy
     else if ((0 == strcmp(line, "Measure Energy?"))) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
@@ -337,8 +337,39 @@ void ringBufferLUT(char * line) {
         
     }
     
-    // Enable triac dimming
+    // erase output energy
+    else if ((0 == strcmp(line, "Clear Energy"))) {
+     
+        // Clear SRAM and EEPROM total energy values
+        Total_Energy = 0.0;
+        writeDoubleToEEPROM(0.0, Total_Energy_address);
+        
+        terminal_textAttributes(RED, BLACK, NORMAL);
+        printf("Measured output energy has been reset to zero Watt Hours\n\r");
+        terminal_textAttributesReset();
+        
+    }
+    
+    // Ask if the user is sure if they want to enable dimming
     else if ((0 == strcmp(line, "Enable Dimming"))) {
+     
+        // Ask if user is sure
+        // Print a fancy warning message
+        terminal_textAttributes(BLACK, RED, NORMAL);
+        printf("WARNING: Using the dimming feature with load devices other than a light bulb can result in device damage");
+        terminal_textAttributesReset();
+        terminal_printNewline();
+        terminal_textAttributes(BLACK, RED, NORMAL);
+        printf("Only enable dimming if you are completely sure the load is compatible with a solid state dimming circuit\n\r");
+        terminal_textAttributes(BLACK, YELLOW, NORMAL);
+        printf("Are you sure you'd like to enable output dimming?\n\r");
+        terminal_textAttributes(YELLOW, BLACK, NORMAL);
+        printf("If yes, reply 'Enable Dimming Y' on the next line:\n\r");
+        
+    }
+    
+    // REALLY enable TRIAC dimming
+    else if ((0 == strcmp(line, "Enable Dimming Y"))) {
      
         // Disable forcing of TRIAC conduction
         SSR_FORCE_PIN = 0;
@@ -347,7 +378,7 @@ void ringBufferLUT(char * line) {
         PIE0bits.INT0IE = 1;
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("TRIAC output dimming has been enabled\n\r");
+        printf("Output dimming has been enabled\n\r");
         terminal_textAttributesReset();
         
     }
@@ -667,6 +698,7 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
                 "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
+                "   Clear Energy: Resets the measured output energy to zero\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
@@ -732,6 +764,7 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
                 "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
+                "   Clear Energy: Resets the measured output energy to zero\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
@@ -784,6 +817,33 @@ void ringBufferLUT(char * line) {
         // Get some space on terminal
         terminal_printNewline();
 
+    }
+    
+    // Hidden ascii art for my own entertainment
+    else if ((0 == strcmp(line, "Easter Egg"))) {
+
+        terminal_printNewline();
+        terminal_textAttributes(BLACK, RED, NORMAL);
+        printf(
+"                    _   ___   ___                      __  __     _                          _   ___  _      \n\r"               
+"   /_\\ / __| | _ \\_____ __ _____ _ _  |  \\/  |___| |_ ___ _ _   __ _ _ _  __| | |   \\(_)_ __  _ __  ___ _ _ \n\r"
+"  / _ \\ (__  |  _/ _ \\ V  V / -_) '_| | |\\/| / -_)  _/ -_) '_| / _` | ' \\/ _` | | |) | | '  \\| '  \\/ -_) '_|\n\r"
+" /_/ \\_\\___| |_| \\___/\\_/\\_/\\___|_|   |_|  |_\\___|\\__\\___|_|   \\__,_|_||_\\__,_| |___/|_|_|_|_|_|_|_\\___|_|  \n\r"
+                                                                                                            
+                
+    );
+        
+        terminal_printNewline();
+        terminal_textAttributes(YELLOW, BLUE, NORMAL);
+        printf("Marquette University EECE\n\r");
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        printf("ELEN 3035 Final Project\n\r");
+        printf("Drew Maatman and Gabe Thalji\n\r");
+        terminal_textAttributes(RED, BLACK, BOLD);
+        printf("PSOCs SUCK\n\r");
+        terminal_textAttributesReset();
+        terminal_printNewline();
+        
     }
     
 }

@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17667 `(v ~T0 @X0 0 tf ]
-[v F17670 `(v ~T0 @X0 0 tf ]
-"99 main.c
-[c E17974 0 1 2 3 4 5 6 7 8 .. ]
-[n E17974 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
-"100
-[c E17425 0 4 34 60 61 62 63 .. ]
-[n E17425 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[v F17747 `(v ~T0 @X0 0 tf ]
+[v F17750 `(v ~T0 @X0 0 tf ]
+"98 main.c
+[c E18054 0 1 2 3 4 5 6 7 8 .. ]
+[n E18054 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
+"99
+[c E17505 0 4 34 60 61 62 63 .. ]
+[n E17505 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "40 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _acos `(d ~T0 @X0 0 ef1`d ]
 "36
@@ -66,7 +66,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "460
 [v _ADCC_ClearAccumulator `(v ~T0 @X0 0 ef ]
 "161
-[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17425 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17505 ]
 "235 mcc_generated_files/tmr5.h
 [v _TMR5_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
 "129
@@ -75,12 +75,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "56 cause_of_reset.h
-[v _getCauseOfReset `(E17974 ~T0 @X0 0 ef ]
+[v _getCauseOfReset `(E18054 ~T0 @X0 0 ef ]
 [v F17273 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF17273 ~T0 @X0 0 e ]
 [p i __delay ]
-"78 mcc_generated_files/mcc.h
+"79 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "26270 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1236 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
@@ -98,18 +98,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17413 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17413 ]
-[v F17489 `(v ~T0 @X0 0 tf ]
+[v F17569 `(v ~T0 @X0 0 tf ]
 "846 mcc_generated_files/adcc.h
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17489 ]
-[v F17595 `(v ~T0 @X0 0 tf ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17569 ]
+[v F17675 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
-[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17595 ]
-[v F17503 `(v ~T0 @X0 0 tf ]
+[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17675 ]
+[v F17603 `(v ~T0 @X0 0 tf ]
 "319 mcc_generated_files/ext_int.h
-[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17503 ]
+[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17603 ]
 [v F17335 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr5.h
 [v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17335 ]
+[v F17493 `(v ~T0 @X0 0 tf ]
+"826 mcc_generated_files/tmr4.h
+[v _TMR4_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17493 ]
 "4546 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
@@ -16129,8 +16132,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 312: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 324: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 1122: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 1134: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -16233,6 +16236,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;tmr4.h: 79: typedef enum
+[; ;tmr4.h: 80: {
+[; ;tmr4.h: 89: TMR4_ROP_STARTS_TMRON,
+[; ;tmr4.h: 94: TMR4_ROP_STARTS_TMRON_ERSHIGH,
+[; ;tmr4.h: 99: TMR4_ROP_STARTS_TMRON_ERSLOW,
+[; ;tmr4.h: 104: TMR4_ROP_RESETS_ERSBOTHEDGE,
+[; ;tmr4.h: 109: TMR4_ROP_RESETS_ERSRISINGEDGE,
+[; ;tmr4.h: 114: TMR4_ROP_RESETS_ERSFALLINGEDGE,
+[; ;tmr4.h: 119: TMR4_ROP_RESETS_ERSLOW,
+[; ;tmr4.h: 124: TMR4_ROP_RESETS_ERSHIGH,
+[; ;tmr4.h: 135: TMR4_OS_STARTS_TMRON,
+[; ;tmr4.h: 140: TMR4_OS_STARTS_ERSRISINGEDGE ,
+[; ;tmr4.h: 145: TMR4_OS_STARTS_ERSFALLINGEDGE ,
+[; ;tmr4.h: 150: TMR4_OS_STARTS_ERSBOTHEDGE,
+[; ;tmr4.h: 156: TMR4_OS_STARTS_ERSFIRSTRISINGEDGE,
+[; ;tmr4.h: 162: TMR4_OS_STARTS_ERSFIRSTFALLINGEDGE,
+[; ;tmr4.h: 168: TMR4_OS_STARTS_ERSRISINGEDGEDETECT,
+[; ;tmr4.h: 173: TMR4_OS_STARTS_ERSFALLINGEDGEDETECT,
+[; ;tmr4.h: 178: TMR4_OS_STARTS_TMRON_ERSHIGH = 0x16,
+[; ;tmr4.h: 183: TMR4_OS_STARTS_TMRON_ERSLOW = 0x17,
+[; ;tmr4.h: 192: TMR4_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+[; ;tmr4.h: 197: TMR4_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+[; ;tmr4.h: 203: TMR4_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+[; ;tmr4.h: 205: } TMR4_HLT_MODE;
+[; ;tmr4.h: 220: typedef enum
+[; ;tmr4.h: 221: {
+[; ;tmr4.h: 224: TMR4_T4INPPS,
+[; ;tmr4.h: 228: TMR4_T2POSTSCALED,
+[; ;tmr4.h: 232: TMR4_RESERVED,
+[; ;tmr4.h: 236: TMR4_T6POSTSCALED,
+[; ;tmr4.h: 240: TMR4_T8POSTSCALED,
+[; ;tmr4.h: 243: TMR4_CCP1_OUT,
+[; ;tmr4.h: 247: TMR4_CCP2_OUT,
+[; ;tmr4.h: 251: TMR4_CCP3_OUT,
+[; ;tmr4.h: 255: TMR4_CCP4_OUT,
+[; ;tmr4.h: 259: TMR4_CCP5_OUT,
+[; ;tmr4.h: 263: TMR4_PWM6_OUT,
+[; ;tmr4.h: 267: TMR4_PWM7_OUT,
+[; ;tmr4.h: 271: TMR4_C1_OUT_SYNC,
+[; ;tmr4.h: 275: TMR4_C2_OUT_SYNC,
+[; ;tmr4.h: 279: TMR4_C3_OUT_SYNC,
+[; ;tmr4.h: 283: TMR4_ZCD_OUTPUT
+[; ;tmr4.h: 285: } TMR4_HLT_EXT_RESET_SOURCE;
+[; ;tmr4.h: 328: void TMR4_Initialize(void);
+[; ;tmr4.h: 364: void TMR4_ModeSet(TMR4_HLT_MODE mode);
+[; ;tmr4.h: 399: void TMR4_ExtResetSourceSet(TMR4_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr4.h: 428: void TMR4_Start(void);
+[; ;tmr4.h: 457: void TMR4_StartTimer(void);
+[; ;tmr4.h: 489: void TMR4_Stop(void);
+[; ;tmr4.h: 521: void TMR4_StopTimer(void);
+[; ;tmr4.h: 556: uint8_t TMR4_Counter8BitGet(void);
+[; ;tmr4.h: 591: uint8_t TMR4_ReadTimer(void);
+[; ;tmr4.h: 630: void TMR4_Counter8BitSet(uint8_t timerVal);
+[; ;tmr4.h: 669: void TMR4_WriteTimer(uint8_t timerVal);
+[; ;tmr4.h: 721: void TMR4_Period8BitSet(uint8_t periodVal);
+[; ;tmr4.h: 773: void TMR4_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr4.h: 791: void TMR4_ISR(void);
+[; ;tmr4.h: 809: void TMR4_CallBack(void);
+[; ;tmr4.h: 826: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr4.h: 844: extern void (*TMR4_InterruptHandler)(void);
+[; ;tmr4.h: 862: void TMR4_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
@@ -16276,12 +16340,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16290,6 +16348,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16369,10 +16433,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17667 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17747 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17670 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17750 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16384,9 +16448,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 78: void SYSTEM_Initialize(void);
-[; ;mcc.h: 91: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 104: void PMD_Initialize(void);
+[; ;mcc.h: 79: void SYSTEM_Initialize(void);
+[; ;mcc.h: 92: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 105: void PMD_Initialize(void);
 [; ;math.h: 30: extern double fabs(double);
 [; ;math.h: 31: extern double floor(double);
 [; ;math.h: 32: extern double ceil(double);
@@ -16661,822 +16725,832 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 97: volatile bit adc_error_flag = 0;
 "98
-[v _VCC_overvoltage_flag `Vb ~T0 @X0 1 e ]
-[i _VCC_overvoltage_flag
--> 0 `i
-]
-[; ;main.c: 98: volatile bit VCC_overvoltage_flag = 0;
+[v _reset_cause `E18054 ~T0 @X0 1 e ]
+[; ;main.c: 98: reset_t reset_cause;
 "99
-[v _reset_cause `E17974 ~T0 @X0 1 e ]
-[; ;main.c: 99: reset_t reset_cause;
-"100
-[v _next_channel `E17425 ~T0 @X0 1 e ]
+[v _next_channel `E17505 ~T0 @X0 1 e ]
 [i _next_channel
-. `E17425 3
+. `E17505 3
 ]
-[; ;main.c: 100: adcc_channel_t next_channel = channel_VSS;
-"103
+[; ;main.c: 99: adcc_channel_t next_channel = channel_VSS;
+"102
 [v _max_Irms `Vd ~T0 @X0 1 e ]
-[; ;main.c: 103: volatile double max_Irms;
-"104
+[; ;main.c: 102: volatile double max_Irms;
+"103
 [v _max_Power `Vd ~T0 @X0 1 e ]
-[; ;main.c: 104: volatile double max_Power;
-"105
+[; ;main.c: 103: volatile double max_Power;
+"104
 [v _max_POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 105: volatile double max_POS3P3_ADC_Result;
-"106
+[; ;main.c: 104: volatile double max_POS3P3_ADC_Result;
+"105
 [v _max_POS12_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 106: volatile double max_POS12_ADC_Result;
-"107
+[; ;main.c: 105: volatile double max_POS12_ADC_Result;
+"106
 [v _max_Temp_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 107: volatile double max_Temp_ADC_Result;
-"108
+[; ;main.c: 106: volatile double max_Temp_ADC_Result;
+"107
 [v _max_FVR_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 108: volatile double max_FVR_ADC_Result;
-"111
+[; ;main.c: 107: volatile double max_FVR_ADC_Result;
+"110
 [v _max_Irms_address `Cui ~T0 @X0 1 e ]
 [i _max_Irms_address
 -> -> 0 `i `ui
 ]
-[; ;main.c: 111: const uint16_t max_Irms_address = 0x0000;
-"112
+[; ;main.c: 110: const uint16_t max_Irms_address = 0x0000;
+"111
 [v _max_Power_address `Cui ~T0 @X0 1 e ]
 [i _max_Power_address
 -> -> 4 `i `ui
 ]
-[; ;main.c: 112: const uint16_t max_Power_address = 0x0004;
-"113
+[; ;main.c: 111: const uint16_t max_Power_address = 0x0004;
+"112
 [v _max_POS3P3_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_POS3P3_ADC_Result_address
 -> -> 8 `i `ui
 ]
-[; ;main.c: 113: const uint16_t max_POS3P3_ADC_Result_address = 0x0008;
-"114
+[; ;main.c: 112: const uint16_t max_POS3P3_ADC_Result_address = 0x0008;
+"113
 [v _max_POS12_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_POS12_ADC_Result_address
 -> -> 12 `i `ui
 ]
-[; ;main.c: 114: const uint16_t max_POS12_ADC_Result_address = 0x000C;
-"115
+[; ;main.c: 113: const uint16_t max_POS12_ADC_Result_address = 0x000C;
+"114
 [v _max_Temp_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_Temp_ADC_Result_address
 -> -> 16 `i `ui
 ]
-[; ;main.c: 115: const uint16_t max_Temp_ADC_Result_address = 0x0010;
-"116
+[; ;main.c: 114: const uint16_t max_Temp_ADC_Result_address = 0x0010;
+"115
 [v _max_FVR_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_FVR_ADC_Result_address
 -> -> 20 `i `ui
 ]
-[; ;main.c: 116: const uint16_t max_FVR_ADC_Result_address = 0x0014;
-"117
+[; ;main.c: 115: const uint16_t max_FVR_ADC_Result_address = 0x0014;
+"116
 [v _Total_Energy_address `Cui ~T0 @X0 1 e ]
 [i _Total_Energy_address
 -> -> 24 `i `ui
 ]
-[; ;main.c: 117: const uint16_t Total_Energy_address = 0x0018;
-"125
+[; ;main.c: 116: const uint16_t Total_Energy_address = 0x0018;
+"124
 [v _peakToRMS `(d ~T0 @X0 1 ef2`d`d ]
 {
-[; ;main.c: 125: double peakToRMS(double Peak, double Angle) {
+[; ;main.c: 124: double peakToRMS(double Peak, double Angle) {
 [e :U _peakToRMS ]
 [v _Peak `d ~T0 @X0 1 r1 ]
 [v _Angle `d ~T0 @X0 1 r2 ]
 [f ]
-"128
+"127
 [v _RMS `d ~T0 @X0 1 a ]
-[; ;main.c: 128: double RMS = 0.0;
+[; ;main.c: 127: double RMS = 0.0;
 [e = _RMS .0.0 ]
-[; ;main.c: 131: RMS = 2.0 * acos(-1.0);
-"131
+[; ;main.c: 130: RMS = 2.0 * acos(-1.0);
+"130
 [e = _RMS * .2.0 ( _acos (1 -U .1.0 ]
-[; ;main.c: 132: RMS = RMS - (2.0 * Angle);
-"132
+[; ;main.c: 131: RMS = RMS - (2.0 * Angle);
+"131
 [e = _RMS - _RMS * .2.0 _Angle ]
-[; ;main.c: 133: RMS = RMS + sin(2.0 * Angle);
-"133
+[; ;main.c: 132: RMS = RMS + sin(2.0 * Angle);
+"132
 [e = _RMS + _RMS ( _sin (1 * .2.0 _Angle ]
-[; ;main.c: 134: RMS = RMS / (4.0 * acos(-1.0));
-"134
+[; ;main.c: 133: RMS = RMS / (4.0 * acos(-1.0));
+"133
 [e = _RMS / _RMS * .4.0 ( _acos (1 -U .1.0 ]
-[; ;main.c: 135: RMS = sqrt(RMS);
-"135
+[; ;main.c: 134: RMS = sqrt(RMS);
+"134
 [e = _RMS ( _sqrt (1 _RMS ]
-[; ;main.c: 136: RMS = Peak * RMS;
-"136
+[; ;main.c: 135: RMS = Peak * RMS;
+"135
 [e = _RMS * _Peak _RMS ]
-[; ;main.c: 137: return RMS;
-"137
+[; ;main.c: 136: return RMS;
+"136
 [e ) _RMS ]
 [e $UE 2017  ]
-[; ;main.c: 139: }
-"139
+[; ;main.c: 138: }
+"138
 [e :UE 2017 ]
 }
-"142
+"141
 [v _currentMeasuredToPeak `(d ~T0 @X0 1 ef2`d`d ]
 {
-[; ;main.c: 142: double currentMeasuredToPeak(double Measured, double Angle) {
+[; ;main.c: 141: double currentMeasuredToPeak(double Measured, double Angle) {
 [e :U _currentMeasuredToPeak ]
 [v _Measured `d ~T0 @X0 1 r1 ]
 [v _Angle `d ~T0 @X0 1 r2 ]
 [f ]
-"145
+"144
 [v _Peak `d ~T0 @X0 1 a ]
-[; ;main.c: 145: double Peak = 0.0;
+[; ;main.c: 144: double Peak = 0.0;
 [e = _Peak .0.0 ]
-[; ;main.c: 148: Peak = sin(Angle);
-"148
+[; ;main.c: 147: Peak = sin(Angle);
+"147
 [e = _Peak ( _sin (1 _Angle ]
-[; ;main.c: 149: Peak = Measured / Peak;
-"149
+[; ;main.c: 148: Peak = Measured / Peak;
+"148
 [e = _Peak / _Measured _Peak ]
-[; ;main.c: 150: return Peak;
-"150
+[; ;main.c: 149: return Peak;
+"149
 [e ) _Peak ]
 [e $UE 2018  ]
-[; ;main.c: 152: }
-"152
+[; ;main.c: 151: }
+"151
 [e :UE 2018 ]
 }
-"155
+"154
 [v _saveSRAMMaxToEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 155: void saveSRAMMaxToEEPROM(void) {
+[; ;main.c: 154: void saveSRAMMaxToEEPROM(void) {
 [e :U _saveSRAMMaxToEEPROM ]
 [f ]
-[; ;main.c: 159: if (Irms > max_Irms) {
-"159
+[; ;main.c: 158: if (Irms > max_Irms) {
+"158
 [e $ ! > _Irms _max_Irms 2020  ]
 {
-[; ;main.c: 160: writeDoubleToEEPROM(Irms, max_Irms_address);
-"160
+[; ;main.c: 159: writeDoubleToEEPROM(Irms, max_Irms_address);
+"159
 [e ( _writeDoubleToEEPROM (2 , _Irms _max_Irms_address ]
-[; ;main.c: 161: max_Irms = Irms;
-"161
+[; ;main.c: 160: max_Irms = Irms;
+"160
 [e = _max_Irms _Irms ]
-"162
+"161
 }
 [e :U 2020 ]
-[; ;main.c: 162: }
-[; ;main.c: 164: if (Avg_Power > max_Power) {
-"164
+[; ;main.c: 161: }
+[; ;main.c: 163: if (Avg_Power > max_Power) {
+"163
 [e $ ! > _Avg_Power _max_Power 2021  ]
 {
-[; ;main.c: 165: writeDoubleToEEPROM(Avg_Power, max_Power_address);
-"165
+[; ;main.c: 164: writeDoubleToEEPROM(Avg_Power, max_Power_address);
+"164
 [e ( _writeDoubleToEEPROM (2 , _Avg_Power _max_Power_address ]
-[; ;main.c: 166: max_Power = Avg_Power;
-"166
+[; ;main.c: 165: max_Power = Avg_Power;
+"165
 [e = _max_Power _Avg_Power ]
-"167
+"166
 }
 [e :U 2021 ]
-[; ;main.c: 167: }
-[; ;main.c: 169: if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
-"169
+[; ;main.c: 166: }
+[; ;main.c: 168: if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
+"168
 [e $ ! > _POS3P3_ADC_Result _max_POS3P3_ADC_Result 2022  ]
 {
-[; ;main.c: 170: writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
-"170
+[; ;main.c: 169: writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
+"169
 [e ( _writeDoubleToEEPROM (2 , _POS3P3_ADC_Result _max_POS3P3_ADC_Result_address ]
-[; ;main.c: 171: max_POS3P3_ADC_Result = POS3P3_ADC_Result;
-"171
+[; ;main.c: 170: max_POS3P3_ADC_Result = POS3P3_ADC_Result;
+"170
 [e = _max_POS3P3_ADC_Result _POS3P3_ADC_Result ]
-"172
+"171
 }
 [e :U 2022 ]
-[; ;main.c: 172: }
-[; ;main.c: 174: if (POS12_ADC_Result > max_POS12_ADC_Result) {
-"174
+[; ;main.c: 171: }
+[; ;main.c: 173: if (POS12_ADC_Result > max_POS12_ADC_Result) {
+"173
 [e $ ! > _POS12_ADC_Result _max_POS12_ADC_Result 2023  ]
 {
-[; ;main.c: 175: writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
-"175
+[; ;main.c: 174: writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
+"174
 [e ( _writeDoubleToEEPROM (2 , _POS12_ADC_Result _max_POS12_ADC_Result_address ]
-[; ;main.c: 176: max_POS12_ADC_Result = POS12_ADC_Result;
-"176
+[; ;main.c: 175: max_POS12_ADC_Result = POS12_ADC_Result;
+"175
 [e = _max_POS12_ADC_Result _POS12_ADC_Result ]
-"177
+"176
 }
 [e :U 2023 ]
-[; ;main.c: 177: }
-[; ;main.c: 179: if (Temp_ADC_Result > max_Temp_ADC_Result) {
-"179
+[; ;main.c: 176: }
+[; ;main.c: 178: if (Temp_ADC_Result > max_Temp_ADC_Result) {
+"178
 [e $ ! > _Temp_ADC_Result _max_Temp_ADC_Result 2024  ]
 {
-[; ;main.c: 180: writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
-"180
+[; ;main.c: 179: writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
+"179
 [e ( _writeDoubleToEEPROM (2 , _Temp_ADC_Result _max_Temp_ADC_Result_address ]
-[; ;main.c: 181: max_Temp_ADC_Result = Temp_ADC_Result;
-"181
+[; ;main.c: 180: max_Temp_ADC_Result = Temp_ADC_Result;
+"180
 [e = _max_Temp_ADC_Result _Temp_ADC_Result ]
-"182
+"181
 }
 [e :U 2024 ]
-[; ;main.c: 182: }
-[; ;main.c: 184: if (FVR_ADC_Result > max_FVR_ADC_Result) {
-"184
+[; ;main.c: 181: }
+[; ;main.c: 183: if (FVR_ADC_Result > max_FVR_ADC_Result) {
+"183
 [e $ ! > _FVR_ADC_Result _max_FVR_ADC_Result 2025  ]
 {
-[; ;main.c: 185: writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
-"185
+[; ;main.c: 184: writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
+"184
 [e ( _writeDoubleToEEPROM (2 , _FVR_ADC_Result _max_FVR_ADC_Result_address ]
-[; ;main.c: 186: max_FVR_ADC_Result = FVR_ADC_Result;
-"186
+[; ;main.c: 185: max_FVR_ADC_Result = FVR_ADC_Result;
+"185
 [e = _max_FVR_ADC_Result _FVR_ADC_Result ]
-"187
+"186
 }
 [e :U 2025 ]
-[; ;main.c: 187: }
-[; ;main.c: 189: }
-"189
+[; ;main.c: 186: }
+[; ;main.c: 188: }
+"188
 [e :UE 2019 ]
 }
-"192
+"191
 [v _recoverSRAMMaxFromEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 192: void recoverSRAMMaxFromEEPROM(void) {
+[; ;main.c: 191: void recoverSRAMMaxFromEEPROM(void) {
 [e :U _recoverSRAMMaxFromEEPROM ]
 [f ]
-[; ;main.c: 194: max_Irms = readDoubleFromEEPROM(max_Irms_address);
-"194
+[; ;main.c: 193: max_Irms = readDoubleFromEEPROM(max_Irms_address);
+"193
 [e = _max_Irms ( _readDoubleFromEEPROM (1 _max_Irms_address ]
-[; ;main.c: 195: max_Power = readDoubleFromEEPROM(max_Power_address);
-"195
+[; ;main.c: 194: max_Power = readDoubleFromEEPROM(max_Power_address);
+"194
 [e = _max_Power ( _readDoubleFromEEPROM (1 _max_Power_address ]
-[; ;main.c: 196: max_POS3P3_ADC_Result = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
-"196
+[; ;main.c: 195: max_POS3P3_ADC_Result = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
+"195
 [e = _max_POS3P3_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS3P3_ADC_Result_address ]
-[; ;main.c: 197: max_POS12_ADC_Result = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
-"197
+[; ;main.c: 196: max_POS12_ADC_Result = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
+"196
 [e = _max_POS12_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS12_ADC_Result_address ]
-[; ;main.c: 198: max_Temp_ADC_Result = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
-"198
+[; ;main.c: 197: max_Temp_ADC_Result = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
+"197
 [e = _max_Temp_ADC_Result ( _readDoubleFromEEPROM (1 _max_Temp_ADC_Result_address ]
-[; ;main.c: 199: max_FVR_ADC_Result = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
-"199
+[; ;main.c: 198: max_FVR_ADC_Result = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+"198
 [e = _max_FVR_ADC_Result ( _readDoubleFromEEPROM (1 _max_FVR_ADC_Result_address ]
-[; ;main.c: 200: Total_Energy = readDoubleFromEEPROM(Total_Energy_address);
-"200
+[; ;main.c: 199: Total_Energy = readDoubleFromEEPROM(Total_Energy_address);
+"199
 [e = _Total_Energy ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
-[; ;main.c: 202: }
-"202
+[; ;main.c: 201: }
+"201
 [e :UE 2026 ]
 }
-"210
+"209
 [v _heartbeatTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 210: void heartbeatTimerCallback(void) {
+[; ;main.c: 209: void heartbeatTimerCallback(void) {
 [e :U _heartbeatTimerCallback ]
 [f ]
-[; ;main.c: 213: LATFbits.LATF2 = !LATFbits.LATF2;
-"213
+[; ;main.c: 212: LATFbits.LATF2 = !LATFbits.LATF2;
+"212
 [e = . . _LATFbits 0 2 -> -> ! != -> . . _LATFbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 216: dev_on_time++;
-"216
+[; ;main.c: 215: dev_on_time++;
+"215
 [e ++ _dev_on_time -> -> -> 1 `i `l `ul ]
-[; ;main.c: 219: if (load_enable) {
-"219
+[; ;main.c: 218: if (load_enable) {
+"218
 [e $ ! _load_enable 2028  ]
 {
-[; ;main.c: 221: load_on_time++;
-"221
+[; ;main.c: 220: load_on_time++;
+"220
 [e ++ _load_on_time -> -> -> 1 `i `l `ul ]
-"223
+"222
 }
 [e :U 2028 ]
-[; ;main.c: 223: }
-[; ;main.c: 226: asm(" clrwdt");
-"226
+[; ;main.c: 222: }
+[; ;main.c: 225: asm(" clrwdt");
+"225
 [; <"  clrwdt ;# ">
-[; ;main.c: 228: }
-"228
+[; ;main.c: 227: }
+"227
 [e :UE 2027 ]
 }
-"231
+"230
 [v _ADCPostProcessingCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 231: void ADCPostProcessingCallback(void) {
+[; ;main.c: 230: void ADCPostProcessingCallback(void) {
 [e :U _ADCPostProcessingCallback ]
 [f ]
-[; ;main.c: 234: ADCC_StopConversion();
-"234
+[; ;main.c: 233: ADCC_StopConversion();
+"233
 [e ( _ADCC_StopConversion ..  ]
-"237
-[v _current_adc_channel `E17425 ~T0 @X0 1 a ]
-[; ;main.c: 237: adcc_channel_t current_adc_channel = ADPCH;
-[e = _current_adc_channel -> _ADPCH `E17425 ]
-[; ;main.c: 240: switch (current_adc_channel) {
-"240
+"236
+[v _current_adc_channel `E17505 ~T0 @X0 1 a ]
+[; ;main.c: 236: adcc_channel_t current_adc_channel = ADPCH;
+[e = _current_adc_channel -> _ADPCH `E17505 ]
+[; ;main.c: 239: switch (current_adc_channel) {
+"239
 [e $U 2031  ]
 {
-[; ;main.c: 242: case channel_VSS:
-"242
+[; ;main.c: 241: case channel_VSS:
+"241
 [e :U 2032 ]
-[; ;main.c: 244: AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
-"244
+[; ;main.c: 243: AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+"243
 [e = _AVSS_ADC_Result * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 ]
-[; ;main.c: 246: if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
-"246
+[; ;main.c: 245: if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
+"245
 [e $ ! || > _AVSS_ADC_Result .0.01 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2033  ]
 {
-[; ;main.c: 248: LATFbits.LATF3 = 1;
-"248
+[; ;main.c: 247: LATFbits.LATF3 = 1;
+"247
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 249: adc_error_flag = 1;
-"249
+[; ;main.c: 248: adc_error_flag = 1;
+"248
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 251: PIE5bits.TMR7IE = 0;
-"251
+[; ;main.c: 250: PIE5bits.TMR7IE = 0;
+"250
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 252: TMR7_StopTimer();
-"252
+[; ;main.c: 251: TMR7_StopTimer();
+"251
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 253: return;
-"253
+[; ;main.c: 252: return;
+"252
 [e $UE 2029  ]
-"255
+"254
 }
 [e :U 2033 ]
-[; ;main.c: 255: }
-[; ;main.c: 257: next_channel = channel_FVR_buf1;
-"257
-[e = _next_channel . `E17425 6 ]
-[; ;main.c: 259: break;
-"259
+[; ;main.c: 254: }
+[; ;main.c: 256: next_channel = channel_FVR_buf1;
+"256
+[e = _next_channel . `E17505 6 ]
+[; ;main.c: 258: break;
+"258
 [e $U 2030  ]
-[; ;main.c: 262: case channel_FVR_buf1:
-"262
+[; ;main.c: 261: case channel_FVR_buf1:
+"261
 [e :U 2034 ]
-[; ;main.c: 264: FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
-"264
+[; ;main.c: 263: FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
+"263
 [e = _FVR_ADC_Result + * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 _AVSS_ADC_Result ]
-[; ;main.c: 265: ADC_Result_Scaling = 2.048/FVR_ADC_Result;
-"265
+[; ;main.c: 264: ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+"264
 [e = _ADC_Result_Scaling / .2.048 _FVR_ADC_Result ]
-[; ;main.c: 267: if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
-"267
+[; ;main.c: 266: if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
+"266
 [e $ ! || || > _FVR_ADC_Result .2.5 < _FVR_ADC_Result .2.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2035  ]
 {
-[; ;main.c: 269: LATFbits.LATF3 = 1;
-"269
+[; ;main.c: 268: LATFbits.LATF3 = 1;
+"268
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 270: adc_error_flag = 1;
-"270
+[; ;main.c: 269: adc_error_flag = 1;
+"269
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 272: PIE5bits.TMR7IE = 0;
-"272
+[; ;main.c: 271: PIE5bits.TMR7IE = 0;
+"271
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 273: TMR7_StopTimer();
-"273
+[; ;main.c: 272: TMR7_StopTimer();
+"272
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 274: return;
-"274
+[; ;main.c: 273: return;
+"273
 [e $UE 2029  ]
-"276
+"275
 }
 [e :U 2035 ]
-[; ;main.c: 276: }
-[; ;main.c: 278: next_channel = POS3P3_ADC;
-"278
-[e = _next_channel . `E17425 2 ]
-[; ;main.c: 280: break;
-"280
+[; ;main.c: 275: }
+[; ;main.c: 277: next_channel = POS3P3_ADC;
+"277
+[e = _next_channel . `E17505 2 ]
+[; ;main.c: 279: break;
+"279
 [e $U 2030  ]
-[; ;main.c: 283: case POS3P3_ADC:
-"283
+[; ;main.c: 282: case POS3P3_ADC:
+"282
 [e :U 2036 ]
-[; ;main.c: 285: POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
-"285
+[; ;main.c: 284: POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+"284
 [e = _POS3P3_ADC_Result * * * -> ( _ADCC_GetFilterValue ..  `d / .3.3 .1023.0 .2.0 _ADC_Result_Scaling ]
-[; ;main.c: 287: if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
-"287
+[; ;main.c: 286: if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
+"286
 [e $ ! || > _POS3P3_ADC_Result .3.5 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2037  ]
 {
-[; ;main.c: 289: LATFbits.LATF3 = 1;
-"289
+[; ;main.c: 288: LATFbits.LATF3 = 1;
+"288
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 290: adc_error_flag = 1;
-"290
+[; ;main.c: 289: adc_error_flag = 1;
+"289
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 292: PIE5bits.TMR7IE = 0;
-"292
+[; ;main.c: 291: PIE5bits.TMR7IE = 0;
+"291
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 293: TMR7_StopTimer();
-"293
+[; ;main.c: 292: TMR7_StopTimer();
+"292
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 294: return;
-"294
+[; ;main.c: 293: return;
+"293
 [e $UE 2029  ]
-"296
+"295
 }
 [e :U 2037 ]
-[; ;main.c: 296: }
-[; ;main.c: 298: next_channel = ISNS_ADC;
-"298
-[e = _next_channel . `E17425 0 ]
-[; ;main.c: 300: break;
-"300
+[; ;main.c: 295: }
+[; ;main.c: 297: next_channel = ISNS_ADC;
+"297
+[e = _next_channel . `E17505 0 ]
+[; ;main.c: 299: break;
+"299
 [e $U 2030  ]
-[; ;main.c: 303: case ISNS_ADC:
-"303
+[; ;main.c: 302: case ISNS_ADC:
+"302
 [e :U 2038 ]
-[; ;main.c: 305: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
-"305
+[; ;main.c: 304: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+"304
 [e = _Imeas * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 / .3.787 .2.0 ]
-[; ;main.c: 309: if (LATGbits.LATG0 != 1) {
-"309
+[; ;main.c: 308: if (LATGbits.LATG0 != 1) {
+"308
 [e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2039  ]
 {
-[; ;main.c: 314: if (load_enable) {
-"314
+[; ;main.c: 313: if (load_enable) {
+"313
 [e $ ! _load_enable 2040  ]
 {
-[; ;main.c: 317: if (dimming_period < 0x7FEE) {
-"317
+[; ;main.c: 316: if (dimming_period < 0x7FEE) {
+"316
 [e $ ! < _dimming_period -> -> 32750 `i `ui 2041  ]
 {
-[; ;main.c: 319: Ipk = Imeas;
-"319
+[; ;main.c: 318: Ipk = Imeas;
+"318
 [e = _Ipk _Imeas ]
-[; ;main.c: 320: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
-"320
+[; ;main.c: 319: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+"319
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"322
+"321
 }
-[; ;main.c: 322: }
+[; ;main.c: 321: }
 [e $U 2042  ]
-"325
+"324
 [e :U 2041 ]
-[; ;main.c: 325: else {
+[; ;main.c: 324: else {
 {
-[; ;main.c: 327: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
-"327
+[; ;main.c: 326: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+"326
 [e = _Ipk ( _currentMeasuredToPeak (2 , _Imeas _TRIAC_Firing_Angle ]
-[; ;main.c: 328: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
-"328
+[; ;main.c: 327: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+"327
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"330
+"329
 }
 [e :U 2042 ]
-[; ;main.c: 330: }
-[; ;main.c: 332: Vpk = Vpk_const;
-"332
+[; ;main.c: 329: }
+[; ;main.c: 331: Vpk = Vpk_const;
+"331
 [e = _Vpk _Vpk_const ]
-"334
+"333
 }
-[; ;main.c: 334: }
+[; ;main.c: 333: }
 [e $U 2043  ]
-"336
+"335
 [e :U 2040 ]
-[; ;main.c: 336: else {
+[; ;main.c: 335: else {
 {
-[; ;main.c: 338: Ipk = 0.0;
-"338
+[; ;main.c: 337: Ipk = 0.0;
+"337
 [e = _Ipk .0.0 ]
-[; ;main.c: 339: Vpk = 0.0;
-"339
+[; ;main.c: 338: Vpk = 0.0;
+"338
 [e = _Vpk .0.0 ]
-[; ;main.c: 340: Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
-"340
+[; ;main.c: 339: Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+"339
 [e = _Irms ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle ]
-"342
+"341
 }
 [e :U 2043 ]
-[; ;main.c: 342: }
-[; ;main.c: 344: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
-"344
+[; ;main.c: 341: }
+[; ;main.c: 343: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
+"343
 [e = _Vrms ( _peakToRMS (2 , _Vpk _TRIAC_Firing_Angle ]
-[; ;main.c: 345: Avg_Power = Vrms * Irms;
+[; ;main.c: 344: Avg_Power = Vrms * Irms;
+"344
+[e = _Avg_Power * _Vrms _Irms ]
+[; ;main.c: 345: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
 "345
-[e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 346: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-"346
 [e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"348
+"347
 }
-[; ;main.c: 348: }
+[; ;main.c: 347: }
 [e $U 2044  ]
-"351
+"350
 [e :U 2039 ]
-[; ;main.c: 351: else {
+[; ;main.c: 350: else {
 {
-[; ;main.c: 353: Ipk = Imeas;
-"353
+[; ;main.c: 352: Ipk = Imeas;
+"352
 [e = _Ipk _Imeas ]
-[; ;main.c: 354: Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
-"354
+[; ;main.c: 353: Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
+"353
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk .0.0 _Irms_offset `i `d ]
-[; ;main.c: 355: Vrms = peakToRMS(Vpk_const, 0.0);
-"355
+[; ;main.c: 354: Vrms = peakToRMS(Vpk_const, 0.0);
+"354
 [e = _Vrms ( _peakToRMS (2 , _Vpk_const .0.0 ]
-[; ;main.c: 356: Avg_Power = Vrms * Irms;
-"356
+[; ;main.c: 355: Avg_Power = Vrms * Irms;
+"355
 [e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 357: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-"357
+[; ;main.c: 356: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+"356
 [e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"359
+"358
 }
 [e :U 2044 ]
-[; ;main.c: 359: }
-[; ;main.c: 361: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
-"361
+[; ;main.c: 358: }
+[; ;main.c: 360: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
+"360
 [e $ ! || > _Irms .5.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2045  ]
 {
-[; ;main.c: 363: LATFbits.LATF3 = 1;
-"363
+[; ;main.c: 362: LATFbits.LATF3 = 1;
+"362
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 364: adc_error_flag = 1;
-"364
+[; ;main.c: 363: adc_error_flag = 1;
+"363
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 366: PIE5bits.TMR7IE = 0;
-"366
+[; ;main.c: 365: PIE5bits.TMR7IE = 0;
+"365
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 367: TMR7_StopTimer();
-"367
+[; ;main.c: 366: TMR7_StopTimer();
+"366
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 368: return;
-"368
+[; ;main.c: 367: return;
+"367
 [e $UE 2029  ]
-"370
+"369
 }
 [e :U 2045 ]
-[; ;main.c: 370: }
-[; ;main.c: 372: next_channel = POS12_ADC;
-"372
-[e = _next_channel . `E17425 1 ]
-[; ;main.c: 374: break;
-"374
+[; ;main.c: 369: }
+[; ;main.c: 371: next_channel = POS12_ADC;
+"371
+[e = _next_channel . `E17505 1 ]
+[; ;main.c: 373: break;
+"373
 [e $U 2030  ]
-[; ;main.c: 377: case POS12_ADC:
-"377
+[; ;main.c: 376: case POS12_ADC:
+"376
 [e :U 2046 ]
-[; ;main.c: 379: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
-"379
+[; ;main.c: 378: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+"378
 [e = _POS12_ADC_Result * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 .4.0303030303 ]
-[; ;main.c: 381: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
-"381
+[; ;main.c: 380: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
+"380
 [e $ ! || > _POS12_ADC_Result .13.6 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2047  ]
 {
-[; ;main.c: 383: LATFbits.LATF3 = 1;
-"383
+[; ;main.c: 382: LATFbits.LATF3 = 1;
+"382
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 384: adc_error_flag = 1;
-"384
+[; ;main.c: 383: adc_error_flag = 1;
+"383
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 386: PIE5bits.TMR7IE = 0;
-"386
+[; ;main.c: 385: PIE5bits.TMR7IE = 0;
+"385
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 387: TMR7_StopTimer();
-"387
+[; ;main.c: 386: TMR7_StopTimer();
+"386
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 388: return;
-"388
+[; ;main.c: 387: return;
+"387
 [e $UE 2029  ]
-"390
+"389
 }
 [e :U 2047 ]
-[; ;main.c: 390: }
-[; ;main.c: 392: next_channel = channel_Temp;
-"392
-[e = _next_channel . `E17425 4 ]
-[; ;main.c: 394: break;
-"394
+[; ;main.c: 389: }
+[; ;main.c: 391: next_channel = channel_Temp;
+"391
+[e = _next_channel . `E17505 4 ]
+[; ;main.c: 393: break;
+"393
 [e $U 2030  ]
-[; ;main.c: 397: case channel_Temp:
-"397
+[; ;main.c: 396: case channel_Temp:
+"396
 [e :U 2048 ]
-[; ;main.c: 399: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
-"399
+[; ;main.c: 398: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+"398
 [e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetFilterValue ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
-[; ;main.c: 401: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
-"401
+[; ;main.c: 400: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
+"400
 [e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2049  ]
 {
-[; ;main.c: 403: LATFbits.LATF3 = 1;
-"403
+[; ;main.c: 402: LATFbits.LATF3 = 1;
+"402
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 404: adc_error_flag = 1;
-"404
+[; ;main.c: 403: adc_error_flag = 1;
+"403
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 406: PIE5bits.TMR7IE = 0;
-"406
+[; ;main.c: 405: PIE5bits.TMR7IE = 0;
+"405
 [e = . . _PIE5bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 407: TMR7_StopTimer();
-"407
+[; ;main.c: 406: TMR7_StopTimer();
+"406
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 408: return;
-"408
+[; ;main.c: 407: return;
+"407
 [e $UE 2029  ]
-"410
+"409
 }
 [e :U 2049 ]
-[; ;main.c: 410: }
-[; ;main.c: 412: next_channel = channel_VSS;
-"412
-[e = _next_channel . `E17425 3 ]
-[; ;main.c: 414: break;
-"414
+[; ;main.c: 409: }
+[; ;main.c: 411: next_channel = channel_VSS;
+"411
+[e = _next_channel . `E17505 3 ]
+[; ;main.c: 413: break;
+"413
 [e $U 2030  ]
-[; ;main.c: 418: default:
-"418
+[; ;main.c: 417: default:
+"417
 [e :U 2050 ]
-[; ;main.c: 419: LATFbits.LATF3 = 1;
-"419
+[; ;main.c: 418: LATFbits.LATF3 = 1;
+"418
 [e = . . _LATFbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 420: adc_error_flag = 1;
-"420
+[; ;main.c: 419: adc_error_flag = 1;
+"419
 [e = _adc_error_flag -> -> 1 `i `b ]
-[; ;main.c: 422: PIE5bits.TMR7IE == 0;
-"422
+[; ;main.c: 421: PIE5bits.TMR7IE == 0;
+"421
 [e == -> . . _PIE5bits 0 6 `i -> 0 `i ]
-[; ;main.c: 423: TMR7_StopTimer();
-"423
+[; ;main.c: 422: TMR7_StopTimer();
+"422
 [e ( _TMR7_StopTimer ..  ]
-[; ;main.c: 424: break;
-"424
+[; ;main.c: 423: break;
+"423
 [e $U 2030  ]
-"426
+"425
 }
-[; ;main.c: 426: }
+[; ;main.c: 425: }
 [e $U 2030  ]
-"240
+"239
 [e :U 2031 ]
-[e [\ _current_adc_channel , $ . `E17425 3 2032
- , $ . `E17425 6 2034
- , $ . `E17425 2 2036
- , $ . `E17425 0 2038
- , $ . `E17425 1 2046
- , $ . `E17425 4 2048
+[e [\ _current_adc_channel , $ . `E17505 3 2032
+ , $ . `E17505 6 2034
+ , $ . `E17505 2 2036
+ , $ . `E17505 0 2038
+ , $ . `E17505 1 2046
+ , $ . `E17505 4 2048
  2050 ]
-"426
+"425
 [e :U 2030 ]
-[; ;main.c: 428: }
-"428
+[; ;main.c: 427: }
+"427
 [e :UE 2029 ]
 }
-"431
+"430
 [v _acquisitionTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 431: void acquisitionTimerCallback(void) {
+[; ;main.c: 430: void acquisitionTimerCallback(void) {
 [e :U _acquisitionTimerCallback ]
 [f ]
-[; ;main.c: 434: ADCC_DischargeSampleCapacitor();
-"434
+[; ;main.c: 433: ADCC_DischargeSampleCapacitor();
+"433
 [e ( _ADCC_DischargeSampleCapacitor ..  ]
-[; ;main.c: 437: ADCC_ClearAccumulator();
-"437
+[; ;main.c: 436: ADCC_ClearAccumulator();
+"436
 [e ( _ADCC_ClearAccumulator ..  ]
-[; ;main.c: 440: ADCC_StartConversion(next_channel);
-"440
+[; ;main.c: 439: ADCC_StartConversion(next_channel);
+"439
 [e ( _ADCC_StartConversion (1 _next_channel ]
-[; ;main.c: 442: }
-"442
+[; ;main.c: 441: }
+"441
 [e :UE 2051 ]
 }
-"445
+"444
 [v _dimmingOffTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 445: void dimmingOffTimeCallback(void) {
+[; ;main.c: 444: void dimmingOffTimeCallback(void) {
 [e :U _dimmingOffTimeCallback ]
 [f ]
-[; ;main.c: 448: LATGbits.LATG1 = 0;
-"448
+[; ;main.c: 447: LATGbits.LATG1 = 0;
+"447
 [e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 451: TMR5_WriteTimer(dimming_period);
-"451
+[; ;main.c: 450: TMR5_WriteTimer(dimming_period);
+"450
 [e ( _TMR5_WriteTimer (1 _dimming_period ]
-[; ;main.c: 452: TMR5_StartTimer();
-"452
+[; ;main.c: 451: TMR5_StartTimer();
+"451
 [e ( _TMR5_StartTimer ..  ]
-[; ;main.c: 455: PIE5bits.TMR5IE = 1;
-"455
+[; ;main.c: 454: PIE5bits.TMR5IE = 1;
+"454
 [e = . . _PIE5bits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 457: }
-"457
+[; ;main.c: 456: }
+"456
 [e :UE 2052 ]
 }
-"460
+"459
 [v _dimmingOnTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 460: void dimmingOnTimeCallback(void) {
+[; ;main.c: 459: void dimmingOnTimeCallback(void) {
 [e :U _dimmingOnTimeCallback ]
 [f ]
-[; ;main.c: 463: LATGbits.LATG1 = 1;
-"463
+[; ;main.c: 462: LATGbits.LATG1 = 1;
+"462
 [e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 466: TMR5_StopTimer();
-"466
+[; ;main.c: 465: TMR5_StopTimer();
+"465
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 469: PIE5bits.TMR5IE = 0;
-"469
+[; ;main.c: 468: PIE5bits.TMR5IE = 0;
+"468
 [e = . . _PIE5bits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 472: }
-"472
+[; ;main.c: 471: }
+"471
 [e :UE 2053 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"479
-[v _main `(v ~T0 @X0 1 ef ]
-"480
+"476
+[v _writeEnergyToEEPROMCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 479: void main(void)
-[; ;main.c: 480: {
+[; ;main.c: 476: void writeEnergyToEEPROMCallback(void) {
+[e :U _writeEnergyToEEPROMCallback ]
+[f ]
+[; ;main.c: 478: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+"478
+[e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
+[; ;main.c: 480: }
+"480
+[e :UE 2054 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"487
+[v _main `(v ~T0 @X0 1 ef ]
+"488
+{
+[; ;main.c: 487: void main(void)
+[; ;main.c: 488: {
 [e :U _main ]
 [f ]
-[; ;main.c: 483: reset_cause = getCauseOfReset();
-"483
+[; ;main.c: 491: reset_cause = getCauseOfReset();
+"491
 [e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 487: _delay((unsigned long)((250)*(64000000/4000.0)));
-"487
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 490: SYSTEM_Initialize();
-"490
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 493: LATGbits.LATG0 = 0;
-"493
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 494: LATGbits.LATG1 = 0;
-"494
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 495: load_enable = 0;
+[; ;main.c: 495: _delay((unsigned long)((250)*(64000000/4000.0)));
 "495
-[e = _load_enable -> -> 0 `i `b ]
-[; ;main.c: 498: ADCON2bits.ADCRS = 7;
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 498: SYSTEM_Initialize();
 "498
-[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
-[; ;main.c: 499: ADCAP = 20;
-"499
-[e = _ADCAP -> -> 20 `i `uc ]
-[; ;main.c: 502: TMR6_SetInterruptHandler(heartbeatTimerCallback);
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 501: LATGbits.LATG0 = 0;
+"501
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 502: LATGbits.LATG1 = 0;
 "502
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 503: load_enable = 0;
+"503
+[e = _load_enable -> -> 0 `i `b ]
+[; ;main.c: 506: ADCON2bits.ADCRS = 7;
+"506
+[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
+[; ;main.c: 507: ADCAP = 20;
+"507
+[e = _ADCAP -> -> 20 `i `uc ]
+[; ;main.c: 510: TMR6_SetInterruptHandler(heartbeatTimerCallback);
+"510
 [e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 505: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
-"505
+[; ;main.c: 513: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
+"513
 [e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
-[; ;main.c: 508: TMR7_SetInterruptHandler(acquisitionTimerCallback);
-"508
+[; ;main.c: 516: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+"516
 [e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 511: INT0_SetInterruptHandler(dimmingOffTimeCallback);
-"511
+[; ;main.c: 519: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+"519
 [e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
-[; ;main.c: 514: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
-"514
-[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
-[; ;main.c: 517: TMR5_StopTimer();
-"517
-[e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 518: PIE0bits.INT0IE = 0;
-"518
-[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 522: recoverSRAMMaxFromEEPROM();
+[; ;main.c: 522: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
 "522
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 525: (INTCONbits.GIEH = 1);
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 525: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
 "525
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 528: (INTCONbits.GIEL = 1);
+[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
+[; ;main.c: 528: TMR5_StopTimer();
 "528
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 531: terminal_clearTerminal();
-"531
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 532: terminal_setCursorHome();
-"532
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 533: terminal_textAttributesReset();
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 529: PIE0bits.INT0IE = 0;
+"529
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 533: recoverSRAMMaxFromEEPROM();
 "533
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 536: while (1)
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 536: (INTCONbits.GIEH = 1);
 "536
-[e :U 2056 ]
-[; ;main.c: 537: {
-"537
-{
-[; ;main.c: 540: if (eusart2RxStringReady) {
-"540
-[e $ ! _eusart2RxStringReady 2058  ]
-{
-[; ;main.c: 542: terminal_ringBufferPull();
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 539: (INTCONbits.GIEL = 1);
+"539
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 542: terminal_clearTerminal();
 "542
-[e ( _terminal_ringBufferPull ..  ]
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 543: terminal_setCursorHome();
+"543
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 544: terminal_textAttributesReset();
 "544
-}
-[e :U 2058 ]
-[; ;main.c: 544: }
-[; ;main.c: 547: saveSRAMMaxToEEPROM();
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 547: while (1)
 "547
-[e ( _saveSRAMMaxToEEPROM ..  ]
-"549
-}
-[e :U 2055 ]
-"536
-[e $U 2056  ]
 [e :U 2057 ]
-[; ;main.c: 549: }
-[; ;main.c: 550: }
-"550
-[e :UE 2054 ]
+[; ;main.c: 548: {
+"548
+{
+[; ;main.c: 551: if (eusart2RxStringReady) {
+"551
+[e $ ! _eusart2RxStringReady 2059  ]
+{
+[; ;main.c: 553: terminal_ringBufferPull();
+"553
+[e ( _terminal_ringBufferPull ..  ]
+"555
+}
+[e :U 2059 ]
+[; ;main.c: 555: }
+[; ;main.c: 558: saveSRAMMaxToEEPROM();
+"558
+[e ( _saveSRAMMaxToEEPROM ..  ]
+"560
+}
+[e :U 2056 ]
+"547
+[e $U 2057  ]
+[e :U 2058 ]
+[; ;main.c: 560: }
+[; ;main.c: 561: }
+"561
+[e :UE 2055 ]
 }
