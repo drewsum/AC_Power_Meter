@@ -435,6 +435,36 @@ void acquisitionTimerCallback(void) {
     
 }
 
+// dimming off time callback
+void dimmingOffTimeCallback(void) {
+ 
+    // Turn the TRIAC off
+    SSR_DIM_PIN = LOW;
+    
+    // Load timer with pre-load value and start timer
+    TMR5_WriteTimer(dimming_period);
+    TMR5_StartTimer();
+    
+    // Enable timer 5 interrupt
+    PIE5bits.TMR5IE = 1;
+    
+}
+
+// dimming on time callback
+void dimmingOnTimeCallback(void) {
+ 
+    // Turn triac on
+    SSR_DIM_PIN = HIGH;
+    
+    // Shutoff dimming timer (TMR5)
+    TMR5_StopTimer();
+    
+    // Disable timer 5 interrupt
+    PIE5bits.TMR5IE = 0;
+    
+    
+}
+
 
 
 
@@ -470,6 +500,17 @@ void main(void)
     
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);
+    
+    // assign dimming offtime callback to INT0
+    INT0_SetInterruptHandler(dimmingOffTimeCallback);
+    
+    // Assign dimming on time callback to timer 5 overflow
+    TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+    
+    // Disable dimming on startup
+    TMR5_StopTimer();
+    PIE0bits.INT0IE = 0;
+    
     
     // Retrieve saved EEPROM variables
     recoverSRAMMaxFromEEPROM();

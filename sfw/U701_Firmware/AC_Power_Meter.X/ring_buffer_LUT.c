@@ -353,6 +353,9 @@ void ringBufferLUT(char * line) {
         // Disable forcing of TRIAC conduction
         SSR_FORCE_PIN = 0;
         
+        // Enable ZCD interrupt
+        PIE0bits.INT0IE = 1;
+        
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("TRIAC output dimming has been enabled\n\r");
         terminal_textAttributesReset();
@@ -364,6 +367,10 @@ void ringBufferLUT(char * line) {
      
         // Force TRIAC conduction
         SSR_FORCE_PIN = 1;
+        
+        // Disable ZCD interrupt
+        PIE0bits.INT0IE = 0;
+        TMR5_StopTimer();
 
         terminal_textAttributes(RED, BLACK, NORMAL);
         printf("TRIAC output dimming has been disabled\n\r");
@@ -486,7 +493,7 @@ void ringBufferLUT(char * line) {
             // Calculate TRIAC firing angle
             TRIAC_Firing_Angle = ((100.0 - (double) percentage) / 100.0) * M_PI;
             double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
-            dimming_period = (100 - percentage) * (0xFFFF / 100);
+            dimming_period = (percentage) * (0xFFFF / 100);
             
             terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("Dimming has been set to %d percent\n\r", percentage);

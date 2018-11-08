@@ -88,7 +88,7 @@ void PIN_MANAGER_Initialize(void)
     ANSELE = 0xFF;
     ANSELG = 0x3C;
     ANSELF = 0xF0;
-    ANSELA = 0xFF;
+    ANSELA = 0xDF;
 
     /**
     WPUx registers
@@ -134,6 +134,7 @@ void PIN_MANAGER_Initialize(void)
     
 	
     RG7PPS = 0x0E;   //RG7->EUSART2:TX2;    
+    INT0PPS = 0x05;   //RA5->EXT_INT:INT0;    
     RX2PPS = 0x36;   //RG6->EUSART2:RX2;    
 }
   

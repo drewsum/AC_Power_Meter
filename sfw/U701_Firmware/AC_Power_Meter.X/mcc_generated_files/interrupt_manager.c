@@ -56,6 +56,9 @@ void  INTERRUPT_Initialize (void)
 
     // Assign peripheral interrupt priority vectors
 
+    // INT0I - high priority
+    IPR0bits.INT0IP = 1;
+
     // RCI - high priority
     IPR3bits.RC2IP = 1;
 
@@ -83,7 +86,11 @@ void  INTERRUPT_Initialize (void)
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
    // interrupt handler
-    if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
+    if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
+    {
+        INT0_ISR();
+    }
+    else if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
     {
         EUSART2_RxDefaultInterruptHandler();
     }

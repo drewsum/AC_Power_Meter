@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17641 `(v ~T0 @X0 0 tf ]
-[v F17644 `(v ~T0 @X0 0 tf ]
+[v F17656 `(v ~T0 @X0 0 tf ]
+[v F17659 `(v ~T0 @X0 0 tf ]
 "97 main.c
-[c E17948 0 1 2 3 4 5 6 7 8 .. ]
-[n E17948 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
+[c E17963 0 1 2 3 4 5 6 7 8 .. ]
+[n E17963 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
 "98
-[c E17425 0 4 34 60 61 62 63 .. ]
-[n E17425 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17421 0 4 34 60 61 62 63 .. ]
+[n E17421 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "40 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _acos `(d ~T0 @X0 0 ef1`d ]
 "36
@@ -66,15 +66,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 "460
 [v _ADCC_ClearAccumulator `(v ~T0 @X0 0 ef ]
 "161
-[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17425 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17421 ]
+"235 mcc_generated_files/tmr5.h
+[v _TMR5_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
+"129
+[v _TMR5_StartTimer `(v ~T0 @X0 0 ef ]
+"161
+[v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "56 cause_of_reset.h
-[v _getCauseOfReset `(E17948 ~T0 @X0 0 ef ]
+[v _getCauseOfReset `(E17963 ~T0 @X0 0 ef ]
 [v F17273 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF17273 ~T0 @X0 0 e ]
 [p i __delay ]
-"77 mcc_generated_files/mcc.h
+"78 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "26270 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1236 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
@@ -92,13 +98,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17413 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17413 ]
-[v F17489 `(v ~T0 @X0 0 tf ]
+[v F17485 `(v ~T0 @X0 0 tf ]
 "846 mcc_generated_files/adcc.h
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17489 ]
-[v F17569 `(v ~T0 @X0 0 tf ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17485 ]
+[v F17584 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
-[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17569 ]
-"40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17584 ]
+[v F17503 `(v ~T0 @X0 0 tf ]
+"319 mcc_generated_files/ext_int.h
+[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17503 ]
+[v F17335 `(v ~T0 @X0 0 tf ]
+"385 mcc_generated_files/tmr5.h
+[v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17335 ]
+"4546 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
+"4545
+[u S256 `S257 1 ]
+[n S256 . . ]
+"4555
+[v _PIE0bits `VS256 ~T0 @X0 0 e@3625 ]
+"40496
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
 "40506
@@ -16109,8 +16129,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 300: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 312: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 312: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 324: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -16213,8 +16233,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16256,6 +16274,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16336,10 +16362,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17641 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17656 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17644 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17659 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16351,9 +16377,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 77: void SYSTEM_Initialize(void);
-[; ;mcc.h: 90: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 103: void PMD_Initialize(void);
+[; ;mcc.h: 78: void SYSTEM_Initialize(void);
+[; ;mcc.h: 91: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 104: void PMD_Initialize(void);
 [; ;math.h: 30: extern double fabs(double);
 [; ;math.h: 31: extern double floor(double);
 [; ;math.h: 32: extern double ceil(double);
@@ -16637,12 +16663,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 96: volatile bit VCC_overvoltage_flag = 0;
 "97
-[v _reset_cause `E17948 ~T0 @X0 1 e ]
+[v _reset_cause `E17963 ~T0 @X0 1 e ]
 [; ;main.c: 97: reset_t reset_cause;
 "98
-[v _next_channel `E17425 ~T0 @X0 1 e ]
+[v _next_channel `E17421 ~T0 @X0 1 e ]
 [i _next_channel
-. `E17425 3
+. `E17421 3
 ]
 [; ;main.c: 98: adcc_channel_t next_channel = channel_VSS;
 "101
@@ -16925,9 +16951,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "230
 [e ( _ADCC_StopConversion ..  ]
 "233
-[v _current_adc_channel `E17425 ~T0 @X0 1 a ]
+[v _current_adc_channel `E17421 ~T0 @X0 1 a ]
 [; ;main.c: 233: adcc_channel_t current_adc_channel = ADPCH;
-[e = _current_adc_channel -> _ADPCH `E17425 ]
+[e = _current_adc_channel -> _ADPCH `E17421 ]
 [; ;main.c: 236: switch (current_adc_channel) {
 "236
 [e $U 2031  ]
@@ -16963,7 +16989,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 251: }
 [; ;main.c: 253: next_channel = channel_FVR_buf1;
 "253
-[e = _next_channel . `E17425 6 ]
+[e = _next_channel . `E17421 6 ]
 [; ;main.c: 255: break;
 "255
 [e $U 2030  ]
@@ -17001,7 +17027,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 272: }
 [; ;main.c: 274: next_channel = POS3P3_ADC;
 "274
-[e = _next_channel . `E17425 2 ]
+[e = _next_channel . `E17421 2 ]
 [; ;main.c: 276: break;
 "276
 [e $U 2030  ]
@@ -17036,7 +17062,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 292: }
 [; ;main.c: 294: next_channel = ISNS_ADC;
 "294
-[e = _next_channel . `E17425 0 ]
+[e = _next_channel . `E17421 0 ]
 [; ;main.c: 296: break;
 "296
 [e $U 2030  ]
@@ -17161,7 +17187,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 364: }
 [; ;main.c: 366: next_channel = POS12_ADC;
 "366
-[e = _next_channel . `E17425 1 ]
+[e = _next_channel . `E17421 1 ]
 [; ;main.c: 368: break;
 "368
 [e $U 2030  ]
@@ -17196,7 +17222,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 384: }
 [; ;main.c: 386: next_channel = channel_Temp;
 "386
-[e = _next_channel . `E17425 4 ]
+[e = _next_channel . `E17421 4 ]
 [; ;main.c: 388: break;
 "388
 [e $U 2030  ]
@@ -17231,7 +17257,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 404: }
 [; ;main.c: 406: next_channel = channel_VSS;
 "406
-[e = _next_channel . `E17425 3 ]
+[e = _next_channel . `E17421 3 ]
 [; ;main.c: 408: break;
 "408
 [e $U 2030  ]
@@ -17259,12 +17285,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2030  ]
 "236
 [e :U 2031 ]
-[e [\ _current_adc_channel , $ . `E17425 3 2032
- , $ . `E17425 6 2034
- , $ . `E17425 2 2036
- , $ . `E17425 0 2038
- , $ . `E17425 1 2046
- , $ . `E17425 4 2048
+[e [\ _current_adc_channel , $ . `E17421 3 2032
+ , $ . `E17421 6 2034
+ , $ . `E17421 2 2036
+ , $ . `E17421 0 2038
+ , $ . `E17421 1 2046
+ , $ . `E17421 4 2048
  2050 ]
 "420
 [e :U 2030 ]
@@ -17291,94 +17317,147 @@ Version 3.2 HI-TECH Software Intermediate Code
 "436
 [e :UE 2051 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"443
-[v _main `(v ~T0 @X0 1 ef ]
-"444
+"439
+[v _dimmingOffTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 443: void main(void)
-[; ;main.c: 444: {
+[; ;main.c: 439: void dimmingOffTimeCallback(void) {
+[e :U _dimmingOffTimeCallback ]
+[f ]
+[; ;main.c: 442: LATGbits.LATG1 = 0;
+"442
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 445: TMR5_WriteTimer(dimming_period);
+"445
+[e ( _TMR5_WriteTimer (1 _dimming_period ]
+[; ;main.c: 446: TMR5_StartTimer();
+"446
+[e ( _TMR5_StartTimer ..  ]
+[; ;main.c: 449: PIE5bits.TMR5IE = 1;
+"449
+[e = . . _PIE5bits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 451: }
+"451
+[e :UE 2052 ]
+}
+"454
+[v _dimmingOnTimeCallback `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 454: void dimmingOnTimeCallback(void) {
+[e :U _dimmingOnTimeCallback ]
+[f ]
+[; ;main.c: 457: LATGbits.LATG1 = 1;
+"457
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 460: TMR5_StopTimer();
+"460
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 463: PIE5bits.TMR5IE = 0;
+"463
+[e = . . _PIE5bits 0 4 -> -> 0 `i `uc ]
+[; ;main.c: 466: }
+"466
+[e :UE 2053 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"473
+[v _main `(v ~T0 @X0 1 ef ]
+"474
+{
+[; ;main.c: 473: void main(void)
+[; ;main.c: 474: {
 [e :U _main ]
 [f ]
-[; ;main.c: 447: reset_cause = getCauseOfReset();
-"447
+[; ;main.c: 477: reset_cause = getCauseOfReset();
+"477
 [e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 451: _delay((unsigned long)((250)*(64000000/4000.0)));
-"451
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 454: SYSTEM_Initialize();
-"454
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 457: LATGbits.LATG0 = 0;
-"457
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 458: LATGbits.LATG1 = 0;
-"458
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 459: load_enable = 0;
-"459
-[e = _load_enable -> -> 0 `i `b ]
-[; ;main.c: 462: ADCON2bits.ADCRS = 7;
-"462
-[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
-[; ;main.c: 463: ADCAP = 20;
-"463
-[e = _ADCAP -> -> 20 `i `uc ]
-[; ;main.c: 466: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"466
-[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 469: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
-"469
-[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
-[; ;main.c: 472: TMR7_SetInterruptHandler(acquisitionTimerCallback);
-"472
-[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 475: recoverSRAMMaxFromEEPROM();
-"475
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 478: (INTCONbits.GIEH = 1);
-"478
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 481: (INTCONbits.GIEL = 1);
+[; ;main.c: 481: _delay((unsigned long)((250)*(64000000/4000.0)));
 "481
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 484: terminal_clearTerminal();
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 484: SYSTEM_Initialize();
 "484
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 485: terminal_setCursorHome();
-"485
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 486: terminal_textAttributesReset();
-"486
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 489: while (1)
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 487: LATGbits.LATG0 = 0;
+"487
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 488: LATGbits.LATG1 = 0;
+"488
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 489: load_enable = 0;
 "489
-[e :U 2054 ]
-[; ;main.c: 490: {
-"490
-{
-[; ;main.c: 493: if (eusart2RxStringReady) {
+[e = _load_enable -> -> 0 `i `b ]
+[; ;main.c: 492: ADCON2bits.ADCRS = 7;
+"492
+[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
+[; ;main.c: 493: ADCAP = 20;
 "493
-[e $ ! _eusart2RxStringReady 2056  ]
-{
-[; ;main.c: 495: terminal_ringBufferPull();
-"495
-[e ( _terminal_ringBufferPull ..  ]
-"497
-}
-[e :U 2056 ]
-[; ;main.c: 497: }
-[; ;main.c: 500: saveSRAMMaxToEEPROM();
-"500
-[e ( _saveSRAMMaxToEEPROM ..  ]
+[e = _ADCAP -> -> 20 `i `uc ]
+[; ;main.c: 496: TMR6_SetInterruptHandler(heartbeatTimerCallback);
+"496
+[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
+[; ;main.c: 499: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
+"499
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
+[; ;main.c: 502: TMR7_SetInterruptHandler(acquisitionTimerCallback);
 "502
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 505: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+"505
+[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
+[; ;main.c: 508: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+"508
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 511: TMR5_StopTimer();
+"511
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 512: PIE0bits.INT0IE = 0;
+"512
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 516: recoverSRAMMaxFromEEPROM();
+"516
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 519: (INTCONbits.GIEH = 1);
+"519
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 522: (INTCONbits.GIEL = 1);
+"522
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 525: terminal_clearTerminal();
+"525
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 526: terminal_setCursorHome();
+"526
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 527: terminal_textAttributesReset();
+"527
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 530: while (1)
+"530
+[e :U 2056 ]
+[; ;main.c: 531: {
+"531
+{
+[; ;main.c: 534: if (eusart2RxStringReady) {
+"534
+[e $ ! _eusart2RxStringReady 2058  ]
+{
+[; ;main.c: 536: terminal_ringBufferPull();
+"536
+[e ( _terminal_ringBufferPull ..  ]
+"538
 }
-[e :U 2053 ]
-"489
-[e $U 2054  ]
+[e :U 2058 ]
+[; ;main.c: 538: }
+[; ;main.c: 541: saveSRAMMaxToEEPROM();
+"541
+[e ( _saveSRAMMaxToEEPROM ..  ]
+"543
+}
 [e :U 2055 ]
-[; ;main.c: 502: }
-[; ;main.c: 503: }
-"503
-[e :UE 2052 ]
+"530
+[e $U 2056  ]
+[e :U 2057 ]
+[; ;main.c: 543: }
+[; ;main.c: 544: }
+"544
+[e :UE 2054 ]
 }

@@ -6,6 +6,7 @@ mcc_generated_files/mcc.h  \
 mcc_generated_files/eusart2.h  \
 mcc_generated_files/device_config.h  \
 mcc_generated_files/memory.h  \
+mcc_generated_files/ext_int.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/hlvd.h  \
 mcc_generated_files/tmr5.h  \
