@@ -1,4 +1,6 @@
  build/default/production/mcc_generated_files/hlvd.d  \
  build/default/production/mcc_generated_files/hlvd.p1:  \
  mcc_generated_files/hlvd.c  \
+mcc_generated_files/../double_to_EEPROM.h  \
+mcc_generated_files/../mcc_generated_files/memory.h  \
 mcc_generated_files/hlvd.h 

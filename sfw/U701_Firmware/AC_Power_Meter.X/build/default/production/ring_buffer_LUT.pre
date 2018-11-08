@@ -21614,6 +21614,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21719,12 +21725,6 @@ void ADCC_ThresholdISR(void);
 # 880
 void ADCC_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 250 "mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);
 
@@ -21766,7 +21766,19 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
 
-# 75 "mcc_generated_files/hlvd.h"
+# 40 "mcc_generated_files/../double_to_EEPROM.h"
+typedef union {
+double double_t;
+unsigned char byte_array_t[sizeof(double)];
+} double_bytes_t;
+
+
+void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+
+
+double readDoubleFromEEPROM(uint16_t starting_address);
+
+# 77 "mcc_generated_files/hlvd.h"
 typedef enum
 {
 HLVD_TRIP_POINT_1p85v = 0,
@@ -21787,28 +21799,29 @@ HLVD_TRIP_POINT_4p83 = 14,
 
 }HLVD_TRIP_POINTS;
 
-extern volatile bit VCC_overvoltage_flag;
+extern const uint16_t Total_Energy_address;
+extern volatile double Total_Energy;
 
-# 140
+# 144
 void HLVD_Initialize(void);
 
-# 179
+# 183
 void HLVD_Enable(void);
 
-# 202
+# 206
 void HLVD_Disable(void);
 
-# 224
+# 228
 bool HLVD_IsBandGapVoltageStable(void);
 
-# 246
+# 250
 void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
 HLVD_TRIP_POINTS trip_points);
 
-# 269
+# 273
 bool HLVD_OutputStatusGet(void);
 
-# 286
+# 290
 void HLVD_ISR(void);
 
 # 100 "mcc_generated_files/tmr7.h"
@@ -22129,18 +22142,6 @@ reset_t getCauseOfReset(void);
 
 inline char * getCauseOfResetString(reset_t r);
 
-# 40 "double_to_EEPROM.h"
-typedef union {
-double double_t;
-unsigned char byte_array_t[sizeof(double)];
-} double_bytes_t;
-
-
-void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
-
-
-double readDoubleFromEEPROM(uint16_t starting_address);
-
 # 20 "ring_buffer_LUT.c"
 extern text_attribute_t attribute;
 extern text_color_t foreground_color;
@@ -22163,6 +22164,7 @@ extern unsigned int dimming_period;
 extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
 extern volatile bit VCC_overvoltage_flag;
+extern volatile double Total_Energy;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
 
@@ -22181,11 +22183,16 @@ extern const uint16_t max_POS3P3_ADC_Result_address = 0x0008;
 extern const uint16_t max_POS12_ADC_Result_address = 0x000C;
 extern const uint16_t max_Temp_ADC_Result_address = 0x0010;
 extern const uint16_t max_FVR_ADC_Result_address = 0x0014;
+extern const uint16_t Total_Energy_address;
 
 void ringBufferLUT(char * line) {
 
-# 66
+# 68
 if((0 == strcmp(line, "Reset"))) {
+
+
+
+writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 
 
 printf("\033[2J");
@@ -22465,6 +22472,15 @@ else if ((0 == strcmp(line, "Measure Power?"))) {
 
 terminal_textAttributes(CYAN, BLACK, NORMAL);
 printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+terminal_textAttributesReset();
+
+}
+
+
+else if ((0 == strcmp(line, "Measure Energy?"))) {
+
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
 terminal_textAttributesReset();
 
 }
@@ -22799,6 +22815,7 @@ printf("List of supported Primary Measurement Commands:\n\r"
 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
 "   Measure Power?: Returns the calculated output power in Watts\n\r"
+"   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
@@ -22864,6 +22881,7 @@ printf("List of all supported commands:\n\r"
 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
 "   Measure Power?: Returns the calculated output power in Watts\n\r"
+"   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"

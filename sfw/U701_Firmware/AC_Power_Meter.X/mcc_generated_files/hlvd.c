@@ -51,6 +51,8 @@
 #include <xc.h>
 #include "hlvd.h"
 
+
+
 /**
   Section: HLVD Module APIs
 */
@@ -58,10 +60,10 @@
 void HLVD_Initialize(void)
 {
     // set the HLVD_Initialize module to the options selected in the User Interface
-     // SEL 3.60; 
-    HLVDCON1 = 0x09;
-     // HLVDINTL disabled; HLVDINTH enabled; HLVDEN enabled; 
-    HLVDCON0 = 0x82;
+     // SEL 3.09; 
+    HLVDCON1 = 0x07;
+     // HLVDINTL enabled; HLVDINTH disabled; HLVDEN enabled; 
+    HLVDCON0 = 0x81;
     
     PIR2bits.HLVDIF = 0;
     // Enable HLVD interrupt.
@@ -121,7 +123,7 @@ void HLVD_ISR(void)
     /* TODO : Add interrupt handling code */
     PIR2bits.HLVDIF = 0;
     
-    VCC_overvoltage_flag = 1;
+    writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
     
 }
 

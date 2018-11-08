@@ -1,12 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17656 `(v ~T0 @X0 0 tf ]
-[v F17659 `(v ~T0 @X0 0 tf ]
+[v F17667 `(v ~T0 @X0 0 tf ]
+[v F17670 `(v ~T0 @X0 0 tf ]
 "7 ring_buffer_interface.c
-[c E17900 0 1 2 3 4 5 .. ]
-[n E17900 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+[c E17911 0 1 2 3 4 5 .. ]
+[n E17911 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
 "8
-[c E17908 0 1 2 3 4 5 6 7 .. ]
-[n E17908 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E17919 0 1 2 3 4 5 6 7 .. ]
+[n E17919 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 "80 mcc_generated_files/eusart2.h
 [v _eusart2RxCount `Vuc ~T0 @X0 0 e ]
 "281
@@ -16120,6 +16120,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16161,8 +16163,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
 [; ;ext_int.h: 272: void INT0_ISR(void);
 [; ;ext_int.h: 296: void INT0_CallBack(void);
@@ -16177,33 +16177,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;hlvd.h: 75: typedef enum
-[; ;hlvd.h: 76: {
-[; ;hlvd.h: 77: HLVD_TRIP_POINT_1p85v = 0,
-[; ;hlvd.h: 78: HLVD_TRIP_POINT_2p06v = 1,
-[; ;hlvd.h: 79: HLVD_TRIP_POINT_2p26v = 2,
-[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p47v = 3,
-[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p57v = 4,
-[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p78v = 5,
-[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p88v = 6,
-[; ;hlvd.h: 84: HLVD_TRIP_POINT_3p09v = 7,
-[; ;hlvd.h: 85: HLVD_TRIP_POINT_3p4v = 8,
-[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p6v = 9,
-[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p71v = 10,
-[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p91v = 11,
-[; ;hlvd.h: 89: HLVD_TRIP_POINT_4p12v = 12,
-[; ;hlvd.h: 90: HLVD_TRIP_POINT_4p32v = 13,
-[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p83 = 14,
-[; ;hlvd.h: 93: }HLVD_TRIP_POINTS;
-[; ;hlvd.h: 95: extern volatile bit VCC_overvoltage_flag;
-[; ;hlvd.h: 140: void HLVD_Initialize(void);
-[; ;hlvd.h: 179: void HLVD_Enable(void);
-[; ;hlvd.h: 202: void HLVD_Disable(void);
-[; ;hlvd.h: 224: bool HLVD_IsBandGapVoltageStable(void);
-[; ;hlvd.h: 246: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
-[; ;hlvd.h: 247: HLVD_TRIP_POINTS trip_points);
-[; ;hlvd.h: 269: bool HLVD_OutputStatusGet(void);
-[; ;hlvd.h: 286: void HLVD_ISR(void);
+[; ;double_to_EEPROM.h: 40: typedef union {
+[; ;double_to_EEPROM.h: 41: double double_t;
+[; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
+[; ;double_to_EEPROM.h: 43: } double_bytes_t;
+[; ;double_to_EEPROM.h: 46: void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+[; ;double_to_EEPROM.h: 49: double readDoubleFromEEPROM(uint16_t starting_address);
+[; ;hlvd.h: 77: typedef enum
+[; ;hlvd.h: 78: {
+[; ;hlvd.h: 79: HLVD_TRIP_POINT_1p85v = 0,
+[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p06v = 1,
+[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p26v = 2,
+[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p47v = 3,
+[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p57v = 4,
+[; ;hlvd.h: 84: HLVD_TRIP_POINT_2p78v = 5,
+[; ;hlvd.h: 85: HLVD_TRIP_POINT_2p88v = 6,
+[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p09v = 7,
+[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p4v = 8,
+[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p6v = 9,
+[; ;hlvd.h: 89: HLVD_TRIP_POINT_3p71v = 10,
+[; ;hlvd.h: 90: HLVD_TRIP_POINT_3p91v = 11,
+[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p12v = 12,
+[; ;hlvd.h: 92: HLVD_TRIP_POINT_4p32v = 13,
+[; ;hlvd.h: 93: HLVD_TRIP_POINT_4p83 = 14,
+[; ;hlvd.h: 95: }HLVD_TRIP_POINTS;
+[; ;hlvd.h: 97: extern const uint16_t Total_Energy_address;
+[; ;hlvd.h: 98: extern volatile double Total_Energy;
+[; ;hlvd.h: 144: void HLVD_Initialize(void);
+[; ;hlvd.h: 183: void HLVD_Enable(void);
+[; ;hlvd.h: 206: void HLVD_Disable(void);
+[; ;hlvd.h: 228: bool HLVD_IsBandGapVoltageStable(void);
+[; ;hlvd.h: 250: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.h: 251: HLVD_TRIP_POINTS trip_points);
+[; ;hlvd.h: 273: bool HLVD_OutputStatusGet(void);
+[; ;hlvd.h: 290: void HLVD_ISR(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16249,10 +16256,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17656 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17667 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17659 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17670 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16382,13 +16389,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
 "7 ring_buffer_interface.c
-[v _attribute `E17900 ~T0 @X0 1 e ]
+[v _attribute `E17911 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 7: text_attribute_t attribute;
 "8
-[v _foreground_color `E17908 ~T0 @X0 1 e ]
+[v _foreground_color `E17919 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 8: text_color_t foreground_color;
 "9
-[v _background_color `E17908 ~T0 @X0 1 e ]
+[v _background_color `E17919 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 9: text_color_t background_color;
 "12
 [v _terminal_ringBufferPull `(v ~T0 @X0 1 ef ]
@@ -16405,9 +16412,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
-[e $ < _index -> 64 `i 2017  ]
-[e $U 2018  ]
-[e :U 2017 ]
+[e $ < _index -> 64 `i 2018  ]
+[e $U 2019  ]
+[e :U 2018 ]
 {
 [; ;ring_buffer_interface.c: 19: line[index] = '\0';
 "19
@@ -16416,8 +16423,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "17
 [e ++ _index -> 1 `i ]
-[e $ < _index -> 64 `i 2017  ]
-[e :U 2018 ]
+[e $ < _index -> 64 `i 2018  ]
+[e :U 2019 ]
 "21
 }
 [; ;ring_buffer_interface.c: 21: }
@@ -16426,8 +16433,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [v _index `i ~T0 @X0 1 a ]
 [e = _index -> 0 `i ]
-[e $U 2023  ]
-[e :U 2020 ]
+[e $U 2024  ]
+[e :U 2021 ]
 {
 [; ;ring_buffer_interface.c: 26: line[index] = EUSART2_Read();
 "26
@@ -16436,9 +16443,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "24
 [e ++ _index -> 1 `i ]
-[e :U 2023 ]
-[e $ < _index _charNumber 2020  ]
-[e :U 2021 ]
+[e :U 2024 ]
+[e $ < _index _charNumber 2021  ]
+[e :U 2022 ]
 "28
 }
 [; ;ring_buffer_interface.c: 28: }
@@ -16448,18 +16455,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.c: 34: while((line[strlen(line) - 1] == (int) '\n') ||
 [; ;ring_buffer_interface.c: 35: (line[strlen(line) - 1] == (int) '\r')) {
 "35
-[e $U 2024  ]
-[e :U 2025 ]
+[e $U 2025  ]
+[e :U 2026 ]
 {
 [; ;ring_buffer_interface.c: 38: line[strlen(line) - 1] = '\0';
 "38
 [e = *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux -> -> 0 `ui `uc ]
 "40
 }
-[e :U 2024 ]
+[e :U 2025 ]
 "34
-[e $ || == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 10 `ui `i == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 13 `ui `i 2025  ]
-[e :U 2026 ]
+[e $ || == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 10 `ui `i == -> *U + &U _line * -> - ( _strlen (1 -> &U _line `*Cuc -> -> 1 `i `ui `ux -> -> # *U &U _line `ui `ux `i -> -> 13 `ui `i 2026  ]
+[e :U 2027 ]
 [; ;ring_buffer_interface.c: 40: }
 [; ;ring_buffer_interface.c: 44: eusart2RxStringReady = 0;
 "44
@@ -16469,7 +16476,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _ringBufferLUT (1 &U _line ]
 [; ;ring_buffer_interface.c: 50: }
 "50
-[e :UE 2016 ]
+[e :UE 2017 ]
 }
 "54
 [v _terminal_printResetMessage `(v ~T0 @X0 1 ef ]
@@ -16498,7 +16505,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 4C ]
 [; ;ring_buffer_interface.c: 77: }
 "77
-[e :UE 2027 ]
+[e :UE 2028 ]
 }
 "80
 [v _terminal_clearTerminal `(v ~T0 @X0 1 ef ]
@@ -16511,7 +16518,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 5C ]
 [; ;ring_buffer_interface.c: 82: }
 "82
-[e :UE 2028 ]
+[e :UE 2029 ]
 }
 "85
 [v _terminal_setCursorHome `(v ~T0 @X0 1 ef ]
@@ -16524,7 +16531,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 6C ]
 [; ;ring_buffer_interface.c: 87: }
 "87
-[e :UE 2029 ]
+[e :UE 2030 ]
 }
 "90
 [v _terminal_clearLine `(v ~T0 @X0 1 ef ]
@@ -16537,7 +16544,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 7C ]
 [; ;ring_buffer_interface.c: 92: }
 "92
-[e :UE 2030 ]
+[e :UE 2031 ]
 }
 "95
 [v _terminal_saveCursor `(v ~T0 @X0 1 ef ]
@@ -16550,7 +16557,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 8C ]
 [; ;ring_buffer_interface.c: 97: }
 "97
-[e :UE 2031 ]
+[e :UE 2032 ]
 }
 "100
 [v _terminal_returnCursor `(v ~T0 @X0 1 ef ]
@@ -16563,19 +16570,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 9C ]
 [; ;ring_buffer_interface.c: 102: }
 "102
-[e :UE 2032 ]
+[e :UE 2033 ]
 }
 "115
-[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E17908`E17908`E17900 ]
+[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E17919`E17919`E17911 ]
 "117
 {
 [; ;ring_buffer_interface.c: 115: void terminal_textAttributes(text_color_t foreground_color,
 [; ;ring_buffer_interface.c: 116: text_color_t background_color,
 [; ;ring_buffer_interface.c: 117: text_attribute_t input_attribute) {
 [e :U _terminal_textAttributes ]
-[v _foreground_color `E17908 ~T0 @X0 1 r1 ]
-[v _background_color `E17908 ~T0 @X0 1 r2 ]
-[v _input_attribute `E17900 ~T0 @X0 1 r3 ]
+[v _foreground_color `E17919 ~T0 @X0 1 r1 ]
+[v _background_color `E17919 ~T0 @X0 1 r2 ]
+[v _input_attribute `E17911 ~T0 @X0 1 r3 ]
 [f ]
 "119
 [v _output_buff `uc ~T0 @X0 -> 15 `i a ]
@@ -16585,296 +16592,296 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _strncpy (3 , , &U _output_buff :s 10C -> # _output_buff `ui ]
 [; ;ring_buffer_interface.c: 123: switch (input_attribute) {
 "123
-[e $U 2035  ]
+[e $U 2036  ]
 {
 [; ;ring_buffer_interface.c: 125: case NORMAL:
 "125
-[e :U 2036 ]
+[e :U 2037 ]
 [; ;ring_buffer_interface.c: 126: strcat(output_buff,"0");
 "126
 [e ( _strcat (2 , &U _output_buff :s 11C ]
 [; ;ring_buffer_interface.c: 127: break;
 "127
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 128: case BOLD:
 "128
-[e :U 2037 ]
+[e :U 2038 ]
 [; ;ring_buffer_interface.c: 129: strcat(output_buff,"1");
 "129
 [e ( _strcat (2 , &U _output_buff :s 12C ]
 [; ;ring_buffer_interface.c: 130: break;
 "130
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 131: case UNDERSCORE:
 "131
-[e :U 2038 ]
+[e :U 2039 ]
 [; ;ring_buffer_interface.c: 132: strcat(output_buff,"4");
 "132
 [e ( _strcat (2 , &U _output_buff :s 13C ]
 [; ;ring_buffer_interface.c: 133: break;
 "133
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 134: case BLINK:
 "134
-[e :U 2039 ]
+[e :U 2040 ]
 [; ;ring_buffer_interface.c: 135: strcat(output_buff,"5");
 "135
 [e ( _strcat (2 , &U _output_buff :s 14C ]
 [; ;ring_buffer_interface.c: 136: break;
 "136
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 137: case REVERSE:
 "137
-[e :U 2040 ]
+[e :U 2041 ]
 [; ;ring_buffer_interface.c: 138: strcat(output_buff,"7");
 "138
 [e ( _strcat (2 , &U _output_buff :s 15C ]
 [; ;ring_buffer_interface.c: 139: break;
 "139
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 140: case CONCEALED:
 "140
-[e :U 2041 ]
+[e :U 2042 ]
 [; ;ring_buffer_interface.c: 141: strcat(output_buff,"8");
 "141
 [e ( _strcat (2 , &U _output_buff :s 16C ]
 [; ;ring_buffer_interface.c: 142: break;
 "142
-[e $U 2034  ]
+[e $U 2035  ]
 [; ;ring_buffer_interface.c: 144: default:
 "144
-[e :U 2042 ]
+[e :U 2043 ]
 [; ;ring_buffer_interface.c: 145: strcat(output_buff,"0");
 "145
 [e ( _strcat (2 , &U _output_buff :s 17C ]
 [; ;ring_buffer_interface.c: 146: break;
 "146
-[e $U 2034  ]
+[e $U 2035  ]
 "147
 }
 [; ;ring_buffer_interface.c: 147: }
-[e $U 2034  ]
+[e $U 2035  ]
 "123
-[e :U 2035 ]
-[e [\ _input_attribute , $ . `E17900 0 2036
- , $ . `E17900 1 2037
- , $ . `E17900 2 2038
- , $ . `E17900 3 2039
- , $ . `E17900 4 2040
- , $ . `E17900 5 2041
- 2042 ]
+[e :U 2036 ]
+[e [\ _input_attribute , $ . `E17911 0 2037
+ , $ . `E17911 1 2038
+ , $ . `E17911 2 2039
+ , $ . `E17911 3 2040
+ , $ . `E17911 4 2041
+ , $ . `E17911 5 2042
+ 2043 ]
 "147
-[e :U 2034 ]
+[e :U 2035 ]
 [; ;ring_buffer_interface.c: 149: strcat(output_buff,";");
 "149
 [e ( _strcat (2 , &U _output_buff :s 18C ]
 [; ;ring_buffer_interface.c: 151: switch (foreground_color) {
 "151
-[e $U 2044  ]
+[e $U 2045  ]
 {
 [; ;ring_buffer_interface.c: 153: case BLACK:
 "153
-[e :U 2045 ]
+[e :U 2046 ]
 [; ;ring_buffer_interface.c: 154: strcat(output_buff,"30");
 "154
 [e ( _strcat (2 , &U _output_buff :s 19C ]
 [; ;ring_buffer_interface.c: 155: break;
 "155
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 156: case RED:
 "156
-[e :U 2046 ]
+[e :U 2047 ]
 [; ;ring_buffer_interface.c: 157: strcat(output_buff,"31");
 "157
 [e ( _strcat (2 , &U _output_buff :s 20C ]
 [; ;ring_buffer_interface.c: 158: break;
 "158
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 159: case GREEN:
 "159
-[e :U 2047 ]
+[e :U 2048 ]
 [; ;ring_buffer_interface.c: 160: strcat(output_buff,"32");
 "160
 [e ( _strcat (2 , &U _output_buff :s 21C ]
 [; ;ring_buffer_interface.c: 161: break;
 "161
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 162: case YELLOW:
 "162
-[e :U 2048 ]
+[e :U 2049 ]
 [; ;ring_buffer_interface.c: 163: strcat(output_buff,"33");
 "163
 [e ( _strcat (2 , &U _output_buff :s 22C ]
 [; ;ring_buffer_interface.c: 164: break;
 "164
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 165: case BLUE:
 "165
-[e :U 2049 ]
+[e :U 2050 ]
 [; ;ring_buffer_interface.c: 166: strcat(output_buff,"34");
 "166
 [e ( _strcat (2 , &U _output_buff :s 23C ]
 [; ;ring_buffer_interface.c: 167: break;
 "167
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 168: case MAGENTA:
 "168
-[e :U 2050 ]
+[e :U 2051 ]
 [; ;ring_buffer_interface.c: 169: strcat(output_buff,"35");
 "169
 [e ( _strcat (2 , &U _output_buff :s 24C ]
 [; ;ring_buffer_interface.c: 170: break;
 "170
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 171: case CYAN:
 "171
-[e :U 2051 ]
+[e :U 2052 ]
 [; ;ring_buffer_interface.c: 172: strcat(output_buff,"36");
 "172
 [e ( _strcat (2 , &U _output_buff :s 25C ]
 [; ;ring_buffer_interface.c: 173: break;
 "173
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 174: case WHITE:
 "174
-[e :U 2052 ]
+[e :U 2053 ]
 [; ;ring_buffer_interface.c: 175: strcat(output_buff,"37");
 "175
 [e ( _strcat (2 , &U _output_buff :s 26C ]
 [; ;ring_buffer_interface.c: 176: break;
 "176
-[e $U 2043  ]
+[e $U 2044  ]
 [; ;ring_buffer_interface.c: 178: default:
 "178
-[e :U 2053 ]
+[e :U 2054 ]
 [; ;ring_buffer_interface.c: 179: strcat(output_buff,"37");
 "179
 [e ( _strcat (2 , &U _output_buff :s 27C ]
 [; ;ring_buffer_interface.c: 180: break;
 "180
-[e $U 2043  ]
+[e $U 2044  ]
 "181
 }
 [; ;ring_buffer_interface.c: 181: }
-[e $U 2043  ]
+[e $U 2044  ]
 "151
-[e :U 2044 ]
-[e [\ _foreground_color , $ . `E17908 0 2045
- , $ . `E17908 1 2046
- , $ . `E17908 2 2047
- , $ . `E17908 3 2048
- , $ . `E17908 4 2049
- , $ . `E17908 5 2050
- , $ . `E17908 6 2051
- , $ . `E17908 7 2052
- 2053 ]
+[e :U 2045 ]
+[e [\ _foreground_color , $ . `E17919 0 2046
+ , $ . `E17919 1 2047
+ , $ . `E17919 2 2048
+ , $ . `E17919 3 2049
+ , $ . `E17919 4 2050
+ , $ . `E17919 5 2051
+ , $ . `E17919 6 2052
+ , $ . `E17919 7 2053
+ 2054 ]
 "181
-[e :U 2043 ]
+[e :U 2044 ]
 [; ;ring_buffer_interface.c: 183: strcat(output_buff,";");
 "183
 [e ( _strcat (2 , &U _output_buff :s 28C ]
 [; ;ring_buffer_interface.c: 185: switch (background_color) {
 "185
-[e $U 2055  ]
+[e $U 2056  ]
 {
 [; ;ring_buffer_interface.c: 187: case BLACK:
 "187
-[e :U 2056 ]
+[e :U 2057 ]
 [; ;ring_buffer_interface.c: 188: strcat(output_buff,"40");
 "188
 [e ( _strcat (2 , &U _output_buff :s 29C ]
 [; ;ring_buffer_interface.c: 189: break;
 "189
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 190: case RED:
 "190
-[e :U 2057 ]
+[e :U 2058 ]
 [; ;ring_buffer_interface.c: 191: strcat(output_buff,"41");
 "191
 [e ( _strcat (2 , &U _output_buff :s 30C ]
 [; ;ring_buffer_interface.c: 192: break;
 "192
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 193: case GREEN:
 "193
-[e :U 2058 ]
+[e :U 2059 ]
 [; ;ring_buffer_interface.c: 194: strcat(output_buff,"42");
 "194
 [e ( _strcat (2 , &U _output_buff :s 31C ]
 [; ;ring_buffer_interface.c: 195: break;
 "195
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 196: case YELLOW:
 "196
-[e :U 2059 ]
+[e :U 2060 ]
 [; ;ring_buffer_interface.c: 197: strcat(output_buff,"43");
 "197
 [e ( _strcat (2 , &U _output_buff :s 32C ]
 [; ;ring_buffer_interface.c: 198: break;
 "198
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 199: case BLUE:
 "199
-[e :U 2060 ]
+[e :U 2061 ]
 [; ;ring_buffer_interface.c: 200: strcat(output_buff,"44");
 "200
 [e ( _strcat (2 , &U _output_buff :s 33C ]
 [; ;ring_buffer_interface.c: 201: break;
 "201
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 202: case MAGENTA:
 "202
-[e :U 2061 ]
+[e :U 2062 ]
 [; ;ring_buffer_interface.c: 203: strcat(output_buff,"45");
 "203
 [e ( _strcat (2 , &U _output_buff :s 34C ]
 [; ;ring_buffer_interface.c: 204: break;
 "204
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 205: case CYAN:
 "205
-[e :U 2062 ]
+[e :U 2063 ]
 [; ;ring_buffer_interface.c: 206: strcat(output_buff,"46");
 "206
 [e ( _strcat (2 , &U _output_buff :s 35C ]
 [; ;ring_buffer_interface.c: 207: break;
 "207
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 208: case WHITE:
 "208
-[e :U 2063 ]
+[e :U 2064 ]
 [; ;ring_buffer_interface.c: 209: strcat(output_buff,"47");
 "209
 [e ( _strcat (2 , &U _output_buff :s 36C ]
 [; ;ring_buffer_interface.c: 210: break;
 "210
-[e $U 2054  ]
+[e $U 2055  ]
 [; ;ring_buffer_interface.c: 212: default:
 "212
-[e :U 2064 ]
+[e :U 2065 ]
 [; ;ring_buffer_interface.c: 213: strcat(output_buff,"47");
 "213
 [e ( _strcat (2 , &U _output_buff :s 37C ]
 [; ;ring_buffer_interface.c: 214: break;
 "214
-[e $U 2054  ]
+[e $U 2055  ]
 "215
 }
 [; ;ring_buffer_interface.c: 215: }
-[e $U 2054  ]
+[e $U 2055  ]
 "185
-[e :U 2055 ]
-[e [\ _background_color , $ . `E17908 0 2056
- , $ . `E17908 1 2057
- , $ . `E17908 2 2058
- , $ . `E17908 3 2059
- , $ . `E17908 4 2060
- , $ . `E17908 5 2061
- , $ . `E17908 6 2062
- , $ . `E17908 7 2063
- 2064 ]
+[e :U 2056 ]
+[e [\ _background_color , $ . `E17919 0 2057
+ , $ . `E17919 1 2058
+ , $ . `E17919 2 2059
+ , $ . `E17919 3 2060
+ , $ . `E17919 4 2061
+ , $ . `E17919 5 2062
+ , $ . `E17919 6 2063
+ , $ . `E17919 7 2064
+ 2065 ]
 "215
-[e :U 2054 ]
+[e :U 2055 ]
 [; ;ring_buffer_interface.c: 217: strcat(output_buff,"m");
 "217
 [e ( _strcat (2 , &U _output_buff :s 38C ]
@@ -16883,7 +16890,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf -> &U _output_buff `*Cuc ]
 [; ;ring_buffer_interface.c: 220: }
 "220
-[e :UE 2033 ]
+[e :UE 2034 ]
 }
 "223
 [v _terminal_textAttributesReset `(v ~T0 @X0 1 ef ]
@@ -16893,10 +16900,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;ring_buffer_interface.c: 225: terminal_textAttributes(WHITE, BLACK, NORMAL);
 "225
-[e ( _terminal_textAttributes (3 , , . `E17908 7 . `E17908 0 . `E17900 0 ]
+[e ( _terminal_textAttributes (3 , , . `E17919 7 . `E17919 0 . `E17911 0 ]
 [; ;ring_buffer_interface.c: 227: }
 "227
-[e :UE 2065 ]
+[e :UE 2066 ]
 }
 "230
 [v _terminal_printNewline `(v ~T0 @X0 1 ef ]
@@ -16909,7 +16916,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _printf :s 39C ]
 [; ;ring_buffer_interface.c: 234: }
 "234
-[e :UE 2066 ]
+[e :UE 2067 ]
 }
 [p f _printf 9437696 ]
 [a 9C 27 91 117 0 ]

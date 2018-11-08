@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17656 `(v ~T0 @X0 0 tf ]
-[v F17659 `(v ~T0 @X0 0 tf ]
+[v F17667 `(v ~T0 @X0 0 tf ]
+[v F17670 `(v ~T0 @X0 0 tf ]
 "132 mcc_generated_files/interrupt_manager.h
 [v _INTERRUPT_Initialize `(v ~T0 @X0 0 ef ]
 "104 mcc_generated_files/mcc.h
@@ -9,7 +9,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "91 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
-"140 mcc_generated_files/hlvd.h
+"144 mcc_generated_files/hlvd.h
 [v _HLVD_Initialize `(v ~T0 @X0 0 ef ]
 "93 mcc_generated_files/fvr.h
 [v _FVR_Initialize `(v ~T0 @X0 0 ef ]
@@ -16142,6 +16142,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr6.h: 808: void TMR6_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr6.h: 826: extern void (*TMR6_InterruptHandler)(void);
 [; ;tmr6.h: 844: void TMR6_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16183,8 +16185,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
 [; ;ext_int.h: 272: void INT0_ISR(void);
 [; ;ext_int.h: 296: void INT0_CallBack(void);
@@ -16199,33 +16199,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;hlvd.h: 75: typedef enum
-[; ;hlvd.h: 76: {
-[; ;hlvd.h: 77: HLVD_TRIP_POINT_1p85v = 0,
-[; ;hlvd.h: 78: HLVD_TRIP_POINT_2p06v = 1,
-[; ;hlvd.h: 79: HLVD_TRIP_POINT_2p26v = 2,
-[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p47v = 3,
-[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p57v = 4,
-[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p78v = 5,
-[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p88v = 6,
-[; ;hlvd.h: 84: HLVD_TRIP_POINT_3p09v = 7,
-[; ;hlvd.h: 85: HLVD_TRIP_POINT_3p4v = 8,
-[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p6v = 9,
-[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p71v = 10,
-[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p91v = 11,
-[; ;hlvd.h: 89: HLVD_TRIP_POINT_4p12v = 12,
-[; ;hlvd.h: 90: HLVD_TRIP_POINT_4p32v = 13,
-[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p83 = 14,
-[; ;hlvd.h: 93: }HLVD_TRIP_POINTS;
-[; ;hlvd.h: 95: extern volatile bit VCC_overvoltage_flag;
-[; ;hlvd.h: 140: void HLVD_Initialize(void);
-[; ;hlvd.h: 179: void HLVD_Enable(void);
-[; ;hlvd.h: 202: void HLVD_Disable(void);
-[; ;hlvd.h: 224: bool HLVD_IsBandGapVoltageStable(void);
-[; ;hlvd.h: 246: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
-[; ;hlvd.h: 247: HLVD_TRIP_POINTS trip_points);
-[; ;hlvd.h: 269: bool HLVD_OutputStatusGet(void);
-[; ;hlvd.h: 286: void HLVD_ISR(void);
+[; ;double_to_EEPROM.h: 40: typedef union {
+[; ;double_to_EEPROM.h: 41: double double_t;
+[; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
+[; ;double_to_EEPROM.h: 43: } double_bytes_t;
+[; ;double_to_EEPROM.h: 46: void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+[; ;double_to_EEPROM.h: 49: double readDoubleFromEEPROM(uint16_t starting_address);
+[; ;hlvd.h: 77: typedef enum
+[; ;hlvd.h: 78: {
+[; ;hlvd.h: 79: HLVD_TRIP_POINT_1p85v = 0,
+[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p06v = 1,
+[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p26v = 2,
+[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p47v = 3,
+[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p57v = 4,
+[; ;hlvd.h: 84: HLVD_TRIP_POINT_2p78v = 5,
+[; ;hlvd.h: 85: HLVD_TRIP_POINT_2p88v = 6,
+[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p09v = 7,
+[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p4v = 8,
+[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p6v = 9,
+[; ;hlvd.h: 89: HLVD_TRIP_POINT_3p71v = 10,
+[; ;hlvd.h: 90: HLVD_TRIP_POINT_3p91v = 11,
+[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p12v = 12,
+[; ;hlvd.h: 92: HLVD_TRIP_POINT_4p32v = 13,
+[; ;hlvd.h: 93: HLVD_TRIP_POINT_4p83 = 14,
+[; ;hlvd.h: 95: }HLVD_TRIP_POINTS;
+[; ;hlvd.h: 97: extern const uint16_t Total_Energy_address;
+[; ;hlvd.h: 98: extern volatile double Total_Energy;
+[; ;hlvd.h: 144: void HLVD_Initialize(void);
+[; ;hlvd.h: 183: void HLVD_Enable(void);
+[; ;hlvd.h: 206: void HLVD_Disable(void);
+[; ;hlvd.h: 228: bool HLVD_IsBandGapVoltageStable(void);
+[; ;hlvd.h: 250: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.h: 251: HLVD_TRIP_POINTS trip_points);
+[; ;hlvd.h: 273: bool HLVD_OutputStatusGet(void);
+[; ;hlvd.h: 290: void HLVD_ISR(void);
 [; ;tmr7.h: 100: void TMR7_Initialize(void);
 [; ;tmr7.h: 129: void TMR7_StartTimer(void);
 [; ;tmr7.h: 161: void TMR7_StopTimer(void);
@@ -16271,10 +16278,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
 "86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17656 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17667 ~T0 @X0 1 e ]
 [; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "87
-[v _EUSART2_RxDefaultInterruptHandler `*F17659 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17670 ~T0 @X0 1 e ]
 [; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 109: void EUSART2_Initialize(void);
 [; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
@@ -16335,7 +16342,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _EUSART2_Initialize ..  ]
 [; ;mcc.c: 64: }
 "64
-[e :UE 2012 ]
+[e :UE 2013 ]
 }
 "66
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
@@ -16362,21 +16369,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _OSCTUNE -> -> 0 `i `uc ]
 [; ;mcc.c: 79: while(PLLR == 0)
 "79
-[e $U 2014  ]
-[e :U 2015 ]
+[e $U 2015  ]
+[e :U 2016 ]
 [; ;mcc.c: 80: {
 "80
 {
 "81
 }
-[e :U 2014 ]
+[e :U 2015 ]
 "79
-[e $ == -> _PLLR `i -> 0 `i 2015  ]
-[e :U 2016 ]
+[e $ == -> _PLLR `i -> 0 `i 2016  ]
+[e :U 2017 ]
 [; ;mcc.c: 81: }
 [; ;mcc.c: 82: }
 "82
-[e :UE 2013 ]
+[e :UE 2014 ]
 }
 "84
 [v _PMD_Initialize `(v ~T0 @X0 1 ef ]
@@ -16406,5 +16413,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PMD5 -> -> 0 `i `uc ]
 [; ;mcc.c: 98: }
 "98
-[e :UE 2017 ]
+[e :UE 2018 ]
 }

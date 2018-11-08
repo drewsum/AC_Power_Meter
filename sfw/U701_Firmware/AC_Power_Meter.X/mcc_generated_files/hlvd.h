@@ -55,6 +55,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "../double_to_EEPROM.h"
+
 #ifdef __cplusplus  // Provide C++ Compatibility
     extern "C" {
 #endif
@@ -92,7 +94,9 @@ typedef enum
 
 }HLVD_TRIP_POINTS;
 
-extern volatile bit VCC_overvoltage_flag;
+extern const uint16_t Total_Energy_address;
+extern volatile double Total_Energy;
+
 
 /**
   Section: HLVD Module APIs

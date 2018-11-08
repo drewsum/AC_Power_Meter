@@ -36,11 +36,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S585 . . . ]
 "12959
 [v _HLVDCON0bits `VS585 ~T0 @X0 0 e@3778 ]
-"103 mcc_generated_files/hlvd.c
-[c E17309 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 .. ]
-[n E17309 . HLVD_TRIP_POINT_1p85v HLVD_TRIP_POINT_2p06v HLVD_TRIP_POINT_2p26v HLVD_TRIP_POINT_2p47v HLVD_TRIP_POINT_2p57v HLVD_TRIP_POINT_2p78v HLVD_TRIP_POINT_2p88v HLVD_TRIP_POINT_3p09v HLVD_TRIP_POINT_3p4v HLVD_TRIP_POINT_3p6v HLVD_TRIP_POINT_3p71v HLVD_TRIP_POINT_3p91v HLVD_TRIP_POINT_4p12v HLVD_TRIP_POINT_4p32v HLVD_TRIP_POINT_4p83  ]
-"95 mcc_generated_files/hlvd.h
-[v _VCC_overvoltage_flag `Vb ~T0 @X0 0 e ]
+"105 mcc_generated_files/hlvd.c
+[c E17339 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 .. ]
+[n E17339 . HLVD_TRIP_POINT_1p85v HLVD_TRIP_POINT_2p06v HLVD_TRIP_POINT_2p26v HLVD_TRIP_POINT_2p47v HLVD_TRIP_POINT_2p57v HLVD_TRIP_POINT_2p78v HLVD_TRIP_POINT_2p88v HLVD_TRIP_POINT_3p09v HLVD_TRIP_POINT_3p4v HLVD_TRIP_POINT_3p6v HLVD_TRIP_POINT_3p71v HLVD_TRIP_POINT_3p91v HLVD_TRIP_POINT_4p12v HLVD_TRIP_POINT_4p32v HLVD_TRIP_POINT_4p83  ]
+"46 mcc_generated_files/../double_to_EEPROM.h
+[v _writeDoubleToEEPROM `(v ~T0 @X0 0 ef2`d`ui ]
+"98 mcc_generated_files/hlvd.h
+[v _Total_Energy `Vd ~T0 @X0 0 e ]
+"97
+[v _Total_Energy_address `Cui ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16059,174 +16063,189 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;hlvd.h: 75: typedef enum
-[; ;hlvd.h: 76: {
-[; ;hlvd.h: 77: HLVD_TRIP_POINT_1p85v = 0,
-[; ;hlvd.h: 78: HLVD_TRIP_POINT_2p06v = 1,
-[; ;hlvd.h: 79: HLVD_TRIP_POINT_2p26v = 2,
-[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p47v = 3,
-[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p57v = 4,
-[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p78v = 5,
-[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p88v = 6,
-[; ;hlvd.h: 84: HLVD_TRIP_POINT_3p09v = 7,
-[; ;hlvd.h: 85: HLVD_TRIP_POINT_3p4v = 8,
-[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p6v = 9,
-[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p71v = 10,
-[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p91v = 11,
-[; ;hlvd.h: 89: HLVD_TRIP_POINT_4p12v = 12,
-[; ;hlvd.h: 90: HLVD_TRIP_POINT_4p32v = 13,
-[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p83 = 14,
-[; ;hlvd.h: 93: }HLVD_TRIP_POINTS;
-[; ;hlvd.h: 95: extern volatile bit VCC_overvoltage_flag;
-[; ;hlvd.h: 140: void HLVD_Initialize(void);
-[; ;hlvd.h: 179: void HLVD_Enable(void);
-[; ;hlvd.h: 202: void HLVD_Disable(void);
-[; ;hlvd.h: 224: bool HLVD_IsBandGapVoltageStable(void);
-[; ;hlvd.h: 246: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
-[; ;hlvd.h: 247: HLVD_TRIP_POINTS trip_points);
-[; ;hlvd.h: 269: bool HLVD_OutputStatusGet(void);
-[; ;hlvd.h: 286: void HLVD_ISR(void);
-"58 mcc_generated_files/hlvd.c
+[; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
+[; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
+[; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
+[; ;memory.h: 193: int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
+[; ;memory.h: 218: void FLASH_EraseBlock(uint32_t baseAddr);
+[; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[; ;memory.h: 277: void MEMORY_Tasks(void);
+[; ;double_to_EEPROM.h: 40: typedef union {
+[; ;double_to_EEPROM.h: 41: double double_t;
+[; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
+[; ;double_to_EEPROM.h: 43: } double_bytes_t;
+[; ;double_to_EEPROM.h: 46: void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+[; ;double_to_EEPROM.h: 49: double readDoubleFromEEPROM(uint16_t starting_address);
+[; ;hlvd.h: 77: typedef enum
+[; ;hlvd.h: 78: {
+[; ;hlvd.h: 79: HLVD_TRIP_POINT_1p85v = 0,
+[; ;hlvd.h: 80: HLVD_TRIP_POINT_2p06v = 1,
+[; ;hlvd.h: 81: HLVD_TRIP_POINT_2p26v = 2,
+[; ;hlvd.h: 82: HLVD_TRIP_POINT_2p47v = 3,
+[; ;hlvd.h: 83: HLVD_TRIP_POINT_2p57v = 4,
+[; ;hlvd.h: 84: HLVD_TRIP_POINT_2p78v = 5,
+[; ;hlvd.h: 85: HLVD_TRIP_POINT_2p88v = 6,
+[; ;hlvd.h: 86: HLVD_TRIP_POINT_3p09v = 7,
+[; ;hlvd.h: 87: HLVD_TRIP_POINT_3p4v = 8,
+[; ;hlvd.h: 88: HLVD_TRIP_POINT_3p6v = 9,
+[; ;hlvd.h: 89: HLVD_TRIP_POINT_3p71v = 10,
+[; ;hlvd.h: 90: HLVD_TRIP_POINT_3p91v = 11,
+[; ;hlvd.h: 91: HLVD_TRIP_POINT_4p12v = 12,
+[; ;hlvd.h: 92: HLVD_TRIP_POINT_4p32v = 13,
+[; ;hlvd.h: 93: HLVD_TRIP_POINT_4p83 = 14,
+[; ;hlvd.h: 95: }HLVD_TRIP_POINTS;
+[; ;hlvd.h: 97: extern const uint16_t Total_Energy_address;
+[; ;hlvd.h: 98: extern volatile double Total_Energy;
+[; ;hlvd.h: 144: void HLVD_Initialize(void);
+[; ;hlvd.h: 183: void HLVD_Enable(void);
+[; ;hlvd.h: 206: void HLVD_Disable(void);
+[; ;hlvd.h: 228: bool HLVD_IsBandGapVoltageStable(void);
+[; ;hlvd.h: 250: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.h: 251: HLVD_TRIP_POINTS trip_points);
+[; ;hlvd.h: 273: bool HLVD_OutputStatusGet(void);
+[; ;hlvd.h: 290: void HLVD_ISR(void);
+"60 mcc_generated_files/hlvd.c
 [v _HLVD_Initialize `(v ~T0 @X0 1 ef ]
-"59
+"61
 {
-[; ;hlvd.c: 58: void HLVD_Initialize(void)
-[; ;hlvd.c: 59: {
+[; ;hlvd.c: 60: void HLVD_Initialize(void)
+[; ;hlvd.c: 61: {
 [e :U _HLVD_Initialize ]
 [f ]
-[; ;hlvd.c: 62: HLVDCON1 = 0x09;
-"62
-[e = _HLVDCON1 -> -> 9 `i `uc ]
-[; ;hlvd.c: 64: HLVDCON0 = 0x82;
+[; ;hlvd.c: 64: HLVDCON1 = 0x07;
 "64
-[e = _HLVDCON0 -> -> 130 `i `uc ]
-[; ;hlvd.c: 66: PIR2bits.HLVDIF = 0;
+[e = _HLVDCON1 -> -> 7 `i `uc ]
+[; ;hlvd.c: 66: HLVDCON0 = 0x81;
 "66
-[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 68: PIE2bits.HLVDIE = 1;
+[e = _HLVDCON0 -> -> 129 `i `uc ]
+[; ;hlvd.c: 68: PIR2bits.HLVDIF = 0;
 "68
+[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
+[; ;hlvd.c: 70: PIE2bits.HLVDIE = 1;
+"70
 [e = . . _PIE2bits 0 5 -> -> 1 `i `uc ]
-[; ;hlvd.c: 69: }
-"69
-[e :UE 2011 ]
-}
-"72
-[v _HLVD_IsBandGapVoltageStable `(uc ~T0 @X0 1 ef ]
-"73
-{
-[; ;hlvd.c: 72: bool HLVD_IsBandGapVoltageStable(void)
-[; ;hlvd.c: 73: {
-[e :U _HLVD_IsBandGapVoltageStable ]
-[f ]
-[; ;hlvd.c: 76: return(HLVDCON0bits.HLVDRDY);
-"76
-[e ) . . _HLVDCON0bits 1 3 ]
-[e $UE 2012  ]
-[; ;hlvd.c: 77: }
-"77
+[; ;hlvd.c: 71: }
+"71
 [e :UE 2012 ]
 }
-"80
-[v _HLVD_Enable `(v ~T0 @X0 1 ef ]
-"81
+"74
+[v _HLVD_IsBandGapVoltageStable `(uc ~T0 @X0 1 ef ]
+"75
 {
-[; ;hlvd.c: 80: void HLVD_Enable(void)
-[; ;hlvd.c: 81: {
-[e :U _HLVD_Enable ]
+[; ;hlvd.c: 74: bool HLVD_IsBandGapVoltageStable(void)
+[; ;hlvd.c: 75: {
+[e :U _HLVD_IsBandGapVoltageStable ]
 [f ]
-[; ;hlvd.c: 84: HLVDCON0bits.HLVDEN = 1;
-"84
-[e = . . _HLVDCON0bits 1 6 -> -> 1 `i `uc ]
-[; ;hlvd.c: 85: PIR2bits.HLVDIF = 0;
-"85
-[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 87: PIE2bits.HLVDIE = 1;
-"87
-[e = . . _PIE2bits 0 5 -> -> 1 `i `uc ]
-[; ;hlvd.c: 88: }
-"88
+[; ;hlvd.c: 78: return(HLVDCON0bits.HLVDRDY);
+"78
+[e ) . . _HLVDCON0bits 1 3 ]
+[e $UE 2013  ]
+[; ;hlvd.c: 79: }
+"79
 [e :UE 2013 ]
 }
-"90
-[v _HLVD_Disable `(v ~T0 @X0 1 ef ]
-"91
+"82
+[v _HLVD_Enable `(v ~T0 @X0 1 ef ]
+"83
 {
-[; ;hlvd.c: 90: void HLVD_Disable(void)
-[; ;hlvd.c: 91: {
-[e :U _HLVD_Disable ]
+[; ;hlvd.c: 82: void HLVD_Enable(void)
+[; ;hlvd.c: 83: {
+[e :U _HLVD_Enable ]
 [f ]
-[; ;hlvd.c: 94: HLVDCON0bits.HLVDEN = 0;
-"94
-[e = . . _HLVDCON0bits 1 6 -> -> 0 `i `uc ]
-[; ;hlvd.c: 96: PIR2bits.HLVDIF = 0;
-"96
+[; ;hlvd.c: 86: HLVDCON0bits.HLVDEN = 1;
+"86
+[e = . . _HLVDCON0bits 1 6 -> -> 1 `i `uc ]
+[; ;hlvd.c: 87: PIR2bits.HLVDIF = 0;
+"87
 [e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 98: PIE2bits.HLVDIE = 0;
-"98
-[e = . . _PIE2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 99: }
-"99
+[; ;hlvd.c: 89: PIE2bits.HLVDIE = 1;
+"89
+[e = . . _PIE2bits 0 5 -> -> 1 `i `uc ]
+[; ;hlvd.c: 90: }
+"90
 [e :UE 2014 ]
 }
-"101
-[v _HLVD_TripPointSetup `(v ~T0 @X0 1 ef3`uc`uc`E17309 ]
-"103
+"92
+[v _HLVD_Disable `(v ~T0 @X0 1 ef ]
+"93
 {
-[; ;hlvd.c: 101: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
-[; ;hlvd.c: 102: HLVD_TRIP_POINTS trip_points)
-[; ;hlvd.c: 103: {
-[e :U _HLVD_TripPointSetup ]
-"101
-[v _Negative_Trip `uc ~T0 @X0 1 r1 ]
-[v _Positive_Trip `uc ~T0 @X0 1 r2 ]
-"102
-[v _trip_points `E17309 ~T0 @X0 1 r3 ]
-"103
+[; ;hlvd.c: 92: void HLVD_Disable(void)
+[; ;hlvd.c: 93: {
+[e :U _HLVD_Disable ]
 [f ]
-[; ;hlvd.c: 105: HLVDCON0bits.HLVDINTL = Negative_Trip;
-"105
-[e = . . _HLVDCON0bits 1 0 _Negative_Trip ]
-[; ;hlvd.c: 107: HLVDCON0bits.HLVDINTH = Positive_Trip;
-"107
-[e = . . _HLVDCON0bits 1 1 _Positive_Trip ]
-[; ;hlvd.c: 109: HLVDCON1 = trip_points;
-"109
-[e = _HLVDCON1 -> _trip_points `uc ]
-[; ;hlvd.c: 110: }
-"110
+[; ;hlvd.c: 96: HLVDCON0bits.HLVDEN = 0;
+"96
+[e = . . _HLVDCON0bits 1 6 -> -> 0 `i `uc ]
+[; ;hlvd.c: 98: PIR2bits.HLVDIF = 0;
+"98
+[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
+[; ;hlvd.c: 100: PIE2bits.HLVDIE = 0;
+"100
+[e = . . _PIE2bits 0 5 -> -> 0 `i `uc ]
+[; ;hlvd.c: 101: }
+"101
 [e :UE 2015 ]
 }
-"112
-[v _HLVD_OutputStatusGet `(uc ~T0 @X0 1 ef ]
-"113
+"103
+[v _HLVD_TripPointSetup `(v ~T0 @X0 1 ef3`uc`uc`E17339 ]
+"105
 {
-[; ;hlvd.c: 112: bool HLVD_OutputStatusGet(void)
-[; ;hlvd.c: 113: {
-[e :U _HLVD_OutputStatusGet ]
+[; ;hlvd.c: 103: void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
+[; ;hlvd.c: 104: HLVD_TRIP_POINTS trip_points)
+[; ;hlvd.c: 105: {
+[e :U _HLVD_TripPointSetup ]
+"103
+[v _Negative_Trip `uc ~T0 @X0 1 r1 ]
+[v _Positive_Trip `uc ~T0 @X0 1 r2 ]
+"104
+[v _trip_points `E17339 ~T0 @X0 1 r3 ]
+"105
 [f ]
-[; ;hlvd.c: 115: return(HLVDCON0bits.HLVDOUT);
-"115
-[e ) . . _HLVDCON0bits 1 4 ]
-[e $UE 2016  ]
-[; ;hlvd.c: 116: }
-"116
+[; ;hlvd.c: 107: HLVDCON0bits.HLVDINTL = Negative_Trip;
+"107
+[e = . . _HLVDCON0bits 1 0 _Negative_Trip ]
+[; ;hlvd.c: 109: HLVDCON0bits.HLVDINTH = Positive_Trip;
+"109
+[e = . . _HLVDCON0bits 1 1 _Positive_Trip ]
+[; ;hlvd.c: 111: HLVDCON1 = trip_points;
+"111
+[e = _HLVDCON1 -> _trip_points `uc ]
+[; ;hlvd.c: 112: }
+"112
 [e :UE 2016 ]
 }
-"118
-[v _HLVD_ISR `(v ~T0 @X0 1 ef ]
-"120
+"114
+[v _HLVD_OutputStatusGet `(uc ~T0 @X0 1 ef ]
+"115
 {
-[; ;hlvd.c: 118: void HLVD_ISR(void)
-[; ;hlvd.c: 120: {
+[; ;hlvd.c: 114: bool HLVD_OutputStatusGet(void)
+[; ;hlvd.c: 115: {
+[e :U _HLVD_OutputStatusGet ]
+[f ]
+[; ;hlvd.c: 117: return(HLVDCON0bits.HLVDOUT);
+"117
+[e ) . . _HLVDCON0bits 1 4 ]
+[e $UE 2017  ]
+[; ;hlvd.c: 118: }
+"118
+[e :UE 2017 ]
+}
+"120
+[v _HLVD_ISR `(v ~T0 @X0 1 ef ]
+"122
+{
+[; ;hlvd.c: 120: void HLVD_ISR(void)
+[; ;hlvd.c: 122: {
 [e :U _HLVD_ISR ]
 [f ]
-[; ;hlvd.c: 122: PIR2bits.HLVDIF = 0;
-"122
-[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 124: VCC_overvoltage_flag = 1;
+[; ;hlvd.c: 124: PIR2bits.HLVDIF = 0;
 "124
-[e = _VCC_overvoltage_flag -> -> 1 `i `b ]
-[; ;hlvd.c: 126: }
+[e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
+[; ;hlvd.c: 126: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 "126
-[e :UE 2017 ]
+[e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
+[; ;hlvd.c: 128: }
+"128
+[e :UE 2018 ]
 }

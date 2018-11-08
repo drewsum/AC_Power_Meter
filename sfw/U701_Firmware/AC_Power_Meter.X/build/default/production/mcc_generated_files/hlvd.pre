@@ -21315,7 +21315,42 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdbool.h"
 typedef unsigned char bool;
 
-# 75 "mcc_generated_files/hlvd.h"
+# 99 "mcc_generated_files/../mcc_generated_files/memory.h"
+uint8_t FLASH_ReadByte(uint32_t flashAddr);
+
+# 125
+uint16_t FLASH_ReadWord(uint32_t flashAddr);
+
+# 157
+void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
+
+# 193
+int8_t FLASH_WriteBlock(uint32_t writeAddr, uint8_t *flashWrBufPtr);
+
+# 218
+void FLASH_EraseBlock(uint32_t baseAddr);
+
+# 249
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+
+# 275
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+
+void MEMORY_Tasks(void);
+
+# 40 "mcc_generated_files/../double_to_EEPROM.h"
+typedef union {
+double double_t;
+unsigned char byte_array_t[sizeof(double)];
+} double_bytes_t;
+
+
+void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+
+
+double readDoubleFromEEPROM(uint16_t starting_address);
+
+# 77 "mcc_generated_files/hlvd.h"
 typedef enum
 {
 HLVD_TRIP_POINT_1p85v = 0,
@@ -21336,38 +21371,39 @@ HLVD_TRIP_POINT_4p83 = 14,
 
 }HLVD_TRIP_POINTS;
 
-extern volatile bit VCC_overvoltage_flag;
+extern const uint16_t Total_Energy_address;
+extern volatile double Total_Energy;
 
-# 140
+# 144
 void HLVD_Initialize(void);
 
-# 179
+# 183
 void HLVD_Enable(void);
 
-# 202
+# 206
 void HLVD_Disable(void);
 
-# 224
+# 228
 bool HLVD_IsBandGapVoltageStable(void);
 
-# 246
+# 250
 void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
 HLVD_TRIP_POINTS trip_points);
 
-# 269
+# 273
 bool HLVD_OutputStatusGet(void);
 
-# 286
+# 290
 void HLVD_ISR(void);
 
-# 58 "mcc_generated_files/hlvd.c"
+# 60 "mcc_generated_files/hlvd.c"
 void HLVD_Initialize(void)
 {
 
 
-HLVDCON1 = 0x09;
+HLVDCON1 = 0x07;
 
-HLVDCON0 = 0x82;
+HLVDCON0 = 0x81;
 
 PIR2bits.HLVDIF = 0;
 
@@ -21427,7 +21463,7 @@ void HLVD_ISR(void)
 
 PIR2bits.HLVDIF = 0;
 
-VCC_overvoltage_flag = 1;
+writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 
 }
 

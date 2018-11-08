@@ -37,7 +37,7 @@ extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
 extern volatile bit adc_error_flag;
-extern volatile bit VCC_overvoltage_flag;
+extern volatile double Total_Energy;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
 
@@ -56,6 +56,7 @@ extern const uint16_t max_POS3P3_ADC_Result_address    = 0x0008;
 extern const uint16_t max_POS12_ADC_Result_address     = 0x000C;
 extern const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 extern const uint16_t max_FVR_ADC_Result_address       = 0x0014;
+extern const uint16_t Total_Energy_address             = 0x0018;
 
 void ringBufferLUT(char * line) {
 
@@ -65,6 +66,10 @@ void ringBufferLUT(char * line) {
     // Clear Screen, reset
     if((0 == strcmp(line, "Reset"))) {
 
+        
+        // Save Total energy into EEPROM before we reset
+        writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+        
         // Clear the screen
         printf("\033[2J");
 
@@ -239,30 +244,6 @@ void ringBufferLUT(char * line) {
         
     }
     
-    // Clear ADC error
-    else if((0 == strcmp(line, "VCC Overvoltage?"))) {
-        
-        // If we've seen a VCC overvoltage event
-        if (VCC_overvoltage_flag == 1) {
-        
-            terminal_textAttributes(RED, BLACK, NORMAL);
-            printf("VCC Overvoltage condition has occurred (VCC has exceeded 3.60V)\n\r");
-            terminal_textAttributesReset();
-            
-            // clear overvoltage flag
-            VCC_overvoltage_flag = 0;
-            
-        }
-        
-        else {
-         
-            terminal_textAttributes(GREEN, BLACK, NORMAL);
-            printf("VCC Overvoltage condition has not occurred\n\r");
-            terminal_textAttributesReset();
-            
-        }
-        
-    }
     
     // Report POS3P3 ADC Conversion Result
     else if((0 == strcmp(line, "Measure POS3P3?"))) {
@@ -343,6 +324,15 @@ void ringBufferLUT(char * line) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
         printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+        terminal_textAttributesReset();
+        
+    }
+    
+    // Report output power
+    else if ((0 == strcmp(line, "Measure Energy?"))) {
+     
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
         terminal_textAttributesReset();
         
     }
@@ -637,7 +627,6 @@ void ringBufferLUT(char * line) {
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-                "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 );
@@ -677,6 +666,7 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
+                "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
@@ -722,7 +712,6 @@ void ringBufferLUT(char * line) {
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-                "   VCC Overvoltage?: States if a VCC overvoltage condition has occurred or not\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
@@ -742,6 +731,7 @@ void ringBufferLUT(char * line) {
                 "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
                 "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
                 "   Measure Power?: Returns the calculated output power in Watts\n\r"
+                "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r\n\r"

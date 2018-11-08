@@ -1,6 +1,7 @@
  build/default/production/main.d  \
  build/default/production/main.p1:  \
  main.c  \
+mcc_generated_files/../double_to_EEPROM.h  \
 double_to_EEPROM.h  \
 mcc_generated_files/fvr.h  \
 pin_macros.h  \
@@ -9,6 +10,7 @@ mcc_generated_files/eusart2.h  \
 device_IDs.h  \
 mcc_generated_files/device_config.h  \
 mcc_generated_files/memory.h  \
+mcc_generated_files/../mcc_generated_files/memory.h  \
 mcc_generated_files/ext_int.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/hlvd.h  \

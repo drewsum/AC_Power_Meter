@@ -84,7 +84,9 @@ double Irms_offset = -0.113;                    // RMS current offset in amps
 volatile double Irms;                           // RMS output current in amps
 volatile double Vrms;                           // Calculated RMS output voltage in volts
 volatile double Avg_Power;                      // Calculated output power in watts
+volatile double Total_Energy;                   // Calculated energy in Watt Hours
 volatile double TRIAC_Firing_Angle = 90.0;      // firing angle in radians
+
 
 // more global variables
 volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time;
@@ -93,7 +95,6 @@ volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
 volatile bit adc_error_flag = 0;                // ADC error flag is set upon strange ADC results
-volatile bit VCC_overvoltage_flag = 0;          // VCC overvoltage flag is set upon HLVD interrupt
 reset_t reset_cause;                            // The cause of the most recent reset
 adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
 
@@ -112,6 +113,7 @@ const uint16_t max_POS3P3_ADC_Result_address    = 0x0008;
 const uint16_t max_POS12_ADC_Result_address     = 0x000C;
 const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 const uint16_t max_FVR_ADC_Result_address       = 0x0014;
+const uint16_t Total_Energy_address             = 0x0018;
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -194,6 +196,7 @@ void recoverSRAMMaxFromEEPROM(void) {
     max_POS12_ADC_Result    = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
     max_Temp_ADC_Result     = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
     max_FVR_ADC_Result      = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+    Total_Energy            = readDoubleFromEEPROM(Total_Energy_address);
     
 }
 
@@ -339,6 +342,7 @@ void ADCPostProcessingCallback(void) {
                  
                 Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
                 Avg_Power = Vrms * Irms;
+                Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
                 
             }
             
@@ -349,6 +353,7 @@ void ADCPostProcessingCallback(void) {
                 Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
                 Vrms = peakToRMS(Vpk_const, 0.0);
                 Avg_Power = Vrms * Irms;
+                Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
                 
             }
 

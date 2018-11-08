@@ -21534,6 +21534,12 @@ extern void (*TMR6_InterruptHandler)(void);
 # 844
 void TMR6_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21639,12 +21645,6 @@ void ADCC_ThresholdISR(void);
 # 880
 void ADCC_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 250 "mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);
 
@@ -21686,7 +21686,19 @@ uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
 
-# 75 "mcc_generated_files/hlvd.h"
+# 40 "mcc_generated_files/../double_to_EEPROM.h"
+typedef union {
+double double_t;
+unsigned char byte_array_t[sizeof(double)];
+} double_bytes_t;
+
+
+void writeDoubleToEEPROM(double input_double, uint16_t starting_address);
+
+
+double readDoubleFromEEPROM(uint16_t starting_address);
+
+# 77 "mcc_generated_files/hlvd.h"
 typedef enum
 {
 HLVD_TRIP_POINT_1p85v = 0,
@@ -21707,28 +21719,29 @@ HLVD_TRIP_POINT_4p83 = 14,
 
 }HLVD_TRIP_POINTS;
 
-extern volatile bit VCC_overvoltage_flag;
+extern const uint16_t Total_Energy_address;
+extern volatile double Total_Energy;
 
-# 140
+# 144
 void HLVD_Initialize(void);
 
-# 179
+# 183
 void HLVD_Enable(void);
 
-# 202
+# 206
 void HLVD_Disable(void);
 
-# 224
+# 228
 bool HLVD_IsBandGapVoltageStable(void);
 
-# 246
+# 250
 void HLVD_TripPointSetup(bool Negative_Trip,bool Positive_Trip,
 HLVD_TRIP_POINTS trip_points);
 
-# 269
+# 273
 bool HLVD_OutputStatusGet(void);
 
-# 286
+# 290
 void HLVD_ISR(void);
 
 # 100 "mcc_generated_files/tmr7.h"
@@ -21886,6 +21899,9 @@ INTCONbits.IPEN = 1;
 
 
 
+IPR2bits.HLVDIP = 1;
+
+
 IPR0bits.INT0IP = 1;
 
 
@@ -21907,15 +21923,16 @@ IPR3bits.TX2IP = 0;
 
 IPR5bits.TMR7IP = 0;
 
-
-IPR2bits.HLVDIP = 0;
-
 }
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
 
-if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
+if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+{
+HLVD_ISR();
+}
+else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
 {
 INT0_ISR();
 }
@@ -21951,10 +21968,6 @@ EUSART2_TxDefaultInterruptHandler();
 else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
 {
 TMR7_ISR();
-}
-else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-{
-HLVD_ISR();
 }
 else
 {
