@@ -57,10 +57,7 @@ void  INTERRUPT_Initialize (void)
     // Assign peripheral interrupt priority vectors
 
     // TMRI - high priority
-    IPR5bits.TMR4IP = 1;
-
-    // HLVDI - high priority
-    IPR2bits.HLVDIP = 1;
+    IPR5bits.TMR7IP = 1;
 
     // INT0I - high priority
     IPR0bits.INT0IP = 1;
@@ -71,9 +68,9 @@ void  INTERRUPT_Initialize (void)
     // TMRI - high priority
     IPR5bits.TMR5IP = 1;
 
-    // ADTI - high priority
-    IPR1bits.ADTIP = 1;
 
+    // ADTI - low priority
+    IPR1bits.ADTIP = 0;    
 
     // TMRI - low priority
     IPR5bits.TMR6IP = 0;    
@@ -82,20 +79,16 @@ void  INTERRUPT_Initialize (void)
     IPR3bits.TX2IP = 0;    
 
     // TMRI - low priority
-    IPR5bits.TMR7IP = 0;    
+    IPR5bits.TMR4IP = 0;    
 
 }
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
    // interrupt handler
-    if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
+    if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
     {
-        TMR4_ISR();
-    }
-    else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-    {
-        HLVD_ISR();
+        TMR7_ISR();
     }
     else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
     {
@@ -109,10 +102,6 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     {
         TMR5_ISR();
     }
-    else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
-    {
-        ADCC_ThresholdISR();
-    }
     else
     {
         //Unhandled Interrupt
@@ -122,7 +111,11 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
 {
     // interrupt handler
-    if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
+    if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
+    {
+        ADCC_ThresholdISR();
+    }
+    else if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
     {
         TMR6_ISR();
     }
@@ -130,9 +123,9 @@ void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
     {
         EUSART2_TxDefaultInterruptHandler();
     }
-    else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
+    else if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
     {
-        TMR7_ISR();
+        TMR4_ISR();
     }
     else
     {

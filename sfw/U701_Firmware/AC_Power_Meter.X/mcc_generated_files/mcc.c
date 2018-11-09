@@ -70,8 +70,8 @@ void OSCILLATOR_Initialize(void)
     OSCCON1 = 0x20;
     // CSWHOLD may proceed; SOSCPWR Low power; 
     OSCCON3 = 0x00;
-    // MFOEN disabled; LFOEN disabled; ADOEN disabled; SOSCEN disabled; EXTOEN disabled; HFOEN disabled; 
-    OSCEN = 0x00;
+    // MFOEN enabled; LFOEN enabled; ADOEN enabled; SOSCEN disabled; EXTOEN enabled; HFOEN enabled; 
+    OSCEN = 0xF4;
     // HFFRQ 4_MHz; 
     OSCFRQ = 0x02;
     // TUN 0; 
@@ -84,8 +84,8 @@ void OSCILLATOR_Initialize(void)
 
 void PMD_Initialize(void)
 {
-    // CLKRMD CLKR disabled; SYSCMD SYSCLK enabled; SCANMD SCANNER disabled; FVRMD FVR enabled; IOCMD IOC enabled; CRCMD CRC disabled; HLVDMD HLVD enabled; NVMMD NVM enabled; 
-    PMD0 = 0x1A;
+    // CLKRMD CLKR enabled; SYSCMD SYSCLK enabled; SCANMD SCANNER disabled; FVRMD FVR enabled; IOCMD IOC enabled; CRCMD CRC disabled; HLVDMD HLVD enabled; NVMMD NVM enabled; 
+    PMD0 = 0x18;
     // TMR0MD TMR0 enabled; TMR1MD TMR1 enabled; TMR4MD TMR4 enabled; TMR5MD TMR5 enabled; TMR2MD TMR2 enabled; TMR3MD TMR3 enabled; TMR6MD TMR6 enabled; TMR7MD TMR7 enabled; 
     PMD1 = 0x00;
     // DSMMD DSM disabled; SMU1MD SMT1 disabled; SMU2MD SMT2 disabled; CWG1MD CWG1 disabled; TMR8MD TMR8 enabled; 

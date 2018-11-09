@@ -819,31 +819,31 @@ void ringBufferLUT(char * line) {
 
     }
     
-    // Hidden ascii art for my own entertainment
-    else if ((0 == strcmp(line, "Easter Egg"))) {
-
-        terminal_printNewline();
-        terminal_textAttributes(BLACK, RED, NORMAL);
-        printf(
-"                    _   ___   ___                      __  __     _                          _   ___  _      \n\r"               
-"   /_\\ / __| | _ \\_____ __ _____ _ _  |  \\/  |___| |_ ___ _ _   __ _ _ _  __| | |   \\(_)_ __  _ __  ___ _ _ \n\r"
-"  / _ \\ (__  |  _/ _ \\ V  V / -_) '_| | |\\/| / -_)  _/ -_) '_| / _` | ' \\/ _` | | |) | | '  \\| '  \\/ -_) '_|\n\r"
-" /_/ \\_\\___| |_| \\___/\\_/\\_/\\___|_|   |_|  |_\\___|\\__\\___|_|   \\__,_|_||_\\__,_| |___/|_|_|_|_|_|_|_\\___|_|  \n\r"
-                                                                                                            
-                
-    );
-        
-        terminal_printNewline();
-        terminal_textAttributes(YELLOW, BLUE, NORMAL);
-        printf("Marquette University EECE\n\r");
-        terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("ELEN 3035 Final Project\n\r");
-        printf("Drew Maatman and Gabe Thalji\n\r");
-        terminal_textAttributes(RED, BLACK, BOLD);
-        printf("PSOCs SUCK\n\r");
-        terminal_textAttributesReset();
-        terminal_printNewline();
-        
-    }
+//    // Hidden ascii art for my own entertainment
+//    else if ((0 == strcmp(line, "Easter Egg"))) {
+//
+//        terminal_printNewline();
+//        terminal_textAttributes(BLACK, RED, NORMAL);
+//        printf(
+//"                    _   ___   ___                      __  __     _                          _   ___  _      \n\r"               
+//"   /_\\ / __| | _ \\_____ __ _____ _ _  |  \\/  |___| |_ ___ _ _   __ _ _ _  __| | |   \\(_)_ __  _ __  ___ _ _ \n\r"
+//"  / _ \\ (__  |  _/ _ \\ V  V / -_) '_| | |\\/| / -_)  _/ -_) '_| / _` | ' \\/ _` | | |) | | '  \\| '  \\/ -_) '_|\n\r"
+//" /_/ \\_\\___| |_| \\___/\\_/\\_/\\___|_|   |_|  |_\\___|\\__\\___|_|   \\__,_|_||_\\__,_| |___/|_|_|_|_|_|_|_\\___|_|  \n\r"
+//                                                                                                            
+//                
+//    );
+//        
+//        terminal_printNewline();
+//        terminal_textAttributes(YELLOW, BLUE, NORMAL);
+//        printf("Marquette University EECE\n\r");
+//        terminal_textAttributes(GREEN, BLACK, NORMAL);
+//        printf("ELEN 3035 Final Project\n\r");
+//        printf("Drew Maatman and Gabe Thalji\n\r");
+//        terminal_textAttributes(RED, BLACK, BOLD);
+//        printf("PSOCs SUCK\n\r");
+//        terminal_textAttributesReset();
+//        terminal_printNewline();
+//        
+//    }
     
 }

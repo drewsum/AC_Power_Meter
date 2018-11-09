@@ -52,14 +52,14 @@
 
 // CONFIG1H
 #pragma config CLKOUTEN = OFF    // Clock Out Enable bit->CLKOUT function is disabled
-#pragma config CSWEN = OFF    // Clock Switch Enable bit->The NOSC and NDIV bits cannot be changed by user software
+#pragma config CSWEN = ON    // Clock Switch Enable bit->Writing to NOSC and NDIV is allowed
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable bit->Fail-Safe Clock Monitor enabled
 
 // CONFIG2L
 #pragma config MCLRE = EXTMCLR    // Master Clear Enable bit->If LVP = 0, MCLR pin is MCLR; If LVP = 1, RE3 pin function is MCLR 
 #pragma config PWRTE = ON    // Power-up Timer Enable bit->Power up timer enabled
 #pragma config LPBOREN = OFF    // Low-power BOR enable bit->ULPBOR disabled
-#pragma config BOREN = ON    // Brown-out Reset Enable bits->Brown-out Reset enabled according to SBOREN
+#pragma config BOREN = SBORDIS    // Brown-out Reset Enable bits->Brown-out Reset enabled , SBOREN bit is ignored
 
 // CONFIG2H
 #pragma config BORV = VBOR_190    // Brown Out Reset Voltage selection bits->Brown-out Reset Voltage (VBOR) set to 1.90V
@@ -78,21 +78,21 @@
 #pragma config WDTCCS = LFINTOSC    // WDT input clock selector->WDT reference clock is the 31.0 kHz LFINTOSC
 
 // CONFIG4L
-#pragma config WRT0 = ON    // Write Protection Block 0->Block 0 (000800-003FFFh) write-protected
-#pragma config WRT1 = ON    // Write Protection Block 1->Block 1 (004000-007FFFh) write-protected
-#pragma config WRT2 = ON    // Write Protection Block 2->Block 2 (008000-00BFFFh) write-protected
-#pragma config WRT3 = ON    // Write Protection Block 3->Block 3 (00C000-00FFFFh) write-protected
-#pragma config WRT4 = ON    // Write Protection Block 3->Block 4 (010000-013FFFh) write-protected
-#pragma config WRT5 = ON    // Write Protection Block 3->Block 5 (014000-017FFFh) write-protected
-#pragma config WRT6 = ON    // Write Protection Block 3->Block 6 (018000-01BFFFh) write-protected
-#pragma config WRT7 = ON    // Write Protection Block 3->Block 7 (01C000-01FFFFh) write-protected
+#pragma config WRT0 = OFF    // Write Protection Block 0->Block 0 (000800-003FFFh) not write-protected
+#pragma config WRT1 = OFF    // Write Protection Block 1->Block 1 (004000-007FFFh) not write-protected
+#pragma config WRT2 = OFF    // Write Protection Block 2->Block 2 (008000-00BFFFh) not write-protected
+#pragma config WRT3 = OFF    // Write Protection Block 3->Block 3 (00C000-00FFFFh) not write-protected
+#pragma config WRT4 = OFF    // Write Protection Block 3->Block 4 (010000-013FFFh) not write-protected
+#pragma config WRT5 = OFF    // Write Protection Block 3->Block 5 (014000-017FFFh) not write-protected
+#pragma config WRT6 = OFF    // Write Protection Block 3->Block 6 (018000-01BFFFh) not write-protected
+#pragma config WRT7 = OFF    // Write Protection Block 3->Block 7 (01C000-01FFFFh) not write-protected
 
 // CONFIG4H
-#pragma config WRTC = ON    // Configuration Register Write Protection bit->Configuration registers (300000-30000Bh) write-protected
-#pragma config WRTB = ON    // Boot Block Write Protection bit->Boot Block (000000-0007FFh) write-protected
+#pragma config WRTC = OFF    // Configuration Register Write Protection bit->Configuration registers (300000-30000Bh) not write-protected
+#pragma config WRTB = OFF    // Boot Block Write Protection bit->Boot Block (000000-0007FFh) not write-protected
 #pragma config WRTD = OFF    // Data EEPROM Write Protection bit->Data EEPROM not write-protected
 #pragma config SCANE = OFF    // Scanner Enable bit->Scanner module is NOT available for use, SCANMD bit is ignored
-#pragma config LVP = ON    // Low Voltage Programming Enable bit->Low voltage programming enabled. MCLR/VPP pin function is MCLR. MCLRE configuration bit is ignored
+#pragma config LVP = OFF    // Low Voltage Programming Enable bit->HV on MCLR/VPP must be used for programming
 
 // CONFIG5L
 #pragma config CP = OFF    // UserNVM Program Memory Code Protection bit->UserNVM code protection disabled

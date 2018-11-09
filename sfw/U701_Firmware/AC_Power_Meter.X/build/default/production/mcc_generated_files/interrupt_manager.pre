@@ -21711,12 +21711,6 @@ extern void (*TMR4_InterruptHandler)(void);
 # 862
 void TMR4_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21821,6 +21815,12 @@ void ADCC_ThresholdISR(void);
 
 # 880
 void ADCC_DefaultInterruptHandler(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -22076,10 +22076,7 @@ INTCONbits.IPEN = 1;
 
 
 
-IPR5bits.TMR4IP = 1;
-
-
-IPR2bits.HLVDIP = 1;
+IPR5bits.TMR7IP = 1;
 
 
 IPR0bits.INT0IP = 1;
@@ -22091,8 +22088,8 @@ IPR3bits.RC2IP = 1;
 IPR5bits.TMR5IP = 1;
 
 
-IPR1bits.ADTIP = 1;
 
+IPR1bits.ADTIP = 0;
 
 
 IPR5bits.TMR6IP = 0;
@@ -22101,20 +22098,16 @@ IPR5bits.TMR6IP = 0;
 IPR3bits.TX2IP = 0;
 
 
-IPR5bits.TMR7IP = 0;
+IPR5bits.TMR4IP = 0;
 
 }
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
 
-if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
+if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
 {
-TMR4_ISR();
-}
-else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-{
-HLVD_ISR();
+TMR7_ISR();
 }
 else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
 {
@@ -22128,10 +22121,6 @@ else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
 {
 TMR5_ISR();
 }
-else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
-{
-ADCC_ThresholdISR();
-}
 else
 {
 
@@ -22141,7 +22130,11 @@ else
 void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
 {
 
-if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
+if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
+{
+ADCC_ThresholdISR();
+}
+else if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
 {
 TMR6_ISR();
 }
@@ -22149,9 +22142,9 @@ else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
 {
 EUSART2_TxDefaultInterruptHandler();
 }
-else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
+else if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
 {
-TMR7_ISR();
+TMR4_ISR();
 }
 else
 {

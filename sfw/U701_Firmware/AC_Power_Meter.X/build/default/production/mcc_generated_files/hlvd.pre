@@ -21464,13 +21464,7 @@ void HLVD_ISR(void)
 PIR2bits.HLVDIF = 0;
 
 
-SBOREN = 0;
-
-
 writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
-
-
-SBOREN = 1;
 
 }
 

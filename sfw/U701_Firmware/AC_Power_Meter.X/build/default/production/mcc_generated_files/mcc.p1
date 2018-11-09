@@ -16205,8 +16205,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr4.h: 826: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr4.h: 844: extern void (*TMR4_InterruptHandler)(void);
 [; ;tmr4.h: 862: void TMR4_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 72: typedef uint16_t adc_result_t;
 [; ;adcc.h: 89: typedef enum
 [; ;adcc.h: 90: {
@@ -16248,6 +16246,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 862: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16424,9 +16424,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 72: OSCCON3 = 0x00;
 "72
 [e = _OSCCON3 -> -> 0 `i `uc ]
-[; ;mcc.c: 74: OSCEN = 0x00;
+[; ;mcc.c: 74: OSCEN = 0xF4;
 "74
-[e = _OSCEN -> -> 0 `i `uc ]
+[e = _OSCEN -> -> 244 `i `uc ]
 [; ;mcc.c: 76: OSCFRQ = 0x02;
 "76
 [e = _OSCFRQ -> -> 2 `i `uc ]
@@ -16459,9 +16459,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 86: {
 [e :U _PMD_Initialize ]
 [f ]
-[; ;mcc.c: 88: PMD0 = 0x1A;
+[; ;mcc.c: 88: PMD0 = 0x18;
 "88
-[e = _PMD0 -> -> 26 `i `uc ]
+[e = _PMD0 -> -> 24 `i `uc ]
 [; ;mcc.c: 90: PMD1 = 0x00;
 "90
 [e = _PMD1 -> -> 0 `i `uc ]

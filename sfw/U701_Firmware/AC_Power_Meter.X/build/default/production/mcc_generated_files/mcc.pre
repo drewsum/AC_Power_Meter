@@ -21711,12 +21711,6 @@ extern void (*TMR4_InterruptHandler)(void);
 # 862
 void TMR4_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 72 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
@@ -21821,6 +21815,12 @@ void ADCC_ThresholdISR(void);
 
 # 880
 void ADCC_DefaultInterruptHandler(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -22092,7 +22092,7 @@ OSCCON1 = 0x20;
 
 OSCCON3 = 0x00;
 
-OSCEN = 0x00;
+OSCEN = 0xF4;
 
 OSCFRQ = 0x02;
 
@@ -22106,7 +22106,7 @@ while(PLLR == 0)
 void PMD_Initialize(void)
 {
 
-PMD0 = 0x1A;
+PMD0 = 0x18;
 
 PMD1 = 0x00;
 
