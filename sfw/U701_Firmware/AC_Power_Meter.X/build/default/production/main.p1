@@ -104,9 +104,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17675 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
 [v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17675 ]
-[v F17603 `(v ~T0 @X0 0 tf ]
+[v F17583 `(v ~T0 @X0 0 tf ]
 "319 mcc_generated_files/ext_int.h
-[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17603 ]
+[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17583 ]
 [v F17335 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr5.h
 [v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17335 ]
@@ -16340,6 +16340,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16348,12 +16354,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16646,9 +16646,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "78
 [v _Temp_ADC_Offset `Vd ~T0 @X0 1 e ]
 [i _Temp_ADC_Offset
-.631.993725
+-U .267.409
 ]
-[; ;main.c: 78: volatile double Temp_ADC_Offset = 631.993725;
+[; ;main.c: 78: volatile double Temp_ADC_Offset = -267.409;
 "79
 [v _Vpk_const `d ~T0 @X0 1 e ]
 [i _Vpk_const
@@ -16685,9 +16685,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "88
 [v _TRIAC_Firing_Angle `Vd ~T0 @X0 1 e ]
 [i _TRIAC_Firing_Angle
-.90.0
+.1.57
 ]
-[; ;main.c: 88: volatile double TRIAC_Firing_Angle = 90.0;
+[; ;main.c: 88: volatile double TRIAC_Firing_Angle = 1.57;
 "92
 [v _dimming_period `Vui ~T0 @X0 1 e ]
 [i _dimming_period
@@ -17306,9 +17306,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 396: case channel_Temp:
 "396
 [e :U 2048 ]
-[; ;main.c: 398: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+[; ;main.c: 398: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
 "398
-[e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetFilterValue ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
+[e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetConversionResult ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
 [; ;main.c: 400: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 "400
 [e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2049  ]
@@ -17441,116 +17441,128 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 476: void writeEnergyToEEPROMCallback(void) {
 [e :U _writeEnergyToEEPROMCallback ]
 [f ]
-[; ;main.c: 478: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 "478
-[e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
-[; ;main.c: 480: }
+[v _current_value `d ~T0 @X0 1 a ]
+[; ;main.c: 478: double current_value = readDoubleFromEEPROM(Total_Energy_address);
+[e = _current_value ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
+[; ;main.c: 480: if (Total_Energy > current_value) {
 "480
+[e $ ! > _Total_Energy _current_value 2055  ]
+{
+[; ;main.c: 482: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+"482
+[e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
+"484
+}
+[e :U 2055 ]
+[; ;main.c: 484: }
+[; ;main.c: 486: }
+"486
 [e :UE 2054 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"487
+"493
 [v _main `(v ~T0 @X0 1 ef ]
-"488
+"494
 {
-[; ;main.c: 487: void main(void)
-[; ;main.c: 488: {
+[; ;main.c: 493: void main(void)
+[; ;main.c: 494: {
 [e :U _main ]
 [f ]
-[; ;main.c: 491: reset_cause = getCauseOfReset();
-"491
+[; ;main.c: 497: reset_cause = getCauseOfReset();
+"497
 [e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 495: _delay((unsigned long)((250)*(64000000/4000.0)));
-"495
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 498: SYSTEM_Initialize();
-"498
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 501: LATGbits.LATG0 = 0;
+[; ;main.c: 501: _delay((unsigned long)((250)*(64000000/4000.0)));
 "501
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 502: LATGbits.LATG1 = 0;
-"502
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 503: load_enable = 0;
-"503
-[e = _load_enable -> -> 0 `i `b ]
-[; ;main.c: 506: ADCON2bits.ADCRS = 7;
-"506
-[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
-[; ;main.c: 507: ADCAP = 20;
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 504: SYSTEM_Initialize();
+"504
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 507: LATGbits.LATG0 = 0;
 "507
-[e = _ADCAP -> -> 20 `i `uc ]
-[; ;main.c: 510: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"510
-[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 513: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 508: LATGbits.LATG1 = 0;
+"508
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 509: load_enable = 0;
+"509
+[e = _load_enable -> -> 0 `i `b ]
+[; ;main.c: 512: ADCON2bits.ADCRS = 7;
+"512
+[e = . . _ADCON2bits 0 2 -> -> 7 `i `uc ]
+[; ;main.c: 513: ADCAP = 20;
 "513
-[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
-[; ;main.c: 516: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+[e = _ADCAP -> -> 20 `i `uc ]
+[; ;main.c: 516: TMR6_SetInterruptHandler(heartbeatTimerCallback);
 "516
-[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 519: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
+[; ;main.c: 519: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
 "519
-[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
-[; ;main.c: 522: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
+[; ;main.c: 522: TMR7_SetInterruptHandler(acquisitionTimerCallback);
 "522
-[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
-[; ;main.c: 525: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 525: INT0_SetInterruptHandler(dimmingOffTimeCallback);
 "525
-[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
-[; ;main.c: 528: TMR5_StopTimer();
+[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
+[; ;main.c: 528: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
 "528
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 531: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+"531
+[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
+[; ;main.c: 534: TMR5_StopTimer();
+"534
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 529: PIE0bits.INT0IE = 0;
-"529
-[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 532: recoverSRAMMaxFromEEPROM();
-"532
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 535: (INTCONbits.GIEH = 1);
+[; ;main.c: 535: PIE0bits.INT0IE = 0;
 "535
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 538: (INTCONbits.GIEL = 1);
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 538: recoverSRAMMaxFromEEPROM();
 "538
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 541: terminal_clearTerminal();
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 541: (INTCONbits.GIEH = 1);
 "541
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 542: terminal_setCursorHome();
-"542
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 543: terminal_textAttributesReset();
-"543
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 546: while (1)
-"546
-[e :U 2057 ]
-[; ;main.c: 547: {
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 544: (INTCONbits.GIEL = 1);
+"544
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 547: terminal_clearTerminal();
 "547
-{
-[; ;main.c: 550: if (eusart2RxStringReady) {
-"550
-[e $ ! _eusart2RxStringReady 2059  ]
-{
-[; ;main.c: 552: terminal_ringBufferPull();
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 548: terminal_setCursorHome();
+"548
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 549: terminal_textAttributesReset();
+"549
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 552: while (1)
 "552
-[e ( _terminal_ringBufferPull ..  ]
-"554
-}
-[e :U 2059 ]
-[; ;main.c: 554: }
-[; ;main.c: 557: saveSRAMMaxToEEPROM();
-"557
-[e ( _saveSRAMMaxToEEPROM ..  ]
-"559
-}
-[e :U 2056 ]
-"546
-[e $U 2057  ]
 [e :U 2058 ]
-[; ;main.c: 559: }
-[; ;main.c: 560: }
+[; ;main.c: 553: {
+"553
+{
+[; ;main.c: 556: if (eusart2RxStringReady) {
+"556
+[e $ ! _eusart2RxStringReady 2060  ]
+{
+[; ;main.c: 558: terminal_ringBufferPull();
+"558
+[e ( _terminal_ringBufferPull ..  ]
 "560
-[e :UE 2055 ]
+}
+[e :U 2060 ]
+[; ;main.c: 560: }
+[; ;main.c: 563: saveSRAMMaxToEEPROM();
+"563
+[e ( _saveSRAMMaxToEEPROM ..  ]
+"565
+}
+[e :U 2057 ]
+"552
+[e $U 2058  ]
+[e :U 2059 ]
+[; ;main.c: 565: }
+[; ;main.c: 566: }
+"566
+[e :UE 2056 ]
 }

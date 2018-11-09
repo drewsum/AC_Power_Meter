@@ -21822,6 +21822,24 @@ void FVR_Initialize(void);
 # 127
 bool FVR_IsOutputReady(void);
 
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT0_ISR(void);
+
+# 296
+void INT0_CallBack(void);
+
+# 319
+void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT0_InterruptHandler)(void);
+
+# 367
+void INT0_DefaultInterruptHandler(void);
+
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
 
@@ -21844,24 +21862,6 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT0_ISR(void);
-
-# 296
-void INT0_CallBack(void);
-
-# 319
-void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT0_InterruptHandler)(void);
-
-# 367
-void INT0_DefaultInterruptHandler(void);
 
 # 40 "mcc_generated_files/../double_to_EEPROM.h"
 typedef union {
@@ -22076,7 +22076,10 @@ INTCONbits.IPEN = 1;
 
 
 
-IPR5bits.TMR7IP = 1;
+IPR5bits.TMR4IP = 1;
+
+
+IPR2bits.HLVDIP = 1;
 
 
 IPR0bits.INT0IP = 1;
@@ -22088,8 +22091,8 @@ IPR3bits.RC2IP = 1;
 IPR5bits.TMR5IP = 1;
 
 
+IPR1bits.ADTIP = 1;
 
-IPR1bits.ADTIP = 0;
 
 
 IPR5bits.TMR6IP = 0;
@@ -22098,16 +22101,20 @@ IPR5bits.TMR6IP = 0;
 IPR3bits.TX2IP = 0;
 
 
-IPR5bits.TMR4IP = 0;
+IPR5bits.TMR7IP = 0;
 
 }
 
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
 
-if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
+if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
 {
-TMR7_ISR();
+TMR4_ISR();
+}
+else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+{
+HLVD_ISR();
 }
 else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
 {
@@ -22121,6 +22128,10 @@ else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
 {
 TMR5_ISR();
 }
+else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
+{
+ADCC_ThresholdISR();
+}
 else
 {
 
@@ -22130,11 +22141,7 @@ else
 void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
 {
 
-if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
-{
-ADCC_ThresholdISR();
-}
-else if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
+if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
 {
 TMR6_ISR();
 }
@@ -22142,9 +22149,9 @@ else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
 {
 EUSART2_TxDefaultInterruptHandler();
 }
-else if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
+else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
 {
-TMR4_ISR();
+TMR7_ISR();
 }
 else
 {

@@ -75,7 +75,7 @@ volatile double ADC_Result_Scaling;             // Scaling factor on ADC measure
 volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
 volatile double POS12_ADC_Result;               // POS12 Measurement in volts
 volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
-volatile double Temp_ADC_Offset = 631.993725;     // Temp ADC result offset in degrees centigrade
+volatile double Temp_ADC_Offset = -267.409;     // Temp ADC result offset in degrees centigrade
 double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2) * 120
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
@@ -85,7 +85,7 @@ volatile double Irms;                           // RMS output current in amps
 volatile double Vrms;                           // Calculated RMS output voltage in volts
 volatile double Avg_Power;                      // Calculated output power in watts
 volatile double Total_Energy;                   // Calculated energy in Watt Hours
-volatile double TRIAC_Firing_Angle = 90.0;      // firing angle in radians
+volatile double TRIAC_Firing_Angle = 1.57;      // firing angle in radians
 
 
 // more global variables
@@ -395,7 +395,7 @@ void ADCPostProcessingCallback(void) {
         // Internal temperature indicator ADC post processing
         case channel_Temp:
             
-            Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+            Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
             
             if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
              
@@ -474,8 +474,14 @@ void dimmingOnTimeCallback(void) {
 // This function should be called at a fixed but extremely low frequency
 // to avoid NVM burnout
 void writeEnergyToEEPROMCallback(void) {
- 
-    writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+
+    double current_value = readDoubleFromEEPROM(Total_Energy_address);
+    
+    if (Total_Energy > current_value) {
+        
+        writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+    
+    }
     
 }
 

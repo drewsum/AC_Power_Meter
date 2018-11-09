@@ -16248,6 +16248,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16256,12 +16262,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16424,9 +16424,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 72: OSCCON3 = 0x00;
 "72
 [e = _OSCCON3 -> -> 0 `i `uc ]
-[; ;mcc.c: 74: OSCEN = 0xF4;
+[; ;mcc.c: 74: OSCEN = 0x00;
 "74
-[e = _OSCEN -> -> 244 `i `uc ]
+[e = _OSCEN -> -> 0 `i `uc ]
 [; ;mcc.c: 76: OSCFRQ = 0x02;
 "76
 [e = _OSCFRQ -> -> 2 `i `uc ]
@@ -16459,9 +16459,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 86: {
 [e :U _PMD_Initialize ]
 [f ]
-[; ;mcc.c: 88: PMD0 = 0x18;
+[; ;mcc.c: 88: PMD0 = 0x1A;
 "88
-[e = _PMD0 -> -> 24 `i `uc ]
+[e = _PMD0 -> -> 26 `i `uc ]
 [; ;mcc.c: 90: PMD1 = 0x00;
 "90
 [e = _PMD1 -> -> 0 `i `uc ]

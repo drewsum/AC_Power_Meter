@@ -39,6 +39,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "105 mcc_generated_files/hlvd.c
 [c E17339 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 .. ]
 [n E17339 . HLVD_TRIP_POINT_1p85v HLVD_TRIP_POINT_2p06v HLVD_TRIP_POINT_2p26v HLVD_TRIP_POINT_2p47v HLVD_TRIP_POINT_2p57v HLVD_TRIP_POINT_2p78v HLVD_TRIP_POINT_2p88v HLVD_TRIP_POINT_3p09v HLVD_TRIP_POINT_3p4v HLVD_TRIP_POINT_3p6v HLVD_TRIP_POINT_3p71v HLVD_TRIP_POINT_3p91v HLVD_TRIP_POINT_4p12v HLVD_TRIP_POINT_4p32v HLVD_TRIP_POINT_4p83  ]
+"44809 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[v _SBOREN `Vb ~T0 @X0 0 e@29279 ]
 "46 mcc_generated_files/../double_to_EEPROM.h
 [v _writeDoubleToEEPROM `(v ~T0 @X0 0 ef2`d`ui ]
 "98 mcc_generated_files/hlvd.h
@@ -16242,10 +16244,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hlvd.c: 124: PIR2bits.HLVDIF = 0;
 "124
 [e = . . _PIR2bits 0 5 -> -> 0 `i `uc ]
-[; ;hlvd.c: 127: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+[; ;hlvd.c: 127: SBOREN = 0;
 "127
+[e = _SBOREN -> -> 0 `i `b ]
+[; ;hlvd.c: 130: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+"130
 [e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
-[; ;hlvd.c: 129: }
-"129
+[; ;hlvd.c: 133: SBOREN = 1;
+"133
+[e = _SBOREN -> -> 1 `i `b ]
+[; ;hlvd.c: 135: }
+"135
 [e :UE 2018 ]
 }

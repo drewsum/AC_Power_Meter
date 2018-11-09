@@ -21822,6 +21822,24 @@ void FVR_Initialize(void);
 # 127
 bool FVR_IsOutputReady(void);
 
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT0_ISR(void);
+
+# 296
+void INT0_CallBack(void);
+
+# 319
+void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT0_InterruptHandler)(void);
+
+# 367
+void INT0_DefaultInterruptHandler(void);
+
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
 
@@ -21844,24 +21862,6 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
-
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT0_ISR(void);
-
-# 296
-void INT0_CallBack(void);
-
-# 319
-void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT0_InterruptHandler)(void);
-
-# 367
-void INT0_DefaultInterruptHandler(void);
 
 # 40 "mcc_generated_files/../double_to_EEPROM.h"
 typedef union {
@@ -22320,7 +22320,7 @@ volatile double ADC_Result_Scaling;
 volatile double POS3P3_ADC_Result;
 volatile double POS12_ADC_Result;
 volatile double Temp_ADC_Result;
-volatile double Temp_ADC_Offset = 631.993725;
+volatile double Temp_ADC_Offset = -267.409;
 double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
@@ -22330,7 +22330,7 @@ volatile double Irms;
 volatile double Vrms;
 volatile double Avg_Power;
 volatile double Total_Energy;
-volatile double TRIAC_Firing_Angle = 90.0;
+volatile double TRIAC_Firing_Angle = 1.57;
 
 
 
@@ -22630,7 +22630,7 @@ break;
 
 case channel_Temp:
 
-Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetFilterValue()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
 
 if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 
@@ -22710,11 +22710,17 @@ PIE5bits.TMR5IE = 0;
 
 void writeEnergyToEEPROMCallback(void) {
 
+double current_value = readDoubleFromEEPROM(Total_Energy_address);
+
+if (Total_Energy > current_value) {
+
 writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 
 }
 
-# 487
+}
+
+# 493
 void main(void)
 {
 
