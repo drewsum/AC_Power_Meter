@@ -21862,10 +21862,10 @@ extern void (*TMR4_InterruptHandler)(void);
 # 862
 void TMR4_DefaultInterruptHandler(void);
 
-# 72 "mcc_generated_files/adcc.h"
+# 74 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
-# 89
+# 91
 typedef enum
 {
 ISNS_ADC = 0x0,
@@ -21877,94 +21877,94 @@ channel_DAC1 = 0x3E,
 channel_FVR_buf1 = 0x3F
 } adcc_channel_t;
 
-# 132
+# 134
 void ADCC_Initialize(void);
 
-# 161
+# 163
 void ADCC_StartConversion(adcc_channel_t channel);
 
-# 191
+# 193
 bool ADCC_IsConversionDone();
 
-# 223
+# 225
 adc_result_t ADCC_GetConversionResult(void);
 
-# 254
+# 256
 adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
 
-# 279
+# 281
 void ADCC_StopConversion(void);
 
-# 306
+# 308
 void ADCC_SetStopOnInterrupt(void);
 
-# 331
+# 333
 void ADCC_DischargeSampleCapacitor(void);
 
-# 357
+# 359
 void ADCC_LoadAcquisitionRegister(uint8_t);
 
-# 383
+# 385
 void ADCC_SetPrechargeTime(uint8_t);
 
-# 408
+# 410
 void ADCC_SetRepeatCount(uint8_t);
 
-# 436
+# 438
 uint8_t ADCC_GetCurrentCountofConversions(void);
 
-# 460
+# 462
 void ADCC_ClearAccumulator(void);
 
-# 485
+# 487
 uint16_t ADCC_GetAccumulatorValue(void);
 
-# 513
+# 515
 bool ADCC_HasAccumulatorOverflowed(void);
 
-# 538
+# 540
 uint16_t ADCC_GetFilterValue(void);
 
-# 566
+# 568
 uint16_t ADCC_GetPreviousResult(void);
 
-# 592
+# 594
 void ADCC_DefineSetPoint(uint16_t);
 
-# 618
+# 620
 void ADCC_SetUpperThreshold(uint16_t);
 
-# 644
+# 646
 void ADCC_SetLowerThreshold(uint16_t);
 
-# 671
+# 673
 uint16_t ADCC_GetErrorCalculation(void);
 
-# 698
+# 700
 void ADCC_EnableDoubleSampling(void);
 
-# 722
+# 724
 void ADCC_EnableContinuousConversion(void);
 
-# 746
+# 748
 void ADCC_DisableContinuousConversion(void);
 
-# 774
+# 776
 bool ADCC_HasErrorCrossedUpperThreshold(void);
 
-# 802
+# 804
 bool ADCC_HasErrorCrossedLowerThreshold(void);
 
-# 829
+# 831
 uint8_t ADCC_GetConversionStageStatus(void);
 
-# 846
+# 848
 void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
-# 862
+# 864
 void ADCC_ThresholdISR(void);
 
-# 880
+# 882
 void ADCC_DefaultInterruptHandler(void);
 
 # 93 "mcc_generated_files/fvr.h"
@@ -22168,42 +22168,42 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 79 "mcc_generated_files/eusart2.h"
+# 81 "mcc_generated_files/eusart2.h"
 extern volatile uint8_t eusart2TxBufferRemaining;
 extern volatile uint8_t eusart2RxCount;
 
-# 86
+# 88
 void (*EUSART2_TxDefaultInterruptHandler)(void);
 void (*EUSART2_RxDefaultInterruptHandler)(void);
 
-# 109
+# 111
 void EUSART2_Initialize(void);
 
-# 162
+# 164
 uint8_t EUSART2_is_tx_ready(void);
 
-# 214
+# 216
 uint8_t EUSART2_is_rx_ready(void);
 
-# 261
+# 263
 bool EUSART2_is_tx_done(void);
 
-# 281
+# 283
 uint8_t EUSART2_Read(void);
 
-# 301
+# 303
 void EUSART2_Write(uint8_t txData);
 
-# 322
+# 324
 void EUSART2_Transmit_ISR(void);
 
-# 343
+# 345
 void EUSART2_Receive_ISR(void);
 
-# 363
+# 365
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 
-# 383
+# 385
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 # 80 "mcc_generated_files/mcc.h"
@@ -22214,6 +22214,36 @@ void OSCILLATOR_Initialize(void);
 
 # 106
 void PMD_Initialize(void);
+
+# 41 "error_handling.h"
+struct error_struct {
+
+bool ISNS_ADC_error_flag;
+bool POS12_ADC_error_flag;
+bool POS3P3_ADC_error_flag;
+bool AVSS_ADC_error_flag;
+bool Temp_ADC_error_flag;
+bool FVR_ADC_error_flag;
+bool ADC_general_error_flag;
+bool I2C_COMM_error_flag;
+bool USB_UART_COMM_error_flag;
+
+} error_handler;
+
+
+bool getADCError(void);
+
+
+bool getCOMMError(void);
+
+
+void updateErrorLEDs(void);
+
+
+void clearADCErrors(void);
+
+
+void clearCOMMErrors(void);
 
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
 typedef unsigned short wchar_t;
@@ -22390,7 +22420,7 @@ reset_t getCauseOfReset(void);
 
 inline char * getCauseOfResetString(reset_t r);
 
-# 20 "ring_buffer_LUT.c"
+# 21 "ring_buffer_LUT.c"
 extern text_attribute_t attribute;
 extern text_color_t foreground_color;
 extern text_color_t background_color;
@@ -22410,7 +22440,6 @@ extern volatile double Avg_Power;
 extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
-extern volatile bit adc_error_flag;
 extern volatile double Total_Energy;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
@@ -22536,56 +22565,44 @@ terminal_textAttributesReset();
 }
 
 
-else if((0 == strcmp(line, "ADC Error?"))) {
+else if((0 == strcmp(line, "ADC Errors?"))) {
 
-if (adc_error_flag) {
+if (getADCError()) {
 
 terminal_textAttributes(RED, BLACK, NORMAL);
+printf("ADC error(s) detected!\n\r");
+printf("The following channels caused an ADC error:\n\r");
 
-
-current_adc_channel = ADPCH;
-
-
-char channel_name[22];
-
-switch (current_adc_channel) {
-
-case ISNS_ADC:
-strcpy(channel_name, "ISNS");
-break;
-
-case POS12_ADC:
-strcpy(channel_name, "POS12");
-break;
-
-case POS3P3_ADC:
-strcpy(channel_name, "POS3P3");
-break;
-
-case channel_VSS:
-strcpy(channel_name, "Internal AVSS");
-break;
-
-case channel_Temp:
-strcpy(channel_name, "Internal Temp");
-break;
-
-case channel_DAC1:
-strcpy(channel_name, "Internal DAC1");
-break;
-
-case channel_FVR_buf1:
-strcpy(channel_name, "Internal FVR Buffer 1");
-break;
-
-default:
-strcpy(channel_name, "Undefined");
-break;
-
+if (error_handler.ADC_general_error_flag) {
+printf("    General ADC error\n\r");
 }
 
+if (error_handler.AVSS_ADC_error_flag) {
+printf("    AVSS\n\r");
+}
 
-printf("The following channel caused an ADC error: %s\n\r", channel_name);
+if (error_handler.FVR_ADC_error_flag) {
+printf("    FVR\n\r");
+}
+
+if (error_handler.ISNS_ADC_error_flag) {
+printf("    ISNS\n\r");
+}
+
+if (error_handler.POS12_ADC_error_flag) {
+printf("    POS12\n\r");
+}
+
+if (error_handler.POS3P3_ADC_error_flag) {
+printf("    POS3P3\n\r");
+}
+
+if (error_handler.Temp_ADC_error_flag) {
+printf("    Die Temp\n\r");
+}
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
 terminal_textAttributesReset();
 
 }
@@ -22593,7 +22610,7 @@ terminal_textAttributesReset();
 else {
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("No ADC Error detected\n\r");
+printf("No ADC error(s) detected\n\r");
 terminal_textAttributesReset();
 
 }
@@ -22601,28 +22618,34 @@ terminal_textAttributesReset();
 }
 
 
-else if((0 == strcmp(line, "Clear ADC Error"))) {
+else if((0 == strcmp(line, "Clear ADC Errors"))) {
 
-LATFbits.LATF3 = 0;
-adc_error_flag = 0;
-
-PIE5bits.TMR7IE = 1;
-TMR7_StopTimer();
+clearADCErrors();
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("Clearing ADC Error\n\r");
+printf("ADC Error(s) cleared\n\r");
 terminal_textAttributesReset();
 
 }
 
 
-else if((0 == strcmp(line, "Comm Error?"))) {
+else if((0 == strcmp(line, "Comm Errors?"))) {
 
-if (LATFbits.LATF1 == 1) {
+if (getCOMMError()) {
 
 terminal_textAttributes(RED, BLACK, NORMAL);
-printf("Communications error detected!\n\r");
-printf("This could have been caused by UART (this interface) or I2C (OLED display interface)\n\r");
+printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+
+if (error_handler.I2C_COMM_error_flag) {
+printf("    OLED Display I2C\n\r");
+}
+
+if (error_handler.USB_UART_COMM_error_flag) {
+printf("    USB UART (this interface\n\r");
+}
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Call 'Clear COMM Errors' to clear communications error(s)\n\r");
 terminal_textAttributesReset();
 
 }
@@ -22630,18 +22653,19 @@ terminal_textAttributesReset();
 else {
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("No communications error detected\n\r");
+printf("No communications error(s) detected\n\r");
 terminal_textAttributesReset();
 
 }
 }
 
 
-else if((0 == strcmp(line, "Clear Comm Error"))) {
+else if((0 == strcmp(line, "Clear Comm Errors"))) {
 
-LATFbits.LATF1 = 0;
+clearCOMMErrors();
+
 terminal_textAttributes(GREEN, BLACK, NORMAL);
-printf("Communications error cleared\n\r");
+printf("Communications error(s) cleared\n\r");
 terminal_textAttributesReset();
 
 }
@@ -23061,10 +23085,10 @@ printf("List of supported Device Control Commands:\n\r"
 "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
 "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-"   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
-"   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-"   Comm Error?: Returns if a communications error has occurred\n\r"
-"   Clear Comm Error: Clears the communications error\n\r"
+"   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+"   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+"   Comm Errors?: Returns if a communications error has occurred\n\r"
+"   Clear Comm Errors: Clears the communications error\n\r"
 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
 "   Help: This message, lists supported commands\n\r\n\r"
 );
@@ -23149,10 +23173,10 @@ printf("List of all supported commands:\n\r"
 "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
 "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-"   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
-"   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-"   Comm Error?: Returns if a communications error has occurred\n\r"
-"   Clear Comm Error: Clears the communications error\n\r"
+"   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+"   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+"   Comm Errors?: Returns if a communications error has occurred\n\r"
+"   Clear Comm Errors: Clears the communications error\n\r"
 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
 "   Help: This message, lists supported commands\n\r\n\r"
 

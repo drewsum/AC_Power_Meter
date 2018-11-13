@@ -117,28 +117,15 @@ void OLED_Command(uint8_t temp) {
     
     // length = sizeof(data_array);
     length = 2;
-    
-    int timeout = 0;
-    while (OLED_I2C_Status != I2C1_MESSAGE_FAIL) {
-        
-        I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
-     
-        while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
-        
-        if (timeout == OLED_RETRY_MAX) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-        else {
-            timeout++;
-        }
-        
-        if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-        
-    }  
+
+    I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
+
+    while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
+
+    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+        error_handler.I2C_COMM_error_flag = true;
+    }
+
     
 }
 
@@ -154,29 +141,14 @@ void OLED_Data(uint8_t temp) {
     // length = sizeof(data_array);
     length = 2;
     
-    int timeout = 0;
-    while (OLED_I2C_Status != I2C1_MESSAGE_FAIL) {
-        
-        I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
-     
-        while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
-        
+    I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
 
-        if (timeout == OLED_RETRY_MAX) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-        else {
-            timeout++;
-        }
-        
-        if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-       
+    while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
+
+    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+        error_handler.I2C_COMM_error_flag = true;
     }
-    
+   
 }
 
 void OLED_Init(void) {
@@ -268,32 +240,17 @@ void OLED_PutChar(char ch) {
     
     // length = sizeof(data_array);
     length = 9;
-    
-    int timeout = 0;
-    while (OLED_I2C_Status != I2C1_MESSAGE_FAIL) {
         
-        I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
-     
-        while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
-        
-        if (timeout == OLED_RETRY_MAX) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-        else {
-            timeout++;
-        }
-        
-        if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
-            COMM_ERROR_PIN = HIGH;
-            break;
-        }
-       
+    I2C1_MasterWrite(data_array, length, OLED_ADDR, &OLED_I2C_Status);
+
+    while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
+
+    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+        error_handler.I2C_COMM_error_flag = true;
     }
 
 }
     
-
 void OLED_Clear(void) {
  
     for(uint16_t row = 0; row < 8; row++) {

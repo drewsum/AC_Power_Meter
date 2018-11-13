@@ -100,7 +100,10 @@ void ADCC_Initialize(void)
     // ADACQ 255; 
     ADACQ = 0xFF;
     
-
+    // Setup ADC digital filter
+    ADCON2bits.ADCRS = 7;           // Strongest filtering/lowest crossover frequency since we're measuring only DC signals (full send)
+    ADCAP            = 20;          // Add 20pF to ADC sampling capacitance
+    
     // Clear the ADC Threshold interrupt flag
     PIR1bits.ADTIF = 0;
     // Enabling ADCC threshold interrupt.

@@ -138,7 +138,7 @@ uint8_t EUSART2_Read(void)
     while(0 == eusart2RxCount)
     {
         CLRWDT();
-        COMM_ERROR_PIN = 1;
+        error_handler.USB_UART_COMM_error_flag = true;
     }
 
     readValue = eusart2RxBuffer[eusart2RxTail++];
@@ -157,7 +157,7 @@ void EUSART2_Write(uint8_t txData)
     while(0 == eusart2TxBufferRemaining)
     {
         CLRWDT();
-        COMM_ERROR_PIN = 1;
+        error_handler.USB_UART_COMM_error_flag = true;
     }
 
     if(0 == PIE3bits.TX2IE)
@@ -215,7 +215,7 @@ void EUSART2_Receive_ISR(void)
 
         RC2STAbits.CREN = 0;
         RC2STAbits.CREN = 1;
-        COMM_ERROR_PIN = 1;
+        error_handler.USB_UART_COMM_error_flag = true;
     }
 
     // buffer overruns are ignored

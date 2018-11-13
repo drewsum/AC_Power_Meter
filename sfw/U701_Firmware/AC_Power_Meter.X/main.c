@@ -47,6 +47,7 @@
 
 #include <math.h>
 
+#include "error_handling.h"
 #include "pin_macros.h"
 #include "device_IDs.h"
 #include "cause_of_reset.h"
@@ -95,7 +96,6 @@ volatile bit load_enable = 0;                   // Load enabled flag
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
-volatile bit adc_error_flag = 0;                // ADC error flag is set upon strange ADC results
 reset_t reset_cause;                            // The cause of the most recent reset
 adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
 
@@ -245,11 +245,7 @@ void ADCPostProcessingCallback(void) {
             
             if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.AVSS_ADC_error_flag = true;
                 return;
                 
             }
@@ -266,11 +262,7 @@ void ADCPostProcessingCallback(void) {
             
             if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.FVR_ADC_error_flag = true;
                 return;
                 
             }
@@ -286,11 +278,7 @@ void ADCPostProcessingCallback(void) {
             
             if (POS3P3_ADC_Result > 3.5  || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.POS3P3_ADC_error_flag = true;
                 return;
                 
             }
@@ -360,11 +348,7 @@ void ADCPostProcessingCallback(void) {
 
             if (Irms > 5.0  || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.ISNS_ADC_error_flag = true;
                 return;
                 
             }
@@ -380,11 +364,7 @@ void ADCPostProcessingCallback(void) {
             
             if (POS12_ADC_Result > 13.6  || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.POS12_ADC_error_flag = true;
                 return;
                 
             }
@@ -400,11 +380,7 @@ void ADCPostProcessingCallback(void) {
             
             if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
              
-                ADC_ERROR_PIN = HIGH;
-                adc_error_flag = 1;
-                // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-                PIE5bits.TMR7IE = 0;
-                TMR7_StopTimer();
+                error_handler.Temp_ADC_error_flag = 1;
                 return;
                 
             }
@@ -416,13 +392,17 @@ void ADCPostProcessingCallback(void) {
         // Default case, there was an error
         // This should not happen
         default:
-            ADC_ERROR_PIN = HIGH;
-            adc_error_flag = 1;
-            // Disable acquisition timer interrupt (TMR7) and kick out of ISR
-            PIE5bits.TMR7IE == 0;
-            TMR7_StopTimer();
+            error_handler.ADC_general_error_flag = true;
             break;
         
+    }
+    
+    if (ADCC_GetCurrentCountofConversions() != 255) {
+        error_handler.ADC_general_error_flag = true;
+    }
+    
+    if (ADCC_HasAccumulatorOverflowed()) {
+        error_handler.ADC_general_error_flag = true;
     }
     
 }
@@ -509,10 +489,6 @@ void main(void)
     SSR_DIM_PIN = 0;
     load_enable = 0;
 
-    // Setup ADC digital filter
-    ADCON2bits.ADCRS = 7;           // Strongest filtering/lowest crossover frequency since we're measuring only DC signals (full send)
-    ADCAP            = 20;          // Add 20pF to ADC sampling capacitance
-    
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
@@ -574,6 +550,9 @@ void main(void)
         
         // Save new maximums (if greater than saved) to EEPROM
         saveSRAMMaxToEEPROM();
+        
+        // Update error LEDs
+        updateErrorLEDs();
         
     }
 }

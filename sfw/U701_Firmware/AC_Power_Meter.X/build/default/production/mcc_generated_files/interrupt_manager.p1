@@ -1,6 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17796 `(v ~T0 @X0 0 tf ]
-[v F17799 `(v ~T0 @X0 0 tf ]
+"41 mcc_generated_files/../error_handling.h
+[s S2012 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S2012 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
+[v F17817 `(v ~T0 @X0 0 tf ]
+[v F17820 `(v ~T0 @X0 0 tf ]
 "40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
@@ -182,7 +185,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S282 . . . ]
 "5153
 [v _PIR1bits `VS282 ~T0 @X0 0 e@3636 ]
-"862 mcc_generated_files/adcc.h
+"864 mcc_generated_files/adcc.h
 [v _ADCC_ThresholdISR `(v ~T0 @X0 0 ef ]
 [t T13 __interrupt low_priority  ]
 "790 mcc_generated_files/tmr6.h
@@ -16390,47 +16393,65 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr4.h: 826: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr4.h: 844: extern void (*TMR4_InterruptHandler)(void);
 [; ;tmr4.h: 862: void TMR4_DefaultInterruptHandler(void);
-[; ;adcc.h: 72: typedef uint16_t adc_result_t;
-[; ;adcc.h: 89: typedef enum
-[; ;adcc.h: 90: {
-[; ;adcc.h: 91: ISNS_ADC = 0x0,
-[; ;adcc.h: 92: POS12_ADC = 0x4,
-[; ;adcc.h: 93: POS3P3_ADC = 0x22,
-[; ;adcc.h: 94: channel_VSS = 0x3C,
-[; ;adcc.h: 95: channel_Temp = 0x3D,
-[; ;adcc.h: 96: channel_DAC1 = 0x3E,
-[; ;adcc.h: 97: channel_FVR_buf1 = 0x3F
-[; ;adcc.h: 98: } adcc_channel_t;
-[; ;adcc.h: 132: void ADCC_Initialize(void);
-[; ;adcc.h: 161: void ADCC_StartConversion(adcc_channel_t channel);
-[; ;adcc.h: 191: bool ADCC_IsConversionDone();
-[; ;adcc.h: 223: adc_result_t ADCC_GetConversionResult(void);
-[; ;adcc.h: 254: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
-[; ;adcc.h: 279: void ADCC_StopConversion(void);
-[; ;adcc.h: 306: void ADCC_SetStopOnInterrupt(void);
-[; ;adcc.h: 331: void ADCC_DischargeSampleCapacitor(void);
-[; ;adcc.h: 357: void ADCC_LoadAcquisitionRegister(uint8_t);
-[; ;adcc.h: 383: void ADCC_SetPrechargeTime(uint8_t);
-[; ;adcc.h: 408: void ADCC_SetRepeatCount(uint8_t);
-[; ;adcc.h: 436: uint8_t ADCC_GetCurrentCountofConversions(void);
-[; ;adcc.h: 460: void ADCC_ClearAccumulator(void);
-[; ;adcc.h: 485: uint16_t ADCC_GetAccumulatorValue(void);
-[; ;adcc.h: 513: bool ADCC_HasAccumulatorOverflowed(void);
-[; ;adcc.h: 538: uint16_t ADCC_GetFilterValue(void);
-[; ;adcc.h: 566: uint16_t ADCC_GetPreviousResult(void);
-[; ;adcc.h: 592: void ADCC_DefineSetPoint(uint16_t);
-[; ;adcc.h: 618: void ADCC_SetUpperThreshold(uint16_t);
-[; ;adcc.h: 644: void ADCC_SetLowerThreshold(uint16_t);
-[; ;adcc.h: 671: uint16_t ADCC_GetErrorCalculation(void);
-[; ;adcc.h: 698: void ADCC_EnableDoubleSampling(void);
-[; ;adcc.h: 722: void ADCC_EnableContinuousConversion(void);
-[; ;adcc.h: 746: void ADCC_DisableContinuousConversion(void);
-[; ;adcc.h: 774: bool ADCC_HasErrorCrossedUpperThreshold(void);
-[; ;adcc.h: 802: bool ADCC_HasErrorCrossedLowerThreshold(void);
-[; ;adcc.h: 829: uint8_t ADCC_GetConversionStageStatus(void);
-[; ;adcc.h: 846: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
-[; ;adcc.h: 862: void ADCC_ThresholdISR(void);
-[; ;adcc.h: 880: void ADCC_DefaultInterruptHandler(void);
+"53 mcc_generated_files/../error_handling.h
+[v _error_handler `S2012 ~T0 @X0 1 e ]
+[; ;error_handling.h: 41: struct error_struct {
+[; ;error_handling.h: 43: bool ISNS_ADC_error_flag;
+[; ;error_handling.h: 44: bool POS12_ADC_error_flag;
+[; ;error_handling.h: 45: bool POS3P3_ADC_error_flag;
+[; ;error_handling.h: 46: bool AVSS_ADC_error_flag;
+[; ;error_handling.h: 47: bool Temp_ADC_error_flag;
+[; ;error_handling.h: 48: bool FVR_ADC_error_flag;
+[; ;error_handling.h: 49: bool ADC_general_error_flag;
+[; ;error_handling.h: 50: bool I2C_COMM_error_flag;
+[; ;error_handling.h: 51: bool USB_UART_COMM_error_flag;
+[; ;error_handling.h: 53: } error_handler;
+[; ;error_handling.h: 56: bool getADCError(void);
+[; ;error_handling.h: 59: bool getCOMMError(void);
+[; ;error_handling.h: 62: void updateErrorLEDs(void);
+[; ;error_handling.h: 65: void clearADCErrors(void);
+[; ;error_handling.h: 68: void clearCOMMErrors(void);
+[; ;adcc.h: 74: typedef uint16_t adc_result_t;
+[; ;adcc.h: 91: typedef enum
+[; ;adcc.h: 92: {
+[; ;adcc.h: 93: ISNS_ADC = 0x0,
+[; ;adcc.h: 94: POS12_ADC = 0x4,
+[; ;adcc.h: 95: POS3P3_ADC = 0x22,
+[; ;adcc.h: 96: channel_VSS = 0x3C,
+[; ;adcc.h: 97: channel_Temp = 0x3D,
+[; ;adcc.h: 98: channel_DAC1 = 0x3E,
+[; ;adcc.h: 99: channel_FVR_buf1 = 0x3F
+[; ;adcc.h: 100: } adcc_channel_t;
+[; ;adcc.h: 134: void ADCC_Initialize(void);
+[; ;adcc.h: 163: void ADCC_StartConversion(adcc_channel_t channel);
+[; ;adcc.h: 193: bool ADCC_IsConversionDone();
+[; ;adcc.h: 225: adc_result_t ADCC_GetConversionResult(void);
+[; ;adcc.h: 256: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+[; ;adcc.h: 281: void ADCC_StopConversion(void);
+[; ;adcc.h: 308: void ADCC_SetStopOnInterrupt(void);
+[; ;adcc.h: 333: void ADCC_DischargeSampleCapacitor(void);
+[; ;adcc.h: 359: void ADCC_LoadAcquisitionRegister(uint8_t);
+[; ;adcc.h: 385: void ADCC_SetPrechargeTime(uint8_t);
+[; ;adcc.h: 410: void ADCC_SetRepeatCount(uint8_t);
+[; ;adcc.h: 438: uint8_t ADCC_GetCurrentCountofConversions(void);
+[; ;adcc.h: 462: void ADCC_ClearAccumulator(void);
+[; ;adcc.h: 487: uint16_t ADCC_GetAccumulatorValue(void);
+[; ;adcc.h: 515: bool ADCC_HasAccumulatorOverflowed(void);
+[; ;adcc.h: 540: uint16_t ADCC_GetFilterValue(void);
+[; ;adcc.h: 568: uint16_t ADCC_GetPreviousResult(void);
+[; ;adcc.h: 594: void ADCC_DefineSetPoint(uint16_t);
+[; ;adcc.h: 620: void ADCC_SetUpperThreshold(uint16_t);
+[; ;adcc.h: 646: void ADCC_SetLowerThreshold(uint16_t);
+[; ;adcc.h: 673: uint16_t ADCC_GetErrorCalculation(void);
+[; ;adcc.h: 700: void ADCC_EnableDoubleSampling(void);
+[; ;adcc.h: 724: void ADCC_EnableContinuousConversion(void);
+[; ;adcc.h: 748: void ADCC_DisableContinuousConversion(void);
+[; ;adcc.h: 776: bool ADCC_HasErrorCrossedUpperThreshold(void);
+[; ;adcc.h: 804: bool ADCC_HasErrorCrossedLowerThreshold(void);
+[; ;adcc.h: 831: uint8_t ADCC_GetConversionStageStatus(void);
+[; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
+[; ;adcc.h: 864: void ADCC_ThresholdISR(void);
+[; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
@@ -16522,24 +16543,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-[; ;eusart2.h: 79: extern volatile uint8_t eusart2TxBufferRemaining;
-[; ;eusart2.h: 80: extern volatile uint8_t eusart2RxCount;
-"86 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17796 ~T0 @X0 1 e ]
-[; ;eusart2.h: 86: void (*EUSART2_TxDefaultInterruptHandler)(void);
-"87
-[v _EUSART2_RxDefaultInterruptHandler `*F17799 ~T0 @X0 1 e ]
-[; ;eusart2.h: 87: void (*EUSART2_RxDefaultInterruptHandler)(void);
-[; ;eusart2.h: 109: void EUSART2_Initialize(void);
-[; ;eusart2.h: 162: uint8_t EUSART2_is_tx_ready(void);
-[; ;eusart2.h: 214: uint8_t EUSART2_is_rx_ready(void);
-[; ;eusart2.h: 261: bool EUSART2_is_tx_done(void);
-[; ;eusart2.h: 281: uint8_t EUSART2_Read(void);
-[; ;eusart2.h: 301: void EUSART2_Write(uint8_t txData);
-[; ;eusart2.h: 322: void EUSART2_Transmit_ISR(void);
-[; ;eusart2.h: 343: void EUSART2_Receive_ISR(void);
-[; ;eusart2.h: 363: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
-[; ;eusart2.h: 383: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
+[; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
+[; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
+"88 mcc_generated_files/eusart2.h
+[v _EUSART2_TxDefaultInterruptHandler `*F17817 ~T0 @X0 1 e ]
+[; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
+"89
+[v _EUSART2_RxDefaultInterruptHandler `*F17820 ~T0 @X0 1 e ]
+[; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
+[; ;eusart2.h: 111: void EUSART2_Initialize(void);
+[; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
+[; ;eusart2.h: 216: uint8_t EUSART2_is_rx_ready(void);
+[; ;eusart2.h: 263: bool EUSART2_is_tx_done(void);
+[; ;eusart2.h: 283: uint8_t EUSART2_Read(void);
+[; ;eusart2.h: 303: void EUSART2_Write(uint8_t txData);
+[; ;eusart2.h: 324: void EUSART2_Transmit_ISR(void);
+[; ;eusart2.h: 345: void EUSART2_Receive_ISR(void);
+[; ;eusart2.h: 365: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
+[; ;eusart2.h: 385: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 [; ;mcc.h: 80: void SYSTEM_Initialize(void);
 [; ;mcc.h: 93: void OSCILLATOR_Initialize(void);
 [; ;mcc.h: 106: void PMD_Initialize(void);
@@ -16589,7 +16610,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _IPR5bits 0 6 -> -> 0 `i `uc ]
 [; ;interrupt_manager.c: 93: }
 "93
-[e :UE 2014 ]
+[e :UE 2015 ]
 }
 [v $root$_INTERRUPT_InterruptManagerHigh `(v ~T0 @X0 0 e ]
 "95
@@ -16602,7 +16623,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupt_manager.c: 98: if(PIE3bits.BCL1IE == 1 && PIR3bits.BCL1IF == 1)
 "98
-[e $ ! && == -> . . _PIE3bits 0 1 `i -> 1 `i == -> . . _PIR3bits 0 1 `i -> 1 `i 2016  ]
+[e $ ! && == -> . . _PIE3bits 0 1 `i -> 1 `i == -> . . _PIR3bits 0 1 `i -> 1 `i 2017  ]
 [; ;interrupt_manager.c: 99: {
 "99
 {
@@ -16612,11 +16633,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "101
 }
 [; ;interrupt_manager.c: 101: }
-[e $U 2017  ]
+[e $U 2018  ]
 "102
-[e :U 2016 ]
+[e :U 2017 ]
 [; ;interrupt_manager.c: 102: else if(PIE3bits.SSP1IE == 1 && PIR3bits.SSP1IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 0 `i -> 1 `i == -> . . _PIR3bits 0 0 `i -> 1 `i 2018  ]
+[e $ ! && == -> . . _PIE3bits 0 0 `i -> 1 `i == -> . . _PIR3bits 0 0 `i -> 1 `i 2019  ]
 [; ;interrupt_manager.c: 103: {
 "103
 {
@@ -16626,11 +16647,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "105
 }
 [; ;interrupt_manager.c: 105: }
-[e $U 2019  ]
+[e $U 2020  ]
 "106
-[e :U 2018 ]
+[e :U 2019 ]
 [; ;interrupt_manager.c: 106: else if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 3 `i -> 1 `i == -> . . _PIR5bits 0 3 `i -> 1 `i 2020  ]
+[e $ ! && == -> . . _PIE5bits 0 3 `i -> 1 `i == -> . . _PIR5bits 0 3 `i -> 1 `i 2021  ]
 [; ;interrupt_manager.c: 107: {
 "107
 {
@@ -16640,11 +16661,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "109
 }
 [; ;interrupt_manager.c: 109: }
-[e $U 2021  ]
+[e $U 2022  ]
 "110
-[e :U 2020 ]
+[e :U 2021 ]
 [; ;interrupt_manager.c: 110: else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-[e $ ! && == -> . . _PIE2bits 0 5 `i -> 1 `i == -> . . _PIR2bits 0 5 `i -> 1 `i 2022  ]
+[e $ ! && == -> . . _PIE2bits 0 5 `i -> 1 `i == -> . . _PIR2bits 0 5 `i -> 1 `i 2023  ]
 [; ;interrupt_manager.c: 111: {
 "111
 {
@@ -16654,11 +16675,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "113
 }
 [; ;interrupt_manager.c: 113: }
-[e $U 2023  ]
+[e $U 2024  ]
 "114
-[e :U 2022 ]
+[e :U 2023 ]
 [; ;interrupt_manager.c: 114: else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
-[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 2024  ]
+[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 2025  ]
 [; ;interrupt_manager.c: 115: {
 "115
 {
@@ -16668,11 +16689,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "117
 }
 [; ;interrupt_manager.c: 117: }
-[e $U 2025  ]
+[e $U 2026  ]
 "118
-[e :U 2024 ]
+[e :U 2025 ]
 [; ;interrupt_manager.c: 118: else if(PIE3bits.RC2IE == 1 && PIR3bits.RC2IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 7 `i -> 1 `i == -> . . _PIR3bits 0 7 `i -> 1 `i 2026  ]
+[e $ ! && == -> . . _PIE3bits 0 7 `i -> 1 `i == -> . . _PIR3bits 0 7 `i -> 1 `i 2027  ]
 [; ;interrupt_manager.c: 119: {
 "119
 {
@@ -16682,11 +16703,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "121
 }
 [; ;interrupt_manager.c: 121: }
-[e $U 2027  ]
+[e $U 2028  ]
 "122
-[e :U 2026 ]
+[e :U 2027 ]
 [; ;interrupt_manager.c: 122: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2028  ]
+[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2029  ]
 [; ;interrupt_manager.c: 123: {
 "123
 {
@@ -16696,11 +16717,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "125
 }
 [; ;interrupt_manager.c: 125: }
-[e $U 2029  ]
+[e $U 2030  ]
 "126
-[e :U 2028 ]
+[e :U 2029 ]
 [; ;interrupt_manager.c: 126: else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
-[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 2030  ]
+[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 2031  ]
 [; ;interrupt_manager.c: 127: {
 "127
 {
@@ -16710,27 +16731,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 "129
 }
 [; ;interrupt_manager.c: 129: }
-[e $U 2031  ]
+[e $U 2032  ]
 "130
-[e :U 2030 ]
+[e :U 2031 ]
 [; ;interrupt_manager.c: 130: else
 [; ;interrupt_manager.c: 131: {
 "131
 {
 "133
 }
-[e :U 2031 ]
-[e :U 2029 ]
-[e :U 2027 ]
-[e :U 2025 ]
-[e :U 2023 ]
-[e :U 2021 ]
-[e :U 2019 ]
-[e :U 2017 ]
+[e :U 2032 ]
+[e :U 2030 ]
+[e :U 2028 ]
+[e :U 2026 ]
+[e :U 2024 ]
+[e :U 2022 ]
+[e :U 2020 ]
+[e :U 2018 ]
 [; ;interrupt_manager.c: 133: }
 [; ;interrupt_manager.c: 134: }
 "134
-[e :UE 2015 ]
+[e :UE 2016 ]
 }
 [v $root$_INTERRUPT_InterruptManagerLow `(v ~T0 @X0 0 e ]
 "136
@@ -16743,7 +16764,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;interrupt_manager.c: 139: if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
 "139
-[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2033  ]
+[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2034  ]
 [; ;interrupt_manager.c: 140: {
 "140
 {
@@ -16753,11 +16774,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "142
 }
 [; ;interrupt_manager.c: 142: }
-[e $U 2034  ]
+[e $U 2035  ]
 "143
-[e :U 2033 ]
+[e :U 2034 ]
 [; ;interrupt_manager.c: 143: else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2035  ]
+[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2036  ]
 [; ;interrupt_manager.c: 144: {
 "144
 {
@@ -16767,11 +16788,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "146
 }
 [; ;interrupt_manager.c: 146: }
-[e $U 2036  ]
+[e $U 2037  ]
 "147
-[e :U 2035 ]
+[e :U 2036 ]
 [; ;interrupt_manager.c: 147: else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 6 `i -> 1 `i == -> . . _PIR5bits 0 6 `i -> 1 `i 2037  ]
+[e $ ! && == -> . . _PIE5bits 0 6 `i -> 1 `i == -> . . _PIR5bits 0 6 `i -> 1 `i 2038  ]
 [; ;interrupt_manager.c: 148: {
 "148
 {
@@ -16781,20 +16802,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 "150
 }
 [; ;interrupt_manager.c: 150: }
-[e $U 2038  ]
+[e $U 2039  ]
 "151
-[e :U 2037 ]
+[e :U 2038 ]
 [; ;interrupt_manager.c: 151: else
 [; ;interrupt_manager.c: 152: {
 "152
 {
 "154
 }
-[e :U 2038 ]
-[e :U 2036 ]
-[e :U 2034 ]
+[e :U 2039 ]
+[e :U 2037 ]
+[e :U 2035 ]
 [; ;interrupt_manager.c: 154: }
 [; ;interrupt_manager.c: 155: }
 "155
-[e :UE 2032 ]
+[e :UE 2033 ]
 }

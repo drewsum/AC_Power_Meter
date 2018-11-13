@@ -56,6 +56,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "../error_handling.h"
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     extern "C" {

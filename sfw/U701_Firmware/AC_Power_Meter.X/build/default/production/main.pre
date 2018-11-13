@@ -21785,10 +21785,40 @@ extern void (*TMR4_InterruptHandler)(void);
 # 862
 void TMR4_DefaultInterruptHandler(void);
 
-# 72 "mcc_generated_files/adcc.h"
+# 41 "mcc_generated_files/../error_handling.h"
+struct error_struct {
+
+bool ISNS_ADC_error_flag;
+bool POS12_ADC_error_flag;
+bool POS3P3_ADC_error_flag;
+bool AVSS_ADC_error_flag;
+bool Temp_ADC_error_flag;
+bool FVR_ADC_error_flag;
+bool ADC_general_error_flag;
+bool I2C_COMM_error_flag;
+bool USB_UART_COMM_error_flag;
+
+} error_handler;
+
+
+bool getADCError(void);
+
+
+bool getCOMMError(void);
+
+
+void updateErrorLEDs(void);
+
+
+void clearADCErrors(void);
+
+
+void clearCOMMErrors(void);
+
+# 74 "mcc_generated_files/adcc.h"
 typedef uint16_t adc_result_t;
 
-# 89
+# 91
 typedef enum
 {
 ISNS_ADC = 0x0,
@@ -21800,94 +21830,94 @@ channel_DAC1 = 0x3E,
 channel_FVR_buf1 = 0x3F
 } adcc_channel_t;
 
-# 132
+# 134
 void ADCC_Initialize(void);
 
-# 161
+# 163
 void ADCC_StartConversion(adcc_channel_t channel);
 
-# 191
+# 193
 bool ADCC_IsConversionDone();
 
-# 223
+# 225
 adc_result_t ADCC_GetConversionResult(void);
 
-# 254
+# 256
 adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
 
-# 279
+# 281
 void ADCC_StopConversion(void);
 
-# 306
+# 308
 void ADCC_SetStopOnInterrupt(void);
 
-# 331
+# 333
 void ADCC_DischargeSampleCapacitor(void);
 
-# 357
+# 359
 void ADCC_LoadAcquisitionRegister(uint8_t);
 
-# 383
+# 385
 void ADCC_SetPrechargeTime(uint8_t);
 
-# 408
+# 410
 void ADCC_SetRepeatCount(uint8_t);
 
-# 436
+# 438
 uint8_t ADCC_GetCurrentCountofConversions(void);
 
-# 460
+# 462
 void ADCC_ClearAccumulator(void);
 
-# 485
+# 487
 uint16_t ADCC_GetAccumulatorValue(void);
 
-# 513
+# 515
 bool ADCC_HasAccumulatorOverflowed(void);
 
-# 538
+# 540
 uint16_t ADCC_GetFilterValue(void);
 
-# 566
+# 568
 uint16_t ADCC_GetPreviousResult(void);
 
-# 592
+# 594
 void ADCC_DefineSetPoint(uint16_t);
 
-# 618
+# 620
 void ADCC_SetUpperThreshold(uint16_t);
 
-# 644
+# 646
 void ADCC_SetLowerThreshold(uint16_t);
 
-# 671
+# 673
 uint16_t ADCC_GetErrorCalculation(void);
 
-# 698
+# 700
 void ADCC_EnableDoubleSampling(void);
 
-# 722
+# 724
 void ADCC_EnableContinuousConversion(void);
 
-# 746
+# 748
 void ADCC_DisableContinuousConversion(void);
 
-# 774
+# 776
 bool ADCC_HasErrorCrossedUpperThreshold(void);
 
-# 802
+# 804
 bool ADCC_HasErrorCrossedLowerThreshold(void);
 
-# 829
+# 831
 uint8_t ADCC_GetConversionStageStatus(void);
 
-# 846
+# 848
 void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 
-# 862
+# 864
 void ADCC_ThresholdISR(void);
 
-# 880
+# 882
 void ADCC_DefaultInterruptHandler(void);
 
 # 93 "mcc_generated_files/fvr.h"
@@ -22091,42 +22121,42 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 79 "mcc_generated_files/eusart2.h"
+# 81 "mcc_generated_files/eusart2.h"
 extern volatile uint8_t eusart2TxBufferRemaining;
 extern volatile uint8_t eusart2RxCount;
 
-# 86
+# 88
 void (*EUSART2_TxDefaultInterruptHandler)(void);
 void (*EUSART2_RxDefaultInterruptHandler)(void);
 
-# 109
+# 111
 void EUSART2_Initialize(void);
 
-# 162
+# 164
 uint8_t EUSART2_is_tx_ready(void);
 
-# 214
+# 216
 uint8_t EUSART2_is_rx_ready(void);
 
-# 261
+# 263
 bool EUSART2_is_tx_done(void);
 
-# 281
+# 283
 uint8_t EUSART2_Read(void);
 
-# 301
+# 303
 void EUSART2_Write(uint8_t txData);
 
-# 322
+# 324
 void EUSART2_Transmit_ISR(void);
 
-# 343
+# 345
 void EUSART2_Receive_ISR(void);
 
-# 363
+# 365
 void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 
-# 383
+# 385
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
 # 80 "mcc_generated_files/mcc.h"
@@ -22385,7 +22415,7 @@ void OLED_Write_Integer(uint16_t i);
 void OLED_Write_Float(float f);
 
 
-# 58 "main.c"
+# 59 "main.c"
 #pragma config IDLOC0 = 0
 #pragma config IDLOC1 = 1
 #pragma config IDLOC2 = 2
@@ -22395,7 +22425,7 @@ void OLED_Write_Float(float f);
 #pragma config IDLOC6 = 6
 #pragma config IDLOC7 = 7
 
-# 73
+# 74
 volatile double FVR_ADC_Result;
 volatile double AVSS_ADC_Result;
 volatile double ADC_Result_Scaling;
@@ -22421,7 +22451,6 @@ volatile bit load_enable = 0;
 volatile bit eusart2RxStringReady = 0;
 volatile unsigned long dev_on_time = 0;
 volatile unsigned long load_on_time = 0;
-volatile bit adc_error_flag = 0;
 reset_t reset_cause;
 adcc_channel_t next_channel = channel_VSS;
 
@@ -22561,11 +22590,7 @@ AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
 
 if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.AVSS_ADC_error_flag = 1;
 return;
 
 }
@@ -22582,11 +22607,7 @@ ADC_Result_Scaling = 2.048/FVR_ADC_Result;
 
 if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.FVR_ADC_error_flag = 1;
 return;
 
 }
@@ -22602,11 +22623,7 @@ POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_
 
 if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.POS3P3_ADC_error_flag = 1;
 return;
 
 }
@@ -22676,11 +22693,7 @@ Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
 
 if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.ISNS_ADC_error_flag = 1;
 return;
 
 }
@@ -22696,11 +22709,7 @@ POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303
 
 if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.POS12_ADC_error_flag = 1;
 return;
 
 }
@@ -22716,11 +22725,7 @@ Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResu
 
 if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE = 0;
-TMR7_StopTimer();
+error_handler.Temp_ADC_error_flag = 1;
 return;
 
 }
@@ -22732,13 +22737,17 @@ break;
 
 
 default:
-LATFbits.LATF3 = 1;
-adc_error_flag = 1;
-
-PIE5bits.TMR7IE == 0;
-TMR7_StopTimer();
+error_handler.ADC_general_error_flag = 1;
 break;
 
+}
+
+if (ADCC_GetCurrentCountofConversions() != 255) {
+error_handler.ADC_general_error_flag = 1;
+}
+
+if (ADCC_HasAccumulatorOverflowed()) {
+error_handler.ADC_general_error_flag = 1;
 }
 
 }
@@ -22802,7 +22811,7 @@ writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 
 }
 
-# 494
+# 474
 void main(void)
 {
 
@@ -22820,10 +22829,6 @@ SYSTEM_Initialize();
 LATGbits.LATG0 = 0;
 LATGbits.LATG1 = 0;
 load_enable = 0;
-
-
-ADCON2bits.ADCRS = 7;
-ADCAP = 20;
 
 
 TMR6_SetInterruptHandler(heartbeatTimerCallback);
@@ -22886,6 +22891,9 @@ terminal_ringBufferPull();
 
 
 saveSRAMMaxToEEPROM();
+
+
+updateErrorLEDs();
 
 }
 }

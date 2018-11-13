@@ -17,6 +17,8 @@
 
 #include "mcc_generated_files/i2c1.h"
 
+#include "error_handling.h"
+
 #include "pin_macros.h"
 
 #define OLED_ADDR (uint16_t) 0x3C
@@ -49,8 +51,6 @@
 #define OLED_COMSCANDEC             0xC8
 #define OLED_SEGREMAP               0xA0
 #define OLED_CHARGEPUMP             0x8D
-
-#define OLED_RETRY_MAX      0
 
 // Function prototypes
 void OLED_Command(uint8_t temp);

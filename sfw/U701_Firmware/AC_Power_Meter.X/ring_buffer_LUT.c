@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <math.h>
 
+#include "error_handling.h"
 #include "ring_buffer_LUT.h"
 #include "pin_macros.h"
 #include "mcc_generated_files/memory.h"
@@ -36,7 +37,6 @@ extern volatile double Avg_Power;
 extern volatile double TRIAC_Firing_Angle;
 extern unsigned int dimming_period;
 extern volatile bit load_enable;
-extern volatile bit adc_error_flag;
 extern volatile double Total_Energy;
 adcc_channel_t current_adc_channel;
 extern reset_t reset_cause;
@@ -165,64 +165,52 @@ void ringBufferLUT(char * line) {
     }
     
     // Report POS3P3 ADC Conversion Result
-    else if((0 == strcmp(line, "ADC Error?"))) {
+    else if((0 == strcmp(line, "ADC Errors?"))) {
      
-        if (adc_error_flag) {
-
+        if (getADCError()) {
+            
             terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("ADC error(s) detected!\n\r");
+            printf("The following channels caused an ADC error:\n\r");
             
-            // Get the current ADC channel enumeration from the ADPCH register
-            current_adc_channel = ADPCH;
-            
-            // buffer string for holding the ADC error channel
-            char channel_name[22];
-            
-            switch (current_adc_channel) {
-             
-                case ISNS_ADC:
-                    strcpy(channel_name, "ISNS");
-                    break;
-                    
-                case POS12_ADC:
-                    strcpy(channel_name, "POS12");
-                    break;
-                    
-                case POS3P3_ADC:
-                    strcpy(channel_name, "POS3P3");
-                    break;
-                    
-                case channel_VSS:
-                    strcpy(channel_name, "Internal AVSS");
-                    break;
-                    
-                case channel_Temp:
-                    strcpy(channel_name, "Internal Temp");
-                    break;
-                    
-                case channel_DAC1:
-                    strcpy(channel_name, "Internal DAC1");
-                    break;
-                    
-                case channel_FVR_buf1:
-                    strcpy(channel_name, "Internal FVR Buffer 1");
-                    break;
-                    
-                default:
-                    strcpy(channel_name, "Undefined");
-                    break;
-                
+            if (error_handler.ADC_general_error_flag) {
+                printf("    General ADC error\n\r");
             }
             
+            if (error_handler.AVSS_ADC_error_flag) {
+                printf("    AVSS\n\r");
+            }
             
-            printf("The following channel caused an ADC error: %s\n\r", channel_name);
+            if (error_handler.FVR_ADC_error_flag) {
+                printf("    FVR\n\r");
+            }
+            
+            if (error_handler.ISNS_ADC_error_flag) {
+                printf("    ISNS\n\r");
+            }
+            
+            if (error_handler.POS12_ADC_error_flag) {
+                printf("    POS12\n\r");
+            }
+            
+            if (error_handler.POS3P3_ADC_error_flag) {
+                printf("    POS3P3\n\r");
+            }
+            
+            if (error_handler.Temp_ADC_error_flag) {
+                printf("    Die Temp\n\r");
+            }
+            
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
             terminal_textAttributesReset();
-        
+            
         }
         
         else {
          
             terminal_textAttributes(GREEN, BLACK, NORMAL);
-            printf("No ADC Error detected\n\r");
+            printf("No ADC error(s) detected\n\r");
             terminal_textAttributesReset();
         
         }
@@ -230,28 +218,34 @@ void ringBufferLUT(char * line) {
     }
     
     // Clear ADC error
-    else if((0 == strcmp(line, "Clear ADC Error"))) {
+    else if((0 == strcmp(line, "Clear ADC Errors"))) {
      
-        ADC_ERROR_PIN = LOW;
-        adc_error_flag = 0;
-        // Enable acquisition timer interrupt (TMR7)
-        PIE5bits.TMR7IE = 1;
-        TMR7_StopTimer();
+        clearADCErrors();
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("Clearing ADC Error\n\r");
+        printf("ADC Error(s) cleared\n\r");
         terminal_textAttributesReset();
         
     }
     
     // Report POS3P3 ADC Conversion Result
-    else if((0 == strcmp(line, "Comm Error?"))) {
+    else if((0 == strcmp(line, "Comm Errors?"))) {
        
-        if (COMM_ERROR_PIN == HIGH) {
+        if (getCOMMError()) {
         
             terminal_textAttributes(RED, BLACK, NORMAL);
-            printf("Communications error detected!\n\r");
-            printf("This could have been caused by UART (this interface) or I2C (OLED display interface)\n\r");
+            printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+            
+            if (error_handler.I2C_COMM_error_flag) {
+                printf("    OLED Display I2C\n\r");
+            }
+            
+            if (error_handler.USB_UART_COMM_error_flag) {
+                printf("    USB UART (this interface\n\r");
+            }
+            
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Call 'Clear COMM Errors' to clear communications error(s)\n\r");
             terminal_textAttributesReset();
         
         }
@@ -259,18 +253,19 @@ void ringBufferLUT(char * line) {
         else {
             
             terminal_textAttributes(GREEN, BLACK, NORMAL);
-            printf("No communications error detected\n\r");
+            printf("No communications error(s) detected\n\r");
             terminal_textAttributesReset();
             
         }   
     }
     
         // Report POS3P3 ADC Conversion Result
-    else if((0 == strcmp(line, "Clear Comm Error"))) {
+    else if((0 == strcmp(line, "Clear Comm Errors"))) {
     
-        COMM_ERROR_PIN = LOW;
+        clearCOMMErrors();
+        
         terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("Communications error cleared\n\r");
+        printf("Communications error(s) cleared\n\r");
         terminal_textAttributesReset();
     
     }
@@ -690,10 +685,10 @@ void ringBufferLUT(char * line) {
                 "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
                 "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-                "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
-                "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-                "   Comm Error?: Returns if a communications error has occurred\n\r"
-                "   Clear Comm Error: Clears the communications error\n\r"
+                "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+                "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+                "   Comm Errors?: Returns if a communications error has occurred\n\r"
+                "   Clear Comm Errors: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 );
@@ -778,10 +773,10 @@ void ringBufferLUT(char * line) {
                 "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
                 "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-                "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
-                "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
-                "   Comm Error?: Returns if a communications error has occurred\n\r"
-                "   Clear Comm Error: Clears the communications error\n\r"
+                "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+                "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+                "   Comm Errors?: Returns if a communications error has occurred\n\r"
+                "   Clear Comm Errors: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 
