@@ -21302,10 +21302,10 @@ extern double fmod(double, double);
 extern double trunc(double);
 extern double round(double);
 
-# 1122 "mcc_generated_files/pin_manager.h"
+# 1156 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 1134
+# 1168
 void PIN_MANAGER_IOC(void);
 
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdint.h"
@@ -21403,6 +21403,77 @@ typedef unsigned char bool;
 
 # 132 "mcc_generated_files/interrupt_manager.h"
 void INTERRUPT_Initialize (void);
+
+# 6 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 86 "mcc_generated_files/i2c1.h"
+typedef enum
+{
+I2C1_MESSAGE_COMPLETE,
+I2C1_MESSAGE_FAIL,
+I2C1_MESSAGE_PENDING,
+I2C1_STUCK_START,
+I2C1_MESSAGE_ADDRESS_NO_ACK,
+I2C1_DATA_NO_ACK,
+I2C1_LOST_STATE
+} I2C1_MESSAGE_STATUS;
+
+# 111
+typedef struct
+{
+uint16_t address;
+
+
+uint8_t length;
+uint8_t *pbuffer;
+} I2C1_TRANSACTION_REQUEST_BLOCK;
+
+# 223
+void I2C1_Initialize(void);
+
+# 262
+void I2C1_MasterWrite(
+uint8_t *pdata,
+uint8_t length,
+uint16_t address,
+I2C1_MESSAGE_STATUS *pstatus);
+
+# 409
+void I2C1_MasterRead(
+uint8_t *pdata,
+uint8_t length,
+uint16_t address,
+I2C1_MESSAGE_STATUS *pstatus);
+
+# 519
+void I2C1_MasterTRBInsert(
+uint8_t count,
+I2C1_TRANSACTION_REQUEST_BLOCK *ptrb_list,
+I2C1_MESSAGE_STATUS *pflag);
+
+# 563
+void I2C1_MasterReadTRBBuild(
+I2C1_TRANSACTION_REQUEST_BLOCK *ptrb,
+uint8_t *pdata,
+uint8_t length,
+uint16_t address);
+
+# 608
+void I2C1_MasterWriteTRBBuild(
+I2C1_TRANSACTION_REQUEST_BLOCK *ptrb,
+uint8_t *pdata,
+uint8_t length,
+uint16_t address);
+
+# 650
+bool I2C1_MasterQueueIsEmpty(void);
+
+# 688
+bool I2C1_MasterQueueIsFull(void);
+
+void I2C1_BusCollisionISR( void );
+void I2C1_ISR ( void );
 
 # 100 "mcc_generated_files/tmr5.h"
 void TMR5_Initialize(void);
@@ -21902,24 +21973,6 @@ void FVR_Initialize(void);
 # 127
 bool FVR_IsOutputReady(void);
 
-# 250 "mcc_generated_files/ext_int.h"
-void EXT_INT_Initialize(void);
-
-# 272
-void INT0_ISR(void);
-
-# 296
-void INT0_CallBack(void);
-
-# 319
-void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-
-# 343
-extern void (*INT0_InterruptHandler)(void);
-
-# 367
-void INT0_DefaultInterruptHandler(void);
-
 # 99 "mcc_generated_files/memory.h"
 uint8_t FLASH_ReadByte(uint32_t flashAddr);
 
@@ -21942,6 +21995,24 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 void MEMORY_Tasks(void);
+
+# 250 "mcc_generated_files/ext_int.h"
+void EXT_INT_Initialize(void);
+
+# 272
+void INT0_ISR(void);
+
+# 296
+void INT0_CallBack(void);
+
+# 319
+void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 343
+extern void (*INT0_InterruptHandler)(void);
+
+# 367
+void INT0_DefaultInterruptHandler(void);
 
 # 40 "mcc_generated_files/../double_to_EEPROM.h"
 typedef union {
@@ -22135,13 +22206,13 @@ void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 # 383
 void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
 
-# 79 "mcc_generated_files/mcc.h"
+# 80 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 92
+# 93
 void OSCILLATOR_Initialize(void);
 
-# 105
+# 106
 void PMD_Initialize(void);
 
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h"
@@ -22540,6 +22611,37 @@ TMR7_StopTimer();
 
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Clearing ADC Error\n\r");
+terminal_textAttributesReset();
+
+}
+
+
+else if((0 == strcmp(line, "Comm Error?"))) {
+
+if (LATFbits.LATF1 == 1) {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Communications error detected!\n\r");
+printf("This could have been caused by UART (this interface) or I2C (OLED display interface)\n\r");
+terminal_textAttributesReset();
+
+}
+
+else {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("No communications error detected\n\r");
+terminal_textAttributesReset();
+
+}
+}
+
+
+else if((0 == strcmp(line, "Clear Comm Error"))) {
+
+LATFbits.LATF1 = 0;
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("Communications error cleared\n\r");
 terminal_textAttributesReset();
 
 }
@@ -22951,7 +23053,7 @@ else if((0 == strcmp(line, "Help Device Control Commands"))) {
 terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("List of supported Device Control Commands:\n\r"
 
-"   Reset: Clears the terminal and resets the micro\n\r"
+"   Reset: Clears the terminal and resets the microcontroller\n\r"
 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
 "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
 "   *IDN?: Returns device identification string\n\r"
@@ -22961,6 +23063,8 @@ printf("List of supported Device Control Commands:\n\r"
 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+"   Comm Error?: Returns if a communications error has occurred\n\r"
+"   Clear Comm Error: Clears the communications error\n\r"
 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
 "   Help: This message, lists supported commands\n\r\n\r"
 );
@@ -23037,7 +23141,7 @@ terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("List of all supported commands:\n\r"
 
 "Device Control Commands: Commands to view and control low level system functionality\n\r"
-"   Reset: Clears the terminal and resets the micro\n\r"
+"   Reset: Clears the terminal and resets the microcontroller\n\r"
 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
 "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
 "   *IDN?: Returns device identification string\n\r"
@@ -23047,6 +23151,8 @@ printf("List of all supported commands:\n\r"
 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+"   Comm Error?: Returns if a communications error has occurred\n\r"
+"   Clear Comm Error: Clears the communications error\n\r"
 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
 "   Help: This message, lists supported commands\n\r\n\r"
 

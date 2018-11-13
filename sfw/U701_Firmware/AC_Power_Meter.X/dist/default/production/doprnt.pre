@@ -316,10 +316,9 @@ return _powers_[scl];
 # 455
 int
 
-# 464
-printf(const char * f, ...)
+
+_doprnt(struct __prbuf * pb, register const char * f, register va_list ap)
 {
-va_list ap;
 
 # 499
 signed char c;
@@ -347,16 +346,13 @@ unsigned long val;
 unsigned len;
 const char * cp;
 
-
-*ap = __va_start();
-
-
+# 536
 while(c = *f++) {
 
 if(c != '%')
 
 {
-(putch(c) );
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 continue;
 }
 
@@ -407,11 +403,19 @@ flag |= 0x1000;
 
 }
 
-# 635
+
+loop:
+
 switch(c = *f++) {
 
 case 0:
 goto alldone;
+
+
+case 'l':
+
+flag |= 0x10;
+goto loop;
 
 # 662
 case 'f':
@@ -467,10 +471,10 @@ width = 0;
 
 # 764
 while(width--)
-(putch(' ') );
+if(pb->func) (pb->func(' ')); else ((*pb->ptr++ = ' '));
 
 while(len--)
-(putch(*cp++) );
+if(pb->func) (pb->func(*cp++)); else ((*pb->ptr++ = *cp++));
 
 # 774
 continue;
@@ -574,11 +578,11 @@ if(flag & 0x04) {
 
 if(flag & 0x03)
 
-(putch('-') );
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1168
 while(width > 0) {
-(putch('0') );
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
 width--;
 }
 
@@ -588,7 +592,7 @@ width--;
 
 # 1180
 while(width > 0) {
-(putch(' ') );
+if(pb->func) (pb->func(' ')); else ((*pb->ptr++ = ' '));
 width--;
 }
 
@@ -597,7 +601,7 @@ width--;
 
 if(flag & 0x03)
 
-(putch('-') );
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1195
 }
@@ -608,12 +612,12 @@ while(c--) {
 {
 tmpval.vd = val/dpowers[c];
 tmpval.vd %= 10;
-(putch('0' + tmpval.vd) );
+if(pb->func) (pb->func('0' + tmpval.vd)); else ((*pb->ptr++ = '0' + tmpval.vd));
 }
 
 }
 while(exp > 0) {
-(putch('0') );
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
 exp--;
 }
 if(prec > (int)((sizeof dpowers/sizeof dpowers[0])-2))
@@ -626,19 +630,19 @@ prec -= c;
 
 if(c)
 
-(putch('.') );
+if(pb->func) (pb->func('.')); else ((*pb->ptr++ = '.'));
 
 # 1227
 val = (long)(fval * scale(c));
 while(c--) {
 tmpval.vd = val/dpowers[c];
 tmpval.vd %= 10;
-(putch('0' + tmpval.vd) );
+if(pb->func) (pb->func('0' + tmpval.vd)); else ((*pb->ptr++ = '0' + tmpval.vd));
 val %= dpowers[c];
 }
 
 while(prec) {
-(putch('0') );
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
 prec--;
 }
 
@@ -653,7 +657,10 @@ if((flag & (0xC0)) == 0x00)
 
 {
 
-# 1259
+if(flag & 0x10)
+val = (*(long *)__va_arg((*(long **)ap), (long)0));
+else
+
 val = (long)(*(int *)__va_arg((*(int **)ap), (int)0));
 
 if((long)val < 0) {
@@ -670,7 +677,12 @@ else
 
 {
 
-# 1286
+# 1281
+if(flag & 0x10)
+val = (*(unsigned long *)__va_arg((*(unsigned long **)ap), (unsigned long)0));
+else
+
+
 val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
 }
 
@@ -740,12 +752,12 @@ if(flag & 0x04) {
 
 
 if(flag & 0x03)
-(putch('-') );
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1415
 if(width)
 do
-(putch('0') );
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
 while(--width);
 
 } else
@@ -757,12 +769,12 @@ if(width
 # 1428
 )
 do
-(putch(' ') );
+if(pb->func) (pb->func(' ')); else ((*pb->ptr++ = ' '));
 while(--width);
 
 # 1438
 if(flag & 0x03)
-(putch('-') );
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1469
 }
@@ -804,7 +816,7 @@ break;
 
 # 1523
 }
-(putch(c) );
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 }
 
 # 1533

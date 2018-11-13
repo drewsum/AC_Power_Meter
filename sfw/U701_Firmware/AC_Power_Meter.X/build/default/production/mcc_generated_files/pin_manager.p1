@@ -93,10 +93,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SLRCONH `Vuc ~T0 @X0 0 e@3774 ]
 "9722
 [v _RG7PPS `Vuc ~T0 @X0 0 e@3721 ]
+"3590
+[v _SSP1CLKPPS `Vuc ~T0 @X0 0 e@3609 ]
 "70
 [v _INT0PPS `Vuc ~T0 @X0 0 e@3568 ]
+"8122
+[v _RC6PPS `Vuc ~T0 @X0 0 e@3688 ]
 "2752
 [v _RX2PPS `Vuc ~T0 @X0 0 e@3601 ]
+"8172
+[v _RC7PPS `Vuc ~T0 @X0 0 e@3689 ]
+"3656
+[v _SSP1DATPPS `Vuc ~T0 @X0 0 e@3610 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -16086,8 +16094,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 164: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 166: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 168: extern __nonreentrant void _delay3(unsigned char);
-[; ;pin_manager.h: 1122: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 1134: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 1156: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 1168: void PIN_MANAGER_IOC(void);
 [; ;stdbool.h: 12: typedef unsigned char bool;
 "57 mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 1 ef ]
@@ -16238,25 +16246,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 136: RG7PPS = 0x0E;
 "136
 [e = _RG7PPS -> -> 14 `i `uc ]
-[; ;pin_manager.c: 137: INT0PPS = 0x05;
+[; ;pin_manager.c: 137: SSP1CLKPPS = 0x17;
 "137
-[e = _INT0PPS -> -> 5 `i `uc ]
-[; ;pin_manager.c: 138: RX2PPS = 0x36;
+[e = _SSP1CLKPPS -> -> 23 `i `uc ]
+[; ;pin_manager.c: 138: INT0PPS = 0x05;
 "138
-[e = _RX2PPS -> -> 54 `i `uc ]
-[; ;pin_manager.c: 139: }
+[e = _INT0PPS -> -> 5 `i `uc ]
+[; ;pin_manager.c: 139: RC6PPS = 0x1A;
 "139
-[e :UE 2011 ]
-}
+[e = _RC6PPS -> -> 26 `i `uc ]
+[; ;pin_manager.c: 140: RX2PPS = 0x36;
+"140
+[e = _RX2PPS -> -> 54 `i `uc ]
+[; ;pin_manager.c: 141: RC7PPS = 0x19;
 "141
-[v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
+[e = _RC7PPS -> -> 25 `i `uc ]
+[; ;pin_manager.c: 142: SSP1DATPPS = 0x16;
 "142
-{
-[; ;pin_manager.c: 141: void PIN_MANAGER_IOC(void)
-[; ;pin_manager.c: 142: {
-[e :U _PIN_MANAGER_IOC ]
-[f ]
+[e = _SSP1DATPPS -> -> 22 `i `uc ]
 [; ;pin_manager.c: 143: }
 "143
+[e :UE 2011 ]
+}
+"145
+[v _PIN_MANAGER_IOC `(v ~T0 @X0 1 ef ]
+"146
+{
+[; ;pin_manager.c: 145: void PIN_MANAGER_IOC(void)
+[; ;pin_manager.c: 146: {
+[e :U _PIN_MANAGER_IOC ]
+[f ]
+[; ;pin_manager.c: 147: }
+"147
 [e :UE 2012 ]
 }

@@ -134,8 +134,12 @@ void PIN_MANAGER_Initialize(void)
     
 	
     RG7PPS = 0x0E;   //RG7->EUSART2:TX2;    
+    SSP1CLKPPS = 0x17;   //RC7->MSSP1:SCL1;    
     INT0PPS = 0x05;   //RA5->EXT_INT:INT0;    
+    RC6PPS = 0x1A;   //RC6->MSSP1:SDA1;    
     RX2PPS = 0x36;   //RG6->EUSART2:RX2;    
+    RC7PPS = 0x19;   //RC7->MSSP1:SCL1;    
+    SSP1DATPPS = 0x16;   //RC6->MSSP1:SDA1;    
 }
   
 void PIN_MANAGER_IOC(void)

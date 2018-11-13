@@ -52,6 +52,7 @@
 #include "cause_of_reset.h"
 #include "ring_buffer_interface.h"
 #include "double_to_EEPROM.h"
+#include "oled.h"
 
 // User IDs
 #pragma config IDLOC0 = 0
@@ -75,7 +76,7 @@ volatile double ADC_Result_Scaling;             // Scaling factor on ADC measure
 volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
 volatile double POS12_ADC_Result;               // POS12 Measurement in volts
 volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
-volatile double Temp_ADC_Offset = -267.409;     // Temp ADC result offset in degrees centigrade
+volatile double Temp_ADC_Offset = 612.085;     // Temp ADC result offset in degrees centigrade
 double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2) * 120
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
@@ -547,6 +548,18 @@ void main(void)
     terminal_clearTerminal();
     terminal_setCursorHome();
     terminal_textAttributesReset();
+    
+    // Setup OLED
+    OLED_Init();
+    OLED_Clear();
+    OLED_YX(0,0);
+    OLED_Write_String("AC Power Meter");
+    OLED_YX(1,0);
+    OLED_Write_String("ELEN 3035");
+    OLED_YX(2,0);
+    OLED_Write_String("Drew Maatman");
+    OLED_YX(3,0);
+    OLED_Write_String("Gabe Thalji");
     
     // Main loop
     while (1)

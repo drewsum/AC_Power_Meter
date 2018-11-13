@@ -437,6 +437,40 @@
 #define IO_RC5_SetPushPull()        do { ODCONCbits.ODCC5 = 0; } while(0)
 #define IO_RC5_SetOpenDrain()       do { ODCONCbits.ODCC5 = 1; } while(0)
 
+// get/set SDA1 aliases
+#define SDA1_TRIS                 TRISCbits.TRISC6
+#define SDA1_LAT                  LATCbits.LATC6
+#define SDA1_PORT                 PORTCbits.RC6
+#define SDA1_WPU                  WPUCbits.WPUC6
+#define SDA1_OD                   ODCONCbits.ODCC6
+#define SDA1_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
+#define SDA1_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
+#define SDA1_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
+#define SDA1_GetValue()           PORTCbits.RC6
+#define SDA1_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
+#define SDA1_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
+#define SDA1_SetPullup()          do { WPUCbits.WPUC6 = 1; } while(0)
+#define SDA1_ResetPullup()        do { WPUCbits.WPUC6 = 0; } while(0)
+#define SDA1_SetPushPull()        do { ODCONCbits.ODCC6 = 0; } while(0)
+#define SDA1_SetOpenDrain()       do { ODCONCbits.ODCC6 = 1; } while(0)
+
+// get/set SCL1 aliases
+#define SCL1_TRIS                 TRISCbits.TRISC7
+#define SCL1_LAT                  LATCbits.LATC7
+#define SCL1_PORT                 PORTCbits.RC7
+#define SCL1_WPU                  WPUCbits.WPUC7
+#define SCL1_OD                   ODCONCbits.ODCC7
+#define SCL1_SetHigh()            do { LATCbits.LATC7 = 1; } while(0)
+#define SCL1_SetLow()             do { LATCbits.LATC7 = 0; } while(0)
+#define SCL1_Toggle()             do { LATCbits.LATC7 = ~LATCbits.LATC7; } while(0)
+#define SCL1_GetValue()           PORTCbits.RC7
+#define SCL1_SetDigitalInput()    do { TRISCbits.TRISC7 = 1; } while(0)
+#define SCL1_SetDigitalOutput()   do { TRISCbits.TRISC7 = 0; } while(0)
+#define SCL1_SetPullup()          do { WPUCbits.WPUC7 = 1; } while(0)
+#define SCL1_ResetPullup()        do { WPUCbits.WPUC7 = 0; } while(0)
+#define SCL1_SetPushPull()        do { ODCONCbits.ODCC7 = 0; } while(0)
+#define SCL1_SetOpenDrain()       do { ODCONCbits.ODCC7 = 1; } while(0)
+
 // get/set IO_RD0 aliases
 #define IO_RD0_TRIS                 TRISDbits.TRISD0
 #define IO_RD0_LAT                  LATDbits.LATD0

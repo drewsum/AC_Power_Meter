@@ -78,7 +78,6 @@ volatile bit eusart2RxStringReady;
 */
 void EUSART2_Initialize(void)
 {
-    COMM_ERROR_PIN = 1;
     
     // disable interrupts before changing states
     PIE3bits.RC2IE = 0;
@@ -115,8 +114,6 @@ void EUSART2_Initialize(void)
     // enable receive interrupt
     PIE3bits.RC2IE = 1;
     
-    COMM_ERROR_PIN = 0;
-    
 }
 
 uint8_t EUSART2_is_tx_ready(void)
@@ -143,8 +140,6 @@ uint8_t EUSART2_Read(void)
         CLRWDT();
         COMM_ERROR_PIN = 1;
     }
-    
-    COMM_ERROR_PIN = 0;
 
     readValue = eusart2RxBuffer[eusart2RxTail++];
     if(sizeof(eusart2RxBuffer) <= eusart2RxTail)
@@ -154,7 +149,6 @@ uint8_t EUSART2_Read(void)
     PIE3bits.RC2IE = 0;
     eusart2RxCount--;
     PIE3bits.RC2IE = 1;
-
     return readValue;
 }
 
@@ -165,8 +159,6 @@ void EUSART2_Write(uint8_t txData)
         CLRWDT();
         COMM_ERROR_PIN = 1;
     }
-    
-    COMM_ERROR_PIN = 0;
 
     if(0 == PIE3bits.TX2IE)
     {
@@ -225,8 +217,6 @@ void EUSART2_Receive_ISR(void)
         RC2STAbits.CREN = 1;
         COMM_ERROR_PIN = 1;
     }
-    
-    COMM_ERROR_PIN = 0;
 
     // buffer overruns are ignored
     eusart2RxBuffer[eusart2RxHead++] = RC2REG;

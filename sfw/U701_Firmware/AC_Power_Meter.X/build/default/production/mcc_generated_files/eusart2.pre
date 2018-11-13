@@ -21432,7 +21432,6 @@ volatile bit eusart2RxStringReady;
 # 79
 void EUSART2_Initialize(void)
 {
-LATFbits.LATF1 = 1;
 
 
 PIE3bits.RC2IE = 0;
@@ -21469,8 +21468,6 @@ eusart2RxCount = 0;
 
 PIE3bits.RC2IE = 1;
 
-LATFbits.LATF1 = 0;
-
 }
 
 uint8_t EUSART2_is_tx_ready(void)
@@ -21498,8 +21495,6 @@ asm(" clrwdt");
 LATFbits.LATF1 = 1;
 }
 
-LATFbits.LATF1 = 0;
-
 readValue = eusart2RxBuffer[eusart2RxTail++];
 if(sizeof(eusart2RxBuffer) <= eusart2RxTail)
 {
@@ -21508,7 +21503,6 @@ eusart2RxTail = 0;
 PIE3bits.RC2IE = 0;
 eusart2RxCount--;
 PIE3bits.RC2IE = 1;
-
 return readValue;
 }
 
@@ -21519,8 +21513,6 @@ while(0 == eusart2TxBufferRemaining)
 asm(" clrwdt");
 LATFbits.LATF1 = 1;
 }
-
-LATFbits.LATF1 = 0;
 
 if(0 == PIE3bits.TX2IE)
 {
@@ -21580,8 +21572,6 @@ RC2STAbits.CREN = 1;
 LATFbits.LATF1 = 1;
 }
 
-LATFbits.LATF1 = 0;
-
 
 eusart2RxBuffer[eusart2RxHead++] = RC2REG;
 if(sizeof(eusart2RxBuffer) <= eusart2RxHead)
@@ -21590,7 +21580,7 @@ eusart2RxHead = 0;
 }
 eusart2RxCount++;
 
-# 243
+# 233
 if((RC2REG == (int) '\n') || (RC2REG == (int) '\r')) {
 
 eusart2RxStringReady = 1;

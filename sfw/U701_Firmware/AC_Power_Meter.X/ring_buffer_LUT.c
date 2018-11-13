@@ -244,6 +244,37 @@ void ringBufferLUT(char * line) {
         
     }
     
+    // Report POS3P3 ADC Conversion Result
+    else if((0 == strcmp(line, "Comm Error?"))) {
+       
+        if (COMM_ERROR_PIN == HIGH) {
+        
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Communications error detected!\n\r");
+            printf("This could have been caused by UART (this interface) or I2C (OLED display interface)\n\r");
+            terminal_textAttributesReset();
+        
+        }
+        
+        else {
+            
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("No communications error detected\n\r");
+            terminal_textAttributesReset();
+            
+        }   
+    }
+    
+        // Report POS3P3 ADC Conversion Result
+    else if((0 == strcmp(line, "Clear Comm Error"))) {
+    
+        COMM_ERROR_PIN = LOW;
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        printf("Communications error cleared\n\r");
+        terminal_textAttributesReset();
+    
+    }
+    
     
     // Report POS3P3 ADC Conversion Result
     else if((0 == strcmp(line, "Measure POS3P3?"))) {
@@ -651,7 +682,7 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
         printf("List of supported Device Control Commands:\n\r"
                 
-                "   Reset: Clears the terminal and resets the micro\n\r"
+                "   Reset: Clears the terminal and resets the microcontroller\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
                 "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
                 "   *IDN?: Returns device identification string\n\r"
@@ -661,6 +692,8 @@ void ringBufferLUT(char * line) {
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+                "   Comm Error?: Returns if a communications error has occurred\n\r"
+                "   Clear Comm Error: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 );
@@ -737,7 +770,7 @@ void ringBufferLUT(char * line) {
         printf("List of all supported commands:\n\r"
                 
                 "Device Control Commands: Commands to view and control low level system functionality\n\r"
-                "   Reset: Clears the terminal and resets the micro\n\r"
+                "   Reset: Clears the terminal and resets the microcontroller\n\r"
                 "   Clear: Clears the terminal but doesn't reset the micro\n\r"
                 "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
                 "   *IDN?: Returns device identification string\n\r"
@@ -747,6 +780,8 @@ void ringBufferLUT(char * line) {
                 "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
                 "   ADC Error?: Returns the cause of an ADC error if an error occurred\n\r"
                 "   Clear ADC Error: Clears the ADC error and resumes ADC conversions\n\r"
+                "   Comm Error?: Returns if a communications error has occurred\n\r"
+                "   Clear Comm Error: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 

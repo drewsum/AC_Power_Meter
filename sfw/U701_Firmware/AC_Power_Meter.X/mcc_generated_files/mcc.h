@@ -52,13 +52,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "interrupt_manager.h"
+#include "i2c1.h"
 #include "tmr5.h"
 #include "tmr6.h"
 #include "tmr4.h"
 #include "adcc.h"
 #include "fvr.h"
-#include "ext_int.h"
 #include "memory.h"
+#include "ext_int.h"
 #include "hlvd.h"
 #include "tmr7.h"
 #include "eusart2.h"
