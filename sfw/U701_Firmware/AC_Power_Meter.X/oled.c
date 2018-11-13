@@ -312,6 +312,7 @@ void OLED_WriteFloat(float f) {
 
 void OLED_UpdateFromRAMBuffer(void) {
     
+    OLED_YX(0,0);
     OLED_Clear();
     OLED_YX(0,0);
     OLED_WriteString(OLED_RAM_Buffer.line0);

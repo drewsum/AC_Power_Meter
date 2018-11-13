@@ -58,5 +58,8 @@ reset_t getCauseOfReset(void);
 // This function returns a string describing the given type of reset
 inline char * getCauseOfResetString(reset_t r);
 
+// This function gets a smaller cause of reset string
+inline char * getCauseOfResetStringSmall(reset_t r);
+
 #endif	/* CAUSE_OF_RESET_H */
 

@@ -21430,6 +21430,9 @@ reset_t getCauseOfReset(void);
 
 inline char * getCauseOfResetString(reset_t r);
 
+
+inline char * getCauseOfResetStringSmall(reset_t r);
+
 # 11 "cause_of_reset.c"
 reset_t getCauseOfReset(void) {
 
@@ -21526,6 +21529,37 @@ return strings[r];
 else {
 
 return "Undefined Reset";
+
+}
+
+}
+
+
+inline char * getCauseOfResetStringSmall(reset_t r) {
+
+
+static char *strings[] = {
+"Undefined",
+"POR Reset",
+"BOR Reset",
+"MCLR Reset",
+"WDT Reset",
+"WWDT Reset",
+"RESET Executed",
+"STOF Reset",
+"STUF Reset",
+};
+
+
+if (r <= 8) {
+
+return strings[r];
+
+}
+
+else {
+
+return "Undefined";
 
 }
 

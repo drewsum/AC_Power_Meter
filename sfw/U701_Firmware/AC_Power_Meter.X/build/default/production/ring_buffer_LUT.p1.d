@@ -13,9 +13,11 @@ mcc_generated_files/device_config.h  \
 mcc_generated_files/memory.h  \
 mcc_generated_files/../mcc_generated_files/memory.h  \
 mcc_generated_files/ext_int.h  \
+oled.h  \
 mcc_generated_files/i2c1.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/hlvd.h  \
+mcc_generated_files/tmr2.h  \
 mcc_generated_files/../error_handling.h  \
 mcc_generated_files/tmr4.h  \
 mcc_generated_files/tmr5.h  \

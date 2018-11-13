@@ -56,10 +56,10 @@
 // each char array corresponds to a line
 // there are four lines
 struct OLED_RAM_Buffer_t {
-    char line0[16];
-    char line1[16];
-    char line2[16];
-    char line3[16];
+    char line0[17];
+    char line1[17];
+    char line2[17];
+    char line3[17];
 } OLED_RAM_Buffer;
 
 // Current OLED frame enumeration
@@ -68,17 +68,19 @@ typedef enum {
     Boot_Frame_1,
     Boot_Frame_2,
     Boot_Frame_3,
+    Boot_Frame_4,
     Current_Values,
     Max_Values,
     Load_Enabled,
     Load_Disabled,
     Dimming_Enabled,
     Dimming_Disabled,
-    Dimming_Percentage
+    Dimming_Percentage,
+    Idle
 
 } OLED_Frame_t;
 
-OLED_Frame_t OLED_Frame = Boot_Frame_1;
+OLED_Frame_t OLED_Frame;
 
 // Function prototypes
 void OLED_Command(uint8_t temp);

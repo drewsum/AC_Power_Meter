@@ -59,6 +59,7 @@ void SYSTEM_Initialize(void)
     TMR7_Initialize();
     ADCC_Initialize();
     TMR4_Initialize();
+    TMR2_Initialize();
     EXT_INT_Initialize();
     TMR6_Initialize();
     TMR5_Initialize();

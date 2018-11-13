@@ -46,6 +46,7 @@
 #include "mcc_generated_files/mcc.h"
 
 #include <math.h>
+#include <string.h>
 
 #include "error_handling.h"
 #include "pin_macros.h"
@@ -228,7 +229,7 @@ void heartbeatTimerCallback(void) {
 }
 
 // Callback function for ADCC interrupts
-void ADCPostProcessingCallback(void) {
+void ADC_PostProcessingCallback(void) {
  
     // If the ADC is still going, shut it off
     ADCC_StopConversion();
@@ -466,7 +467,105 @@ void writeEnergyToEEPROMCallback(void) {
     
 }
 
-
+// This function is called by timer 2 ISR and updates the OLED display 
+// based on the OLED_Frame enumeration
+void OLED_updateCallback(void) {
+ 
+    switch (OLED_Frame) {
+     
+        case Boot_Frame_1:
+            // Print boot message 1
+            strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
+            strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+            strcpy(OLED_RAM_Buffer.line2, "Final Project");
+            strcpy(OLED_RAM_Buffer.line3, getCauseOfResetStringSmall(reset_cause));
+            OLED_UpdateFromRAMBuffer();
+            OLED_Frame = Boot_Frame_2;
+            break;
+            
+        case Boot_Frame_2:
+            // Print boot message 2
+            // Device ID
+            strcpy(OLED_RAM_Buffer.line0, "Device ID:");
+            char dev_id_str[16];
+            strcpy(dev_id_str, getDeviceIDString(getDeviceID()));
+            strcpy(OLED_RAM_Buffer.line1, dev_id_str);
+            
+            // Rev ID
+            strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
+            
+            char rev_id_str[5];
+            rev_id_str[0] = (char) getMajorRevisionID() + 65;
+            rev_id_str[1] = '0';
+            rev_id_str[2] = '0';
+            rev_id_str[3] = getMinorRevisionID() + 48;
+            rev_id_str[4] = '\0';
+            strcpy(OLED_RAM_Buffer.line3, rev_id_str);
+            
+            OLED_UpdateFromRAMBuffer();
+            OLED_Frame = Boot_Frame_3;
+            break;
+            
+        case Boot_Frame_3:
+            strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
+            strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
+            strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
+            strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow ctrl");
+            
+            OLED_UpdateFromRAMBuffer();
+            OLED_Frame = Boot_Frame_4;;
+            break;
+            
+        case Boot_Frame_4:
+            strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
+            strcpy(OLED_RAM_Buffer.line1, "Ready");
+            strcpy(OLED_RAM_Buffer.line2, "Load Disabled");
+            strcpy(OLED_RAM_Buffer.line3, " ");
+            
+            OLED_UpdateFromRAMBuffer();
+            OLED_Frame = Current_Values;
+            
+            break;
+            
+        case Current_Values:
+            break;
+            
+        case Max_Values:
+            break;
+            
+        case Load_Enabled:
+            strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
+            strcpy(OLED_RAM_Buffer.line1, " ");
+            strcpy(OLED_RAM_Buffer.line2, " ");
+            strcpy(OLED_RAM_Buffer.line3, " ");
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            OLED_Frame = Idle;
+            
+            break;
+            
+        case Load_Disabled:
+            break;
+            
+        case Dimming_Enabled:
+            break;
+            
+        case Dimming_Disabled:
+            break;
+            
+        case Dimming_Percentage:
+            break;
+        
+        case Idle:
+            break;
+            
+        default:
+            break;
+        
+    }
+    
+}
 
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Main Application <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -493,7 +592,7 @@ void main(void)
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
     // Call ADC callback upon ADCC interrupt
-    ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
+    ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
     
     // Set acquisition callback to be called upon TMR7 Interrupt
     TMR7_SetInterruptHandler(acquisitionTimerCallback);
@@ -506,6 +605,9 @@ void main(void)
     
     // Assign energy to EEPROM callback function to timer 4 ISR
     TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+    
+    // Assign OLED update callback to timer 2 ISR
+    TMR2_SetInterruptHandler(OLED_updateCallback);
     
     // Disable dimming on startup
     TMR5_StopTimer();
@@ -527,13 +629,10 @@ void main(void)
     
     // Setup OLED
     OLED_Init();
+    OLED_Clear();
     
-    // Print boot messsage
-    strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
-    strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
-    strcpy(OLED_RAM_Buffer.line2, "Final Project");
-    strcpy(OLED_RAM_Buffer.line3, "Boot Complete");
-    OLED_UpdateFromRAMBuffer();
+    OLED_Frame = Boot_Frame_1;
+    OLED_updateCallback();
     
     // Main loop
     while (1)

@@ -14,6 +14,7 @@ mcc_generated_files/i2c1.h  \
 mcc_generated_files/../pin_macros.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/hlvd.h  \
+mcc_generated_files/tmr2.h  \
 mcc_generated_files/../error_handling.h  \
 mcc_generated_files/tmr4.h  \
 mcc_generated_files/tmr5.h  \

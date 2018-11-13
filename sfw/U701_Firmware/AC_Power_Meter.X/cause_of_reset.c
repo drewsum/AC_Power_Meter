@@ -107,3 +107,34 @@ inline char *getCauseOfResetString(reset_t r) {
     }
 
 }
+
+// This function gets a smaller cause of reset string
+inline char * getCauseOfResetStringSmall(reset_t r) {
+ 
+    // The ordering MUST match the ordering of the reset_type enumeration
+    static char *strings[] = {
+        "Undefined",
+        "POR Reset",
+        "BOR Reset",
+        "MCLR Reset",
+        "WDT Reset",
+        "WWDT Reset",
+        "RESET Executed",
+        "STOF Reset",
+        "STUF Reset",
+    };
+
+    // Do some error checking    
+    if (r <= 8) {
+
+        return strings[r];
+
+    }
+    
+    else {
+
+        return "Undefined";
+
+    }
+    
+}

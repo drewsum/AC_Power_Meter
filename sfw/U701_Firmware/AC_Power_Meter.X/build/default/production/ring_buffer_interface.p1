@@ -2,14 +2,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 "41 mcc_generated_files/../error_handling.h
 [s S2012 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S2012 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
-[v F17817 `(v ~T0 @X0 0 tf ]
-[v F17820 `(v ~T0 @X0 0 tf ]
+[v F17897 `(v ~T0 @X0 0 tf ]
+[v F17900 `(v ~T0 @X0 0 tf ]
 "7 ring_buffer_interface.c
-[c E18061 0 1 2 3 4 5 .. ]
-[n E18061 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+[c E18141 0 1 2 3 4 5 .. ]
+[n E18141 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
 "8
-[c E18069 0 1 2 3 4 5 6 7 .. ]
-[n E18069 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E18149 0 1 2 3 4 5 6 7 .. ]
+[n E18149 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 "82 mcc_generated_files/eusart2.h
 [v _eusart2RxCount `Vuc ~T0 @X0 0 e ]
 "283
@@ -16231,6 +16231,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr4.h: 826: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr4.h: 844: extern void (*TMR4_InterruptHandler)(void);
 [; ;tmr4.h: 862: void TMR4_DefaultInterruptHandler(void);
+[; ;tmr2.h: 79: typedef enum
+[; ;tmr2.h: 80: {
+[; ;tmr2.h: 89: TMR2_ROP_STARTS_TMRON,
+[; ;tmr2.h: 94: TMR2_ROP_STARTS_TMRON_ERSHIGH,
+[; ;tmr2.h: 99: TMR2_ROP_STARTS_TMRON_ERSLOW,
+[; ;tmr2.h: 104: TMR2_ROP_RESETS_ERSBOTHEDGE,
+[; ;tmr2.h: 109: TMR2_ROP_RESETS_ERSRISINGEDGE,
+[; ;tmr2.h: 114: TMR2_ROP_RESETS_ERSFALLINGEDGE,
+[; ;tmr2.h: 119: TMR2_ROP_RESETS_ERSLOW,
+[; ;tmr2.h: 124: TMR2_ROP_RESETS_ERSHIGH,
+[; ;tmr2.h: 135: TMR2_OS_STARTS_TMRON,
+[; ;tmr2.h: 140: TMR2_OS_STARTS_ERSRISINGEDGE ,
+[; ;tmr2.h: 145: TMR2_OS_STARTS_ERSFALLINGEDGE ,
+[; ;tmr2.h: 150: TMR2_OS_STARTS_ERSBOTHEDGE,
+[; ;tmr2.h: 156: TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+[; ;tmr2.h: 162: TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+[; ;tmr2.h: 168: TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+[; ;tmr2.h: 173: TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+[; ;tmr2.h: 178: TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+[; ;tmr2.h: 183: TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+[; ;tmr2.h: 192: TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+[; ;tmr2.h: 197: TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+[; ;tmr2.h: 203: TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+[; ;tmr2.h: 205: } TMR2_HLT_MODE;
+[; ;tmr2.h: 220: typedef enum
+[; ;tmr2.h: 221: {
+[; ;tmr2.h: 224: TMR2_T2INPPS,
+[; ;tmr2.h: 228: TMR2_RESERVED,
+[; ;tmr2.h: 232: TMR2_T4POSTSCALED,
+[; ;tmr2.h: 236: TMR2_T6POSTSCALED,
+[; ;tmr2.h: 240: TMR2_T8POSTSCALED,
+[; ;tmr2.h: 243: TMR2_CCP1_OUT,
+[; ;tmr2.h: 247: TMR2_CCP2_OUT,
+[; ;tmr2.h: 251: TMR2_CCP3_OUT,
+[; ;tmr2.h: 255: TMR2_CCP4_OUT,
+[; ;tmr2.h: 259: TMR2_CCP5_OUT,
+[; ;tmr2.h: 263: TMR2_PWM6_OUT,
+[; ;tmr2.h: 267: TMR2_PWM7_OUT,
+[; ;tmr2.h: 271: TMR2_C1_OUT_SYNC,
+[; ;tmr2.h: 275: TMR2_C2_OUT_SYNC,
+[; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
+[; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
+[; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
+[; ;tmr2.h: 328: void TMR2_Initialize(void);
+[; ;tmr2.h: 364: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 399: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 428: void TMR2_Start(void);
+[; ;tmr2.h: 457: void TMR2_StartTimer(void);
+[; ;tmr2.h: 489: void TMR2_Stop(void);
+[; ;tmr2.h: 521: void TMR2_StopTimer(void);
+[; ;tmr2.h: 556: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 591: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 630: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 669: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 721: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 773: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 791: void TMR2_ISR(void);
+[; ;tmr2.h: 809: void TMR2_CallBack(void);
+[; ;tmr2.h: 826: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 844: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 862: void TMR2_DefaultInterruptHandler(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2012 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16292,6 +16353,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16300,12 +16367,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16384,10 +16445,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
 "88 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17817 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17897 ~T0 @X0 1 e ]
 [; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "89
-[v _EUSART2_RxDefaultInterruptHandler `*F17820 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17900 ~T0 @X0 1 e ]
 [; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 111: void EUSART2_Initialize(void);
 [; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
@@ -16399,9 +16460,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 345: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 365: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 385: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 80: void SYSTEM_Initialize(void);
-[; ;mcc.h: 93: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 106: void PMD_Initialize(void);
+[; ;mcc.h: 81: void SYSTEM_Initialize(void);
+[; ;mcc.h: 94: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 107: void PMD_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -16517,13 +16578,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
 "7 ring_buffer_interface.c
-[v _attribute `E18061 ~T0 @X0 1 e ]
+[v _attribute `E18141 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 7: text_attribute_t attribute;
 "8
-[v _foreground_color `E18069 ~T0 @X0 1 e ]
+[v _foreground_color `E18149 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 8: text_color_t foreground_color;
 "9
-[v _background_color `E18069 ~T0 @X0 1 e ]
+[v _background_color `E18149 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 9: text_color_t background_color;
 "12
 [v _terminal_ringBufferPull `(v ~T0 @X0 1 ef ]
@@ -16701,16 +16762,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2035 ]
 }
 "115
-[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E18069`E18069`E18061 ]
+[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E18149`E18149`E18141 ]
 "117
 {
 [; ;ring_buffer_interface.c: 115: void terminal_textAttributes(text_color_t foreground_color,
 [; ;ring_buffer_interface.c: 116: text_color_t background_color,
 [; ;ring_buffer_interface.c: 117: text_attribute_t input_attribute) {
 [e :U _terminal_textAttributes ]
-[v _foreground_color `E18069 ~T0 @X0 1 r1 ]
-[v _background_color `E18069 ~T0 @X0 1 r2 ]
-[v _input_attribute `E18061 ~T0 @X0 1 r3 ]
+[v _foreground_color `E18149 ~T0 @X0 1 r1 ]
+[v _background_color `E18149 ~T0 @X0 1 r2 ]
+[v _input_attribute `E18141 ~T0 @X0 1 r3 ]
 [f ]
 "119
 [v _output_buff `uc ~T0 @X0 -> 15 `i a ]
@@ -16791,12 +16852,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2037  ]
 "123
 [e :U 2038 ]
-[e [\ _input_attribute , $ . `E18061 0 2039
- , $ . `E18061 1 2040
- , $ . `E18061 2 2041
- , $ . `E18061 3 2042
- , $ . `E18061 4 2043
- , $ . `E18061 5 2044
+[e [\ _input_attribute , $ . `E18141 0 2039
+ , $ . `E18141 1 2040
+ , $ . `E18141 2 2041
+ , $ . `E18141 3 2042
+ , $ . `E18141 4 2043
+ , $ . `E18141 5 2044
  2045 ]
 "147
 [e :U 2037 ]
@@ -16894,14 +16955,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2046  ]
 "151
 [e :U 2047 ]
-[e [\ _foreground_color , $ . `E18069 0 2048
- , $ . `E18069 1 2049
- , $ . `E18069 2 2050
- , $ . `E18069 3 2051
- , $ . `E18069 4 2052
- , $ . `E18069 5 2053
- , $ . `E18069 6 2054
- , $ . `E18069 7 2055
+[e [\ _foreground_color , $ . `E18149 0 2048
+ , $ . `E18149 1 2049
+ , $ . `E18149 2 2050
+ , $ . `E18149 3 2051
+ , $ . `E18149 4 2052
+ , $ . `E18149 5 2053
+ , $ . `E18149 6 2054
+ , $ . `E18149 7 2055
  2056 ]
 "181
 [e :U 2046 ]
@@ -16999,14 +17060,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2057  ]
 "185
 [e :U 2058 ]
-[e [\ _background_color , $ . `E18069 0 2059
- , $ . `E18069 1 2060
- , $ . `E18069 2 2061
- , $ . `E18069 3 2062
- , $ . `E18069 4 2063
- , $ . `E18069 5 2064
- , $ . `E18069 6 2065
- , $ . `E18069 7 2066
+[e [\ _background_color , $ . `E18149 0 2059
+ , $ . `E18149 1 2060
+ , $ . `E18149 2 2061
+ , $ . `E18149 3 2062
+ , $ . `E18149 4 2063
+ , $ . `E18149 5 2064
+ , $ . `E18149 6 2065
+ , $ . `E18149 7 2066
  2067 ]
 "215
 [e :U 2057 ]
@@ -17028,7 +17089,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;ring_buffer_interface.c: 225: terminal_textAttributes(WHITE, BLACK, NORMAL);
 "225
-[e ( _terminal_textAttributes (3 , , . `E18069 7 . `E18069 0 . `E18061 0 ]
+[e ( _terminal_textAttributes (3 , , . `E18149 7 . `E18149 0 . `E18141 0 ]
 [; ;ring_buffer_interface.c: 227: }
 "227
 [e :UE 2068 ]

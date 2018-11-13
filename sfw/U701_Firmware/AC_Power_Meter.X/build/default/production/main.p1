@@ -2,20 +2,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 "41 mcc_generated_files/../error_handling.h
 [s S2012 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S2012 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
-[v F17817 `(v ~T0 @X0 0 tf ]
-[v F17820 `(v ~T0 @X0 0 tf ]
+[v F17897 `(v ~T0 @X0 0 tf ]
+[v F17900 `(v ~T0 @X0 0 tf ]
 "58 oled.h
-[s S2019 `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i ]
+[s S2019 `uc -> 17 `i `uc -> 17 `i `uc -> 17 `i `uc -> 17 `i ]
 [n S2019 OLED_RAM_Buffer_t line0 line1 line2 line3 ]
-"81
-[c E18191 0 1 2 3 4 5 6 7 8 9 .. ]
-[n E18191 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Current_Values Max_Values Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage  ]
-"99 main.c
-[c E18124 0 1 2 3 4 5 6 7 8 .. ]
-[n E18124 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
-"100
-[c E17572 0 4 34 60 61 62 63 .. ]
-[n E17572 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+"83
+[c E18273 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
+[n E18273 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Boot_Frame_4 Current_Values Max_Values Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage Idle  ]
+"100 main.c
+[c E18204 0 1 2 3 4 5 6 7 8 .. ]
+[n E18204 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
+"101
+[c E17652 0 4 34 60 61 62 63 .. ]
+[n E17652 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "40 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _acos `(d ~T0 @X0 0 ef1`d ]
 "36
@@ -67,7 +67,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "462
 [v _ADCC_ClearAccumulator `(v ~T0 @X0 0 ef ]
 "163
-[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17572 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17652 ]
 "235 mcc_generated_files/tmr5.h
 [v _TMR5_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
 "129
@@ -82,33 +82,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIE5bits `VS270 ~T0 @X0 0 e@3630 ]
 "161 mcc_generated_files/tmr5.h
 [v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
+"37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"62 cause_of_reset.h
+[v _getCauseOfResetStringSmall `(*Tuc ~T0 @X0 0 ef1`E18204 ]
+"95 oled.h
+[v _OLED_UpdateFromRAMBuffer `(v ~T0 @X0 0 ef ]
+"48 device_IDs.h
+[v _getDeviceIDString `(*Tuc ~T0 @X0 0 ef1`ui ]
+"40
+[v _getDeviceID `(ui ~T0 @X0 0 ef ]
+"43
+[v _getMajorRevisionID `(uc ~T0 @X0 0 ef ]
+"44
+[v _getMinorRevisionID `(uc ~T0 @X0 0 ef ]
 [p mainexit ]
 "56 cause_of_reset.h
-[v _getCauseOfReset `(E18124 ~T0 @X0 0 ef ]
+[v _getCauseOfReset `(E18204 ~T0 @X0 0 ef ]
 [v F17273 `(v ~T0 @X0 1 tf1`ul ]
 "164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
 [v __delay `JF17273 ~T0 @X0 0 e ]
 [p i __delay ]
-"80 mcc_generated_files/mcc.h
+"81 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 [v F17463 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17463 ]
-[v F17636 `(v ~T0 @X0 0 tf ]
+[v F17716 `(v ~T0 @X0 0 tf ]
 "848 mcc_generated_files/adcc.h
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17636 ]
-[v F17746 `(v ~T0 @X0 0 tf ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17716 ]
+[v F17826 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
-[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17746 ]
-[v F17674 `(v ~T0 @X0 0 tf ]
+[v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17826 ]
+[v F17734 `(v ~T0 @X0 0 tf ]
 "319 mcc_generated_files/ext_int.h
-[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17674 ]
+[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17734 ]
 [v F17385 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr5.h
 [v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17385 ]
 [v F17543 `(v ~T0 @X0 0 tf ]
 "826 mcc_generated_files/tmr4.h
 [v _TMR4_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17543 ]
+[v F17623 `(v ~T0 @X0 0 tf ]
+"826 mcc_generated_files/tmr2.h
+[v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17623 ]
 "4546 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
@@ -137,12 +154,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _terminal_setCursorHome `(v ~T0 @X0 0 ef ]
 "159
 [v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
-"86 oled.h
+"88 oled.h
 [v _OLED_Init `(v ~T0 @X0 0 ef ]
-"37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
-[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"93 oled.h
-[v _OLED_UpdateFromRAMBuffer `(v ~T0 @X0 0 ef ]
+"91
+[v _OLED_Clear `(v ~T0 @X0 0 ef ]
 "112 ring_buffer_interface.h
 [v _terminal_ringBufferPull `(v ~T0 @X0 0 ef ]
 "62 mcc_generated_files/../error_handling.h
@@ -16348,6 +16363,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr4.h: 826: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr4.h: 844: extern void (*TMR4_InterruptHandler)(void);
 [; ;tmr4.h: 862: void TMR4_DefaultInterruptHandler(void);
+[; ;tmr2.h: 79: typedef enum
+[; ;tmr2.h: 80: {
+[; ;tmr2.h: 89: TMR2_ROP_STARTS_TMRON,
+[; ;tmr2.h: 94: TMR2_ROP_STARTS_TMRON_ERSHIGH,
+[; ;tmr2.h: 99: TMR2_ROP_STARTS_TMRON_ERSLOW,
+[; ;tmr2.h: 104: TMR2_ROP_RESETS_ERSBOTHEDGE,
+[; ;tmr2.h: 109: TMR2_ROP_RESETS_ERSRISINGEDGE,
+[; ;tmr2.h: 114: TMR2_ROP_RESETS_ERSFALLINGEDGE,
+[; ;tmr2.h: 119: TMR2_ROP_RESETS_ERSLOW,
+[; ;tmr2.h: 124: TMR2_ROP_RESETS_ERSHIGH,
+[; ;tmr2.h: 135: TMR2_OS_STARTS_TMRON,
+[; ;tmr2.h: 140: TMR2_OS_STARTS_ERSRISINGEDGE ,
+[; ;tmr2.h: 145: TMR2_OS_STARTS_ERSFALLINGEDGE ,
+[; ;tmr2.h: 150: TMR2_OS_STARTS_ERSBOTHEDGE,
+[; ;tmr2.h: 156: TMR2_OS_STARTS_ERSFIRSTRISINGEDGE,
+[; ;tmr2.h: 162: TMR2_OS_STARTS_ERSFIRSTFALLINGEDGE,
+[; ;tmr2.h: 168: TMR2_OS_STARTS_ERSRISINGEDGEDETECT,
+[; ;tmr2.h: 173: TMR2_OS_STARTS_ERSFALLINGEDGEDETECT,
+[; ;tmr2.h: 178: TMR2_OS_STARTS_TMRON_ERSHIGH = 0x16,
+[; ;tmr2.h: 183: TMR2_OS_STARTS_TMRON_ERSLOW = 0x17,
+[; ;tmr2.h: 192: TMR2_MS_STARTS_TMRON_ERSRISINGEDGEDETECT = 0x11,
+[; ;tmr2.h: 197: TMR2_MS_STARTS_TMRON_ERSFALLINGEDGEDETECT = 0x12,
+[; ;tmr2.h: 203: TMR2_MS_STARTS_TMRON_ERSBOTHEDGE = 0x13
+[; ;tmr2.h: 205: } TMR2_HLT_MODE;
+[; ;tmr2.h: 220: typedef enum
+[; ;tmr2.h: 221: {
+[; ;tmr2.h: 224: TMR2_T2INPPS,
+[; ;tmr2.h: 228: TMR2_RESERVED,
+[; ;tmr2.h: 232: TMR2_T4POSTSCALED,
+[; ;tmr2.h: 236: TMR2_T6POSTSCALED,
+[; ;tmr2.h: 240: TMR2_T8POSTSCALED,
+[; ;tmr2.h: 243: TMR2_CCP1_OUT,
+[; ;tmr2.h: 247: TMR2_CCP2_OUT,
+[; ;tmr2.h: 251: TMR2_CCP3_OUT,
+[; ;tmr2.h: 255: TMR2_CCP4_OUT,
+[; ;tmr2.h: 259: TMR2_CCP5_OUT,
+[; ;tmr2.h: 263: TMR2_PWM6_OUT,
+[; ;tmr2.h: 267: TMR2_PWM7_OUT,
+[; ;tmr2.h: 271: TMR2_C1_OUT_SYNC,
+[; ;tmr2.h: 275: TMR2_C2_OUT_SYNC,
+[; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
+[; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
+[; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
+[; ;tmr2.h: 328: void TMR2_Initialize(void);
+[; ;tmr2.h: 364: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 399: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 428: void TMR2_Start(void);
+[; ;tmr2.h: 457: void TMR2_StartTimer(void);
+[; ;tmr2.h: 489: void TMR2_Stop(void);
+[; ;tmr2.h: 521: void TMR2_StopTimer(void);
+[; ;tmr2.h: 556: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 591: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 630: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 669: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 721: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 773: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 791: void TMR2_ISR(void);
+[; ;tmr2.h: 809: void TMR2_CallBack(void);
+[; ;tmr2.h: 826: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 844: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 862: void TMR2_DefaultInterruptHandler(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2012 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16409,6 +16485,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16417,12 +16499,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16501,10 +16577,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
 "88 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17817 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17897 ~T0 @X0 1 e ]
 [; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "89
-[v _EUSART2_RxDefaultInterruptHandler `*F17820 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17900 ~T0 @X0 1 e ]
 [; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 111: void EUSART2_Initialize(void);
 [; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
@@ -16516,9 +16592,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 345: void EUSART2_Receive_ISR(void);
 [; ;eusart2.h: 365: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void));
 [; ;eusart2.h: 385: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void));
-[; ;mcc.h: 80: void SYSTEM_Initialize(void);
-[; ;mcc.h: 93: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 106: void PMD_Initialize(void);
+[; ;mcc.h: 81: void SYSTEM_Initialize(void);
+[; ;mcc.h: 94: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 107: void PMD_Initialize(void);
 [; ;math.h: 30: extern double fabs(double);
 [; ;math.h: 31: extern double floor(double);
 [; ;math.h: 32: extern double ceil(double);
@@ -16639,6 +16715,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cause_of_reset.h: 52: } reset_t;
 [; ;cause_of_reset.h: 56: reset_t getCauseOfReset(void);
 [; ;cause_of_reset.h: 59: inline char * getCauseOfResetString(reset_t r);
+[; ;cause_of_reset.h: 62: inline char * getCauseOfResetStringSmall(reset_t r);
 [; ;ring_buffer_LUT.h: 49: void ringBufferLUT(char * line);
 [; ;ring_buffer_interface.h: 40: extern volatile bit eusart2RxStringReady;
 [; ;ring_buffer_interface.h: 43: extern volatile uint8_t eusart2RxCount;
@@ -16680,965 +16757,1201 @@ Version 3.2 HI-TECH Software Intermediate Code
 "63 oled.h
 [v _OLED_RAM_Buffer `S2019 ~T0 @X0 1 e ]
 [; ;oled.h: 58: struct OLED_RAM_Buffer_t {
-[; ;oled.h: 59: char line0[16];
-[; ;oled.h: 60: char line1[16];
-[; ;oled.h: 61: char line2[16];
-[; ;oled.h: 62: char line3[16];
+[; ;oled.h: 59: char line0[17];
+[; ;oled.h: 60: char line1[17];
+[; ;oled.h: 61: char line2[17];
+[; ;oled.h: 62: char line3[17];
 [; ;oled.h: 63: } OLED_RAM_Buffer;
 [; ;oled.h: 66: typedef enum {
 [; ;oled.h: 68: Boot_Frame_1,
 [; ;oled.h: 69: Boot_Frame_2,
 [; ;oled.h: 70: Boot_Frame_3,
-[; ;oled.h: 71: Current_Values,
-[; ;oled.h: 72: Max_Values,
-[; ;oled.h: 73: Load_Enabled,
-[; ;oled.h: 74: Load_Disabled,
-[; ;oled.h: 75: Dimming_Enabled,
-[; ;oled.h: 76: Dimming_Disabled,
-[; ;oled.h: 77: Dimming_Percentage
-[; ;oled.h: 79: } OLED_Frame_t;
-"81
-[v _OLED_Frame `E18191 ~T0 @X0 1 e ]
-[i _OLED_Frame
-. `E18191 0
-]
-[; ;oled.h: 81: OLED_Frame_t OLED_Frame = Boot_Frame_1;
-[; ;oled.h: 84: void OLED_Command(uint8_t temp);
-[; ;oled.h: 85: void OLED_Data(uint8_t temp);
-[; ;oled.h: 86: void OLED_Init(void);
-[; ;oled.h: 87: void OLED_YX(unsigned char Row, unsigned char Column);
-[; ;oled.h: 88: void OLED_PutChar(char ch);
-[; ;oled.h: 89: void OLED_Clear(void);
-[; ;oled.h: 90: void OLED_WriteString(char *s);
-[; ;oled.h: 91: void OLED_WriteInteger(uint16_t i);
-[; ;oled.h: 92: void OLED_WriteFloat(float f);
-[; ;oled.h: 93: void OLED_UpdateFromRAMBuffer(void);
-"59 main.c
+[; ;oled.h: 71: Boot_Frame_4,
+[; ;oled.h: 72: Current_Values,
+[; ;oled.h: 73: Max_Values,
+[; ;oled.h: 74: Load_Enabled,
+[; ;oled.h: 75: Load_Disabled,
+[; ;oled.h: 76: Dimming_Enabled,
+[; ;oled.h: 77: Dimming_Disabled,
+[; ;oled.h: 78: Dimming_Percentage,
+[; ;oled.h: 79: Idle
+[; ;oled.h: 81: } OLED_Frame_t;
+"83
+[v _OLED_Frame `E18273 ~T0 @X0 1 e ]
+[; ;oled.h: 83: OLED_Frame_t OLED_Frame;
+[; ;oled.h: 86: void OLED_Command(uint8_t temp);
+[; ;oled.h: 87: void OLED_Data(uint8_t temp);
+[; ;oled.h: 88: void OLED_Init(void);
+[; ;oled.h: 89: void OLED_YX(unsigned char Row, unsigned char Column);
+[; ;oled.h: 90: void OLED_PutChar(char ch);
+[; ;oled.h: 91: void OLED_Clear(void);
+[; ;oled.h: 92: void OLED_WriteString(char *s);
+[; ;oled.h: 93: void OLED_WriteInteger(uint16_t i);
+[; ;oled.h: 94: void OLED_WriteFloat(float f);
+[; ;oled.h: 95: void OLED_UpdateFromRAMBuffer(void);
+"60 main.c
 [p x IDLOC0=0x0 ]
-"60
-[p x IDLOC1=0x1 ]
 "61
-[p x IDLOC2=0x2 ]
+[p x IDLOC1=0x1 ]
 "62
-[p x IDLOC3=0x3 ]
+[p x IDLOC2=0x2 ]
 "63
-[p x IDLOC4=0x4 ]
+[p x IDLOC3=0x3 ]
 "64
-[p x IDLOC5=0x5 ]
+[p x IDLOC4=0x4 ]
 "65
-[p x IDLOC6=0x6 ]
+[p x IDLOC5=0x5 ]
 "66
+[p x IDLOC6=0x6 ]
+"67
 [p x IDLOC7=0x7 ]
-"74
-[v _FVR_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 74: volatile double FVR_ADC_Result;
 "75
-[v _AVSS_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 75: volatile double AVSS_ADC_Result;
+[v _FVR_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 75: volatile double FVR_ADC_Result;
 "76
-[v _ADC_Result_Scaling `Vd ~T0 @X0 1 e ]
-[; ;main.c: 76: volatile double ADC_Result_Scaling;
+[v _AVSS_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 76: volatile double AVSS_ADC_Result;
 "77
-[v _POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 77: volatile double POS3P3_ADC_Result;
+[v _ADC_Result_Scaling `Vd ~T0 @X0 1 e ]
+[; ;main.c: 77: volatile double ADC_Result_Scaling;
 "78
-[v _POS12_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 78: volatile double POS12_ADC_Result;
+[v _POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 78: volatile double POS3P3_ADC_Result;
 "79
-[v _Temp_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 79: volatile double Temp_ADC_Result;
+[v _POS12_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 79: volatile double POS12_ADC_Result;
 "80
+[v _Temp_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 80: volatile double Temp_ADC_Result;
+"81
 [v _Temp_ADC_Offset `Vd ~T0 @X0 1 e ]
 [i _Temp_ADC_Offset
 .612.085
 ]
-[; ;main.c: 80: volatile double Temp_ADC_Offset = 612.085;
-"81
+[; ;main.c: 81: volatile double Temp_ADC_Offset = 612.085;
+"82
 [v _Vpk_const `d ~T0 @X0 1 e ]
 [i _Vpk_const
 .169.7056274847714
 ]
-[; ;main.c: 81: double Vpk_const = 169.7056274847714;
-"82
-[v _Vpk `Vd ~T0 @X0 1 e ]
-[; ;main.c: 82: volatile double Vpk;
+[; ;main.c: 82: double Vpk_const = 169.7056274847714;
 "83
-[v _Ipk `Vd ~T0 @X0 1 e ]
-[; ;main.c: 83: volatile double Ipk;
+[v _Vpk `Vd ~T0 @X0 1 e ]
+[; ;main.c: 83: volatile double Vpk;
 "84
-[v _Imeas `Vd ~T0 @X0 1 e ]
-[; ;main.c: 84: volatile double Imeas;
+[v _Ipk `Vd ~T0 @X0 1 e ]
+[; ;main.c: 84: volatile double Ipk;
 "85
+[v _Imeas `Vd ~T0 @X0 1 e ]
+[; ;main.c: 85: volatile double Imeas;
+"86
 [v _Irms_offset `d ~T0 @X0 1 e ]
 [i _Irms_offset
 -U .0.113
 ]
-[; ;main.c: 85: double Irms_offset = -0.113;
-"86
-[v _Irms `Vd ~T0 @X0 1 e ]
-[; ;main.c: 86: volatile double Irms;
+[; ;main.c: 86: double Irms_offset = -0.113;
 "87
-[v _Vrms `Vd ~T0 @X0 1 e ]
-[; ;main.c: 87: volatile double Vrms;
+[v _Irms `Vd ~T0 @X0 1 e ]
+[; ;main.c: 87: volatile double Irms;
 "88
-[v _Avg_Power `Vd ~T0 @X0 1 e ]
-[; ;main.c: 88: volatile double Avg_Power;
+[v _Vrms `Vd ~T0 @X0 1 e ]
+[; ;main.c: 88: volatile double Vrms;
 "89
-[v _Total_Energy `Vd ~T0 @X0 1 e ]
-[; ;main.c: 89: volatile double Total_Energy;
+[v _Avg_Power `Vd ~T0 @X0 1 e ]
+[; ;main.c: 89: volatile double Avg_Power;
 "90
+[v _Total_Energy `Vd ~T0 @X0 1 e ]
+[; ;main.c: 90: volatile double Total_Energy;
+"91
 [v _TRIAC_Firing_Angle `Vd ~T0 @X0 1 e ]
 [i _TRIAC_Firing_Angle
 .1.57
 ]
-[; ;main.c: 90: volatile double TRIAC_Firing_Angle = 1.57;
-"94
+[; ;main.c: 91: volatile double TRIAC_Firing_Angle = 1.57;
+"95
 [v _dimming_period `Vui ~T0 @X0 1 e ]
 [i _dimming_period
 -> -> 32750 `i `ui
 ]
-[; ;main.c: 94: volatile unsigned int dimming_period = 0x7FEE;
-"95
+[; ;main.c: 95: volatile unsigned int dimming_period = 0x7FEE;
+"96
 [v _load_enable `Vb ~T0 @X0 1 e ]
 [i _load_enable
 -> 0 `i
 ]
-[; ;main.c: 95: volatile bit load_enable = 0;
-"96
+[; ;main.c: 96: volatile bit load_enable = 0;
+"97
 [v _eusart2RxStringReady `Vb ~T0 @X0 1 e ]
 [i _eusart2RxStringReady
 -> 0 `i
 ]
-[; ;main.c: 96: volatile bit eusart2RxStringReady = 0;
-"97
+[; ;main.c: 97: volatile bit eusart2RxStringReady = 0;
+"98
 [v _dev_on_time `Vul ~T0 @X0 1 e ]
 [i _dev_on_time
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 97: volatile unsigned long dev_on_time = 0;
-"98
+[; ;main.c: 98: volatile unsigned long dev_on_time = 0;
+"99
 [v _load_on_time `Vul ~T0 @X0 1 e ]
 [i _load_on_time
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 98: volatile unsigned long load_on_time = 0;
-"99
-[v _reset_cause `E18124 ~T0 @X0 1 e ]
-[; ;main.c: 99: reset_t reset_cause;
+[; ;main.c: 99: volatile unsigned long load_on_time = 0;
 "100
-[v _next_channel `E17572 ~T0 @X0 1 e ]
+[v _reset_cause `E18204 ~T0 @X0 1 e ]
+[; ;main.c: 100: reset_t reset_cause;
+"101
+[v _next_channel `E17652 ~T0 @X0 1 e ]
 [i _next_channel
-. `E17572 3
+. `E17652 3
 ]
-[; ;main.c: 100: adcc_channel_t next_channel = channel_VSS;
-"103
-[v _max_Irms `Vd ~T0 @X0 1 e ]
-[; ;main.c: 103: volatile double max_Irms;
+[; ;main.c: 101: adcc_channel_t next_channel = channel_VSS;
 "104
-[v _max_Power `Vd ~T0 @X0 1 e ]
-[; ;main.c: 104: volatile double max_Power;
+[v _max_Irms `Vd ~T0 @X0 1 e ]
+[; ;main.c: 104: volatile double max_Irms;
 "105
-[v _max_POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 105: volatile double max_POS3P3_ADC_Result;
+[v _max_Power `Vd ~T0 @X0 1 e ]
+[; ;main.c: 105: volatile double max_Power;
 "106
-[v _max_POS12_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 106: volatile double max_POS12_ADC_Result;
+[v _max_POS3P3_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 106: volatile double max_POS3P3_ADC_Result;
 "107
-[v _max_Temp_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 107: volatile double max_Temp_ADC_Result;
+[v _max_POS12_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 107: volatile double max_POS12_ADC_Result;
 "108
+[v _max_Temp_ADC_Result `Vd ~T0 @X0 1 e ]
+[; ;main.c: 108: volatile double max_Temp_ADC_Result;
+"109
 [v _max_FVR_ADC_Result `Vd ~T0 @X0 1 e ]
-[; ;main.c: 108: volatile double max_FVR_ADC_Result;
-"111
+[; ;main.c: 109: volatile double max_FVR_ADC_Result;
+"112
 [v _max_Irms_address `Cui ~T0 @X0 1 e ]
 [i _max_Irms_address
 -> -> 0 `i `ui
 ]
-[; ;main.c: 111: const uint16_t max_Irms_address = 0x0000;
-"112
+[; ;main.c: 112: const uint16_t max_Irms_address = 0x0000;
+"113
 [v _max_Power_address `Cui ~T0 @X0 1 e ]
 [i _max_Power_address
 -> -> 4 `i `ui
 ]
-[; ;main.c: 112: const uint16_t max_Power_address = 0x0004;
-"113
+[; ;main.c: 113: const uint16_t max_Power_address = 0x0004;
+"114
 [v _max_POS3P3_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_POS3P3_ADC_Result_address
 -> -> 8 `i `ui
 ]
-[; ;main.c: 113: const uint16_t max_POS3P3_ADC_Result_address = 0x0008;
-"114
+[; ;main.c: 114: const uint16_t max_POS3P3_ADC_Result_address = 0x0008;
+"115
 [v _max_POS12_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_POS12_ADC_Result_address
 -> -> 12 `i `ui
 ]
-[; ;main.c: 114: const uint16_t max_POS12_ADC_Result_address = 0x000C;
-"115
+[; ;main.c: 115: const uint16_t max_POS12_ADC_Result_address = 0x000C;
+"116
 [v _max_Temp_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_Temp_ADC_Result_address
 -> -> 16 `i `ui
 ]
-[; ;main.c: 115: const uint16_t max_Temp_ADC_Result_address = 0x0010;
-"116
+[; ;main.c: 116: const uint16_t max_Temp_ADC_Result_address = 0x0010;
+"117
 [v _max_FVR_ADC_Result_address `Cui ~T0 @X0 1 e ]
 [i _max_FVR_ADC_Result_address
 -> -> 20 `i `ui
 ]
-[; ;main.c: 116: const uint16_t max_FVR_ADC_Result_address = 0x0014;
-"117
+[; ;main.c: 117: const uint16_t max_FVR_ADC_Result_address = 0x0014;
+"118
 [v _Total_Energy_address `Cui ~T0 @X0 1 e ]
 [i _Total_Energy_address
 -> -> 24 `i `ui
 ]
-[; ;main.c: 117: const uint16_t Total_Energy_address = 0x0018;
-"125
+[; ;main.c: 118: const uint16_t Total_Energy_address = 0x0018;
+"126
 [v _peakToRMS `(d ~T0 @X0 1 ef2`d`d ]
 {
-[; ;main.c: 125: double peakToRMS(double Peak, double Angle) {
+[; ;main.c: 126: double peakToRMS(double Peak, double Angle) {
 [e :U _peakToRMS ]
 [v _Peak `d ~T0 @X0 1 r1 ]
 [v _Angle `d ~T0 @X0 1 r2 ]
 [f ]
-"128
+"129
 [v _RMS `d ~T0 @X0 1 a ]
-[; ;main.c: 128: double RMS = 0.0;
+[; ;main.c: 129: double RMS = 0.0;
 [e = _RMS .0.0 ]
-[; ;main.c: 131: RMS = 2.0 * acos(-1.0);
-"131
-[e = _RMS * .2.0 ( _acos (1 -U .1.0 ]
-[; ;main.c: 132: RMS = RMS - (2.0 * Angle);
+[; ;main.c: 132: RMS = 2.0 * acos(-1.0);
 "132
-[e = _RMS - _RMS * .2.0 _Angle ]
-[; ;main.c: 133: RMS = RMS + sin(2.0 * Angle);
+[e = _RMS * .2.0 ( _acos (1 -U .1.0 ]
+[; ;main.c: 133: RMS = RMS - (2.0 * Angle);
 "133
-[e = _RMS + _RMS ( _sin (1 * .2.0 _Angle ]
-[; ;main.c: 134: RMS = RMS / (4.0 * acos(-1.0));
+[e = _RMS - _RMS * .2.0 _Angle ]
+[; ;main.c: 134: RMS = RMS + sin(2.0 * Angle);
 "134
-[e = _RMS / _RMS * .4.0 ( _acos (1 -U .1.0 ]
-[; ;main.c: 135: RMS = sqrt(RMS);
+[e = _RMS + _RMS ( _sin (1 * .2.0 _Angle ]
+[; ;main.c: 135: RMS = RMS / (4.0 * acos(-1.0));
 "135
-[e = _RMS ( _sqrt (1 _RMS ]
-[; ;main.c: 136: RMS = Peak * RMS;
+[e = _RMS / _RMS * .4.0 ( _acos (1 -U .1.0 ]
+[; ;main.c: 136: RMS = sqrt(RMS);
 "136
-[e = _RMS * _Peak _RMS ]
-[; ;main.c: 137: return RMS;
+[e = _RMS ( _sqrt (1 _RMS ]
+[; ;main.c: 137: RMS = Peak * RMS;
 "137
+[e = _RMS * _Peak _RMS ]
+[; ;main.c: 138: return RMS;
+"138
 [e ) _RMS ]
 [e $UE 2020  ]
-[; ;main.c: 139: }
-"139
+[; ;main.c: 140: }
+"140
 [e :UE 2020 ]
 }
-"142
+"143
 [v _currentMeasuredToPeak `(d ~T0 @X0 1 ef2`d`d ]
 {
-[; ;main.c: 142: double currentMeasuredToPeak(double Measured, double Angle) {
+[; ;main.c: 143: double currentMeasuredToPeak(double Measured, double Angle) {
 [e :U _currentMeasuredToPeak ]
 [v _Measured `d ~T0 @X0 1 r1 ]
 [v _Angle `d ~T0 @X0 1 r2 ]
 [f ]
-"145
+"146
 [v _Peak `d ~T0 @X0 1 a ]
-[; ;main.c: 145: double Peak = 0.0;
+[; ;main.c: 146: double Peak = 0.0;
 [e = _Peak .0.0 ]
-[; ;main.c: 148: Peak = sin(Angle);
-"148
-[e = _Peak ( _sin (1 _Angle ]
-[; ;main.c: 149: Peak = Measured / Peak;
+[; ;main.c: 149: Peak = sin(Angle);
 "149
-[e = _Peak / _Measured _Peak ]
-[; ;main.c: 150: return Peak;
+[e = _Peak ( _sin (1 _Angle ]
+[; ;main.c: 150: Peak = Measured / Peak;
 "150
+[e = _Peak / _Measured _Peak ]
+[; ;main.c: 151: return Peak;
+"151
 [e ) _Peak ]
 [e $UE 2021  ]
-[; ;main.c: 152: }
-"152
+[; ;main.c: 153: }
+"153
 [e :UE 2021 ]
 }
-"155
+"156
 [v _saveSRAMMaxToEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 155: void saveSRAMMaxToEEPROM(void) {
+[; ;main.c: 156: void saveSRAMMaxToEEPROM(void) {
 [e :U _saveSRAMMaxToEEPROM ]
 [f ]
-[; ;main.c: 159: if (Irms > max_Irms) {
-"159
+[; ;main.c: 160: if (Irms > max_Irms) {
+"160
 [e $ ! > _Irms _max_Irms 2023  ]
 {
-[; ;main.c: 160: writeDoubleToEEPROM(Irms, max_Irms_address);
-"160
-[e ( _writeDoubleToEEPROM (2 , _Irms _max_Irms_address ]
-[; ;main.c: 161: max_Irms = Irms;
+[; ;main.c: 161: writeDoubleToEEPROM(Irms, max_Irms_address);
 "161
-[e = _max_Irms _Irms ]
+[e ( _writeDoubleToEEPROM (2 , _Irms _max_Irms_address ]
+[; ;main.c: 162: max_Irms = Irms;
 "162
+[e = _max_Irms _Irms ]
+"163
 }
 [e :U 2023 ]
-[; ;main.c: 162: }
-[; ;main.c: 164: if (Avg_Power > max_Power) {
-"164
+[; ;main.c: 163: }
+[; ;main.c: 165: if (Avg_Power > max_Power) {
+"165
 [e $ ! > _Avg_Power _max_Power 2024  ]
 {
-[; ;main.c: 165: writeDoubleToEEPROM(Avg_Power, max_Power_address);
-"165
-[e ( _writeDoubleToEEPROM (2 , _Avg_Power _max_Power_address ]
-[; ;main.c: 166: max_Power = Avg_Power;
+[; ;main.c: 166: writeDoubleToEEPROM(Avg_Power, max_Power_address);
 "166
-[e = _max_Power _Avg_Power ]
+[e ( _writeDoubleToEEPROM (2 , _Avg_Power _max_Power_address ]
+[; ;main.c: 167: max_Power = Avg_Power;
 "167
+[e = _max_Power _Avg_Power ]
+"168
 }
 [e :U 2024 ]
-[; ;main.c: 167: }
-[; ;main.c: 169: if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
-"169
+[; ;main.c: 168: }
+[; ;main.c: 170: if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
+"170
 [e $ ! > _POS3P3_ADC_Result _max_POS3P3_ADC_Result 2025  ]
 {
-[; ;main.c: 170: writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
-"170
-[e ( _writeDoubleToEEPROM (2 , _POS3P3_ADC_Result _max_POS3P3_ADC_Result_address ]
-[; ;main.c: 171: max_POS3P3_ADC_Result = POS3P3_ADC_Result;
+[; ;main.c: 171: writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
 "171
-[e = _max_POS3P3_ADC_Result _POS3P3_ADC_Result ]
+[e ( _writeDoubleToEEPROM (2 , _POS3P3_ADC_Result _max_POS3P3_ADC_Result_address ]
+[; ;main.c: 172: max_POS3P3_ADC_Result = POS3P3_ADC_Result;
 "172
+[e = _max_POS3P3_ADC_Result _POS3P3_ADC_Result ]
+"173
 }
 [e :U 2025 ]
-[; ;main.c: 172: }
-[; ;main.c: 174: if (POS12_ADC_Result > max_POS12_ADC_Result) {
-"174
+[; ;main.c: 173: }
+[; ;main.c: 175: if (POS12_ADC_Result > max_POS12_ADC_Result) {
+"175
 [e $ ! > _POS12_ADC_Result _max_POS12_ADC_Result 2026  ]
 {
-[; ;main.c: 175: writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
-"175
-[e ( _writeDoubleToEEPROM (2 , _POS12_ADC_Result _max_POS12_ADC_Result_address ]
-[; ;main.c: 176: max_POS12_ADC_Result = POS12_ADC_Result;
+[; ;main.c: 176: writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
 "176
-[e = _max_POS12_ADC_Result _POS12_ADC_Result ]
+[e ( _writeDoubleToEEPROM (2 , _POS12_ADC_Result _max_POS12_ADC_Result_address ]
+[; ;main.c: 177: max_POS12_ADC_Result = POS12_ADC_Result;
 "177
+[e = _max_POS12_ADC_Result _POS12_ADC_Result ]
+"178
 }
 [e :U 2026 ]
-[; ;main.c: 177: }
-[; ;main.c: 179: if (Temp_ADC_Result > max_Temp_ADC_Result) {
-"179
+[; ;main.c: 178: }
+[; ;main.c: 180: if (Temp_ADC_Result > max_Temp_ADC_Result) {
+"180
 [e $ ! > _Temp_ADC_Result _max_Temp_ADC_Result 2027  ]
 {
-[; ;main.c: 180: writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
-"180
-[e ( _writeDoubleToEEPROM (2 , _Temp_ADC_Result _max_Temp_ADC_Result_address ]
-[; ;main.c: 181: max_Temp_ADC_Result = Temp_ADC_Result;
+[; ;main.c: 181: writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
 "181
-[e = _max_Temp_ADC_Result _Temp_ADC_Result ]
+[e ( _writeDoubleToEEPROM (2 , _Temp_ADC_Result _max_Temp_ADC_Result_address ]
+[; ;main.c: 182: max_Temp_ADC_Result = Temp_ADC_Result;
 "182
+[e = _max_Temp_ADC_Result _Temp_ADC_Result ]
+"183
 }
 [e :U 2027 ]
-[; ;main.c: 182: }
-[; ;main.c: 184: if (FVR_ADC_Result > max_FVR_ADC_Result) {
-"184
+[; ;main.c: 183: }
+[; ;main.c: 185: if (FVR_ADC_Result > max_FVR_ADC_Result) {
+"185
 [e $ ! > _FVR_ADC_Result _max_FVR_ADC_Result 2028  ]
 {
-[; ;main.c: 185: writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
-"185
-[e ( _writeDoubleToEEPROM (2 , _FVR_ADC_Result _max_FVR_ADC_Result_address ]
-[; ;main.c: 186: max_FVR_ADC_Result = FVR_ADC_Result;
+[; ;main.c: 186: writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
 "186
-[e = _max_FVR_ADC_Result _FVR_ADC_Result ]
+[e ( _writeDoubleToEEPROM (2 , _FVR_ADC_Result _max_FVR_ADC_Result_address ]
+[; ;main.c: 187: max_FVR_ADC_Result = FVR_ADC_Result;
 "187
+[e = _max_FVR_ADC_Result _FVR_ADC_Result ]
+"188
 }
 [e :U 2028 ]
-[; ;main.c: 187: }
-[; ;main.c: 189: }
-"189
+[; ;main.c: 188: }
+[; ;main.c: 190: }
+"190
 [e :UE 2022 ]
 }
-"192
+"193
 [v _recoverSRAMMaxFromEEPROM `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 192: void recoverSRAMMaxFromEEPROM(void) {
+[; ;main.c: 193: void recoverSRAMMaxFromEEPROM(void) {
 [e :U _recoverSRAMMaxFromEEPROM ]
 [f ]
-[; ;main.c: 194: max_Irms = readDoubleFromEEPROM(max_Irms_address);
-"194
-[e = _max_Irms ( _readDoubleFromEEPROM (1 _max_Irms_address ]
-[; ;main.c: 195: max_Power = readDoubleFromEEPROM(max_Power_address);
+[; ;main.c: 195: max_Irms = readDoubleFromEEPROM(max_Irms_address);
 "195
-[e = _max_Power ( _readDoubleFromEEPROM (1 _max_Power_address ]
-[; ;main.c: 196: max_POS3P3_ADC_Result = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
+[e = _max_Irms ( _readDoubleFromEEPROM (1 _max_Irms_address ]
+[; ;main.c: 196: max_Power = readDoubleFromEEPROM(max_Power_address);
 "196
-[e = _max_POS3P3_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS3P3_ADC_Result_address ]
-[; ;main.c: 197: max_POS12_ADC_Result = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
+[e = _max_Power ( _readDoubleFromEEPROM (1 _max_Power_address ]
+[; ;main.c: 197: max_POS3P3_ADC_Result = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
 "197
-[e = _max_POS12_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS12_ADC_Result_address ]
-[; ;main.c: 198: max_Temp_ADC_Result = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
+[e = _max_POS3P3_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS3P3_ADC_Result_address ]
+[; ;main.c: 198: max_POS12_ADC_Result = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
 "198
-[e = _max_Temp_ADC_Result ( _readDoubleFromEEPROM (1 _max_Temp_ADC_Result_address ]
-[; ;main.c: 199: max_FVR_ADC_Result = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+[e = _max_POS12_ADC_Result ( _readDoubleFromEEPROM (1 _max_POS12_ADC_Result_address ]
+[; ;main.c: 199: max_Temp_ADC_Result = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
 "199
-[e = _max_FVR_ADC_Result ( _readDoubleFromEEPROM (1 _max_FVR_ADC_Result_address ]
-[; ;main.c: 200: Total_Energy = readDoubleFromEEPROM(Total_Energy_address);
+[e = _max_Temp_ADC_Result ( _readDoubleFromEEPROM (1 _max_Temp_ADC_Result_address ]
+[; ;main.c: 200: max_FVR_ADC_Result = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
 "200
+[e = _max_FVR_ADC_Result ( _readDoubleFromEEPROM (1 _max_FVR_ADC_Result_address ]
+[; ;main.c: 201: Total_Energy = readDoubleFromEEPROM(Total_Energy_address);
+"201
 [e = _Total_Energy ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
-[; ;main.c: 202: }
-"202
+[; ;main.c: 203: }
+"203
 [e :UE 2029 ]
 }
-"210
+"211
 [v _heartbeatTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 210: void heartbeatTimerCallback(void) {
+[; ;main.c: 211: void heartbeatTimerCallback(void) {
 [e :U _heartbeatTimerCallback ]
 [f ]
-[; ;main.c: 213: LATFbits.LATF2 = !LATFbits.LATF2;
-"213
+[; ;main.c: 214: LATFbits.LATF2 = !LATFbits.LATF2;
+"214
 [e = . . _LATFbits 0 2 -> -> ! != -> . . _LATFbits 0 2 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;main.c: 216: dev_on_time++;
-"216
+[; ;main.c: 217: dev_on_time++;
+"217
 [e ++ _dev_on_time -> -> -> 1 `i `l `ul ]
-[; ;main.c: 219: if (load_enable) {
-"219
+[; ;main.c: 220: if (load_enable) {
+"220
 [e $ ! _load_enable 2031  ]
 {
-[; ;main.c: 221: load_on_time++;
-"221
+[; ;main.c: 222: load_on_time++;
+"222
 [e ++ _load_on_time -> -> -> 1 `i `l `ul ]
-"223
+"224
 }
 [e :U 2031 ]
-[; ;main.c: 223: }
-[; ;main.c: 226: asm(" clrwdt");
-"226
+[; ;main.c: 224: }
+[; ;main.c: 227: asm(" clrwdt");
+"227
 [; <"  clrwdt ;# ">
-[; ;main.c: 228: }
-"228
+[; ;main.c: 229: }
+"229
 [e :UE 2030 ]
 }
-"231
-[v _ADCPostProcessingCallback `(v ~T0 @X0 1 ef ]
+"232
+[v _ADC_PostProcessingCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 231: void ADCPostProcessingCallback(void) {
-[e :U _ADCPostProcessingCallback ]
+[; ;main.c: 232: void ADC_PostProcessingCallback(void) {
+[e :U _ADC_PostProcessingCallback ]
 [f ]
-[; ;main.c: 234: ADCC_StopConversion();
-"234
+[; ;main.c: 235: ADCC_StopConversion();
+"235
 [e ( _ADCC_StopConversion ..  ]
-"237
-[v _current_adc_channel `E17572 ~T0 @X0 1 a ]
-[; ;main.c: 237: adcc_channel_t current_adc_channel = ADPCH;
-[e = _current_adc_channel -> _ADPCH `E17572 ]
-[; ;main.c: 240: switch (current_adc_channel) {
-"240
+"238
+[v _current_adc_channel `E17652 ~T0 @X0 1 a ]
+[; ;main.c: 238: adcc_channel_t current_adc_channel = ADPCH;
+[e = _current_adc_channel -> _ADPCH `E17652 ]
+[; ;main.c: 241: switch (current_adc_channel) {
+"241
 [e $U 2034  ]
 {
-[; ;main.c: 242: case channel_VSS:
-"242
+[; ;main.c: 243: case channel_VSS:
+"243
 [e :U 2035 ]
-[; ;main.c: 244: AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
-"244
+[; ;main.c: 245: AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
+"245
 [e = _AVSS_ADC_Result * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 ]
-[; ;main.c: 246: if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
-"246
+[; ;main.c: 247: if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
+"247
 [e $ ! || > _AVSS_ADC_Result .0.01 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2036  ]
 {
-[; ;main.c: 248: error_handler.AVSS_ADC_error_flag = 1;
-"248
-[e = . _error_handler 3 -> -> 1 `i `uc ]
-[; ;main.c: 249: return;
+[; ;main.c: 249: error_handler.AVSS_ADC_error_flag = 1;
 "249
+[e = . _error_handler 3 -> -> 1 `i `uc ]
+[; ;main.c: 250: return;
+"250
 [e $UE 2032  ]
-"251
+"252
 }
 [e :U 2036 ]
-[; ;main.c: 251: }
-[; ;main.c: 253: next_channel = channel_FVR_buf1;
-"253
-[e = _next_channel . `E17572 6 ]
-[; ;main.c: 255: break;
-"255
+[; ;main.c: 252: }
+[; ;main.c: 254: next_channel = channel_FVR_buf1;
+"254
+[e = _next_channel . `E17652 6 ]
+[; ;main.c: 256: break;
+"256
 [e $U 2033  ]
-[; ;main.c: 258: case channel_FVR_buf1:
-"258
+[; ;main.c: 259: case channel_FVR_buf1:
+"259
 [e :U 2037 ]
-[; ;main.c: 260: FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
-"260
-[e = _FVR_ADC_Result + * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 _AVSS_ADC_Result ]
-[; ;main.c: 261: ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+[; ;main.c: 261: FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
 "261
+[e = _FVR_ADC_Result + * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 _AVSS_ADC_Result ]
+[; ;main.c: 262: ADC_Result_Scaling = 2.048/FVR_ADC_Result;
+"262
 [e = _ADC_Result_Scaling / .2.048 _FVR_ADC_Result ]
-[; ;main.c: 263: if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
-"263
+[; ;main.c: 264: if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
+"264
 [e $ ! || || > _FVR_ADC_Result .2.5 < _FVR_ADC_Result .2.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2038  ]
 {
-[; ;main.c: 265: error_handler.FVR_ADC_error_flag = 1;
-"265
-[e = . _error_handler 5 -> -> 1 `i `uc ]
-[; ;main.c: 266: return;
+[; ;main.c: 266: error_handler.FVR_ADC_error_flag = 1;
 "266
+[e = . _error_handler 5 -> -> 1 `i `uc ]
+[; ;main.c: 267: return;
+"267
 [e $UE 2032  ]
-"268
+"269
 }
 [e :U 2038 ]
-[; ;main.c: 268: }
-[; ;main.c: 270: next_channel = POS3P3_ADC;
-"270
-[e = _next_channel . `E17572 2 ]
-[; ;main.c: 272: break;
-"272
+[; ;main.c: 269: }
+[; ;main.c: 271: next_channel = POS3P3_ADC;
+"271
+[e = _next_channel . `E17652 2 ]
+[; ;main.c: 273: break;
+"273
 [e $U 2033  ]
-[; ;main.c: 275: case POS3P3_ADC:
-"275
+[; ;main.c: 276: case POS3P3_ADC:
+"276
 [e :U 2039 ]
-[; ;main.c: 277: POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
-"277
+[; ;main.c: 278: POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
+"278
 [e = _POS3P3_ADC_Result * * * -> ( _ADCC_GetFilterValue ..  `d / .3.3 .1023.0 .2.0 _ADC_Result_Scaling ]
-[; ;main.c: 279: if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
-"279
+[; ;main.c: 280: if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
+"280
 [e $ ! || > _POS3P3_ADC_Result .3.5 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2040  ]
 {
-[; ;main.c: 281: error_handler.POS3P3_ADC_error_flag = 1;
-"281
-[e = . _error_handler 2 -> -> 1 `i `uc ]
-[; ;main.c: 282: return;
+[; ;main.c: 282: error_handler.POS3P3_ADC_error_flag = 1;
 "282
+[e = . _error_handler 2 -> -> 1 `i `uc ]
+[; ;main.c: 283: return;
+"283
 [e $UE 2032  ]
-"284
+"285
 }
 [e :U 2040 ]
-[; ;main.c: 284: }
-[; ;main.c: 286: next_channel = ISNS_ADC;
-"286
-[e = _next_channel . `E17572 0 ]
-[; ;main.c: 288: break;
-"288
+[; ;main.c: 285: }
+[; ;main.c: 287: next_channel = ISNS_ADC;
+"287
+[e = _next_channel . `E17652 0 ]
+[; ;main.c: 289: break;
+"289
 [e $U 2033  ]
-[; ;main.c: 291: case ISNS_ADC:
-"291
+[; ;main.c: 292: case ISNS_ADC:
+"292
 [e :U 2041 ]
-[; ;main.c: 293: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
-"293
+[; ;main.c: 294: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+"294
 [e = _Imeas * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 / .3.787 .2.0 ]
-[; ;main.c: 297: if (LATGbits.LATG0 != 1) {
-"297
+[; ;main.c: 298: if (LATGbits.LATG0 != 1) {
+"298
 [e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2042  ]
 {
-[; ;main.c: 302: if (load_enable) {
-"302
+[; ;main.c: 303: if (load_enable) {
+"303
 [e $ ! _load_enable 2043  ]
 {
-[; ;main.c: 305: if (dimming_period < 0x7FEE) {
-"305
+[; ;main.c: 306: if (dimming_period < 0x7FEE) {
+"306
 [e $ ! < _dimming_period -> -> 32750 `i `ui 2044  ]
 {
-[; ;main.c: 307: Ipk = Imeas;
-"307
-[e = _Ipk _Imeas ]
-[; ;main.c: 308: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+[; ;main.c: 308: Ipk = Imeas;
 "308
+[e = _Ipk _Imeas ]
+[; ;main.c: 309: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+"309
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"310
+"311
 }
-[; ;main.c: 310: }
+[; ;main.c: 311: }
 [e $U 2045  ]
-"313
+"314
 [e :U 2044 ]
-[; ;main.c: 313: else {
+[; ;main.c: 314: else {
 {
-[; ;main.c: 315: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
-"315
-[e = _Ipk ( _currentMeasuredToPeak (2 , _Imeas _TRIAC_Firing_Angle ]
-[; ;main.c: 316: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+[; ;main.c: 316: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
 "316
+[e = _Ipk ( _currentMeasuredToPeak (2 , _Imeas _TRIAC_Firing_Angle ]
+[; ;main.c: 317: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+"317
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"318
+"319
 }
 [e :U 2045 ]
-[; ;main.c: 318: }
-[; ;main.c: 320: Vpk = Vpk_const;
-"320
+[; ;main.c: 319: }
+[; ;main.c: 321: Vpk = Vpk_const;
+"321
 [e = _Vpk _Vpk_const ]
-"322
+"323
 }
-[; ;main.c: 322: }
+[; ;main.c: 323: }
 [e $U 2046  ]
-"324
+"325
 [e :U 2043 ]
-[; ;main.c: 324: else {
+[; ;main.c: 325: else {
 {
-[; ;main.c: 326: Ipk = 0.0;
-"326
-[e = _Ipk .0.0 ]
-[; ;main.c: 327: Vpk = 0.0;
+[; ;main.c: 327: Ipk = 0.0;
 "327
-[e = _Vpk .0.0 ]
-[; ;main.c: 328: Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+[e = _Ipk .0.0 ]
+[; ;main.c: 328: Vpk = 0.0;
 "328
+[e = _Vpk .0.0 ]
+[; ;main.c: 329: Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+"329
 [e = _Irms ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle ]
-"330
+"331
 }
 [e :U 2046 ]
-[; ;main.c: 330: }
-[; ;main.c: 332: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
-"332
-[e = _Vrms ( _peakToRMS (2 , _Vpk _TRIAC_Firing_Angle ]
-[; ;main.c: 333: Avg_Power = Vrms * Irms;
+[; ;main.c: 331: }
+[; ;main.c: 333: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 "333
-[e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 334: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+[e = _Vrms ( _peakToRMS (2 , _Vpk _TRIAC_Firing_Angle ]
+[; ;main.c: 334: Avg_Power = Vrms * Irms;
 "334
-[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"336
-}
-[; ;main.c: 336: }
-[e $U 2047  ]
-"339
-[e :U 2042 ]
-[; ;main.c: 339: else {
-{
-[; ;main.c: 341: Ipk = Imeas;
-"341
-[e = _Ipk _Imeas ]
-[; ;main.c: 342: Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
-"342
-[e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk .0.0 _Irms_offset `i `d ]
-[; ;main.c: 343: Vrms = peakToRMS(Vpk_const, 0.0);
-"343
-[e = _Vrms ( _peakToRMS (2 , _Vpk_const .0.0 ]
-[; ;main.c: 344: Avg_Power = Vrms * Irms;
-"344
 [e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 345: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-"345
+[; ;main.c: 335: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+"335
 [e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"347
+"337
+}
+[; ;main.c: 337: }
+[e $U 2047  ]
+"340
+[e :U 2042 ]
+[; ;main.c: 340: else {
+{
+[; ;main.c: 342: Ipk = Imeas;
+"342
+[e = _Ipk _Imeas ]
+[; ;main.c: 343: Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
+"343
+[e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk .0.0 _Irms_offset `i `d ]
+[; ;main.c: 344: Vrms = peakToRMS(Vpk_const, 0.0);
+"344
+[e = _Vrms ( _peakToRMS (2 , _Vpk_const .0.0 ]
+[; ;main.c: 345: Avg_Power = Vrms * Irms;
+"345
+[e = _Avg_Power * _Vrms _Irms ]
+[; ;main.c: 346: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+"346
+[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
+"348
 }
 [e :U 2047 ]
-[; ;main.c: 347: }
-[; ;main.c: 349: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
-"349
+[; ;main.c: 348: }
+[; ;main.c: 350: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
+"350
 [e $ ! || > _Irms .5.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2048  ]
 {
-[; ;main.c: 351: error_handler.ISNS_ADC_error_flag = 1;
-"351
-[e = . _error_handler 0 -> -> 1 `i `uc ]
-[; ;main.c: 352: return;
+[; ;main.c: 352: error_handler.ISNS_ADC_error_flag = 1;
 "352
+[e = . _error_handler 0 -> -> 1 `i `uc ]
+[; ;main.c: 353: return;
+"353
 [e $UE 2032  ]
-"354
+"355
 }
 [e :U 2048 ]
-[; ;main.c: 354: }
-[; ;main.c: 356: next_channel = POS12_ADC;
-"356
-[e = _next_channel . `E17572 1 ]
-[; ;main.c: 358: break;
-"358
+[; ;main.c: 355: }
+[; ;main.c: 357: next_channel = POS12_ADC;
+"357
+[e = _next_channel . `E17652 1 ]
+[; ;main.c: 359: break;
+"359
 [e $U 2033  ]
-[; ;main.c: 361: case POS12_ADC:
-"361
+[; ;main.c: 362: case POS12_ADC:
+"362
 [e :U 2049 ]
-[; ;main.c: 363: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
-"363
+[; ;main.c: 364: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+"364
 [e = _POS12_ADC_Result * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 .4.0303030303 ]
-[; ;main.c: 365: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
-"365
+[; ;main.c: 366: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
+"366
 [e $ ! || > _POS12_ADC_Result .13.6 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2050  ]
 {
-[; ;main.c: 367: error_handler.POS12_ADC_error_flag = 1;
-"367
-[e = . _error_handler 1 -> -> 1 `i `uc ]
-[; ;main.c: 368: return;
+[; ;main.c: 368: error_handler.POS12_ADC_error_flag = 1;
 "368
+[e = . _error_handler 1 -> -> 1 `i `uc ]
+[; ;main.c: 369: return;
+"369
 [e $UE 2032  ]
-"370
+"371
 }
 [e :U 2050 ]
-[; ;main.c: 370: }
-[; ;main.c: 372: next_channel = channel_Temp;
-"372
-[e = _next_channel . `E17572 4 ]
-[; ;main.c: 374: break;
-"374
+[; ;main.c: 371: }
+[; ;main.c: 373: next_channel = channel_Temp;
+"373
+[e = _next_channel . `E17652 4 ]
+[; ;main.c: 375: break;
+"375
 [e $U 2033  ]
-[; ;main.c: 377: case channel_Temp:
-"377
+[; ;main.c: 378: case channel_Temp:
+"378
 [e :U 2051 ]
-[; ;main.c: 379: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
-"379
+[; ;main.c: 380: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+"380
 [e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetConversionResult ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
-[; ;main.c: 381: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
-"381
+[; ;main.c: 382: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
+"382
 [e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2052  ]
 {
-[; ;main.c: 383: error_handler.Temp_ADC_error_flag = 1;
-"383
-[e = . _error_handler 4 -> -> 1 `i `uc ]
-[; ;main.c: 384: return;
+[; ;main.c: 384: error_handler.Temp_ADC_error_flag = 1;
 "384
+[e = . _error_handler 4 -> -> 1 `i `uc ]
+[; ;main.c: 385: return;
+"385
 [e $UE 2032  ]
-"386
+"387
 }
 [e :U 2052 ]
-[; ;main.c: 386: }
-[; ;main.c: 388: next_channel = channel_VSS;
-"388
-[e = _next_channel . `E17572 3 ]
-[; ;main.c: 390: break;
-"390
+[; ;main.c: 387: }
+[; ;main.c: 389: next_channel = channel_VSS;
+"389
+[e = _next_channel . `E17652 3 ]
+[; ;main.c: 391: break;
+"391
 [e $U 2033  ]
-[; ;main.c: 394: default:
-"394
-[e :U 2053 ]
-[; ;main.c: 395: error_handler.ADC_general_error_flag = 1;
+[; ;main.c: 395: default:
 "395
-[e = . _error_handler 6 -> -> 1 `i `uc ]
-[; ;main.c: 396: break;
+[e :U 2053 ]
+[; ;main.c: 396: error_handler.ADC_general_error_flag = 1;
 "396
+[e = . _error_handler 6 -> -> 1 `i `uc ]
+[; ;main.c: 397: break;
+"397
 [e $U 2033  ]
-"398
+"399
 }
-[; ;main.c: 398: }
+[; ;main.c: 399: }
 [e $U 2033  ]
-"240
+"241
 [e :U 2034 ]
-[e [\ _current_adc_channel , $ . `E17572 3 2035
- , $ . `E17572 6 2037
- , $ . `E17572 2 2039
- , $ . `E17572 0 2041
- , $ . `E17572 1 2049
- , $ . `E17572 4 2051
+[e [\ _current_adc_channel , $ . `E17652 3 2035
+ , $ . `E17652 6 2037
+ , $ . `E17652 2 2039
+ , $ . `E17652 0 2041
+ , $ . `E17652 1 2049
+ , $ . `E17652 4 2051
  2053 ]
-"398
+"399
 [e :U 2033 ]
-[; ;main.c: 400: if (ADCC_GetCurrentCountofConversions() != 255) {
-"400
+[; ;main.c: 401: if (ADCC_GetCurrentCountofConversions() != 255) {
+"401
 [e $ ! != -> ( _ADCC_GetCurrentCountofConversions ..  `i -> 255 `i 2054  ]
 {
-[; ;main.c: 401: error_handler.ADC_general_error_flag = 1;
-"401
-[e = . _error_handler 6 -> -> 1 `i `uc ]
+[; ;main.c: 402: error_handler.ADC_general_error_flag = 1;
 "402
+[e = . _error_handler 6 -> -> 1 `i `uc ]
+"403
 }
 [e :U 2054 ]
-[; ;main.c: 402: }
-[; ;main.c: 404: if (ADCC_HasAccumulatorOverflowed()) {
-"404
+[; ;main.c: 403: }
+[; ;main.c: 405: if (ADCC_HasAccumulatorOverflowed()) {
+"405
 [e $ ! != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2055  ]
 {
-[; ;main.c: 405: error_handler.ADC_general_error_flag = 1;
-"405
-[e = . _error_handler 6 -> -> 1 `i `uc ]
+[; ;main.c: 406: error_handler.ADC_general_error_flag = 1;
 "406
+[e = . _error_handler 6 -> -> 1 `i `uc ]
+"407
 }
 [e :U 2055 ]
-[; ;main.c: 406: }
-[; ;main.c: 408: }
-"408
+[; ;main.c: 407: }
+[; ;main.c: 409: }
+"409
 [e :UE 2032 ]
 }
-"411
+"412
 [v _acquisitionTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 411: void acquisitionTimerCallback(void) {
+[; ;main.c: 412: void acquisitionTimerCallback(void) {
 [e :U _acquisitionTimerCallback ]
 [f ]
-[; ;main.c: 414: ADCC_DischargeSampleCapacitor();
-"414
+[; ;main.c: 415: ADCC_DischargeSampleCapacitor();
+"415
 [e ( _ADCC_DischargeSampleCapacitor ..  ]
-[; ;main.c: 417: ADCC_ClearAccumulator();
-"417
+[; ;main.c: 418: ADCC_ClearAccumulator();
+"418
 [e ( _ADCC_ClearAccumulator ..  ]
-[; ;main.c: 420: ADCC_StartConversion(next_channel);
-"420
+[; ;main.c: 421: ADCC_StartConversion(next_channel);
+"421
 [e ( _ADCC_StartConversion (1 _next_channel ]
-[; ;main.c: 422: }
-"422
+[; ;main.c: 423: }
+"423
 [e :UE 2056 ]
 }
-"425
+"426
 [v _dimmingOffTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 425: void dimmingOffTimeCallback(void) {
+[; ;main.c: 426: void dimmingOffTimeCallback(void) {
 [e :U _dimmingOffTimeCallback ]
 [f ]
-[; ;main.c: 428: LATGbits.LATG1 = 0;
-"428
+[; ;main.c: 429: LATGbits.LATG1 = 0;
+"429
 [e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 431: TMR5_WriteTimer(dimming_period);
-"431
-[e ( _TMR5_WriteTimer (1 _dimming_period ]
-[; ;main.c: 432: TMR5_StartTimer();
+[; ;main.c: 432: TMR5_WriteTimer(dimming_period);
 "432
+[e ( _TMR5_WriteTimer (1 _dimming_period ]
+[; ;main.c: 433: TMR5_StartTimer();
+"433
 [e ( _TMR5_StartTimer ..  ]
-[; ;main.c: 435: PIE5bits.TMR5IE = 1;
-"435
+[; ;main.c: 436: PIE5bits.TMR5IE = 1;
+"436
 [e = . . _PIE5bits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 437: }
-"437
+[; ;main.c: 438: }
+"438
 [e :UE 2057 ]
 }
-"440
+"441
 [v _dimmingOnTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 440: void dimmingOnTimeCallback(void) {
+[; ;main.c: 441: void dimmingOnTimeCallback(void) {
 [e :U _dimmingOnTimeCallback ]
 [f ]
-[; ;main.c: 443: LATGbits.LATG1 = 1;
-"443
+[; ;main.c: 444: LATGbits.LATG1 = 1;
+"444
 [e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 446: TMR5_StopTimer();
-"446
+[; ;main.c: 447: TMR5_StopTimer();
+"447
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 449: PIE5bits.TMR5IE = 0;
-"449
+[; ;main.c: 450: PIE5bits.TMR5IE = 0;
+"450
 [e = . . _PIE5bits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 452: }
-"452
+[; ;main.c: 453: }
+"453
 [e :UE 2058 ]
 }
-"457
+"458
 [v _writeEnergyToEEPROMCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 457: void writeEnergyToEEPROMCallback(void) {
+[; ;main.c: 458: void writeEnergyToEEPROMCallback(void) {
 [e :U _writeEnergyToEEPROMCallback ]
 [f ]
-"459
+"460
 [v _current_value `d ~T0 @X0 1 a ]
-[; ;main.c: 459: double current_value = readDoubleFromEEPROM(Total_Energy_address);
+[; ;main.c: 460: double current_value = readDoubleFromEEPROM(Total_Energy_address);
 [e = _current_value ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
-[; ;main.c: 461: if (Total_Energy > current_value) {
-"461
+[; ;main.c: 462: if (Total_Energy > current_value) {
+"462
 [e $ ! > _Total_Energy _current_value 2060  ]
 {
-[; ;main.c: 463: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
-"463
+[; ;main.c: 464: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+"464
 [e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
-"465
+"466
 }
 [e :U 2060 ]
-[; ;main.c: 465: }
-[; ;main.c: 467: }
-"467
+[; ;main.c: 466: }
+[; ;main.c: 468: }
+"468
 [e :UE 2059 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"474
-[v _main `(v ~T0 @X0 1 ef ]
-"475
+"472
+[v _OLED_updateCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 474: void main(void)
-[; ;main.c: 475: {
-[e :U _main ]
+[; ;main.c: 472: void OLED_updateCallback(void) {
+[e :U _OLED_updateCallback ]
 [f ]
-[; ;main.c: 478: reset_cause = getCauseOfReset();
-"478
-[e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 482: _delay((unsigned long)((250)*(64000000/4000.0)));
-"482
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 485: SYSTEM_Initialize();
-"485
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 488: LATGbits.LATG0 = 0;
-"488
-[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 489: LATGbits.LATG1 = 0;
-"489
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 490: load_enable = 0;
-"490
-[e = _load_enable -> -> 0 `i `b ]
-[; ;main.c: 493: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"493
-[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 496: ADCC_SetADTIInterruptHandler(ADCPostProcessingCallback);
-"496
-[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADCPostProcessingCallback ]
-[; ;main.c: 499: TMR7_SetInterruptHandler(acquisitionTimerCallback);
-"499
-[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 502: INT0_SetInterruptHandler(dimmingOffTimeCallback);
-"502
-[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
-[; ;main.c: 505: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
-"505
-[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
-[; ;main.c: 508: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
-"508
-[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
-[; ;main.c: 511: TMR5_StopTimer();
-"511
-[e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 512: PIE0bits.INT0IE = 0;
-"512
-[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 515: recoverSRAMMaxFromEEPROM();
-"515
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 518: (INTCONbits.GIEH = 1);
-"518
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 521: (INTCONbits.GIEL = 1);
-"521
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 524: terminal_clearTerminal();
-"524
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 525: terminal_setCursorHome();
-"525
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 526: terminal_textAttributesReset();
-"526
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 529: OLED_Init();
-"529
-[e ( _OLED_Init ..  ]
-[; ;main.c: 532: strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
-"532
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 1C ]
-[; ;main.c: 533: strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
-"533
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 2C ]
-[; ;main.c: 534: strcpy(OLED_RAM_Buffer.line2, "Final Project");
-"534
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 3C ]
-[; ;main.c: 535: strcpy(OLED_RAM_Buffer.line3, "Boot Complete");
-"535
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 4C ]
-[; ;main.c: 536: OLED_UpdateFromRAMBuffer();
-"536
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 539: while (1)
-"539
-[e :U 2063 ]
-[; ;main.c: 540: {
-"540
-{
-[; ;main.c: 543: if (eusart2RxStringReady) {
-"543
-[e $ ! _eusart2RxStringReady 2065  ]
-{
-[; ;main.c: 545: terminal_ringBufferPull();
-"545
-[e ( _terminal_ringBufferPull ..  ]
-"547
-}
-[e :U 2065 ]
-[; ;main.c: 547: }
-[; ;main.c: 550: saveSRAMMaxToEEPROM();
-"550
-[e ( _saveSRAMMaxToEEPROM ..  ]
-[; ;main.c: 553: updateErrorLEDs();
-"553
-[e ( _updateErrorLEDs ..  ]
-"555
-}
-[e :U 2062 ]
-"539
+[; ;main.c: 474: switch (OLED_Frame) {
+"474
 [e $U 2063  ]
+{
+[; ;main.c: 476: case Boot_Frame_1:
+"476
 [e :U 2064 ]
-[; ;main.c: 555: }
-[; ;main.c: 556: }
-"556
+[; ;main.c: 478: strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
+"478
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 1C ]
+[; ;main.c: 479: strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+"479
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 2C ]
+[; ;main.c: 480: strcpy(OLED_RAM_Buffer.line2, "Final Project");
+"480
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 3C ]
+[; ;main.c: 481: strcpy(OLED_RAM_Buffer.line3, getCauseOfResetStringSmall(reset_cause));
+"481
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> ( _getCauseOfResetStringSmall (1 _reset_cause `*Cuc ]
+[; ;main.c: 482: OLED_UpdateFromRAMBuffer();
+"482
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 483: OLED_Frame = Boot_Frame_2;
+"483
+[e = _OLED_Frame . `E18273 1 ]
+[; ;main.c: 484: break;
+"484
+[e $U 2062  ]
+[; ;main.c: 486: case Boot_Frame_2:
+"486
+[e :U 2065 ]
+[; ;main.c: 489: strcpy(OLED_RAM_Buffer.line0, "Device ID:");
+"489
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 4C ]
+"490
+[v _dev_id_str `uc ~T0 @X0 -> 16 `i a ]
+[; ;main.c: 490: char dev_id_str[16];
+[; ;main.c: 491: strcpy(dev_id_str, getDeviceIDString(getDeviceID()));
+"491
+[e ( _strcpy (2 , &U _dev_id_str -> ( _getDeviceIDString (1 ( _getDeviceID ..  `*Cuc ]
+[; ;main.c: 492: strcpy(OLED_RAM_Buffer.line1, dev_id_str);
+"492
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _dev_id_str `*Cuc ]
+[; ;main.c: 495: strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
+"495
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 5C ]
+"497
+[v _rev_id_str `uc ~T0 @X0 -> 5 `i a ]
+[; ;main.c: 497: char rev_id_str[5];
+[; ;main.c: 498: rev_id_str[0] = (char) getMajorRevisionID() + 65;
+"498
+[e = *U + &U _rev_id_str * -> -> -> 0 `i `ui `ux -> -> # *U &U _rev_id_str `ui `ux -> + -> ( _getMajorRevisionID ..  `i -> 65 `i `uc ]
+[; ;main.c: 499: rev_id_str[1] = '0';
+"499
+[e = *U + &U _rev_id_str * -> -> -> 1 `i `ui `ux -> -> # *U &U _rev_id_str `ui `ux -> -> 48 `ui `uc ]
+[; ;main.c: 500: rev_id_str[2] = '0';
+"500
+[e = *U + &U _rev_id_str * -> -> -> 2 `i `ui `ux -> -> # *U &U _rev_id_str `ui `ux -> -> 48 `ui `uc ]
+[; ;main.c: 501: rev_id_str[3] = getMinorRevisionID() + 48;
+"501
+[e = *U + &U _rev_id_str * -> -> -> 3 `i `ui `ux -> -> # *U &U _rev_id_str `ui `ux -> + -> ( _getMinorRevisionID ..  `i -> 48 `i `uc ]
+[; ;main.c: 502: rev_id_str[4] = '\0';
+"502
+[e = *U + &U _rev_id_str * -> -> -> 4 `i `ui `ux -> -> # *U &U _rev_id_str `ui `ux -> -> 0 `ui `uc ]
+[; ;main.c: 503: strcpy(OLED_RAM_Buffer.line3, rev_id_str);
+"503
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _rev_id_str `*Cuc ]
+[; ;main.c: 505: OLED_UpdateFromRAMBuffer();
+"505
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 506: OLED_Frame = Boot_Frame_3;
+"506
+[e = _OLED_Frame . `E18273 2 ]
+[; ;main.c: 507: break;
+"507
+[e $U 2062  ]
+[; ;main.c: 509: case Boot_Frame_3:
+"509
+[e :U 2066 ]
+[; ;main.c: 510: strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
+"510
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 6C ]
+[; ;main.c: 511: strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
+"511
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 7C ]
+[; ;main.c: 512: strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
+"512
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 8C ]
+[; ;main.c: 513: strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow ctrl");
+"513
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 9C ]
+[; ;main.c: 515: OLED_UpdateFromRAMBuffer();
+"515
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 516: OLED_Frame = Boot_Frame_4;;
+"516
+[e = _OLED_Frame . `E18273 3 ]
+[; ;main.c: 517: break;
+"517
+[e $U 2062  ]
+[; ;main.c: 519: case Boot_Frame_4:
+"519
+[e :U 2067 ]
+[; ;main.c: 520: strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
+"520
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 10C ]
+[; ;main.c: 521: strcpy(OLED_RAM_Buffer.line1, "Ready");
+"521
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 11C ]
+[; ;main.c: 522: strcpy(OLED_RAM_Buffer.line2, "Load Disabled");
+"522
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 12C ]
+[; ;main.c: 523: strcpy(OLED_RAM_Buffer.line3, " ");
+"523
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 13C ]
+[; ;main.c: 525: OLED_UpdateFromRAMBuffer();
+"525
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 526: OLED_Frame = Idle;
+"526
+[e = _OLED_Frame . `E18273 11 ]
+[; ;main.c: 528: break;
+"528
+[e $U 2062  ]
+[; ;main.c: 530: case Current_Values:
+"530
+[e :U 2068 ]
+[; ;main.c: 531: break;
+"531
+[e $U 2062  ]
+[; ;main.c: 533: case Max_Values:
+"533
+[e :U 2069 ]
+[; ;main.c: 534: break;
+"534
+[e $U 2062  ]
+[; ;main.c: 536: case Load_Enabled:
+"536
+[e :U 2070 ]
+[; ;main.c: 537: strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
+"537
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 14C ]
+[; ;main.c: 538: strcpy(OLED_RAM_Buffer.line1, " ");
+"538
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 15C ]
+[; ;main.c: 539: strcpy(OLED_RAM_Buffer.line2, " ");
+"539
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 16C ]
+[; ;main.c: 540: strcpy(OLED_RAM_Buffer.line3, " ");
+"540
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 17C ]
+[; ;main.c: 542: OLED_UpdateFromRAMBuffer();
+"542
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 544: OLED_Frame = Idle;
+"544
+[e = _OLED_Frame . `E18273 11 ]
+[; ;main.c: 546: break;
+"546
+[e $U 2062  ]
+[; ;main.c: 548: case Load_Disabled:
+"548
+[e :U 2071 ]
+[; ;main.c: 549: break;
+"549
+[e $U 2062  ]
+[; ;main.c: 551: case Dimming_Enabled:
+"551
+[e :U 2072 ]
+[; ;main.c: 552: break;
+"552
+[e $U 2062  ]
+[; ;main.c: 554: case Dimming_Disabled:
+"554
+[e :U 2073 ]
+[; ;main.c: 555: break;
+"555
+[e $U 2062  ]
+[; ;main.c: 557: case Dimming_Percentage:
+"557
+[e :U 2074 ]
+[; ;main.c: 558: break;
+"558
+[e $U 2062  ]
+[; ;main.c: 560: case Idle:
+"560
+[e :U 2075 ]
+[; ;main.c: 561: break;
+"561
+[e $U 2062  ]
+[; ;main.c: 563: default:
+"563
+[e :U 2076 ]
+[; ;main.c: 564: break;
+"564
+[e $U 2062  ]
+"566
+}
+[; ;main.c: 566: }
+[e $U 2062  ]
+"474
+[e :U 2063 ]
+[e [\ _OLED_Frame , $ . `E18273 0 2064
+ , $ . `E18273 1 2065
+ , $ . `E18273 2 2066
+ , $ . `E18273 3 2067
+ , $ . `E18273 4 2068
+ , $ . `E18273 5 2069
+ , $ . `E18273 6 2070
+ , $ . `E18273 7 2071
+ , $ . `E18273 8 2072
+ , $ . `E18273 9 2073
+ , $ . `E18273 10 2074
+ , $ . `E18273 11 2075
+ 2076 ]
+"566
+[e :U 2062 ]
+[; ;main.c: 568: }
+"568
 [e :UE 2061 ]
 }
+[v $root$_main `(v ~T0 @X0 0 e ]
+"573
+[v _main `(v ~T0 @X0 1 ef ]
+"574
+{
+[; ;main.c: 573: void main(void)
+[; ;main.c: 574: {
+[e :U _main ]
+[f ]
+[; ;main.c: 577: reset_cause = getCauseOfReset();
+"577
+[e = _reset_cause ( _getCauseOfReset ..  ]
+[; ;main.c: 581: _delay((unsigned long)((250)*(64000000/4000.0)));
+"581
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 584: SYSTEM_Initialize();
+"584
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 587: LATGbits.LATG0 = 0;
+"587
+[e = . . _LATGbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 588: LATGbits.LATG1 = 0;
+"588
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 589: load_enable = 0;
+"589
+[e = _load_enable -> -> 0 `i `b ]
+[; ;main.c: 592: TMR6_SetInterruptHandler(heartbeatTimerCallback);
+"592
+[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
+[; ;main.c: 595: ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
+"595
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADC_PostProcessingCallback ]
+[; ;main.c: 598: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+"598
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 601: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+"601
+[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
+[; ;main.c: 604: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+"604
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 607: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+"607
+[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
+[; ;main.c: 610: TMR2_SetInterruptHandler(OLED_updateCallback);
+"610
+[e ( _TMR2_SetInterruptHandler (1 &U _OLED_updateCallback ]
+[; ;main.c: 613: TMR5_StopTimer();
+"613
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 614: PIE0bits.INT0IE = 0;
+"614
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 617: recoverSRAMMaxFromEEPROM();
+"617
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 620: (INTCONbits.GIEH = 1);
+"620
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 623: (INTCONbits.GIEL = 1);
+"623
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 626: terminal_clearTerminal();
+"626
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 627: terminal_setCursorHome();
+"627
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 628: terminal_textAttributesReset();
+"628
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 631: OLED_Init();
+"631
+[e ( _OLED_Init ..  ]
+[; ;main.c: 632: OLED_Clear();
+"632
+[e ( _OLED_Clear ..  ]
+[; ;main.c: 634: OLED_Frame = Boot_Frame_1;
+"634
+[e = _OLED_Frame . `E18273 0 ]
+[; ;main.c: 635: OLED_updateCallback();
+"635
+[e ( _OLED_updateCallback ..  ]
+[; ;main.c: 638: while (1)
+"638
+[e :U 2079 ]
+[; ;main.c: 639: {
+"639
+{
+[; ;main.c: 642: if (eusart2RxStringReady) {
+"642
+[e $ ! _eusart2RxStringReady 2081  ]
+{
+[; ;main.c: 644: terminal_ringBufferPull();
+"644
+[e ( _terminal_ringBufferPull ..  ]
+"646
+}
+[e :U 2081 ]
+[; ;main.c: 646: }
+[; ;main.c: 649: saveSRAMMaxToEEPROM();
+"649
+[e ( _saveSRAMMaxToEEPROM ..  ]
+[; ;main.c: 652: updateErrorLEDs();
+"652
+[e ( _updateErrorLEDs ..  ]
+"654
+}
+[e :U 2078 ]
+"638
+[e $U 2079  ]
+[e :U 2080 ]
+[; ;main.c: 654: }
+[; ;main.c: 655: }
+"655
+[e :UE 2077 ]
+}
+[a 8C 56 98 105 116 44 32 110 111 32 112 97 114 105 116 121 0 ]
+[a 11C 82 101 97 100 121 0 ]
 [a 3C 70 105 110 97 108 32 80 114 111 106 101 99 116 0 ]
+[a 7C 49 49 53 46 50 32 107 98 115 0 ]
 [a 1C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 0 ]
-[a 4C 66 111 111 116 32 67 111 109 112 108 101 116 101 0 ]
+[a 9C 49 32 115 116 112 44 32 110 111 32 102 108 111 119 32 99 116 114 108 0 ]
+[a 10C 66 111 111 116 32 67 111 109 112 108 101 116 101 0 ]
+[a 12C 76 111 97 100 32 68 105 115 97 98 108 101 100 0 ]
+[a 14C 76 111 97 100 32 69 110 97 98 108 101 100 0 ]
+[a 6C 67 79 77 32 80 111 114 116 32 83 101 116 117 112 58 0 ]
+[a 5C 82 101 118 105 115 105 111 110 32 73 68 58 0 ]
+[a 4C 68 101 118 105 99 101 32 73 68 58 0 ]
 [a 2C 69 76 69 78 32 51 48 51 53 0 ]
+[a 13C 32 0 ]
+[a 15C 32 0 ]
+[a 16C 32 0 ]
+[a 17C 32 0 ]

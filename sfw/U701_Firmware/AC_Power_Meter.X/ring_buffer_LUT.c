@@ -12,6 +12,7 @@
 #include "device_IDs.h"
 #include "cause_of_reset.h"
 #include "double_to_EEPROM.h"
+#include "oled.h"
 
 #ifndef M_PI
     #define M_PI acos(-1.0)
@@ -57,6 +58,9 @@ extern const uint16_t max_POS12_ADC_Result_address     = 0x000C;
 extern const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 extern const uint16_t max_FVR_ADC_Result_address       = 0x0014;
 extern const uint16_t Total_Energy_address             = 0x0018;
+
+
+extern void OLED_updateCallback(void);
 
 void ringBufferLUT(char * line) {
 
@@ -442,6 +446,9 @@ void ringBufferLUT(char * line) {
         SSR_FORCE_PIN = 1;
         SSR_DIM_PIN = 0;
         load_enable = 1;
+        
+        OLED_Frame = Load_Enabled;
+        OLED_updateCallback();
         
         terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Load has been enabled, dimming disabled\n\r");

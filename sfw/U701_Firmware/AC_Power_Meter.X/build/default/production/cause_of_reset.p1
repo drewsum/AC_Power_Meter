@@ -16118,6 +16118,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cause_of_reset.h: 52: } reset_t;
 [; ;cause_of_reset.h: 56: reset_t getCauseOfReset(void);
 [; ;cause_of_reset.h: 59: inline char * getCauseOfResetString(reset_t r);
+[; ;cause_of_reset.h: 62: inline char * getCauseOfResetStringSmall(reset_t r);
 "11 cause_of_reset.c
 [v _getCauseOfReset `(E17455 ~T0 @X0 1 ef ]
 {
@@ -16267,8 +16268,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _r `E17455 ~T0 @X0 1 r1 ]
 [f ]
 "84
-[v F17473 `*uc ~T0 @X0 -> 0 `x s strings ]
-[i F17473
+[v F17475 `*uc ~T0 @X0 -> 0 `x s strings ]
+[i F17475
 :U ..
 "85
 -> :s 1C `*uc
@@ -16307,7 +16308,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;cause_of_reset.c: 99: return strings[r];
 "99
-[e ) -> *U + &U F17473 * -> _r `ux -> -> # *U &U F17473 `ui `ux `*Tuc ]
+[e ) -> *U + &U F17475 * -> _r `ux -> -> # *U &U F17475 `ui `ux `*Tuc ]
 [e $UE 2027  ]
 "101
 }
@@ -16329,6 +16330,76 @@ Version 3.2 HI-TECH Software Intermediate Code
 "109
 [e :UE 2027 ]
 }
+"112
+[v _getCauseOfResetStringSmall `(*Tuc ~T0 @X0 1 ef1`E17455 ]
+{
+[; ;cause_of_reset.c: 112: inline char * getCauseOfResetStringSmall(reset_t r) {
+[e :U _getCauseOfResetStringSmall ]
+[v _r `E17455 ~T0 @X0 1 r1 ]
+[f ]
+"115
+[v F17477 `*uc ~T0 @X0 -> 0 `x s strings ]
+[i F17477
+:U ..
+"116
+-> :s 11C `*uc
+"117
+-> :s 12C `*uc
+"118
+-> :s 13C `*uc
+"119
+-> :s 14C `*uc
+"120
+-> :s 15C `*uc
+"121
+-> :s 16C `*uc
+"122
+-> :s 17C `*uc
+"123
+-> :s 18C `*uc
+"124
+-> :s 19C `*uc
+..
+]
+[; ;cause_of_reset.c: 115: static char *strings[] = {
+[; ;cause_of_reset.c: 116: "Undefined",
+[; ;cause_of_reset.c: 117: "POR Reset",
+[; ;cause_of_reset.c: 118: "BOR Reset",
+[; ;cause_of_reset.c: 119: "MCLR Reset",
+[; ;cause_of_reset.c: 120: "WDT Reset",
+[; ;cause_of_reset.c: 121: "WWDT Reset",
+[; ;cause_of_reset.c: 122: "RESET Executed",
+[; ;cause_of_reset.c: 123: "STOF Reset",
+[; ;cause_of_reset.c: 124: "STUF Reset",
+[; ;cause_of_reset.c: 125: };
+[; ;cause_of_reset.c: 128: if (r <= 8) {
+"128
+[e $ ! <= -> _r `i -> 8 `i 2031  ]
+{
+[; ;cause_of_reset.c: 130: return strings[r];
+"130
+[e ) -> *U + &U F17477 * -> _r `ux -> -> # *U &U F17477 `ui `ux `*Tuc ]
+[e $UE 2030  ]
+"132
+}
+[; ;cause_of_reset.c: 132: }
+[e $U 2032  ]
+"134
+[e :U 2031 ]
+[; ;cause_of_reset.c: 134: else {
+{
+[; ;cause_of_reset.c: 136: return "Undefined";
+"136
+[e ) -> :s 20C `*Tuc ]
+[e $UE 2030  ]
+"138
+}
+[e :U 2032 ]
+[; ;cause_of_reset.c: 138: }
+[; ;cause_of_reset.c: 140: }
+"140
+[e :UE 2030 ]
+}
 [a 8C 83 116 97 99 107 32 79 118 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
 [a 9C 83 116 97 99 107 32 85 110 100 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
 [a 3C 66 114 111 119 110 32 79 117 116 32 82 101 115 101 116 0 ]
@@ -16338,4 +16409,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 2C 80 111 119 101 114 32 79 110 32 82 101 115 101 116 0 ]
 [a 1C 85 110 100 101 102 105 110 101 100 32 82 101 115 101 116 0 ]
 [a 10C 85 110 100 101 102 105 110 101 100 32 82 101 115 101 116 0 ]
+[a 16C 87 87 68 84 32 82 101 115 101 116 0 ]
+[a 15C 87 68 84 32 82 101 115 101 116 0 ]
+[a 12C 80 79 82 32 82 101 115 101 116 0 ]
+[a 13C 66 79 82 32 82 101 115 101 116 0 ]
+[a 14C 77 67 76 82 32 82 101 115 101 116 0 ]
+[a 19C 83 84 85 70 32 82 101 115 101 116 0 ]
+[a 18C 83 84 79 70 32 82 101 115 101 116 0 ]
 [a 7C 82 69 83 69 84 32 73 110 115 116 114 117 99 116 105 111 110 32 69 120 101 99 117 116 101 100 0 ]
+[a 17C 82 69 83 69 84 32 69 120 101 99 117 116 101 100 0 ]
+[a 11C 85 110 100 101 102 105 110 101 100 0 ]
+[a 20C 85 110 100 101 102 105 110 101 100 0 ]
