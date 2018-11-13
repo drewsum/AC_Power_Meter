@@ -527,15 +527,13 @@ void main(void)
     
     // Setup OLED
     OLED_Init();
-    OLED_Clear();
-    OLED_YX(0,0);
-    OLED_Write_String("AC Power Meter");
-    OLED_YX(1,0);
-    OLED_Write_String("ELEN 3035");
-    OLED_YX(2,0);
-    OLED_Write_String("Drew Maatman");
-    OLED_YX(3,0);
-    OLED_Write_String("Gabe Thalji");
+    
+    // Print boot messsage
+    strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
+    strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+    strcpy(OLED_RAM_Buffer.line2, "Final Project");
+    strcpy(OLED_RAM_Buffer.line3, "Boot Complete");
+    OLED_UpdateFromRAMBuffer();
     
     // Main loop
     while (1)

@@ -52,6 +52,17 @@
 #define OLED_SEGREMAP               0xA0
 #define OLED_CHARGEPUMP             0x8D
 
+// OLED line RAM buffer
+// each char array corresponds to a line
+// there are four lines
+struct OLED_RAM_Buffer_t {
+    char line0[16];
+    char line1[16];
+    char line2[16];
+    char line3[16];
+} OLED_RAM_Buffer;
+
+
 // Function prototypes
 void OLED_Command(uint8_t temp);
 void OLED_Data(uint8_t temp);
@@ -59,16 +70,10 @@ void OLED_Init(void);
 void OLED_YX(unsigned char Row, unsigned char Column);
 void OLED_PutChar(char ch);
 void OLED_Clear(void);
-void OLED_Write_String(char *s);
-void OLED_Write_Integer(uint16_t i);
-void OLED_Write_Float(float f);
-
-
-    
-
-
-    
-
+void OLED_WriteString(char *s);
+void OLED_WriteInteger(uint16_t i);
+void OLED_WriteFloat(float f);
+void OLED_UpdateFromRAMBuffer(void);
 
 
 #endif	/* OLED_H */

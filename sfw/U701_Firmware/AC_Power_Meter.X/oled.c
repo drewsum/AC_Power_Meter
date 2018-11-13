@@ -266,7 +266,7 @@ void OLED_Clear(void) {
     
 }
 
-void OLED_Write_String(char* s) {
+void OLED_WriteString(char* s) {
  
     while(*s) {
      
@@ -277,24 +277,38 @@ void OLED_Write_String(char* s) {
     
 }
 
-void OLED_Write_Integer(uint16_t i) {
+void OLED_WriteInteger(uint16_t i) {
  
     char s[20];
     itoa(s,i,10);
-    OLED_Write_String(s);
-    OLED_Write_String("");
+    OLED_WriteString(s);
+    OLED_WriteString("");
     
 }
 
-void OLED_Write_Float(float f) {
+void OLED_WriteFloat(float f) {
  
     char* buf11;
     int status11;
     
     buf11 = ftoa(f, &status11);
     
-    OLED_Write_String(buf11);
-    OLED_Write_String("");
+    OLED_WriteString(buf11);
+    OLED_WriteString("");
+    
+}
+
+void OLED_UpdateFromRAMBuffer(void) {
+    
+    OLED_Clear();
+    OLED_YX(0,0);
+    OLED_WriteString(OLED_RAM_Buffer.line0);
+    OLED_YX(1,0);
+    OLED_WriteString(OLED_RAM_Buffer.line1);
+    OLED_YX(2,0);
+    OLED_WriteString(OLED_RAM_Buffer.line2);
+    OLED_YX(3,0);
+    OLED_WriteString(OLED_RAM_Buffer.line3);
     
 }
 

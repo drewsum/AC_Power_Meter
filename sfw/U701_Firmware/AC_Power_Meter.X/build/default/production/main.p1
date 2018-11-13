@@ -4,6 +4,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2012 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
 [v F17817 `(v ~T0 @X0 0 tf ]
 [v F17820 `(v ~T0 @X0 0 tf ]
+"58 oled.h
+[s S2019 `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i ]
+[n S2019 OLED_RAM_Buffer_t line0 line1 line2 line3 ]
 "99 main.c
 [c E18124 0 1 2 3 4 5 6 7 8 .. ]
 [n E18124 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
@@ -131,14 +134,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _terminal_setCursorHome `(v ~T0 @X0 0 ef ]
 "159
 [v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
-"58 oled.h
+"69 oled.h
 [v _OLED_Init `(v ~T0 @X0 0 ef ]
-"61
-[v _OLED_Clear `(v ~T0 @X0 0 ef ]
-"59
-[v _OLED_YX `(v ~T0 @X0 0 ef2`uc`uc ]
-"62
-[v _OLED_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
+[v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"76 oled.h
+[v _OLED_UpdateFromRAMBuffer `(v ~T0 @X0 0 ef ]
 "112 ring_buffer_interface.h
 [v _terminal_ringBufferPull `(v ~T0 @X0 0 ef ]
 "62 mcc_generated_files/../error_handling.h
@@ -16673,15 +16674,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 156: text_attribute_t input_attribute);
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
-[; ;oled.h: 56: void OLED_Command(uint8_t temp);
-[; ;oled.h: 57: void OLED_Data(uint8_t temp);
-[; ;oled.h: 58: void OLED_Init(void);
-[; ;oled.h: 59: void OLED_YX(unsigned char Row, unsigned char Column);
-[; ;oled.h: 60: void OLED_PutChar(char ch);
-[; ;oled.h: 61: void OLED_Clear(void);
-[; ;oled.h: 62: void OLED_Write_String(char *s);
-[; ;oled.h: 63: void OLED_Write_Integer(uint16_t i);
-[; ;oled.h: 64: void OLED_Write_Float(float f);
+"63 oled.h
+[v _OLED_RAM_Buffer `S2019 ~T0 @X0 1 e ]
+[; ;oled.h: 58: struct OLED_RAM_Buffer_t {
+[; ;oled.h: 59: char line0[16];
+[; ;oled.h: 60: char line1[16];
+[; ;oled.h: 61: char line2[16];
+[; ;oled.h: 62: char line3[16];
+[; ;oled.h: 63: } OLED_RAM_Buffer;
+[; ;oled.h: 67: void OLED_Command(uint8_t temp);
+[; ;oled.h: 68: void OLED_Data(uint8_t temp);
+[; ;oled.h: 69: void OLED_Init(void);
+[; ;oled.h: 70: void OLED_YX(unsigned char Row, unsigned char Column);
+[; ;oled.h: 71: void OLED_PutChar(char ch);
+[; ;oled.h: 72: void OLED_Clear(void);
+[; ;oled.h: 73: void OLED_WriteString(char *s);
+[; ;oled.h: 74: void OLED_WriteInteger(uint16_t i);
+[; ;oled.h: 75: void OLED_WriteFloat(float f);
+[; ;oled.h: 76: void OLED_UpdateFromRAMBuffer(void);
 "59 main.c
 [p x IDLOC0=0x0 ]
 "60
@@ -16893,10 +16903,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 137: return RMS;
 "137
 [e ) _RMS ]
-[e $UE 2019  ]
+[e $UE 2020  ]
 [; ;main.c: 139: }
 "139
-[e :UE 2019 ]
+[e :UE 2020 ]
 }
 "142
 [v _currentMeasuredToPeak `(d ~T0 @X0 1 ef2`d`d ]
@@ -16919,10 +16929,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 150: return Peak;
 "150
 [e ) _Peak ]
-[e $UE 2020  ]
+[e $UE 2021  ]
 [; ;main.c: 152: }
 "152
-[e :UE 2020 ]
+[e :UE 2021 ]
 }
 "155
 [v _saveSRAMMaxToEEPROM `(v ~T0 @X0 1 ef ]
@@ -16932,7 +16942,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 159: if (Irms > max_Irms) {
 "159
-[e $ ! > _Irms _max_Irms 2022  ]
+[e $ ! > _Irms _max_Irms 2023  ]
 {
 [; ;main.c: 160: writeDoubleToEEPROM(Irms, max_Irms_address);
 "160
@@ -16942,11 +16952,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_Irms _Irms ]
 "162
 }
-[e :U 2022 ]
+[e :U 2023 ]
 [; ;main.c: 162: }
 [; ;main.c: 164: if (Avg_Power > max_Power) {
 "164
-[e $ ! > _Avg_Power _max_Power 2023  ]
+[e $ ! > _Avg_Power _max_Power 2024  ]
 {
 [; ;main.c: 165: writeDoubleToEEPROM(Avg_Power, max_Power_address);
 "165
@@ -16956,11 +16966,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_Power _Avg_Power ]
 "167
 }
-[e :U 2023 ]
+[e :U 2024 ]
 [; ;main.c: 167: }
 [; ;main.c: 169: if (POS3P3_ADC_Result > max_POS3P3_ADC_Result) {
 "169
-[e $ ! > _POS3P3_ADC_Result _max_POS3P3_ADC_Result 2024  ]
+[e $ ! > _POS3P3_ADC_Result _max_POS3P3_ADC_Result 2025  ]
 {
 [; ;main.c: 170: writeDoubleToEEPROM(POS3P3_ADC_Result, max_POS3P3_ADC_Result_address);
 "170
@@ -16970,11 +16980,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_POS3P3_ADC_Result _POS3P3_ADC_Result ]
 "172
 }
-[e :U 2024 ]
+[e :U 2025 ]
 [; ;main.c: 172: }
 [; ;main.c: 174: if (POS12_ADC_Result > max_POS12_ADC_Result) {
 "174
-[e $ ! > _POS12_ADC_Result _max_POS12_ADC_Result 2025  ]
+[e $ ! > _POS12_ADC_Result _max_POS12_ADC_Result 2026  ]
 {
 [; ;main.c: 175: writeDoubleToEEPROM(POS12_ADC_Result, max_POS12_ADC_Result_address);
 "175
@@ -16984,11 +16994,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_POS12_ADC_Result _POS12_ADC_Result ]
 "177
 }
-[e :U 2025 ]
+[e :U 2026 ]
 [; ;main.c: 177: }
 [; ;main.c: 179: if (Temp_ADC_Result > max_Temp_ADC_Result) {
 "179
-[e $ ! > _Temp_ADC_Result _max_Temp_ADC_Result 2026  ]
+[e $ ! > _Temp_ADC_Result _max_Temp_ADC_Result 2027  ]
 {
 [; ;main.c: 180: writeDoubleToEEPROM(Temp_ADC_Result, max_Temp_ADC_Result_address);
 "180
@@ -16998,11 +17008,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_Temp_ADC_Result _Temp_ADC_Result ]
 "182
 }
-[e :U 2026 ]
+[e :U 2027 ]
 [; ;main.c: 182: }
 [; ;main.c: 184: if (FVR_ADC_Result > max_FVR_ADC_Result) {
 "184
-[e $ ! > _FVR_ADC_Result _max_FVR_ADC_Result 2027  ]
+[e $ ! > _FVR_ADC_Result _max_FVR_ADC_Result 2028  ]
 {
 [; ;main.c: 185: writeDoubleToEEPROM(FVR_ADC_Result, max_FVR_ADC_Result_address);
 "185
@@ -17012,11 +17022,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _max_FVR_ADC_Result _FVR_ADC_Result ]
 "187
 }
-[e :U 2027 ]
+[e :U 2028 ]
 [; ;main.c: 187: }
 [; ;main.c: 189: }
 "189
-[e :UE 2021 ]
+[e :UE 2022 ]
 }
 "192
 [v _recoverSRAMMaxFromEEPROM `(v ~T0 @X0 1 ef ]
@@ -17047,7 +17057,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _Total_Energy ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
 [; ;main.c: 202: }
 "202
-[e :UE 2028 ]
+[e :UE 2029 ]
 }
 "210
 [v _heartbeatTimerCallback `(v ~T0 @X0 1 ef ]
@@ -17063,21 +17073,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _dev_on_time -> -> -> 1 `i `l `ul ]
 [; ;main.c: 219: if (load_enable) {
 "219
-[e $ ! _load_enable 2030  ]
+[e $ ! _load_enable 2031  ]
 {
 [; ;main.c: 221: load_on_time++;
 "221
 [e ++ _load_on_time -> -> -> 1 `i `l `ul ]
 "223
 }
-[e :U 2030 ]
+[e :U 2031 ]
 [; ;main.c: 223: }
 [; ;main.c: 226: asm(" clrwdt");
 "226
 [; <"  clrwdt ;# ">
 [; ;main.c: 228: }
 "228
-[e :UE 2029 ]
+[e :UE 2030 ]
 }
 "231
 [v _ADCPostProcessingCallback `(v ~T0 @X0 1 ef ]
@@ -17094,37 +17104,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _current_adc_channel -> _ADPCH `E17572 ]
 [; ;main.c: 240: switch (current_adc_channel) {
 "240
-[e $U 2033  ]
+[e $U 2034  ]
 {
 [; ;main.c: 242: case channel_VSS:
 "242
-[e :U 2034 ]
+[e :U 2035 ]
 [; ;main.c: 244: AVSS_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0);
 "244
 [e = _AVSS_ADC_Result * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 ]
 [; ;main.c: 246: if ((AVSS_ADC_Result > 0.01) || ADCC_HasAccumulatorOverflowed()) {
 "246
-[e $ ! || > _AVSS_ADC_Result .0.01 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2035  ]
+[e $ ! || > _AVSS_ADC_Result .0.01 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2036  ]
 {
 [; ;main.c: 248: error_handler.AVSS_ADC_error_flag = 1;
 "248
 [e = . _error_handler 3 -> -> 1 `i `uc ]
 [; ;main.c: 249: return;
 "249
-[e $UE 2031  ]
+[e $UE 2032  ]
 "251
 }
-[e :U 2035 ]
+[e :U 2036 ]
 [; ;main.c: 251: }
 [; ;main.c: 253: next_channel = channel_FVR_buf1;
 "253
 [e = _next_channel . `E17572 6 ]
 [; ;main.c: 255: break;
 "255
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 258: case channel_FVR_buf1:
 "258
-[e :U 2036 ]
+[e :U 2037 ]
 [; ;main.c: 260: FVR_ADC_Result = (ADCC_GetConversionResult()) * (3.3/1023.0) + AVSS_ADC_Result;
 "260
 [e = _FVR_ADC_Result + * -> ( _ADCC_GetConversionResult ..  `d / .3.3 .1023.0 _AVSS_ADC_Result ]
@@ -17133,67 +17143,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _ADC_Result_Scaling / .2.048 _FVR_ADC_Result ]
 [; ;main.c: 263: if (FVR_ADC_Result > 2.5 || FVR_ADC_Result < 2.0 || ADCC_HasAccumulatorOverflowed()) {
 "263
-[e $ ! || || > _FVR_ADC_Result .2.5 < _FVR_ADC_Result .2.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2037  ]
+[e $ ! || || > _FVR_ADC_Result .2.5 < _FVR_ADC_Result .2.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2038  ]
 {
 [; ;main.c: 265: error_handler.FVR_ADC_error_flag = 1;
 "265
 [e = . _error_handler 5 -> -> 1 `i `uc ]
 [; ;main.c: 266: return;
 "266
-[e $UE 2031  ]
+[e $UE 2032  ]
 "268
 }
-[e :U 2037 ]
+[e :U 2038 ]
 [; ;main.c: 268: }
 [; ;main.c: 270: next_channel = POS3P3_ADC;
 "270
 [e = _next_channel . `E17572 2 ]
 [; ;main.c: 272: break;
 "272
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 275: case POS3P3_ADC:
 "275
-[e :U 2038 ]
+[e :U 2039 ]
 [; ;main.c: 277: POS3P3_ADC_Result = ((ADCC_GetFilterValue()) * (3.3/1023.0)) * 2.0 * ADC_Result_Scaling;
 "277
 [e = _POS3P3_ADC_Result * * * -> ( _ADCC_GetFilterValue ..  `d / .3.3 .1023.0 .2.0 _ADC_Result_Scaling ]
 [; ;main.c: 279: if (POS3P3_ADC_Result > 3.5 || ADCC_HasAccumulatorOverflowed()) {
 "279
-[e $ ! || > _POS3P3_ADC_Result .3.5 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2039  ]
+[e $ ! || > _POS3P3_ADC_Result .3.5 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2040  ]
 {
 [; ;main.c: 281: error_handler.POS3P3_ADC_error_flag = 1;
 "281
 [e = . _error_handler 2 -> -> 1 `i `uc ]
 [; ;main.c: 282: return;
 "282
-[e $UE 2031  ]
+[e $UE 2032  ]
 "284
 }
-[e :U 2039 ]
+[e :U 2040 ]
 [; ;main.c: 284: }
 [; ;main.c: 286: next_channel = ISNS_ADC;
 "286
 [e = _next_channel . `E17572 0 ]
 [; ;main.c: 288: break;
 "288
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 291: case ISNS_ADC:
 "291
-[e :U 2040 ]
+[e :U 2041 ]
 [; ;main.c: 293: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
 "293
 [e = _Imeas * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 / .3.787 .2.0 ]
 [; ;main.c: 297: if (LATGbits.LATG0 != 1) {
 "297
-[e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2041  ]
+[e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2042  ]
 {
 [; ;main.c: 302: if (load_enable) {
 "302
-[e $ ! _load_enable 2042  ]
+[e $ ! _load_enable 2043  ]
 {
 [; ;main.c: 305: if (dimming_period < 0x7FEE) {
 "305
-[e $ ! < _dimming_period -> -> 32750 `i `ui 2043  ]
+[e $ ! < _dimming_period -> -> 32750 `i `ui 2044  ]
 {
 [; ;main.c: 307: Ipk = Imeas;
 "307
@@ -17204,9 +17214,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "310
 }
 [; ;main.c: 310: }
-[e $U 2044  ]
+[e $U 2045  ]
 "313
-[e :U 2043 ]
+[e :U 2044 ]
 [; ;main.c: 313: else {
 {
 [; ;main.c: 315: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
@@ -17217,7 +17227,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
 "318
 }
-[e :U 2044 ]
+[e :U 2045 ]
 [; ;main.c: 318: }
 [; ;main.c: 320: Vpk = Vpk_const;
 "320
@@ -17225,9 +17235,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "322
 }
 [; ;main.c: 322: }
-[e $U 2045  ]
+[e $U 2046  ]
 "324
-[e :U 2042 ]
+[e :U 2043 ]
 [; ;main.c: 324: else {
 {
 [; ;main.c: 326: Ipk = 0.0;
@@ -17241,7 +17251,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _Irms ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle ]
 "330
 }
-[e :U 2045 ]
+[e :U 2046 ]
 [; ;main.c: 330: }
 [; ;main.c: 332: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 "332
@@ -17255,9 +17265,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "336
 }
 [; ;main.c: 336: }
-[e $U 2046  ]
+[e $U 2047  ]
 "339
-[e :U 2041 ]
+[e :U 2042 ]
 [; ;main.c: 339: else {
 {
 [; ;main.c: 341: Ipk = Imeas;
@@ -17277,129 +17287,129 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
 "347
 }
-[e :U 2046 ]
+[e :U 2047 ]
 [; ;main.c: 347: }
 [; ;main.c: 349: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
 "349
-[e $ ! || > _Irms .5.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2047  ]
+[e $ ! || > _Irms .5.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2048  ]
 {
 [; ;main.c: 351: error_handler.ISNS_ADC_error_flag = 1;
 "351
 [e = . _error_handler 0 -> -> 1 `i `uc ]
 [; ;main.c: 352: return;
 "352
-[e $UE 2031  ]
+[e $UE 2032  ]
 "354
 }
-[e :U 2047 ]
+[e :U 2048 ]
 [; ;main.c: 354: }
 [; ;main.c: 356: next_channel = POS12_ADC;
 "356
 [e = _next_channel . `E17572 1 ]
 [; ;main.c: 358: break;
 "358
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 361: case POS12_ADC:
 "361
-[e :U 2048 ]
+[e :U 2049 ]
 [; ;main.c: 363: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
 "363
 [e = _POS12_ADC_Result * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 .4.0303030303 ]
 [; ;main.c: 365: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
 "365
-[e $ ! || > _POS12_ADC_Result .13.6 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2049  ]
+[e $ ! || > _POS12_ADC_Result .13.6 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2050  ]
 {
 [; ;main.c: 367: error_handler.POS12_ADC_error_flag = 1;
 "367
 [e = . _error_handler 1 -> -> 1 `i `uc ]
 [; ;main.c: 368: return;
 "368
-[e $UE 2031  ]
+[e $UE 2032  ]
 "370
 }
-[e :U 2049 ]
+[e :U 2050 ]
 [; ;main.c: 370: }
 [; ;main.c: 372: next_channel = channel_Temp;
 "372
 [e = _next_channel . `E17572 4 ]
 [; ;main.c: 374: break;
 "374
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 377: case channel_Temp:
 "377
-[e :U 2050 ]
+[e :U 2051 ]
 [; ;main.c: 379: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
 "379
 [e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetConversionResult ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
 [; ;main.c: 381: if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
 "381
-[e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2051  ]
+[e $ ! || > _Temp_ADC_Result .40.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2052  ]
 {
 [; ;main.c: 383: error_handler.Temp_ADC_error_flag = 1;
 "383
 [e = . _error_handler 4 -> -> 1 `i `uc ]
 [; ;main.c: 384: return;
 "384
-[e $UE 2031  ]
+[e $UE 2032  ]
 "386
 }
-[e :U 2051 ]
+[e :U 2052 ]
 [; ;main.c: 386: }
 [; ;main.c: 388: next_channel = channel_VSS;
 "388
 [e = _next_channel . `E17572 3 ]
 [; ;main.c: 390: break;
 "390
-[e $U 2032  ]
+[e $U 2033  ]
 [; ;main.c: 394: default:
 "394
-[e :U 2052 ]
+[e :U 2053 ]
 [; ;main.c: 395: error_handler.ADC_general_error_flag = 1;
 "395
 [e = . _error_handler 6 -> -> 1 `i `uc ]
 [; ;main.c: 396: break;
 "396
-[e $U 2032  ]
+[e $U 2033  ]
 "398
 }
 [; ;main.c: 398: }
-[e $U 2032  ]
+[e $U 2033  ]
 "240
-[e :U 2033 ]
-[e [\ _current_adc_channel , $ . `E17572 3 2034
- , $ . `E17572 6 2036
- , $ . `E17572 2 2038
- , $ . `E17572 0 2040
- , $ . `E17572 1 2048
- , $ . `E17572 4 2050
- 2052 ]
+[e :U 2034 ]
+[e [\ _current_adc_channel , $ . `E17572 3 2035
+ , $ . `E17572 6 2037
+ , $ . `E17572 2 2039
+ , $ . `E17572 0 2041
+ , $ . `E17572 1 2049
+ , $ . `E17572 4 2051
+ 2053 ]
 "398
-[e :U 2032 ]
+[e :U 2033 ]
 [; ;main.c: 400: if (ADCC_GetCurrentCountofConversions() != 255) {
 "400
-[e $ ! != -> ( _ADCC_GetCurrentCountofConversions ..  `i -> 255 `i 2053  ]
+[e $ ! != -> ( _ADCC_GetCurrentCountofConversions ..  `i -> 255 `i 2054  ]
 {
 [; ;main.c: 401: error_handler.ADC_general_error_flag = 1;
 "401
 [e = . _error_handler 6 -> -> 1 `i `uc ]
 "402
 }
-[e :U 2053 ]
+[e :U 2054 ]
 [; ;main.c: 402: }
 [; ;main.c: 404: if (ADCC_HasAccumulatorOverflowed()) {
 "404
-[e $ ! != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2054  ]
+[e $ ! != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2055  ]
 {
 [; ;main.c: 405: error_handler.ADC_general_error_flag = 1;
 "405
 [e = . _error_handler 6 -> -> 1 `i `uc ]
 "406
 }
-[e :U 2054 ]
+[e :U 2055 ]
 [; ;main.c: 406: }
 [; ;main.c: 408: }
 "408
-[e :UE 2031 ]
+[e :UE 2032 ]
 }
 "411
 [v _acquisitionTimerCallback `(v ~T0 @X0 1 ef ]
@@ -17418,7 +17428,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _ADCC_StartConversion (1 _next_channel ]
 [; ;main.c: 422: }
 "422
-[e :UE 2055 ]
+[e :UE 2056 ]
 }
 "425
 [v _dimmingOffTimeCallback `(v ~T0 @X0 1 ef ]
@@ -17440,7 +17450,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIE5bits 0 4 -> -> 1 `i `uc ]
 [; ;main.c: 437: }
 "437
-[e :UE 2056 ]
+[e :UE 2057 ]
 }
 "440
 [v _dimmingOnTimeCallback `(v ~T0 @X0 1 ef ]
@@ -17459,7 +17469,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIE5bits 0 4 -> -> 0 `i `uc ]
 [; ;main.c: 452: }
 "452
-[e :UE 2057 ]
+[e :UE 2058 ]
 }
 "457
 [v _writeEnergyToEEPROMCallback `(v ~T0 @X0 1 ef ]
@@ -17473,18 +17483,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _current_value ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
 [; ;main.c: 461: if (Total_Energy > current_value) {
 "461
-[e $ ! > _Total_Energy _current_value 2059  ]
+[e $ ! > _Total_Energy _current_value 2060  ]
 {
 [; ;main.c: 463: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
 "463
 [e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
 "465
 }
-[e :U 2059 ]
+[e :U 2060 ]
 [; ;main.c: 465: }
 [; ;main.c: 467: }
 "467
-[e :UE 2058 ]
+[e :UE 2059 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
 "474
@@ -17558,68 +17568,56 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 529: OLED_Init();
 "529
 [e ( _OLED_Init ..  ]
-[; ;main.c: 530: OLED_Clear();
-"530
-[e ( _OLED_Clear ..  ]
-[; ;main.c: 531: OLED_YX(0,0);
-"531
-[e ( _OLED_YX (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 532: OLED_Write_String("AC Power Meter");
+[; ;main.c: 532: strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
 "532
-[e ( _OLED_Write_String (1 -> :s 1C `*uc ]
-[; ;main.c: 533: OLED_YX(1,0);
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 1C ]
+[; ;main.c: 533: strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
 "533
-[e ( _OLED_YX (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 534: OLED_Write_String("ELEN 3035");
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 2C ]
+[; ;main.c: 534: strcpy(OLED_RAM_Buffer.line2, "Final Project");
 "534
-[e ( _OLED_Write_String (1 -> :s 2C `*uc ]
-[; ;main.c: 535: OLED_YX(2,0);
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 3C ]
+[; ;main.c: 535: strcpy(OLED_RAM_Buffer.line3, "Boot Complete");
 "535
-[e ( _OLED_YX (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 536: OLED_Write_String("Drew Maatman");
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 4C ]
+[; ;main.c: 536: OLED_UpdateFromRAMBuffer();
 "536
-[e ( _OLED_Write_String (1 -> :s 3C `*uc ]
-[; ;main.c: 537: OLED_YX(3,0);
-"537
-[e ( _OLED_YX (2 , -> -> 3 `i `uc -> -> 0 `i `uc ]
-[; ;main.c: 538: OLED_Write_String("Gabe Thalji");
-"538
-[e ( _OLED_Write_String (1 -> :s 4C `*uc ]
-[; ;main.c: 541: while (1)
-"541
-[e :U 2062 ]
-[; ;main.c: 542: {
-"542
-{
-[; ;main.c: 545: if (eusart2RxStringReady) {
-"545
-[e $ ! _eusart2RxStringReady 2064  ]
-{
-[; ;main.c: 547: terminal_ringBufferPull();
-"547
-[e ( _terminal_ringBufferPull ..  ]
-"549
-}
-[e :U 2064 ]
-[; ;main.c: 549: }
-[; ;main.c: 552: saveSRAMMaxToEEPROM();
-"552
-[e ( _saveSRAMMaxToEEPROM ..  ]
-[; ;main.c: 555: updateErrorLEDs();
-"555
-[e ( _updateErrorLEDs ..  ]
-"557
-}
-[e :U 2061 ]
-"541
-[e $U 2062  ]
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 539: while (1)
+"539
 [e :U 2063 ]
-[; ;main.c: 557: }
-[; ;main.c: 558: }
-"558
-[e :UE 2060 ]
+[; ;main.c: 540: {
+"540
+{
+[; ;main.c: 543: if (eusart2RxStringReady) {
+"543
+[e $ ! _eusart2RxStringReady 2065  ]
+{
+[; ;main.c: 545: terminal_ringBufferPull();
+"545
+[e ( _terminal_ringBufferPull ..  ]
+"547
 }
+[e :U 2065 ]
+[; ;main.c: 547: }
+[; ;main.c: 550: saveSRAMMaxToEEPROM();
+"550
+[e ( _saveSRAMMaxToEEPROM ..  ]
+[; ;main.c: 553: updateErrorLEDs();
+"553
+[e ( _updateErrorLEDs ..  ]
+"555
+}
+[e :U 2062 ]
+"539
+[e $U 2063  ]
+[e :U 2064 ]
+[; ;main.c: 555: }
+[; ;main.c: 556: }
+"556
+[e :UE 2061 ]
+}
+[a 3C 70 105 110 97 108 32 80 114 111 106 101 99 116 0 ]
 [a 1C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 0 ]
-[a 3C 68 114 101 119 32 77 97 97 116 109 97 110 0 ]
-[a 4C 71 97 98 101 32 84 104 97 108 106 105 0 ]
+[a 4C 66 111 111 116 32 67 111 109 112 108 101 116 101 0 ]
 [a 2C 69 76 69 78 32 51 48 51 53 0 ]

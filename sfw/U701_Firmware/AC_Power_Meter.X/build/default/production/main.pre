@@ -22403,16 +22403,26 @@ void terminal_textAttributesReset(void);
 
 void terminal_printNewline(void);
 
-# 56 "oled.h"
+# 58 "oled.h"
+struct OLED_RAM_Buffer_t {
+char line0[16];
+char line1[16];
+char line2[16];
+char line3[16];
+} OLED_RAM_Buffer;
+
+
+
 void OLED_Command(uint8_t temp);
 void OLED_Data(uint8_t temp);
 void OLED_Init(void);
 void OLED_YX(unsigned char Row, unsigned char Column);
 void OLED_PutChar(char ch);
 void OLED_Clear(void);
-void OLED_Write_String(char *s);
-void OLED_Write_Integer(uint16_t i);
-void OLED_Write_Float(float f);
+void OLED_WriteString(char *s);
+void OLED_WriteInteger(uint16_t i);
+void OLED_WriteFloat(float f);
+void OLED_UpdateFromRAMBuffer(void);
 
 
 # 59 "main.c"
@@ -22868,15 +22878,13 @@ terminal_textAttributesReset();
 
 
 OLED_Init();
-OLED_Clear();
-OLED_YX(0,0);
-OLED_Write_String("AC Power Meter");
-OLED_YX(1,0);
-OLED_Write_String("ELEN 3035");
-OLED_YX(2,0);
-OLED_Write_String("Drew Maatman");
-OLED_YX(3,0);
-OLED_Write_String("Gabe Thalji");
+
+
+strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
+strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+strcpy(OLED_RAM_Buffer.line2, "Final Project");
+strcpy(OLED_RAM_Buffer.line3, "Boot Complete");
+OLED_UpdateFromRAMBuffer();
 
 
 while (1)
