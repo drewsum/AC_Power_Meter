@@ -62,6 +62,23 @@ struct OLED_RAM_Buffer_t {
     char line3[16];
 } OLED_RAM_Buffer;
 
+// Current OLED frame enumeration
+typedef enum {
+ 
+    Boot_Frame_1,
+    Boot_Frame_2,
+    Boot_Frame_3,
+    Current_Values,
+    Max_Values,
+    Load_Enabled,
+    Load_Disabled,
+    Dimming_Enabled,
+    Dimming_Disabled,
+    Dimming_Percentage
+
+} OLED_Frame_t;
+
+OLED_Frame_t OLED_Frame = Boot_Frame_1;
 
 // Function prototypes
 void OLED_Command(uint8_t temp);

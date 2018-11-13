@@ -122,7 +122,11 @@ void OLED_Command(uint8_t temp) {
 
     while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+    if (    OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+            OLED_I2C_Status == I2C1_STUCK_START ||
+            OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+            OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+            OLED_I2C_Status == I2C1_LOST_STATE      ) {
         error_handler.I2C_COMM_error_flag = true;
     }
 
@@ -145,7 +149,11 @@ void OLED_Data(uint8_t temp) {
 
     while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+    if (    OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+            OLED_I2C_Status == I2C1_STUCK_START ||
+            OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+            OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+            OLED_I2C_Status == I2C1_LOST_STATE      ) {
         error_handler.I2C_COMM_error_flag = true;
     }
    
@@ -245,7 +253,11 @@ void OLED_PutChar(char ch) {
 
     while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-    if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+    if (    OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+            OLED_I2C_Status == I2C1_STUCK_START ||
+            OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+            OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+            OLED_I2C_Status == I2C1_LOST_STATE      ) {
         error_handler.I2C_COMM_error_flag = true;
     }
 

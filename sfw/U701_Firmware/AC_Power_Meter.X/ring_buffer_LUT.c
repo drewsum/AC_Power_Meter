@@ -161,6 +161,10 @@ void ringBufferLUT(char * line) {
         }
 
         terminal_textAttributesReset();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
 
     }
     
@@ -241,7 +245,7 @@ void ringBufferLUT(char * line) {
             }
             
             if (error_handler.USB_UART_COMM_error_flag) {
-                printf("    USB UART (this interface\n\r");
+                printf("    USB UART (this interface)\n\r");
             }
             
             terminal_textAttributes(YELLOW, BLACK, NORMAL);
@@ -394,6 +398,10 @@ void ringBufferLUT(char * line) {
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
         printf("If yes, reply 'Enable Dimming Y' on the next line:\n\r");
         terminal_textAttributesReset();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
         
     }
     
@@ -553,6 +561,10 @@ void ringBufferLUT(char * line) {
             
         }
         
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
+        
     }
     
     // Report microcontroller on time since last reset
@@ -695,6 +707,10 @@ void ringBufferLUT(char * line) {
         
         terminal_textAttributesReset();
         
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
+        
     }
     
     // Different help messages
@@ -715,6 +731,10 @@ void ringBufferLUT(char * line) {
                 );
         
         terminal_textAttributesReset();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
         
     }
 
@@ -737,6 +757,10 @@ void ringBufferLUT(char * line) {
         
         terminal_textAttributesReset();
         
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
+        
     }
     
     // Different help messages
@@ -755,6 +779,10 @@ void ringBufferLUT(char * line) {
                 );
         
         terminal_textAttributesReset();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
         
     }
     
@@ -815,6 +843,10 @@ void ringBufferLUT(char * line) {
         
         terminal_textAttributesReset();
         
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
+        
     }
     
     
@@ -849,6 +881,10 @@ void ringBufferLUT(char * line) {
         
         // Get some space on terminal
         terminal_printNewline();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
 
     }
     
@@ -876,6 +912,10 @@ void ringBufferLUT(char * line) {
         printf("PSOCs SUCK\n\r");
         terminal_textAttributesReset();
         terminal_printNewline();
+        
+        if (error_handler.USB_UART_COMM_error_flag) {
+            error_handler.USB_UART_COMM_error_flag = false;
+        }
         
     }
     

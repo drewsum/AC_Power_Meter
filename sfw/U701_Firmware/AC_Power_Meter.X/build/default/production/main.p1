@@ -7,6 +7,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "58 oled.h
 [s S2019 `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i `uc -> 16 `i ]
 [n S2019 OLED_RAM_Buffer_t line0 line1 line2 line3 ]
+"81
+[c E18191 0 1 2 3 4 5 6 7 8 9 .. ]
+[n E18191 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Current_Values Max_Values Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage  ]
 "99 main.c
 [c E18124 0 1 2 3 4 5 6 7 8 .. ]
 [n E18124 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
@@ -134,11 +137,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _terminal_setCursorHome `(v ~T0 @X0 0 ef ]
 "159
 [v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
-"69 oled.h
+"86 oled.h
 [v _OLED_Init `(v ~T0 @X0 0 ef ]
 "37 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcpy `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
-"76 oled.h
+"93 oled.h
 [v _OLED_UpdateFromRAMBuffer `(v ~T0 @X0 0 ef ]
 "112 ring_buffer_interface.h
 [v _terminal_ringBufferPull `(v ~T0 @X0 0 ef ]
@@ -16682,16 +16685,34 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;oled.h: 61: char line2[16];
 [; ;oled.h: 62: char line3[16];
 [; ;oled.h: 63: } OLED_RAM_Buffer;
-[; ;oled.h: 67: void OLED_Command(uint8_t temp);
-[; ;oled.h: 68: void OLED_Data(uint8_t temp);
-[; ;oled.h: 69: void OLED_Init(void);
-[; ;oled.h: 70: void OLED_YX(unsigned char Row, unsigned char Column);
-[; ;oled.h: 71: void OLED_PutChar(char ch);
-[; ;oled.h: 72: void OLED_Clear(void);
-[; ;oled.h: 73: void OLED_WriteString(char *s);
-[; ;oled.h: 74: void OLED_WriteInteger(uint16_t i);
-[; ;oled.h: 75: void OLED_WriteFloat(float f);
-[; ;oled.h: 76: void OLED_UpdateFromRAMBuffer(void);
+[; ;oled.h: 66: typedef enum {
+[; ;oled.h: 68: Boot_Frame_1,
+[; ;oled.h: 69: Boot_Frame_2,
+[; ;oled.h: 70: Boot_Frame_3,
+[; ;oled.h: 71: Current_Values,
+[; ;oled.h: 72: Max_Values,
+[; ;oled.h: 73: Load_Enabled,
+[; ;oled.h: 74: Load_Disabled,
+[; ;oled.h: 75: Dimming_Enabled,
+[; ;oled.h: 76: Dimming_Disabled,
+[; ;oled.h: 77: Dimming_Percentage
+[; ;oled.h: 79: } OLED_Frame_t;
+"81
+[v _OLED_Frame `E18191 ~T0 @X0 1 e ]
+[i _OLED_Frame
+. `E18191 0
+]
+[; ;oled.h: 81: OLED_Frame_t OLED_Frame = Boot_Frame_1;
+[; ;oled.h: 84: void OLED_Command(uint8_t temp);
+[; ;oled.h: 85: void OLED_Data(uint8_t temp);
+[; ;oled.h: 86: void OLED_Init(void);
+[; ;oled.h: 87: void OLED_YX(unsigned char Row, unsigned char Column);
+[; ;oled.h: 88: void OLED_PutChar(char ch);
+[; ;oled.h: 89: void OLED_Clear(void);
+[; ;oled.h: 90: void OLED_WriteString(char *s);
+[; ;oled.h: 91: void OLED_WriteInteger(uint16_t i);
+[; ;oled.h: 92: void OLED_WriteFloat(float f);
+[; ;oled.h: 93: void OLED_UpdateFromRAMBuffer(void);
 "59 main.c
 [p x IDLOC0=0x0 ]
 "60

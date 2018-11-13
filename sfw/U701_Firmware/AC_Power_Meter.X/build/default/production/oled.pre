@@ -22278,6 +22278,23 @@ char line3[16];
 } OLED_RAM_Buffer;
 
 
+typedef enum {
+
+Boot_Frame_1,
+Boot_Frame_2,
+Boot_Frame_3,
+Current_Values,
+Max_Values,
+Load_Enabled,
+Load_Disabled,
+Dimming_Enabled,
+Dimming_Disabled,
+Dimming_Percentage
+
+} OLED_Frame_t;
+
+OLED_Frame_t OLED_Frame = Boot_Frame_1;
+
 
 void OLED_Command(uint8_t temp);
 void OLED_Data(uint8_t temp);
@@ -22409,7 +22426,11 @@ I2C1_MasterWrite(data_array, length, (uint16_t) 0x3C, &OLED_I2C_Status);
 
 while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+if ( OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+OLED_I2C_Status == I2C1_STUCK_START ||
+OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+OLED_I2C_Status == I2C1_LOST_STATE ) {
 error_handler.I2C_COMM_error_flag = 1;
 }
 
@@ -22432,7 +22453,11 @@ I2C1_MasterWrite(data_array, length, (uint16_t) 0x3C, &OLED_I2C_Status);
 
 while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+if ( OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+OLED_I2C_Status == I2C1_STUCK_START ||
+OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+OLED_I2C_Status == I2C1_LOST_STATE ) {
 error_handler.I2C_COMM_error_flag = 1;
 }
 
@@ -22532,7 +22557,11 @@ I2C1_MasterWrite(data_array, length, (uint16_t) 0x3C, &OLED_I2C_Status);
 
 while(OLED_I2C_Status == I2C1_MESSAGE_PENDING);
 
-if (OLED_I2C_Status == I2C1_MESSAGE_FAIL) {
+if ( OLED_I2C_Status == I2C1_MESSAGE_FAIL ||
+OLED_I2C_Status == I2C1_STUCK_START ||
+OLED_I2C_Status == I2C1_MESSAGE_ADDRESS_NO_ACK ||
+OLED_I2C_Status == I2C1_DATA_NO_ACK ||
+OLED_I2C_Status == I2C1_LOST_STATE ) {
 error_handler.I2C_COMM_error_flag = 1;
 }
 
