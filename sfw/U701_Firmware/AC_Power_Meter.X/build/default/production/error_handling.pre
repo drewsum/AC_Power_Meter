@@ -21908,58 +21908,61 @@ TMR2_ZCD_OUTPUT
 
 } TMR2_HLT_EXT_RESET_SOURCE;
 
-# 328
+# 293
+volatile unsigned int CountCallBack = 0;
+
+# 331
 void TMR2_Initialize(void);
 
-# 364
+# 367
 void TMR2_ModeSet(TMR2_HLT_MODE mode);
 
-# 399
+# 402
 void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
 
-# 428
+# 431
 void TMR2_Start(void);
 
-# 457
+# 460
 void TMR2_StartTimer(void);
 
-# 489
+# 492
 void TMR2_Stop(void);
 
-# 521
+# 524
 void TMR2_StopTimer(void);
 
-# 556
+# 559
 uint8_t TMR2_Counter8BitGet(void);
 
-# 591
+# 594
 uint8_t TMR2_ReadTimer(void);
 
-# 630
+# 633
 void TMR2_Counter8BitSet(uint8_t timerVal);
 
-# 669
+# 672
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 721
+# 724
 void TMR2_Period8BitSet(uint8_t periodVal);
 
-# 773
+# 776
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 791
+# 794
 void TMR2_ISR(void);
 
-# 809
+# 812
 void TMR2_CallBack(void);
 
-# 826
+# 829
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 844
+# 847
 extern void (*TMR2_InterruptHandler)(void);
 
-# 862
+# 865
 void TMR2_DefaultInterruptHandler(void);
 
 # 74 "mcc_generated_files/adcc.h"

@@ -78,7 +78,7 @@ volatile double ADC_Result_Scaling;             // Scaling factor on ADC measure
 volatile double POS3P3_ADC_Result;              // POS3P3 Measurement in Volts
 volatile double POS12_ADC_Result;               // POS12 Measurement in volts
 volatile double Temp_ADC_Result;                // Temperature ADC result in degrees centigrade
-volatile double Temp_ADC_Offset = 612.085;     // Temp ADC result offset in degrees centigrade
+volatile double Temp_ADC_Offset = 632.085;     // Temp ADC result offset in degrees centigrade
 double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2) * 120
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
@@ -90,9 +90,8 @@ volatile double Avg_Power;                      // Calculated output power in wa
 volatile double Total_Energy;                   // Calculated energy in Watt Hours
 volatile double TRIAC_Firing_Angle = 1.57;      // firing angle in radians
 
-
 // more global variables
-volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time;
+volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time
 volatile bit load_enable = 0;                   // Load enabled flag
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
@@ -117,6 +116,14 @@ const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 const uint16_t max_FVR_ADC_Result_address       = 0x0014;
 const uint16_t Total_Energy_address             = 0x0018;
 
+int status;
+
+extern volatile unsigned int CountCallBack;
+
+char print_Irms_str[17];
+char print_Power_str[17];
+char print_Vrms_str[17];
+char print_Energy_str[17];
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Local Functions <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -487,19 +494,14 @@ void OLED_updateCallback(void) {
             // Print boot message 2
             // Device ID
             strcpy(OLED_RAM_Buffer.line0, "Device ID:");
-            char dev_id_str[16];
-            strcpy(dev_id_str, getDeviceIDString(getDeviceID()));
+            char dev_id_str[17];
+            sprintf(dev_id_str,"0x%X",getDeviceID());
             strcpy(OLED_RAM_Buffer.line1, dev_id_str);
             
             // Rev ID
             strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
-            
-            char rev_id_str[5];
-            rev_id_str[0] = (char) getMajorRevisionID() + 65;
-            rev_id_str[1] = '0';
-            rev_id_str[2] = '0';
-            rev_id_str[3] = getMinorRevisionID() + 48;
-            rev_id_str[4] = '\0';
+            char rev_id_str[17];
+            sprintf(rev_id_str, "%c%03d", (char) getMajorRevisionID() + 65, getMinorRevisionID());
             strcpy(OLED_RAM_Buffer.line3, rev_id_str);
             
             OLED_UpdateFromRAMBuffer();
@@ -510,7 +512,7 @@ void OLED_updateCallback(void) {
             strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
             strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
             strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
-            strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow ctrl");
+            strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow");
             
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_4;;
@@ -518,19 +520,13 @@ void OLED_updateCallback(void) {
             
         case Boot_Frame_4:
             strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
-            strcpy(OLED_RAM_Buffer.line1, "Ready");
-            strcpy(OLED_RAM_Buffer.line2, "Load Disabled");
-            strcpy(OLED_RAM_Buffer.line3, " ");
+            strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
+            strcpy(OLED_RAM_Buffer.line2, "More Settings");
+            strcpy(OLED_RAM_Buffer.line3, "via USB, 'Help'");
             
             OLED_UpdateFromRAMBuffer();
-            OLED_Frame = Current_Values;
+            OLED_Frame = Live_Update;
             
-            break;
-            
-        case Current_Values:
-            break;
-            
-        case Max_Values:
             break;
             
         case Load_Enabled:
@@ -541,20 +537,174 @@ void OLED_updateCallback(void) {
             
             OLED_UpdateFromRAMBuffer();
             
-            OLED_Frame = Idle;
+            OLED_Frame = Live_Update;
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            CountCallBack = 32;
+            TMR2_StartTimer();
             
             break;
             
         case Load_Disabled:
+            strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
+            strcpy(OLED_RAM_Buffer.line1, " ");
+            strcpy(OLED_RAM_Buffer.line2, " ");
+            strcpy(OLED_RAM_Buffer.line3, " ");
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            OLED_Frame = Idle;
             break;
             
         case Dimming_Enabled:
+            strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
+            strcpy(OLED_RAM_Buffer.line1, " ");
+            strcpy(OLED_RAM_Buffer.line2, " ");
+            strcpy(OLED_RAM_Buffer.line3, " ");
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            if (load_enable) {
+            
+                OLED_Frame = Live_Update;    
+                TMR2_StopTimer();
+                TMR2_WriteTimer(0);
+                CountCallBack = 32;
+                TMR2_StartTimer();
+                
+            }
+            
+            else {
+            
+                OLED_Frame = Load_Disabled;    
+                TMR2_StopTimer();
+                TMR2_WriteTimer(0);
+                CountCallBack = 0;
+                TMR2_StartTimer();
+            }
+            
             break;
             
         case Dimming_Disabled:
+            strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
+            strcpy(OLED_RAM_Buffer.line1, " ");
+            strcpy(OLED_RAM_Buffer.line2, " ");
+            strcpy(OLED_RAM_Buffer.line3, " ");
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            if (load_enable) {
+            
+                OLED_Frame = Live_Update;    
+                TMR2_StopTimer();
+                TMR2_WriteTimer(0);
+                CountCallBack = 32;
+                TMR2_StartTimer();
+                
+            }
+            
+            else {
+            
+                OLED_Frame = Load_Disabled;    
+                TMR2_StopTimer();
+                TMR2_WriteTimer(0);
+                CountCallBack = 0;
+                TMR2_StartTimer();
+            }
+                
             break;
             
         case Dimming_Percentage:
+            strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
+            char percentage_string[17];
+            float percentage = (dimming_period / (float) 0xFFFF);
+            percentage = round(percentage * 100.0);
+            sprintf(percentage_string, "%.3f Percent", percentage);
+            strcpy(OLED_RAM_Buffer.line1, percentage_string);
+            
+            strcpy(OLED_RAM_Buffer.line2, "TRIAC Angle:");
+            char angle_string[17];
+            float TRIAC_degrees = round(TRIAC_Firing_Angle * (180.0 / M_PI));
+            sprintf(angle_string, "%.3f Deg", TRIAC_degrees);
+            strcpy(OLED_RAM_Buffer.line3, angle_string);
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            if (load_enable) {
+            
+                OLED_Frame = Live_Update;
+                
+            }
+            
+            else {
+            
+                OLED_Frame = Load_Disabled;    
+
+            }
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            CountCallBack = 0;
+            TMR2_StartTimer();
+
+            break;
+            
+        case Live_Update:
+            
+            // Print IRMS to OLED
+            sprintf(print_Irms_str, "%.3f ARMS", Irms);
+            strcpy(OLED_RAM_Buffer.line0, print_Irms_str);
+            
+            // Print voltage
+            sprintf(print_Vrms_str, "%.3f VRMS", Vrms);
+            strcpy(OLED_RAM_Buffer.line1, print_Vrms_str);
+            
+            // Print Power
+            sprintf(print_Power_str, "%.3f Watts", Avg_Power);
+            strcpy(OLED_RAM_Buffer.line2, print_Power_str);
+            
+            // Determine size of energy and print
+            if (Total_Energy >= 1000.0) {
+             
+                sprintf(print_Energy_str, "%.3e WHours", Total_Energy);
+                
+            }
+            
+            else if (Total_Energy >= 100.0) {
+             
+                sprintf(print_Energy_str, "%.1f WHours", Total_Energy);
+                
+            }
+            
+            else {
+            
+                sprintf(print_Energy_str, "%.3f WHours", Total_Energy);
+                
+            }
+            
+            strcpy(OLED_RAM_Buffer.line3, print_Energy_str);
+            
+            
+            OLED_UpdateFromRAMBuffer();
+            
+            if (load_enable) {
+             
+                OLED_Frame = Live_Update;
+                TMR2_StopTimer();
+                TMR2_WriteTimer(0);
+                CountCallBack = 32;
+                TMR2_StartTimer();
+                
+            }
+            
+            else {
+             
+                OLED_Frame = Load_Disabled;
+                
+            }
+            
+            
             break;
         
         case Idle:
@@ -583,10 +733,10 @@ void main(void)
     // Initialize the device
     SYSTEM_Initialize();
     
-    // Force SSR off at startup
-    SSR_FORCE_PIN = 0;
+    // Force SSR on at startup with dimming disabled
+    SSR_FORCE_PIN = 1;
     SSR_DIM_PIN = 0;
-    load_enable = 0;
+    load_enable = 1;
 
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);

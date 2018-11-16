@@ -2,14 +2,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 "41 mcc_generated_files/../error_handling.h
 [s S2016 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S2016 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
-[v F18100 `(v ~T0 @X0 0 tf ]
-[v F18103 `(v ~T0 @X0 0 tf ]
+[v F18101 `(v ~T0 @X0 0 tf ]
+[v F18104 `(v ~T0 @X0 0 tf ]
 "58 oled.h
 [s S2019 `uc -> 17 `i `uc -> 17 `i `uc -> 17 `i `uc -> 17 `i ]
 [n S2019 OLED_RAM_Buffer_t line0 line1 line2 line3 ]
-"83
-[c E18141 0 1 2 3 4 5 6 7 8 9 10 11 .. ]
-[n E18141 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Boot_Frame_4 Current_Values Max_Values Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage Idle  ]
+"82
+[c E18142 0 1 2 3 4 5 6 7 8 9 10 .. ]
+[n E18142 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Boot_Frame_4 Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage Idle Live_Update  ]
 "4 oled.c
 [c E17520 0 1 2 3 4 5 6 .. ]
 [n E17520 . I2C1_MESSAGE_COMPLETE I2C1_MESSAGE_FAIL I2C1_MESSAGE_PENDING I2C1_STUCK_START I2C1_MESSAGE_ADDRESS_NO_ACK I2C1_DATA_NO_ACK I2C1_LOST_STATE  ]
@@ -16344,24 +16344,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
 [; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
 [; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
-[; ;tmr2.h: 328: void TMR2_Initialize(void);
-[; ;tmr2.h: 364: void TMR2_ModeSet(TMR2_HLT_MODE mode);
-[; ;tmr2.h: 399: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
-[; ;tmr2.h: 428: void TMR2_Start(void);
-[; ;tmr2.h: 457: void TMR2_StartTimer(void);
-[; ;tmr2.h: 489: void TMR2_Stop(void);
-[; ;tmr2.h: 521: void TMR2_StopTimer(void);
-[; ;tmr2.h: 556: uint8_t TMR2_Counter8BitGet(void);
-[; ;tmr2.h: 591: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 630: void TMR2_Counter8BitSet(uint8_t timerVal);
-[; ;tmr2.h: 669: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 721: void TMR2_Period8BitSet(uint8_t periodVal);
-[; ;tmr2.h: 773: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 791: void TMR2_ISR(void);
-[; ;tmr2.h: 809: void TMR2_CallBack(void);
-[; ;tmr2.h: 826: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 844: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 862: void TMR2_DefaultInterruptHandler(void);
+"293 mcc_generated_files/tmr2.h
+[v _CountCallBack `Vui ~T0 @X0 1 e ]
+[i _CountCallBack
+-> -> 0 `i `ui
+]
+[; ;tmr2.h: 293: volatile unsigned int CountCallBack = 0;
+[; ;tmr2.h: 331: void TMR2_Initialize(void);
+[; ;tmr2.h: 367: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 402: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 431: void TMR2_Start(void);
+[; ;tmr2.h: 460: void TMR2_StartTimer(void);
+[; ;tmr2.h: 492: void TMR2_Stop(void);
+[; ;tmr2.h: 524: void TMR2_StopTimer(void);
+[; ;tmr2.h: 559: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 594: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 633: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 672: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 724: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 776: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 794: void TMR2_ISR(void);
+[; ;tmr2.h: 812: void TMR2_CallBack(void);
+[; ;tmr2.h: 829: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 847: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 865: void TMR2_DefaultInterruptHandler(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2016 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16515,10 +16521,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
 "88 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F18100 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F18101 ~T0 @X0 1 e ]
 [; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "89
-[v _EUSART2_RxDefaultInterruptHandler `*F18103 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F18104 ~T0 @X0 1 e ]
 [; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 111: void EUSART2_Initialize(void);
 [; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
@@ -16546,28 +16552,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;oled.h: 69: Boot_Frame_2,
 [; ;oled.h: 70: Boot_Frame_3,
 [; ;oled.h: 71: Boot_Frame_4,
-[; ;oled.h: 72: Current_Values,
-[; ;oled.h: 73: Max_Values,
-[; ;oled.h: 74: Load_Enabled,
-[; ;oled.h: 75: Load_Disabled,
-[; ;oled.h: 76: Dimming_Enabled,
-[; ;oled.h: 77: Dimming_Disabled,
-[; ;oled.h: 78: Dimming_Percentage,
-[; ;oled.h: 79: Idle
-[; ;oled.h: 81: } OLED_Frame_t;
-"83
-[v _OLED_Frame `E18141 ~T0 @X0 1 e ]
-[; ;oled.h: 83: OLED_Frame_t OLED_Frame;
-[; ;oled.h: 86: void OLED_Command(uint8_t temp);
-[; ;oled.h: 87: void OLED_Data(uint8_t temp);
-[; ;oled.h: 88: void OLED_Init(void);
-[; ;oled.h: 89: void OLED_YX(unsigned char Row, unsigned char Column);
-[; ;oled.h: 90: void OLED_PutChar(char ch);
-[; ;oled.h: 91: void OLED_Clear(void);
-[; ;oled.h: 92: void OLED_WriteString(char *s);
-[; ;oled.h: 93: void OLED_WriteInteger(uint16_t i);
-[; ;oled.h: 94: void OLED_WriteFloat(float f);
-[; ;oled.h: 95: void OLED_UpdateFromRAMBuffer(void);
+[; ;oled.h: 72: Load_Enabled,
+[; ;oled.h: 73: Load_Disabled,
+[; ;oled.h: 74: Dimming_Enabled,
+[; ;oled.h: 75: Dimming_Disabled,
+[; ;oled.h: 76: Dimming_Percentage,
+[; ;oled.h: 77: Idle,
+[; ;oled.h: 78: Live_Update
+[; ;oled.h: 80: } OLED_Frame_t;
+"82
+[v _OLED_Frame `E18142 ~T0 @X0 1 e ]
+[; ;oled.h: 82: OLED_Frame_t OLED_Frame;
+[; ;oled.h: 85: void OLED_Command(uint8_t temp);
+[; ;oled.h: 86: void OLED_Data(uint8_t temp);
+[; ;oled.h: 87: void OLED_Init(void);
+[; ;oled.h: 88: void OLED_YX(unsigned char Row, unsigned char Column);
+[; ;oled.h: 89: void OLED_PutChar(char ch);
+[; ;oled.h: 90: void OLED_Clear(void);
+[; ;oled.h: 91: void OLED_WriteString(char *s);
+[; ;oled.h: 92: void OLED_WriteInteger(uint16_t i);
+[; ;oled.h: 93: void OLED_WriteFloat(float f);
+[; ;oled.h: 94: void OLED_UpdateFromRAMBuffer(void);
 "4 oled.c
 [v _OLED_I2C_Status `E17520 ~T0 @X0 1 e ]
 [; ;oled.c: 4: I2C1_MESSAGE_STATUS OLED_I2C_Status;
@@ -17144,7 +17149,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 73 `i `uc
 -> -> 73 `i `uc
 -> -> 73 `i `uc
--> -> 70 `i `uc
+-> -> 50 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
 ..
@@ -17687,7 +17692,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;oled.c: 56: {0x00,0x7F,0x09,0x09,0x09,0x06,0x00,0x00},
 [; ;oled.c: 57: {0x00,0x3E,0x41,0x51,0x21,0x5E,0x00,0x00},
 [; ;oled.c: 58: {0x00,0x7F,0x09,0x19,0x29,0x46,0x00,0x00},
-[; ;oled.c: 59: {0x00,0x26,0x49,0x49,0x49,0x46,0x00,0x00},
+[; ;oled.c: 59: {0x00,0x26,0x49,0x49,0x49,0x32,0x00,0x00},
 [; ;oled.c: 60: {0x00,0x01,0x01,0x7F,0x01,0x01,0x00,0x00},
 [; ;oled.c: 61: {0x00,0x3F,0x40,0x40,0x40,0x3F,0x00,0x00},
 [; ;oled.c: 62: {0x00,0x1F,0x20,0x40,0x20,0x1F,0x00,0x00},

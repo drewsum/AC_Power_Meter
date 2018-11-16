@@ -2,8 +2,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "41 mcc_generated_files/../error_handling.h
 [s S2014 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S2014 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
-[v F17903 `(v ~T0 @X0 0 tf ]
-[v F17906 `(v ~T0 @X0 0 tf ]
+[v F17904 `(v ~T0 @X0 0 tf ]
+[v F17907 `(v ~T0 @X0 0 tf ]
 "4698 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S265 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S265 . SSP1IE BCL1IE SSP2IE BCL2IE TX1IE RC1IE TX2IE RC2IE ]
@@ -18,14 +18,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S264 . . . . ]
 "4722
 [v _PIE3bits `VS264 ~T0 @X0 0 e@3628 ]
-[v F17930 `(v ~T0 @X0 0 tf ]
+[v F17931 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/eusart2.h
-[v _EUSART2_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F17930 ]
+[v _EUSART2_SetRxInterruptHandler `(v ~T0 @X0 0 ef1`*F17931 ]
 "345
 [v _EUSART2_Receive_ISR `(v ~T0 @X0 0 ef ]
-[v F17926 `(v ~T0 @X0 0 tf ]
+[v F17927 `(v ~T0 @X0 0 tf ]
 "365
-[v _EUSART2_SetTxInterruptHandler `(v ~T0 @X0 0 ef1`*F17926 ]
+[v _EUSART2_SetTxInterruptHandler `(v ~T0 @X0 0 ef1`*F17927 ]
 "324
 [v _EUSART2_Transmit_ISR `(v ~T0 @X0 0 ef ]
 "17341 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
@@ -16348,24 +16348,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
 [; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
 [; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
-[; ;tmr2.h: 328: void TMR2_Initialize(void);
-[; ;tmr2.h: 364: void TMR2_ModeSet(TMR2_HLT_MODE mode);
-[; ;tmr2.h: 399: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
-[; ;tmr2.h: 428: void TMR2_Start(void);
-[; ;tmr2.h: 457: void TMR2_StartTimer(void);
-[; ;tmr2.h: 489: void TMR2_Stop(void);
-[; ;tmr2.h: 521: void TMR2_StopTimer(void);
-[; ;tmr2.h: 556: uint8_t TMR2_Counter8BitGet(void);
-[; ;tmr2.h: 591: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 630: void TMR2_Counter8BitSet(uint8_t timerVal);
-[; ;tmr2.h: 669: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 721: void TMR2_Period8BitSet(uint8_t periodVal);
-[; ;tmr2.h: 773: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 791: void TMR2_ISR(void);
-[; ;tmr2.h: 809: void TMR2_CallBack(void);
-[; ;tmr2.h: 826: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 844: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 862: void TMR2_DefaultInterruptHandler(void);
+"293 mcc_generated_files/../mcc_generated_files/tmr2.h
+[v _CountCallBack `Vui ~T0 @X0 1 e ]
+[i _CountCallBack
+-> -> 0 `i `ui
+]
+[; ;tmr2.h: 293: volatile unsigned int CountCallBack = 0;
+[; ;tmr2.h: 331: void TMR2_Initialize(void);
+[; ;tmr2.h: 367: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 402: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 431: void TMR2_Start(void);
+[; ;tmr2.h: 460: void TMR2_StartTimer(void);
+[; ;tmr2.h: 492: void TMR2_Stop(void);
+[; ;tmr2.h: 524: void TMR2_StopTimer(void);
+[; ;tmr2.h: 559: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 594: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 633: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 672: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 724: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 776: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 794: void TMR2_ISR(void);
+[; ;tmr2.h: 812: void TMR2_CallBack(void);
+[; ;tmr2.h: 829: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 847: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 865: void TMR2_DefaultInterruptHandler(void);
 [; ;adcc.h: 74: typedef uint16_t adc_result_t;
 [; ;adcc.h: 91: typedef enum
 [; ;adcc.h: 92: {
@@ -16493,10 +16499,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
 "88 mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17903 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17904 ~T0 @X0 1 e ]
 [; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "89
-[v _EUSART2_RxDefaultInterruptHandler `*F17906 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17907 ~T0 @X0 1 e ]
 [; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 111: void EUSART2_Initialize(void);
 [; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
@@ -17001,12 +17007,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2037 ]
 }
 "270
-[v _EUSART2_SetTxInterruptHandler `(v ~T0 @X0 1 ef1`*F17926 ]
+[v _EUSART2_SetTxInterruptHandler `(v ~T0 @X0 1 ef1`*F17927 ]
 {
 [; ;eusart2.c: 270: void EUSART2_SetTxInterruptHandler(void (* interruptHandler)(void)){
 [e :U _EUSART2_SetTxInterruptHandler ]
-[v F17956 `(v ~T0 @X0 0 tf ]
-[v _interruptHandler `*F17956 ~T0 @X0 1 r1 ]
+[v F17957 `(v ~T0 @X0 0 tf ]
+[v _interruptHandler `*F17957 ~T0 @X0 1 r1 ]
 [f ]
 [; ;eusart2.c: 271: EUSART2_TxDefaultInterruptHandler = interruptHandler;
 "271
@@ -17016,12 +17022,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2044 ]
 }
 "274
-[v _EUSART2_SetRxInterruptHandler `(v ~T0 @X0 1 ef1`*F17930 ]
+[v _EUSART2_SetRxInterruptHandler `(v ~T0 @X0 1 ef1`*F17931 ]
 {
 [; ;eusart2.c: 274: void EUSART2_SetRxInterruptHandler(void (* interruptHandler)(void)){
 [e :U _EUSART2_SetRxInterruptHandler ]
-[v F17959 `(v ~T0 @X0 0 tf ]
-[v _interruptHandler `*F17959 ~T0 @X0 1 r1 ]
+[v F17960 `(v ~T0 @X0 0 tf ]
+[v _interruptHandler `*F17960 ~T0 @X0 1 r1 ]
 [f ]
 [; ;eusart2.c: 275: EUSART2_RxDefaultInterruptHandler = interruptHandler;
 "275

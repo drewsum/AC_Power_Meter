@@ -21908,58 +21908,61 @@ TMR2_ZCD_OUTPUT
 
 } TMR2_HLT_EXT_RESET_SOURCE;
 
-# 328
+# 293
+volatile unsigned int CountCallBack = 0;
+
+# 331
 void TMR2_Initialize(void);
 
-# 364
+# 367
 void TMR2_ModeSet(TMR2_HLT_MODE mode);
 
-# 399
+# 402
 void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
 
-# 428
+# 431
 void TMR2_Start(void);
 
-# 457
+# 460
 void TMR2_StartTimer(void);
 
-# 489
+# 492
 void TMR2_Stop(void);
 
-# 521
+# 524
 void TMR2_StopTimer(void);
 
-# 556
+# 559
 uint8_t TMR2_Counter8BitGet(void);
 
-# 591
+# 594
 uint8_t TMR2_ReadTimer(void);
 
-# 630
+# 633
 void TMR2_Counter8BitSet(uint8_t timerVal);
 
-# 669
+# 672
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 721
+# 724
 void TMR2_Period8BitSet(uint8_t periodVal);
 
-# 773
+# 776
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 791
+# 794
 void TMR2_ISR(void);
 
-# 809
+# 812
 void TMR2_CallBack(void);
 
-# 826
+# 829
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 844
+# 847
 extern void (*TMR2_InterruptHandler)(void);
 
-# 862
+# 865
 void TMR2_DefaultInterruptHandler(void);
 
 # 41 "mcc_generated_files/../error_handling.h"
@@ -22598,14 +22601,13 @@ Boot_Frame_1,
 Boot_Frame_2,
 Boot_Frame_3,
 Boot_Frame_4,
-Current_Values,
-Max_Values,
 Load_Enabled,
 Load_Disabled,
 Dimming_Enabled,
 Dimming_Disabled,
 Dimming_Percentage,
-Idle
+Idle,
+Live_Update
 
 } OLED_Frame_t;
 
@@ -22641,7 +22643,7 @@ volatile double ADC_Result_Scaling;
 volatile double POS3P3_ADC_Result;
 volatile double POS12_ADC_Result;
 volatile double Temp_ADC_Result;
-volatile double Temp_ADC_Offset = 612.085;
+volatile double Temp_ADC_Offset = 632.085;
 double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
@@ -22652,7 +22654,6 @@ volatile double Vrms;
 volatile double Avg_Power;
 volatile double Total_Energy;
 volatile double TRIAC_Firing_Angle = 1.57;
-
 
 
 volatile unsigned int dimming_period = 0x7FEE;
@@ -22680,7 +22681,16 @@ const uint16_t max_Temp_ADC_Result_address = 0x0010;
 const uint16_t max_FVR_ADC_Result_address = 0x0014;
 const uint16_t Total_Energy_address = 0x0018;
 
-# 126
+int status;
+
+extern volatile unsigned int CountCallBack;
+
+char print_Irms_str[17];
+char print_Power_str[17];
+char print_Vrms_str[17];
+char print_Energy_str[17];
+
+# 133
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22760,7 +22770,7 @@ Total_Energy = readDoubleFromEEPROM(Total_Energy_address);
 
 }
 
-# 211
+# 218
 void heartbeatTimerCallback(void) {
 
 
@@ -23040,19 +23050,14 @@ case Boot_Frame_2:
 
 
 strcpy(OLED_RAM_Buffer.line0, "Device ID:");
-char dev_id_str[16];
-strcpy(dev_id_str, getDeviceIDString(getDeviceID()));
+char dev_id_str[17];
+sprintf(dev_id_str,"0x%X",getDeviceID());
 strcpy(OLED_RAM_Buffer.line1, dev_id_str);
 
 
 strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
-
-char rev_id_str[5];
-rev_id_str[0] = (char) getMajorRevisionID() + 65;
-rev_id_str[1] = '0';
-rev_id_str[2] = '0';
-rev_id_str[3] = getMinorRevisionID() + 48;
-rev_id_str[4] = '\0';
+char rev_id_str[17];
+sprintf(rev_id_str, "%c%03d", (char) getMajorRevisionID() + 65, getMinorRevisionID());
 strcpy(OLED_RAM_Buffer.line3, rev_id_str);
 
 OLED_UpdateFromRAMBuffer();
@@ -23063,7 +23068,7 @@ case Boot_Frame_3:
 strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
 strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
 strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
-strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow ctrl");
+strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow");
 
 OLED_UpdateFromRAMBuffer();
 OLED_Frame = Boot_Frame_4;;
@@ -23071,19 +23076,13 @@ break;
 
 case Boot_Frame_4:
 strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
-strcpy(OLED_RAM_Buffer.line1, "Ready");
-strcpy(OLED_RAM_Buffer.line2, "Load Disabled");
-strcpy(OLED_RAM_Buffer.line3, " ");
+strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
+strcpy(OLED_RAM_Buffer.line2, "More Settings");
+strcpy(OLED_RAM_Buffer.line3, "via USB, 'Help'");
 
 OLED_UpdateFromRAMBuffer();
-OLED_Frame = Idle;
+OLED_Frame = Live_Update;
 
-break;
-
-case Current_Values:
-break;
-
-case Max_Values:
 break;
 
 case Load_Enabled:
@@ -23094,20 +23093,174 @@ strcpy(OLED_RAM_Buffer.line3, " ");
 
 OLED_UpdateFromRAMBuffer();
 
-OLED_Frame = Idle;
+OLED_Frame = Live_Update;
+
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 32;
+TMR2_StartTimer();
 
 break;
 
 case Load_Disabled:
+strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
+strcpy(OLED_RAM_Buffer.line1, " ");
+strcpy(OLED_RAM_Buffer.line2, " ");
+strcpy(OLED_RAM_Buffer.line3, " ");
+
+OLED_UpdateFromRAMBuffer();
+
+OLED_Frame = Idle;
 break;
 
 case Dimming_Enabled:
+strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
+strcpy(OLED_RAM_Buffer.line1, " ");
+strcpy(OLED_RAM_Buffer.line2, " ");
+strcpy(OLED_RAM_Buffer.line3, " ");
+
+OLED_UpdateFromRAMBuffer();
+
+if (load_enable) {
+
+OLED_Frame = Live_Update;
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 32;
+TMR2_StartTimer();
+
+}
+
+else {
+
+OLED_Frame = Load_Disabled;
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 0;
+TMR2_StartTimer();
+}
+
 break;
 
 case Dimming_Disabled:
+strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
+strcpy(OLED_RAM_Buffer.line1, " ");
+strcpy(OLED_RAM_Buffer.line2, " ");
+strcpy(OLED_RAM_Buffer.line3, " ");
+
+OLED_UpdateFromRAMBuffer();
+
+if (load_enable) {
+
+OLED_Frame = Live_Update;
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 32;
+TMR2_StartTimer();
+
+}
+
+else {
+
+OLED_Frame = Load_Disabled;
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 0;
+TMR2_StartTimer();
+}
+
 break;
 
 case Dimming_Percentage:
+strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
+char percentage_string[17];
+float percentage = (dimming_period / (float) 0xFFFF);
+percentage = round(percentage * 100.0);
+sprintf(percentage_string, "%.3f Percent", percentage);
+strcpy(OLED_RAM_Buffer.line1, percentage_string);
+
+strcpy(OLED_RAM_Buffer.line2, "TRIAC Angle:");
+char angle_string[17];
+float TRIAC_degrees = round(TRIAC_Firing_Angle * (180.0 / acos(-1.0)));
+sprintf(angle_string, "%.3f Deg", TRIAC_degrees);
+strcpy(OLED_RAM_Buffer.line3, angle_string);
+
+OLED_UpdateFromRAMBuffer();
+
+if (load_enable) {
+
+OLED_Frame = Live_Update;
+
+}
+
+else {
+
+OLED_Frame = Load_Disabled;
+
+}
+
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 0;
+TMR2_StartTimer();
+
+break;
+
+case Live_Update:
+
+
+sprintf(print_Irms_str, "%.3f ARMS", Irms);
+strcpy(OLED_RAM_Buffer.line0, print_Irms_str);
+
+
+sprintf(print_Vrms_str, "%.3f VRMS", Vrms);
+strcpy(OLED_RAM_Buffer.line1, print_Vrms_str);
+
+
+sprintf(print_Power_str, "%.3f Watts", Avg_Power);
+strcpy(OLED_RAM_Buffer.line2, print_Power_str);
+
+
+if (Total_Energy >= 1000.0) {
+
+sprintf(print_Energy_str, "%.3e WHours", Total_Energy);
+
+}
+
+else if (Total_Energy >= 100.0) {
+
+sprintf(print_Energy_str, "%.1f WHours", Total_Energy);
+
+}
+
+else {
+
+sprintf(print_Energy_str, "%.3f WHours", Total_Energy);
+
+}
+
+strcpy(OLED_RAM_Buffer.line3, print_Energy_str);
+
+
+OLED_UpdateFromRAMBuffer();
+
+if (load_enable) {
+
+OLED_Frame = Live_Update;
+TMR2_StopTimer();
+TMR2_WriteTimer(0);
+CountCallBack = 32;
+TMR2_StartTimer();
+
+}
+
+else {
+
+OLED_Frame = Load_Disabled;
+
+}
+
+
 break;
 
 case Idle:
@@ -23137,9 +23290,9 @@ _delay((unsigned long)((250)*(64000000/4000.0)));
 SYSTEM_Initialize();
 
 
-LATGbits.LATG0 = 0;
+LATGbits.LATG0 = 1;
 LATGbits.LATG1 = 0;
-load_enable = 0;
+load_enable = 1;
 
 
 TMR6_SetInterruptHandler(heartbeatTimerCallback);

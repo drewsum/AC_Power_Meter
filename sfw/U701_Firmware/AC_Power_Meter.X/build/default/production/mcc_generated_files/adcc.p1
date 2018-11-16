@@ -1,10 +1,10 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F17805 `(v ~T0 @X0 0 tf ]
-[v F17808 `(v ~T0 @X0 0 tf ]
+[v F17806 `(v ~T0 @X0 0 tf ]
+[v F17809 `(v ~T0 @X0 0 tf ]
 "41 mcc_generated_files/../error_handling.h
 [s S2014 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S2014 error_struct ISNS_ADC_error_flag POS12_ADC_error_flag POS3P3_ADC_error_flag AVSS_ADC_error_flag Temp_ADC_error_flag FVR_ADC_error_flag ADC_general_error_flag I2C_COMM_error_flag USB_UART_COMM_error_flag ]
-[v F17933 `(v ~T0 @X0 0 tf ]
+[v F17934 `(v ~T0 @X0 0 tf ]
 "27402 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _ADLTHL `Vuc ~T0 @X0 0 e@3946 ]
 "27472
@@ -74,14 +74,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S258 . . . ]
 "4608
 [v _PIE1bits `VS258 ~T0 @X0 0 e@3626 ]
-[v F17926 `(v ~T0 @X0 0 tf ]
+[v F17927 `(v ~T0 @X0 0 tf ]
 "848 mcc_generated_files/adcc.h
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17926 ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17927 ]
 "882
 [v _ADCC_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
 "116 mcc_generated_files/adcc.c
-[c E17862 0 4 34 60 61 62 63 .. ]
-[n E17862 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17863 0 4 34 60 61 62 63 .. ]
+[n E17863 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "26668 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1254 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1254 . ADGO . ADFM . ADCS . ADCONT ADON ]
@@ -16403,24 +16403,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
 [; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
 [; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
-[; ;tmr2.h: 328: void TMR2_Initialize(void);
-[; ;tmr2.h: 364: void TMR2_ModeSet(TMR2_HLT_MODE mode);
-[; ;tmr2.h: 399: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
-[; ;tmr2.h: 428: void TMR2_Start(void);
-[; ;tmr2.h: 457: void TMR2_StartTimer(void);
-[; ;tmr2.h: 489: void TMR2_Stop(void);
-[; ;tmr2.h: 521: void TMR2_StopTimer(void);
-[; ;tmr2.h: 556: uint8_t TMR2_Counter8BitGet(void);
-[; ;tmr2.h: 591: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 630: void TMR2_Counter8BitSet(uint8_t timerVal);
-[; ;tmr2.h: 669: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 721: void TMR2_Period8BitSet(uint8_t periodVal);
-[; ;tmr2.h: 773: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 791: void TMR2_ISR(void);
-[; ;tmr2.h: 809: void TMR2_CallBack(void);
-[; ;tmr2.h: 826: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 844: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 862: void TMR2_DefaultInterruptHandler(void);
+"293 mcc_generated_files/../mcc_generated_files/tmr2.h
+[v _CountCallBack `Vui ~T0 @X0 1 e ]
+[i _CountCallBack
+-> -> 0 `i `ui
+]
+[; ;tmr2.h: 293: volatile unsigned int CountCallBack = 0;
+[; ;tmr2.h: 331: void TMR2_Initialize(void);
+[; ;tmr2.h: 367: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 402: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 431: void TMR2_Start(void);
+[; ;tmr2.h: 460: void TMR2_StartTimer(void);
+[; ;tmr2.h: 492: void TMR2_Stop(void);
+[; ;tmr2.h: 524: void TMR2_StopTimer(void);
+[; ;tmr2.h: 559: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 594: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 633: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 672: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 724: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 776: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 794: void TMR2_ISR(void);
+[; ;tmr2.h: 812: void TMR2_CallBack(void);
+[; ;tmr2.h: 829: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 847: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 865: void TMR2_DefaultInterruptHandler(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
@@ -16515,10 +16521,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart2.h: 81: extern volatile uint8_t eusart2TxBufferRemaining;
 [; ;eusart2.h: 82: extern volatile uint8_t eusart2RxCount;
 "88 mcc_generated_files/../mcc_generated_files/eusart2.h
-[v _EUSART2_TxDefaultInterruptHandler `*F17805 ~T0 @X0 1 e ]
+[v _EUSART2_TxDefaultInterruptHandler `*F17806 ~T0 @X0 1 e ]
 [; ;eusart2.h: 88: void (*EUSART2_TxDefaultInterruptHandler)(void);
 "89
-[v _EUSART2_RxDefaultInterruptHandler `*F17808 ~T0 @X0 1 e ]
+[v _EUSART2_RxDefaultInterruptHandler `*F17809 ~T0 @X0 1 e ]
 [; ;eusart2.h: 89: void (*EUSART2_RxDefaultInterruptHandler)(void);
 [; ;eusart2.h: 111: void EUSART2_Initialize(void);
 [; ;eusart2.h: 164: uint8_t EUSART2_is_tx_ready(void);
@@ -16593,7 +16599,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
 "57 mcc_generated_files/adcc.c
-[v _ADCC_ADTI_InterruptHandler `*F17933 ~T0 @X0 1 e ]
+[v _ADCC_ADTI_InterruptHandler `*F17934 ~T0 @X0 1 e ]
 [; ;adcc.c: 57: void (*ADCC_ADTI_InterruptHandler)(void);
 "63
 [v _ADCC_Initialize `(v ~T0 @X0 1 ef ]
@@ -16677,14 +16683,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2015 ]
 }
 "115
-[v _ADCC_StartConversion `(v ~T0 @X0 1 ef1`E17862 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 1 ef1`E17863 ]
 "116
 {
 [; ;adcc.c: 115: void ADCC_StartConversion(adcc_channel_t channel)
 [; ;adcc.c: 116: {
 [e :U _ADCC_StartConversion ]
 "115
-[v _channel `E17862 ~T0 @X0 1 r1 ]
+[v _channel `E17863 ~T0 @X0 1 r1 ]
 "116
 [f ]
 [; ;adcc.c: 118: ADPCH = channel;
@@ -16733,14 +16739,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2018 ]
 }
 "139
-[v _ADCC_GetSingleConversion `(ui ~T0 @X0 1 ef1`E17862 ]
+[v _ADCC_GetSingleConversion `(ui ~T0 @X0 1 ef1`E17863 ]
 "140
 {
 [; ;adcc.c: 139: adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel)
 [; ;adcc.c: 140: {
 [e :U _ADCC_GetSingleConversion ]
 "139
-[v _channel `E17862 ~T0 @X0 1 r1 ]
+[v _channel `E17863 ~T0 @X0 1 r1 ]
 "140
 [f ]
 [; ;adcc.c: 142: ADPCH = channel;
@@ -17159,7 +17165,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 [; ;adcc.c: 306: if (ADCC_ADTI_InterruptHandler)
 "306
-[e $ ! != _ADCC_ADTI_InterruptHandler -> -> 0 `i `*F17933 2046  ]
+[e $ ! != _ADCC_ADTI_InterruptHandler -> -> 0 `i `*F17934 2046  ]
 [; ;adcc.c: 307: ADCC_ADTI_InterruptHandler();
 "307
 [e ( *U _ADCC_ADTI_InterruptHandler ..  ]
@@ -17169,12 +17175,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2045 ]
 }
 "310
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 1 ef1`*F17926 ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 1 ef1`*F17927 ]
 {
 [; ;adcc.c: 310: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void)){
 [e :U _ADCC_SetADTIInterruptHandler ]
-[v F17971 `(v ~T0 @X0 0 tf ]
-[v _InterruptHandler `*F17971 ~T0 @X0 1 r1 ]
+[v F17972 `(v ~T0 @X0 0 tf ]
+[v _InterruptHandler `*F17972 ~T0 @X0 1 r1 ]
 [f ]
 [; ;adcc.c: 311: ADCC_ADTI_InterruptHandler = InterruptHandler;
 "311

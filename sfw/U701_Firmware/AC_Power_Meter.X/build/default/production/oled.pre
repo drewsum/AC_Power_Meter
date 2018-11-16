@@ -22009,58 +22009,61 @@ TMR2_ZCD_OUTPUT
 
 } TMR2_HLT_EXT_RESET_SOURCE;
 
-# 328
+# 293
+volatile unsigned int CountCallBack = 0;
+
+# 331
 void TMR2_Initialize(void);
 
-# 364
+# 367
 void TMR2_ModeSet(TMR2_HLT_MODE mode);
 
-# 399
+# 402
 void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
 
-# 428
+# 431
 void TMR2_Start(void);
 
-# 457
+# 460
 void TMR2_StartTimer(void);
 
-# 489
+# 492
 void TMR2_Stop(void);
 
-# 521
+# 524
 void TMR2_StopTimer(void);
 
-# 556
+# 559
 uint8_t TMR2_Counter8BitGet(void);
 
-# 591
+# 594
 uint8_t TMR2_ReadTimer(void);
 
-# 630
+# 633
 void TMR2_Counter8BitSet(uint8_t timerVal);
 
-# 669
+# 672
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 721
+# 724
 void TMR2_Period8BitSet(uint8_t periodVal);
 
-# 773
+# 776
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 791
+# 794
 void TMR2_ISR(void);
 
-# 809
+# 812
 void TMR2_CallBack(void);
 
-# 826
+# 829
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 844
+# 847
 extern void (*TMR2_InterruptHandler)(void);
 
-# 862
+# 865
 void TMR2_DefaultInterruptHandler(void);
 
 # 41 "mcc_generated_files/../error_handling.h"
@@ -22461,14 +22464,13 @@ Boot_Frame_1,
 Boot_Frame_2,
 Boot_Frame_3,
 Boot_Frame_4,
-Current_Values,
-Max_Values,
 Load_Enabled,
 Load_Disabled,
 Dimming_Enabled,
 Dimming_Disabled,
 Dimming_Percentage,
-Idle
+Idle,
+Live_Update
 
 } OLED_Frame_t;
 
@@ -22542,7 +22544,7 @@ const uint8_t OledFont[][8] =
 {0x00,0x7F,0x09,0x09,0x09,0x06,0x00,0x00},
 {0x00,0x3E,0x41,0x51,0x21,0x5E,0x00,0x00},
 {0x00,0x7F,0x09,0x19,0x29,0x46,0x00,0x00},
-{0x00,0x26,0x49,0x49,0x49,0x46,0x00,0x00},
+{0x00,0x26,0x49,0x49,0x49,0x32,0x00,0x00},
 {0x00,0x01,0x01,0x7F,0x01,0x01,0x00,0x00},
 {0x00,0x3F,0x40,0x40,0x40,0x3F,0x00,0x00},
 {0x00,0x1F,0x20,0x40,0x20,0x1F,0x00,0x00},

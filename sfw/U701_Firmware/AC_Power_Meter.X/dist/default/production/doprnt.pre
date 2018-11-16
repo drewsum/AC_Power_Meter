@@ -422,6 +422,11 @@ case 'f':
 flag |= 0x400;
 break;
 
+# 672
+case 'e':
+flag |= 0x100;
+break;
+
 # 697
 case 'd':
 case 'i':
@@ -529,6 +534,114 @@ if(tmpval.integ < 1.0)
 exp--;
 else if(tmpval.integ >= 10.0)
 exp++;
+}
+
+if(exp <= 0)
+c = 1;
+else
+c = exp;
+if(
+
+flag & 0x100
+
+# 868
+) {
+
+# 873
+if((unsigned)prec > (sizeof dpowers/sizeof dpowers[0]) - 2)
+c = (sizeof dpowers/sizeof dpowers[0]) - 2;
+else
+c = prec;
+if( fval!=0) {
+fval /= scale(exp-c);
+
+# 893
+if(fval - (double)(unsigned long)fval >= 0.5)
+fval += 0.5;
+if((unsigned long)fval >= dpowers[c+1]) {
+fval *= 1e-1;
+exp++;
+} else if((unsigned long)fval < dpowers[c]) {
+fval *= 10.0;
+exp--;
+}
+
+}
+
+# 929
+width -= prec + 5;
+
+# 934
+if(flag & 0x03)
+width--;
+
+# 946
+if(flag & 0x04) {
+
+# 953
+while(width > 0) {
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
+width--;
+}
+} else
+
+{
+
+# 964
+while(width > 0) {
+if(pb->func) (pb->func(' ')); else ((*pb->ptr++ = ' '));
+width--;
+}
+
+# 973
+if(flag & 0x03)
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
+
+# 980
+}
+
+
+
+
+val = (unsigned long)fval;
+if(pb->func) (pb->func(val/dpowers[c] + '0')); else ((*pb->ptr++ = val/dpowers[c] + '0'));
+val %= dpowers[c];
+
+
+
+
+if(prec)
+
+{
+if(pb->func) (pb->func('.')); else ((*pb->ptr++ = '.'));
+prec -= c;
+while(c--) {
+
+# 1007
+if(pb->func) (pb->func('0' + (val/dpowers[c]))); else ((*pb->ptr++ = '0' + (val/dpowers[c])));
+val %= dpowers[c];
+
+}
+while(prec) {
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
+prec--;
+}
+}
+
+# 1021
+if(pb->func) (pb->func('e')); else ((*pb->ptr++ = 'e'));
+if(exp < 0) {
+exp = -exp;
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
+} else
+if(pb->func) (pb->func('+')); else ((*pb->ptr++ = '+'));
+
+# 1039
+if(pb->func) (pb->func(exp / 10 + '0')); else ((*pb->ptr++ = exp / 10 + '0'));
+if(pb->func) (pb->func(exp % 10 + '0')); else ((*pb->ptr++ = exp % 10 + '0'));
+
+# 1047
+continue;
 }
 
 # 1112

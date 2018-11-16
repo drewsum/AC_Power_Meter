@@ -386,19 +386,22 @@ void ringBufferLUT(char * line) {
     
     // Ask if the user is sure if they want to enable dimming
     else if ((0 == strcmp(line, "Enable Dimming"))) {
-     
+    
         // Ask if user is sure
         // Print a fancy warning message
-        terminal_textAttributes(BLACK, RED, UNDERSCORE);
+        terminal_textAttributesReset();
+        terminal_textAttributes(RED, BLACK, NORMAL);
         printf("WARNING: Using the dimming feature with load devices other than a light bulb can result in device damage");
         terminal_textAttributesReset();
         terminal_printNewline();
-        terminal_textAttributes(BLACK, RED, UNDERSCORE);
+        terminal_textAttributes(RED, BLACK, NORMAL);
         printf("Only enable dimming if you are completely sure the load is compatible with a solid state dimming circuit");
         terminal_textAttributesReset();
         terminal_printNewline();
         terminal_textAttributes(BLACK, YELLOW, NORMAL);
-        printf("Are you sure you'd like to enable output dimming?\n\r");
+        printf("Are you sure you'd like to enable output dimming?");
+        terminal_textAttributesReset();
+        terminal_printNewline();
         terminal_textAttributes(YELLOW, BLACK, NORMAL);
         printf("If yes, reply 'Enable Dimming Y' on the next line:\n\r");
         terminal_textAttributesReset();
@@ -412,16 +415,31 @@ void ringBufferLUT(char * line) {
     // REALLY enable TRIAC dimming
     else if ((0 == strcmp(line, "Enable Dimming Y"))) {
      
-        // Disable forcing of TRIAC conduction
-        SSR_FORCE_PIN = 0;
+        if (load_enable) {
+            // Disable forcing of TRIAC conduction
+            SSR_FORCE_PIN = 0;
+
+            // Enable ZCD interrupt
+            PIE0bits.INT0IE = 1;
+
+            OLED_Frame = Dimming_Enabled;
+            OLED_updateCallback();
+
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("Output dimming has been enabled\n\r");
+            terminal_textAttributesReset();
+        }
         
-        // Enable ZCD interrupt
-        PIE0bits.INT0IE = 1;
-        
-        terminal_textAttributes(GREEN, BLACK, NORMAL);
-        printf("Output dimming has been enabled\n\r");
-        terminal_textAttributesReset();
-        
+        else {
+         
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Load is Disabled\n\r");
+            terminal_textAttributes(YELLOW,BLACK,NORMAL);
+            printf("Enabled the load by calling 'Enable Load'\n\r");
+            terminal_textAttributesReset();
+            
+        }
+            
     }
     
     // Disable triac dimming
@@ -433,6 +451,9 @@ void ringBufferLUT(char * line) {
         // Disable ZCD interrupt
         PIE0bits.INT0IE = 0;
         TMR5_StopTimer();
+        
+        OLED_Frame = Dimming_Disabled;
+        OLED_updateCallback();
 
         terminal_textAttributes(RED, BLACK, NORMAL);
         printf("TRIAC output dimming has been disabled\n\r");
@@ -522,6 +543,9 @@ void ringBufferLUT(char * line) {
         printf("Load has been disabled\n\r");
         terminal_textAttributesReset();
         
+        OLED_Frame = Load_Disabled;
+        OLED_updateCallback();
+        
     }
     
     // Set dimming percentage
@@ -566,11 +590,20 @@ void ringBufferLUT(char * line) {
             printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
             terminal_textAttributesReset();
             
+            if (error_handler.USB_UART_COMM_error_flag) {
+            
+                error_handler.USB_UART_COMM_error_flag = false;
+            
+            }
+            
+            __delay_ms(100);
+            
+            OLED_Frame = Dimming_Percentage;
+            OLED_updateCallback();
+            
         }
         
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
+        
         
     }
     
@@ -911,10 +944,12 @@ void ringBufferLUT(char * line) {
         
         terminal_printNewline();
         terminal_textAttributes(YELLOW, BLUE, NORMAL);
-        printf("Marquette University EECE\n\r");
+        printf("Marquette University EECE");
         terminal_textAttributes(GREEN, BLACK, NORMAL);
+        terminal_printNewline();
         printf("ELEN 3035 Final Project\n\r");
-        printf("Drew Maatman and Gabe Thalji\n\r");
+        printf("Drew Maatman and Gabe Thalji");
+        terminal_printNewline();
         terminal_textAttributes(YELLOW, BLACK, BOLD);
         printf("PSOCs SUCK\n\r");
         terminal_textAttributesReset();

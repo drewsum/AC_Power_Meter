@@ -288,7 +288,10 @@ typedef enum
 /**
   Section: Macro Declarations
 */
-#define TMR2_INTERRUPT_TICKER_FACTOR    96
+#define TMR2_INTERRUPT_TICKER_FACTOR    64
+
+volatile unsigned int CountCallBack = 0;
+
 
 /**
   Section: TMR2 APIs
