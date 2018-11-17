@@ -164,6 +164,7 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
 
 void TMR2_ISR(void)
 {
+
     // clear the TMR2 interrupt flag
     PIR5bits.TMR2IF = 0;
 

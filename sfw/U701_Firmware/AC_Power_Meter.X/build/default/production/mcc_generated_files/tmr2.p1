@@ -27,9 +27,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "4869
 [v _PIE5bits `VS270 ~T0 @X0 0 e@3630 ]
 [v F17383 `(v ~T0 @X0 0 tf ]
-"829 mcc_generated_files/tmr2.h
+"830 mcc_generated_files/tmr2.h
 [v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17383 ]
-"865
+"866
 [v _TMR2_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
 "35991 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [v _T2CON `Vuc ~T0 @X0 0 e@4029 ]
@@ -94,7 +94,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR2 `Vuc ~T0 @X0 0 e@4027 ]
 "35942
 [v _PR2 `Vuc ~T0 @X0 0 e@4028 ]
-"812 mcc_generated_files/tmr2.h
+"813 mcc_generated_files/tmr2.h
 [v _TMR2_CallBack `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -16157,30 +16157,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
 [; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
 [; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
-"293 mcc_generated_files/tmr2.h
+"295 mcc_generated_files/tmr2.h
 [v _CountCallBack `Vui ~T0 @X0 1 e ]
-[i _CountCallBack
--> -> 0 `i `ui
-]
-[; ;tmr2.h: 293: volatile unsigned int CountCallBack = 0;
-[; ;tmr2.h: 331: void TMR2_Initialize(void);
-[; ;tmr2.h: 367: void TMR2_ModeSet(TMR2_HLT_MODE mode);
-[; ;tmr2.h: 402: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
-[; ;tmr2.h: 431: void TMR2_Start(void);
-[; ;tmr2.h: 460: void TMR2_StartTimer(void);
-[; ;tmr2.h: 492: void TMR2_Stop(void);
-[; ;tmr2.h: 524: void TMR2_StopTimer(void);
-[; ;tmr2.h: 559: uint8_t TMR2_Counter8BitGet(void);
-[; ;tmr2.h: 594: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 633: void TMR2_Counter8BitSet(uint8_t timerVal);
-[; ;tmr2.h: 672: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 724: void TMR2_Period8BitSet(uint8_t periodVal);
-[; ;tmr2.h: 776: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 794: void TMR2_ISR(void);
-[; ;tmr2.h: 812: void TMR2_CallBack(void);
-[; ;tmr2.h: 829: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 847: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 865: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr2.h: 295: volatile unsigned int CountCallBack;
+[; ;tmr2.h: 332: void TMR2_Initialize(void);
+[; ;tmr2.h: 368: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 403: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 432: void TMR2_Start(void);
+[; ;tmr2.h: 461: void TMR2_StartTimer(void);
+[; ;tmr2.h: 493: void TMR2_Stop(void);
+[; ;tmr2.h: 525: void TMR2_StopTimer(void);
+[; ;tmr2.h: 560: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 595: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 634: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 673: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 725: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 777: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 795: void TMR2_ISR(void);
+[; ;tmr2.h: 813: void TMR2_CallBack(void);
+[; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
 "58 mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler `*F17386 ~T0 @X0 1 e ]
 [; ;tmr2.c: 58: void (*TMR2_InterruptHandler)(void);
@@ -16437,76 +16434,76 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.c: 166: {
 [e :U _TMR2_ISR ]
 [f ]
-[; ;tmr2.c: 168: PIR5bits.TMR2IF = 0;
-"168
+[; ;tmr2.c: 169: PIR5bits.TMR2IF = 0;
+"169
 [e = . . _PIR5bits 0 1 -> -> 0 `i `uc ]
-[; ;tmr2.c: 171: if (++CountCallBack >= 64)
-"171
-[e $ ! >= =+ _CountCallBack -> -> 1 `i `ui -> -> 64 `i `ui 2025  ]
-[; ;tmr2.c: 172: {
+[; ;tmr2.c: 172: if (++CountCallBack >= 64)
 "172
+[e $ ! >= =+ _CountCallBack -> -> 1 `i `ui -> -> 64 `i `ui 2025  ]
+[; ;tmr2.c: 173: {
+"173
 {
-[; ;tmr2.c: 174: TMR2_CallBack();
-"174
+[; ;tmr2.c: 175: TMR2_CallBack();
+"175
 [e ( _TMR2_CallBack ..  ]
-[; ;tmr2.c: 177: CountCallBack = 0;
-"177
-[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;tmr2.c: 178: CountCallBack = 0;
 "178
+[e = _CountCallBack -> -> 0 `i `ui ]
+"179
 }
 [e :U 2025 ]
-[; ;tmr2.c: 178: }
 [; ;tmr2.c: 179: }
-"179
+[; ;tmr2.c: 180: }
+"180
 [e :UE 2024 ]
 }
-"181
-[v _TMR2_CallBack `(v ~T0 @X0 1 ef ]
 "182
+[v _TMR2_CallBack `(v ~T0 @X0 1 ef ]
+"183
 {
-[; ;tmr2.c: 181: void TMR2_CallBack(void)
-[; ;tmr2.c: 182: {
+[; ;tmr2.c: 182: void TMR2_CallBack(void)
+[; ;tmr2.c: 183: {
 [e :U _TMR2_CallBack ]
 [f ]
-[; ;tmr2.c: 185: if(TMR2_InterruptHandler)
-"185
-[e $ ! != _TMR2_InterruptHandler -> -> 0 `i `*F17386 2027  ]
-[; ;tmr2.c: 186: {
+[; ;tmr2.c: 186: if(TMR2_InterruptHandler)
 "186
-{
-[; ;tmr2.c: 187: TMR2_InterruptHandler();
+[e $ ! != _TMR2_InterruptHandler -> -> 0 `i `*F17386 2027  ]
+[; ;tmr2.c: 187: {
 "187
-[e ( *U _TMR2_InterruptHandler ..  ]
+{
+[; ;tmr2.c: 188: TMR2_InterruptHandler();
 "188
+[e ( *U _TMR2_InterruptHandler ..  ]
+"189
 }
 [e :U 2027 ]
-[; ;tmr2.c: 188: }
 [; ;tmr2.c: 189: }
-"189
+[; ;tmr2.c: 190: }
+"190
 [e :UE 2026 ]
 }
-"191
+"192
 [v _TMR2_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F17383 ]
 {
-[; ;tmr2.c: 191: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
+[; ;tmr2.c: 192: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
 [e :U _TMR2_SetInterruptHandler ]
 [v F17410 `(v ~T0 @X0 0 tf ]
 [v _InterruptHandler `*F17410 ~T0 @X0 1 r1 ]
 [f ]
-[; ;tmr2.c: 192: TMR2_InterruptHandler = InterruptHandler;
-"192
-[e = _TMR2_InterruptHandler _InterruptHandler ]
-[; ;tmr2.c: 193: }
+[; ;tmr2.c: 193: TMR2_InterruptHandler = InterruptHandler;
 "193
+[e = _TMR2_InterruptHandler _InterruptHandler ]
+[; ;tmr2.c: 194: }
+"194
 [e :UE 2028 ]
 }
-"195
+"196
 [v _TMR2_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;tmr2.c: 195: void TMR2_DefaultInterruptHandler(void){
+[; ;tmr2.c: 196: void TMR2_DefaultInterruptHandler(void){
 [e :U _TMR2_DefaultInterruptHandler ]
 [f ]
-[; ;tmr2.c: 198: }
-"198
+[; ;tmr2.c: 199: }
+"199
 [e :UE 2029 ]
 }

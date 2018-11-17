@@ -99,7 +99,7 @@ volatile unsigned long load_on_time = 0;        // Load on time in seconds
 reset_t reset_cause;                            // The cause of the most recent reset
 adcc_channel_t next_channel = channel_VSS;                    // The next channel for the ADC to convert
 
-// Values saved in EEPROM:
+// SRAM copies of values saved in EEPROM:
 volatile double max_Irms;
 volatile double max_Power;
 volatile double max_POS3P3_ADC_Result;
@@ -107,7 +107,7 @@ volatile double max_POS12_ADC_Result;
 volatile double max_Temp_ADC_Result;
 volatile double max_FVR_ADC_Result;
 
-// EEPROM variable address
+// EEPROM variable addresses
 const uint16_t max_Irms_address                 = 0x0000;
 const uint16_t max_Power_address                = 0x0004;
 const uint16_t max_POS3P3_ADC_Result_address    = 0x0008;
@@ -116,10 +116,7 @@ const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 const uint16_t max_FVR_ADC_Result_address       = 0x0014;
 const uint16_t Total_Energy_address             = 0x0018;
 
-int status;
-
-extern volatile unsigned int CountCallBack;
-
+// strings to print current values on OLED
 char print_Irms_str[17];
 char print_Power_str[17];
 char print_Vrms_str[17];
@@ -490,6 +487,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             // Print boot message 1
             strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
@@ -499,7 +497,6 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_2;
             
-            CountCallBack = 0;
             TMR2_StartTimer();
             
             break;
@@ -508,6 +505,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             // Print boot message 2
             // Device ID
@@ -525,7 +523,6 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_3;
             
-            CountCallBack = 0;
             TMR2_StartTimer();
             
             break;
@@ -534,6 +531,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
             strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
@@ -543,7 +541,6 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_4;;
             
-            CountCallBack = 0;
             TMR2_StartTimer();
             
             break;
@@ -552,6 +549,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
             strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
@@ -561,7 +559,6 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Live_Update;
             
-            CountCallBack = 0;
             TMR2_StartTimer();
             
             break;
@@ -570,6 +567,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
@@ -579,8 +577,7 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             
             OLED_Frame = Live_Update;
-            
-            CountCallBack = 32;
+            TMR2_Period8BitSet(0x64);   // Set TMR2 to faster rate
             TMR2_StartTimer();
             
             break;
@@ -589,6 +586,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
@@ -598,8 +596,7 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             
             OLED_Frame = Idle;
-            
-            CountCallBack = 0;
+            TMR2_Period8BitSet(0x64);   // Set TMR2 to faster rate
             TMR2_StartTimer();
             
             break;
@@ -608,6 +605,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
@@ -618,16 +616,16 @@ void OLED_updateCallback(void) {
             
             if (load_enable) {
             
-                OLED_Frame = Live_Update;    
-                CountCallBack = 32;
+                OLED_Frame = Live_Update;
+                TMR2_Period8BitSet(0x64);   // Set TMR2 to faster rate
                 TMR2_StartTimer();
                 
             }
             
             else {
             
-                OLED_Frame = Load_Disabled;    
-                CountCallBack = 0;
+                OLED_Frame = Load_Disabled;
+                TMR2_Period8BitSet(0xC2);   // Set TMR2 to slower rate set in MCC
                 TMR2_StartTimer();
             }
             
@@ -637,6 +635,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
@@ -647,20 +646,16 @@ void OLED_updateCallback(void) {
             
             if (load_enable) {
             
-                OLED_Frame = Live_Update;    
-                TMR2_StopTimer();
-                TMR2_WriteTimer(0);
-                CountCallBack = 32;
+                OLED_Frame = Live_Update;
+                TMR2_Period8BitSet(0x64);   // Set TMR2 to faster rate
                 TMR2_StartTimer();
                 
             }
             
             else {
             
-                OLED_Frame = Load_Disabled;    
-                TMR2_StopTimer();
-                TMR2_WriteTimer(0);
-                CountCallBack = 0;
+                OLED_Frame = Load_Disabled;
+                TMR2_Period8BitSet(0xC2);   // Set TMR2 to slower rate set in MCC
                 TMR2_StartTimer();
             }
                 
@@ -670,6 +665,8 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
+            TMR2_Period8BitSet(0xC2);   // Set TMR2 to slower rate set in MCC
             
             strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
             char percentage_string[17];
@@ -694,11 +691,10 @@ void OLED_updateCallback(void) {
             
             else {
             
-                OLED_Frame = Load_Disabled;    
+                OLED_Frame = Load_Disabled;
 
             }
             
-            CountCallBack = 0;
             TMR2_StartTimer();
 
             break;
@@ -707,6 +703,7 @@ void OLED_updateCallback(void) {
             
             TMR2_StopTimer();
             TMR2_WriteTimer(0);
+            CountCallBack = 0;
             
             // Print IRMS to OLED
             sprintf(print_Irms_str, "%.3f ARMS", Irms);
@@ -744,20 +741,8 @@ void OLED_updateCallback(void) {
             
             OLED_UpdateFromRAMBuffer();
             
-            if (load_enable) {
-            
-                OLED_Frame = Live_Update;
-                CountCallBack = 32;
-                
-            }
-            
-            else {
-            
-                OLED_Frame = Load_Disabled;
-                CountCallBack = 0;
-
-            }
-            
+            OLED_Frame = Live_Update;
+            TMR2_Period8BitSet(0x31);   // Set TMR2 to faster rate
             TMR2_StartTimer();
             
             break;
@@ -800,7 +785,6 @@ void main(void)
     // Disable OLED update timer, clear it
     TMR2_StopTimer();
     TMR2_WriteTimer(0);
-    CountCallBack = 0;
     
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
@@ -847,7 +831,10 @@ void main(void)
     OLED_updateCallback();
     
     // Print reset status over serial port
+    terminal_textAttributes(YELLOW, BLUE, BOLD);
+    printf("AC Power Meter / Dimmer");
     terminal_textAttributes(BLACK, GREEN, BOLD);
+    terminal_printNewline();
     printf("Boot Complete");
     terminal_textAttributesReset();
     terminal_printNewline();

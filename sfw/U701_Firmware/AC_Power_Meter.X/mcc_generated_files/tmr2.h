@@ -290,8 +290,9 @@ typedef enum
 */
 #define TMR2_INTERRUPT_TICKER_FACTOR    64
 
-volatile unsigned int CountCallBack = 0;
 
+    
+volatile unsigned int CountCallBack;
 
 /**
   Section: TMR2 APIs

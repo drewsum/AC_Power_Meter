@@ -16344,30 +16344,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 279: TMR2_C3_OUT_SYNC,
 [; ;tmr2.h: 283: TMR2_ZCD_OUTPUT
 [; ;tmr2.h: 285: } TMR2_HLT_EXT_RESET_SOURCE;
-"293 mcc_generated_files/tmr2.h
+"295 mcc_generated_files/tmr2.h
 [v _CountCallBack `Vui ~T0 @X0 1 e ]
-[i _CountCallBack
--> -> 0 `i `ui
-]
-[; ;tmr2.h: 293: volatile unsigned int CountCallBack = 0;
-[; ;tmr2.h: 331: void TMR2_Initialize(void);
-[; ;tmr2.h: 367: void TMR2_ModeSet(TMR2_HLT_MODE mode);
-[; ;tmr2.h: 402: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
-[; ;tmr2.h: 431: void TMR2_Start(void);
-[; ;tmr2.h: 460: void TMR2_StartTimer(void);
-[; ;tmr2.h: 492: void TMR2_Stop(void);
-[; ;tmr2.h: 524: void TMR2_StopTimer(void);
-[; ;tmr2.h: 559: uint8_t TMR2_Counter8BitGet(void);
-[; ;tmr2.h: 594: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 633: void TMR2_Counter8BitSet(uint8_t timerVal);
-[; ;tmr2.h: 672: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 724: void TMR2_Period8BitSet(uint8_t periodVal);
-[; ;tmr2.h: 776: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 794: void TMR2_ISR(void);
-[; ;tmr2.h: 812: void TMR2_CallBack(void);
-[; ;tmr2.h: 829: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 847: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 865: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr2.h: 295: volatile unsigned int CountCallBack;
+[; ;tmr2.h: 332: void TMR2_Initialize(void);
+[; ;tmr2.h: 368: void TMR2_ModeSet(TMR2_HLT_MODE mode);
+[; ;tmr2.h: 403: void TMR2_ExtResetSourceSet(TMR2_HLT_EXT_RESET_SOURCE reset);
+[; ;tmr2.h: 432: void TMR2_Start(void);
+[; ;tmr2.h: 461: void TMR2_StartTimer(void);
+[; ;tmr2.h: 493: void TMR2_Stop(void);
+[; ;tmr2.h: 525: void TMR2_StopTimer(void);
+[; ;tmr2.h: 560: uint8_t TMR2_Counter8BitGet(void);
+[; ;tmr2.h: 595: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 634: void TMR2_Counter8BitSet(uint8_t timerVal);
+[; ;tmr2.h: 673: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 725: void TMR2_Period8BitSet(uint8_t periodVal);
+[; ;tmr2.h: 777: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 795: void TMR2_ISR(void);
+[; ;tmr2.h: 813: void TMR2_CallBack(void);
+[; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2016 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
