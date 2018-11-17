@@ -253,7 +253,7 @@ void ringBufferLUT(char * line) {
             }
             
             terminal_textAttributes(YELLOW, BLACK, NORMAL);
-            printf("Call 'Clear COMM Errors' to clear communications error(s)\n\r");
+            printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
             terminal_textAttributesReset();
         
         }
@@ -366,7 +366,26 @@ void ringBufferLUT(char * line) {
     else if ((0 == strcmp(line, "Measure Energy?"))) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+        
+        if (Total_Energy >= 1000.0) {
+         
+            printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        else if (Total_Energy >= 100.0) {
+         
+            printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        else {
+         
+            printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        
         terminal_textAttributesReset();
         
     }
@@ -422,6 +441,7 @@ void ringBufferLUT(char * line) {
             // Enable ZCD interrupt
             PIE0bits.INT0IE = 1;
 
+            // Print to OLED
             OLED_Frame = Dimming_Enabled;
             OLED_updateCallback();
 

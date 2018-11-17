@@ -33,6 +33,12 @@ reset_t getCauseOfReset(void) {
         
     }
     
+    else if (PCON0bits.nRWDT == 0) {
+     
+        return_reset_cause = Watch_Dog_Timer_Reset;
+        
+    }
+    
     else if (PCON0bits.nRMCLR == 0) {
      
         return_reset_cause = Master_Clear_Reset;

@@ -16165,61 +16165,74 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2018  ]
 "36
 [e :U 2017 ]
-[; ;cause_of_reset.c: 36: else if (PCON0bits.nRMCLR == 0) {
-[e $ ! == -> . . _PCON0bits 6 3 `i -> 0 `i 2019  ]
+[; ;cause_of_reset.c: 36: else if (PCON0bits.nRWDT == 0) {
+[e $ ! == -> . . _PCON0bits 6 4 `i -> 0 `i 2019  ]
 {
-[; ;cause_of_reset.c: 38: return_reset_cause = Master_Clear_Reset;
+[; ;cause_of_reset.c: 38: return_reset_cause = Watch_Dog_Timer_Reset;
 "38
-[e = _return_reset_cause . `E17455 3 ]
+[e = _return_reset_cause . `E17455 4 ]
 "40
 }
 [; ;cause_of_reset.c: 40: }
 [e $U 2020  ]
 "42
 [e :U 2019 ]
-[; ;cause_of_reset.c: 42: else if (PCON0bits.nRI == 0) {
-[e $ ! == -> . . _PCON0bits 6 2 `i -> 0 `i 2021  ]
+[; ;cause_of_reset.c: 42: else if (PCON0bits.nRMCLR == 0) {
+[e $ ! == -> . . _PCON0bits 6 3 `i -> 0 `i 2021  ]
 {
-[; ;cause_of_reset.c: 44: return_reset_cause = RESET_Instruction_Executed;
+[; ;cause_of_reset.c: 44: return_reset_cause = Master_Clear_Reset;
 "44
-[e = _return_reset_cause . `E17455 6 ]
+[e = _return_reset_cause . `E17455 3 ]
 "46
 }
 [; ;cause_of_reset.c: 46: }
 [e $U 2022  ]
 "48
 [e :U 2021 ]
-[; ;cause_of_reset.c: 48: else if (PCON0bits.nPOR == 0) {
-[e $ ! == -> . . _PCON0bits 6 1 `i -> 0 `i 2023  ]
+[; ;cause_of_reset.c: 48: else if (PCON0bits.nRI == 0) {
+[e $ ! == -> . . _PCON0bits 6 2 `i -> 0 `i 2023  ]
 {
-[; ;cause_of_reset.c: 50: return_reset_cause = Power_On_Reset;
+[; ;cause_of_reset.c: 50: return_reset_cause = RESET_Instruction_Executed;
 "50
-[e = _return_reset_cause . `E17455 1 ]
+[e = _return_reset_cause . `E17455 6 ]
 "52
 }
 [; ;cause_of_reset.c: 52: }
 [e $U 2024  ]
 "54
 [e :U 2023 ]
-[; ;cause_of_reset.c: 54: else if (PCON0bits.nBOR == 0) {
-[e $ ! == -> . . _PCON0bits 6 0 `i -> 0 `i 2025  ]
+[; ;cause_of_reset.c: 54: else if (PCON0bits.nPOR == 0) {
+[e $ ! == -> . . _PCON0bits 6 1 `i -> 0 `i 2025  ]
 {
-[; ;cause_of_reset.c: 56: return_reset_cause = Brown_Out_Reset;
+[; ;cause_of_reset.c: 56: return_reset_cause = Power_On_Reset;
 "56
-[e = _return_reset_cause . `E17455 2 ]
+[e = _return_reset_cause . `E17455 1 ]
 "58
 }
 [; ;cause_of_reset.c: 58: }
 [e $U 2026  ]
 "60
 [e :U 2025 ]
-[; ;cause_of_reset.c: 60: else {
+[; ;cause_of_reset.c: 60: else if (PCON0bits.nBOR == 0) {
+[e $ ! == -> . . _PCON0bits 6 0 `i -> 0 `i 2027  ]
 {
-[; ;cause_of_reset.c: 62: return_reset_cause = Undefined_Reset;
+[; ;cause_of_reset.c: 62: return_reset_cause = Brown_Out_Reset;
 "62
-[e = _return_reset_cause . `E17455 0 ]
+[e = _return_reset_cause . `E17455 2 ]
 "64
 }
+[; ;cause_of_reset.c: 64: }
+[e $U 2028  ]
+"66
+[e :U 2027 ]
+[; ;cause_of_reset.c: 66: else {
+{
+[; ;cause_of_reset.c: 68: return_reset_cause = Undefined_Reset;
+"68
+[e = _return_reset_cause . `E17455 0 ]
+"70
+}
+[e :U 2028 ]
 [e :U 2026 ]
 [e :U 2024 ]
 [e :U 2022 ]
@@ -16227,178 +16240,178 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2018 ]
 [e :U 2016 ]
 [e :U 2014 ]
-[; ;cause_of_reset.c: 64: }
-[; ;cause_of_reset.c: 67: PCON0bits.STKOVF = 0;
-"67
-[e = . . _PCON0bits 6 7 -> -> 0 `i `uc ]
-[; ;cause_of_reset.c: 68: PCON0bits.STKUNF = 0;
-"68
-[e = . . _PCON0bits 6 6 -> -> 0 `i `uc ]
-[; ;cause_of_reset.c: 69: PCON0bits.nWDTWV = 1;
-"69
-[e = . . _PCON0bits 6 5 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 70: PCON0bits.nRWDT = 1;
-"70
-[e = . . _PCON0bits 6 4 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 71: PCON0bits.nRMCLR = 1;
-"71
-[e = . . _PCON0bits 6 3 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 72: PCON0bits.nRI = 1;
-"72
-[e = . . _PCON0bits 6 2 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 73: PCON0bits.nPOR = 1;
+[; ;cause_of_reset.c: 70: }
+[; ;cause_of_reset.c: 73: PCON0bits.STKOVF = 0;
 "73
-[e = . . _PCON0bits 6 1 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 74: PCON0bits.nBOR = 1;
+[e = . . _PCON0bits 6 7 -> -> 0 `i `uc ]
+[; ;cause_of_reset.c: 74: PCON0bits.STKUNF = 0;
 "74
-[e = . . _PCON0bits 6 0 -> -> 1 `i `uc ]
-[; ;cause_of_reset.c: 76: return return_reset_cause;
+[e = . . _PCON0bits 6 6 -> -> 0 `i `uc ]
+[; ;cause_of_reset.c: 75: PCON0bits.nWDTWV = 1;
+"75
+[e = . . _PCON0bits 6 5 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 76: PCON0bits.nRWDT = 1;
 "76
+[e = . . _PCON0bits 6 4 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 77: PCON0bits.nRMCLR = 1;
+"77
+[e = . . _PCON0bits 6 3 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 78: PCON0bits.nRI = 1;
+"78
+[e = . . _PCON0bits 6 2 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 79: PCON0bits.nPOR = 1;
+"79
+[e = . . _PCON0bits 6 1 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 80: PCON0bits.nBOR = 1;
+"80
+[e = . . _PCON0bits 6 0 -> -> 1 `i `uc ]
+[; ;cause_of_reset.c: 82: return return_reset_cause;
+"82
 [e ) _return_reset_cause ]
 [e $UE 2012  ]
-[; ;cause_of_reset.c: 78: }
-"78
+[; ;cause_of_reset.c: 84: }
+"84
 [e :UE 2012 ]
 }
-"81
+"87
 [v _getCauseOfResetString `(*Tuc ~T0 @X0 1 ef1`E17455 ]
 {
-[; ;cause_of_reset.c: 81: inline char *getCauseOfResetString(reset_t r) {
+[; ;cause_of_reset.c: 87: inline char *getCauseOfResetString(reset_t r) {
 [e :U _getCauseOfResetString ]
 [v _r `E17455 ~T0 @X0 1 r1 ]
 [f ]
-"84
+"90
 [v F17475 `*uc ~T0 @X0 -> 0 `x s strings ]
 [i F17475
 :U ..
-"85
--> :s 1C `*uc
-"86
--> :s 2C `*uc
-"87
--> :s 3C `*uc
-"88
--> :s 4C `*uc
-"89
--> :s 5C `*uc
-"90
--> :s 6C `*uc
 "91
--> :s 7C `*uc
+-> :s 1C `*uc
 "92
--> :s 8C `*uc
+-> :s 2C `*uc
 "93
+-> :s 3C `*uc
+"94
+-> :s 4C `*uc
+"95
+-> :s 5C `*uc
+"96
+-> :s 6C `*uc
+"97
+-> :s 7C `*uc
+"98
+-> :s 8C `*uc
+"99
 -> :s 9C `*uc
 ..
 ]
-[; ;cause_of_reset.c: 84: static char *strings[] = {
-[; ;cause_of_reset.c: 85: "Undefined Reset",
-[; ;cause_of_reset.c: 86: "Power On Reset",
-[; ;cause_of_reset.c: 87: "Brown Out Reset",
-[; ;cause_of_reset.c: 88: "Master Clear Reset",
-[; ;cause_of_reset.c: 89: "Watch Dog Timer Violation Reset",
-[; ;cause_of_reset.c: 90: "Windowed Watch Dog Timer Violation Reset",
-[; ;cause_of_reset.c: 91: "RESET Instruction Executed",
-[; ;cause_of_reset.c: 92: "Stack Overflow Reset",
-[; ;cause_of_reset.c: 93: "Stack Underflow Reset",
-[; ;cause_of_reset.c: 94: };
-[; ;cause_of_reset.c: 97: if (r <= 8) {
-"97
-[e $ ! <= -> _r `i -> 8 `i 2028  ]
-{
-[; ;cause_of_reset.c: 99: return strings[r];
-"99
-[e ) -> *U + &U F17475 * -> _r `ux -> -> # *U &U F17475 `ui `ux `*Tuc ]
-[e $UE 2027  ]
-"101
-}
-[; ;cause_of_reset.c: 101: }
-[e $U 2029  ]
+[; ;cause_of_reset.c: 90: static char *strings[] = {
+[; ;cause_of_reset.c: 91: "Undefined Reset",
+[; ;cause_of_reset.c: 92: "Power On Reset",
+[; ;cause_of_reset.c: 93: "Brown Out Reset",
+[; ;cause_of_reset.c: 94: "Master Clear Reset",
+[; ;cause_of_reset.c: 95: "Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 96: "Windowed Watch Dog Timer Violation Reset",
+[; ;cause_of_reset.c: 97: "RESET Instruction Executed",
+[; ;cause_of_reset.c: 98: "Stack Overflow Reset",
+[; ;cause_of_reset.c: 99: "Stack Underflow Reset",
+[; ;cause_of_reset.c: 100: };
+[; ;cause_of_reset.c: 103: if (r <= 8) {
 "103
-[e :U 2028 ]
-[; ;cause_of_reset.c: 103: else {
+[e $ ! <= -> _r `i -> 8 `i 2030  ]
 {
-[; ;cause_of_reset.c: 105: return "Undefined Reset";
+[; ;cause_of_reset.c: 105: return strings[r];
 "105
-[e ) -> :s 10C `*Tuc ]
-[e $UE 2027  ]
+[e ) -> *U + &U F17475 * -> _r `ux -> -> # *U &U F17475 `ui `ux `*Tuc ]
+[e $UE 2029  ]
 "107
 }
-[e :U 2029 ]
 [; ;cause_of_reset.c: 107: }
-[; ;cause_of_reset.c: 109: }
+[e $U 2031  ]
 "109
-[e :UE 2027 ]
+[e :U 2030 ]
+[; ;cause_of_reset.c: 109: else {
+{
+[; ;cause_of_reset.c: 111: return "Undefined Reset";
+"111
+[e ) -> :s 10C `*Tuc ]
+[e $UE 2029  ]
+"113
 }
-"112
+[e :U 2031 ]
+[; ;cause_of_reset.c: 113: }
+[; ;cause_of_reset.c: 115: }
+"115
+[e :UE 2029 ]
+}
+"118
 [v _getCauseOfResetStringSmall `(*Tuc ~T0 @X0 1 ef1`E17455 ]
 {
-[; ;cause_of_reset.c: 112: inline char * getCauseOfResetStringSmall(reset_t r) {
+[; ;cause_of_reset.c: 118: inline char * getCauseOfResetStringSmall(reset_t r) {
 [e :U _getCauseOfResetStringSmall ]
 [v _r `E17455 ~T0 @X0 1 r1 ]
 [f ]
-"115
+"121
 [v F17477 `*uc ~T0 @X0 -> 0 `x s strings ]
 [i F17477
 :U ..
-"116
--> :s 11C `*uc
-"117
--> :s 12C `*uc
-"118
--> :s 13C `*uc
-"119
--> :s 14C `*uc
-"120
--> :s 15C `*uc
-"121
--> :s 16C `*uc
 "122
--> :s 17C `*uc
+-> :s 11C `*uc
 "123
--> :s 18C `*uc
+-> :s 12C `*uc
 "124
+-> :s 13C `*uc
+"125
+-> :s 14C `*uc
+"126
+-> :s 15C `*uc
+"127
+-> :s 16C `*uc
+"128
+-> :s 17C `*uc
+"129
+-> :s 18C `*uc
+"130
 -> :s 19C `*uc
 ..
 ]
-[; ;cause_of_reset.c: 115: static char *strings[] = {
-[; ;cause_of_reset.c: 116: "Undefined",
-[; ;cause_of_reset.c: 117: "POR Reset",
-[; ;cause_of_reset.c: 118: "BOR Reset",
-[; ;cause_of_reset.c: 119: "MCLR Reset",
-[; ;cause_of_reset.c: 120: "WDT Reset",
-[; ;cause_of_reset.c: 121: "WWDT Reset",
-[; ;cause_of_reset.c: 122: "RESET Executed",
-[; ;cause_of_reset.c: 123: "STOF Reset",
-[; ;cause_of_reset.c: 124: "STUF Reset",
-[; ;cause_of_reset.c: 125: };
-[; ;cause_of_reset.c: 128: if (r <= 8) {
-"128
-[e $ ! <= -> _r `i -> 8 `i 2031  ]
-{
-[; ;cause_of_reset.c: 130: return strings[r];
-"130
-[e ) -> *U + &U F17477 * -> _r `ux -> -> # *U &U F17477 `ui `ux `*Tuc ]
-[e $UE 2030  ]
-"132
-}
-[; ;cause_of_reset.c: 132: }
-[e $U 2032  ]
+[; ;cause_of_reset.c: 121: static char *strings[] = {
+[; ;cause_of_reset.c: 122: "Undefined",
+[; ;cause_of_reset.c: 123: "POR Reset",
+[; ;cause_of_reset.c: 124: "BOR Reset",
+[; ;cause_of_reset.c: 125: "MCLR Reset",
+[; ;cause_of_reset.c: 126: "WDT Reset",
+[; ;cause_of_reset.c: 127: "WWDT Reset",
+[; ;cause_of_reset.c: 128: "RESET Executed",
+[; ;cause_of_reset.c: 129: "STOF Reset",
+[; ;cause_of_reset.c: 130: "STUF Reset",
+[; ;cause_of_reset.c: 131: };
+[; ;cause_of_reset.c: 134: if (r <= 8) {
 "134
-[e :U 2031 ]
-[; ;cause_of_reset.c: 134: else {
+[e $ ! <= -> _r `i -> 8 `i 2033  ]
 {
-[; ;cause_of_reset.c: 136: return "Undefined";
+[; ;cause_of_reset.c: 136: return strings[r];
 "136
-[e ) -> :s 20C `*Tuc ]
-[e $UE 2030  ]
+[e ) -> *U + &U F17477 * -> _r `ux -> -> # *U &U F17477 `ui `ux `*Tuc ]
+[e $UE 2032  ]
 "138
 }
-[e :U 2032 ]
 [; ;cause_of_reset.c: 138: }
-[; ;cause_of_reset.c: 140: }
+[e $U 2034  ]
 "140
-[e :UE 2030 ]
+[e :U 2033 ]
+[; ;cause_of_reset.c: 140: else {
+{
+[; ;cause_of_reset.c: 142: return "Undefined";
+"142
+[e ) -> :s 20C `*Tuc ]
+[e $UE 2032  ]
+"144
+}
+[e :U 2034 ]
+[; ;cause_of_reset.c: 144: }
+[; ;cause_of_reset.c: 146: }
+"146
+[e :UE 2032 ]
 }
 [a 8C 83 116 97 99 107 32 79 118 101 114 102 108 111 119 32 82 101 115 101 116 0 ]
 [a 9C 83 116 97 99 107 32 85 110 100 101 114 102 108 111 119 32 82 101 115 101 116 0 ]

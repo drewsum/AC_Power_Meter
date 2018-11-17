@@ -50,6 +50,7 @@
 
 #include <xc.h>
 #include "hlvd.h"
+#include "mcc.h"
 
 
 
@@ -120,6 +121,13 @@ bool HLVD_OutputStatusGet(void)
 void HLVD_ISR(void)
 
 {
+    
+    // Enable high priority global interrupts
+    INTERRUPT_GlobalInterruptHighDisable();
+
+    // Enable low priority global interrupts.
+    INTERRUPT_GlobalInterruptLowDisable();
+    
     /* TODO : Add interrupt handling code */
     PIR2bits.HLVDIF = 0;
     
@@ -131,6 +139,12 @@ void HLVD_ISR(void)
     
     // Re-enable BOR
     SBOREN = 1;
+    
+    // Enable high priority global interrupts
+    INTERRUPT_GlobalInterruptHighEnable();
+
+    // Enable low priority global interrupts.
+    INTERRUPT_GlobalInterruptLowEnable();
     
 }
 

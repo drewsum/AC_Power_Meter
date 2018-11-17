@@ -207,6 +207,12 @@ void recoverSRAMMaxFromEEPROM(void) {
     max_FVR_ADC_Result      = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
     Total_Energy            = readDoubleFromEEPROM(Total_Energy_address);
     
+    if (Total_Energy < 0.0) {
+        
+        Total_Energy = 0.0;
+        
+    }
+    
 }
 
 
@@ -333,7 +339,7 @@ void ADC_PostProcessingCallback(void) {
 
                     Ipk = 0.0;
                     Vpk = 0.0;
-                    Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+                    Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle));
 
                 }
                  
@@ -386,7 +392,7 @@ void ADC_PostProcessingCallback(void) {
             
             Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
             
-            if (Temp_ADC_Result > 40.0 || ADCC_HasAccumulatorOverflowed()) {
+            if (Temp_ADC_Result > 100.0 || ADCC_HasAccumulatorOverflowed()) {
              
                 error_handler.Temp_ADC_error_flag = 1;
                 return;
@@ -481,6 +487,10 @@ void OLED_updateCallback(void) {
     switch (OLED_Frame) {
      
         case Boot_Frame_1:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             // Print boot message 1
             strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
             strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
@@ -488,9 +498,17 @@ void OLED_updateCallback(void) {
             strcpy(OLED_RAM_Buffer.line3, getCauseOfResetStringSmall(reset_cause));
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_2;
+            
+            CountCallBack = 0;
+            TMR2_StartTimer();
+            
             break;
             
         case Boot_Frame_2:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             // Print boot message 2
             // Device ID
             strcpy(OLED_RAM_Buffer.line0, "Device ID:");
@@ -506,9 +524,17 @@ void OLED_updateCallback(void) {
             
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_3;
+            
+            CountCallBack = 0;
+            TMR2_StartTimer();
+            
             break;
             
         case Boot_Frame_3:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
             strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
             strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
@@ -516,9 +542,17 @@ void OLED_updateCallback(void) {
             
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Boot_Frame_4;;
+            
+            CountCallBack = 0;
+            TMR2_StartTimer();
+            
             break;
             
         case Boot_Frame_4:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
             strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
             strcpy(OLED_RAM_Buffer.line2, "More Settings");
@@ -527,9 +561,16 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             OLED_Frame = Live_Update;
             
+            CountCallBack = 0;
+            TMR2_StartTimer();
+            
             break;
             
         case Load_Enabled:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
             strcpy(OLED_RAM_Buffer.line2, " ");
@@ -539,14 +580,16 @@ void OLED_updateCallback(void) {
             
             OLED_Frame = Live_Update;
             
-            TMR2_StopTimer();
-            TMR2_WriteTimer(0);
             CountCallBack = 32;
             TMR2_StartTimer();
             
             break;
             
         case Load_Disabled:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
             strcpy(OLED_RAM_Buffer.line2, " ");
@@ -555,9 +598,17 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             
             OLED_Frame = Idle;
+            
+            CountCallBack = 0;
+            TMR2_StartTimer();
+            
             break;
             
         case Dimming_Enabled:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
             strcpy(OLED_RAM_Buffer.line2, " ");
@@ -568,8 +619,6 @@ void OLED_updateCallback(void) {
             if (load_enable) {
             
                 OLED_Frame = Live_Update;    
-                TMR2_StopTimer();
-                TMR2_WriteTimer(0);
                 CountCallBack = 32;
                 TMR2_StartTimer();
                 
@@ -578,8 +627,6 @@ void OLED_updateCallback(void) {
             else {
             
                 OLED_Frame = Load_Disabled;    
-                TMR2_StopTimer();
-                TMR2_WriteTimer(0);
                 CountCallBack = 0;
                 TMR2_StartTimer();
             }
@@ -587,6 +634,10 @@ void OLED_updateCallback(void) {
             break;
             
         case Dimming_Disabled:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
             strcpy(OLED_RAM_Buffer.line1, " ");
             strcpy(OLED_RAM_Buffer.line2, " ");
@@ -616,6 +667,10 @@ void OLED_updateCallback(void) {
             break;
             
         case Dimming_Percentage:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
+            
             strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
             char percentage_string[17];
             float percentage = (dimming_period / (float) 0xFFFF);
@@ -643,14 +698,15 @@ void OLED_updateCallback(void) {
 
             }
             
-            TMR2_StopTimer();
-            TMR2_WriteTimer(0);
             CountCallBack = 0;
             TMR2_StartTimer();
 
             break;
             
         case Live_Update:
+            
+            TMR2_StopTimer();
+            TMR2_WriteTimer(0);
             
             // Print IRMS to OLED
             sprintf(print_Irms_str, "%.3f ARMS", Irms);
@@ -689,21 +745,20 @@ void OLED_updateCallback(void) {
             OLED_UpdateFromRAMBuffer();
             
             if (load_enable) {
-             
+            
                 OLED_Frame = Live_Update;
-                TMR2_StopTimer();
-                TMR2_WriteTimer(0);
                 CountCallBack = 32;
-                TMR2_StartTimer();
                 
             }
             
             else {
-             
+            
                 OLED_Frame = Load_Disabled;
-                
+                CountCallBack = 0;
+
             }
             
+            TMR2_StartTimer();
             
             break;
         
@@ -732,12 +787,21 @@ void main(void)
     
     // Initialize the device
     SYSTEM_Initialize();
+        
+    // Retrieve saved EEPROM variables
+    recoverSRAMMaxFromEEPROM();
     
     // Force SSR on at startup with dimming disabled
+    // User can change this with serial commands
     SSR_FORCE_PIN = 1;
     SSR_DIM_PIN = 0;
     load_enable = 1;
 
+    // Disable OLED update timer, clear it
+    TMR2_StopTimer();
+    TMR2_WriteTimer(0);
+    CountCallBack = 0;
+    
     // Call heartbeat function upon timer 6 ISR
     TMR6_SetInterruptHandler(heartbeatTimerCallback);
     
@@ -763,9 +827,6 @@ void main(void)
     TMR5_StopTimer();
     PIE0bits.INT0IE = 0;
     
-    // Retrieve saved EEPROM variables
-    recoverSRAMMaxFromEEPROM();
-    
     // Enable high priority global interrupts
     INTERRUPT_GlobalInterruptHighEnable();
 
@@ -781,8 +842,40 @@ void main(void)
     OLED_Init();
     OLED_Clear();
     
+    // Start OLED state machine, force callback
     OLED_Frame = Boot_Frame_1;
     OLED_updateCallback();
+    
+    // Print reset status over serial port
+    terminal_textAttributes(BLACK, GREEN, BOLD);
+    printf("Boot Complete");
+    terminal_textAttributesReset();
+    terminal_printNewline();
+    
+    if (    reset_cause == Stack_Overflow_Reset ||
+            reset_cause == Stack_Underflow_Reset ||
+            reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Brown_Out_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Undefined_Reset
+            ) {
+     
+        terminal_textAttributes(RED, BLACK, BOLD);
+        
+    }
+    
+    else {
+     
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+    }
+    
+    printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+    terminal_textAttributes(YELLOW, BLACK, NORMAL);
+    printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+    terminal_textAttributesReset();
+    
     
     // Main loop
     while (1)
