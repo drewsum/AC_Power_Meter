@@ -18339,79 +18339,79 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 853: terminal_printNewline();
 "853
 [e ( _terminal_printNewline ..  ]
-[; ;main.c: 855: if ( reset_cause == Stack_Overflow_Reset ||
-[; ;main.c: 856: reset_cause == Stack_Underflow_Reset ||
-[; ;main.c: 857: reset_cause == Windowed_Watch_Dog_Timer_Reset ||
-[; ;main.c: 858: reset_cause == Watch_Dog_Timer_Reset ||
-[; ;main.c: 859: reset_cause == Brown_Out_Reset ||
+[; ;main.c: 857: if ( reset_cause == Stack_Overflow_Reset ||
+[; ;main.c: 858: reset_cause == Stack_Underflow_Reset ||
+[; ;main.c: 859: reset_cause == Windowed_Watch_Dog_Timer_Reset ||
 [; ;main.c: 860: reset_cause == Watch_Dog_Timer_Reset ||
-[; ;main.c: 861: reset_cause == Undefined_Reset
-[; ;main.c: 862: ) {
-"862
+[; ;main.c: 861: reset_cause == Brown_Out_Reset ||
+[; ;main.c: 862: reset_cause == Watch_Dog_Timer_Reset ||
+[; ;main.c: 863: reset_cause == Undefined_Reset
+[; ;main.c: 864: ) {
+"864
 [e $ ! || || || || || || == -> _reset_cause `i -> . `E18205 7 `i == -> _reset_cause `i -> . `E18205 8 `i == -> _reset_cause `i -> . `E18205 5 `i == -> _reset_cause `i -> . `E18205 4 `i == -> _reset_cause `i -> . `E18205 2 `i == -> _reset_cause `i -> . `E18205 4 `i == -> _reset_cause `i -> . `E18205 0 `i 2090  ]
 {
-[; ;main.c: 864: terminal_textAttributes(RED, BLACK, BOLD);
-"864
-[e ( _terminal_textAttributes (3 , , . `E18236 1 . `E18236 0 . `E18228 1 ]
+[; ;main.c: 866: terminal_textAttributes(RED, BLACK, BOLD);
 "866
-}
-[; ;main.c: 866: }
-[e $U 2091  ]
+[e ( _terminal_textAttributes (3 , , . `E18236 1 . `E18236 0 . `E18228 1 ]
 "868
-[e :U 2090 ]
-[; ;main.c: 868: else {
-{
-[; ;main.c: 870: terminal_textAttributes(GREEN, BLACK, NORMAL);
+}
+[; ;main.c: 868: }
+[e $U 2091  ]
 "870
-[e ( _terminal_textAttributes (3 , , . `E18236 2 . `E18236 0 . `E18228 0 ]
+[e :U 2090 ]
+[; ;main.c: 870: else {
+{
+[; ;main.c: 872: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "872
+[e ( _terminal_textAttributes (3 , , . `E18236 2 . `E18236 0 . `E18228 0 ]
+"874
 }
 [e :U 2091 ]
-[; ;main.c: 872: }
-[; ;main.c: 874: printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
-"874
-[e ( _printf , (. :s 43C -> ( _getCauseOfResetString (1 _reset_cause `*CTuc ]
-[; ;main.c: 875: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"875
-[e ( _terminal_textAttributes (3 , , . `E18236 3 . `E18236 0 . `E18228 0 ]
-[; ;main.c: 876: printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
-"876
-[e ( _printf :s 44C ]
-[; ;main.c: 877: terminal_textAttributesReset();
+[; ;main.c: 874: }
+[; ;main.c: 877: printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
 "877
+[e ( _printf , (. :s 43C -> ( _getCauseOfResetString (1 _reset_cause `*CTuc ]
+[; ;main.c: 878: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"878
+[e ( _terminal_textAttributes (3 , , . `E18236 3 . `E18236 0 . `E18228 0 ]
+[; ;main.c: 879: printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+"879
+[e ( _printf :s 44C ]
+[; ;main.c: 880: terminal_textAttributesReset();
+"880
 [e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 881: while (1)
-"881
+[; ;main.c: 884: while (1)
+"884
 [e :U 2093 ]
-[; ;main.c: 882: {
-"882
-{
-[; ;main.c: 885: if (eusart2RxStringReady) {
+[; ;main.c: 885: {
 "885
+{
+[; ;main.c: 888: if (eusart2RxStringReady) {
+"888
 [e $ ! _eusart2RxStringReady 2095  ]
 {
-[; ;main.c: 887: terminal_ringBufferPull();
-"887
+[; ;main.c: 890: terminal_ringBufferPull();
+"890
 [e ( _terminal_ringBufferPull ..  ]
-"889
+"892
 }
 [e :U 2095 ]
-[; ;main.c: 889: }
-[; ;main.c: 892: saveSRAMMaxToEEPROM();
-"892
-[e ( _saveSRAMMaxToEEPROM ..  ]
-[; ;main.c: 895: updateErrorLEDs();
+[; ;main.c: 892: }
+[; ;main.c: 895: saveSRAMMaxToEEPROM();
 "895
+[e ( _saveSRAMMaxToEEPROM ..  ]
+[; ;main.c: 898: updateErrorLEDs();
+"898
 [e ( _updateErrorLEDs ..  ]
-"897
+"900
 }
 [e :U 2092 ]
-"881
+"884
 [e $U 2093  ]
 [e :U 2094 ]
-[; ;main.c: 897: }
-[; ;main.c: 898: }
-"898
+[; ;main.c: 900: }
+[; ;main.c: 901: }
+"901
 [e :UE 2089 ]
 }
 [p f _sprintf 11118724 ]

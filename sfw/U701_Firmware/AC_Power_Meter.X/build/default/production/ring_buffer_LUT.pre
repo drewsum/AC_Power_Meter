@@ -22787,10 +22787,6 @@ getUserID(userID));
 
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23046,10 +23042,6 @@ terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("If yes, reply 'Enable Dimming Y' on the next line:\n\r");
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23231,12 +23223,6 @@ printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC
 printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-
-error_handler.USB_UART_COMM_error_flag = 0;
-
-}
-
 _delay((unsigned long)((100)*(64000000/4000.0)));
 
 OLED_Frame = Dimming_Percentage;
@@ -23388,10 +23374,6 @@ printf("List of supported Device Control Commands:\n\r"
 
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23412,10 +23394,6 @@ printf("List of supported Device Measurement Commands:\n\r"
 );
 
 terminal_textAttributesReset();
-
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
 
 }
 
@@ -23438,10 +23416,6 @@ printf("List of supported Primary Measurement Commands:\n\r"
 
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23460,10 +23434,6 @@ printf("List of supported Output Control Commands:\n\r"
 );
 
 terminal_textAttributesReset();
-
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
 
 }
 
@@ -23524,10 +23494,6 @@ printf("List of all supported commands:\n\r"
 
 terminal_textAttributesReset();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23563,10 +23529,6 @@ printf("User input appears in white\n\r");
 
 terminal_printNewline();
 
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
-
 }
 
 
@@ -23595,10 +23557,6 @@ terminal_textAttributes(YELLOW, BLACK, BOLD);
 printf("PSOCs SUCK\n\r");
 terminal_textAttributesReset();
 terminal_printNewline();
-
-if (error_handler.USB_UART_COMM_error_flag) {
-error_handler.USB_UART_COMM_error_flag = 0;
-}
 
 }
 

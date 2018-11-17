@@ -22443,7 +22443,7 @@ void EUSART2_Write(uint8_t txData)
 while(0 == eusart2TxBufferRemaining)
 {
 asm(" clrwdt");
-error_handler.USB_UART_COMM_error_flag = 1;
+
 }
 
 if(0 == PIE3bits.TX2IE)

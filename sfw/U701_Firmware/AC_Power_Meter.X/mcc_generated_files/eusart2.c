@@ -157,7 +157,7 @@ void EUSART2_Write(uint8_t txData)
     while(0 == eusart2TxBufferRemaining)
     {
         CLRWDT();
-        error_handler.USB_UART_COMM_error_flag = true;
+//        error_handler.USB_UART_COMM_error_flag = true;
     }
 
     if(0 == PIE3bits.TX2IE)

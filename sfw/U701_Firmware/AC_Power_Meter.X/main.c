@@ -852,6 +852,8 @@ void main(void)
     terminal_textAttributesReset();
     terminal_printNewline();
     
+    // Determine if we need to make text red or green depending on
+    // badness of cause of reset
     if (    reset_cause == Stack_Overflow_Reset ||
             reset_cause == Stack_Underflow_Reset ||
             reset_cause == Windowed_Watch_Dog_Timer_Reset ||
@@ -871,6 +873,7 @@ void main(void)
         
     }
     
+    // Print the cause of the reset
     printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
     terminal_textAttributes(YELLOW, BLACK, NORMAL);
     printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");

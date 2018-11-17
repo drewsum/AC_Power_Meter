@@ -23408,6 +23408,8 @@ printf("Boot Complete");
 terminal_textAttributesReset();
 terminal_printNewline();
 
+
+
 if ( reset_cause == Stack_Overflow_Reset ||
 reset_cause == Stack_Underflow_Reset ||
 reset_cause == Windowed_Watch_Dog_Timer_Reset ||
@@ -23426,6 +23428,7 @@ else {
 terminal_textAttributes(GREEN, BLACK, NORMAL);
 
 }
+
 
 printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
 terminal_textAttributes(YELLOW, BLACK, NORMAL);

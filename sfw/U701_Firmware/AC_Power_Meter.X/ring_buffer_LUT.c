@@ -165,10 +165,6 @@ void ringBufferLUT(char * line) {
         }
 
         terminal_textAttributesReset();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
 
     }
     
@@ -425,10 +421,6 @@ void ringBufferLUT(char * line) {
         printf("If yes, reply 'Enable Dimming Y' on the next line:\n\r");
         terminal_textAttributesReset();
         
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
-        
     }
     
     // REALLY enable TRIAC dimming
@@ -610,12 +602,6 @@ void ringBufferLUT(char * line) {
             printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
             terminal_textAttributesReset();
             
-            if (error_handler.USB_UART_COMM_error_flag) {
-            
-                error_handler.USB_UART_COMM_error_flag = false;
-            
-            }
-            
             __delay_ms(100);
             
             OLED_Frame = Dimming_Percentage;
@@ -766,11 +752,7 @@ void ringBufferLUT(char * line) {
                 );
         
         terminal_textAttributesReset();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
-        
+
     }
     
     // Different help messages
@@ -791,10 +773,6 @@ void ringBufferLUT(char * line) {
                 );
         
         terminal_textAttributesReset();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
         
     }
 
@@ -817,10 +795,6 @@ void ringBufferLUT(char * line) {
         
         terminal_textAttributesReset();
         
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
-        
     }
     
     // Different help messages
@@ -839,10 +813,6 @@ void ringBufferLUT(char * line) {
                 );
         
         terminal_textAttributesReset();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
         
     }
     
@@ -903,10 +873,6 @@ void ringBufferLUT(char * line) {
         
         terminal_textAttributesReset();
         
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
-        
     }
     
     
@@ -941,10 +907,6 @@ void ringBufferLUT(char * line) {
         
         // Get some space on terminal
         terminal_printNewline();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
 
     }
     
@@ -974,10 +936,6 @@ void ringBufferLUT(char * line) {
         printf("PSOCs SUCK\n\r");
         terminal_textAttributesReset();
         terminal_printNewline();
-        
-        if (error_handler.USB_UART_COMM_error_flag) {
-            error_handler.USB_UART_COMM_error_flag = false;
-        }
         
     }
     
