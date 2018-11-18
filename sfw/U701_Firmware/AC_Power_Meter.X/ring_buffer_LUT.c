@@ -157,7 +157,7 @@ void ringBufferLUT(char * line) {
         // Loop through all 8 user ID locations in flash
         for (int userID = 0; userID <= 7; userID++) {
          
-            printf("    User ID Word %d (Flash address 0x20000%X): 0x%X\n\r",
+            printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
                     userID,
                     (2 * userID),
                     getUserID(userID));
@@ -317,7 +317,7 @@ void ringBufferLUT(char * line) {
     else if((0 == strcmp(line, "Measure AVSS?"))) {
      
         terminal_textAttributes(CYAN, BLACK, NORMAL);
-        printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
+        printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
         terminal_textAttributesReset();
         
     }
@@ -936,5 +936,22 @@ void ringBufferLUT(char * line) {
         terminal_printNewline();
         
     }
+    
+    // If we've gotten an unsupported command:
+    else {
+     
+        if (strlen(line) >= 1) {
+
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Unsupported or mis-entered command\n\r");
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+            terminal_textAttributesReset();
+        
+        }
+        
+    }
+        
+        
     
 }

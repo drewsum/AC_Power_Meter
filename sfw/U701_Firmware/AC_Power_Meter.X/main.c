@@ -57,14 +57,14 @@
 #include "oled.h"
 
 // User IDs
-#pragma config IDLOC0 = 0
-#pragma config IDLOC1 = 1
-#pragma config IDLOC2 = 2
-#pragma config IDLOC3 = 3
-#pragma config IDLOC4 = 4
-#pragma config IDLOC5 = 5
-#pragma config IDLOC6 = 6
-#pragma config IDLOC7 = 7
+#pragma config IDLOC0 = 0xD
+#pragma config IDLOC1 = 0xE
+#pragma config IDLOC2 = 0xA
+#pragma config IDLOC3 = 0xD
+#pragma config IDLOC4 = 0xB
+#pragma config IDLOC5 = 0xE
+#pragma config IDLOC6 = 0xE
+#pragma config IDLOC7 = 0xF
 
 /*>>>>>>>>>>>>>>>>>>>>>>>>> Global variables / Macros <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 
@@ -224,6 +224,31 @@ void terminal_printResetMessage(void) {
     
     terminal_printNewline();
     
+    // Determine if we need to make text red or green depending on
+    // badness of cause of reset
+    if (    reset_cause == Stack_Overflow_Reset ||
+            reset_cause == Stack_Underflow_Reset ||
+            reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Brown_Out_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Undefined_Reset
+            ) {
+     
+        terminal_textAttributes(RED, BLACK, BOLD);
+        
+    }
+    
+    else {
+     
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+    }
+    
+    // Print the cause of the reset
+    printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+    terminal_printNewline();
+    
     terminal_textAttributes(GREEN, BLACK, NORMAL);
     printf("System parameters and affirmative responses appear in green\n\r");
     terminal_textAttributes(CYAN, BLACK, NORMAL);
@@ -254,7 +279,7 @@ void terminal_printResetMessage(void) {
     // Loop through all 8 user ID locations in flash and print
     for (int userID = 0; userID <= 7; userID++) {
 
-        printf("    User ID Word %d (Flash address 0x20000%X): 0x%X\n\r",
+        printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
                 userID,
                 (2 * userID),
                 getUserID(userID));
@@ -352,34 +377,10 @@ void terminal_printResetMessage(void) {
     printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
     printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
     printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
-    printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
+    printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
     
     terminal_printNewline();
     
-    // Determine if we need to make text red or green depending on
-    // badness of cause of reset
-    if (    reset_cause == Stack_Overflow_Reset ||
-            reset_cause == Stack_Underflow_Reset ||
-            reset_cause == Windowed_Watch_Dog_Timer_Reset ||
-            reset_cause == Watch_Dog_Timer_Reset ||
-            reset_cause == Brown_Out_Reset ||
-            reset_cause == Watch_Dog_Timer_Reset ||
-            reset_cause == Undefined_Reset
-            ) {
-     
-        terminal_textAttributes(RED, BLACK, BOLD);
-        
-    }
-    
-    else {
-     
-        terminal_textAttributes(GREEN, BLACK, NORMAL);
-        
-    }
-    
-    // Print the cause of the reset
-    printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
-    terminal_printNewline();
     terminal_textAttributes(YELLOW, BLACK, NORMAL);
     printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
     
