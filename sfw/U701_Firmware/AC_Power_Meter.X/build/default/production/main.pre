@@ -22662,6 +22662,7 @@ volatile double TRIAC_Firing_Angle = 1.57;
 
 volatile unsigned int dimming_period = 0x7FEE;
 volatile bit load_enable = 0;
+volatile bit USB_live_update_flag = 0;
 volatile bit eusart2RxStringReady = 0;
 volatile unsigned long dev_on_time = 0;
 volatile unsigned long load_on_time = 0;
@@ -22691,7 +22692,7 @@ char print_Power_str[17];
 char print_Vrms_str[17];
 char print_Energy_str[17];
 
-# 130
+# 131
 double peakToRMS(double Peak, double Angle) {
 
 
@@ -22777,7 +22778,7 @@ Total_Energy = 0.0;
 
 }
 
-# 220
+# 221
 void heartbeatTimerCallback(void) {
 
 
@@ -23300,6 +23301,15 @@ strcpy(OLED_RAM_Buffer.line3, print_Energy_str);
 
 
 OLED_UpdateFromRAMBuffer();
+
+if (USB_live_update_flag) {
+
+terminal_clearTerminal();
+terminal_setCursorHome();
+printf("Live Test %d\n\r", dev_on_time);
+printf("Press enter key to exit\n\r");
+
+}
 
 OLED_Frame = Live_Update;
 TMR2_Period8BitSet(0x31);

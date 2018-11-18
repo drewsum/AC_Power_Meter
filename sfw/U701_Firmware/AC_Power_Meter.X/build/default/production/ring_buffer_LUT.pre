@@ -22687,12 +22687,14 @@ extern const uint16_t max_Temp_ADC_Result_address = 0x0010;
 extern const uint16_t max_FVR_ADC_Result_address = 0x0014;
 extern const uint16_t Total_Energy_address = 0x0018;
 
+extern volatile bit USB_live_update_flag;
+
 
 extern void OLED_updateCallback(void);
 
 void ringBufferLUT(char * line) {
 
-# 71
+# 73
 if((0 == strcmp(line, "Reset"))) {
 
 
@@ -23511,7 +23513,7 @@ printf("Maximum recorded FVR buffer 1 voltage is %.3f Volts\n\r", max_FVR_print)
 terminal_textAttributesReset();
 terminal_printNewline();
 
-# 893
+# 895
 }
 
 
@@ -23588,6 +23590,31 @@ printf("Maximum recorded output power is %.3f Watts\n\r", max_Power_print);
 terminal_textAttributesReset();
 
 terminal_printNewline();
+
+}
+
+
+else if ((0 == strcmp(line, "Live Updates"))) {
+
+if (load_enable) {
+
+USB_live_update_flag = 1;
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("Enabling live measurement updates\n\r");
+terminal_textAttributesReset();
+_delay((unsigned long)((250)*(64000000/4000.0)));
+OLED_Frame = Live_Update;
+OLED_updateCallback();
+
+}
+
+else {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Load is not currently enabled\n\r");
+terminal_textAttributesReset();
+
+}
 
 }
 
@@ -23725,7 +23752,7 @@ printf("List of all supported commands:\n\r"
 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
 "   Max Power?: Prints the maximum recorded output power\n\r"
-"   Measurement SummaryL Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
+"   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
 
 "Output Control Commands: Control the output state and dimming features\n\r"
 "   Enable Dimming: Enable TRIAC output dimming\n\r"
@@ -23817,6 +23844,12 @@ terminal_textAttributes(YELLOW, BLACK, NORMAL);
 printf("Commands are case sensitive, backspace is supported, command history is not supported\n\r");
 printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
 terminal_textAttributesReset();
+
+}
+
+else if (USB_live_update_flag) {
+
+USB_live_update_flag = 0;
 
 }
 

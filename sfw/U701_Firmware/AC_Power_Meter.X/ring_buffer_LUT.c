@@ -59,6 +59,8 @@ extern const uint16_t max_Temp_ADC_Result_address      = 0x0010;
 extern const uint16_t max_FVR_ADC_Result_address       = 0x0014;
 extern const uint16_t Total_Energy_address             = 0x0018;
 
+extern volatile bit USB_live_update_flag;
+
 
 extern void OLED_updateCallback(void);
 
@@ -969,6 +971,31 @@ void ringBufferLUT(char * line) {
         
     }
     
+    // enable live updates
+    else if ((0 == strcmp(line, "Live Updates"))) {
+     
+        if (load_enable) {
+            
+            USB_live_update_flag = true;
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("Enabling live measurement updates\n\r");
+            terminal_textAttributesReset();
+            __delay_ms(750);
+            OLED_Frame = Live_Update;
+            OLED_updateCallback();
+
+        }
+        
+        else {
+         
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Load is not currently enabled\n\r");
+            terminal_textAttributesReset();
+            
+        }
+            
+    }
+    
     
     // Different help messages
     else if((0 == strcmp(line, "Help Device Control Commands"))) {
@@ -1196,6 +1223,12 @@ void ringBufferLUT(char * line) {
             printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
             terminal_textAttributesReset();
         
+        }
+        
+        else if (USB_live_update_flag) {
+         
+            USB_live_update_flag = false;
+            
         }
         
     }

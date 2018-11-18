@@ -93,6 +93,7 @@ volatile double TRIAC_Firing_Angle = 1.57;      // firing angle in radians
 // more global variables
 volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time
 volatile bit load_enable = 0;                   // Load enabled flag
+volatile bit USB_live_update_flag = 0;          // If this bit is high, data is live streaming over USB to terminal
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
 volatile unsigned long dev_on_time = 0;         // On time counter, increments with heartbeat
 volatile unsigned long load_on_time = 0;        // Load on time in seconds
@@ -739,6 +740,15 @@ void OLED_updateCallback(void) {
             
             
             OLED_UpdateFromRAMBuffer();
+            
+            if (USB_live_update_flag) {
+             
+                terminal_clearTerminal();
+                terminal_setCursorHome();
+                printf("Live Test %d\n\r", dev_on_time);
+                printf("Press enter key twice to exit\n\r");
+                
+            }
             
             OLED_Frame = Live_Update;
             TMR2_Period8BitSet(0x31);   // Set TMR2 to faster rate
