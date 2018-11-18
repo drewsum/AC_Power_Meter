@@ -22567,33 +22567,6 @@ ringBufferLUT(line);
 }
 
 
-
-void terminal_printResetMessage(void) {
-
-
-
-printf("\033[2J");
-
-
-printf("\033[H");
-
-
-printf("    Boot complete\n\r"
-"    PIC18F67K40 mTouch Test Board\n\r"
-"    Evaluates the mTouch capacitive touch library distributed by Microchip\n\r"
-"    Sets the state of five LEDs based on mTouch capacitive pushbuttons\n\r"
-"    Baud rate: 115200 bps\n\r"
-"    No parity, 8 bits, no flow control, 1 stop bit\n\r"
-"    Commands are case sensitive\n\r"
-"    Enter a command, or enter Help for list of commands\n\r");
-
-
-
-printf("\n\r");
-
-}
-
-
 void terminal_clearTerminal(void) {
 printf("\033[2J");
 }
@@ -22618,7 +22591,7 @@ void terminal_returnCursor(void) {
 printf("\033[u");
 }
 
-# 115
+# 88
 void terminal_textAttributes(text_color_t foreground_color,
 text_color_t background_color,
 text_attribute_t input_attribute) {

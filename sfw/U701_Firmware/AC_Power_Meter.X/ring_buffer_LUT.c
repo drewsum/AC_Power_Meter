@@ -541,9 +541,7 @@ void ringBufferLUT(char * line) {
 
         
     }
-    
-    
-    
+        
     // disable load
     else if ((0 == strcmp(line, "Disable Load"))) {
      

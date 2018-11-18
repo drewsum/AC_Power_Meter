@@ -221,7 +221,7 @@ channel_Temp 61
 channel_DAC1 62
 channel_FVR_buf1 63
 ]
-"834
+"219
 [e E18236 . `uc
 BLACK 0
 RED 1
@@ -572,22 +572,24 @@ I2C1_LOST_STATE 6
 [v _saveSRAMMaxToEEPROM saveSRAMMaxToEEPROM `(v  1 e 1 0 ]
 "197
 [v _recoverSRAMMaxFromEEPROM recoverSRAMMaxFromEEPROM `(v  1 e 1 0 ]
-"221
+"216
+[v _terminal_printResetMessage terminal_printResetMessage `(v  1 e 1 0 ]
+"403
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
-"242
+"424
 [v _ADC_PostProcessingCallback ADC_PostProcessingCallback `(v  1 e 1 0 ]
-"422
+"604
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
-"436
+"618
 [v _dimmingOffTimeCallback dimmingOffTimeCallback `(v  1 e 1 0 ]
-"451
+"633
 [v _dimmingOnTimeCallback dimmingOnTimeCallback `(v  1 e 1 0 ]
-"468
+"650
 [v _writeEnergyToEEPROMCallback writeEnergyToEEPROMCallback `(v  1 e 1 0 ]
-"482
+"664
 [v _OLED_updateCallback OLED_updateCallback `(v  1 e 1 0 ]
 [v i1_OLED_updateCallback OLED_updateCallback `(v  1 e 1 0 ]
-"763
+"945
 [v _main main `(v  1 e 1 0 ]
 "63 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_Initialize ADCC_Initialize `(v  1 e 1 0 ]
@@ -821,15 +823,15 @@ I2C1_LOST_STATE 6
 [v i1_OLED_UpdateFromRAMBuffer OLED_UpdateFromRAMBuffer `(v  1 e 1 0 ]
 "12 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
-"80
+"53
 [v _terminal_clearTerminal terminal_clearTerminal `(v  1 e 1 0 ]
-"85
+"58
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
-"115
+"88
 [v _terminal_textAttributes terminal_textAttributes `(v  1 e 1 0 ]
-"223
+"196
 [v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
-"230
+"203
 [v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
 "65 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
@@ -1481,7 +1483,7 @@ I2C1_LOST_STATE 6
 [v _LATE LATE `VEuc  1 e 1 @3965 ]
 "29037
 [v _LATF LATF `VEuc  1 e 1 @3966 ]
-[s S3279 . 1 `uc 1 LATF0 1 0 :1:0 
+[s S3346 . 1 `uc 1 LATF0 1 0 :1:0 
 `uc 1 LATF1 1 0 :1:1 
 `uc 1 LATF2 1 0 :1:2 
 `uc 1 LATF3 1 0 :1:3 
@@ -1491,7 +1493,7 @@ I2C1_LOST_STATE 6
 `uc 1 LATF7 1 0 :1:7 
 ]
 "29064
-[s S3288 . 1 `uc 1 LF0 1 0 :1:0 
+[s S3355 . 1 `uc 1 LF0 1 0 :1:0 
 `uc 1 LF1 1 0 :1:1 
 `uc 1 LF2 1 0 :1:2 
 `uc 1 LF3 1 0 :1:3 
@@ -1500,11 +1502,11 @@ I2C1_LOST_STATE 6
 `uc 1 LF6 1 0 :1:6 
 `uc 1 LF7 1 0 :1:7 
 ]
-[u S3297 . 1 `S3279 1 . 1 0 `S3288 1 . 1 0 ]
-[v _LATFbits LATFbits `VES3297  1 e 1 @3966 ]
+[u S3364 . 1 `S3346 1 . 1 0 `S3355 1 . 1 0 ]
+[v _LATFbits LATFbits `VES3364  1 e 1 @3966 ]
 "29149
 [v _LATG LATG `VEuc  1 e 1 @3967 ]
-[s S3324 . 1 `uc 1 LATG0 1 0 :1:0 
+[s S3391 . 1 `uc 1 LATG0 1 0 :1:0 
 `uc 1 LATG1 1 0 :1:1 
 `uc 1 LATG2 1 0 :1:2 
 `uc 1 LATG3 1 0 :1:3 
@@ -1514,14 +1516,14 @@ I2C1_LOST_STATE 6
 `uc 1 LATG7 1 0 :1:7 
 ]
 "29173
-[s S3333 . 1 `uc 1 LG0 1 0 :1:0 
+[s S3400 . 1 `uc 1 LG0 1 0 :1:0 
 `uc 1 LG1 1 0 :1:1 
 `uc 1 LG2 1 0 :1:2 
 `uc 1 LG3 1 0 :1:3 
 `uc 1 LG4 1 0 :1:4 
 ]
-[u S3339 . 1 `S3324 1 . 1 0 `S3333 1 . 1 0 ]
-[v _LATGbits LATGbits `VES3339  1 e 1 @3967 ]
+[u S3406 . 1 `S3391 1 . 1 0 `S3400 1 . 1 0 ]
+[v _LATGbits LATGbits `VES3406  1 e 1 @3967 ]
 "29238
 [v _LATH LATH `VEuc  1 e 1 @3968 ]
 "29338
@@ -1912,30 +1914,30 @@ I2C1_LOST_STATE 6
 [v _T5GATE T5GATE `VEuc  1 e 1 @4037 ]
 "37210
 [v _T5CLK T5CLK `VEuc  1 e 1 @4038 ]
-[s S4187 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S4221 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "39822
-[s S4189 . 1 `uc 1 . 1 0 :1:0 
+[s S4223 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
 "39822
-[s S4192 . 1 `uc 1 . 1 0 :2:0 
+[s S4226 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_RI 1 0 :1:2 
 ]
 "39822
-[s S4195 . 1 `uc 1 . 1 0 :3:0 
+[s S4229 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_RMCLR 1 0 :1:3 
 ]
 "39822
-[s S4198 . 1 `uc 1 . 1 0 :4:0 
+[s S4232 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RWDT 1 0 :1:4 
 ]
 "39822
-[s S4201 . 1 `uc 1 . 1 0 :5:0 
+[s S4235 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_WDTWV 1 0 :1:5 
 ]
 "39822
-[s S4204 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S4238 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nRI 1 0 :1:2 
 `uc 1 nRMCLR 1 0 :1:3 
@@ -1945,7 +1947,7 @@ I2C1_LOST_STATE 6
 `uc 1 STKOVF 1 0 :1:7 
 ]
 "39822
-[s S4213 . 1 `uc 1 BOR 1 0 :1:0 
+[s S4247 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 RI 1 0 :1:2 
 `uc 1 RMCLR 1 0 :1:3 
@@ -1953,10 +1955,10 @@ I2C1_LOST_STATE 6
 `uc 1 WDTWV 1 0 :1:5 
 ]
 "39822
-[u S4220 . 1 `S4187 1 . 1 0 `S4189 1 . 1 0 `S4192 1 . 1 0 `S4195 1 . 1 0 `S4198 1 . 1 0 `S4201 1 . 1 0 `S4204 1 . 1 0 `S4213 1 . 1 0 ]
+[u S4254 . 1 `S4221 1 . 1 0 `S4223 1 . 1 0 `S4226 1 . 1 0 `S4229 1 . 1 0 `S4232 1 . 1 0 `S4235 1 . 1 0 `S4238 1 . 1 0 `S4247 1 . 1 0 ]
 "39822
 "39822
-[v _PCON0bits PCON0bits `VES4220  1 e 1 @4055 ]
+[v _PCON0bits PCON0bits `VES4254  1 e 1 @4055 ]
 [s S188 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
@@ -2159,26 +2161,26 @@ I2C1_LOST_STATE 6
 [v _max_FVR_ADC_Result_address max_FVR_ADC_Result_address `Cui  1 e 2 0 ]
 "60
 [v _Total_Energy_address Total_Energy_address `Cui  1 e 2 0 ]
-"763 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"945 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"888
+"1035
 } 0
 "54 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\error_handling.c
 [v _updateErrorLEDs updateErrorLEDs `(v  1 e 1 0 ]
 {
 "70
 } 0
-"85 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
+"58 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_setCursorHome terminal_setCursorHome `(v  1 e 1 0 ]
 {
-"87
+"60
 } 0
 "12
 [v _terminal_ringBufferPull terminal_ringBufferPull `(v  1 e 1 0 ]
 {
 "24
-[v terminal_ringBufferPull@index_3772 index `i  1 a 2 221 ]
+[v terminal_ringBufferPull@index_3825 index `i  1 a 2 221 ]
 "17
 [v terminal_ringBufferPull@index index `i  1 a 2 223 ]
 "14
@@ -2188,77 +2190,31 @@ I2C1_LOST_STATE 6
 "65 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_LUT.c
 [v _ringBufferLUT ringBufferLUT `(v  1 e 1 0 ]
 {
-"596
+"594
 [v ringBufferLUT@angle_degrees angle_degrees `d  1 a 4 3 ]
-"570
+"568
 [v ringBufferLUT@index index `i  1 a 2 31 ]
 "158
 [v ringBufferLUT@userID userID `i  1 a 2 35 ]
-"698
-[v ringBufferLUT@max_voltage_print_4132 max_voltage_print `d  1 a 4 27 ]
-"686
+"696
+[v ringBufferLUT@max_voltage_print_4166 max_voltage_print `d  1 a 4 27 ]
+"684
 [v ringBufferLUT@max_temp_print max_temp_print `d  1 a 4 23 ]
-"674
-[v ringBufferLUT@max_voltage_print_4126 max_voltage_print `d  1 a 4 19 ]
-"662
+"672
+[v ringBufferLUT@max_voltage_print_4160 max_voltage_print `d  1 a 4 19 ]
+"660
 [v ringBufferLUT@max_voltage_print max_voltage_print `d  1 a 4 15 ]
-"650
+"648
 [v ringBufferLUT@max_Power_print max_Power_print `d  1 a 4 11 ]
-"638
+"636
 [v ringBufferLUT@max_current_print max_current_print `d  1 a 4 7 ]
-"567
+"565
 [v ringBufferLUT@arg_buff arg_buff `[3]uc  1 a 3 0 ]
-"576
+"574
 [v ringBufferLUT@percentage percentage `i  1 a 2 33 ]
 "65
 [v ringBufferLUT@line line `*.39uc  1 p 2 212 ]
-"942
-} 0
-"223 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
-[v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
-{
-"227
-} 0
-"115
-[v _terminal_textAttributes terminal_textAttributes `(v  1 e 1 0 ]
-{
-"117
-[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 wreg ]
-"119
-[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 197 ]
-"117
-[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 wreg ]
-[v terminal_textAttributes@background_color background_color `E18150  1 p 1 194 ]
-[v terminal_textAttributes@input_attribute input_attribute `E18142  1 p 1 195 ]
-"121
-[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 196 ]
-"220
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strncpy.c
-[v _strncpy strncpy `(*.39uc  1 e 2 0 ]
-{
-"15
-[v strncpy@cp cp `*.39uc  1 a 2 6 ]
-"8
-[v strncpy@to to `*.39uc  1 p 2 0 ]
-[v strncpy@from from `*.32Cuc  1 p 2 2 ]
-[v strncpy@size size `ui  1 p 2 4 ]
-"27
-} 0
-"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
-[v _strcat strcat `(*.39uc  1 e 2 0 ]
-{
-"15
-[v strcat@cp cp `*.39uc  1 a 2 4 ]
-"8
-[v strcat@to to `*.39uc  1 p 2 0 ]
-[v strcat@from from `*.32Cuc  1 p 2 2 ]
-"26
-} 0
-"230 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
-[v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
-{
-"234
+"940
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strstr.c
 [v _strstr strstr `(*.39uc  1 e 2 0 ]
@@ -2301,52 +2257,7 @@ I2C1_LOST_STATE 6
 [v strcmp@s2 s2 `*.32Cuc  1 p 2 2 ]
 "42
 } 0
-"65 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
-[v _getUserID getUserID `(ui  1 e 2 0 ]
-{
-[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
-"68
-[v getUserID@initialOffset initialOffset `ul  1 a 4 13 ]
-"71
-[v getUserID@IDOffset IDOffset `uc  1 a 1 18 ]
-"65
-[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
-"68
-[v getUserID@inputUserID inputUserID `uc  1 a 1 17 ]
-"77
-} 0
-"34
-[v _getDeviceIDString getDeviceIDString `(*.32Tuc  1 e 2 0 ]
-{
-"37
-[v getDeviceIDString@strings strings `[3]*.32Cuc  1 a 6 17 ]
-"34
-[v getDeviceIDString@inputDevID inputDevID `ui  1 p 2 13 ]
-[v getDeviceIDString@F17550 F17550 `[3]*.32Cuc  1 s 6 F17550 ]
-"63
-} 0
-"87 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
-[v _getCauseOfResetString getCauseOfResetString `(*.32Tuc  1 e 2 0 ]
-{
-[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
-[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
-"90
-[v getCauseOfResetString@strings strings `[9]*.32uc  1 s 18 strings ]
-"103
-[v getCauseOfResetString@r r `E17455  1 a 1 2 ]
-"115
-} 0
-"35 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\error_handling.c
-[v _getCOMMError getCOMMError `(uc  1 e 1 0 ]
-{
-"51
-} 0
-"11
-[v _getADCError getADCError `(uc  1 e 1 0 ]
-{
-"32
-} 0
-"90
+"90 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\error_handling.c
 [v _clearCOMMErrors clearCOMMErrors `(v  1 e 1 0 ]
 {
 "99
@@ -2372,22 +2283,22 @@ I2C1_LOST_STATE 6
 {
 "109
 } 0
-"482 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"664 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _OLED_updateCallback OLED_updateCallback `(v  1 e 1 0 ]
 {
-"679
+"861
 [v OLED_updateCallback@angle_string angle_string `[17]uc  1 a 17 61 ]
-"672
+"854
 [v OLED_updateCallback@percentage_string percentage_string `[17]uc  1 a 17 44 ]
-"519
+"701
 [v OLED_updateCallback@rev_id_str rev_id_str `[17]uc  1 a 17 27 ]
-"513
+"695
 [v OLED_updateCallback@dev_id_str dev_id_str `[17]uc  1 a 17 10 ]
-"673
+"855
 [v OLED_updateCallback@percentage percentage `f  1 a 3 7 ]
-"680
+"862
 [v OLED_updateCallback@TRIAC_degrees TRIAC_degrees `f  1 a 3 4 ]
-"758
+"940
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcpy.c
 [v _strcpy strcpy `(*.39uc  1 e 2 0 ]
@@ -2402,9 +2313,9 @@ I2C1_LOST_STATE 6
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
 "29
-[v sprintf@pb pb `S4470  1 a 5 191 ]
+[v sprintf@pb pb `S4504  1 a 5 191 ]
 "28
 [v sprintf@ap ap `[1]*.39v  1 a 2 189 ]
 "13
@@ -2439,37 +2350,6 @@ I2C1_LOST_STATE 6
 [v frexp@eptr eptr `*.39i  1 p 2 4 ]
 "274
 } 0
-"23 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
-[v _getMinorRevisionID getMinorRevisionID `(uc  1 e 1 0 ]
-{
-"26
-[v getMinorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 11 ]
-"31
-} 0
-"12
-[v _getMajorRevisionID getMajorRevisionID `(uc  1 e 1 0 ]
-{
-"15
-[v getMajorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 14 ]
-"20
-} 0
-"4
-[v _getDeviceID getDeviceID `(ui  1 e 2 0 ]
-{
-"10
-} 0
-"71 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/memory.c
-[v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
-{
-[v FLASH_ReadWord@flashAddr flashAddr `ul  1 p 4 4 ]
-"74
-} 0
-"59
-[v _FLASH_ReadByte FLASH_ReadByte `(uc  1 e 1 0 ]
-{
-[v FLASH_ReadByte@flashAddr flashAddr `ul  1 p 4 0 ]
-"69
-} 0
 "118 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
 [v _getCauseOfResetStringSmall getCauseOfResetStringSmall `(*.32Tuc  1 e 2 0 ]
 {
@@ -2501,11 +2381,11 @@ I2C1_LOST_STATE 6
 "9 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcsqrt.c
 [v _sqrt sqrt `(d  1 e 4 0 ]
 {
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "11
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v sqrt@root root `S4949  1 a 4 147 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v sqrt@root root `S4983  1 a 4 147 ]
 "14
 [v sqrt@frac frac `ul  1 a 4 143 ]
 "16
@@ -2698,17 +2578,146 @@ I2C1_LOST_STATE 6
 [v EUSART2_Read@readValue readValue `uc  1 a 1 0 ]
 "153
 } 0
-"80 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
+"216 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+[v _terminal_printResetMessage terminal_printResetMessage `(v  1 e 1 0 ]
+{
+"255
+[v terminal_printResetMessage@userID userID `i  1 a 2 214 ]
+"396
+} 0
+"196 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
+[v _terminal_textAttributesReset terminal_textAttributesReset `(v  1 e 1 0 ]
+{
+"200
+} 0
+"88
+[v _terminal_textAttributes terminal_textAttributes `(v  1 e 1 0 ]
+{
+"90
+[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 wreg ]
+"92
+[v terminal_textAttributes@output_buff output_buff `[15]uc  1 a 15 197 ]
+"90
+[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 wreg ]
+[v terminal_textAttributes@background_color background_color `E18150  1 p 1 194 ]
+[v terminal_textAttributes@input_attribute input_attribute `E18142  1 p 1 195 ]
+"94
+[v terminal_textAttributes@foreground_color foreground_color `E18150  1 a 1 196 ]
+"193
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strncpy.c
+[v _strncpy strncpy `(*.39uc  1 e 2 0 ]
+{
+"15
+[v strncpy@cp cp `*.39uc  1 a 2 6 ]
+"8
+[v strncpy@to to `*.39uc  1 p 2 0 ]
+[v strncpy@from from `*.32Cuc  1 p 2 2 ]
+[v strncpy@size size `ui  1 p 2 4 ]
+"27
+} 0
+"8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcat.c
+[v _strcat strcat `(*.39uc  1 e 2 0 ]
+{
+"15
+[v strcat@cp cp `*.39uc  1 a 2 4 ]
+"8
+[v strcat@to to `*.39uc  1 p 2 0 ]
+[v strcat@from from `*.32Cuc  1 p 2 2 ]
+"26
+} 0
+"203 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
+[v _terminal_printNewline terminal_printNewline `(v  1 e 1 0 ]
+{
+"207
+} 0
+"65 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\device_IDs.c
+[v _getUserID getUserID `(ui  1 e 2 0 ]
+{
+[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
+"68
+[v getUserID@initialOffset initialOffset `ul  1 a 4 13 ]
+"71
+[v getUserID@IDOffset IDOffset `uc  1 a 1 18 ]
+"65
+[v getUserID@inputUserID inputUserID `uc  1 a 1 wreg ]
+"68
+[v getUserID@inputUserID inputUserID `uc  1 a 1 17 ]
+"77
+} 0
+"23
+[v _getMinorRevisionID getMinorRevisionID `(uc  1 e 1 0 ]
+{
+"26
+[v getMinorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 11 ]
+"31
+} 0
+"12
+[v _getMajorRevisionID getMajorRevisionID `(uc  1 e 1 0 ]
+{
+"15
+[v getMajorRevisionID@REVID_RAW REVID_RAW `ui  1 a 2 14 ]
+"20
+} 0
+"34
+[v _getDeviceIDString getDeviceIDString `(*.32Tuc  1 e 2 0 ]
+{
+"37
+[v getDeviceIDString@strings strings `[3]*.32Cuc  1 a 6 17 ]
+"34
+[v getDeviceIDString@inputDevID inputDevID `ui  1 p 2 13 ]
+[v getDeviceIDString@F17550 F17550 `[3]*.32Cuc  1 s 6 F17550 ]
+"63
+} 0
+"4
+[v _getDeviceID getDeviceID `(ui  1 e 2 0 ]
+{
+"10
+} 0
+"71 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/memory.c
+[v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
+{
+[v FLASH_ReadWord@flashAddr flashAddr `ul  1 p 4 4 ]
+"74
+} 0
+"59
+[v _FLASH_ReadByte FLASH_ReadByte `(uc  1 e 1 0 ]
+{
+[v FLASH_ReadByte@flashAddr flashAddr `ul  1 p 4 0 ]
+"69
+} 0
+"87 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\cause_of_reset.c
+[v _getCauseOfResetString getCauseOfResetString `(*.32Tuc  1 e 2 0 ]
+{
+[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
+[v getCauseOfResetString@r r `E17455  1 a 1 wreg ]
+"90
+[v getCauseOfResetString@strings strings `[9]*.32uc  1 s 18 strings ]
+"103
+[v getCauseOfResetString@r r `E17455  1 a 1 2 ]
+"115
+} 0
+"35 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\error_handling.c
+[v _getCOMMError getCOMMError `(uc  1 e 1 0 ]
+{
+"51
+} 0
+"11
+[v _getADCError getADCError `(uc  1 e 1 0 ]
+{
+"32
+} 0
+"53 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\ring_buffer_interface.c
 [v _terminal_clearTerminal terminal_clearTerminal `(v  1 e 1 0 ]
 {
-"82
+"55
 } 0
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\printf.c
 [v _printf printf `(i  1 e 2 0 ]
 {
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
 "21
-[v printf@pb pb `S4470  1 a 5 189 ]
+[v printf@pb pb `S4504  1 a 5 189 ]
 "15
 [v printf@ap ap `[1]*.39v  1 a 2 187 ]
 "13
@@ -2724,9 +2733,9 @@ I2C1_LOST_STATE 6
 [v __doprnt@fval fval `d  1 a 4 170 ]
 "528
 [v __doprnt@val val `ul  1 a 4 162 ]
-[u S4516 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[u S4550 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
 "526
-[v __doprnt@tmpval tmpval `S4516  1 a 4 156 ]
+[v __doprnt@tmpval tmpval `S4550  1 a 4 156 ]
 "504
 [v __doprnt@prec prec `i  1 a 2 174 ]
 "508
@@ -2741,9 +2750,9 @@ I2C1_LOST_STATE 6
 [v __doprnt@cp cp `*.34Cuc  1 a 2 152 ]
 "499
 [v __doprnt@c c `c  1 a 1 176 ]
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
 "458
-[v __doprnt@pb pb `*.39S4470  1 p 2 135 ]
+[v __doprnt@pb pb `*.39S4504  1 p 2 135 ]
 [v __doprnt@f f `*.34Cuc  1 p 2 137 ]
 [v __doprnt@ap ap `*.39*.39v  1 p 2 139 ]
 "1541
@@ -2795,17 +2804,17 @@ I2C1_LOST_STATE 6
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S4949  1 a 4 116 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S4983  1 a 4 116 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 111 ]
-[s S5017 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S5051 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S5020 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5017 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S5020  1 a 2 120 ]
+[u S5054 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5051 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S5054  1 a 2 120 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 115 ]
 "11
@@ -2983,9 +2992,9 @@ I2C1_LOST_STATE 6
 {
 "13
 [v writeDoubleToEEPROM@byte_index byte_index `i  1 a 2 14 ]
-[u S4299 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[u S4333 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
 "9
-[v writeDoubleToEEPROM@input_data input_data `S4299  1 a 4 10 ]
+[v writeDoubleToEEPROM@input_data input_data `S4333  1 a 4 10 ]
 "6
 [v writeDoubleToEEPROM@input_double input_double `d  1 p 4 4 ]
 [v writeDoubleToEEPROM@starting_address starting_address `ui  1 p 2 8 ]
@@ -3018,9 +3027,9 @@ I2C1_LOST_STATE 6
 {
 "28
 [v readDoubleFromEEPROM@byte_index byte_index `i  1 a 2 10 ]
-[u S4299 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[u S4333 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
 "25
-[v readDoubleFromEEPROM@output_data output_data `S4299  1 a 4 6 ]
+[v readDoubleFromEEPROM@output_data output_data `S4333  1 a 4 6 ]
 "22
 [v readDoubleFromEEPROM@starting_address starting_address `ui  1 p 2 2 ]
 "37
@@ -3256,10 +3265,10 @@ I2C1_LOST_STATE 6
 {
 "185
 } 0
-"422 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"604 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _acquisitionTimerCallback acquisitionTimerCallback `(v  1 e 1 0 ]
 {
-"433
+"615
 } 0
 "115 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/adcc.c
 [v _ADCC_StartConversion ADCC_StartConversion `(v  1 e 1 0 ]
@@ -3296,10 +3305,10 @@ I2C1_LOST_STATE 6
 {
 "185
 } 0
-"221 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"403 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _heartbeatTimerCallback heartbeatTimerCallback `(v  1 e 1 0 ]
 {
-"239
+"421
 } 0
 "165 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr2.c
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
@@ -3316,7 +3325,7 @@ I2C1_LOST_STATE 6
 {
 "199
 } 0
-"482 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"664 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v i1_OLED_updateCallback OLED_updateCallback `(v  1 e 1 0 ]
 {
 [v i1OLED_updateCallback@angle_string OLED_updateCallback `[17]uc  1 a 17 70 ]
@@ -3325,7 +3334,7 @@ I2C1_LOST_STATE 6
 [v i1OLED_updateCallback@dev_id_str OLED_updateCallback `[17]uc  1 a 17 19 ]
 [v i1OLED_updateCallback@percentage OLED_updateCallback `f  1 a 3 94 ]
 [v i1OLED_updateCallback@TRIAC_degrees OLED_updateCallback `f  1 a 3 91 ]
-"758
+"940
 } 0
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\strcpy.c
 [v i1_strcpy strcpy `(*.39uc  1 e 2 0 ]
@@ -3338,8 +3347,8 @@ I2C1_LOST_STATE 6
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprintf.c
 [v i1_sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
-[v i1sprintf@pb sprintf `S4470  1 a 5 2 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[v i1sprintf@pb sprintf `S4504  1 a 5 2 ]
 [v i1sprintf@ap sprintf `[1]*.39v  1 a 2 0 ]
 [v i1sprintf@wh wh `*.39uc  1 p 2 203 ]
 [v i1sprintf@f f `*.32Cuc  1 p 2 205 ]
@@ -3350,8 +3359,8 @@ I2C1_LOST_STATE 6
 {
 [v i1__doprnt@fval _doprnt `d  1 a 4 196 ]
 [v i1__doprnt@val _doprnt `ul  1 a 4 188 ]
-[u S4516 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
-[v i1__doprnt@tmpval _doprnt `S4516  1 a 4 182 ]
+[u S4550 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[v i1__doprnt@tmpval _doprnt `S4550  1 a 4 182 ]
 [v i1__doprnt@prec _doprnt `i  1 a 2 200 ]
 [v i1__doprnt@flag _doprnt `us  1 a 2 194 ]
 [v i1__doprnt@exp _doprnt `i  1 a 2 192 ]
@@ -3360,8 +3369,8 @@ I2C1_LOST_STATE 6
 [v i1__doprnt@cp _doprnt `*.34Cuc  1 a 2 178 ]
 [v i1__doprnt@c _doprnt `c  1 a 1 202 ]
 [v i1__doprnt@idx _doprnt `uc  1 a 1 177 ]
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
-[v i1__doprnt@pb pb `*.39S4470  1 p 2 161 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[v i1__doprnt@pb pb `*.39S4504  1 p 2 161 ]
 [v i1__doprnt@f f `*.34Cuc  1 p 2 163 ]
 [v i1__doprnt@ap ap `*.39*.39v  1 p 2 165 ]
 "1541
@@ -3579,10 +3588,10 @@ I2C1_LOST_STATE 6
 [v i1_sqrt sqrt `(d  1 e 4 0 ]
 {
 [v i1sqrt@frac sqrt `ul  1 a 4 174 ]
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v i1sqrt@root sqrt `S4949  1 a 4 170 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v i1sqrt@root sqrt `S4983  1 a 4 170 ]
 [v i1sqrt@grs sqrt `ul  1 a 4 164 ]
 [v i1sqrt@tfrac sqrt `ul  1 a 4 159 ]
 [v i1sqrt@exp sqrt `i  1 a 2 168 ]
@@ -3627,14 +3636,14 @@ I2C1_LOST_STATE 6
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v i1___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v i1___flmul@prod __flmul `S4949  1 a 4 76 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v i1___flmul@prod __flmul `S4983  1 a 4 76 ]
 [v i1___flmul@grs __flmul `ul  1 a 4 71 ]
-[s S5017 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S5020 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5017 1 nAsBytes 2 0 ]
-[v i1___flmul@temp __flmul `S5020  1 a 2 80 ]
+[s S5051 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S5054 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5051 1 nAsBytes 2 0 ]
+[v i1___flmul@temp __flmul `S5054  1 a 2 80 ]
 [v i1___flmul@bexp __flmul `uc  1 a 1 75 ]
 [v i1___flmul@aexp __flmul `uc  1 a 1 70 ]
 [v i1___flmul@sign __flmul `uc  1 a 1 69 ]
@@ -3873,10 +3882,10 @@ I2C1_LOST_STATE 6
 {
 "185
 } 0
-"451 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"633 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _dimmingOnTimeCallback dimmingOnTimeCallback `(v  1 e 1 0 ]
 {
-"463
+"645
 } 0
 "105 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr5.c
 [v i2_TMR5_StopTimer TMR5_StopTimer `(v  1 e 1 0 ]
@@ -3900,18 +3909,18 @@ I2C1_LOST_STATE 6
 {
 "200
 } 0
-"468 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"650 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _writeEnergyToEEPROMCallback writeEnergyToEEPROMCallback `(v  1 e 1 0 ]
 {
-"470
+"652
 [v writeEnergyToEEPROMCallback@current_value current_value `d  1 a 4 41 ]
-"478
+"660
 } 0
 "22 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\double_to_EEPROM.c
 [v i2_readDoubleFromEEPROM readDoubleFromEEPROM `(d  1 e 4 0 ]
 {
-[u S4299 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
-[v i2readDoubleFromEEPROM@output_data readDoubleFromEEPROM `S4299  1 a 4 6 ]
+[u S4333 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[v i2readDoubleFromEEPROM@output_data readDoubleFromEEPROM `S4333  1 a 4 6 ]
 [v i2readDoubleFromEEPROM@byte_index readDoubleFromEEPROM `i  1 a 2 10 ]
 [v i2readDoubleFromEEPROM@starting_address starting_address `ui  1 p 2 2 ]
 "37
@@ -3937,10 +3946,10 @@ I2C1_LOST_STATE 6
 {
 "57
 } 0
-"436 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"618 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _dimmingOffTimeCallback dimmingOffTimeCallback `(v  1 e 1 0 ]
 {
-"448
+"630
 } 0
 "127 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\mcc_generated_files/tmr5.c
 [v _TMR5_WriteTimer TMR5_WriteTimer `(v  1 e 1 0 ]
@@ -3993,8 +4002,8 @@ I2C1_LOST_STATE 6
 "6 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\double_to_EEPROM.c
 [v i2_writeDoubleToEEPROM writeDoubleToEEPROM `(v  1 e 1 0 ]
 {
-[u S4299 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
-[v i2writeDoubleToEEPROM@input_data writeDoubleToEEPROM `S4299  1 a 4 10 ]
+[u S4333 . 4 `d 1 double_t 4 0 `[4]uc 1 byte_array_t 4 0 ]
+[v i2writeDoubleToEEPROM@input_data writeDoubleToEEPROM `S4333  1 a 4 10 ]
 [v i2writeDoubleToEEPROM@byte_index writeDoubleToEEPROM `i  1 a 2 14 ]
 [v i2writeDoubleToEEPROM@input_double input_double `d  1 p 4 4 ]
 [v i2writeDoubleToEEPROM@starting_address starting_address `ui  1 p 2 8 ]
@@ -4016,8 +4025,8 @@ I2C1_LOST_STATE 6
 "13 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\printf.c
 [v i2_printf printf `(i  1 e 2 0 ]
 {
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
-[v i2printf@pb printf `S4470  1 a 5 105 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[v i2printf@pb printf `S4504  1 a 5 105 ]
 [v i2printf@ap printf `[1]*.39v  1 a 2 103 ]
 [v i2printf@f f `*.34Cuc  1 p 2 101 ]
 "28
@@ -4027,8 +4036,8 @@ I2C1_LOST_STATE 6
 {
 [v i2__doprnt@fval _doprnt `d  1 a 4 94 ]
 [v i2__doprnt@val _doprnt `ul  1 a 4 86 ]
-[u S4516 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
-[v i2__doprnt@tmpval _doprnt `S4516  1 a 4 80 ]
+[u S4550 . 4 `ul 1 vd 4 0 `d 1 integ 4 0 ]
+[v i2__doprnt@tmpval _doprnt `S4550  1 a 4 80 ]
 [v i2__doprnt@prec _doprnt `i  1 a 2 98 ]
 [v i2__doprnt@flag _doprnt `us  1 a 2 92 ]
 [v i2__doprnt@exp _doprnt `i  1 a 2 90 ]
@@ -4037,8 +4046,8 @@ I2C1_LOST_STATE 6
 [v i2__doprnt@cp _doprnt `*.34Cuc  1 a 2 76 ]
 [v i2__doprnt@c _doprnt `c  1 a 1 100 ]
 [v i2__doprnt@idx _doprnt `uc  1 a 1 75 ]
-[s S4470 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
-[v i2__doprnt@pb pb `*.39S4470  1 p 2 59 ]
+[s S4504 __prbuf 5 `*.39uc 1 ptr 2 0 `*.38(v 1 func 3 2 ]
+[v i2__doprnt@pb pb `*.39S4504  1 p 2 59 ]
 [v i2__doprnt@f f `*.34Cuc  1 p 2 61 ]
 [v i2__doprnt@ap ap `*.39*.39v  1 p 2 63 ]
 "1541
@@ -4161,12 +4170,12 @@ I2C1_LOST_STATE 6
 {
 "316
 } 0
-"242 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
+"424 C:\Users\Drew Maatman\Documents\KiCad Projects\Projects\AC_Power_Meter\sfw\U701_Firmware\AC_Power_Meter.X\main.c
 [v _ADC_PostProcessingCallback ADC_PostProcessingCallback `(v  1 e 1 0 ]
 {
-"248
+"430
 [v ADC_PostProcessingCallback@current_adc_channel current_adc_channel `E17653  1 a 1 138 ]
-"419
+"601
 } 0
 "130
 [v _peakToRMS peakToRMS `(d  1 e 4 0 ]
@@ -4196,10 +4205,10 @@ I2C1_LOST_STATE 6
 [v i2_sqrt sqrt `(d  1 e 4 0 ]
 {
 [v i2sqrt@frac sqrt `ul  1 a 4 54 ]
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v i2sqrt@root sqrt `S4949  1 a 4 50 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v i2sqrt@root sqrt `S4983  1 a 4 50 ]
 [v i2sqrt@grs sqrt `ul  1 a 4 44 ]
 [v i2sqrt@tfrac sqrt `ul  1 a 4 39 ]
 [v i2sqrt@exp sqrt `i  1 a 2 48 ]
@@ -4264,14 +4273,14 @@ I2C1_LOST_STATE 6
 "8 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\sprcmul.c
 [v i2___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S4941 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
-[s S4946 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S4949 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4941 1 fAsBytes 4 0 `S4946 1 fAsWords 4 0 ]
-[v i2___flmul@prod __flmul `S4949  1 a 4 33 ]
+[s S4975 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S4980 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S4983 . 4 `l 1 i 4 0 `d 1 f 4 0 `S4975 1 fAsBytes 4 0 `S4980 1 fAsWords 4 0 ]
+[v i2___flmul@prod __flmul `S4983  1 a 4 33 ]
 [v i2___flmul@grs __flmul `ul  1 a 4 28 ]
-[s S5017 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
-[u S5020 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5017 1 nAsBytes 2 0 ]
-[v i2___flmul@temp __flmul `S5020  1 a 2 37 ]
+[s S5051 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[u S5054 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S5051 1 nAsBytes 2 0 ]
+[v i2___flmul@temp __flmul `S5054  1 a 2 37 ]
 [v i2___flmul@bexp __flmul `uc  1 a 1 32 ]
 [v i2___flmul@aexp __flmul `uc  1 a 1 27 ]
 [v i2___flmul@sign __flmul `uc  1 a 1 26 ]

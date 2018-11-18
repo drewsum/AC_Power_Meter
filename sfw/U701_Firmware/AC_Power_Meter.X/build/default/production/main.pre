@@ -22773,7 +22773,190 @@ Total_Energy = 0.0;
 
 }
 
-# 221
+
+void terminal_printResetMessage(void) {
+
+
+terminal_textAttributes(YELLOW, BLUE, BOLD);
+printf("AC Power Meter / Dimmer, ELEN 3035 Final Project");
+terminal_textAttributes(YELLOW, BLACK, BOLD);
+terminal_printNewline();
+printf("Drew Maatman and Gabe Thalji\n\r");
+
+terminal_printNewline();
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("System parameters and affirmative responses appear in green\n\r");
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("Measurement responses appear in cyan\n\r");
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Errors and negative responses appear in red\n\r");
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Help messages and neutral responses appear in yellow\n\r");
+terminal_textAttributesReset();
+printf("User input appears in white\n\r");
+
+terminal_printNewline();
+
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
+"part number of %s\n\r",
+getDeviceID(),
+getDeviceIDString(getDeviceID()));
+
+
+printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
+((char) getMajorRevisionID() + 65),getMinorRevisionID());
+
+
+printf("The following User IDs have been retrieved from flash memory:\n\r");
+
+
+for (int userID = 0; userID <= 7; userID++) {
+
+printf("    User ID Word %d (Flash address 0x20000%X): 0x%X\n\r",
+userID,
+(2 * userID),
+getUserID(userID));
+
+}
+
+terminal_printNewline();
+
+
+if (getADCError()) {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("ADC error(s) detected!\n\r");
+printf("The following channels caused an ADC error:\n\r");
+
+if (error_handler.ADC_general_error_flag) {
+printf("    General ADC error\n\r");
+}
+
+if (error_handler.AVSS_ADC_error_flag) {
+printf("    AVSS\n\r");
+}
+
+if (error_handler.FVR_ADC_error_flag) {
+printf("    FVR\n\r");
+}
+
+if (error_handler.ISNS_ADC_error_flag) {
+printf("    ISNS\n\r");
+}
+
+if (error_handler.POS12_ADC_error_flag) {
+printf("    POS12\n\r");
+}
+
+if (error_handler.POS3P3_ADC_error_flag) {
+printf("    POS3P3\n\r");
+}
+
+if (error_handler.Temp_ADC_error_flag) {
+printf("    Die Temp\n\r");
+}
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
+terminal_textAttributesReset();
+
+}
+
+else {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("No ADC error(s) detected\n\r");
+terminal_textAttributesReset();
+
+}
+
+
+if (getCOMMError()) {
+
+terminal_textAttributes(RED, BLACK, NORMAL);
+printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+
+if (error_handler.I2C_COMM_error_flag) {
+printf("    OLED Display I2C\n\r");
+}
+
+if (error_handler.USB_UART_COMM_error_flag) {
+printf("    USB UART (this interface)\n\r");
+}
+
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
+terminal_textAttributesReset();
+
+}
+
+else {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+printf("No communications error(s) detected\n\r");
+terminal_textAttributesReset();
+
+}
+
+
+terminal_printNewline();
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Load is currently enabled\n\r");
+
+
+terminal_printNewline();
+terminal_textAttributes(CYAN, BLACK, NORMAL);
+printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
+printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
+printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
+printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
+printf("AVSS measured as %.3f Volts by ADC\n\r", AVSS_ADC_Result);
+
+terminal_printNewline();
+
+
+
+if ( reset_cause == Stack_Overflow_Reset ||
+reset_cause == Stack_Underflow_Reset ||
+reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+reset_cause == Watch_Dog_Timer_Reset ||
+reset_cause == Brown_Out_Reset ||
+reset_cause == Watch_Dog_Timer_Reset ||
+reset_cause == Undefined_Reset
+) {
+
+terminal_textAttributes(RED, BLACK, BOLD);
+
+}
+
+else {
+
+terminal_textAttributes(GREEN, BLACK, NORMAL);
+
+}
+
+
+printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+terminal_printNewline();
+terminal_textAttributes(YELLOW, BLACK, NORMAL);
+printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+
+
+terminal_textAttributes(BLACK, GREEN, BOLD);
+terminal_printNewline();
+printf("Boot Complete");
+terminal_textAttributesReset();
+terminal_printNewline();
+terminal_printNewline();
+terminal_textAttributesReset();
+
+
+}
+
+# 403
 void heartbeatTimerCallback(void) {
 
 
@@ -23386,42 +23569,7 @@ OLED_Clear();
 OLED_Frame = Boot_Frame_1;
 OLED_updateCallback();
 
-
-terminal_textAttributes(YELLOW, BLUE, BOLD);
-printf("AC Power Meter / Dimmer");
-terminal_textAttributes(BLACK, GREEN, BOLD);
-terminal_printNewline();
-printf("Boot Complete");
-terminal_textAttributesReset();
-terminal_printNewline();
-
-
-
-if ( reset_cause == Stack_Overflow_Reset ||
-reset_cause == Stack_Underflow_Reset ||
-reset_cause == Windowed_Watch_Dog_Timer_Reset ||
-reset_cause == Watch_Dog_Timer_Reset ||
-reset_cause == Brown_Out_Reset ||
-reset_cause == Watch_Dog_Timer_Reset ||
-reset_cause == Undefined_Reset
-) {
-
-terminal_textAttributes(RED, BLACK, BOLD);
-
-}
-
-else {
-
-terminal_textAttributes(GREEN, BLACK, NORMAL);
-
-}
-
-
-printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
-terminal_textAttributes(YELLOW, BLACK, NORMAL);
-printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
-terminal_textAttributesReset();
-
+terminal_printResetMessage();
 
 
 while (1)
