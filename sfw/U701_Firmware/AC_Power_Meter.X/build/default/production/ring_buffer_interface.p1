@@ -5,11 +5,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17898 `(v ~T0 @X0 0 tf ]
 [v F17901 `(v ~T0 @X0 0 tf ]
 "7 ring_buffer_interface.c
-[c E18142 0 1 2 3 4 5 .. ]
-[n E18142 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+[c E18144 0 1 2 3 4 5 .. ]
+[n E18144 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
 "8
-[c E18150 0 1 2 3 4 5 6 7 .. ]
-[n E18150 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E18152 0 1 2 3 4 5 6 7 .. ]
+[n E18152 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 "82 mcc_generated_files/eusart2.h
 [v _eusart2RxCount `Vuc ~T0 @X0 0 e ]
 "283
@@ -16543,6 +16543,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
 [; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
 [; ;ring_buffer_LUT.h: 49: void ringBufferLUT(char * line);
+[; ;ring_buffer_LUT.h: 53: void terminal_printResetMessage(void);
 [; ;ring_buffer_interface.h: 40: extern volatile bit eusart2RxStringReady;
 [; ;ring_buffer_interface.h: 43: extern volatile uint8_t eusart2RxCount;
 [; ;ring_buffer_interface.h: 46: extern volatile uint8_t eusart2RxHead;
@@ -16581,13 +16582,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_interface.h: 159: void terminal_textAttributesReset(void);
 [; ;ring_buffer_interface.h: 162: void terminal_printNewline(void);
 "7 ring_buffer_interface.c
-[v _attribute `E18142 ~T0 @X0 1 e ]
+[v _attribute `E18144 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 7: text_attribute_t attribute;
 "8
-[v _foreground_color `E18150 ~T0 @X0 1 e ]
+[v _foreground_color `E18152 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 8: text_color_t foreground_color;
 "9
-[v _background_color `E18150 ~T0 @X0 1 e ]
+[v _background_color `E18152 ~T0 @X0 1 e ]
 [; ;ring_buffer_interface.c: 9: text_color_t background_color;
 "12
 [v _terminal_ringBufferPull `(v ~T0 @X0 1 ef ]
@@ -16736,16 +16737,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2034 ]
 }
 "88
-[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E18150`E18150`E18142 ]
+[v _terminal_textAttributes `(v ~T0 @X0 1 ef3`E18152`E18152`E18144 ]
 "90
 {
 [; ;ring_buffer_interface.c: 88: void terminal_textAttributes(text_color_t foreground_color,
 [; ;ring_buffer_interface.c: 89: text_color_t background_color,
 [; ;ring_buffer_interface.c: 90: text_attribute_t input_attribute) {
 [e :U _terminal_textAttributes ]
-[v _foreground_color `E18150 ~T0 @X0 1 r1 ]
-[v _background_color `E18150 ~T0 @X0 1 r2 ]
-[v _input_attribute `E18142 ~T0 @X0 1 r3 ]
+[v _foreground_color `E18152 ~T0 @X0 1 r1 ]
+[v _background_color `E18152 ~T0 @X0 1 r2 ]
+[v _input_attribute `E18144 ~T0 @X0 1 r3 ]
 [f ]
 "92
 [v _output_buff `uc ~T0 @X0 -> 15 `i a ]
@@ -16826,12 +16827,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2036  ]
 "96
 [e :U 2037 ]
-[e [\ _input_attribute , $ . `E18142 0 2038
- , $ . `E18142 1 2039
- , $ . `E18142 2 2040
- , $ . `E18142 3 2041
- , $ . `E18142 4 2042
- , $ . `E18142 5 2043
+[e [\ _input_attribute , $ . `E18144 0 2038
+ , $ . `E18144 1 2039
+ , $ . `E18144 2 2040
+ , $ . `E18144 3 2041
+ , $ . `E18144 4 2042
+ , $ . `E18144 5 2043
  2044 ]
 "120
 [e :U 2036 ]
@@ -16929,14 +16930,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2045  ]
 "124
 [e :U 2046 ]
-[e [\ _foreground_color , $ . `E18150 0 2047
- , $ . `E18150 1 2048
- , $ . `E18150 2 2049
- , $ . `E18150 3 2050
- , $ . `E18150 4 2051
- , $ . `E18150 5 2052
- , $ . `E18150 6 2053
- , $ . `E18150 7 2054
+[e [\ _foreground_color , $ . `E18152 0 2047
+ , $ . `E18152 1 2048
+ , $ . `E18152 2 2049
+ , $ . `E18152 3 2050
+ , $ . `E18152 4 2051
+ , $ . `E18152 5 2052
+ , $ . `E18152 6 2053
+ , $ . `E18152 7 2054
  2055 ]
 "154
 [e :U 2045 ]
@@ -17034,14 +17035,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2056  ]
 "158
 [e :U 2057 ]
-[e [\ _background_color , $ . `E18150 0 2058
- , $ . `E18150 1 2059
- , $ . `E18150 2 2060
- , $ . `E18150 3 2061
- , $ . `E18150 4 2062
- , $ . `E18150 5 2063
- , $ . `E18150 6 2064
- , $ . `E18150 7 2065
+[e [\ _background_color , $ . `E18152 0 2058
+ , $ . `E18152 1 2059
+ , $ . `E18152 2 2060
+ , $ . `E18152 3 2061
+ , $ . `E18152 4 2062
+ , $ . `E18152 5 2063
+ , $ . `E18152 6 2064
+ , $ . `E18152 7 2065
  2066 ]
 "188
 [e :U 2056 ]
@@ -17063,7 +17064,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;ring_buffer_interface.c: 198: terminal_textAttributes(WHITE, BLACK, NORMAL);
 "198
-[e ( _terminal_textAttributes (3 , , . `E18150 7 . `E18150 0 . `E18142 0 ]
+[e ( _terminal_textAttributes (3 , , . `E18152 7 . `E18152 0 . `E18144 0 ]
 [; ;ring_buffer_interface.c: 200: }
 "200
 [e :UE 2067 ]

@@ -49,6 +49,9 @@ extern "C" {
 void ringBufferLUT(char * line);
 
 
+// This function dumps a bunch of debug data on reset to the serial port
+void terminal_printResetMessage(void);
+
 
 
 #ifdef	__cplusplus

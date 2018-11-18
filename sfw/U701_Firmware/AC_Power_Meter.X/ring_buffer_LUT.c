@@ -726,6 +726,249 @@ void ringBufferLUT(char * line) {
          
     }
     
+    // device summary command
+    else if ((0 == strcmp(line, "Device Summary"))) {
+        
+        terminal_printNewline();
+        
+        // Determine if we need to make text red or green depending on
+        // badness of cause of reset
+        if (    reset_cause == Stack_Overflow_Reset ||
+                reset_cause == Stack_Underflow_Reset ||
+                reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+                reset_cause == Watch_Dog_Timer_Reset ||
+                reset_cause == Brown_Out_Reset ||
+                reset_cause == Watch_Dog_Timer_Reset ||
+                reset_cause == Undefined_Reset
+                ) {
+
+            terminal_textAttributes(RED, BLACK, BOLD);
+
+        }
+
+        else {
+
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+
+        }
+
+        // Print the cause of the reset
+        printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+        terminal_printNewline();
+
+        // print device ID from flash
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
+                    "part number of %s\n\r",
+                    getDeviceID(),
+                    getDeviceIDString(getDeviceID()));
+
+        // print revision ID from flash
+        printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
+                    ((char) getMajorRevisionID() + 65),getMinorRevisionID());
+
+        // print user IDs
+        printf("The following User IDs have been retrieved from flash memory:\n\r");
+
+        // Loop through all 8 user ID locations in flash and print
+        for (int userID = 0; userID <= 7; userID++) {
+
+            printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
+                    userID,
+                    (2 * userID),
+                    getUserID(userID));
+
+        }
+
+        terminal_printNewline();
+        
+        printf("Device on time since last reset condition is %d seconds\n\r", dev_on_time);
+        
+        terminal_printNewline();
+
+        // print if there was an ADC error during startup
+        if (getADCError()) {
+
+                terminal_textAttributes(RED, BLACK, NORMAL);
+                printf("ADC error(s) detected!\n\r");
+                printf("The following channels caused an ADC error:\n\r");
+
+                if (error_handler.ADC_general_error_flag) {
+                    printf("    General ADC error\n\r");
+                }
+
+                if (error_handler.AVSS_ADC_error_flag) {
+                    printf("    AVSS\n\r");
+                }
+
+                if (error_handler.FVR_ADC_error_flag) {
+                    printf("    FVR\n\r");
+                }
+
+                if (error_handler.ISNS_ADC_error_flag) {
+                    printf("    ISNS\n\r");
+                }
+
+                if (error_handler.POS12_ADC_error_flag) {
+                    printf("    POS12\n\r");
+                }
+
+                if (error_handler.POS3P3_ADC_error_flag) {
+                    printf("    POS3P3\n\r");
+                }
+
+                if (error_handler.Temp_ADC_error_flag) {
+                    printf("    Die Temp\n\r");
+                }
+
+                terminal_textAttributes(YELLOW, BLACK, NORMAL);
+                printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
+                terminal_textAttributesReset();
+
+            }
+
+            else {
+
+                terminal_textAttributes(GREEN, BLACK, NORMAL);
+                printf("No ADC error(s) detected\n\r");
+                terminal_textAttributesReset();
+
+            }
+
+        // Print if there was a comm error during startup
+        if (getCOMMError()) {
+
+                terminal_textAttributes(RED, BLACK, NORMAL);
+                printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+
+                if (error_handler.I2C_COMM_error_flag) {
+                    printf("    OLED Display I2C\n\r");
+                }
+
+                if (error_handler.USB_UART_COMM_error_flag) {
+                    printf("    USB UART (this interface)\n\r");
+                }
+
+                terminal_textAttributes(YELLOW, BLACK, NORMAL);
+                printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
+                terminal_textAttributesReset();
+
+            }
+
+            else {
+
+                terminal_textAttributes(GREEN, BLACK, NORMAL);
+                printf("No communications error(s) detected\n\r");
+                terminal_textAttributesReset();
+
+            }
+
+        // Print device measurements
+        terminal_printNewline();
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
+        printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
+        printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
+        printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
+        printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
+
+        terminal_printNewline();
+        
+        double max_POS3P3_print = readDoubleFromEEPROM(max_POS3P3_ADC_Result_address);
+        printf("Maximum recorded +3.3V rail voltage is %.3f Volts\n\r", max_POS3P3_print);
+        double max_POS12_print = readDoubleFromEEPROM(max_POS12_ADC_Result_address);
+        printf("Maximum recorded +12V rail voltage is %.3f Volts\n\r", max_POS12_print);
+        double max_temp_print = readDoubleFromEEPROM(max_Temp_ADC_Result_address);
+        printf("Maximum recorded die temperature is %.3f C\n\r", max_temp_print);
+        double max_FVR_print = readDoubleFromEEPROM(max_FVR_ADC_Result_address);
+        printf("Maximum recorded FVR buffer 1 voltage is %.3f Volts\n\r", max_FVR_print);
+        
+        terminal_textAttributesReset();
+        terminal_printNewline();
+        
+        
+        
+
+    
+    }
+    
+    // measurements summary command
+    else if ((0 == strcmp(line, "Measurement Summary"))) {
+     
+        terminal_printNewline();
+        
+        if  (load_enable == 1 && SSR_FORCE_PIN != 1) {
+         
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("Dimming is currently enabled\n\r");
+            
+            // Calculate TRIAC firing angle
+            double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
+            float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
+            printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+            printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
+            printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
+            
+            
+            terminal_textAttributesReset();
+   
+        }
+        
+        else if (load_enable == 1){
+         
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Load is currently enabled, but dimming is disabled\n\r");
+            terminal_textAttributesReset();
+
+        }
+        
+        else {
+         
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Load and dimming are currently disabled\n\r");
+            terminal_textAttributesReset();
+            
+        }
+        
+        terminal_printNewline();
+        
+        terminal_textAttributes(CYAN, BLACK, NORMAL);
+        printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+        printf("RMS Output Current is %.3f Arms\n\r", Irms);
+        printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+        printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+        
+        if (Total_Energy >= 1000.0) {
+         
+            printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        else if (Total_Energy >= 100.0) {
+         
+            printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        else {
+         
+            printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+            
+        }
+        
+        terminal_printNewline();
+        
+        double max_current_print = readDoubleFromEEPROM(max_Irms_address);
+        printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_current_print);
+        double max_Power_print = readDoubleFromEEPROM(max_Power_address);
+        printf("Maximum recorded output power is %.3f Watts\n\r", max_Power_print);
+        
+        terminal_textAttributesReset();
+        
+        terminal_printNewline();
+        
+    }
+    
     
     // Different help messages
     else if((0 == strcmp(line, "Help Device Control Commands"))) {
@@ -746,6 +989,7 @@ void ringBufferLUT(char * line) {
                 "   Comm Errors?: Returns if a communications error has occurred\n\r"
                 "   Clear Comm Errors: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
+                "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
                 "   Help: This message, lists supported commands\n\r\n\r"
                 );
         
@@ -788,7 +1032,8 @@ void ringBufferLUT(char * line) {
                 "   Clear Energy: Resets the measured output energy to zero\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
-                "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
+                "   Max Power?: Prints the maximum recorded output power\n\r"
+                "   Measurement SummaryL Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
                 );
         
         terminal_textAttributesReset();
@@ -834,7 +1079,8 @@ void ringBufferLUT(char * line) {
                 "   Comm Errors?: Returns if a communications error has occurred\n\r"
                 "   Clear Comm Errors: Clears the communications error\n\r"
                 "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
-                "   Help: This message, lists supported commands\n\r\n\r"
+                "   Help: This message, lists supported commands\n\r"
+                "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
                 
                 "Device Measurement Commands: View low level system measurements\n\r"
                 "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
@@ -856,7 +1102,8 @@ void ringBufferLUT(char * line) {
                 "   Clear Energy: Resets the measured output energy to zero\n\r"
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
-                "   Max Power?: Prints the maximum recorded output power\n\r\n\r"
+                "   Max Power?: Prints the maximum recorded output power\n\r"
+                "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
                 
                 "Output Control Commands: Control the output state and dimming features\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
@@ -956,3 +1203,189 @@ void ringBufferLUT(char * line) {
         
     
 }
+
+
+// This function dumps a bunch of debug data on reset to the serial port
+void terminal_printResetMessage(void) {
+
+    // Print boot message header
+    terminal_textAttributes(YELLOW, BLUE, BOLD);
+    printf("AC Power Meter / Dimmer, ELEN 3035 Final Project");
+    terminal_textAttributes(YELLOW, BLACK, BOLD);
+    terminal_printNewline();
+    printf("Drew Maatman and Gabe Thalji\n\r");
+    
+    terminal_printNewline();
+    
+    // Determine if we need to make text red or green depending on
+    // badness of cause of reset
+    if (    reset_cause == Stack_Overflow_Reset ||
+            reset_cause == Stack_Underflow_Reset ||
+            reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Brown_Out_Reset ||
+            reset_cause == Watch_Dog_Timer_Reset ||
+            reset_cause == Undefined_Reset
+            ) {
+     
+        terminal_textAttributes(RED, BLACK, BOLD);
+        
+    }
+    
+    else {
+     
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
+        
+    }
+    
+    // Print the cause of the reset
+    printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+    terminal_printNewline();
+    
+    terminal_textAttributes(GREEN, BLACK, NORMAL);
+    printf("System parameters and affirmative responses appear in green\n\r");
+    terminal_textAttributes(CYAN, BLACK, NORMAL);
+    printf("Measurement responses appear in cyan\n\r");
+    terminal_textAttributes(RED, BLACK, NORMAL);
+    printf("Errors and negative responses appear in red\n\r");
+    terminal_textAttributes(YELLOW, BLACK, NORMAL);
+    printf("Help messages and neutral responses appear in yellow\n\r");
+    terminal_textAttributesReset();
+    printf("User input appears in white\n\r");
+    
+    terminal_printNewline();
+    
+    // print device ID from flash
+    terminal_textAttributes(GREEN, BLACK, NORMAL);
+    printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
+                "part number of %s\n\r",
+                getDeviceID(),
+                getDeviceIDString(getDeviceID()));
+    
+    // print revision ID from flash
+    printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
+                ((char) getMajorRevisionID() + 65),getMinorRevisionID());
+    
+    // print user IDs
+    printf("The following User IDs have been retrieved from flash memory:\n\r");
+    
+    // Loop through all 8 user ID locations in flash and print
+    for (int userID = 0; userID <= 7; userID++) {
+
+        printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
+                userID,
+                (2 * userID),
+                getUserID(userID));
+
+    }
+    
+    terminal_printNewline();
+    
+    // print if there was an ADC error during startup
+    if (getADCError()) {
+            
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("ADC error(s) detected!\n\r");
+            printf("The following channels caused an ADC error:\n\r");
+            
+            if (error_handler.ADC_general_error_flag) {
+                printf("    General ADC error\n\r");
+            }
+            
+            if (error_handler.AVSS_ADC_error_flag) {
+                printf("    AVSS\n\r");
+            }
+            
+            if (error_handler.FVR_ADC_error_flag) {
+                printf("    FVR\n\r");
+            }
+            
+            if (error_handler.ISNS_ADC_error_flag) {
+                printf("    ISNS\n\r");
+            }
+            
+            if (error_handler.POS12_ADC_error_flag) {
+                printf("    POS12\n\r");
+            }
+            
+            if (error_handler.POS3P3_ADC_error_flag) {
+                printf("    POS3P3\n\r");
+            }
+            
+            if (error_handler.Temp_ADC_error_flag) {
+                printf("    Die Temp\n\r");
+            }
+            
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
+            terminal_textAttributesReset();
+            
+        }
+        
+        else {
+         
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("No ADC error(s) detected\n\r");
+            terminal_textAttributesReset();
+        
+        }
+    
+    // Print if there was a comm error during startup
+    if (getCOMMError()) {
+        
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+            
+            if (error_handler.I2C_COMM_error_flag) {
+                printf("    OLED Display I2C\n\r");
+            }
+            
+            if (error_handler.USB_UART_COMM_error_flag) {
+                printf("    USB UART (this interface)\n\r");
+            }
+            
+            terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
+            terminal_textAttributesReset();
+        
+        }
+        
+        else {
+            
+            terminal_textAttributes(GREEN, BLACK, NORMAL);
+            printf("No communications error(s) detected\n\r");
+            terminal_textAttributesReset();
+            
+        }
+    
+    // Print initial state of load
+    terminal_printNewline();
+    terminal_textAttributes(YELLOW, BLACK, NORMAL);
+    printf("Load is currently enabled\n\r");
+    
+    // Print device measurements
+    terminal_printNewline();
+    terminal_textAttributes(CYAN, BLACK, NORMAL);
+    printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
+    printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
+    printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
+    printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
+    printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
+    
+    terminal_printNewline();
+    
+    terminal_textAttributes(YELLOW, BLACK, NORMAL);
+    printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+    
+    // Tell user we're up and running
+    terminal_textAttributes(BLACK, GREEN, BOLD);
+    terminal_printNewline();
+    printf("Boot Complete");
+    terminal_textAttributesReset();
+    terminal_printNewline();
+    terminal_printNewline();
+    terminal_textAttributesReset();
+    
+    
+}
+
