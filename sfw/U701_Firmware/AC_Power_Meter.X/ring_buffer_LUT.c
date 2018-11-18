@@ -945,6 +945,7 @@ void ringBufferLUT(char * line) {
             terminal_textAttributes(RED, BLACK, NORMAL);
             printf("Unsupported or mis-entered command\n\r");
             terminal_textAttributes(YELLOW, BLACK, NORMAL);
+            printf("Commands are case sensitive, backspace is supported, command history is not supported\n\r");
             printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
             terminal_textAttributesReset();
         
