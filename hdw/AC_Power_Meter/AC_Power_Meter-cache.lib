@@ -1,11 +1,11 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Connector:Barrel_Jack_Switch
+# Connector_Barrel_Jack_Switch
 #
-DEF Connector:Barrel_Jack_Switch J 0 20 Y N 1 F N
+DEF Connector_Barrel_Jack_Switch J 0 20 Y N 1 F N
 F0 "J" 0 210 50 H V C CNN
-F1 "Connector:Barrel_Jack_Switch" 0 -200 50 H V C CNN
+F1 "Connector_Barrel_Jack_Switch" 0 -200 50 H V C CNN
 F2 "" 50 -40 50 H I C CNN
 F3 "" 50 -40 50 H I C CNN
 $FPLIST
@@ -26,11 +26,11 @@ X ~ 3 300 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector:Conn_WallPlug_Earth
+# Connector_Conn_WallPlug_Earth
 #
-DEF Connector:Conn_WallPlug_Earth P 0 0 Y Y 1 F N
+DEF Connector_Conn_WallPlug_Earth P 0 0 Y Y 1 F N
 F0 "P" 0 150 50 H V C BNN
-F1 "Connector:Conn_WallPlug_Earth" -200 0 50 V V C BNN
+F1 "Connector_Conn_WallPlug_Earth" -200 0 50 V V C BNN
 F2 "" 400 0 50 H I C CNN
 F3 "" 400 0 50 H I C CNN
 DRAW
@@ -55,11 +55,11 @@ X EARTH 3 300 -300 200 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector:Conn_WallSocket_Earth
+# Connector_Conn_WallSocket_Earth
 #
-DEF Connector:Conn_WallSocket_Earth J 0 0 Y Y 1 F N
+DEF Connector_Conn_WallSocket_Earth J 0 0 Y Y 1 F N
 F0 "J" 150 275 50 H V C BNN
-F1 "Connector:Conn_WallSocket_Earth" 300 100 50 V V C BNN
+F1 "Connector_Conn_WallSocket_Earth" 300 100 50 V V C BNN
 F2 "" -300 100 50 H I C CNN
 F3 "" -300 100 50 H I C CNN
 DRAW
@@ -84,11 +84,55 @@ X EARTH 3 -200 -200 200 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector:USB_B_Mini
+# Connector_Generic_Conn_01x01
 #
-DEF Connector:USB_B_Mini J 0 40 Y Y 1 F N
+DEF Connector_Generic_Conn_01x01 J 0 40 Y N 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Connector_Generic_Conn_01x01" 0 -100 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*
+$ENDFPLIST
+DRAW
+S -50 5 0 -5 1 1 6 N
+S -50 50 50 -50 1 1 10 f
+X Pin_1 1 -200 0 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Connector_Generic_Conn_01x06
+#
+DEF Connector_Generic_Conn_01x06 J 0 40 Y N 1 F N
+F0 "J" 0 300 50 H V C CNN
+F1 "Connector_Generic_Conn_01x06" 0 -400 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*_1x??_*
+$ENDFPLIST
+DRAW
+S -50 -295 0 -305 1 1 6 N
+S -50 -195 0 -205 1 1 6 N
+S -50 -95 0 -105 1 1 6 N
+S -50 5 0 -5 1 1 6 N
+S -50 105 0 95 1 1 6 N
+S -50 205 0 195 1 1 6 N
+S -50 250 50 -350 1 1 10 f
+X Pin_1 1 -200 200 150 R 50 50 1 1 P
+X Pin_2 2 -200 100 150 R 50 50 1 1 P
+X Pin_3 3 -200 0 150 R 50 50 1 1 P
+X Pin_4 4 -200 -100 150 R 50 50 1 1 P
+X Pin_5 5 -200 -200 150 R 50 50 1 1 P
+X Pin_6 6 -200 -300 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Connector_USB_B_Mini
+#
+DEF Connector_USB_B_Mini J 0 40 Y Y 1 F N
 F0 "J" -200 450 50 H V L CNN
-F1 "Connector:USB_B_Mini" -200 350 50 H V L CNN
+F1 "Connector_USB_B_Mini" -200 350 50 H V L CNN
 F2 "" 150 -50 50 H I C CNN
 F3 "" 150 -50 50 H I C CNN
 ALIAS USB_B_Mini
@@ -120,56 +164,12 @@ X Shield 6 -100 -400 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector_Generic:Conn_01x01
+# Converter_ACDC_TMLM04112
 #
-DEF Connector_Generic:Conn_01x01 J 0 40 Y N 1 F N
-F0 "J" 0 100 50 H V C CNN
-F1 "Connector_Generic:Conn_01x01" 0 -100 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-$FPLIST
- Connector*:*
-$ENDFPLIST
-DRAW
-S -50 5 0 -5 1 1 6 N
-S -50 50 50 -50 1 1 10 f
-X Pin_1 1 -200 0 150 R 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Connector_Generic:Conn_01x06
-#
-DEF Connector_Generic:Conn_01x06 J 0 40 Y N 1 F N
-F0 "J" 0 300 50 H V C CNN
-F1 "Connector_Generic:Conn_01x06" 0 -400 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-$FPLIST
- Connector*:*_1x??_*
-$ENDFPLIST
-DRAW
-S -50 -295 0 -305 1 1 6 N
-S -50 -195 0 -205 1 1 6 N
-S -50 -95 0 -105 1 1 6 N
-S -50 5 0 -5 1 1 6 N
-S -50 105 0 95 1 1 6 N
-S -50 205 0 195 1 1 6 N
-S -50 250 50 -350 1 1 10 f
-X Pin_1 1 -200 200 150 R 50 50 1 1 P
-X Pin_2 2 -200 100 150 R 50 50 1 1 P
-X Pin_3 3 -200 0 150 R 50 50 1 1 P
-X Pin_4 4 -200 -100 150 R 50 50 1 1 P
-X Pin_5 5 -200 -200 150 R 50 50 1 1 P
-X Pin_6 6 -200 -300 150 R 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Converter_ACDC:TMLM04112
-#
-DEF Converter_ACDC:TMLM04112 PS 0 40 Y Y 1 F N
-F0 "PS" -200 200 50 H V C CNN
-F1 "Converter_ACDC:TMLM04112" 0 -200 50 H V C CNN
-F2 "Converter_ACDC:Converter_ACDC_TRACO_TMLM-04_THT" 0 -300 50 H I C CNN
+DEF Converter_ACDC_TMLM04112 PS 0 20 Y Y 1 F N
+F0 "PS" -300 250 50 H V L CNN
+F1 "Converter_ACDC_TMLM04112" 0 -250 50 H V C CNN
+F2 "Converter_ACDC:Converter_ACDC_TRACO_TMLM-04_THT" 0 -350 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS TMLM04105 TMLM04109 TMLM04112 TMLM04115 TMLM04124
 $FPLIST
@@ -178,8 +178,12 @@ $ENDFPLIST
 DRAW
 A -185 38 28 -1525 -275 0 1 0 N -210 25 -160 25
 A -135 11 29 292 1508 0 1 0 N -110 25 -160 25
-S -300 150 300 -150 0 1 10 f
+S -300 200 300 -200 0 1 10 f
 P 2 0 1 0 -210 -25 -110 -25 N
+P 2 0 1 0 0 -100 0 -150 N
+P 2 0 1 0 0 0 0 -50 N
+P 2 0 1 0 0 100 0 50 N
+P 2 0 1 0 0 200 0 150 N
 P 2 0 1 0 110 -25 210 -25 N
 P 2 0 1 0 110 25 130 25 N
 P 2 0 1 0 150 25 170 25 N
@@ -191,11 +195,11 @@ X AC(N) 6 -400 -100 100 R 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:+0.825V_REF
+# Custom_Library_+0.825V_REF
 #
-DEF Custom_Library:+0.825V_REF #PWR 0 0 Y Y 1 F P
+DEF Custom_Library_+0.825V_REF #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "Custom_Library:+0.825V_REF" 0 140 50 H V C CNN
+F1 "Custom_Library_+0.825V_REF" 0 140 50 H V C CNN
 F2 "" 0 0 50 H V C CNN
 F3 "" 0 0 50 H V C CNN
 DRAW
@@ -206,27 +210,11 @@ X +0.825V_REF 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:+3.3V
+# Custom_Library_+5V_USB
 #
-DEF Custom_Library:+3.3V #PWR 0 0 Y Y 1 F P
+DEF Custom_Library_+5V_USB #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "Custom_Library:+3.3V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H V C CNN
-F3 "" 0 0 50 H V C CNN
-ALIAS +3.3V
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +3V3 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# Custom_Library:+5V_USB
-#
-DEF Custom_Library:+5V_USB #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "Custom_Library:+5V_USB" 0 140 50 H V C CNN
+F1 "Custom_Library_+5V_USB" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -237,11 +225,11 @@ X +5V_USB 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:74LVC1G17_Power
+# Custom_Library_74LVC1G17_Power
 #
-DEF Custom_Library:74LVC1G17_Power U 0 40 Y Y 1 F N
+DEF Custom_Library_74LVC1G17_Power U 0 40 Y Y 1 F N
 F0 "U" 100 150 50 H V L CNN
-F1 "Custom_Library:74LVC1G17_Power" 100 -150 50 H V L CNN
+F1 "Custom_Library_74LVC1G17_Power" 100 -150 50 H V L CNN
 F2 "TO_SOT_Packages_SMD:SOT-353_SC-70-5" 0 0 50 H I C CNN
 F3 "" 100 150 50 H I C CNN
 F4 "296-11934-1-ND" 0 0 50 H I C CNN "Digi-Key PN"
@@ -260,11 +248,11 @@ X VCC 5 0 100 0 U 0 0 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:74LVC1G32_Power
+# Custom_Library_74LVC1G32_Power
 #
-DEF Custom_Library:74LVC1G32_Power U 0 40 Y Y 1 F N
+DEF Custom_Library_74LVC1G32_Power U 0 40 Y Y 1 F N
 F0 "U" 100 150 50 H V L CNN
-F1 "Custom_Library:74LVC1G32_Power" 100 -150 50 H V L CNN
+F1 "Custom_Library_74LVC1G32_Power" 100 -150 50 H V L CNN
 F2 "TO_SOT_Packages_SMD:SOT-353_SC-70-5" 0 0 50 H I C CNN
 F3 "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf" 0 0 50 H I C CNN
 F4 "296-9848-1-ND" 0 0 50 H I C CNN "Digi-Key PN"
@@ -284,11 +272,34 @@ X VCC 5 0 100 0 U 0 0 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:CP_Tant_Custom
+# Custom_Library_COM_Port_Settings
 #
-DEF Custom_Library:CP_Tant_Custom C 0 10 N Y 1 F N
+DEF ~Custom_Library_COM_Port_Settings DOC 0 40 Y Y 1 F N
+F0 "DOC" 0 400 60 H I C CNN
+F1 "Custom_Library_COM_Port_Settings" 0 500 60 H I C CNN
+F2 "" 0 500 60 H I C CNN
+F3 "" 0 500 60 H I C CNN
+F4 "Baud" 750 150 60 H V R CNN "Baud_Rate"
+F5 "Data Length" 750 50 60 H V R CNN "Data_Length"
+F6 "Parity" 750 -50 60 H V R CNN "Parity"
+F7 "Stop Bits" 750 -150 60 H V R CNN "Stop_Bits"
+F8 "Flow Control" 750 -250 60 H V R CNN "Flow_Control"
+DRAW
+T 0 -750 150 60 0 0 0 "Baud Rate:" Normal 0 L C
+T 0 -750 50 60 0 0 0 "Data Length:" Normal 0 L C
+T 0 -750 -250 60 0 0 0 "Flow Control:" Normal 0 L C
+T 0 -750 -50 60 0 0 0 Parity: Normal 0 L C
+T 0 -750 -150 60 0 0 0 "Stop Bits:" Normal 0 L C
+T 0 -750 250 60 0 0 0 "USB Virtual COM Port Settings:" Normal 1 L C
+S -800 350 800 -350 0 0 10 f
+ENDDRAW
+ENDDEF
+#
+# Custom_Library_CP_Tant_Custom
+#
+DEF Custom_Library_CP_Tant_Custom C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "Custom_Library:CP_Tant_Custom" 25 -100 50 H V L CNN
+F1 "Custom_Library_CP_Tant_Custom" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H I C CNN
 F3 "" 25 100 50 H I C CNN
 F4 "Foot" -150 100 50 H V R CNN "display_footprint"
@@ -310,11 +321,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:C_Custom
+# Custom_Library_C_Custom
 #
-DEF Custom_Library:C_Custom C 0 10 N Y 1 F N
+DEF Custom_Library_C_Custom C 0 10 N Y 1 F N
 F0 "C" 25 100 50 H V L CNN
-F1 "Custom_Library:C_Custom" 25 -100 50 H V L CNN
+F1 "Custom_Library_C_Custom" 25 -100 50 H V L CNN
 F2 "" 38 -150 50 H I C CNN
 F3 "" 25 100 50 H I C CNN
 F4 "Foot" -150 100 50 H V R CNN "display_footprint"
@@ -332,11 +343,11 @@ X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:FT234XD
+# Custom_Library_FT234XD
 #
-DEF Custom_Library:FT234XD U 0 40 Y Y 1 F N
+DEF Custom_Library_FT234XD U 0 40 Y Y 1 F N
 F0 "U" 550 -400 60 H V R CNN
-F1 "Custom_Library:FT234XD" 0 0 60 H V C CNN
+F1 "Custom_Library_FT234XD" 0 0 60 H V C CNN
 F2 "Housings_DFN_QFN:DFN-12-1EP_3x3mm_Pitch0.45mm" 0 400 60 H I C CNN
 F3 "http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT234XD.pdf" 0 400 60 H I C CNN
 F4 "768-1178-1-ND" 650 -300 60 H I C CNN "Digi-Key PN"
@@ -358,11 +369,11 @@ X VCCIO 9 100 450 100 D 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:GND_USB
+# Custom_Library_GND_USB
 #
-DEF Custom_Library:GND_USB #PWR 0 0 Y Y 1 F P
+DEF Custom_Library_GND_USB #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "Custom_Library:GND_USB" 0 -150 50 H V C CNN
+F1 "Custom_Library_GND_USB" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -371,11 +382,11 @@ X GND_USB 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:LED_ALT_Custom
+# Custom_Library_LED_ALT_Custom
 #
-DEF Custom_Library:LED_ALT_Custom D 0 40 Y N 1 F N
+DEF Custom_Library_LED_ALT_Custom D 0 40 Y N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "Custom_Library:LED_ALT_Custom" 0 -100 50 H V C CNN
+F1 "Custom_Library_LED_ALT_Custom" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 F4 "Foot" 0 -200 50 H V C CNN "display_footprint"
@@ -394,11 +405,11 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:LT3973-DD
+# Custom_Library_LT3973-DD
 #
-DEF Custom_Library:LT3973-DD U 0 40 Y Y 1 F N
+DEF Custom_Library_LT3973-DD U 0 40 Y Y 1 F N
 F0 "U" 450 -1100 60 H V C CNN
-F1 "Custom_Library:LT3973-DD" 0 1100 60 H V C CNN
+F1 "Custom_Library_LT3973-DD" 0 1100 60 H V C CNN
 F2 "Housings_DFN_QFN:DFN-10-1EP_3x3mm_Pitch0.5mm" 0 1500 60 H I C CNN
 F3 "http://cds.linear.com/docs/en/datasheet/3973fb.pdf" 0 1500 60 H I C CNN
 F4 "LT3973EDD#PBF-ND" 0 0 50 H I C CNN "Digi-Key PN"
@@ -418,11 +429,11 @@ X PG 9 -700 -500 150 R 50 50 1 1 C
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:LTC6240IS5
+# Custom_Library_LTC6240IS5
 #
-DEF Custom_Library:LTC6240IS5 U 0 5 Y Y 1 F N
+DEF Custom_Library_LTC6240IS5 U 0 5 Y Y 1 F N
 F0 "U" 0 200 50 H V L CNN
-F1 "Custom_Library:LTC6240IS5" 0 -200 50 H V L CNN
+F1 "Custom_Library_LTC6240IS5" 0 -200 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-23-5" 0 0 50 H I C CNN
 F3 "http://www.analog.com/media/en/technical-documentation/data-sheets/624012fe.pdf" 0 0 50 H I C CNN
 $FPLIST
@@ -438,11 +449,11 @@ X - 4 -300 -100 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:L_Custom
+# Custom_Library_L_Custom
 #
-DEF Custom_Library:L_Custom L 0 40 N N 1 F N
+DEF Custom_Library_L_Custom L 0 40 N N 1 F N
 F0 "L" -50 0 50 V V C CNN
-F1 "Custom_Library:L_Custom" 75 0 50 V V C CNN
+F1 "Custom_Library_L_Custom" 75 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 F4 "Foot" 150 0 50 V V C CNN "display_footprint"
@@ -464,11 +475,11 @@ X 2 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:MU_Logo
+# Custom_Library_MU_Logo
 #
-DEF ~Custom_Library:MU_Logo #G 0 40 Y Y 1 F N
+DEF ~Custom_Library_MU_Logo #G 0 40 Y Y 1 F N
 F0 "#G" 0 -486 60 H I C CNN
-F1 "Custom_Library:MU_Logo" 0 486 60 H I C CNN
+F1 "Custom_Library_MU_Logo" 0 486 60 H I C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -478,11 +489,11 @@ P 232 0 0 1 447 -413 451 -409 466 -396 479 -383 492 -371 503 -361 512 -352 520 -
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:Nut
+# Custom_Library_Nut
 #
-DEF Custom_Library:Nut MK 0 0 N N 1 F N
+DEF Custom_Library_Nut MK 0 0 N N 1 F N
 F0 "MK" 0 50 50 H V C CNN
-F1 "Custom_Library:Nut" 0 150 50 H V C CNN
+F1 "Custom_Library_Nut" 0 150 50 H V C CNN
 F2 "" 0 350 50 H I C CNN
 F3 "" 0 350 50 H I C CNN
 DRAW
@@ -495,11 +506,11 @@ P 2 0 1 0 60 -40 60 0 N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:PIC18(L)F67K40-I_PT
+# Custom_Library_PIC18(L)F67K40-I_PT
 #
-DEF Custom_Library:PIC18(L)F67K40-I_PT U 0 40 Y Y 1 F N
+DEF Custom_Library_PIC18(L)F67K40-I_PT U 0 40 Y Y 1 F N
 F0 "U" 1050 -1800 50 H V R CNN
-F1 "Custom_Library:PIC18(L)F67K40-I_PT" 0 50 50 H V C CNN
+F1 "Custom_Library_PIC18(L)F67K40-I_PT" 0 50 50 H V C CNN
 F2 "Housings_QFP:TQFP-64_10x10mm_Pitch0.5mm" 0 2100 50 H I C CNN
 F3 "" -650 650 50 H I C CNN
 $FPLIST
@@ -574,11 +585,11 @@ X Vss 9 -50 -1900 150 U 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:R_Custom
+# Custom_Library_R_Custom
 #
-DEF Custom_Library:R_Custom R 0 40 N N 1 F N
+DEF Custom_Library_R_Custom R 0 40 N N 1 F N
 F0 "R" -100 0 50 V V C CNN
-F1 "Custom_Library:R_Custom" 0 0 50 V V C CNN
+F1 "Custom_Library_R_Custom" 0 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 F4 "Foot" 100 0 50 V V C CNN "display_footprint"
@@ -592,11 +603,11 @@ X 2 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:SSD1306
+# Custom_Library_SSD1306
 #
-DEF Custom_Library:SSD1306 U 0 1 Y Y 1 F N
+DEF Custom_Library_SSD1306 U 0 1 Y Y 1 F N
 F0 "U" 500 -400 60 H V C CNN
-F1 "Custom_Library:SSD1306" 0 0 60 H V C CNN
+F1 "Custom_Library_SSD1306" 0 0 60 H V C CNN
 F2 "" 0 700 60 H V C CNN
 F3 "" 0 700 60 H V C CNN
 DRAW
@@ -608,11 +619,11 @@ X SDA 4 -750 50 200 R 50 50 1 1 B
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:Screw
+# Custom_Library_Screw
 #
-DEF Custom_Library:Screw MK 0 0 N N 1 F N
+DEF Custom_Library_Screw MK 0 0 N N 1 F N
 F0 "MK" 0 100 50 H V C CNN
-F1 "Custom_Library:Screw" 0 200 50 H V C CNN
+F1 "Custom_Library_Screw" 0 200 50 H V C CNN
 F2 "" 0 250 50 H I C CNN
 F3 "" 0 250 50 H I C CNN
 DRAW
@@ -636,11 +647,11 @@ P 2 0 1 0 60 0 60 10 N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:Standoff
+# Custom_Library_Standoff
 #
-DEF Custom_Library:Standoff MK 0 0 N N 1 F N
+DEF Custom_Library_Standoff MK 0 0 N N 1 F N
 F0 "MK" 0 150 50 H V C CNN
-F1 "Custom_Library:Standoff" 0 250 50 H V C CNN
+F1 "Custom_Library_Standoff" 0 250 50 H V C CNN
 F2 "" 0 350 50 H I C CNN
 F3 "" 0 350 50 H I C CNN
 DRAW
@@ -664,11 +675,11 @@ P 2 0 1 0 -30 80 30 70 N
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:TP
+# Custom_Library_TP
 #
-DEF ~Custom_Library:TP TP 0 0 N N 1 F N
+DEF ~Custom_Library_TP TP 0 0 N N 1 F N
 F0 "TP" 0 150 50 H V C CNN
-F1 "Custom_Library:TP" 0 150 50 H I C CNN
+F1 "Custom_Library_TP" 0 150 50 H I C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -678,11 +689,11 @@ X TP 1 0 0 0 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:TPD3S014DBVR
+# Custom_Library_TPD3S014DBVR
 #
-DEF Custom_Library:TPD3S014DBVR U 0 40 Y Y 1 F N
+DEF Custom_Library_TPD3S014DBVR U 0 40 Y Y 1 F N
 F0 "U" 300 -350 50 H V L CNN
-F1 "Custom_Library:TPD3S014DBVR" 0 350 50 H V C CNN
+F1 "Custom_Library_TPD3S014DBVR" 0 350 50 H V C CNN
 F2 "TO_SOT_Packages_SMD:SOT-23-6" 150 -550 50 H I L CNN
 F3 "http://www.ti.com/lit/ds/symlink/tpd3s014.pdf" 150 -750 50 H I L CNN
 F4 "296-38835-1-ND" 150 -650 50 H I L CNN "Digi-Key PN"
@@ -697,11 +708,11 @@ X D1 6 -350 -400 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Custom_Library:ZENER_Custom
+# Custom_Library_ZENER_Custom
 #
-DEF Custom_Library:ZENER_Custom Z 0 40 N N 1 F N
+DEF Custom_Library_ZENER_Custom Z 0 40 N N 1 F N
 F0 "Z" 0 200 50 V V C CNN
-F1 "Custom_Library:ZENER_Custom" -100 -100 50 V V R CNN
+F1 "Custom_Library_ZENER_Custom" -100 -100 50 V V R CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 F4 "Foot" 0 -100 50 V V R CNN "display_footprint"
@@ -719,11 +730,11 @@ X A 2 200 0 150 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:Ferrite_Bead
+# Device_Ferrite_Bead
 #
-DEF Device:Ferrite_Bead L 0 0 N Y 1 F N
-F0 "L" -150 25 50 V V C CNN
-F1 "Device:Ferrite_Bead" 150 0 50 V V C CNN
+DEF Device_Ferrite_Bead FB 0 0 N Y 1 F N
+F0 "FB" -150 25 50 V V C CNN
+F1 "Device_Ferrite_Bead" 150 0 50 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -740,11 +751,11 @@ X ~ 2 0 -150 100 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:Fuse
+# Device_Fuse
 #
-DEF Device:Fuse F 0 0 N Y 1 F N
+DEF Device_Fuse F 0 0 N Y 1 F N
 F0 "F" 80 0 50 V V C CNN
-F1 "Device:Fuse" -75 0 50 V V C CNN
+F1 "Device_Fuse" -75 0 50 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -758,11 +769,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Device:R
+# Device_R
 #
-DEF Device:R R 0 0 N Y 1 F N
+DEF Device_R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
-F1 "Device:R" 0 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
 F2 "" -70 0 50 V I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -775,11 +786,11 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Diode:1N4148WS
+# Diode_1N4148WS
 #
-DEF Diode:1N4148WS D 0 40 N N 1 F N
+DEF Diode_1N4148WS D 0 40 N N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "Diode:1N4148WS" 0 -100 50 H V C CNN
+F1 "Diode_1N4148WS" 0 -100 50 H V C CNN
 F2 "Diode_SMD:D_SOD-323" 0 -175 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS 1N4448WS
@@ -795,11 +806,11 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Diode:BAV21
+# Diode_BAV21
 #
-DEF Diode:BAV21 D 0 40 N N 1 F N
+DEF Diode_BAV21 D 0 40 N N 1 F N
 F0 "D" 0 100 50 H V C CNN
-F1 "Diode:BAV21" 0 -100 50 H V C CNN
+F1 "Diode_BAV21" 0 -100 50 H V C CNN
 F2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" 0 -175 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 ALIAS 1N4448 1N4149 1N4151 1N914 BA243 BA244 BA282 BA283 BAV17 BAV18 BAV19 BAV20 BAV21 BAW75 BAW76 BAY93
@@ -815,11 +826,11 @@ X A 2 150 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Isolator:ISO7321C
+# Isolator_ISO7321C
 #
-DEF Isolator:ISO7321C U 0 40 Y Y 1 F N
+DEF Isolator_ISO7321C U 0 40 Y Y 1 F N
 F0 "U" 0 425 50 H V C CNN
-F1 "Isolator:ISO7321C" 0 350 50 H V C CNN
+F1 "Isolator_ISO7321C" 0 350 50 H V C CNN
 F2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" 0 -350 50 H I C CIN
 F3 "" 0 0 50 H I C CNN
 ALIAS ISO7321FC
@@ -853,11 +864,11 @@ X VCC2 8 400 200 100 L 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Isolator:LTV-356T
+# Isolator_LTV-356T
 #
-DEF Isolator:LTV-356T U 0 40 Y Y 1 F N
+DEF Isolator_LTV-356T U 0 40 Y Y 1 F N
 F0 "U" -210 190 50 H V L CNN
-F1 "Isolator:LTV-356T" 0 200 50 H V L CNN
+F1 "Isolator_LTV-356T" 0 200 50 H V L CNN
 F2 "Package_SO:SO-4_4.4x3.6mm_P2.54mm" -200 -200 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
 ALIAS LTV-357T LTV-358T
@@ -885,11 +896,11 @@ X ~ 4 300 100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Mechanical:Heatsink
+# Mechanical_Heatsink
 #
-DEF Mechanical:Heatsink HS 0 40 Y Y 1 F N
+DEF Mechanical_Heatsink HS 0 40 Y Y 1 F N
 F0 "HS" 0 200 50 H V C CNN
-F1 "Mechanical:Heatsink" 0 -50 50 H V C CNN
+F1 "Mechanical_Heatsink" 0 -50 50 H V C CNN
 F2 "" 12 0 50 H I C CNN
 F3 "" 12 0 50 H I C CNN
 DRAW
@@ -898,13 +909,17 @@ P 13 0 1 10 -13 50 -13 150 12 150 12 50 37 50 37 150 62 150 62 50 87 50 87 150 1
 ENDDRAW
 ENDDEF
 #
-# Mechanical:Housing
+# Mechanical_Housing
 #
-DEF Mechanical:Housing MK 0 40 Y Y 1 F N
-F0 "MK" 150 0 50 H V L CNN
-F1 "Mechanical:Housing" 150 -75 50 H V L CNN
+DEF Mechanical_Housing N 0 40 Y Y 1 F N
+F0 "N" 150 0 50 H V L CNN
+F1 "Mechanical_Housing" 150 -75 50 H V L CNN
 F2 "" 50 50 50 H I C CNN
 F3 "" 50 50 50 H I C CNN
+$FPLIST
+ Enclosure*
+ Housing*
+$ENDFPLIST
 DRAW
 C -175 -125 25 0 1 0 F
 C -75 -125 25 0 1 0 F
@@ -936,11 +951,11 @@ P 7 0 1 0 -225 0 -225 -175 -25 -175 125 -25 125 150 -75 150 -225 0 f
 ENDDRAW
 ENDDEF
 #
-# Mechanical:MountingHole
+# Mechanical_MountingHole
 #
-DEF Mechanical:MountingHole MH 0 40 Y Y 1 F N
-F0 "MH" 0 200 50 H V C CNN
-F1 "Mechanical:MountingHole" 0 125 50 H V C CNN
+DEF Mechanical_MountingHole H 0 40 Y Y 1 F N
+F0 "H" 0 200 50 H V C CNN
+F1 "Mechanical_MountingHole" 0 125 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -951,11 +966,11 @@ C 0 0 50 0 1 50 N
 ENDDRAW
 ENDDEF
 #
-# Oscillator:ASV-xxxMHz
+# Oscillator_ASV-xxxMHz
 #
-DEF Oscillator:ASV-xxxMHz X 0 10 Y Y 1 F N
+DEF Oscillator_ASV-xxxMHz X 0 10 Y Y 1 F N
 F0 "X" -200 250 50 H V L CNN
-F1 "Oscillator:ASV-xxxMHz" 50 -250 50 H V L CNN
+F1 "Oscillator_ASV-xxxMHz" 50 -250 50 H V L CNN
 F2 "Oscillator:Oscillator_SMD_Abracon_ASV-4Pin_7.0x5.1mm" 700 -350 50 H I C CNN
 F3 "" -100 0 50 H I C CNN
 $FPLIST
@@ -971,11 +986,11 @@ X Vdd 4 0 300 100 D 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Relay_SolidState:FOD4218
+# Relay_SolidState_FOD4218
 #
-DEF Relay_SolidState:FOD4218 U 0 40 Y Y 1 F N
+DEF Relay_SolidState_FOD4218 U 0 40 Y Y 1 F N
 F0 "U" -200 200 50 H V L CNN
-F1 "Relay_SolidState:FOD4218" 0 200 50 H V L CNN
+F1 "Relay_SolidState_FOD4218" 0 200 50 H V L CNN
 F2 "Package_DIP:DIP-6_W7.62mm" -200 -200 50 H I L CIN
 F3 "" -25 0 50 H I L CNN
 ALIAS FOD4208 FOD4216 FOD4218
@@ -1007,11 +1022,11 @@ X ~ 6 300 100 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Sensor_Current:ACS722xLCTR-05AB
+# Sensor_Current_ACS722xLCTR-05AB
 #
-DEF Sensor_Current:ACS722xLCTR-05AB U 0 20 Y Y 1 F N
+DEF Sensor_Current_ACS722xLCTR-05AB U 0 20 Y Y 1 F N
 F0 "U" 100 450 50 H V L CNN
-F1 "Sensor_Current:ACS722xLCTR-05AB" 100 350 50 H V L CNN
+F1 "Sensor_Current_ACS722xLCTR-05AB" 100 350 50 H V L CNN
 F2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" 100 -350 50 H I L CIN
 F3 "" 0 0 50 H I C CNN
 ALIAS ACS722xLCTR-10AB ACS722xLCTR-10AU ACS722xLCTR-20AB ACS722xLCTR-20AU ACS722xLCTR-40AB ACS722xLCTR-40AU ACS723xLCTR-05AB ACS723xLCTR-10AB ACS723xLCTR-10AU ACS723xLCTR-20AB ACS723xLCTR-20AU ACS723xLCTR-40AB ACS723xLCTR-40AU
@@ -1031,11 +1046,11 @@ X VCC 8 0 400 100 D 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #
-# Switch:SW_Push
+# Switch_SW_Push
 #
-DEF Switch:SW_Push SW 0 40 N N 1 F N
+DEF Switch_SW_Push SW 0 40 N N 1 F N
 F0 "SW" 50 100 50 H V L CNN
-F1 "Switch:SW_Push" 0 -60 50 H V C CNN
+F1 "Switch_SW_Push" 0 -60 50 H V C CNN
 F2 "" 0 200 50 H I C CNN
 F3 "" 0 200 50 H I C CNN
 DRAW
@@ -1048,11 +1063,11 @@ X 2 2 200 0 100 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
-# Transistor_FET:2N7002
+# Transistor_FET_2N7002
 #
-DEF Transistor_FET:2N7002 Q 0 0 Y N 1 F N
+DEF Transistor_FET_2N7002 Q 0 0 Y N 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "Transistor_FET:2N7002" 200 0 50 H V L CNN
+F1 "Transistor_FET_2N7002" 200 0 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-23" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
 ALIAS 2N7002 MMBF170
@@ -1083,11 +1098,11 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Transistor_FET:BSS83P
+# Transistor_FET_BSS83P
 #
-DEF Transistor_FET:BSS83P Q 0 0 Y N 1 F N
+DEF Transistor_FET_BSS83P Q 0 0 Y N 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "Transistor_FET:BSS83P" 200 0 50 H V L CNN
+F1 "Transistor_FET_BSS83P" 200 0 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-23" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
 ALIAS VP0610T BSS84 NTR2101P BSS83P Si2319CDS IRLML6402
@@ -1119,11 +1134,11 @@ X D 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Triac_Thyristor:BT139-600
+# Triac_Thyristor_BT139-600
 #
-DEF Triac_Thyristor:BT139-600 Q 0 0 Y Y 1 F N
+DEF Triac_Thyristor_BT139-600 Q 0 0 Y Y 1 F N
 F0 "Q" 200 75 50 H V L CNN
-F1 "Triac_Thyristor:BT139-600" 200 0 50 H V L CNN
+F1 "Triac_Thyristor_BT139-600" 200 0 50 H V L CNN
 F2 "Package_TO_SOT_THT:TO-220-3_Vertical" 200 -75 50 H I L CIN
 F3 "" 0 0 50 H I L CNN
 ALIAS TIC206 BT138-600 BT138-800 TIC216 BT136-500 BT136-600 BT136-800 BT139-600
@@ -1142,11 +1157,11 @@ X G 3 -150 -100 100 R 50 25 1 1 I
 ENDDRAW
 ENDDEF
 #
-# power:+12V
+# power_+12V
 #
-DEF power:+12V #PWR 0 0 Y Y 1 F P
+DEF power_+12V #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power:+12V" 0 140 50 H V C CNN
+F1 "power_+12V" 0 140 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1157,11 +1172,27 @@ X +12V 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:+3.3VADC
+# power_+3.3V
 #
-DEF power:+3.3VADC #PWR 0 0 Y Y 1 F P
+DEF power_+3.3V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+3.3V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS +3.3V
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +3V3 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_+3.3VADC
+#
+DEF power_+3.3VADC #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 150 -50 50 H I C CNN
-F1 "power:+3.3VADC" 0 100 50 H V C CNN
+F1 "power_+3.3VADC" 0 100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1171,11 +1202,11 @@ X +3.3VADC 1 0 0 0 U 50 50 0 0 W N
 ENDDRAW
 ENDDEF
 #
-# power:Earth_Protective
+# power_Earth_Protective
 #
-DEF ~power:Earth_Protective #PWR 0 0 Y Y 1 F P
+DEF ~power_Earth_Protective #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 250 -250 50 H I C CNN
-F1 "power:Earth_Protective" 450 -150 50 H I C CNN
+F1 "power_Earth_Protective" 450 -150 50 H I C CNN
 F2 "" 0 -100 50 H I C CNN
 F3 "" 0 -100 50 H I C CNN
 DRAW
@@ -1188,11 +1219,11 @@ X Earth_Protective 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:GND
+# power_GND
 #
-DEF power:GND #PWR 0 0 Y Y 1 F P
+DEF power_GND #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power:GND" 0 -150 50 H V C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1201,11 +1232,11 @@ X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:GNDA
+# power_GNDA
 #
-DEF power:GNDA #PWR 0 0 Y Y 1 F P
+DEF power_GNDA #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power:GNDA" 0 -150 50 H V C CNN
+F1 "power_GNDA" 0 -150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1214,11 +1245,11 @@ X GNDA 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:GNDPWR
+# power_GNDPWR
 #
-DEF power:GNDPWR #PWR 0 0 Y Y 1 F P
+DEF power_GNDPWR #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -200 50 H I C CNN
-F1 "power:GNDPWR" 0 -130 50 H V C CNN
+F1 "power_GNDPWR" 0 -130 50 H V C CNN
 F2 "" 0 -50 50 H I C CNN
 F3 "" 0 -50 50 H I C CNN
 DRAW
@@ -1233,11 +1264,11 @@ X GNDPWR 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:HT
+# power_HT
 #
-DEF power:HT #PWR 0 0 Y Y 1 F P
+DEF power_HT #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 120 50 H I C CNN
-F1 "power:HT" 0 90 50 H V C CNN
+F1 "power_HT" 0 90 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1247,11 +1278,11 @@ X HT 1 0 0 0 U 50 50 0 0 W N
 ENDDRAW
 ENDDEF
 #
-# power:NEUT
+# power_NEUT
 #
-DEF power:NEUT #PWR 0 0 Y Y 1 F P
+DEF power_NEUT #PWR 0 0 Y Y 1 F P
 F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power:NEUT" 0 150 50 H V C CNN
+F1 "power_NEUT" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
@@ -1261,11 +1292,11 @@ X NEUT 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# power:PWR_FLAG
+# power_PWR_FLAG
 #
-DEF power:PWR_FLAG #FLG 0 0 N N 1 F P
+DEF power_PWR_FLAG #FLG 0 0 N N 1 F P
 F0 "#FLG" 0 75 50 H I C CNN
-F1 "power:PWR_FLAG" 0 150 50 H V C CNN
+F1 "power_PWR_FLAG" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW

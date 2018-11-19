@@ -74,6 +74,9 @@ void  INTERRUPT_Initialize (void)
     // RCI - high priority
     IPR3bits.RC2IP = 1;
 
+    // TXI - high priority
+    IPR3bits.TX2IP = 1;
+
     // TMRI - high priority
     IPR5bits.TMR5IP = 1;
 
@@ -83,9 +86,6 @@ void  INTERRUPT_Initialize (void)
 
     // TMRI - low priority
     IPR5bits.TMR6IP = 0;    
-
-    // TXI - low priority
-    IPR3bits.TX2IP = 0;    
 
     // TMRI - low priority
     IPR5bits.TMR7IP = 0;    
@@ -122,6 +122,10 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     {
         EUSART2_RxDefaultInterruptHandler();
     }
+    else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+    {
+        EUSART2_TxDefaultInterruptHandler();
+    }
     else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
     {
         TMR5_ISR();
@@ -142,10 +146,6 @@ void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
     if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
     {
         TMR6_ISR();
-    }
-    else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
-    {
-        EUSART2_TxDefaultInterruptHandler();
     }
     else if(PIE5bits.TMR7IE == 1 && PIR5bits.TMR7IF == 1)
     {

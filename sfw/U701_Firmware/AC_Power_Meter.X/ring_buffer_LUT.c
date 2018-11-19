@@ -367,7 +367,7 @@ void ringBufferLUT(char * line) {
         
         if (Total_Energy >= 1000.0) {
          
-            printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
+            printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
             
         }
         
@@ -755,7 +755,7 @@ void ringBufferLUT(char * line) {
         }
 
         // Print the cause of the reset
-        printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+        printf("Cause of last reset: %s\n\r", getCauseOfResetString(reset_cause));
         terminal_printNewline();
 
         // print device ID from flash
@@ -908,9 +908,6 @@ void ringBufferLUT(char * line) {
             double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
             float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
             printf("Dimming has been set to %.2f percent\n\r", percentage_print);
-            printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
-            printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
-            
             
             terminal_textAttributesReset();
    
@@ -942,7 +939,7 @@ void ringBufferLUT(char * line) {
         
         if (Total_Energy >= 1000.0) {
          
-            printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
+            printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
             
         }
         
@@ -972,15 +969,16 @@ void ringBufferLUT(char * line) {
     }
     
     // enable live updates
-    else if ((0 == strcmp(line, "Live Updates"))) {
+    else if ((0 == strcmp(line, "Live Measurement Updates"))) {
      
         if (load_enable) {
             
+            TMR2_StopTimer();
             USB_live_update_flag = true;
             terminal_textAttributes(GREEN, BLACK, NORMAL);
             printf("Enabling live measurement updates\n\r");
             terminal_textAttributesReset();
-            __delay_ms(750);
+            __delay_ms(1000);
             OLED_Frame = Live_Update;
             OLED_updateCallback();
 
@@ -1060,7 +1058,8 @@ void ringBufferLUT(char * line) {
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r"
-                "   Measurement SummaryL Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
+                "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r"
+                "   Live Measurement Updates: Streams live measurement updates to terminal\n\r\n\r"
                 );
         
         terminal_textAttributesReset();
@@ -1130,7 +1129,8 @@ void ringBufferLUT(char * line) {
                 "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
                 "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
                 "   Max Power?: Prints the maximum recorded output power\n\r"
-                "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
+                "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r"
+                "   Live Measurement Updates: Streams live measurement updates to terminal\n\r\n\r"
                 
                 "Output Control Commands: Control the output state and dimming features\n\r"
                 "   Enable Dimming: Enable TRIAC output dimming\n\r"
@@ -1228,6 +1228,9 @@ void ringBufferLUT(char * line) {
         else if (USB_live_update_flag) {
          
             USB_live_update_flag = false;
+            terminal_textAttributes(RED, BLACK, NORMAL);
+            printf("Live measurement updates disabled\n\r");
+            terminal_textAttributesReset();
             
         }
         

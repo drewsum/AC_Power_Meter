@@ -11,8 +11,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E18301 0 1 2 3 4 5 6 7 8 9 10 .. ]
 [n E18301 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Boot_Frame_4 Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage Idle Live_Update  ]
 "42 ring_buffer_LUT.c
-[c E17802 0 4 34 60 61 62 63 .. ]
-[n E17802 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17806 0 4 34 60 61 62 63 .. ]
+[n E17806 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "45 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "46 mcc_generated_files/../double_to_EEPROM.h
@@ -132,6 +132,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _max_FVR_ADC_Result `Vd ~T0 @X0 0 e ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _round `(d ~T0 @X0 0 ef1`d ]
+"525 mcc_generated_files/tmr2.h
+[v _TMR2_StopTimer `(v ~T0 @X0 0 ef ]
 "62 ring_buffer_LUT.c
 [v _USB_live_update_flag `Vb ~T0 @X0 0 e ]
 "56 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
@@ -16466,6 +16468,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 74: typedef uint16_t adc_result_t;
 [; ;adcc.h: 91: typedef enum
 [; ;adcc.h: 92: {
@@ -16507,8 +16511,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16517,12 +16525,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16798,7 +16800,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 40: extern volatile bit load_enable;
 [; ;ring_buffer_LUT.c: 41: extern volatile double Total_Energy;
 "42 ring_buffer_LUT.c
-[v _current_adc_channel `E17802 ~T0 @X0 1 e ]
+[v _current_adc_channel `E17806 ~T0 @X0 1 e ]
 [; ;ring_buffer_LUT.c: 42: adcc_channel_t current_adc_channel;
 [; ;ring_buffer_LUT.c: 43: extern reset_t reset_cause;
 [; ;ring_buffer_LUT.c: 46: extern volatile double max_Irms;
@@ -17431,7 +17433,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "368
 [e $ ! >= _Total_Energy .1000.0 2078  ]
 {
-[; ;ring_buffer_LUT.c: 370: printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
+[; ;ring_buffer_LUT.c: 370: printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
 "370
 [e ( _printf , (. :s 61C _Total_Energy ]
 "372
@@ -18180,7 +18182,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 2134 ]
 [; ;ring_buffer_LUT.c: 755: }
-[; ;ring_buffer_LUT.c: 758: printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
+[; ;ring_buffer_LUT.c: 758: printf("Cause of last reset: %s\n\r", getCauseOfResetString(reset_cause));
 "758
 [e ( _printf , (. :s 114C -> ( _getCauseOfResetString (1 _reset_cause `*CTuc ]
 [; ;ring_buffer_LUT.c: 759: terminal_printNewline();
@@ -18508,353 +18510,352 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 910: printf("Dimming has been set to %.2f percent\n\r", percentage_print);
 "910
 [e ( _printf , (. :s 147C -> _percentage_print `d ]
-[; ;ring_buffer_LUT.c: 911: printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
-"911
-[e ( _printf , , (. :s 148C _TRIAC_Firing_Angle _angle_degrees ]
-[; ;ring_buffer_LUT.c: 912: printf("This corresponds to a 16 bit timer pre-load value of 0x%X (%u LSBs) \n\r", dimming_period, dimming_period);
+[; ;ring_buffer_LUT.c: 912: terminal_textAttributesReset();
 "912
-[e ( _printf , , (. :s 149C _dimming_period _dimming_period ]
-[; ;ring_buffer_LUT.c: 915: terminal_textAttributesReset();
-"915
 [e ( _terminal_textAttributesReset ..  ]
-"917
+"914
 }
-[; ;ring_buffer_LUT.c: 917: }
+[; ;ring_buffer_LUT.c: 914: }
 [e $U 2154  ]
-"919
+"916
 [e :U 2153 ]
-[; ;ring_buffer_LUT.c: 919: else if (load_enable == 1){
+[; ;ring_buffer_LUT.c: 916: else if (load_enable == 1){
 [e $ ! == -> _load_enable `i -> 1 `i 2155  ]
 {
-[; ;ring_buffer_LUT.c: 921: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"921
+[; ;ring_buffer_LUT.c: 918: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"918
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 922: printf("Load is currently enabled, but dimming is disabled\n\r");
+[; ;ring_buffer_LUT.c: 919: printf("Load is currently enabled, but dimming is disabled\n\r");
+"919
+[e ( _printf :s 148C ]
+[; ;ring_buffer_LUT.c: 920: terminal_textAttributesReset();
+"920
+[e ( _terminal_textAttributesReset ..  ]
 "922
-[e ( _printf :s 150C ]
-[; ;ring_buffer_LUT.c: 923: terminal_textAttributesReset();
-"923
-[e ( _terminal_textAttributesReset ..  ]
-"925
 }
-[; ;ring_buffer_LUT.c: 925: }
+[; ;ring_buffer_LUT.c: 922: }
 [e $U 2156  ]
-"927
+"924
 [e :U 2155 ]
-[; ;ring_buffer_LUT.c: 927: else {
+[; ;ring_buffer_LUT.c: 924: else {
 {
-[; ;ring_buffer_LUT.c: 929: terminal_textAttributes(RED, BLACK, NORMAL);
-"929
+[; ;ring_buffer_LUT.c: 926: terminal_textAttributes(RED, BLACK, NORMAL);
+"926
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 930: printf("Load and dimming are currently disabled\n\r");
-"930
-[e ( _printf :s 151C ]
-[; ;ring_buffer_LUT.c: 931: terminal_textAttributesReset();
-"931
+[; ;ring_buffer_LUT.c: 927: printf("Load and dimming are currently disabled\n\r");
+"927
+[e ( _printf :s 149C ]
+[; ;ring_buffer_LUT.c: 928: terminal_textAttributesReset();
+"928
 [e ( _terminal_textAttributesReset ..  ]
-"933
+"930
 }
 [e :U 2156 ]
 [e :U 2154 ]
-[; ;ring_buffer_LUT.c: 933: }
-[; ;ring_buffer_LUT.c: 935: terminal_printNewline();
-"935
+[; ;ring_buffer_LUT.c: 930: }
+[; ;ring_buffer_LUT.c: 932: terminal_printNewline();
+"932
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 937: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"937
+[; ;ring_buffer_LUT.c: 934: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"934
 [e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 938: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+[; ;ring_buffer_LUT.c: 935: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+"935
+[e ( _printf , (. :s 150C _load_on_time ]
+[; ;ring_buffer_LUT.c: 936: printf("RMS Output Current is %.3f Arms\n\r", Irms);
+"936
+[e ( _printf , (. :s 151C _Irms ]
+[; ;ring_buffer_LUT.c: 937: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+"937
+[e ( _printf , (. :s 152C _Vrms ]
+[; ;ring_buffer_LUT.c: 938: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
 "938
-[e ( _printf , (. :s 152C _load_on_time ]
-[; ;ring_buffer_LUT.c: 939: printf("RMS Output Current is %.3f Arms\n\r", Irms);
-"939
-[e ( _printf , (. :s 153C _Irms ]
-[; ;ring_buffer_LUT.c: 940: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+[e ( _printf , (. :s 153C _Avg_Power ]
+[; ;ring_buffer_LUT.c: 940: if (Total_Energy >= 1000.0) {
 "940
-[e ( _printf , (. :s 154C _Vrms ]
-[; ;ring_buffer_LUT.c: 941: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
-"941
-[e ( _printf , (. :s 155C _Avg_Power ]
-[; ;ring_buffer_LUT.c: 943: if (Total_Energy >= 1000.0) {
-"943
 [e $ ! >= _Total_Energy .1000.0 2157  ]
 {
-[; ;ring_buffer_LUT.c: 945: printf("Measured output energy since last measurement reset is %e Watt Hours\n\r", Total_Energy);
-"945
-[e ( _printf , (. :s 156C _Total_Energy ]
-"947
+[; ;ring_buffer_LUT.c: 942: printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
+"942
+[e ( _printf , (. :s 154C _Total_Energy ]
+"944
 }
-[; ;ring_buffer_LUT.c: 947: }
+[; ;ring_buffer_LUT.c: 944: }
 [e $U 2158  ]
-"949
+"946
 [e :U 2157 ]
-[; ;ring_buffer_LUT.c: 949: else if (Total_Energy >= 100.0) {
+[; ;ring_buffer_LUT.c: 946: else if (Total_Energy >= 100.0) {
 [e $ ! >= _Total_Energy .100.0 2159  ]
 {
-[; ;ring_buffer_LUT.c: 951: printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
-"951
-[e ( _printf , (. :s 157C _Total_Energy ]
-"953
+[; ;ring_buffer_LUT.c: 948: printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+"948
+[e ( _printf , (. :s 155C _Total_Energy ]
+"950
 }
-[; ;ring_buffer_LUT.c: 953: }
+[; ;ring_buffer_LUT.c: 950: }
 [e $U 2160  ]
-"955
+"952
 [e :U 2159 ]
-[; ;ring_buffer_LUT.c: 955: else {
+[; ;ring_buffer_LUT.c: 952: else {
 {
-[; ;ring_buffer_LUT.c: 957: printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
-"957
-[e ( _printf , (. :s 158C _Total_Energy ]
-"959
+[; ;ring_buffer_LUT.c: 954: printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+"954
+[e ( _printf , (. :s 156C _Total_Energy ]
+"956
 }
 [e :U 2160 ]
 [e :U 2158 ]
-[; ;ring_buffer_LUT.c: 959: }
-[; ;ring_buffer_LUT.c: 961: terminal_printNewline();
-"961
+[; ;ring_buffer_LUT.c: 956: }
+[; ;ring_buffer_LUT.c: 958: terminal_printNewline();
+"958
 [e ( _terminal_printNewline ..  ]
-"963
+"960
 [v _max_current_print `d ~T0 @X0 1 a ]
-[; ;ring_buffer_LUT.c: 963: double max_current_print = readDoubleFromEEPROM(max_Irms_address);
+[; ;ring_buffer_LUT.c: 960: double max_current_print = readDoubleFromEEPROM(max_Irms_address);
 [e = _max_current_print ( _readDoubleFromEEPROM (1 _max_Irms_address ]
-[; ;ring_buffer_LUT.c: 964: printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_current_print);
-"964
-[e ( _printf , (. :s 159C _max_current_print ]
-"965
+[; ;ring_buffer_LUT.c: 961: printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_current_print);
+"961
+[e ( _printf , (. :s 157C _max_current_print ]
+"962
 [v _max_Power_print `d ~T0 @X0 1 a ]
-[; ;ring_buffer_LUT.c: 965: double max_Power_print = readDoubleFromEEPROM(max_Power_address);
+[; ;ring_buffer_LUT.c: 962: double max_Power_print = readDoubleFromEEPROM(max_Power_address);
 [e = _max_Power_print ( _readDoubleFromEEPROM (1 _max_Power_address ]
-[; ;ring_buffer_LUT.c: 966: printf("Maximum recorded output power is %.3f Watts\n\r", max_Power_print);
-"966
-[e ( _printf , (. :s 160C _max_Power_print ]
-[; ;ring_buffer_LUT.c: 968: terminal_textAttributesReset();
-"968
+[; ;ring_buffer_LUT.c: 963: printf("Maximum recorded output power is %.3f Watts\n\r", max_Power_print);
+"963
+[e ( _printf , (. :s 158C _max_Power_print ]
+[; ;ring_buffer_LUT.c: 965: terminal_textAttributesReset();
+"965
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 970: terminal_printNewline();
-"970
+[; ;ring_buffer_LUT.c: 967: terminal_printNewline();
+"967
 [e ( _terminal_printNewline ..  ]
-"972
+"969
 }
-[; ;ring_buffer_LUT.c: 972: }
+[; ;ring_buffer_LUT.c: 969: }
 [e $U 2161  ]
-"975
+"972
 [e :U 2152 ]
-[; ;ring_buffer_LUT.c: 975: else if ((0 == strcmp(line, "Live Updates"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 161C 2162  ]
+[; ;ring_buffer_LUT.c: 972: else if ((0 == strcmp(line, "Live Measurement Updates"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 159C 2162  ]
 {
-[; ;ring_buffer_LUT.c: 977: if (load_enable) {
-"977
+[; ;ring_buffer_LUT.c: 974: if (load_enable) {
+"974
 [e $ ! _load_enable 2163  ]
 {
-[; ;ring_buffer_LUT.c: 979: USB_live_update_flag = 1;
-"979
+[; ;ring_buffer_LUT.c: 976: TMR2_StopTimer();
+"976
+[e ( _TMR2_StopTimer ..  ]
+[; ;ring_buffer_LUT.c: 977: USB_live_update_flag = 1;
+"977
 [e = _USB_live_update_flag -> -> 1 `i `b ]
-[; ;ring_buffer_LUT.c: 980: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"980
+[; ;ring_buffer_LUT.c: 978: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"978
 [e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 981: printf("Enabling live measurement updates\n\r");
+[; ;ring_buffer_LUT.c: 979: printf("Enabling live measurement updates\n\r");
+"979
+[e ( _printf :s 160C ]
+[; ;ring_buffer_LUT.c: 980: terminal_textAttributesReset();
+"980
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 981: _delay((unsigned long)((1000)*(64000000/4000.0)));
 "981
-[e ( _printf :s 162C ]
-[; ;ring_buffer_LUT.c: 982: terminal_textAttributesReset();
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;ring_buffer_LUT.c: 982: OLED_Frame = Live_Update;
 "982
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 983: _delay((unsigned long)((250)*(64000000/4000.0)));
-"983
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;ring_buffer_LUT.c: 984: OLED_Frame = Live_Update;
-"984
 [e = _OLED_Frame . `E18301 10 ]
-[; ;ring_buffer_LUT.c: 985: OLED_updateCallback();
-"985
+[; ;ring_buffer_LUT.c: 983: OLED_updateCallback();
+"983
 [e ( _OLED_updateCallback ..  ]
-"987
+"985
 }
-[; ;ring_buffer_LUT.c: 987: }
+[; ;ring_buffer_LUT.c: 985: }
 [e $U 2164  ]
-"989
+"987
 [e :U 2163 ]
-[; ;ring_buffer_LUT.c: 989: else {
+[; ;ring_buffer_LUT.c: 987: else {
 {
-[; ;ring_buffer_LUT.c: 991: terminal_textAttributes(RED, BLACK, NORMAL);
-"991
+[; ;ring_buffer_LUT.c: 989: terminal_textAttributes(RED, BLACK, NORMAL);
+"989
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 992: printf("Load is not currently enabled\n\r");
-"992
-[e ( _printf :s 163C ]
-[; ;ring_buffer_LUT.c: 993: terminal_textAttributesReset();
-"993
+[; ;ring_buffer_LUT.c: 990: printf("Load is not currently enabled\n\r");
+"990
+[e ( _printf :s 161C ]
+[; ;ring_buffer_LUT.c: 991: terminal_textAttributesReset();
+"991
 [e ( _terminal_textAttributesReset ..  ]
-"995
+"993
 }
 [e :U 2164 ]
-"997
+"995
 }
+[; ;ring_buffer_LUT.c: 993: }
 [; ;ring_buffer_LUT.c: 995: }
-[; ;ring_buffer_LUT.c: 997: }
 [e $U 2165  ]
-"1001
+"999
 [e :U 2162 ]
-[; ;ring_buffer_LUT.c: 1001: else if((0 == strcmp(line, "Help Device Control Commands"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 164C 2166  ]
+[; ;ring_buffer_LUT.c: 999: else if((0 == strcmp(line, "Help Device Control Commands"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 162C 2166  ]
 {
-[; ;ring_buffer_LUT.c: 1003: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1003
+[; ;ring_buffer_LUT.c: 1001: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1001
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1004: printf("List of supported Device Control Commands:\n\r"
-[; ;ring_buffer_LUT.c: 1006: "   Reset: Clears the terminal and resets the microcontroller\n\r"
-[; ;ring_buffer_LUT.c: 1007: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
-[; ;ring_buffer_LUT.c: 1008: "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
-[; ;ring_buffer_LUT.c: 1009: "   *IDN?: Returns device identification string\n\r"
-[; ;ring_buffer_LUT.c: 1010: "   Device On Time?: Returns device on time since last device reset\n\r"
-[; ;ring_buffer_LUT.c: 1011: "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1012: "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1013: "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1014: "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
-[; ;ring_buffer_LUT.c: 1015: "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
-[; ;ring_buffer_LUT.c: 1016: "   Comm Errors?: Returns if a communications error has occurred\n\r"
-[; ;ring_buffer_LUT.c: 1017: "   Clear Comm Errors: Clears the communications error\n\r"
-[; ;ring_buffer_LUT.c: 1018: "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
-[; ;ring_buffer_LUT.c: 1019: "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1020: "   Help: This message, lists supported commands\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1021: );
+[; ;ring_buffer_LUT.c: 1002: printf("List of supported Device Control Commands:\n\r"
+[; ;ring_buffer_LUT.c: 1004: "   Reset: Clears the terminal and resets the microcontroller\n\r"
+[; ;ring_buffer_LUT.c: 1005: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
+[; ;ring_buffer_LUT.c: 1006: "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
+[; ;ring_buffer_LUT.c: 1007: "   *IDN?: Returns device identification string\n\r"
+[; ;ring_buffer_LUT.c: 1008: "   Device On Time?: Returns device on time since last device reset\n\r"
+[; ;ring_buffer_LUT.c: 1009: "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1010: "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1011: "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1012: "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+[; ;ring_buffer_LUT.c: 1013: "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+[; ;ring_buffer_LUT.c: 1014: "   Comm Errors?: Returns if a communications error has occurred\n\r"
+[; ;ring_buffer_LUT.c: 1015: "   Clear Comm Errors: Clears the communications error\n\r"
+[; ;ring_buffer_LUT.c: 1016: "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
+[; ;ring_buffer_LUT.c: 1017: "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1018: "   Help: This message, lists supported commands\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1019: );
+"1019
+[e ( _printf :s 163C ]
+[; ;ring_buffer_LUT.c: 1021: terminal_textAttributesReset();
 "1021
-[e ( _printf :s 165C ]
-[; ;ring_buffer_LUT.c: 1023: terminal_textAttributesReset();
+[e ( _terminal_textAttributesReset ..  ]
 "1023
-[e ( _terminal_textAttributesReset ..  ]
-"1025
 }
-[; ;ring_buffer_LUT.c: 1025: }
+[; ;ring_buffer_LUT.c: 1023: }
 [e $U 2167  ]
-"1028
+"1026
 [e :U 2166 ]
-[; ;ring_buffer_LUT.c: 1028: else if((0 == strcmp(line, "Help Device Measurement Commands"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 166C 2168  ]
+[; ;ring_buffer_LUT.c: 1026: else if((0 == strcmp(line, "Help Device Measurement Commands"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 164C 2168  ]
 {
-[; ;ring_buffer_LUT.c: 1030: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1030
+[; ;ring_buffer_LUT.c: 1028: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1028
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1031: printf("List of supported Device Measurement Commands:\n\r"
-[; ;ring_buffer_LUT.c: 1033: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 1034: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 1035: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
-[; ;ring_buffer_LUT.c: 1036: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-[; ;ring_buffer_LUT.c: 1037: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
-[; ;ring_buffer_LUT.c: 1038: "   Max POS3P3 Voltage?: Returns the maximum recorded +3.3V Rail Voltage measured\n\r"
-[; ;ring_buffer_LUT.c: 1039: "   Max POS12 Voltage?: Returns the maximum recorded +12V Rail Voltage measured\n\r"
-[; ;ring_buffer_LUT.c: 1040: "   Max Die Temp?: Returns the maximum recorded die temperature measured\n\r"
-[; ;ring_buffer_LUT.c: 1041: "   Max FVR Voltage?: Returns the maximum recorded FVR Buffer 1 Voltage measured\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1042: );
+[; ;ring_buffer_LUT.c: 1029: printf("List of supported Device Measurement Commands:\n\r"
+[; ;ring_buffer_LUT.c: 1031: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 1032: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 1033: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+[; ;ring_buffer_LUT.c: 1034: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
+[; ;ring_buffer_LUT.c: 1035: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
+[; ;ring_buffer_LUT.c: 1036: "   Max POS3P3 Voltage?: Returns the maximum recorded +3.3V Rail Voltage measured\n\r"
+[; ;ring_buffer_LUT.c: 1037: "   Max POS12 Voltage?: Returns the maximum recorded +12V Rail Voltage measured\n\r"
+[; ;ring_buffer_LUT.c: 1038: "   Max Die Temp?: Returns the maximum recorded die temperature measured\n\r"
+[; ;ring_buffer_LUT.c: 1039: "   Max FVR Voltage?: Returns the maximum recorded FVR Buffer 1 Voltage measured\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1040: );
+"1040
+[e ( _printf :s 165C ]
+[; ;ring_buffer_LUT.c: 1042: terminal_textAttributesReset();
 "1042
-[e ( _printf :s 167C ]
-[; ;ring_buffer_LUT.c: 1044: terminal_textAttributesReset();
+[e ( _terminal_textAttributesReset ..  ]
 "1044
-[e ( _terminal_textAttributesReset ..  ]
-"1046
 }
-[; ;ring_buffer_LUT.c: 1046: }
+[; ;ring_buffer_LUT.c: 1044: }
 [e $U 2169  ]
-"1049
+"1047
 [e :U 2168 ]
-[; ;ring_buffer_LUT.c: 1049: else if((0 == strcmp(line, "Help Primary Measurement Commands"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 168C 2170  ]
+[; ;ring_buffer_LUT.c: 1047: else if((0 == strcmp(line, "Help Primary Measurement Commands"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 166C 2170  ]
 {
-[; ;ring_buffer_LUT.c: 1051: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1051
+[; ;ring_buffer_LUT.c: 1049: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1049
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1052: printf("List of supported Primary Measurement Commands:\n\r"
-[; ;ring_buffer_LUT.c: 1054: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
-[; ;ring_buffer_LUT.c: 1055: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 1056: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 1057: "   Measure Power?: Returns the calculated output power in Watts\n\r"
-[; ;ring_buffer_LUT.c: 1058: "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
-[; ;ring_buffer_LUT.c: 1059: "   Clear Energy: Resets the measured output energy to zero\n\r"
-[; ;ring_buffer_LUT.c: 1060: "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
-[; ;ring_buffer_LUT.c: 1061: "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
-[; ;ring_buffer_LUT.c: 1062: "   Max Power?: Prints the maximum recorded output power\n\r"
-[; ;ring_buffer_LUT.c: 1063: "   Measurement SummaryL Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1064: );
-"1064
-[e ( _printf :s 169C ]
-[; ;ring_buffer_LUT.c: 1066: terminal_textAttributesReset();
-"1066
+[; ;ring_buffer_LUT.c: 1050: printf("List of supported Primary Measurement Commands:\n\r"
+[; ;ring_buffer_LUT.c: 1052: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
+[; ;ring_buffer_LUT.c: 1053: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 1054: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 1055: "   Measure Power?: Returns the calculated output power in Watts\n\r"
+[; ;ring_buffer_LUT.c: 1056: "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
+[; ;ring_buffer_LUT.c: 1057: "   Clear Energy: Resets the measured output energy to zero\n\r"
+[; ;ring_buffer_LUT.c: 1058: "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
+[; ;ring_buffer_LUT.c: 1059: "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
+[; ;ring_buffer_LUT.c: 1060: "   Max Power?: Prints the maximum recorded output power\n\r"
+[; ;ring_buffer_LUT.c: 1061: "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r"
+[; ;ring_buffer_LUT.c: 1062: "   Live Measurement Updates: Streams live measurement updates to terminal\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1063: );
+"1063
+[e ( _printf :s 167C ]
+[; ;ring_buffer_LUT.c: 1065: terminal_textAttributesReset();
+"1065
 [e ( _terminal_textAttributesReset ..  ]
-"1068
+"1067
 }
-[; ;ring_buffer_LUT.c: 1068: }
+[; ;ring_buffer_LUT.c: 1067: }
 [e $U 2171  ]
-"1071
+"1070
 [e :U 2170 ]
-[; ;ring_buffer_LUT.c: 1071: else if((0 == strcmp(line, "Help Output Control Commands"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 170C 2172  ]
+[; ;ring_buffer_LUT.c: 1070: else if((0 == strcmp(line, "Help Output Control Commands"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 168C 2172  ]
 {
-[; ;ring_buffer_LUT.c: 1073: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1073
+[; ;ring_buffer_LUT.c: 1072: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1072
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1074: printf("List of supported Output Control Commands:\n\r"
-[; ;ring_buffer_LUT.c: 1076: "   Enable Dimming: Enable TRIAC output dimming\n\r"
-[; ;ring_buffer_LUT.c: 1077: "   Disable Dimming: Disable TRIAC output dimming\n\r"
-[; ;ring_buffer_LUT.c: 1078: "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
-[; ;ring_buffer_LUT.c: 1079: "   Disable Load: Disables the output TRIAC completely\n\r"
-[; ;ring_buffer_LUT.c: 1080: "   Load Enabled?: Returns if the output load is enabled or disabled\n\r"
-[; ;ring_buffer_LUT.c: 1081: "   Dimming Enabled?: Returns if dimming of the output load is enabled or not\n\r"
-[; ;ring_buffer_LUT.c: 1082: "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1083: );
-"1083
-[e ( _printf :s 171C ]
-[; ;ring_buffer_LUT.c: 1085: terminal_textAttributesReset();
-"1085
+[; ;ring_buffer_LUT.c: 1073: printf("List of supported Output Control Commands:\n\r"
+[; ;ring_buffer_LUT.c: 1075: "   Enable Dimming: Enable TRIAC output dimming\n\r"
+[; ;ring_buffer_LUT.c: 1076: "   Disable Dimming: Disable TRIAC output dimming\n\r"
+[; ;ring_buffer_LUT.c: 1077: "   Enable Load: Enables the output TRIAC with dimming disabled\n\r"
+[; ;ring_buffer_LUT.c: 1078: "   Disable Load: Disables the output TRIAC completely\n\r"
+[; ;ring_buffer_LUT.c: 1079: "   Load Enabled?: Returns if the output load is enabled or disabled\n\r"
+[; ;ring_buffer_LUT.c: 1080: "   Dimming Enabled?: Returns if dimming of the output load is enabled or not\n\r"
+[; ;ring_buffer_LUT.c: 1081: "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1082: );
+"1082
+[e ( _printf :s 169C ]
+[; ;ring_buffer_LUT.c: 1084: terminal_textAttributesReset();
+"1084
 [e ( _terminal_textAttributesReset ..  ]
-"1087
+"1086
 }
-[; ;ring_buffer_LUT.c: 1087: }
+[; ;ring_buffer_LUT.c: 1086: }
 [e $U 2173  ]
-"1090
+"1089
 [e :U 2172 ]
-[; ;ring_buffer_LUT.c: 1090: else if((0 == strcmp(line, "Help All"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 172C 2174  ]
+[; ;ring_buffer_LUT.c: 1089: else if((0 == strcmp(line, "Help All"))) {
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 170C 2174  ]
 {
-[; ;ring_buffer_LUT.c: 1092: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1092
+[; ;ring_buffer_LUT.c: 1091: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1091
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1093: printf("List of all supported commands:\n\r"
-[; ;ring_buffer_LUT.c: 1095: "Device Control Commands: Commands to view and control low level system functionality\n\r"
-[; ;ring_buffer_LUT.c: 1096: "   Reset: Clears the terminal and resets the microcontroller\n\r"
-[; ;ring_buffer_LUT.c: 1097: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
-[; ;ring_buffer_LUT.c: 1098: "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
-[; ;ring_buffer_LUT.c: 1099: "   *IDN?: Returns device identification string\n\r"
-[; ;ring_buffer_LUT.c: 1100: "   Device On Time?: Returns device on time since last device reset\n\r"
-[; ;ring_buffer_LUT.c: 1101: "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1102: "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1103: "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
-[; ;ring_buffer_LUT.c: 1104: "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
-[; ;ring_buffer_LUT.c: 1105: "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
-[; ;ring_buffer_LUT.c: 1106: "   Comm Errors?: Returns if a communications error has occurred\n\r"
-[; ;ring_buffer_LUT.c: 1107: "   Clear Comm Errors: Clears the communications error\n\r"
-[; ;ring_buffer_LUT.c: 1108: "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
-[; ;ring_buffer_LUT.c: 1109: "   Help: This message, lists supported commands\n\r"
-[; ;ring_buffer_LUT.c: 1110: "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1112: "Device Measurement Commands: View low level system measurements\n\r"
-[; ;ring_buffer_LUT.c: 1113: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 1114: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
-[; ;ring_buffer_LUT.c: 1115: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
-[; ;ring_buffer_LUT.c: 1116: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
-[; ;ring_buffer_LUT.c: 1117: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
-[; ;ring_buffer_LUT.c: 1118: "   Max POS3P3 Voltage?: Returns the maximum recorded +3.3V Rail Voltage measured\n\r"
-[; ;ring_buffer_LUT.c: 1119: "   Max POS12 Voltage?: Returns the maximum recorded +12V Rail Voltage measured\n\r"
-[; ;ring_buffer_LUT.c: 1120: "   Max Die Temp?: Returns the maximum recorded die temperature measured\n\r"
-[; ;ring_buffer_LUT.c: 1121: "   Max FVR Voltage?: Returns the maximum recorded FVR Buffer 1 Voltage measured\n\r\n\r"
-[; ;ring_buffer_LUT.c: 1123: "Primary Measurement Commands: View high level output measurements and calculations\n\r"
-[; ;ring_buffer_LUT.c: 1124: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
-[; ;ring_buffer_LUT.c: 1125: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 1126: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
-[; ;ring_buffer_LUT.c: 1127: "   Measure Power?: Returns the calculated output power in Watts\n\r"
-[; ;ring_buffer_LUT.c: 1128: "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
-[; ;ring_buffer_LUT.c: 1129: "   Clear Energy: Resets the measured output energy to zero\n\r"
-[; ;ring_buffer_LUT.c: 1130: "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
-[; ;ring_buffer_LUT.c: 1131: "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
-[; ;ring_buffer_LUT.c: 1132: "   Max Power?: Prints the maximum recorded output power\n\r"
-[; ;ring_buffer_LUT.c: 1133: "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1092: printf("List of all supported commands:\n\r"
+[; ;ring_buffer_LUT.c: 1094: "Device Control Commands: Commands to view and control low level system functionality\n\r"
+[; ;ring_buffer_LUT.c: 1095: "   Reset: Clears the terminal and resets the microcontroller\n\r"
+[; ;ring_buffer_LUT.c: 1096: "   Clear: Clears the terminal but doesn't reset the micro\n\r"
+[; ;ring_buffer_LUT.c: 1097: "   Cause of Reset?: Returns the cause of the most recent device reset\n\r"
+[; ;ring_buffer_LUT.c: 1098: "   *IDN?: Returns device identification string\n\r"
+[; ;ring_buffer_LUT.c: 1099: "   Device On Time?: Returns device on time since last device reset\n\r"
+[; ;ring_buffer_LUT.c: 1100: "   Device ID?: Returns device ID as pre-programmed in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1101: "   Revision ID?: Returns device silicon revision ID as pre-programmed in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1102: "   User IDs?: Returns a list of user IDs (displayed in hex) as stored in flash memory\n\r"
+[; ;ring_buffer_LUT.c: 1103: "   ADC Errors?: Returns the cause of an ADC error if an error occurred\n\r"
+[; ;ring_buffer_LUT.c: 1104: "   Clear ADC Errors: Clears the ADC error and resumes ADC conversions\n\r"
+[; ;ring_buffer_LUT.c: 1105: "   Comm Errors?: Returns if a communications error has occurred\n\r"
+[; ;ring_buffer_LUT.c: 1106: "   Clear Comm Errors: Clears the communications error\n\r"
+[; ;ring_buffer_LUT.c: 1107: "   Clear Max Values: Erases maximum recorded values from EEPROM\n\r"
+[; ;ring_buffer_LUT.c: 1108: "   Help: This message, lists supported commands\n\r"
+[; ;ring_buffer_LUT.c: 1109: "   Device Summary: Prints a list of current and maximum measured device values as well as hardware IDs\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1111: "Device Measurement Commands: View low level system measurements\n\r"
+[; ;ring_buffer_LUT.c: 1112: "   Measure POS3P3?: Returns +3.3V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 1113: "   Measure POS12?: Returns +12V ADC Conversion in volts\n\r"
+[; ;ring_buffer_LUT.c: 1114: "   Measure Die Temp?: Returns the microcontroller die temperature in degrees C\n\r"
+[; ;ring_buffer_LUT.c: 1115: "   Measure FVR?: Returns the internal fixed voltage reference buffer 1 output in volts\n\r"
+[; ;ring_buffer_LUT.c: 1116: "   Measure AVSS?: Returns the measured value of Analog VSS in volts\n\r"
+[; ;ring_buffer_LUT.c: 1117: "   Max POS3P3 Voltage?: Returns the maximum recorded +3.3V Rail Voltage measured\n\r"
+[; ;ring_buffer_LUT.c: 1118: "   Max POS12 Voltage?: Returns the maximum recorded +12V Rail Voltage measured\n\r"
+[; ;ring_buffer_LUT.c: 1119: "   Max Die Temp?: Returns the maximum recorded die temperature measured\n\r"
+[; ;ring_buffer_LUT.c: 1120: "   Max FVR Voltage?: Returns the maximum recorded FVR Buffer 1 Voltage measured\n\r\n\r"
+[; ;ring_buffer_LUT.c: 1122: "Primary Measurement Commands: View high level output measurements and calculations\n\r"
+[; ;ring_buffer_LUT.c: 1123: "   Measure Detected Current?: Returns measured output current in amps as seen by ADC\n\r"
+[; ;ring_buffer_LUT.c: 1124: "   Measure RMS Current?: Returns the calculated RMS output current from measurements and TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 1125: "   Measure RMS Voltage?: Returns the calculated RMS output voltage from TRIAC firing angle\n\r"
+[; ;ring_buffer_LUT.c: 1126: "   Measure Power?: Returns the calculated output power in Watts\n\r"
+[; ;ring_buffer_LUT.c: 1127: "   Measure Energy?: Returns measured energy since measurement reset in Watt Hours\n\r"
+[; ;ring_buffer_LUT.c: 1128: "   Clear Energy: Resets the measured output energy to zero\n\r"
+[; ;ring_buffer_LUT.c: 1129: "   Load On Time?: Returns load on time since last device reset in seconds\n\r"
+[; ;ring_buffer_LUT.c: 1130: "   Max RMS Current?: Prints the maximum recorded RMS output current\n\r"
+[; ;ring_buffer_LUT.c: 1131: "   Max Power?: Prints the maximum recorded output power\n\r"
+[; ;ring_buffer_LUT.c: 1132: "   Measurement Summary: Prints a summary of instantaneous and maximum measured load values\n\r"
+[; ;ring_buffer_LUT.c: 1133: "   Live Measurement Updates: Streams live measurement updates to terminal\n\r\n\r"
 [; ;ring_buffer_LUT.c: 1135: "Output Control Commands: Control the output state and dimming features\n\r"
 [; ;ring_buffer_LUT.c: 1136: "   Enable Dimming: Enable TRIAC output dimming\n\r"
 [; ;ring_buffer_LUT.c: 1137: "   Disable Dimming: Disable TRIAC output dimming\n\r"
@@ -18865,7 +18866,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 1142: "   Set Dimming Percentage: <x>: Sets the output dimming percentage as x percent\n\r\n\r"
 [; ;ring_buffer_LUT.c: 1144: );
 "1144
-[e ( _printf :s 173C ]
+[e ( _printf :s 171C ]
 [; ;ring_buffer_LUT.c: 1146: terminal_textAttributesReset();
 "1146
 [e ( _terminal_textAttributesReset ..  ]
@@ -18876,7 +18877,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1152
 [e :U 2174 ]
 [; ;ring_buffer_LUT.c: 1152: else if((0 == strcmp(line, "Help"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 174C 2176  ]
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 172C 2176  ]
 {
 [; ;ring_buffer_LUT.c: 1154: terminal_textAttributes(YELLOW, BLACK, NORMAL);
 "1154
@@ -18891,37 +18892,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 1164: "'Help All' will list all commands\n\r"
 [; ;ring_buffer_LUT.c: 1165: );
 "1165
-[e ( _printf :s 175C ]
+[e ( _printf :s 173C ]
 [; ;ring_buffer_LUT.c: 1168: terminal_printNewline();
 "1168
 [e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 1169: printf("Help messages and neutral responses appear in yellow\n\r");
 "1169
-[e ( _printf :s 176C ]
+[e ( _printf :s 174C ]
 [; ;ring_buffer_LUT.c: 1171: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "1171
 [e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1172: printf("System parameters and affirmative responses appear in green\n\r");
 "1172
-[e ( _printf :s 177C ]
+[e ( _printf :s 175C ]
 [; ;ring_buffer_LUT.c: 1173: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "1173
 [e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1174: printf("Measurement responses appear in cyan\n\r");
 "1174
-[e ( _printf :s 178C ]
+[e ( _printf :s 176C ]
 [; ;ring_buffer_LUT.c: 1175: terminal_textAttributes(RED, BLACK, NORMAL);
 "1175
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1176: printf("Errors and negative responses appear in red\n\r");
 "1176
-[e ( _printf :s 179C ]
+[e ( _printf :s 177C ]
 [; ;ring_buffer_LUT.c: 1177: terminal_textAttributesReset();
 "1177
 [e ( _terminal_textAttributesReset ..  ]
 [; ;ring_buffer_LUT.c: 1178: printf("User input appears in white\n\r");
 "1178
-[e ( _printf :s 180C ]
+[e ( _printf :s 178C ]
 [; ;ring_buffer_LUT.c: 1181: terminal_printNewline();
 "1181
 [e ( _terminal_printNewline ..  ]
@@ -18932,7 +18933,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "1186
 [e :U 2176 ]
 [; ;ring_buffer_LUT.c: 1186: else if ((0 == strcmp(line, "Easter Egg"))) {
-[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 181C 2178  ]
+[e $ ! == -> 0 `i ( _strcmp (2 , -> _line `*Cuc :s 179C 2178  ]
 {
 [; ;ring_buffer_LUT.c: 1188: terminal_printNewline();
 "1188
@@ -18947,7 +18948,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 1194: " /_/ \\_\\___| |_| \\___/\\_/\\_/\\___|_|   |_|  |_\\___|\\__\\___|_|   \\__,_|_||_\\__,_| |___/|_|_|_|_|_|_|_\\___|_|  \n\r"
 [; ;ring_buffer_LUT.c: 1197: );
 "1197
-[e ( _printf :s 182C ]
+[e ( _printf :s 180C ]
 [; ;ring_buffer_LUT.c: 1199: terminal_printNewline();
 "1199
 [e ( _terminal_printNewline ..  ]
@@ -18956,7 +18957,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 4 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1201: printf("Marquette University EECE");
 "1201
-[e ( _printf :s 183C ]
+[e ( _printf :s 181C ]
 [; ;ring_buffer_LUT.c: 1202: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "1202
 [e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
@@ -18965,10 +18966,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _terminal_printNewline ..  ]
 [; ;ring_buffer_LUT.c: 1204: printf("ELEN 3035 Final Project\n\r");
 "1204
-[e ( _printf :s 184C ]
+[e ( _printf :s 182C ]
 [; ;ring_buffer_LUT.c: 1205: printf("Drew Maatman and Gabe Thalji");
 "1205
-[e ( _printf :s 185C ]
+[e ( _printf :s 183C ]
 [; ;ring_buffer_LUT.c: 1206: terminal_printNewline();
 "1206
 [e ( _terminal_printNewline ..  ]
@@ -18977,7 +18978,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 1 ]
 [; ;ring_buffer_LUT.c: 1208: printf("PSOCs SUCK\n\r");
 "1208
-[e ( _printf :s 186C ]
+[e ( _printf :s 184C ]
 [; ;ring_buffer_LUT.c: 1209: terminal_textAttributesReset();
 "1209
 [e ( _terminal_textAttributesReset ..  ]
@@ -19001,16 +19002,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1220: printf("Unsupported or mis-entered command\n\r");
 "1220
-[e ( _printf :s 187C ]
+[e ( _printf :s 185C ]
 [; ;ring_buffer_LUT.c: 1221: terminal_textAttributes(YELLOW, BLACK, NORMAL);
 "1221
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
 [; ;ring_buffer_LUT.c: 1222: printf("Commands are case sensitive, backspace is supported, command history is not supported\n\r");
 "1222
-[e ( _printf :s 188C ]
+[e ( _printf :s 186C ]
 [; ;ring_buffer_LUT.c: 1223: printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
 "1223
-[e ( _printf :s 189C ]
+[e ( _printf :s 187C ]
 [; ;ring_buffer_LUT.c: 1224: terminal_textAttributesReset();
 "1224
 [e ( _terminal_textAttributesReset ..  ]
@@ -19026,10 +19027,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 1230: USB_live_update_flag = 0;
 "1230
 [e = _USB_live_update_flag -> -> 0 `i `b ]
+[; ;ring_buffer_LUT.c: 1231: terminal_textAttributes(RED, BLACK, NORMAL);
+"1231
+[e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1232: printf("Live measurement updates disabled\n\r");
 "1232
+[e ( _printf :s 188C ]
+[; ;ring_buffer_LUT.c: 1233: terminal_textAttributesReset();
+"1233
+[e ( _terminal_textAttributesReset ..  ]
+"1235
 }
 [e :U 2182 ]
-"1234
+"1237
 [e :U 2181 ]
 }
 [e :U 2179 ]
@@ -19081,122 +19091,122 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2026 ]
 [e :U 2024 ]
 [e :U 2022 ]
-[; ;ring_buffer_LUT.c: 1232: }
-[; ;ring_buffer_LUT.c: 1234: }
-[; ;ring_buffer_LUT.c: 1238: }
-"1238
+[; ;ring_buffer_LUT.c: 1235: }
+[; ;ring_buffer_LUT.c: 1237: }
+[; ;ring_buffer_LUT.c: 1241: }
+"1241
 [e :UE 2020 ]
 }
-"1242
+"1245
 [v _terminal_printResetMessage `(v ~T0 @X0 1 ef ]
 {
-[; ;ring_buffer_LUT.c: 1242: void terminal_printResetMessage(void) {
+[; ;ring_buffer_LUT.c: 1245: void terminal_printResetMessage(void) {
 [e :U _terminal_printResetMessage ]
 [f ]
-[; ;ring_buffer_LUT.c: 1245: terminal_textAttributes(YELLOW, BLUE, BOLD);
-"1245
-[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 4 . `E18229 1 ]
-[; ;ring_buffer_LUT.c: 1246: printf("AC Power Meter / Dimmer, ELEN 3035 Final Project");
-"1246
-[e ( _printf :s 190C ]
-[; ;ring_buffer_LUT.c: 1247: terminal_textAttributes(YELLOW, BLACK, BOLD);
-"1247
-[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 1 ]
-[; ;ring_buffer_LUT.c: 1248: terminal_printNewline();
+[; ;ring_buffer_LUT.c: 1248: terminal_textAttributes(YELLOW, BLUE, BOLD);
 "1248
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1249: printf("Drew Maatman and Gabe Thalji\n\r");
+[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 4 . `E18229 1 ]
+[; ;ring_buffer_LUT.c: 1249: printf("AC Power Meter / Dimmer, ELEN 3035 Final Project");
 "1249
-[e ( _printf :s 191C ]
+[e ( _printf :s 189C ]
+[; ;ring_buffer_LUT.c: 1250: terminal_textAttributes(YELLOW, BLACK, BOLD);
+"1250
+[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 1 ]
 [; ;ring_buffer_LUT.c: 1251: terminal_printNewline();
 "1251
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1255: if ( reset_cause == Stack_Overflow_Reset ||
-[; ;ring_buffer_LUT.c: 1256: reset_cause == Stack_Underflow_Reset ||
-[; ;ring_buffer_LUT.c: 1257: reset_cause == Windowed_Watch_Dog_Timer_Reset ||
-[; ;ring_buffer_LUT.c: 1258: reset_cause == Watch_Dog_Timer_Reset ||
-[; ;ring_buffer_LUT.c: 1259: reset_cause == Brown_Out_Reset ||
-[; ;ring_buffer_LUT.c: 1260: reset_cause == Watch_Dog_Timer_Reset ||
-[; ;ring_buffer_LUT.c: 1261: reset_cause == Undefined_Reset
-[; ;ring_buffer_LUT.c: 1262: ) {
-"1262
+[; ;ring_buffer_LUT.c: 1252: printf("Drew Maatman and Gabe Thalji\n\r");
+"1252
+[e ( _printf :s 190C ]
+[; ;ring_buffer_LUT.c: 1254: terminal_printNewline();
+"1254
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1258: if ( reset_cause == Stack_Overflow_Reset ||
+[; ;ring_buffer_LUT.c: 1259: reset_cause == Stack_Underflow_Reset ||
+[; ;ring_buffer_LUT.c: 1260: reset_cause == Windowed_Watch_Dog_Timer_Reset ||
+[; ;ring_buffer_LUT.c: 1261: reset_cause == Watch_Dog_Timer_Reset ||
+[; ;ring_buffer_LUT.c: 1262: reset_cause == Brown_Out_Reset ||
+[; ;ring_buffer_LUT.c: 1263: reset_cause == Watch_Dog_Timer_Reset ||
+[; ;ring_buffer_LUT.c: 1264: reset_cause == Undefined_Reset
+[; ;ring_buffer_LUT.c: 1265: ) {
+"1265
 [e $ ! || || || || || || == -> _reset_cause `i -> . `E18278 7 `i == -> _reset_cause `i -> . `E18278 8 `i == -> _reset_cause `i -> . `E18278 5 `i == -> _reset_cause `i -> . `E18278 4 `i == -> _reset_cause `i -> . `E18278 2 `i == -> _reset_cause `i -> . `E18278 4 `i == -> _reset_cause `i -> . `E18278 0 `i 2184  ]
 {
-[; ;ring_buffer_LUT.c: 1264: terminal_textAttributes(RED, BLACK, BOLD);
-"1264
+[; ;ring_buffer_LUT.c: 1267: terminal_textAttributes(RED, BLACK, BOLD);
+"1267
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 1 ]
-"1266
+"1269
 }
-[; ;ring_buffer_LUT.c: 1266: }
+[; ;ring_buffer_LUT.c: 1269: }
 [e $U 2185  ]
-"1268
+"1271
 [e :U 2184 ]
-[; ;ring_buffer_LUT.c: 1268: else {
+[; ;ring_buffer_LUT.c: 1271: else {
 {
-[; ;ring_buffer_LUT.c: 1270: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"1270
+[; ;ring_buffer_LUT.c: 1273: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"1273
 [e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-"1272
+"1275
 }
 [e :U 2185 ]
-[; ;ring_buffer_LUT.c: 1272: }
-[; ;ring_buffer_LUT.c: 1275: printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
-"1275
-[e ( _printf , (. :s 192C -> ( _getCauseOfResetString (1 _reset_cause `*CTuc ]
-[; ;ring_buffer_LUT.c: 1276: terminal_printNewline();
-"1276
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1278: terminal_textAttributes(GREEN, BLACK, NORMAL);
+[; ;ring_buffer_LUT.c: 1275: }
+[; ;ring_buffer_LUT.c: 1278: printf("Cause of reset: %s\n\r", getCauseOfResetString(reset_cause));
 "1278
-[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1279: printf("System parameters and affirmative responses appear in green\n\r");
+[e ( _printf , (. :s 191C -> ( _getCauseOfResetString (1 _reset_cause `*CTuc ]
+[; ;ring_buffer_LUT.c: 1279: terminal_printNewline();
 "1279
-[e ( _printf :s 193C ]
-[; ;ring_buffer_LUT.c: 1280: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"1280
-[e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1281: printf("Measurement responses appear in cyan\n\r");
-"1281
-[e ( _printf :s 194C ]
-[; ;ring_buffer_LUT.c: 1282: terminal_textAttributes(RED, BLACK, NORMAL);
-"1282
-[e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1283: printf("Errors and negative responses appear in red\n\r");
-"1283
-[e ( _printf :s 195C ]
-[; ;ring_buffer_LUT.c: 1284: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1284
-[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1285: printf("Help messages and neutral responses appear in yellow\n\r");
-"1285
-[e ( _printf :s 196C ]
-[; ;ring_buffer_LUT.c: 1286: terminal_textAttributesReset();
-"1286
-[e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 1287: printf("User input appears in white\n\r");
-"1287
-[e ( _printf :s 197C ]
-[; ;ring_buffer_LUT.c: 1289: terminal_printNewline();
-"1289
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1292: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"1292
+[; ;ring_buffer_LUT.c: 1281: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"1281
 [e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1293: printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
-[; ;ring_buffer_LUT.c: 1294: "part number of %s\n\r",
-[; ;ring_buffer_LUT.c: 1295: getDeviceID(),
-[; ;ring_buffer_LUT.c: 1296: getDeviceIDString(getDeviceID()));
-"1296
-[e ( _printf , , (. :s 198C ( _getDeviceID ..  -> ( _getDeviceIDString (1 ( _getDeviceID ..  `*CTuc ]
-[; ;ring_buffer_LUT.c: 1299: printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
-[; ;ring_buffer_LUT.c: 1300: ((char) getMajorRevisionID() + 65),getMinorRevisionID());
-"1300
-[e ( _printf , , (. :s 199C + -> ( _getMajorRevisionID ..  `i -> 65 `i -> ( _getMinorRevisionID ..  `i ]
-[; ;ring_buffer_LUT.c: 1303: printf("The following User IDs have been retrieved from flash memory:\n\r");
+[; ;ring_buffer_LUT.c: 1282: printf("System parameters and affirmative responses appear in green\n\r");
+"1282
+[e ( _printf :s 192C ]
+[; ;ring_buffer_LUT.c: 1283: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"1283
+[e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1284: printf("Measurement responses appear in cyan\n\r");
+"1284
+[e ( _printf :s 193C ]
+[; ;ring_buffer_LUT.c: 1285: terminal_textAttributes(RED, BLACK, NORMAL);
+"1285
+[e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1286: printf("Errors and negative responses appear in red\n\r");
+"1286
+[e ( _printf :s 194C ]
+[; ;ring_buffer_LUT.c: 1287: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1287
+[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1288: printf("Help messages and neutral responses appear in yellow\n\r");
+"1288
+[e ( _printf :s 195C ]
+[; ;ring_buffer_LUT.c: 1289: terminal_textAttributesReset();
+"1289
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 1290: printf("User input appears in white\n\r");
+"1290
+[e ( _printf :s 196C ]
+[; ;ring_buffer_LUT.c: 1292: terminal_printNewline();
+"1292
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1295: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"1295
+[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1296: printf("Device ID stored in Flash is: 0x%X. This corresponds to a device "
+[; ;ring_buffer_LUT.c: 1297: "part number of %s\n\r",
+[; ;ring_buffer_LUT.c: 1298: getDeviceID(),
+[; ;ring_buffer_LUT.c: 1299: getDeviceIDString(getDeviceID()));
+"1299
+[e ( _printf , , (. :s 197C ( _getDeviceID ..  -> ( _getDeviceIDString (1 ( _getDeviceID ..  `*CTuc ]
+[; ;ring_buffer_LUT.c: 1302: printf("Device silicon revision ID as stored in Flash is: %c%03d\n\r",
+[; ;ring_buffer_LUT.c: 1303: ((char) getMajorRevisionID() + 65),getMinorRevisionID());
 "1303
-[e ( _printf :s 200C ]
-[; ;ring_buffer_LUT.c: 1306: for (int userID = 0; userID <= 7; userID++) {
+[e ( _printf , , (. :s 198C + -> ( _getMajorRevisionID ..  `i -> 65 `i -> ( _getMinorRevisionID ..  `i ]
+[; ;ring_buffer_LUT.c: 1306: printf("The following User IDs have been retrieved from flash memory:\n\r");
 "1306
+[e ( _printf :s 199C ]
+[; ;ring_buffer_LUT.c: 1309: for (int userID = 0; userID <= 7; userID++) {
+"1309
 {
 [v _userID `i ~T0 @X0 1 a ]
 [e = _userID -> 0 `i ]
@@ -19204,268 +19214,268 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2187  ]
 [e :U 2186 ]
 {
-[; ;ring_buffer_LUT.c: 1308: printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
-[; ;ring_buffer_LUT.c: 1309: userID,
-[; ;ring_buffer_LUT.c: 1310: (2 * userID),
-[; ;ring_buffer_LUT.c: 1311: getUserID(userID));
-"1311
-[e ( _printf , , , (. :s 201C _userID * -> 2 `i _userID ( _getUserID (1 -> _userID `uc ]
-"1313
+[; ;ring_buffer_LUT.c: 1311: printf("    User ID Word %d (Flash address 0x20000%X): 0x%04X\n\r",
+[; ;ring_buffer_LUT.c: 1312: userID,
+[; ;ring_buffer_LUT.c: 1313: (2 * userID),
+[; ;ring_buffer_LUT.c: 1314: getUserID(userID));
+"1314
+[e ( _printf , , , (. :s 200C _userID * -> 2 `i _userID ( _getUserID (1 -> _userID `uc ]
+"1316
 }
-"1306
+"1309
 [e ++ _userID -> 1 `i ]
 [e $ <= _userID -> 7 `i 2186  ]
 [e :U 2187 ]
-"1313
+"1316
 }
-[; ;ring_buffer_LUT.c: 1313: }
-[; ;ring_buffer_LUT.c: 1315: terminal_printNewline();
-"1315
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1318: if (getADCError()) {
+[; ;ring_buffer_LUT.c: 1316: }
+[; ;ring_buffer_LUT.c: 1318: terminal_printNewline();
 "1318
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1321: if (getADCError()) {
+"1321
 [e $ ! != -> ( _getADCError ..  `i -> -> -> 0 `i `uc `i 2189  ]
 {
-[; ;ring_buffer_LUT.c: 1320: terminal_textAttributes(RED, BLACK, NORMAL);
-"1320
+[; ;ring_buffer_LUT.c: 1323: terminal_textAttributes(RED, BLACK, NORMAL);
+"1323
 [e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1321: printf("ADC error(s) detected!\n\r");
-"1321
-[e ( _printf :s 202C ]
-[; ;ring_buffer_LUT.c: 1322: printf("The following channels caused an ADC error:\n\r");
-"1322
-[e ( _printf :s 203C ]
-[; ;ring_buffer_LUT.c: 1324: if (error_handler.ADC_general_error_flag) {
+[; ;ring_buffer_LUT.c: 1324: printf("ADC error(s) detected!\n\r");
 "1324
+[e ( _printf :s 201C ]
+[; ;ring_buffer_LUT.c: 1325: printf("The following channels caused an ADC error:\n\r");
+"1325
+[e ( _printf :s 202C ]
+[; ;ring_buffer_LUT.c: 1327: if (error_handler.ADC_general_error_flag) {
+"1327
 [e $ ! != -> . _error_handler 6 `i -> -> -> 0 `i `uc `i 2190  ]
 {
-[; ;ring_buffer_LUT.c: 1325: printf("    General ADC error\n\r");
-"1325
-[e ( _printf :s 204C ]
-"1326
+[; ;ring_buffer_LUT.c: 1328: printf("    General ADC error\n\r");
+"1328
+[e ( _printf :s 203C ]
+"1329
 }
 [e :U 2190 ]
-[; ;ring_buffer_LUT.c: 1326: }
-[; ;ring_buffer_LUT.c: 1328: if (error_handler.AVSS_ADC_error_flag) {
-"1328
+[; ;ring_buffer_LUT.c: 1329: }
+[; ;ring_buffer_LUT.c: 1331: if (error_handler.AVSS_ADC_error_flag) {
+"1331
 [e $ ! != -> . _error_handler 3 `i -> -> -> 0 `i `uc `i 2191  ]
 {
-[; ;ring_buffer_LUT.c: 1329: printf("    AVSS\n\r");
-"1329
-[e ( _printf :s 205C ]
-"1330
+[; ;ring_buffer_LUT.c: 1332: printf("    AVSS\n\r");
+"1332
+[e ( _printf :s 204C ]
+"1333
 }
 [e :U 2191 ]
-[; ;ring_buffer_LUT.c: 1330: }
-[; ;ring_buffer_LUT.c: 1332: if (error_handler.FVR_ADC_error_flag) {
-"1332
+[; ;ring_buffer_LUT.c: 1333: }
+[; ;ring_buffer_LUT.c: 1335: if (error_handler.FVR_ADC_error_flag) {
+"1335
 [e $ ! != -> . _error_handler 5 `i -> -> -> 0 `i `uc `i 2192  ]
 {
-[; ;ring_buffer_LUT.c: 1333: printf("    FVR\n\r");
-"1333
-[e ( _printf :s 206C ]
-"1334
+[; ;ring_buffer_LUT.c: 1336: printf("    FVR\n\r");
+"1336
+[e ( _printf :s 205C ]
+"1337
 }
 [e :U 2192 ]
-[; ;ring_buffer_LUT.c: 1334: }
-[; ;ring_buffer_LUT.c: 1336: if (error_handler.ISNS_ADC_error_flag) {
-"1336
+[; ;ring_buffer_LUT.c: 1337: }
+[; ;ring_buffer_LUT.c: 1339: if (error_handler.ISNS_ADC_error_flag) {
+"1339
 [e $ ! != -> . _error_handler 0 `i -> -> -> 0 `i `uc `i 2193  ]
 {
-[; ;ring_buffer_LUT.c: 1337: printf("    ISNS\n\r");
-"1337
-[e ( _printf :s 207C ]
-"1338
+[; ;ring_buffer_LUT.c: 1340: printf("    ISNS\n\r");
+"1340
+[e ( _printf :s 206C ]
+"1341
 }
 [e :U 2193 ]
-[; ;ring_buffer_LUT.c: 1338: }
-[; ;ring_buffer_LUT.c: 1340: if (error_handler.POS12_ADC_error_flag) {
-"1340
+[; ;ring_buffer_LUT.c: 1341: }
+[; ;ring_buffer_LUT.c: 1343: if (error_handler.POS12_ADC_error_flag) {
+"1343
 [e $ ! != -> . _error_handler 1 `i -> -> -> 0 `i `uc `i 2194  ]
 {
-[; ;ring_buffer_LUT.c: 1341: printf("    POS12\n\r");
-"1341
-[e ( _printf :s 208C ]
-"1342
+[; ;ring_buffer_LUT.c: 1344: printf("    POS12\n\r");
+"1344
+[e ( _printf :s 207C ]
+"1345
 }
 [e :U 2194 ]
-[; ;ring_buffer_LUT.c: 1342: }
-[; ;ring_buffer_LUT.c: 1344: if (error_handler.POS3P3_ADC_error_flag) {
-"1344
+[; ;ring_buffer_LUT.c: 1345: }
+[; ;ring_buffer_LUT.c: 1347: if (error_handler.POS3P3_ADC_error_flag) {
+"1347
 [e $ ! != -> . _error_handler 2 `i -> -> -> 0 `i `uc `i 2195  ]
 {
-[; ;ring_buffer_LUT.c: 1345: printf("    POS3P3\n\r");
-"1345
-[e ( _printf :s 209C ]
-"1346
+[; ;ring_buffer_LUT.c: 1348: printf("    POS3P3\n\r");
+"1348
+[e ( _printf :s 208C ]
+"1349
 }
 [e :U 2195 ]
-[; ;ring_buffer_LUT.c: 1346: }
-[; ;ring_buffer_LUT.c: 1348: if (error_handler.Temp_ADC_error_flag) {
-"1348
+[; ;ring_buffer_LUT.c: 1349: }
+[; ;ring_buffer_LUT.c: 1351: if (error_handler.Temp_ADC_error_flag) {
+"1351
 [e $ ! != -> . _error_handler 4 `i -> -> -> 0 `i `uc `i 2196  ]
 {
-[; ;ring_buffer_LUT.c: 1349: printf("    Die Temp\n\r");
-"1349
-[e ( _printf :s 210C ]
-"1350
+[; ;ring_buffer_LUT.c: 1352: printf("    Die Temp\n\r");
+"1352
+[e ( _printf :s 209C ]
+"1353
 }
 [e :U 2196 ]
-[; ;ring_buffer_LUT.c: 1350: }
-[; ;ring_buffer_LUT.c: 1352: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1352
+[; ;ring_buffer_LUT.c: 1353: }
+[; ;ring_buffer_LUT.c: 1355: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1355
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1353: printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
-"1353
-[e ( _printf :s 211C ]
-[; ;ring_buffer_LUT.c: 1354: terminal_textAttributesReset();
-"1354
-[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 1356: printf("Call 'Clear ADC Errors' to clear ADC error(s)\n\r");
 "1356
-}
-[; ;ring_buffer_LUT.c: 1356: }
-[e $U 2197  ]
-"1358
-[e :U 2189 ]
-[; ;ring_buffer_LUT.c: 1358: else {
-{
-[; ;ring_buffer_LUT.c: 1360: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"1360
-[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1361: printf("No ADC error(s) detected\n\r");
-"1361
-[e ( _printf :s 212C ]
-[; ;ring_buffer_LUT.c: 1362: terminal_textAttributesReset();
-"1362
+[e ( _printf :s 210C ]
+[; ;ring_buffer_LUT.c: 1357: terminal_textAttributesReset();
+"1357
 [e ( _terminal_textAttributesReset ..  ]
+"1359
+}
+[; ;ring_buffer_LUT.c: 1359: }
+[e $U 2197  ]
+"1361
+[e :U 2189 ]
+[; ;ring_buffer_LUT.c: 1361: else {
+{
+[; ;ring_buffer_LUT.c: 1363: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"1363
+[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1364: printf("No ADC error(s) detected\n\r");
 "1364
+[e ( _printf :s 211C ]
+[; ;ring_buffer_LUT.c: 1365: terminal_textAttributesReset();
+"1365
+[e ( _terminal_textAttributesReset ..  ]
+"1367
 }
 [e :U 2197 ]
-[; ;ring_buffer_LUT.c: 1364: }
-[; ;ring_buffer_LUT.c: 1367: if (getCOMMError()) {
-"1367
+[; ;ring_buffer_LUT.c: 1367: }
+[; ;ring_buffer_LUT.c: 1370: if (getCOMMError()) {
+"1370
 [e $ ! != -> ( _getCOMMError ..  `i -> -> -> 0 `i `uc `i 2198  ]
 {
-[; ;ring_buffer_LUT.c: 1369: terminal_textAttributes(RED, BLACK, NORMAL);
-"1369
-[e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1370: printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
-"1370
-[e ( _printf :s 213C ]
-[; ;ring_buffer_LUT.c: 1372: if (error_handler.I2C_COMM_error_flag) {
+[; ;ring_buffer_LUT.c: 1372: terminal_textAttributes(RED, BLACK, NORMAL);
 "1372
+[e ( _terminal_textAttributes (3 , , . `E18237 1 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1373: printf("Communications error(s) detected! Interfaces causing error(s):\n\r");
+"1373
+[e ( _printf :s 212C ]
+[; ;ring_buffer_LUT.c: 1375: if (error_handler.I2C_COMM_error_flag) {
+"1375
 [e $ ! != -> . _error_handler 7 `i -> -> -> 0 `i `uc `i 2199  ]
 {
-[; ;ring_buffer_LUT.c: 1373: printf("    OLED Display I2C\n\r");
-"1373
-[e ( _printf :s 214C ]
-"1374
+[; ;ring_buffer_LUT.c: 1376: printf("    OLED Display I2C\n\r");
+"1376
+[e ( _printf :s 213C ]
+"1377
 }
 [e :U 2199 ]
-[; ;ring_buffer_LUT.c: 1374: }
-[; ;ring_buffer_LUT.c: 1376: if (error_handler.USB_UART_COMM_error_flag) {
-"1376
+[; ;ring_buffer_LUT.c: 1377: }
+[; ;ring_buffer_LUT.c: 1379: if (error_handler.USB_UART_COMM_error_flag) {
+"1379
 [e $ ! != -> . _error_handler 8 `i -> -> -> 0 `i `uc `i 2200  ]
 {
-[; ;ring_buffer_LUT.c: 1377: printf("    USB UART (this interface)\n\r");
-"1377
-[e ( _printf :s 215C ]
-"1378
+[; ;ring_buffer_LUT.c: 1380: printf("    USB UART (this interface)\n\r");
+"1380
+[e ( _printf :s 214C ]
+"1381
 }
 [e :U 2200 ]
-[; ;ring_buffer_LUT.c: 1378: }
-[; ;ring_buffer_LUT.c: 1380: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1380
+[; ;ring_buffer_LUT.c: 1381: }
+[; ;ring_buffer_LUT.c: 1383: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1383
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1381: printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
-"1381
-[e ( _printf :s 216C ]
-[; ;ring_buffer_LUT.c: 1382: terminal_textAttributesReset();
-"1382
-[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 1384: printf("Call 'Clear Comm Errors' to clear communications error(s)\n\r");
 "1384
-}
-[; ;ring_buffer_LUT.c: 1384: }
-[e $U 2201  ]
-"1386
-[e :U 2198 ]
-[; ;ring_buffer_LUT.c: 1386: else {
-{
-[; ;ring_buffer_LUT.c: 1388: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"1388
-[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1389: printf("No communications error(s) detected\n\r");
-"1389
-[e ( _printf :s 217C ]
-[; ;ring_buffer_LUT.c: 1390: terminal_textAttributesReset();
-"1390
+[e ( _printf :s 215C ]
+[; ;ring_buffer_LUT.c: 1385: terminal_textAttributesReset();
+"1385
 [e ( _terminal_textAttributesReset ..  ]
+"1387
+}
+[; ;ring_buffer_LUT.c: 1387: }
+[e $U 2201  ]
+"1389
+[e :U 2198 ]
+[; ;ring_buffer_LUT.c: 1389: else {
+{
+[; ;ring_buffer_LUT.c: 1391: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"1391
+[e ( _terminal_textAttributes (3 , , . `E18237 2 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1392: printf("No communications error(s) detected\n\r");
 "1392
+[e ( _printf :s 216C ]
+[; ;ring_buffer_LUT.c: 1393: terminal_textAttributesReset();
+"1393
+[e ( _terminal_textAttributesReset ..  ]
+"1395
 }
 [e :U 2201 ]
-[; ;ring_buffer_LUT.c: 1392: }
-[; ;ring_buffer_LUT.c: 1395: terminal_printNewline();
-"1395
+[; ;ring_buffer_LUT.c: 1395: }
+[; ;ring_buffer_LUT.c: 1398: terminal_printNewline();
+"1398
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1396: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1396
+[; ;ring_buffer_LUT.c: 1399: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1399
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1397: printf("Load is currently enabled\n\r");
-"1397
-[e ( _printf :s 218C ]
-[; ;ring_buffer_LUT.c: 1400: terminal_printNewline();
+[; ;ring_buffer_LUT.c: 1400: printf("Load is currently enabled\n\r");
 "1400
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1401: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"1401
-[e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1402: printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
-"1402
-[e ( _printf , (. :s 219C _POS3P3_ADC_Result ]
-[; ;ring_buffer_LUT.c: 1403: printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
+[e ( _printf :s 217C ]
+[; ;ring_buffer_LUT.c: 1403: terminal_printNewline();
 "1403
-[e ( _printf , (. :s 220C _POS12_ADC_Result ]
-[; ;ring_buffer_LUT.c: 1404: printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1404: terminal_textAttributes(CYAN, BLACK, NORMAL);
 "1404
-[e ( _printf , (. :s 221C _Temp_ADC_Result ]
-[; ;ring_buffer_LUT.c: 1405: printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
+[e ( _terminal_textAttributes (3 , , . `E18237 6 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1405: printf("+3.3V rail measured as +%.3f Volts\n\r", POS3P3_ADC_Result);
 "1405
-[e ( _printf , (. :s 222C _FVR_ADC_Result ]
-[; ;ring_buffer_LUT.c: 1406: printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
+[e ( _printf , (. :s 218C _POS3P3_ADC_Result ]
+[; ;ring_buffer_LUT.c: 1406: printf("+12V rail measured as +%.3f Volts\n\r", POS12_ADC_Result);
 "1406
-[e ( _printf , (. :s 223C _AVSS_ADC_Result ]
-[; ;ring_buffer_LUT.c: 1408: terminal_printNewline();
+[e ( _printf , (. :s 219C _POS12_ADC_Result ]
+[; ;ring_buffer_LUT.c: 1407: printf("Die Temperature measured as %.3fC\n\r", Temp_ADC_Result);
+"1407
+[e ( _printf , (. :s 220C _Temp_ADC_Result ]
+[; ;ring_buffer_LUT.c: 1408: printf("Fixed Voltage Reference Buffer 1 measured as %.3f Volts\n\r", FVR_ADC_Result);
 "1408
-[e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1410: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"1410
-[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1411: printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+[e ( _printf , (. :s 221C _FVR_ADC_Result ]
+[; ;ring_buffer_LUT.c: 1409: printf("AVSS measured as %.3f Volts\n\r", AVSS_ADC_Result);
+"1409
+[e ( _printf , (. :s 222C _AVSS_ADC_Result ]
+[; ;ring_buffer_LUT.c: 1411: terminal_printNewline();
 "1411
-[e ( _printf :s 224C ]
-[; ;ring_buffer_LUT.c: 1414: terminal_textAttributes(BLACK, GREEN, BOLD);
-"1414
-[e ( _terminal_textAttributes (3 , , . `E18237 0 . `E18237 2 . `E18229 1 ]
-[; ;ring_buffer_LUT.c: 1415: terminal_printNewline();
-"1415
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1416: printf("Boot Complete");
-"1416
-[e ( _printf :s 225C ]
-[; ;ring_buffer_LUT.c: 1417: terminal_textAttributesReset();
+[; ;ring_buffer_LUT.c: 1413: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"1413
+[e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
+[; ;ring_buffer_LUT.c: 1414: printf("Call 'Help' for list of supported command sets, or 'Help All' for list of all supported commands\n\r");
+"1414
+[e ( _printf :s 223C ]
+[; ;ring_buffer_LUT.c: 1417: terminal_textAttributes(BLACK, GREEN, BOLD);
 "1417
-[e ( _terminal_textAttributesReset ..  ]
+[e ( _terminal_textAttributes (3 , , . `E18237 0 . `E18237 2 . `E18229 1 ]
 [; ;ring_buffer_LUT.c: 1418: terminal_printNewline();
 "1418
 [e ( _terminal_printNewline ..  ]
-[; ;ring_buffer_LUT.c: 1419: terminal_printNewline();
+[; ;ring_buffer_LUT.c: 1419: printf("Boot Complete");
 "1419
-[e ( _terminal_printNewline ..  ]
+[e ( _printf :s 224C ]
 [; ;ring_buffer_LUT.c: 1420: terminal_textAttributesReset();
 "1420
 [e ( _terminal_textAttributesReset ..  ]
-[; ;ring_buffer_LUT.c: 1423: }
+[; ;ring_buffer_LUT.c: 1421: terminal_printNewline();
+"1421
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1422: terminal_printNewline();
+"1422
+[e ( _terminal_printNewline ..  ]
+[; ;ring_buffer_LUT.c: 1423: terminal_textAttributesReset();
 "1423
+[e ( _terminal_textAttributesReset ..  ]
+[; ;ring_buffer_LUT.c: 1426: }
+"1426
 [e :UE 2183 ]
 }
 [p f _printf 11381892 ]
@@ -19474,23 +19484,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 64C 67 108 101 97 114 32 69 110 101 114 103 121 0 ]
 [a 68C 79 110 108 121 32 101 110 97 98 108 101 32 100 105 109 109 105 110 103 32 105 102 32 121 111 117 32 97 114 101 32 99 111 109 112 108 101 116 101 108 121 32 115 117 114 101 32 116 104 101 32 108 111 97 100 32 105 115 32 99 111 109 112 97 116 105 98 108 101 32 119 105 116 104 32 97 32 115 111 108 105 100 32 115 116 97 116 101 32 100 105 109 109 105 110 103 32 99 105 114 99 117 105 116 0 ]
 [a 1C 82 101 115 101 116 0 ]
-[a 190C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 32 47 32 68 105 109 109 101 114 44 32 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 0 ]
+[a 189C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 32 47 32 68 105 109 109 101 114 44 32 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 0 ]
 [a 40C 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 0 ]
 [a 32C 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 0 ]
 [a 111C 67 108 101 97 114 32 77 97 120 32 86 97 108 117 101 115 0 ]
-[a 161C 76 105 118 101 32 85 112 100 97 116 101 115 0 ]
-[a 168C 72 101 108 112 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 0 ]
-[a 166C 72 101 108 112 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 0 ]
-[a 170C 72 101 108 112 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 0 ]
-[a 164C 72 101 108 112 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 0 ]
+[a 159C 76 105 118 101 32 77 101 97 115 117 114 101 109 101 110 116 32 85 112 100 97 116 101 115 0 ]
+[a 166C 72 101 108 112 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 0 ]
+[a 164C 72 101 108 112 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 0 ]
+[a 168C 72 101 108 112 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 0 ]
+[a 162C 72 101 108 112 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 0 ]
 [a 4C 67 108 101 97 114 0 ]
-[a 174C 72 101 108 112 0 ]
-[a 172C 72 101 108 112 32 65 108 108 0 ]
-[a 185C 68 114 101 119 32 77 97 97 116 109 97 110 32 97 110 100 32 71 97 98 101 32 84 104 97 108 106 105 0 ]
+[a 172C 72 101 108 112 0 ]
+[a 170C 72 101 108 112 32 65 108 108 0 ]
+[a 183C 68 114 101 119 32 77 97 97 116 109 97 110 32 97 110 100 32 71 97 98 101 32 84 104 97 108 106 105 0 ]
 [a 75C 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
 [a 66C 69 110 97 98 108 101 32 68 105 109 109 105 110 103 0 ]
-[a 181C 69 97 115 116 101 114 32 69 103 103 0 ]
-[a 225C 66 111 111 116 32 67 111 109 112 108 101 116 101 0 ]
+[a 179C 69 97 115 116 101 114 32 69 103 103 0 ]
+[a 224C 66 111 111 116 32 67 111 109 112 108 101 116 101 0 ]
 [a 67C 87 65 82 78 73 78 71 58 32 85 115 105 110 103 32 116 104 101 32 100 105 109 109 105 110 103 32 102 101 97 116 117 114 101 32 119 105 116 104 32 108 111 97 100 32 100 101 118 105 99 101 115 32 111 116 104 101 114 32 116 104 97 110 32 97 32 108 105 103 104 116 32 98 117 108 98 32 99 97 110 32 114 101 115 117 108 116 32 105 110 32 100 101 118 105 99 101 32 100 97 109 97 103 101 0 ]
 [a 86C 68 105 115 97 98 108 101 32 76 111 97 100 0 ]
 [a 77C 69 110 97 98 108 101 32 76 111 97 100 0 ]
@@ -19500,7 +19510,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 5C 27 91 50 74 0 ]
 [a 3C 27 91 72 0 ]
 [a 6C 27 91 72 0 ]
-[a 183C 77 97 114 113 117 101 116 116 101 32 85 110 105 118 101 114 115 105 116 121 32 69 69 67 69 0 ]
+[a 181C 77 97 114 113 117 101 116 116 101 32 85 110 105 118 101 114 115 105 116 121 32 69 69 67 69 0 ]
 [a 60C 77 101 97 115 117 114 101 32 69 110 101 114 103 121 63 0 ]
 [a 52C 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 0 ]
 [a 99C 77 97 120 32 82 77 83 32 67 117 114 114 101 110 116 63 0 ]
@@ -19530,20 +19540,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 42C 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 0 ]
 [a 44C 77 101 97 115 117 114 101 32 80 79 83 49 50 63 0 ]
 [a 88C 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 0 ]
-[a 176C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 110 100 32 110 101 117 116 114 97 108 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
-[a 196C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 110 100 32 110 101 117 116 114 97 108 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
+[a 174C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 110 100 32 110 101 117 116 114 97 108 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
+[a 195C 72 101 108 112 32 109 101 115 115 97 103 101 115 32 97 110 100 32 110 101 117 116 114 97 108 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 121 101 108 108 111 119 10 13 0 ]
 [a 147C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 46 50 102 32 112 101 114 99 101 110 116 10 13 0 ]
 [a 92C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 100 32 112 101 114 99 101 110 116 10 13 0 ]
 [a 12C 77 97 114 113 117 101 116 116 101 32 85 110 105 118 101 114 115 105 116 121 32 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 10 13 0 ]
-[a 184C 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 10 13 0 ]
+[a 182C 69 76 69 78 32 51 48 51 53 32 70 105 110 97 108 32 80 114 111 106 101 99 116 10 13 0 ]
 [a 102C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
-[a 160C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
+[a 158C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
 [a 43C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 136C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
-[a 219C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
+[a 218C 43 51 46 51 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 45C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 137C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
-[a 220C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
+[a 219C 43 49 50 86 32 114 97 105 108 32 109 101 97 115 117 114 101 100 32 97 115 32 43 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 104C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 114 97 105 108 32 118 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 141C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 114 97 105 108 32 118 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 106C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 49 50 86 32 114 97 105 108 32 118 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
@@ -19552,145 +19562,144 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 144C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 70 86 82 32 98 117 102 102 101 114 32 49 32 118 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 51C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 140C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
-[a 223C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
+[a 222C 65 86 83 83 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 49C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 139C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
-[a 222C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
+[a 221C 70 105 120 101 100 32 86 111 108 116 97 103 101 32 82 101 102 101 114 101 110 99 101 32 66 117 102 102 101 114 32 49 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 32 86 111 108 116 115 10 13 0 ]
 [a 65C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 104 97 115 32 98 101 101 110 32 114 101 115 101 116 32 116 111 32 122 101 114 111 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 63C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 51 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
-[a 158C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 51 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 156C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 51 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 62C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
-[a 157C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
-[a 61C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
-[a 156C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 155C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 61C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 154C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 53C 77 101 97 115 117 114 101 100 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 109 112 115 10 13 0 ]
 [a 57C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
-[a 154C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
+[a 152C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
 [a 100C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
-[a 159C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 157C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
 [a 55C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
-[a 153C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 151C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
 [a 59C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
-[a 155C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
-[a 162C 69 110 97 98 108 105 110 103 32 108 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 10 13 0 ]
+[a 153C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
+[a 160C 69 110 97 98 108 105 110 103 32 108 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 10 13 0 ]
 [a 98C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
-[a 152C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
+[a 150C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
 [a 96C 68 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 114 101 115 101 116 32 99 111 110 100 105 116 105 111 110 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
 [a 119C 68 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 114 101 115 101 116 32 99 111 110 100 105 116 105 111 110 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
-[a 175C 80 108 101 97 115 101 32 115 112 101 99 105 102 121 32 119 104 97 116 32 116 121 112 101 32 111 102 32 99 111 109 109 97 110 100 115 32 121 111 117 39 100 32 108 105 107 101 32 104 101 108 112 32 119 105 116 104 58 10 13 84 114 121 32 39 72 101 108 112 32 60 99 111 109 109 97 110 100 32 115 101 116 62 39 10 13 10 13 83 117 112 112 111 114 116 101 100 32 67 111 109 109 97 110 100 32 83 101 116 115 58 10 13 32 32 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 109 109 97 110 100 115 32 116 111 32 118 105 101 119 32 97 110 100 32 99 111 110 116 114 111 108 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 102 117 110 99 116 105 111 110 97 108 105 116 121 10 13 32 32 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 109 101 97 115 117 114 101 109 101 110 116 115 10 13 32 32 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 104 105 103 104 32 108 101 118 101 108 32 111 117 116 112 117 116 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 99 97 108 99 117 108 97 116 105 111 110 115 10 13 32 32 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 110 116 114 111 108 32 116 104 101 32 111 117 116 112 117 116 32 115 116 97 116 101 32 97 110 100 32 100 105 109 109 105 110 103 32 102 101 97 116 117 114 101 115 10 13 10 13 39 72 101 108 112 32 65 108 108 39 32 119 105 108 108 32 108 105 115 116 32 97 108 108 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 173C 80 108 101 97 115 101 32 115 112 101 99 105 102 121 32 119 104 97 116 32 116 121 112 101 32 111 102 32 99 111 109 109 97 110 100 115 32 121 111 117 39 100 32 108 105 107 101 32 104 101 108 112 32 119 105 116 104 58 10 13 84 114 121 32 39 72 101 108 112 32 60 99 111 109 109 97 110 100 32 115 101 116 62 39 10 13 10 13 83 117 112 112 111 114 116 101 100 32 67 111 109 109 97 110 100 32 83 101 116 115 58 10 13 32 32 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 109 109 97 110 100 115 32 116 111 32 118 105 101 119 32 97 110 100 32 99 111 110 116 114 111 108 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 102 117 110 99 116 105 111 110 97 108 105 116 121 10 13 32 32 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 109 101 97 115 117 114 101 109 101 110 116 115 10 13 32 32 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 104 105 103 104 32 108 101 118 101 108 32 111 117 116 112 117 116 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 99 97 108 99 117 108 97 116 105 111 110 115 10 13 32 32 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 110 116 114 111 108 32 116 104 101 32 111 117 116 112 117 116 32 115 116 97 116 101 32 97 110 100 32 100 105 109 109 105 110 103 32 102 101 97 116 117 114 101 115 10 13 10 13 39 72 101 108 112 32 65 108 108 39 32 119 105 108 108 32 108 105 115 116 32 97 108 108 32 99 111 109 109 97 110 100 115 10 13 0 ]
 [a 90C 73 102 32 121 111 117 39 100 32 108 105 107 101 32 116 111 32 99 111 109 112 108 101 116 101 108 121 32 101 110 97 98 108 101 32 111 114 32 100 105 115 97 98 108 101 32 116 104 101 32 108 111 97 100 44 32 100 105 115 97 98 108 101 32 100 105 109 109 105 110 103 32 97 110 100 32 117 115 101 32 114 101 115 112 101 99 116 105 118 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
 [a 91C 69 110 116 101 114 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 118 97 105 108 97 98 108 101 32 99 111 109 109 97 110 100 115 10 13 0 ]
-[a 189C 67 97 108 108 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 32 115 101 116 115 44 32 111 114 32 39 72 101 108 112 32 65 108 108 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 0 ]
-[a 224C 67 97 108 108 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 32 115 101 116 115 44 32 111 114 32 39 72 101 108 112 32 65 108 108 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 187C 67 97 108 108 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 32 115 101 116 115 44 32 111 114 32 39 72 101 108 112 32 65 108 108 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 0 ]
+[a 223C 67 97 108 108 32 39 72 101 108 112 39 32 102 111 114 32 108 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 32 115 101 116 115 44 32 111 114 32 39 72 101 108 112 32 65 108 108 39 32 102 111 114 32 108 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 0 ]
 [a 14C 68 101 118 105 99 101 32 73 68 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 48 120 37 88 46 32 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 100 101 118 105 99 101 32 112 97 114 116 32 110 117 109 98 101 114 32 111 102 32 37 115 10 13 0 ]
 [a 115C 68 101 118 105 99 101 32 73 68 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 48 120 37 88 46 32 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 100 101 118 105 99 101 32 112 97 114 116 32 110 117 109 98 101 114 32 111 102 32 37 115 10 13 0 ]
-[a 198C 68 101 118 105 99 101 32 73 68 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 48 120 37 88 46 32 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 100 101 118 105 99 101 32 112 97 114 116 32 110 117 109 98 101 114 32 111 102 32 37 115 10 13 0 ]
-[a 114C 67 97 117 115 101 32 111 102 32 114 101 115 101 116 58 32 37 115 10 13 0 ]
-[a 192C 67 97 117 115 101 32 111 102 32 114 101 115 101 116 58 32 37 115 10 13 0 ]
+[a 197C 68 101 118 105 99 101 32 73 68 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 48 120 37 88 46 32 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 100 101 118 105 99 101 32 112 97 114 116 32 110 117 109 98 101 114 32 111 102 32 37 115 10 13 0 ]
+[a 114C 67 97 117 115 101 32 111 102 32 108 97 115 116 32 114 101 115 101 116 58 32 37 115 10 13 0 ]
+[a 191C 67 97 117 115 101 32 111 102 32 114 101 115 101 116 58 32 37 115 10 13 0 ]
 [a 8C 84 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 119 97 115 58 32 37 115 10 13 0 ]
 [a 23C 32 32 32 32 71 101 110 101 114 97 108 32 65 68 67 32 101 114 114 111 114 10 13 0 ]
 [a 122C 32 32 32 32 71 101 110 101 114 97 108 32 65 68 67 32 101 114 114 111 114 10 13 0 ]
-[a 204C 32 32 32 32 71 101 110 101 114 97 108 32 65 68 67 32 101 114 114 111 114 10 13 0 ]
+[a 203C 32 32 32 32 71 101 110 101 114 97 108 32 65 68 67 32 101 114 114 111 114 10 13 0 ]
 [a 11C 65 67 32 80 111 119 101 114 32 77 101 116 101 114 10 13 0 ]
 [a 29C 32 32 32 32 68 105 101 32 84 101 109 112 10 13 0 ]
 [a 128C 32 32 32 32 68 105 101 32 84 101 109 112 10 13 0 ]
-[a 210C 32 32 32 32 68 105 101 32 84 101 109 112 10 13 0 ]
-[a 177C 83 121 115 116 101 109 32 112 97 114 97 109 101 116 101 114 115 32 97 110 100 32 97 102 102 105 114 109 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 103 114 101 101 110 10 13 0 ]
-[a 193C 83 121 115 116 101 109 32 112 97 114 97 109 101 116 101 114 115 32 97 110 100 32 97 102 102 105 114 109 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 103 114 101 101 110 10 13 0 ]
-[a 178C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
-[a 194C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
-[a 191C 68 114 101 119 32 77 97 97 116 109 97 110 32 97 110 100 32 71 97 98 101 32 84 104 97 108 106 105 10 13 0 ]
-[a 180C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
-[a 197C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
-[a 187C 85 110 115 117 112 112 111 114 116 101 100 32 111 114 32 109 105 115 45 101 110 116 101 114 101 100 32 99 111 109 109 97 110 100 10 13 0 ]
-[a 188C 67 111 109 109 97 110 100 115 32 97 114 101 32 99 97 115 101 32 115 101 110 115 105 116 105 118 101 44 32 98 97 99 107 115 112 97 99 101 32 105 115 32 115 117 112 112 111 114 116 101 100 44 32 99 111 109 109 97 110 100 32 104 105 115 116 111 114 121 32 105 115 32 110 111 116 32 115 117 112 112 111 114 116 101 100 10 13 0 ]
+[a 209C 32 32 32 32 68 105 101 32 84 101 109 112 10 13 0 ]
+[a 175C 83 121 115 116 101 109 32 112 97 114 97 109 101 116 101 114 115 32 97 110 100 32 97 102 102 105 114 109 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 103 114 101 101 110 10 13 0 ]
+[a 192C 83 121 115 116 101 109 32 112 97 114 97 109 101 116 101 114 115 32 97 110 100 32 97 102 102 105 114 109 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 103 114 101 101 110 10 13 0 ]
+[a 176C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
+[a 193C 77 101 97 115 117 114 101 109 101 110 116 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 99 121 97 110 10 13 0 ]
+[a 190C 68 114 101 119 32 77 97 97 116 109 97 110 32 97 110 100 32 71 97 98 101 32 84 104 97 108 106 105 10 13 0 ]
+[a 178C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
+[a 196C 85 115 101 114 32 105 110 112 117 116 32 97 112 112 101 97 114 115 32 105 110 32 119 104 105 116 101 10 13 0 ]
+[a 185C 85 110 115 117 112 112 111 114 116 101 100 32 111 114 32 109 105 115 45 101 110 116 101 114 101 100 32 99 111 109 109 97 110 100 10 13 0 ]
+[a 186C 67 111 109 109 97 110 100 115 32 97 114 101 32 99 97 115 101 32 115 101 110 115 105 116 105 118 101 44 32 98 97 99 107 115 112 97 99 101 32 105 115 32 115 117 112 112 111 114 116 101 100 44 32 99 111 109 109 97 110 100 32 104 105 115 116 111 114 121 32 105 115 32 110 111 116 32 115 117 112 112 111 114 116 101 100 10 13 0 ]
 [a 39C 78 111 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
 [a 135C 78 111 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
-[a 217C 78 111 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
+[a 216C 78 111 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
 [a 31C 78 111 32 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
 [a 130C 78 111 32 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
-[a 212C 78 111 32 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
+[a 211C 78 111 32 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 10 13 0 ]
 [a 41C 67 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 99 108 101 97 114 101 100 10 13 0 ]
 [a 33C 65 68 67 32 69 114 114 111 114 40 115 41 32 99 108 101 97 114 101 100 10 13 0 ]
-[a 179C 69 114 114 111 114 115 32 97 110 100 32 110 101 103 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
-[a 195C 69 114 114 111 114 115 32 97 110 100 32 110 101 103 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
+[a 177C 69 114 114 111 114 115 32 97 110 100 32 110 101 103 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
+[a 194C 69 114 114 111 114 115 32 97 110 100 32 110 101 103 97 116 105 118 101 32 114 101 115 112 111 110 115 101 115 32 97 112 112 101 97 114 32 105 110 32 114 101 100 10 13 0 ]
 [a 81C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 85C 76 111 97 100 32 97 110 100 32 100 105 109 109 105 110 103 32 97 114 101 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
-[a 151C 76 111 97 100 32 97 110 100 32 100 105 109 109 105 110 103 32 97 114 101 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 149C 76 111 97 100 32 97 110 100 32 100 105 109 109 105 110 103 32 97 114 101 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 84C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 98 117 116 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
-[a 150C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 98 117 116 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 148C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 98 117 116 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 188C 76 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 76C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 87C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 78C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 44 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 73C 76 111 97 100 32 105 115 32 68 105 115 97 98 108 101 100 10 13 0 ]
-[a 163C 76 111 97 100 32 105 115 32 110 111 116 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
+[a 161C 76 111 97 100 32 105 115 32 110 111 116 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 83C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 146C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 80C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
-[a 218C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
+[a 217C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 72C 79 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 16C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]
 [a 116C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]
-[a 199C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]
+[a 198C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]
 [a 19C 32 32 32 32 85 115 101 114 32 73 68 32 87 111 114 100 32 37 100 32 40 70 108 97 115 104 32 97 100 100 114 101 115 115 32 48 120 50 48 48 48 48 37 88 41 58 32 48 120 37 48 52 88 10 13 0 ]
 [a 118C 32 32 32 32 85 115 101 114 32 73 68 32 87 111 114 100 32 37 100 32 40 70 108 97 115 104 32 97 100 100 114 101 115 115 32 48 120 50 48 48 48 48 37 88 41 58 32 48 120 37 48 52 88 10 13 0 ]
-[a 201C 32 32 32 32 85 115 101 114 32 73 68 32 87 111 114 100 32 37 100 32 40 70 108 97 115 104 32 97 100 100 114 101 115 115 32 48 120 50 48 48 48 48 37 88 41 58 32 48 120 37 48 52 88 10 13 0 ]
+[a 200C 32 32 32 32 85 115 101 114 32 73 68 32 87 111 114 100 32 37 100 32 40 70 108 97 115 104 32 97 100 100 114 101 115 115 32 48 120 50 48 48 48 48 37 88 41 58 32 48 120 37 48 52 88 10 13 0 ]
 [a 24C 32 32 32 32 65 86 83 83 10 13 0 ]
 [a 123C 32 32 32 32 65 86 83 83 10 13 0 ]
-[a 205C 32 32 32 32 65 86 83 83 10 13 0 ]
+[a 204C 32 32 32 32 65 86 83 83 10 13 0 ]
 [a 26C 32 32 32 32 73 83 78 83 10 13 0 ]
 [a 125C 32 32 32 32 73 83 78 83 10 13 0 ]
-[a 207C 32 32 32 32 73 83 78 83 10 13 0 ]
+[a 206C 32 32 32 32 73 83 78 83 10 13 0 ]
 [a 25C 32 32 32 32 70 86 82 10 13 0 ]
 [a 124C 32 32 32 32 70 86 82 10 13 0 ]
-[a 206C 32 32 32 32 70 86 82 10 13 0 ]
+[a 205C 32 32 32 32 70 86 82 10 13 0 ]
 [a 112C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 118 97 108 117 101 115 32 101 114 97 115 101 100 32 102 114 111 109 32 83 82 65 77 32 97 110 100 32 69 69 80 82 79 77 10 13 0 ]
-[a 186C 80 83 79 67 115 32 83 85 67 75 10 13 0 ]
+[a 184C 80 83 79 67 115 32 83 85 67 75 10 13 0 ]
 [a 47C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 67 10 13 0 ]
 [a 138C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 67 10 13 0 ]
-[a 221C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 67 10 13 0 ]
+[a 220C 68 105 101 32 84 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 32 97 115 32 37 46 51 102 67 10 13 0 ]
 [a 36C 32 32 32 32 79 76 69 68 32 68 105 115 112 108 97 121 32 73 50 67 10 13 0 ]
 [a 132C 32 32 32 32 79 76 69 68 32 68 105 115 112 108 97 121 32 73 50 67 10 13 0 ]
-[a 214C 32 32 32 32 79 76 69 68 32 68 105 115 112 108 97 121 32 73 50 67 10 13 0 ]
+[a 213C 32 32 32 32 79 76 69 68 32 68 105 115 112 108 97 121 32 73 50 67 10 13 0 ]
 [a 108C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 115 32 37 46 51 102 32 67 10 13 0 ]
 [a 143C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 115 32 37 46 51 102 32 67 10 13 0 ]
 [a 18C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 85 115 101 114 32 73 68 115 32 104 97 118 101 32 98 101 101 110 32 114 101 116 114 105 101 118 101 100 32 102 114 111 109 32 102 108 97 115 104 32 109 101 109 111 114 121 58 10 13 0 ]
 [a 117C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 85 115 101 114 32 73 68 115 32 104 97 118 101 32 98 101 101 110 32 114 101 116 114 105 101 118 101 100 32 102 114 111 109 32 102 108 97 115 104 32 109 101 109 111 114 121 58 10 13 0 ]
-[a 200C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 85 115 101 114 32 73 68 115 32 104 97 118 101 32 98 101 101 110 32 114 101 116 114 105 101 118 101 100 32 102 114 111 109 32 102 108 97 115 104 32 109 101 109 111 114 121 58 10 13 0 ]
+[a 199C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 85 115 101 114 32 73 68 115 32 104 97 118 101 32 98 101 101 110 32 114 101 116 114 105 101 118 101 100 32 102 114 111 109 32 102 108 97 115 104 32 109 101 109 111 114 121 58 10 13 0 ]
 [a 22C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 99 104 97 110 110 101 108 115 32 99 97 117 115 101 100 32 97 110 32 65 68 67 32 101 114 114 111 114 58 10 13 0 ]
 [a 121C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 99 104 97 110 110 101 108 115 32 99 97 117 115 101 100 32 97 110 32 65 68 67 32 101 114 114 111 114 58 10 13 0 ]
-[a 203C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 99 104 97 110 110 101 108 115 32 99 97 117 115 101 100 32 97 110 32 65 68 67 32 101 114 114 111 114 58 10 13 0 ]
+[a 202C 84 104 101 32 102 111 108 108 111 119 105 110 103 32 99 104 97 110 110 101 108 115 32 99 97 117 115 101 100 32 97 110 32 65 68 67 32 101 114 114 111 114 58 10 13 0 ]
 [a 70C 73 102 32 121 101 115 44 32 114 101 112 108 121 32 39 69 110 97 98 108 101 32 68 105 109 109 105 110 103 32 89 39 32 111 110 32 116 104 101 32 110 101 120 116 32 108 105 110 101 58 10 13 0 ]
 [a 35C 67 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 32 73 110 116 101 114 102 97 99 101 115 32 99 97 117 115 105 110 103 32 101 114 114 111 114 40 115 41 58 10 13 0 ]
 [a 131C 67 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 32 73 110 116 101 114 102 97 99 101 115 32 99 97 117 115 105 110 103 32 101 114 114 111 114 40 115 41 58 10 13 0 ]
-[a 213C 67 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 32 73 110 116 101 114 102 97 99 101 115 32 99 97 117 115 105 110 103 32 101 114 114 111 114 40 115 41 58 10 13 0 ]
+[a 212C 67 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 32 73 110 116 101 114 102 97 99 101 115 32 99 97 117 115 105 110 103 32 101 114 114 111 114 40 115 41 58 10 13 0 ]
 [a 28C 32 32 32 32 80 79 83 51 80 51 10 13 0 ]
 [a 127C 32 32 32 32 80 79 83 51 80 51 10 13 0 ]
-[a 209C 32 32 32 32 80 79 83 51 80 51 10 13 0 ]
+[a 208C 32 32 32 32 80 79 83 51 80 51 10 13 0 ]
 [a 27C 32 32 32 32 80 79 83 49 50 10 13 0 ]
 [a 126C 32 32 32 32 80 79 83 49 50 10 13 0 ]
-[a 208C 32 32 32 32 80 79 83 49 50 10 13 0 ]
+[a 207C 32 32 32 32 80 79 83 49 50 10 13 0 ]
 [a 89C 69 82 82 79 82 58 32 80 108 101 97 115 101 32 115 101 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 116 111 32 97 110 32 105 110 116 101 103 101 114 32 103 114 101 97 116 101 114 32 116 104 97 110 32 48 32 97 110 100 32 108 101 115 115 32 116 104 97 110 32 49 48 48 10 13 0 ]
 [a 93C 67 97 108 99 117 108 97 116 101 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 32 105 115 32 37 46 51 102 32 114 97 100 105 97 110 115 32 40 37 46 51 102 32 100 101 103 114 101 101 115 41 10 13 0 ]
-[a 148C 67 97 108 99 117 108 97 116 101 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 32 105 115 32 37 46 51 102 32 114 97 100 105 97 110 115 32 40 37 46 51 102 32 100 101 103 114 101 101 115 41 10 13 0 ]
 [a 38C 67 97 108 108 32 39 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 10 13 0 ]
 [a 134C 67 97 108 108 32 39 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 10 13 0 ]
-[a 216C 67 97 108 108 32 39 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 10 13 0 ]
+[a 215C 67 97 108 108 32 39 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 40 115 41 10 13 0 ]
 [a 30C 67 97 108 108 32 39 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 65 68 67 32 101 114 114 111 114 40 115 41 10 13 0 ]
 [a 129C 67 97 108 108 32 39 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 65 68 67 32 101 114 114 111 114 40 115 41 10 13 0 ]
-[a 211C 67 97 108 108 32 39 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 65 68 67 32 101 114 114 111 114 40 115 41 10 13 0 ]
+[a 210C 67 97 108 108 32 39 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 39 32 116 111 32 99 108 101 97 114 32 65 68 67 32 101 114 114 111 114 40 115 41 10 13 0 ]
 [a 37C 32 32 32 32 85 83 66 32 85 65 82 84 32 40 116 104 105 115 32 105 110 116 101 114 102 97 99 101 41 10 13 0 ]
 [a 133C 32 32 32 32 85 83 66 32 85 65 82 84 32 40 116 104 105 115 32 105 110 116 101 114 102 97 99 101 41 10 13 0 ]
-[a 215C 32 32 32 32 85 83 66 32 85 65 82 84 32 40 116 104 105 115 32 105 110 116 101 114 102 97 99 101 41 10 13 0 ]
+[a 214C 32 32 32 32 85 83 66 32 85 65 82 84 32 40 116 104 105 115 32 105 110 116 101 114 102 97 99 101 41 10 13 0 ]
 [a 74C 69 110 97 98 108 101 100 32 116 104 101 32 108 111 97 100 32 98 121 32 99 97 108 108 105 110 103 32 39 69 110 97 98 108 101 32 76 111 97 100 39 10 13 0 ]
 [a 21C 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 10 13 0 ]
 [a 120C 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 10 13 0 ]
-[a 202C 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 10 13 0 ]
+[a 201C 65 68 67 32 101 114 114 111 114 40 115 41 32 100 101 116 101 99 116 101 100 33 10 13 0 ]
 [a 94C 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 49 54 32 98 105 116 32 116 105 109 101 114 32 112 114 101 45 108 111 97 100 32 118 97 108 117 101 32 111 102 32 48 120 37 88 32 40 37 117 32 76 83 66 115 41 32 10 13 0 ]
-[a 149C 84 104 105 115 32 99 111 114 114 101 115 112 111 110 100 115 32 116 111 32 97 32 49 54 32 98 105 116 32 116 105 109 101 114 32 112 114 101 45 108 111 97 100 32 118 97 108 117 101 32 111 102 32 48 120 37 88 32 40 37 117 32 76 83 66 115 41 32 10 13 0 ]
-[a 182C 32 32 32 32 95 32 32 32 95 95 95 32 32 32 95 95 95 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 95 95 32 32 95 95 32 32 32 32 32 95 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 95 32 32 32 95 95 95 32 32 95 32 32 32 32 32 32 10 13 32 32 32 47 95 92 32 47 32 95 95 124 32 124 32 95 32 92 95 95 95 95 95 32 95 95 32 95 95 95 95 95 32 95 32 95 32 32 124 32 32 92 47 32 32 124 95 95 95 124 32 124 95 32 95 95 95 32 95 32 95 32 32 32 95 95 32 95 32 95 32 95 32 32 95 95 124 32 124 32 124 32 32 32 92 40 95 41 95 32 95 95 32 32 95 32 95 95 32 32 95 95 95 32 95 32 95 32 10 13 32 32 47 32 95 32 92 32 40 95 95 32 32 124 32 32 95 47 32 95 32 92 32 86 32 32 86 32 47 32 45 95 41 32 39 95 124 32 124 32 124 92 47 124 32 47 32 45 95 41 32 32 95 47 32 45 95 41 32 39 95 124 32 47 32 95 96 32 124 32 39 32 92 47 32 95 96 32 124 32 124 32 124 41 32 124 32 124 32 39 32 32 92 124 32 39 32 32 92 47 32 45 95 41 32 39 95 124 10 13 32 47 95 47 32 92 95 92 95 95 95 124 32 124 95 124 32 92 95 95 95 47 92 95 47 92 95 47 92 95 95 95 124 95 124 32 32 32 124 95 124 32 32 124 95 92 95 95 95 124 92 95 95 92 95 95 95 124 95 124 32 32 32 92 95 95 44 95 124 95 124 124 95 92 95 95 44 95 124 32 124 95 95 95 47 124 95 124 95 124 95 124 95 124 95 124 95 124 95 92 95 95 95 124 95 124 32 32 10 13 0 ]
-[a 173C 76 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 109 109 97 110 100 115 32 116 111 32 118 105 101 119 32 97 110 100 32 99 111 110 116 114 111 108 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 102 117 110 99 116 105 111 110 97 108 105 116 121 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 67 111 109 109 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 105 102 32 97 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 32 104 97 115 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 10 13 32 32 32 67 108 101 97 114 32 77 97 120 32 86 97 108 117 101 115 58 32 69 114 97 115 101 115 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 118 97 108 117 101 115 32 102 114 111 109 32 69 69 80 82 79 77 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 32 32 32 68 101 118 105 99 101 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 108 105 115 116 32 111 102 32 99 117 114 114 101 110 116 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 100 101 118 105 99 101 32 118 97 108 117 101 115 32 97 115 32 119 101 108 108 32 97 115 32 104 97 114 100 119 97 114 101 32 73 68 115 10 13 10 13 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 109 101 97 115 117 114 101 109 101 110 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 97 120 32 80 79 83 51 80 51 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 80 79 83 49 50 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 49 50 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 70 86 82 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 70 86 82 32 66 117 102 102 101 114 32 49 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 104 105 103 104 32 108 101 118 101 108 32 111 117 116 112 117 116 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 99 97 108 99 117 108 97 116 105 111 110 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 69 110 101 114 103 121 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 101 110 101 114 103 121 32 115 105 110 99 101 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 110 32 87 97 116 116 32 72 111 117 114 115 10 13 32 32 32 67 108 101 97 114 32 69 110 101 114 103 121 58 32 82 101 115 101 116 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 116 111 32 122 101 114 111 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 32 32 32 77 97 120 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 10 13 32 32 32 77 97 120 32 80 111 119 101 114 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 10 13 32 32 32 77 101 97 115 117 114 101 109 101 110 116 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 115 117 109 109 97 114 121 32 111 102 32 105 110 115 116 97 110 116 97 110 101 111 117 115 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 108 111 97 100 32 118 97 108 117 101 115 10 13 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 110 116 114 111 108 32 116 104 101 32 111 117 116 112 117 116 32 115 116 97 116 101 32 97 110 100 32 100 105 109 109 105 110 103 32 102 101 97 116 117 114 101 115 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 76 111 97 100 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 109 109 105 110 103 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 100 105 109 109 105 110 103 32 111 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 110 111 116 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 10 13 0 ]
-[a 171C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 76 111 97 100 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 109 109 105 110 103 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 100 105 109 109 105 110 103 32 111 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 110 111 116 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 10 13 0 ]
-[a 169C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 69 110 101 114 103 121 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 101 110 101 114 103 121 32 115 105 110 99 101 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 110 32 87 97 116 116 32 72 111 117 114 115 10 13 32 32 32 67 108 101 97 114 32 69 110 101 114 103 121 58 32 82 101 115 101 116 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 116 111 32 122 101 114 111 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 32 32 32 77 97 120 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 10 13 32 32 32 77 97 120 32 80 111 119 101 114 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 10 13 32 32 32 77 101 97 115 117 114 101 109 101 110 116 32 83 117 109 109 97 114 121 76 32 80 114 105 110 116 115 32 97 32 115 117 109 109 97 114 121 32 111 102 32 105 110 115 116 97 110 116 97 110 101 111 117 115 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 108 111 97 100 32 118 97 108 117 101 115 10 13 10 13 0 ]
-[a 165C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 67 111 109 109 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 105 102 32 97 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 32 104 97 115 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 10 13 32 32 32 67 108 101 97 114 32 77 97 120 32 86 97 108 117 101 115 58 32 69 114 97 115 101 115 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 118 97 108 117 101 115 32 102 114 111 109 32 69 69 80 82 79 77 10 13 32 32 32 68 101 118 105 99 101 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 108 105 115 116 32 111 102 32 99 117 114 114 101 110 116 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 100 101 118 105 99 101 32 118 97 108 117 101 115 32 97 115 32 119 101 108 108 32 97 115 32 104 97 114 100 119 97 114 101 32 73 68 115 10 13 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 10 13 0 ]
-[a 167C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 97 120 32 80 79 83 51 80 51 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 80 79 83 49 50 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 49 50 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 70 86 82 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 70 86 82 32 66 117 102 102 101 114 32 49 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 10 13 0 ]
+[a 180C 32 32 32 32 95 32 32 32 95 95 95 32 32 32 95 95 95 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 95 95 32 32 95 95 32 32 32 32 32 95 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 95 32 32 32 95 95 95 32 32 95 32 32 32 32 32 32 10 13 32 32 32 47 95 92 32 47 32 95 95 124 32 124 32 95 32 92 95 95 95 95 95 32 95 95 32 95 95 95 95 95 32 95 32 95 32 32 124 32 32 92 47 32 32 124 95 95 95 124 32 124 95 32 95 95 95 32 95 32 95 32 32 32 95 95 32 95 32 95 32 95 32 32 95 95 124 32 124 32 124 32 32 32 92 40 95 41 95 32 95 95 32 32 95 32 95 95 32 32 95 95 95 32 95 32 95 32 10 13 32 32 47 32 95 32 92 32 40 95 95 32 32 124 32 32 95 47 32 95 32 92 32 86 32 32 86 32 47 32 45 95 41 32 39 95 124 32 124 32 124 92 47 124 32 47 32 45 95 41 32 32 95 47 32 45 95 41 32 39 95 124 32 47 32 95 96 32 124 32 39 32 92 47 32 95 96 32 124 32 124 32 124 41 32 124 32 124 32 39 32 32 92 124 32 39 32 32 92 47 32 45 95 41 32 39 95 124 10 13 32 47 95 47 32 92 95 92 95 95 95 124 32 124 95 124 32 92 95 95 95 47 92 95 47 92 95 47 92 95 95 95 124 95 124 32 32 32 124 95 124 32 32 124 95 92 95 95 95 124 92 95 95 92 95 95 95 124 95 124 32 32 32 92 95 95 44 95 124 95 124 124 95 92 95 95 44 95 124 32 124 95 95 95 47 124 95 124 95 124 95 124 95 124 95 124 95 124 95 92 95 95 95 124 95 124 32 32 10 13 0 ]
+[a 171C 76 105 115 116 32 111 102 32 97 108 108 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 58 10 13 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 109 109 97 110 100 115 32 116 111 32 118 105 101 119 32 97 110 100 32 99 111 110 116 114 111 108 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 102 117 110 99 116 105 111 110 97 108 105 116 121 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 67 111 109 109 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 105 102 32 97 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 32 104 97 115 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 10 13 32 32 32 67 108 101 97 114 32 77 97 120 32 86 97 108 117 101 115 58 32 69 114 97 115 101 115 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 118 97 108 117 101 115 32 102 114 111 109 32 69 69 80 82 79 77 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 32 32 32 68 101 118 105 99 101 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 108 105 115 116 32 111 102 32 99 117 114 114 101 110 116 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 100 101 118 105 99 101 32 118 97 108 117 101 115 32 97 115 32 119 101 108 108 32 97 115 32 104 97 114 100 119 97 114 101 32 73 68 115 10 13 10 13 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 108 111 119 32 108 101 118 101 108 32 115 121 115 116 101 109 32 109 101 97 115 117 114 101 109 101 110 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 97 120 32 80 79 83 51 80 51 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 80 79 83 49 50 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 49 50 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 70 86 82 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 70 86 82 32 66 117 102 102 101 114 32 49 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 10 13 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 32 86 105 101 119 32 104 105 103 104 32 108 101 118 101 108 32 111 117 116 112 117 116 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 99 97 108 99 117 108 97 116 105 111 110 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 69 110 101 114 103 121 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 101 110 101 114 103 121 32 115 105 110 99 101 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 110 32 87 97 116 116 32 72 111 117 114 115 10 13 32 32 32 67 108 101 97 114 32 69 110 101 114 103 121 58 32 82 101 115 101 116 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 116 111 32 122 101 114 111 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 32 32 32 77 97 120 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 10 13 32 32 32 77 97 120 32 80 111 119 101 114 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 10 13 32 32 32 77 101 97 115 117 114 101 109 101 110 116 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 115 117 109 109 97 114 121 32 111 102 32 105 110 115 116 97 110 116 97 110 101 111 117 115 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 108 111 97 100 32 118 97 108 117 101 115 10 13 32 32 32 76 105 118 101 32 77 101 97 115 117 114 101 109 101 110 116 32 85 112 100 97 116 101 115 58 32 83 116 114 101 97 109 115 32 108 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 32 116 111 32 116 101 114 109 105 110 97 108 10 13 10 13 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 32 67 111 110 116 114 111 108 32 116 104 101 32 111 117 116 112 117 116 32 115 116 97 116 101 32 97 110 100 32 100 105 109 109 105 110 103 32 102 101 97 116 117 114 101 115 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 76 111 97 100 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 109 109 105 110 103 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 100 105 109 109 105 110 103 32 111 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 110 111 116 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 10 13 0 ]
+[a 169C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 79 117 116 112 117 116 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 69 110 97 98 108 101 32 68 105 109 109 105 110 103 58 32 69 110 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 68 105 115 97 98 108 101 32 68 105 109 109 105 110 103 58 32 68 105 115 97 98 108 101 32 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 10 13 32 32 32 69 110 97 98 108 101 32 76 111 97 100 58 32 69 110 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 119 105 116 104 32 100 105 109 109 105 110 103 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 115 97 98 108 101 32 76 111 97 100 58 32 68 105 115 97 98 108 101 115 32 116 104 101 32 111 117 116 112 117 116 32 84 82 73 65 67 32 99 111 109 112 108 101 116 101 108 121 10 13 32 32 32 76 111 97 100 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 100 105 115 97 98 108 101 100 10 13 32 32 32 68 105 109 109 105 110 103 32 69 110 97 98 108 101 100 63 58 32 82 101 116 117 114 110 115 32 105 102 32 100 105 109 109 105 110 103 32 111 102 32 116 104 101 32 111 117 116 112 117 116 32 108 111 97 100 32 105 115 32 101 110 97 98 108 101 100 32 111 114 32 110 111 116 10 13 32 32 32 83 101 116 32 68 105 109 109 105 110 103 32 80 101 114 99 101 110 116 97 103 101 58 32 60 120 62 58 32 83 101 116 115 32 116 104 101 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 112 101 114 99 101 110 116 97 103 101 32 97 115 32 120 32 112 101 114 99 101 110 116 10 13 10 13 0 ]
+[a 163C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 68 101 118 105 99 101 32 67 111 110 116 114 111 108 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 82 101 115 101 116 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 97 110 100 32 114 101 115 101 116 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 10 13 32 32 32 67 108 101 97 114 58 32 67 108 101 97 114 115 32 116 104 101 32 116 101 114 109 105 110 97 108 32 98 117 116 32 100 111 101 115 110 39 116 32 114 101 115 101 116 32 116 104 101 32 109 105 99 114 111 10 13 32 32 32 67 97 117 115 101 32 111 102 32 82 101 115 101 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 116 104 101 32 109 111 115 116 32 114 101 99 101 110 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 42 73 68 78 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 105 100 101 110 116 105 102 105 99 97 116 105 111 110 32 115 116 114 105 110 103 10 13 32 32 32 68 101 118 105 99 101 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 10 13 32 32 32 68 101 118 105 99 101 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 82 101 118 105 115 105 111 110 32 73 68 63 58 32 82 101 116 117 114 110 115 32 100 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 112 114 101 45 112 114 111 103 114 97 109 109 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 85 115 101 114 32 73 68 115 63 58 32 82 101 116 117 114 110 115 32 97 32 108 105 115 116 32 111 102 32 117 115 101 114 32 73 68 115 32 40 100 105 115 112 108 97 121 101 100 32 105 110 32 104 101 120 41 32 97 115 32 115 116 111 114 101 100 32 105 110 32 102 108 97 115 104 32 109 101 109 111 114 121 10 13 32 32 32 65 68 67 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 117 115 101 32 111 102 32 97 110 32 65 68 67 32 101 114 114 111 114 32 105 102 32 97 110 32 101 114 114 111 114 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 65 68 67 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 65 68 67 32 101 114 114 111 114 32 97 110 100 32 114 101 115 117 109 101 115 32 65 68 67 32 99 111 110 118 101 114 115 105 111 110 115 10 13 32 32 32 67 111 109 109 32 69 114 114 111 114 115 63 58 32 82 101 116 117 114 110 115 32 105 102 32 97 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 32 104 97 115 32 111 99 99 117 114 114 101 100 10 13 32 32 32 67 108 101 97 114 32 67 111 109 109 32 69 114 114 111 114 115 58 32 67 108 101 97 114 115 32 116 104 101 32 99 111 109 109 117 110 105 99 97 116 105 111 110 115 32 101 114 114 111 114 10 13 32 32 32 67 108 101 97 114 32 77 97 120 32 86 97 108 117 101 115 58 32 69 114 97 115 101 115 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 118 97 108 117 101 115 32 102 114 111 109 32 69 69 80 82 79 77 10 13 32 32 32 68 101 118 105 99 101 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 108 105 115 116 32 111 102 32 99 117 114 114 101 110 116 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 100 101 118 105 99 101 32 118 97 108 117 101 115 32 97 115 32 119 101 108 108 32 97 115 32 104 97 114 100 119 97 114 101 32 73 68 115 10 13 10 13 32 32 32 72 101 108 112 58 32 84 104 105 115 32 109 101 115 115 97 103 101 44 32 108 105 115 116 115 32 115 117 112 112 111 114 116 101 100 32 99 111 109 109 97 110 100 115 10 13 10 13 0 ]
+[a 167C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 80 114 105 109 97 114 121 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 68 101 116 101 99 116 101 100 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 110 32 97 109 112 115 32 97 115 32 115 101 101 110 32 98 121 32 65 68 67 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 102 114 111 109 32 109 101 97 115 117 114 101 109 101 110 116 115 32 97 110 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 82 77 83 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 82 77 83 32 111 117 116 112 117 116 32 118 111 108 116 97 103 101 32 102 114 111 109 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 10 13 32 32 32 77 101 97 115 117 114 101 32 80 111 119 101 114 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 99 97 108 99 117 108 97 116 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 110 32 87 97 116 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 69 110 101 114 103 121 63 58 32 82 101 116 117 114 110 115 32 109 101 97 115 117 114 101 100 32 101 110 101 114 103 121 32 115 105 110 99 101 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 110 32 87 97 116 116 32 72 111 117 114 115 10 13 32 32 32 67 108 101 97 114 32 69 110 101 114 103 121 58 32 82 101 115 101 116 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 116 111 32 122 101 114 111 10 13 32 32 32 76 111 97 100 32 79 110 32 84 105 109 101 63 58 32 82 101 116 117 114 110 115 32 108 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 110 32 115 101 99 111 110 100 115 10 13 32 32 32 77 97 120 32 82 77 83 32 67 117 114 114 101 110 116 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 10 13 32 32 32 77 97 120 32 80 111 119 101 114 63 58 32 80 114 105 110 116 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 10 13 32 32 32 77 101 97 115 117 114 101 109 101 110 116 32 83 117 109 109 97 114 121 58 32 80 114 105 110 116 115 32 97 32 115 117 109 109 97 114 121 32 111 102 32 105 110 115 116 97 110 116 97 110 101 111 117 115 32 97 110 100 32 109 97 120 105 109 117 109 32 109 101 97 115 117 114 101 100 32 108 111 97 100 32 118 97 108 117 101 115 10 13 32 32 32 76 105 118 101 32 77 101 97 115 117 114 101 109 101 110 116 32 85 112 100 97 116 101 115 58 32 83 116 114 101 97 109 115 32 108 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 32 116 111 32 116 101 114 109 105 110 97 108 10 13 10 13 0 ]
+[a 165C 76 105 115 116 32 111 102 32 115 117 112 112 111 114 116 101 100 32 68 101 118 105 99 101 32 77 101 97 115 117 114 101 109 101 110 116 32 67 111 109 109 97 110 100 115 58 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 51 80 51 63 58 32 82 101 116 117 114 110 115 32 43 51 46 51 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 80 79 83 49 50 63 58 32 82 101 116 117 114 110 115 32 43 49 50 86 32 65 68 67 32 67 111 110 118 101 114 115 105 111 110 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 105 99 114 111 99 111 110 116 114 111 108 108 101 114 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 105 110 32 100 101 103 114 101 101 115 32 67 10 13 32 32 32 77 101 97 115 117 114 101 32 70 86 82 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 105 110 116 101 114 110 97 108 32 102 105 120 101 100 32 118 111 108 116 97 103 101 32 114 101 102 101 114 101 110 99 101 32 98 117 102 102 101 114 32 49 32 111 117 116 112 117 116 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 101 97 115 117 114 101 32 65 86 83 83 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 101 97 115 117 114 101 100 32 118 97 108 117 101 32 111 102 32 65 110 97 108 111 103 32 86 83 83 32 105 110 32 118 111 108 116 115 10 13 32 32 32 77 97 120 32 80 79 83 51 80 51 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 51 46 51 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 80 79 83 49 50 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 43 49 50 86 32 82 97 105 108 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 68 105 101 32 84 101 109 112 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 100 105 101 32 116 101 109 112 101 114 97 116 117 114 101 32 109 101 97 115 117 114 101 100 10 13 32 32 32 77 97 120 32 70 86 82 32 86 111 108 116 97 103 101 63 58 32 82 101 116 117 114 110 115 32 116 104 101 32 109 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 70 86 82 32 66 117 102 102 101 114 32 49 32 86 111 108 116 97 103 101 32 109 101 97 115 117 114 101 100 10 13 10 13 0 ]

@@ -22046,6 +22046,12 @@ extern void (*TMR2_InterruptHandler)(void);
 # 866
 void TMR2_DefaultInterruptHandler(void);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 41 "mcc_generated_files/../error_handling.h"
 struct error_struct {
 
@@ -22180,12 +22186,6 @@ void ADCC_ThresholdISR(void);
 
 # 882
 void ADCC_DefaultInterruptHandler(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 250 "mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);

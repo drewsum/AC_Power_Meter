@@ -743,10 +743,72 @@ void OLED_updateCallback(void) {
             
             if (USB_live_update_flag) {
              
+                
                 terminal_clearTerminal();
                 terminal_setCursorHome();
-                printf("Live Test %d\n\r", dev_on_time);
-                printf("Press enter key twice to exit\n\r");
+                terminal_textAttributesReset();
+                printf("Live Measurement Updates:\n\r");
+                
+                terminal_printNewline();
+                
+                terminal_textAttributes(CYAN, BLACK, NORMAL);
+                printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+                printf("RMS Output Current is %.3f Arms\n\r", Irms);
+                printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+                printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+                
+                if (Total_Energy >= 1000.0) {
+         
+                    printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
+            
+                }
+
+                else if (Total_Energy >= 100.0) {
+
+                    printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+
+                }
+
+                else {
+
+                    printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+
+                }
+                
+                terminal_printNewline();
+                
+                if  (SSR_FORCE_PIN != 1) {
+         
+                    terminal_textAttributes(GREEN, BLACK, NORMAL);
+                    printf("Dimming is currently enabled\n\r");
+
+                    // Calculate TRIAC firing angle
+                    double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
+                    float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
+                    printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+
+                    terminal_textAttributesReset();
+
+                }
+                
+                else {
+                 
+                    terminal_textAttributes(RED, BLACK, NORMAL);
+                    printf("Dimming is currently disabled\n\r");
+                    
+                }
+                
+                terminal_printNewline();
+                
+                terminal_textAttributes(CYAN, BLACK, NORMAL);
+                
+                printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_Irms);
+                printf("Maximum recorded output power is %.3f Watts\n\r", max_Power);
+                
+                terminal_printNewline();
+
+                terminal_textAttributes(YELLOW, BLACK, NORMAL);
+                printf("Press enter key to exit\n\r");
                 
             }
             

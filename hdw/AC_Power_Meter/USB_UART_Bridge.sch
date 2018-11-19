@@ -14,7 +14,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 8800 5300 3    60   UnSpc ~ 0
+Text GLabel 4230 5220 3    60   UnSpc ~ 0
 ~USB_ACTIVE
 Wire Wire Line
 	8190 2980 8270 2980
@@ -559,29 +559,29 @@ $EndComp
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB51B66
-P 8800 5150
+P 4230 5070
 AR Path="/5BB27BA3/5BB51B66" Ref="R?"  Part="1" 
 AR Path="/5BB27BCC/5BB51B66" Ref="R1009"  Part="1" 
-F 0 "R1009" H 8720 5150 50  0000 R CNN
-F 1 "1k" V 8800 5150 50  0000 C CNN
-F 2 "Resistors_SMD:R_0603" H 8800 5150 50  0001 C CNN
-F 3 "" H 8800 5150 50  0001 C CNN
-F 4 "0603" H 8900 5230 50  0000 L CNN "display_footprint"
-F 5 "1%" H 8900 5150 50  0000 L CNN "Tolerance"
-F 6 "1/10W" H 8910 5070 50  0000 L CNN "Wattage"
-F 7 "MCT0603-1.00K-CFCT-ND" H 9100 5550 60  0001 C CNN "Digi-Key PN"
-	1    8800 5150
+F 0 "R1009" H 4150 5070 50  0000 R CNN
+F 1 "1k" V 4230 5070 50  0000 C CNN
+F 2 "Resistors_SMD:R_0603" H 4230 5070 50  0001 C CNN
+F 3 "" H 4230 5070 50  0001 C CNN
+F 4 "0603" H 4330 5150 50  0000 L CNN "display_footprint"
+F 5 "1%" H 4330 5070 50  0000 L CNN "Tolerance"
+F 6 "1/10W" H 4340 4990 50  0000 L CNN "Wattage"
+F 7 "MCT0603-1.00K-CFCT-ND" H 4530 5470 60  0001 C CNN "Digi-Key PN"
+	1    4230 5070
 	1    0    0    -1  
 $EndComp
 $Comp
 L Custom_Library:+5V_USB #PWR01031
 U 1 1 5BB52061
-P 8800 4700
-F 0 "#PWR01031" H 8800 4550 50  0001 C CNN
-F 1 "+5V_USB" H 8800 4840 50  0000 C CNN
-F 2 "" H 8800 4700 50  0001 C CNN
-F 3 "" H 8800 4700 50  0001 C CNN
-	1    8800 4700
+P 4230 4620
+F 0 "#PWR01031" H 4230 4470 50  0001 C CNN
+F 1 "+5V_USB" H 4230 4760 50  0000 C CNN
+F 2 "" H 4230 4620 50  0001 C CNN
+F 3 "" H 4230 4620 50  0001 C CNN
+	1    4230 4620
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -707,17 +707,17 @@ $EndComp
 $Comp
 L Custom_Library:LED_ALT_Custom D?
 U 1 1 5BBD1770
-P 8800 4850
+P 4230 4770
 AR Path="/5BB27B51/5BBD1770" Ref="D?"  Part="1" 
 AR Path="/5BB7FA89/5BBD1770" Ref="D?"  Part="1" 
 AR Path="/5BB27BCC/5BBD1770" Ref="D1002"  Part="1" 
-F 0 "D1002" V 8800 4950 50  0000 L CNN
-F 1 "Yellow" V 8870 4720 50  0000 R CNN
-F 2 "LEDs:LED_0603" H 8800 4850 50  0001 C CNN
-F 3 "" H 8800 4850 50  0001 C CNN
-F 4 "0603" V 8790 4720 50  0000 R CNN "display_footprint"
-F 5 "160-1448-1-ND" H 9000 5150 60  0001 C CNN "Digi-Key PN"
-	1    8800 4850
+F 0 "D1002" V 4230 4870 50  0000 L CNN
+F 1 "Yellow" V 4300 4640 50  0000 R CNN
+F 2 "LEDs:LED_0603" H 4230 4770 50  0001 C CNN
+F 3 "" H 4230 4770 50  0001 C CNN
+F 4 "0603" V 4220 4640 50  0000 R CNN "display_footprint"
+F 5 "160-1448-1-ND" H 4430 5070 60  0001 C CNN "Digi-Key PN"
+	1    4230 4770
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -776,6 +776,20 @@ Wire Wire Line
 Connection ~ 7790 3180
 Wire Wire Line
 	7790 3180 9200 3180
-Text Notes 2030 6200 0    75   ~ 0
-USB COM Port Settings:\nBaud Rate: 115200 bps\nData Width: 8 bit\nParity: None\nStop Bits: 1 bit\nFlow Control: None
+$Comp
+L Custom_Library:COM_Port_Settings DOC?
+U 1 1 5BF2F90B
+P 9500 4540
+F 0 "DOC?" H 9500 4940 60  0001 C CNN
+F 1 "COM_Port_Settings" H 9500 5040 60  0001 C CNN
+F 2 "" H 9500 5040 60  0001 C CNN
+F 3 "" H 9500 5040 60  0001 C CNN
+F 4 "115.2kbs" H 10250 4690 60  0000 R CNN "Baud_Rate"
+F 5 "8bit" H 10250 4590 60  0000 R CNN "Data_Length"
+F 6 "None" H 10250 4490 60  0000 R CNN "Parity"
+F 7 "1 bit" H 10250 4390 60  0000 R CNN "Stop_Bits"
+F 8 "None" H 10250 4290 60  0000 R CNN "Flow_Control"
+	1    9500 4540
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

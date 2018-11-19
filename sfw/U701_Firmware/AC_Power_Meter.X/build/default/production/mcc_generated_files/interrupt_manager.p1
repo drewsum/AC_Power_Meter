@@ -16459,6 +16459,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2012 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16518,8 +16520,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16528,12 +16534,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16659,18 +16659,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupt_manager.c: 75: IPR3bits.RC2IP = 1;
 "75
 [e = . . _IPR3bits 0 7 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 78: IPR5bits.TMR5IP = 1;
+[; ;interrupt_manager.c: 78: IPR3bits.TX2IP = 1;
 "78
-[e = . . _IPR5bits 0 4 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 81: IPR1bits.ADTIP = 1;
+[e = . . _IPR3bits 0 6 -> -> 1 `i `uc ]
+[; ;interrupt_manager.c: 81: IPR5bits.TMR5IP = 1;
 "81
+[e = . . _IPR5bits 0 4 -> -> 1 `i `uc ]
+[; ;interrupt_manager.c: 84: IPR1bits.ADTIP = 1;
+"84
 [e = . . _IPR1bits 0 1 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 85: IPR5bits.TMR6IP = 0;
-"85
-[e = . . _IPR5bits 0 5 -> -> 0 `i `uc ]
-[; ;interrupt_manager.c: 88: IPR3bits.TX2IP = 0;
+[; ;interrupt_manager.c: 88: IPR5bits.TMR6IP = 0;
 "88
-[e = . . _IPR3bits 0 6 -> -> 0 `i `uc ]
+[e = . . _IPR5bits 0 5 -> -> 0 `i `uc ]
 [; ;interrupt_manager.c: 91: IPR5bits.TMR7IP = 0;
 "91
 [e = . . _IPR5bits 0 6 -> -> 0 `i `uc ]
@@ -16775,40 +16775,55 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2028  ]
 "125
 [e :U 2027 ]
-[; ;interrupt_manager.c: 125: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2029  ]
+[; ;interrupt_manager.c: 125: else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
+[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2029  ]
 [; ;interrupt_manager.c: 126: {
 "126
 {
-[; ;interrupt_manager.c: 127: TMR5_ISR();
+[; ;interrupt_manager.c: 127: EUSART2_TxDefaultInterruptHandler();
 "127
-[e ( _TMR5_ISR ..  ]
+[e ( *U _EUSART2_TxDefaultInterruptHandler ..  ]
 "128
 }
 [; ;interrupt_manager.c: 128: }
 [e $U 2030  ]
 "129
 [e :U 2029 ]
-[; ;interrupt_manager.c: 129: else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
-[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 2031  ]
+[; ;interrupt_manager.c: 129: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2031  ]
 [; ;interrupt_manager.c: 130: {
 "130
 {
-[; ;interrupt_manager.c: 131: ADCC_ThresholdISR();
+[; ;interrupt_manager.c: 131: TMR5_ISR();
 "131
-[e ( _ADCC_ThresholdISR ..  ]
+[e ( _TMR5_ISR ..  ]
 "132
 }
 [; ;interrupt_manager.c: 132: }
 [e $U 2032  ]
 "133
 [e :U 2031 ]
-[; ;interrupt_manager.c: 133: else
+[; ;interrupt_manager.c: 133: else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
+[e $ ! && == -> . . _PIE1bits 0 1 `i -> 1 `i == -> . . _PIR1bits 0 1 `i -> 1 `i 2033  ]
 [; ;interrupt_manager.c: 134: {
 "134
 {
+[; ;interrupt_manager.c: 135: ADCC_ThresholdISR();
+"135
+[e ( _ADCC_ThresholdISR ..  ]
 "136
 }
+[; ;interrupt_manager.c: 136: }
+[e $U 2034  ]
+"137
+[e :U 2033 ]
+[; ;interrupt_manager.c: 137: else
+[; ;interrupt_manager.c: 138: {
+"138
+{
+"140
+}
+[e :U 2034 ]
 [e :U 2032 ]
 [e :U 2030 ]
 [e :U 2028 ]
@@ -16817,43 +16832,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2022 ]
 [e :U 2020 ]
 [e :U 2018 ]
-[; ;interrupt_manager.c: 136: }
-[; ;interrupt_manager.c: 137: }
-"137
+[; ;interrupt_manager.c: 140: }
+[; ;interrupt_manager.c: 141: }
+"141
 [e :UE 2016 ]
 }
 [v $root$_INTERRUPT_InterruptManagerLow `(v ~T0 @X0 0 e ]
-"139
+"143
 [v _INTERRUPT_InterruptManagerLow `(v ~T13 @X0 1 ef ]
-"140
+"144
 {
-[; ;interrupt_manager.c: 139: void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
-[; ;interrupt_manager.c: 140: {
+[; ;interrupt_manager.c: 143: void __interrupt(low_priority) INTERRUPT_InterruptManagerLow (void)
+[; ;interrupt_manager.c: 144: {
 [e :U _INTERRUPT_InterruptManagerLow ]
 [f ]
-[; ;interrupt_manager.c: 142: if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
-"142
-[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2034  ]
-[; ;interrupt_manager.c: 143: {
-"143
-{
-[; ;interrupt_manager.c: 144: TMR6_ISR();
-"144
-[e ( _TMR6_ISR ..  ]
-"145
-}
-[; ;interrupt_manager.c: 145: }
-[e $U 2035  ]
+[; ;interrupt_manager.c: 146: if(PIE5bits.TMR6IE == 1 && PIR5bits.TMR6IF == 1)
 "146
-[e :U 2034 ]
-[; ;interrupt_manager.c: 146: else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
-[e $ ! && == -> . . _PIE3bits 0 6 `i -> 1 `i == -> . . _PIR3bits 0 6 `i -> 1 `i 2036  ]
+[e $ ! && == -> . . _PIE5bits 0 5 `i -> 1 `i == -> . . _PIR5bits 0 5 `i -> 1 `i 2036  ]
 [; ;interrupt_manager.c: 147: {
 "147
 {
-[; ;interrupt_manager.c: 148: EUSART2_TxDefaultInterruptHandler();
+[; ;interrupt_manager.c: 148: TMR6_ISR();
 "148
-[e ( *U _EUSART2_TxDefaultInterruptHandler ..  ]
+[e ( _TMR6_ISR ..  ]
 "149
 }
 [; ;interrupt_manager.c: 149: }
@@ -16897,9 +16898,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2041 ]
 [e :U 2039 ]
 [e :U 2037 ]
-[e :U 2035 ]
 [; ;interrupt_manager.c: 161: }
 [; ;interrupt_manager.c: 162: }
 "162
-[e :UE 2033 ]
+[e :UE 2035 ]
 }

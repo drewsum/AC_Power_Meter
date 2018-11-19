@@ -14,8 +14,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E18205 0 1 2 3 4 5 6 7 8 .. ]
 [n E18205 reset_types Undefined_Reset Power_On_Reset Brown_Out_Reset Master_Clear_Reset Watch_Dog_Timer_Reset Windowed_Watch_Dog_Timer_Reset RESET_Instruction_Executed Stack_Overflow_Reset Stack_Underflow_Reset  ]
 "101
-[c E17653 0 4 34 60 61 62 63 .. ]
-[n E17653 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17657 0 4 34 60 61 62 63 .. ]
+[n E17657 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "40 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _acos `(d ~T0 @X0 0 ef1`d ]
 "36
@@ -67,7 +67,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "462
 [v _ADCC_ClearAccumulator `(v ~T0 @X0 0 ef ]
 "163
-[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17653 ]
+[v _ADCC_StartConversion `(v ~T0 @X0 0 ef1`E17657 ]
 "235 mcc_generated_files/tmr5.h
 [v _TMR5_WriteTimer `(v ~T0 @X0 0 ef1`ui ]
 "129
@@ -110,8 +110,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _terminal_clearTerminal `(v ~T0 @X0 0 ef ]
 "148
 [v _terminal_setCursorHome `(v ~T0 @X0 0 ef ]
+"159
+[v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"162 ring_buffer_interface.h
+[v _terminal_printNewline `(v ~T0 @X0 0 ef ]
+"754 main.c
+[c E18238 0 1 2 3 4 5 6 7 .. ]
+[n E18238 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
+[c E18230 0 1 2 3 4 5 .. ]
+[n E18230 . NORMAL BOLD UNDERSCORE BLINK REVERSE CONCEALED  ]
+"154 ring_buffer_interface.h
+[v _terminal_textAttributes `(v ~T0 @X0 0 ef3`E18238`E18238`E18230 ]
 [p mainexit ]
 "56 cause_of_reset.h
 [v _getCauseOfReset `(E18205 ~T0 @X0 0 ef ]
@@ -124,15 +135,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17463 `(v ~T0 @X0 0 tf ]
 "808 mcc_generated_files/tmr6.h
 [v _TMR6_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17463 ]
-[v F17717 `(v ~T0 @X0 0 tf ]
+[v F17721 `(v ~T0 @X0 0 tf ]
 "848 mcc_generated_files/adcc.h
-[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17717 ]
+[v _ADCC_SetADTIInterruptHandler `(v ~T0 @X0 0 ef1`*F17721 ]
 [v F17827 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr7.h
 [v _TMR7_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17827 ]
-[v F17755 `(v ~T0 @X0 0 tf ]
+[v F17735 `(v ~T0 @X0 0 tf ]
 "319 mcc_generated_files/ext_int.h
-[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17755 ]
+[v _INT0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17735 ]
 [v F17385 `(v ~T0 @X0 0 tf ]
 "385 mcc_generated_files/tmr5.h
 [v _TMR5_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17385 ]
@@ -164,8 +175,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1980 . . . . ]
 "40517
 [v _INTCONbits `VS1980 ~T0 @X0 0 e@4082 ]
-"159 ring_buffer_interface.h
-[v _terminal_textAttributesReset `(v ~T0 @X0 0 ef ]
 "87 oled.h
 [v _OLED_Init `(v ~T0 @X0 0 ef ]
 "90
@@ -16441,6 +16450,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2012 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16500,8 +16511,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
+[; ;ext_int.h: 272: void INT0_ISR(void);
+[; ;ext_int.h: 296: void INT0_CallBack(void);
+[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
+[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;memory.h: 99: uint8_t FLASH_ReadByte(uint32_t flashAddr);
 [; ;memory.h: 125: uint16_t FLASH_ReadWord(uint32_t flashAddr);
 [; ;memory.h: 157: void FLASH_WriteByte(uint32_t flashAddr, uint8_t *flashRdBufPtr, uint8_t byte);
@@ -16510,12 +16525,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 249: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 275: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;memory.h: 277: void MEMORY_Tasks(void);
-[; ;ext_int.h: 250: void EXT_INT_Initialize(void);
-[; ;ext_int.h: 272: void INT0_ISR(void);
-[; ;ext_int.h: 296: void INT0_CallBack(void);
-[; ;ext_int.h: 319: void INT0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;ext_int.h: 343: extern void (*INT0_InterruptHandler)(void);
-[; ;ext_int.h: 367: void INT0_DefaultInterruptHandler(void);
 [; ;double_to_EEPROM.h: 40: typedef union {
 [; ;double_to_EEPROM.h: 41: double double_t;
 [; ;double_to_EEPROM.h: 42: unsigned char byte_array_t[sizeof(double)];
@@ -16925,9 +16934,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _reset_cause `E18205 ~T0 @X0 1 e ]
 [; ;main.c: 100: reset_t reset_cause;
 "101
-[v _next_channel `E17653 ~T0 @X0 1 e ]
+[v _next_channel `E17657 ~T0 @X0 1 e ]
 [i _next_channel
-. `E17653 3
+. `E17657 3
 ]
 [; ;main.c: 101: adcc_channel_t next_channel = channel_VSS;
 "104
@@ -17242,9 +17251,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "245
 [e ( _ADCC_StopConversion ..  ]
 "248
-[v _current_adc_channel `E17653 ~T0 @X0 1 a ]
+[v _current_adc_channel `E17657 ~T0 @X0 1 a ]
 [; ;main.c: 248: adcc_channel_t current_adc_channel = ADPCH;
-[e = _current_adc_channel -> _ADPCH `E17653 ]
+[e = _current_adc_channel -> _ADPCH `E17657 ]
 [; ;main.c: 251: switch (current_adc_channel) {
 "251
 [e $U 2035  ]
@@ -17271,7 +17280,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 262: }
 [; ;main.c: 264: next_channel = channel_FVR_buf1;
 "264
-[e = _next_channel . `E17653 6 ]
+[e = _next_channel . `E17657 6 ]
 [; ;main.c: 266: break;
 "266
 [e $U 2034  ]
@@ -17300,7 +17309,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 279: }
 [; ;main.c: 281: next_channel = POS3P3_ADC;
 "281
-[e = _next_channel . `E17653 2 ]
+[e = _next_channel . `E17657 2 ]
 [; ;main.c: 283: break;
 "283
 [e $U 2034  ]
@@ -17326,7 +17335,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 295: }
 [; ;main.c: 297: next_channel = ISNS_ADC;
 "297
-[e = _next_channel . `E17653 0 ]
+[e = _next_channel . `E17657 0 ]
 [; ;main.c: 299: break;
 "299
 [e $U 2034  ]
@@ -17448,7 +17457,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 365: }
 [; ;main.c: 367: next_channel = POS12_ADC;
 "367
-[e = _next_channel . `E17653 1 ]
+[e = _next_channel . `E17657 1 ]
 [; ;main.c: 369: break;
 "369
 [e $U 2034  ]
@@ -17474,7 +17483,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 381: }
 [; ;main.c: 383: next_channel = channel_Temp;
 "383
-[e = _next_channel . `E17653 4 ]
+[e = _next_channel . `E17657 4 ]
 [; ;main.c: 385: break;
 "385
 [e $U 2034  ]
@@ -17500,7 +17509,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 397: }
 [; ;main.c: 399: next_channel = channel_VSS;
 "399
-[e = _next_channel . `E17653 3 ]
+[e = _next_channel . `E17657 3 ]
 [; ;main.c: 401: break;
 "401
 [e $U 2034  ]
@@ -17519,12 +17528,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 2034  ]
 "251
 [e :U 2035 ]
-[e [\ _current_adc_channel , $ . `E17653 3 2036
- , $ . `E17653 6 2038
- , $ . `E17653 2 2040
- , $ . `E17653 0 2042
- , $ . `E17653 1 2050
- , $ . `E17653 4 2052
+[e [\ _current_adc_channel , $ . `E17657 3 2036
+ , $ . `E17657 6 2038
+ , $ . `E17657 2 2040
+ , $ . `E17657 0 2042
+ , $ . `E17657 1 2050
+ , $ . `E17657 4 2052
  2054 ]
 "409
 [e :U 2034 ]
@@ -18167,49 +18176,168 @@ Version 3.2 HI-TECH Software Intermediate Code
 "744
 [e $ ! _USB_live_update_flag 2085  ]
 {
-[; ;main.c: 746: terminal_clearTerminal();
-"746
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 747: terminal_setCursorHome();
+[; ;main.c: 747: terminal_clearTerminal();
 "747
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 748: printf("Live Test %d\n\r", dev_on_time);
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 748: terminal_setCursorHome();
 "748
-[e ( _printf , (. :s 42C _dev_on_time ]
-[; ;main.c: 749: printf("Press enter key to exit\n\r");
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 749: terminal_textAttributesReset();
 "749
-[e ( _printf :s 43C ]
-"751
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 750: printf("Live Measurement Updates:\n\r");
+"750
+[e ( _printf :s 42C ]
+[; ;main.c: 752: terminal_printNewline();
+"752
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 754: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"754
+[e ( _terminal_textAttributes (3 , , . `E18238 6 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 755: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+"755
+[e ( _printf , (. :s 43C _load_on_time ]
+[; ;main.c: 756: printf("RMS Output Current is %.3f Arms\n\r", Irms);
+"756
+[e ( _printf , (. :s 44C _Irms ]
+[; ;main.c: 757: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+"757
+[e ( _printf , (. :s 45C _Vrms ]
+[; ;main.c: 758: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+"758
+[e ( _printf , (. :s 46C _Avg_Power ]
+[; ;main.c: 760: if (Total_Energy >= 1000.0) {
+"760
+[e $ ! >= _Total_Energy .1000.0 2086  ]
+{
+[; ;main.c: 762: printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
+"762
+[e ( _printf , (. :s 47C _Total_Energy ]
+"764
+}
+[; ;main.c: 764: }
+[e $U 2087  ]
+"766
+[e :U 2086 ]
+[; ;main.c: 766: else if (Total_Energy >= 100.0) {
+[e $ ! >= _Total_Energy .100.0 2088  ]
+{
+[; ;main.c: 768: printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+"768
+[e ( _printf , (. :s 48C _Total_Energy ]
+"770
+}
+[; ;main.c: 770: }
+[e $U 2089  ]
+"772
+[e :U 2088 ]
+[; ;main.c: 772: else {
+{
+[; ;main.c: 774: printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+"774
+[e ( _printf , (. :s 49C _Total_Energy ]
+"776
+}
+[e :U 2089 ]
+[e :U 2087 ]
+[; ;main.c: 776: }
+[; ;main.c: 778: terminal_printNewline();
+"778
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 780: if (LATGbits.LATG0 != 1) {
+"780
+[e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2090  ]
+{
+[; ;main.c: 782: terminal_textAttributes(GREEN, BLACK, NORMAL);
+"782
+[e ( _terminal_textAttributes (3 , , . `E18238 2 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 783: printf("Dimming is currently enabled\n\r");
+"783
+[e ( _printf :s 50C ]
+"786
+[v _angle_degrees `d ~T0 @X0 1 a ]
+[; ;main.c: 786: double angle_degrees = TRIAC_Firing_Angle * (180.0 / acos(-1.0));
+[e = _angle_degrees * _TRIAC_Firing_Angle / .180.0 ( _acos (1 -U .1.0 ]
+"787
+[v _percentage_print `f ~T0 @X0 1 a ]
+[; ;main.c: 787: float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
+[e = _percentage_print -> ( _round (1 * / - .180.0 _angle_degrees .180.0 .100.0 `f ]
+[; ;main.c: 788: printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+"788
+[e ( _printf , (. :s 51C -> _percentage_print `d ]
+[; ;main.c: 790: terminal_textAttributesReset();
+"790
+[e ( _terminal_textAttributesReset ..  ]
+"792
+}
+[; ;main.c: 792: }
+[e $U 2091  ]
+"794
+[e :U 2090 ]
+[; ;main.c: 794: else {
+{
+[; ;main.c: 796: terminal_textAttributes(RED, BLACK, NORMAL);
+"796
+[e ( _terminal_textAttributes (3 , , . `E18238 1 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 797: printf("Dimming is currently disabled\n\r");
+"797
+[e ( _printf :s 52C ]
+"799
+}
+[e :U 2091 ]
+[; ;main.c: 799: }
+[; ;main.c: 801: terminal_printNewline();
+"801
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 803: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"803
+[e ( _terminal_textAttributes (3 , , . `E18238 6 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 805: printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_Irms);
+"805
+[e ( _printf , (. :s 53C _max_Irms ]
+[; ;main.c: 806: printf("Maximum recorded output power is %.3f Watts\n\r", max_Power);
+"806
+[e ( _printf , (. :s 54C _max_Power ]
+[; ;main.c: 808: terminal_printNewline();
+"808
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 810: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"810
+[e ( _terminal_textAttributes (3 , , . `E18238 3 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 811: printf("Press enter key to exit\n\r");
+"811
+[e ( _printf :s 55C ]
+"813
 }
 [e :U 2085 ]
-[; ;main.c: 751: }
-[; ;main.c: 753: OLED_Frame = Live_Update;
-"753
+[; ;main.c: 813: }
+[; ;main.c: 815: OLED_Frame = Live_Update;
+"815
 [e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 754: TMR2_Period8BitSet(0x31);
-"754
+[; ;main.c: 816: TMR2_Period8BitSet(0x31);
+"816
 [e ( _TMR2_Period8BitSet (1 -> -> 49 `i `uc ]
-[; ;main.c: 755: TMR2_StartTimer();
-"755
+[; ;main.c: 817: TMR2_StartTimer();
+"817
 [e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 757: break;
-"757
+[; ;main.c: 819: break;
+"819
 [e $U 2063  ]
-[; ;main.c: 759: case Idle:
-"759
-[e :U 2086 ]
-[; ;main.c: 760: break;
-"760
+[; ;main.c: 821: case Idle:
+"821
+[e :U 2092 ]
+[; ;main.c: 822: break;
+"822
 [e $U 2063  ]
-[; ;main.c: 762: default:
-"762
-[e :U 2087 ]
-[; ;main.c: 763: break;
-"763
+[; ;main.c: 824: default:
+"824
+[e :U 2093 ]
+[; ;main.c: 825: break;
+"825
 [e $U 2063  ]
-"765
+"827
 }
-[; ;main.c: 765: }
+[; ;main.c: 827: }
 [e $U 2063  ]
 "484
 [e :U 2064 ]
@@ -18223,143 +18351,143 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E18275 7 2074
  , $ . `E18275 8 2077
  , $ . `E18275 10 2080
- , $ . `E18275 9 2086
- 2087 ]
-"765
+ , $ . `E18275 9 2092
+ 2093 ]
+"827
 [e :U 2063 ]
-[; ;main.c: 767: }
-"767
+[; ;main.c: 829: }
+"829
 [e :UE 2062 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"772
+"834
 [v _main `(v ~T0 @X0 1 ef ]
-"773
+"835
 {
-[; ;main.c: 772: void main(void)
-[; ;main.c: 773: {
+[; ;main.c: 834: void main(void)
+[; ;main.c: 835: {
 [e :U _main ]
 [f ]
-[; ;main.c: 776: reset_cause = getCauseOfReset();
-"776
+[; ;main.c: 838: reset_cause = getCauseOfReset();
+"838
 [e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 780: _delay((unsigned long)((250)*(64000000/4000.0)));
-"780
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 783: SYSTEM_Initialize();
-"783
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 786: recoverSRAMMaxFromEEPROM();
-"786
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 790: LATGbits.LATG0 = 1;
-"790
-[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 791: LATGbits.LATG1 = 0;
-"791
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 792: load_enable = 1;
-"792
-[e = _load_enable -> -> 1 `i `b ]
-[; ;main.c: 795: TMR2_StopTimer();
-"795
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 796: TMR2_WriteTimer(0);
-"796
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 799: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"799
-[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 802: ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
-"802
-[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADC_PostProcessingCallback ]
-[; ;main.c: 805: TMR7_SetInterruptHandler(acquisitionTimerCallback);
-"805
-[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 808: INT0_SetInterruptHandler(dimmingOffTimeCallback);
-"808
-[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
-[; ;main.c: 811: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
-"811
-[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
-[; ;main.c: 814: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
-"814
-[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
-[; ;main.c: 817: TMR2_SetInterruptHandler(OLED_updateCallback);
-"817
-[e ( _TMR2_SetInterruptHandler (1 &U _OLED_updateCallback ]
-[; ;main.c: 820: TMR5_StopTimer();
-"820
-[e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 821: PIE0bits.INT0IE = 0;
-"821
-[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 824: (INTCONbits.GIEH = 1);
-"824
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 827: (INTCONbits.GIEL = 1);
-"827
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 830: terminal_clearTerminal();
-"830
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 831: terminal_setCursorHome();
-"831
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 832: terminal_textAttributesReset();
-"832
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 835: OLED_Init();
-"835
-[e ( _OLED_Init ..  ]
-[; ;main.c: 836: OLED_Clear();
-"836
-[e ( _OLED_Clear ..  ]
-[; ;main.c: 839: OLED_Frame = Boot_Frame_1;
-"839
-[e = _OLED_Frame . `E18275 0 ]
-[; ;main.c: 840: OLED_updateCallback();
-"840
-[e ( _OLED_updateCallback ..  ]
-[; ;main.c: 842: terminal_printResetMessage();
+[; ;main.c: 842: _delay((unsigned long)((250)*(64000000/4000.0)));
 "842
-[e ( _terminal_printResetMessage ..  ]
-[; ;main.c: 845: while (1)
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 845: SYSTEM_Initialize();
 "845
-[e :U 2090 ]
-[; ;main.c: 846: {
-"846
-{
-[; ;main.c: 849: if (eusart2RxStringReady) {
-"849
-[e $ ! _eusart2RxStringReady 2092  ]
-{
-[; ;main.c: 851: terminal_ringBufferPull();
-"851
-[e ( _terminal_ringBufferPull ..  ]
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 848: recoverSRAMMaxFromEEPROM();
+"848
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 852: LATGbits.LATG0 = 1;
+"852
+[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 853: LATGbits.LATG1 = 0;
 "853
-}
-[e :U 2092 ]
-[; ;main.c: 853: }
-[; ;main.c: 856: saveSRAMMaxToEEPROM();
-"856
-[e ( _saveSRAMMaxToEEPROM ..  ]
-[; ;main.c: 859: updateErrorLEDs();
-"859
-[e ( _updateErrorLEDs ..  ]
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 854: load_enable = 1;
+"854
+[e = _load_enable -> -> 1 `i `b ]
+[; ;main.c: 857: TMR2_StopTimer();
+"857
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 858: TMR2_WriteTimer(0);
+"858
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 861: TMR6_SetInterruptHandler(heartbeatTimerCallback);
 "861
+[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
+[; ;main.c: 864: ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
+"864
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADC_PostProcessingCallback ]
+[; ;main.c: 867: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+"867
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 870: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+"870
+[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
+[; ;main.c: 873: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+"873
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 876: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+"876
+[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
+[; ;main.c: 879: TMR2_SetInterruptHandler(OLED_updateCallback);
+"879
+[e ( _TMR2_SetInterruptHandler (1 &U _OLED_updateCallback ]
+[; ;main.c: 882: TMR5_StopTimer();
+"882
+[e ( _TMR5_StopTimer ..  ]
+[; ;main.c: 883: PIE0bits.INT0IE = 0;
+"883
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 886: (INTCONbits.GIEH = 1);
+"886
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 889: (INTCONbits.GIEL = 1);
+"889
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 892: terminal_clearTerminal();
+"892
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 893: terminal_setCursorHome();
+"893
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 894: terminal_textAttributesReset();
+"894
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 897: OLED_Init();
+"897
+[e ( _OLED_Init ..  ]
+[; ;main.c: 898: OLED_Clear();
+"898
+[e ( _OLED_Clear ..  ]
+[; ;main.c: 901: OLED_Frame = Boot_Frame_1;
+"901
+[e = _OLED_Frame . `E18275 0 ]
+[; ;main.c: 902: OLED_updateCallback();
+"902
+[e ( _OLED_updateCallback ..  ]
+[; ;main.c: 904: terminal_printResetMessage();
+"904
+[e ( _terminal_printResetMessage ..  ]
+[; ;main.c: 907: while (1)
+"907
+[e :U 2096 ]
+[; ;main.c: 908: {
+"908
+{
+[; ;main.c: 911: if (eusart2RxStringReady) {
+"911
+[e $ ! _eusart2RxStringReady 2098  ]
+{
+[; ;main.c: 913: terminal_ringBufferPull();
+"913
+[e ( _terminal_ringBufferPull ..  ]
+"915
 }
-[e :U 2089 ]
-"845
-[e $U 2090  ]
-[e :U 2091 ]
-[; ;main.c: 861: }
-[; ;main.c: 862: }
-"862
-[e :UE 2088 ]
+[e :U 2098 ]
+[; ;main.c: 915: }
+[; ;main.c: 918: saveSRAMMaxToEEPROM();
+"918
+[e ( _saveSRAMMaxToEEPROM ..  ]
+[; ;main.c: 921: updateErrorLEDs();
+"921
+[e ( _updateErrorLEDs ..  ]
+"923
+}
+[e :U 2095 ]
+"907
+[e $U 2096  ]
+[e :U 2097 ]
+[; ;main.c: 923: }
+[; ;main.c: 924: }
+"924
+[e :UE 2094 ]
 }
 [p f _sprintf 11118724 ]
-[p f _printf 8388736 ]
+[p f _printf 8464512 ]
 [a 10C 56 98 105 116 44 32 110 111 32 112 97 114 105 116 121 0 ]
 [a 11C 49 32 115 116 112 44 32 110 111 32 102 108 111 119 0 ]
 [a 33C 37 46 51 102 32 80 101 114 99 101 110 116 0 ]
@@ -18401,5 +18529,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 29C 32 0 ]
 [a 30C 32 0 ]
 [a 31C 32 0 ]
-[a 43C 80 114 101 115 115 32 101 110 116 101 114 32 107 101 121 32 116 111 32 101 120 105 116 10 13 0 ]
-[a 42C 76 105 118 101 32 84 101 115 116 32 37 100 10 13 0 ]
+[a 51C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 46 50 102 32 112 101 114 99 101 110 116 10 13 0 ]
+[a 55C 80 114 101 115 115 32 101 110 116 101 114 32 107 101 121 32 116 111 32 101 120 105 116 10 13 0 ]
+[a 54C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
+[a 49C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 51 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 48C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 47C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
+[a 45C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
+[a 53C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 44C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 46C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
+[a 43C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
+[a 52C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 50C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
+[a 42C 76 105 118 101 32 77 101 97 115 117 114 101 109 101 110 116 32 85 112 100 97 116 101 115 58 10 13 0 ]
