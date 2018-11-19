@@ -83,15 +83,15 @@ double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
 volatile double Imeas;                          // Measured current in amps
-double Irms_offset = -0.113;                    // RMS current offset in amps
+double Irms_offset = 0.0;                    // RMS current offset in amps
 volatile double Irms;                           // RMS output current in amps
 volatile double Vrms;                           // Calculated RMS output voltage in volts
 volatile double Avg_Power;                      // Calculated output power in watts
 volatile double Total_Energy;                   // Calculated energy in Watt Hours
-volatile double TRIAC_Firing_Angle = 1.57;      // firing angle in radians
+volatile double TRIAC_Firing_Angle = 1.57;      // firing angle in radians, start at pi/2
 
 // more global variables
-volatile unsigned int dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time
+volatile uint16_t dimming_period = 0x7FEE;  // Maximum is 0xFFFF which corresponds to 0% on time
 volatile bit load_enable = 0;                   // Load enabled flag
 volatile bit USB_live_update_flag = 0;          // If this bit is high, data is live streaming over USB to terminal
 volatile bit eusart2RxStringReady = 0;          // ring buffer ready flag
@@ -300,23 +300,19 @@ void ADC_PostProcessingCallback(void) {
             
         // current sensor ADC post processing
         case ISNS_ADC:
-            
-            Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
-            
-            // If our phase is controlled, convert measured current to peak current
-            // and peak current to RMS current using TRIAC firing angle
-            if (SSR_FORCE_PIN != 1) {
-                
 
-                // Only measure if load is enabled, set peak values to 0.0 otherwise
+            if (load_enable) {
+            
+                Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0);
 
-                if (load_enable) {
+                // If our phase is controlled, convert measured current to peak current
+                // and peak current to RMS current using TRIAC firing angle
+                if (SSR_FORCE_PIN != 1) {
 
                     // If we're dimming more than 50%, the peak current will still be the measured current
-                    if (dimming_period < 0x7FEE) {
+                    if (dimming_period >= 32767) {
 
-                        Ipk = Imeas;
-                        Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+                        Irms = peakToRMS(Imeas, TRIAC_Firing_Angle);
 
                     }
 
@@ -324,36 +320,34 @@ void ADC_PostProcessingCallback(void) {
                     else {
 
                         Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
-                        Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+                        Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 
                     }
 
-                    Vpk = Vpk_const;
+                    Vrms = peakToRMS(Vpk_const, TRIAC_Firing_Angle);
+                    Avg_Power = Vrms * Irms;
+                    Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
 
                 }
 
+                // Ignore phase cutting if we're all the way on, convert raw peak value to RMS
                 else {
 
-                    Ipk = 0.0;
-                    Vpk = 0.0;
-                    Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle));
+                    Irms = (Imeas / sqrt(2.0));
+                    Vrms = Vpk_const / sqrt(2.0);
+                    Avg_Power = Vrms * Irms;
+                    Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
 
                 }
-                 
-                Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
-                Avg_Power = Vrms * Irms;
-                Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
                 
             }
             
-            // Ignore phase cutting if we're all the way on, convert raw peak value to RMS
             else {
              
-                Ipk = Imeas;
-                Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
-                Vrms = peakToRMS(Vpk_const, 0.0);
-                Avg_Power = Vrms * Irms;
-                Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+                Irms = 0.0;
+                Ipk = 0.0;
+                Vrms = 0.0;
+                Avg_Power = 0.0;
                 
             }
 
@@ -445,6 +439,9 @@ void dimmingOffTimeCallback(void) {
     // Enable timer 5 interrupt
     PIE5bits.TMR5IE = 1;
     
+    // Disable dimming interrupt
+    PIE0bits.INT0IE = 0;
+    
 }
 
 // dimming on time callback
@@ -458,6 +455,14 @@ void dimmingOnTimeCallback(void) {
     
     // Disable timer 5 interrupt
     PIE5bits.TMR5IE = 0;
+    
+    __delay_us(5);
+    
+    // End TRIAC on pulse
+    SSR_DIM_PIN = LOW;
+    
+    // Disable dimming interrupt
+    PIE0bits.INT0IE = 1;
     
     
 }
@@ -786,6 +791,7 @@ void OLED_updateCallback(void) {
                     double angle_degrees = TRIAC_Firing_Angle * (180.0 / M_PI);
                     float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
                     printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+                    printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 
                     terminal_textAttributesReset();
 

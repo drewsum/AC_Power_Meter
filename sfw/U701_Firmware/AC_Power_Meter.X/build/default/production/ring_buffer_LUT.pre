@@ -23020,7 +23020,7 @@ else if ((0 == strcmp(line, "Clear Energy"))) {
 Total_Energy = 0.0;
 writeDoubleToEEPROM(0.0, Total_Energy_address);
 
-terminal_textAttributes(RED, BLACK, NORMAL);
+terminal_textAttributes(GREEN, BLACK, NORMAL);
 printf("Measured output energy has been reset to zero Watt Hours\n\r");
 terminal_textAttributesReset();
 
@@ -23171,6 +23171,15 @@ terminal_textAttributesReset();
 
 
 else if ((0 == strcmp(line, "Disable Load"))) {
+
+
+TMR5_StopTimer();
+
+
+PIE5bits.TMR5IE = 0;
+
+
+PIE0bits.INT0IE = 0;
 
 LATGbits.LATG1 = 0;
 LATGbits.LATG0 = 0;
@@ -23513,7 +23522,7 @@ printf("Maximum recorded FVR buffer 1 voltage is %.3f Volts\n\r", max_FVR_print)
 terminal_textAttributesReset();
 terminal_printNewline();
 
-# 895
+# 904
 }
 
 

@@ -22652,7 +22652,7 @@ double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
 volatile double Imeas;
-double Irms_offset = -0.113;
+double Irms_offset = 0.0;
 volatile double Irms;
 volatile double Vrms;
 volatile double Avg_Power;
@@ -22660,7 +22660,7 @@ volatile double Total_Energy;
 volatile double TRIAC_Firing_Angle = 1.57;
 
 
-volatile unsigned int dimming_period = 0x7FEE;
+volatile uint16_t dimming_period = 0x7FEE;
 volatile bit load_enable = 0;
 volatile bit USB_live_update_flag = 0;
 volatile bit eusart2RxStringReady = 0;
@@ -22862,22 +22862,18 @@ break;
 
 case ISNS_ADC:
 
-Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+if (load_enable) {
+
+Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0);
 
 
 
 if (LATGbits.LATG0 != 1) {
 
 
+if (dimming_period >= 32767) {
 
-
-if (load_enable) {
-
-
-if (dimming_period < 0x7FEE) {
-
-Ipk = Imeas;
-Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+Irms = peakToRMS(Imeas, TRIAC_Firing_Angle);
 
 }
 
@@ -22885,36 +22881,34 @@ Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
 else {
 
 Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
-Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
+Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
 
 }
 
-Vpk = Vpk_const;
+Vrms = peakToRMS(Vpk_const, TRIAC_Firing_Angle);
+Avg_Power = Vrms * Irms;
+Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
+
+}
+
+
+else {
+
+Irms = (Imeas / sqrt(2.0));
+Vrms = Vpk_const / sqrt(2.0);
+Avg_Power = Vrms * Irms;
+Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
+
+}
 
 }
 
 else {
 
+Irms = 0.0;
 Ipk = 0.0;
-Vpk = 0.0;
-Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle));
-
-}
-
-Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
-Avg_Power = Vrms * Irms;
-Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-
-}
-
-
-else {
-
-Ipk = Imeas;
-Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
-Vrms = peakToRMS(Vpk_const, 0.0);
-Avg_Power = Vrms * Irms;
-Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
+Vrms = 0.0;
+Avg_Power = 0.0;
 
 }
 
@@ -23006,6 +23000,9 @@ TMR5_StartTimer();
 
 PIE5bits.TMR5IE = 1;
 
+
+PIE0bits.INT0IE = 0;
+
 }
 
 
@@ -23019,6 +23016,14 @@ TMR5_StopTimer();
 
 
 PIE5bits.TMR5IE = 0;
+
+_delay((unsigned long)((5)*(64000000/4000000.0)));
+
+
+LATGbits.LATG1 = 0;
+
+
+PIE0bits.INT0IE = 1;
 
 
 }
@@ -23347,6 +23352,7 @@ printf("Dimming is currently enabled\n\r");
 double angle_degrees = TRIAC_Firing_Angle * (180.0 / acos(-1.0));
 float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
 printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 
 terminal_textAttributesReset();
 

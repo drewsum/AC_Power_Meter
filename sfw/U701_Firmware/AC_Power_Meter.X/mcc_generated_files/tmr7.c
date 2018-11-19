@@ -74,11 +74,11 @@ void TMR7_Initialize(void)
     //CS HFINTOSC; 
     T7CLK = 0x03;
 
-    //TMR7H 236; 
-    TMR7H = 0xEC;
+    //TMR7H 158; 
+    TMR7H = 0x9E;
 
-    //TMR7L 120; 
-    TMR7L = 0x78;
+    //TMR7L 88; 
+    TMR7L = 0x58;
 
     // Load the TMR value to reload variable
     timer7ReloadVal=(uint16_t)((TMR7H << 8) | TMR7L);

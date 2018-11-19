@@ -58,8 +58,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1352 . . . ]
 "29173
 [v _LATGbits `VS1352 ~T0 @X0 0 e@3967 ]
-"92 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
-[v _abs `(i ~T0 @X0 0 ef1`i ]
 "438 mcc_generated_files/adcc.h
 [v _ADCC_GetCurrentCountofConversions `(uc ~T0 @X0 0 ef ]
 "333
@@ -80,8 +78,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S270 . . ]
 "4869
 [v _PIE5bits `VS270 ~T0 @X0 0 e@3630 ]
+"4546
+[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
+"4545
+[u S256 `S257 1 ]
+[n S256 . . ]
+"4555
+[v _PIE0bits `VS256 ~T0 @X0 0 e@3625 ]
 "161 mcc_generated_files/tmr5.h
 [v _TMR5_StopTimer `(v ~T0 @X0 0 ef ]
+[v F17273 `(v ~T0 @X0 1 tf1`ul ]
+"164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
+[v __delay `JF17273 ~T0 @X0 0 e ]
+[p i __delay ]
 "525 mcc_generated_files/tmr2.h
 [v _TMR2_StopTimer `(v ~T0 @X0 0 ef ]
 "673
@@ -116,7 +126,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "162 ring_buffer_interface.h
 [v _terminal_printNewline `(v ~T0 @X0 0 ef ]
-"754 main.c
+"759 main.c
 [c E18238 0 1 2 3 4 5 6 7 .. ]
 [n E18238 . BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE  ]
 [c E18230 0 1 2 3 4 5 .. ]
@@ -126,10 +136,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "56 cause_of_reset.h
 [v _getCauseOfReset `(E18205 ~T0 @X0 0 ef ]
-[v F17273 `(v ~T0 @X0 1 tf1`ul ]
-"164 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18.h
-[v __delay `JF17273 ~T0 @X0 0 e ]
-[p i __delay ]
 "81 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 [v F17463 `(v ~T0 @X0 0 tf ]
@@ -153,15 +159,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F17624 `(v ~T0 @X0 0 tf ]
 "830 mcc_generated_files/tmr2.h
 [v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F17624 ]
-"4546 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
-[s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
-"4545
-[u S256 `S257 1 ]
-[n S256 . . ]
-"4555
-[v _PIE0bits `VS256 ~T0 @X0 0 e@3625 ]
-"40496
+"40496 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S1981 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1981 . INT0EDG INT1EDG INT2EDG INT3EDG . IPEN PEIE_GIEL GIE_GIEH ]
 "40506
@@ -16873,9 +16871,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "86
 [v _Irms_offset `d ~T0 @X0 1 e ]
 [i _Irms_offset
--U .0.113
+.0.0
 ]
-[; ;main.c: 86: double Irms_offset = -0.113;
+[; ;main.c: 86: double Irms_offset = 0.0;
 "87
 [v _Irms `Vd ~T0 @X0 1 e ]
 [; ;main.c: 87: volatile double Irms;
@@ -16899,7 +16897,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [i _dimming_period
 -> -> 32750 `i `ui
 ]
-[; ;main.c: 94: volatile unsigned int dimming_period = 0x7FEE;
+[; ;main.c: 94: volatile uint16_t dimming_period = 0x7FEE;
 "95
 [v _load_enable `Vb ~T0 @X0 1 e ]
 [i _load_enable
@@ -17342,189 +17340,183 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 302: case ISNS_ADC:
 "302
 [e :U 2042 ]
-[; ;main.c: 304: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * (3.787 / 2.0);
+[; ;main.c: 304: if (load_enable) {
 "304
+[e $ ! _load_enable 2043  ]
+{
+[; ;main.c: 306: Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0);
+"306
 [e = _Imeas * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 / .3.787 .2.0 ]
-[; ;main.c: 308: if (LATGbits.LATG0 != 1) {
-"308
-[e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2043  ]
+[; ;main.c: 310: if (LATGbits.LATG0 != 1) {
+"310
+[e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2044  ]
 {
-[; ;main.c: 313: if (load_enable) {
+[; ;main.c: 313: if (dimming_period >= 32767) {
 "313
-[e $ ! _load_enable 2044  ]
+[e $ ! >= _dimming_period -> -> 32767 `i `ui 2045  ]
 {
-[; ;main.c: 316: if (dimming_period < 0x7FEE) {
-"316
-[e $ ! < _dimming_period -> -> 32750 `i `ui 2045  ]
-{
-[; ;main.c: 318: Ipk = Imeas;
-"318
-[e = _Ipk _Imeas ]
-[; ;main.c: 319: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
-"319
-[e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"321
+[; ;main.c: 315: Irms = peakToRMS(Imeas, TRIAC_Firing_Angle);
+"315
+[e = _Irms ( _peakToRMS (2 , _Imeas _TRIAC_Firing_Angle ]
+"317
 }
-[; ;main.c: 321: }
+[; ;main.c: 317: }
 [e $U 2046  ]
-"324
+"320
 [e :U 2045 ]
-[; ;main.c: 324: else {
+[; ;main.c: 320: else {
 {
-[; ;main.c: 326: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
-"326
+[; ;main.c: 322: Ipk = currentMeasuredToPeak(Imeas, TRIAC_Firing_Angle);
+"322
 [e = _Ipk ( _currentMeasuredToPeak (2 , _Imeas _TRIAC_Firing_Angle ]
-[; ;main.c: 327: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle) + Irms_offset);
-"327
-[e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle _Irms_offset `i `d ]
-"329
+[; ;main.c: 323: Irms = peakToRMS(Ipk, TRIAC_Firing_Angle);
+"323
+[e = _Irms ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle ]
+"325
 }
 [e :U 2046 ]
-[; ;main.c: 329: }
-[; ;main.c: 331: Vpk = Vpk_const;
+[; ;main.c: 325: }
+[; ;main.c: 327: Vrms = peakToRMS(Vpk_const, TRIAC_Firing_Angle);
+"327
+[e = _Vrms ( _peakToRMS (2 , _Vpk_const _TRIAC_Firing_Angle ]
+[; ;main.c: 328: Avg_Power = Vrms * Irms;
+"328
+[e = _Avg_Power * _Vrms _Irms ]
+[; ;main.c: 329: Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
+"329
+[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.35 .3600.0 ]
 "331
-[e = _Vpk _Vpk_const ]
-"333
 }
-[; ;main.c: 333: }
+[; ;main.c: 331: }
 [e $U 2047  ]
-"335
+"334
 [e :U 2044 ]
-[; ;main.c: 335: else {
+[; ;main.c: 334: else {
 {
-[; ;main.c: 337: Ipk = 0.0;
+[; ;main.c: 336: Irms = (Imeas / sqrt(2.0));
+"336
+[e = _Irms / _Imeas ( _sqrt (1 .2.0 ]
+[; ;main.c: 337: Vrms = Vpk_const / sqrt(2.0);
 "337
-[e = _Ipk .0.0 ]
-[; ;main.c: 338: Vpk = 0.0;
+[e = _Vrms / _Vpk_const ( _sqrt (1 .2.0 ]
+[; ;main.c: 338: Avg_Power = Vrms * Irms;
 "338
-[e = _Vpk .0.0 ]
-[; ;main.c: 339: Irms = abs(peakToRMS(Ipk, TRIAC_Firing_Angle));
+[e = _Avg_Power * _Vrms _Irms ]
+[; ;main.c: 339: Total_Energy = Total_Energy + (Avg_Power * 0.35 / 3600.0);
 "339
-[e = _Irms -> ( _abs (1 -> ( _peakToRMS (2 , _Ipk _TRIAC_Firing_Angle `i `d ]
+[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.35 .3600.0 ]
 "341
 }
 [e :U 2047 ]
-[; ;main.c: 341: }
-[; ;main.c: 343: Vrms = peakToRMS(Vpk, TRIAC_Firing_Angle);
 "343
-[e = _Vrms ( _peakToRMS (2 , _Vpk _TRIAC_Firing_Angle ]
-[; ;main.c: 344: Avg_Power = Vrms * Irms;
-"344
-[e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 345: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-"345
-[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"347
 }
-[; ;main.c: 347: }
+[; ;main.c: 341: }
+[; ;main.c: 343: }
 [e $U 2048  ]
-"350
+"345
 [e :U 2043 ]
-[; ;main.c: 350: else {
+[; ;main.c: 345: else {
 {
-[; ;main.c: 352: Ipk = Imeas;
+[; ;main.c: 347: Irms = 0.0;
+"347
+[e = _Irms .0.0 ]
+[; ;main.c: 348: Ipk = 0.0;
+"348
+[e = _Ipk .0.0 ]
+[; ;main.c: 349: Vrms = 0.0;
+"349
+[e = _Vrms .0.0 ]
+[; ;main.c: 350: Avg_Power = 0.0;
+"350
+[e = _Avg_Power .0.0 ]
 "352
-[e = _Ipk _Imeas ]
-[; ;main.c: 353: Irms = abs(peakToRMS(Ipk, 0.0) + Irms_offset);
-"353
-[e = _Irms -> ( _abs (1 -> + ( _peakToRMS (2 , _Ipk .0.0 _Irms_offset `i `d ]
-[; ;main.c: 354: Vrms = peakToRMS(Vpk_const, 0.0);
-"354
-[e = _Vrms ( _peakToRMS (2 , _Vpk_const .0.0 ]
-[; ;main.c: 355: Avg_Power = Vrms * Irms;
-"355
-[e = _Avg_Power * _Vrms _Irms ]
-[; ;main.c: 356: Total_Energy = Total_Energy + (Avg_Power * 0.07 / 3600.0);
-"356
-[e = _Total_Energy + _Total_Energy / * _Avg_Power .0.07 .3600.0 ]
-"358
 }
 [e :U 2048 ]
-[; ;main.c: 358: }
-[; ;main.c: 360: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
-"360
+[; ;main.c: 352: }
+[; ;main.c: 354: if (Irms > 5.0 || ADCC_HasAccumulatorOverflowed()) {
+"354
 [e $ ! || > _Irms .5.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2049  ]
 {
-[; ;main.c: 362: error_handler.ISNS_ADC_error_flag = 1;
-"362
+[; ;main.c: 356: error_handler.ISNS_ADC_error_flag = 1;
+"356
 [e = . _error_handler 0 -> -> 1 `i `uc ]
-[; ;main.c: 363: return;
-"363
+[; ;main.c: 357: return;
+"357
 [e $UE 2033  ]
-"365
+"359
 }
 [e :U 2049 ]
-[; ;main.c: 365: }
-[; ;main.c: 367: next_channel = POS12_ADC;
-"367
+[; ;main.c: 359: }
+[; ;main.c: 361: next_channel = POS12_ADC;
+"361
 [e = _next_channel . `E17657 1 ]
-[; ;main.c: 369: break;
-"369
+[; ;main.c: 363: break;
+"363
 [e $U 2034  ]
-[; ;main.c: 372: case POS12_ADC:
-"372
+[; ;main.c: 366: case POS12_ADC:
+"366
 [e :U 2050 ]
-[; ;main.c: 374: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
-"374
+[; ;main.c: 368: POS12_ADC_Result = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result/1023.0) * 4.0303030303;
+"368
 [e = _POS12_ADC_Result * * -> ( _ADCC_GetFilterValue ..  `d / _POS3P3_ADC_Result .1023.0 .4.0303030303 ]
-[; ;main.c: 376: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
-"376
+[; ;main.c: 370: if (POS12_ADC_Result > 13.6 || ADCC_HasAccumulatorOverflowed()) {
+"370
 [e $ ! || > _POS12_ADC_Result .13.6 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2051  ]
 {
-[; ;main.c: 378: error_handler.POS12_ADC_error_flag = 1;
-"378
+[; ;main.c: 372: error_handler.POS12_ADC_error_flag = 1;
+"372
 [e = . _error_handler 1 -> -> 1 `i `uc ]
-[; ;main.c: 379: return;
-"379
+[; ;main.c: 373: return;
+"373
 [e $UE 2033  ]
-"381
+"375
 }
 [e :U 2051 ]
-[; ;main.c: 381: }
-[; ;main.c: 383: next_channel = channel_Temp;
-"383
+[; ;main.c: 375: }
+[; ;main.c: 377: next_channel = channel_Temp;
+"377
 [e = _next_channel . `E17657 4 ]
-[; ;main.c: 385: break;
-"385
+[; ;main.c: 379: break;
+"379
 [e $U 2034  ]
-[; ;main.c: 388: case channel_Temp:
-"388
+[; ;main.c: 382: case channel_Temp:
+"382
 [e :U 2052 ]
-[; ;main.c: 390: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
-"390
+[; ;main.c: 384: Temp_ADC_Result = (0.659 - (POS3P3_ADC_Result/2.0) * (1 - ADCC_GetConversionResult()/1023.0)) / .00132 - 40.0 + Temp_ADC_Offset;
+"384
 [e = _Temp_ADC_Result + - / - .0.659 * / _POS3P3_ADC_Result .2.0 - -> -> 1 `i `d / -> ( _ADCC_GetConversionResult ..  `d .1023.0 .0.00132 .40.0 _Temp_ADC_Offset ]
-[; ;main.c: 392: if (Temp_ADC_Result > 100.0 || ADCC_HasAccumulatorOverflowed()) {
-"392
+[; ;main.c: 386: if (Temp_ADC_Result > 100.0 || ADCC_HasAccumulatorOverflowed()) {
+"386
 [e $ ! || > _Temp_ADC_Result .100.0 != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2053  ]
 {
-[; ;main.c: 394: error_handler.Temp_ADC_error_flag = 1;
-"394
+[; ;main.c: 388: error_handler.Temp_ADC_error_flag = 1;
+"388
 [e = . _error_handler 4 -> -> 1 `i `uc ]
-[; ;main.c: 395: return;
-"395
+[; ;main.c: 389: return;
+"389
 [e $UE 2033  ]
-"397
+"391
 }
 [e :U 2053 ]
-[; ;main.c: 397: }
-[; ;main.c: 399: next_channel = channel_VSS;
-"399
+[; ;main.c: 391: }
+[; ;main.c: 393: next_channel = channel_VSS;
+"393
 [e = _next_channel . `E17657 3 ]
+[; ;main.c: 395: break;
+"395
+[e $U 2034  ]
+[; ;main.c: 399: default:
+"399
+[e :U 2054 ]
+[; ;main.c: 400: error_handler.ADC_general_error_flag = 1;
+"400
+[e = . _error_handler 6 -> -> 1 `i `uc ]
 [; ;main.c: 401: break;
 "401
 [e $U 2034  ]
-[; ;main.c: 405: default:
-"405
-[e :U 2054 ]
-[; ;main.c: 406: error_handler.ADC_general_error_flag = 1;
-"406
-[e = . _error_handler 6 -> -> 1 `i `uc ]
-[; ;main.c: 407: break;
-"407
-[e $U 2034  ]
-"409
+"403
 }
-[; ;main.c: 409: }
+[; ;main.c: 403: }
 [e $U 2034  ]
 "251
 [e :U 2035 ]
@@ -17535,811 +17527,826 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E17657 1 2050
  , $ . `E17657 4 2052
  2054 ]
-"409
+"403
 [e :U 2034 ]
-[; ;main.c: 411: if (ADCC_GetCurrentCountofConversions() != 255) {
-"411
+[; ;main.c: 405: if (ADCC_GetCurrentCountofConversions() != 255) {
+"405
 [e $ ! != -> ( _ADCC_GetCurrentCountofConversions ..  `i -> 255 `i 2055  ]
 {
-[; ;main.c: 412: error_handler.ADC_general_error_flag = 1;
-"412
+[; ;main.c: 406: error_handler.ADC_general_error_flag = 1;
+"406
 [e = . _error_handler 6 -> -> 1 `i `uc ]
-"413
+"407
 }
 [e :U 2055 ]
-[; ;main.c: 413: }
-[; ;main.c: 415: if (ADCC_HasAccumulatorOverflowed()) {
-"415
+[; ;main.c: 407: }
+[; ;main.c: 409: if (ADCC_HasAccumulatorOverflowed()) {
+"409
 [e $ ! != -> ( _ADCC_HasAccumulatorOverflowed ..  `i -> -> -> 0 `i `uc `i 2056  ]
 {
-[; ;main.c: 416: error_handler.ADC_general_error_flag = 1;
-"416
+[; ;main.c: 410: error_handler.ADC_general_error_flag = 1;
+"410
 [e = . _error_handler 6 -> -> 1 `i `uc ]
-"417
+"411
 }
 [e :U 2056 ]
-[; ;main.c: 417: }
-[; ;main.c: 419: }
-"419
+[; ;main.c: 411: }
+[; ;main.c: 413: }
+"413
 [e :UE 2033 ]
 }
-"422
+"416
 [v _acquisitionTimerCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 422: void acquisitionTimerCallback(void) {
+[; ;main.c: 416: void acquisitionTimerCallback(void) {
 [e :U _acquisitionTimerCallback ]
 [f ]
-[; ;main.c: 425: ADCC_DischargeSampleCapacitor();
-"425
+[; ;main.c: 419: ADCC_DischargeSampleCapacitor();
+"419
 [e ( _ADCC_DischargeSampleCapacitor ..  ]
-[; ;main.c: 428: ADCC_ClearAccumulator();
-"428
+[; ;main.c: 422: ADCC_ClearAccumulator();
+"422
 [e ( _ADCC_ClearAccumulator ..  ]
-[; ;main.c: 431: ADCC_StartConversion(next_channel);
-"431
+[; ;main.c: 425: ADCC_StartConversion(next_channel);
+"425
 [e ( _ADCC_StartConversion (1 _next_channel ]
-[; ;main.c: 433: }
-"433
+[; ;main.c: 427: }
+"427
 [e :UE 2057 ]
 }
-"436
+"430
 [v _dimmingOffTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 436: void dimmingOffTimeCallback(void) {
+[; ;main.c: 430: void dimmingOffTimeCallback(void) {
 [e :U _dimmingOffTimeCallback ]
 [f ]
-[; ;main.c: 439: LATGbits.LATG1 = 0;
-"439
+[; ;main.c: 433: LATGbits.LATG1 = 0;
+"433
 [e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 442: TMR5_WriteTimer(dimming_period);
-"442
+[; ;main.c: 436: TMR5_WriteTimer(dimming_period);
+"436
 [e ( _TMR5_WriteTimer (1 _dimming_period ]
-[; ;main.c: 443: TMR5_StartTimer();
-"443
+[; ;main.c: 437: TMR5_StartTimer();
+"437
 [e ( _TMR5_StartTimer ..  ]
-[; ;main.c: 446: PIE5bits.TMR5IE = 1;
-"446
+[; ;main.c: 440: PIE5bits.TMR5IE = 1;
+"440
 [e = . . _PIE5bits 0 4 -> -> 1 `i `uc ]
-[; ;main.c: 448: }
-"448
+[; ;main.c: 443: PIE0bits.INT0IE = 0;
+"443
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 445: }
+"445
 [e :UE 2058 ]
 }
-"451
+"448
 [v _dimmingOnTimeCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 451: void dimmingOnTimeCallback(void) {
+[; ;main.c: 448: void dimmingOnTimeCallback(void) {
 [e :U _dimmingOnTimeCallback ]
 [f ]
-[; ;main.c: 454: LATGbits.LATG1 = 1;
-"454
+[; ;main.c: 451: LATGbits.LATG1 = 1;
+"451
 [e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 457: TMR5_StopTimer();
-"457
+[; ;main.c: 454: TMR5_StopTimer();
+"454
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 460: PIE5bits.TMR5IE = 0;
-"460
+[; ;main.c: 457: PIE5bits.TMR5IE = 0;
+"457
 [e = . . _PIE5bits 0 4 -> -> 0 `i `uc ]
-[; ;main.c: 463: }
-"463
+[; ;main.c: 459: _delay((unsigned long)((5)*(64000000/4000000.0)));
+"459
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 462: LATGbits.LATG1 = 0;
+"462
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 465: PIE0bits.INT0IE = 1;
+"465
+[e = . . _PIE0bits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 468: }
+"468
 [e :UE 2059 ]
 }
-"468
+"473
 [v _writeEnergyToEEPROMCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 468: void writeEnergyToEEPROMCallback(void) {
+[; ;main.c: 473: void writeEnergyToEEPROMCallback(void) {
 [e :U _writeEnergyToEEPROMCallback ]
 [f ]
-"470
+"475
 [v _current_value `d ~T0 @X0 1 a ]
-[; ;main.c: 470: double current_value = readDoubleFromEEPROM(Total_Energy_address);
+[; ;main.c: 475: double current_value = readDoubleFromEEPROM(Total_Energy_address);
 [e = _current_value ( _readDoubleFromEEPROM (1 _Total_Energy_address ]
-[; ;main.c: 472: if (Total_Energy > current_value) {
-"472
+[; ;main.c: 477: if (Total_Energy > current_value) {
+"477
 [e $ ! > _Total_Energy _current_value 2061  ]
 {
-[; ;main.c: 474: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
-"474
+[; ;main.c: 479: writeDoubleToEEPROM(Total_Energy, Total_Energy_address);
+"479
 [e ( _writeDoubleToEEPROM (2 , _Total_Energy _Total_Energy_address ]
-"476
+"481
 }
 [e :U 2061 ]
-[; ;main.c: 476: }
-[; ;main.c: 478: }
-"478
+[; ;main.c: 481: }
+[; ;main.c: 483: }
+"483
 [e :UE 2060 ]
 }
-"482
+"487
 [v _OLED_updateCallback `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 482: void OLED_updateCallback(void) {
+[; ;main.c: 487: void OLED_updateCallback(void) {
 [e :U _OLED_updateCallback ]
 [f ]
-[; ;main.c: 484: switch (OLED_Frame) {
-"484
+[; ;main.c: 489: switch (OLED_Frame) {
+"489
 [e $U 2064  ]
 {
-[; ;main.c: 486: case Boot_Frame_1:
-"486
+[; ;main.c: 491: case Boot_Frame_1:
+"491
 [e :U 2065 ]
-[; ;main.c: 488: TMR2_StopTimer();
-"488
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 489: TMR2_WriteTimer(0);
-"489
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 490: CountCallBack = 0;
-"490
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 493: strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
+[; ;main.c: 493: TMR2_StopTimer();
 "493
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 1C ]
-[; ;main.c: 494: strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 494: TMR2_WriteTimer(0);
 "494
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 2C ]
-[; ;main.c: 495: strcpy(OLED_RAM_Buffer.line2, "Final Project");
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 495: CountCallBack = 0;
 "495
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 3C ]
-[; ;main.c: 496: strcpy(OLED_RAM_Buffer.line3, getCauseOfResetStringSmall(reset_cause));
-"496
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> ( _getCauseOfResetStringSmall (1 _reset_cause `*Cuc ]
-[; ;main.c: 497: OLED_UpdateFromRAMBuffer();
-"497
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 498: OLED_Frame = Boot_Frame_2;
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 498: strcpy(OLED_RAM_Buffer.line0, "AC Power Meter");
 "498
-[e = _OLED_Frame . `E18275 1 ]
-[; ;main.c: 500: TMR2_StartTimer();
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 1C ]
+[; ;main.c: 499: strcpy(OLED_RAM_Buffer.line1, "ELEN 3035");
+"499
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 2C ]
+[; ;main.c: 500: strcpy(OLED_RAM_Buffer.line2, "Final Project");
 "500
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 502: break;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 3C ]
+[; ;main.c: 501: strcpy(OLED_RAM_Buffer.line3, getCauseOfResetStringSmall(reset_cause));
+"501
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> ( _getCauseOfResetStringSmall (1 _reset_cause `*Cuc ]
+[; ;main.c: 502: OLED_UpdateFromRAMBuffer();
 "502
-[e $U 2063  ]
-[; ;main.c: 504: case Boot_Frame_2:
-"504
-[e :U 2066 ]
-[; ;main.c: 506: TMR2_StopTimer();
-"506
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 507: TMR2_WriteTimer(0);
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 503: OLED_Frame = Boot_Frame_2;
+"503
+[e = _OLED_Frame . `E18275 1 ]
+[; ;main.c: 505: TMR2_StartTimer();
+"505
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 507: break;
 "507
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 508: CountCallBack = 0;
-"508
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 512: strcpy(OLED_RAM_Buffer.line0, "Device ID:");
+[e $U 2063  ]
+[; ;main.c: 509: case Boot_Frame_2:
+"509
+[e :U 2066 ]
+[; ;main.c: 511: TMR2_StopTimer();
+"511
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 512: TMR2_WriteTimer(0);
 "512
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 4C ]
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 513: CountCallBack = 0;
 "513
-[v _dev_id_str `uc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 513: char dev_id_str[17];
-[; ;main.c: 514: sprintf(dev_id_str,"0x%X",getDeviceID());
-"514
-[e ( _sprintf (1 , (. , &U _dev_id_str :s 5C ( _getDeviceID ..  ]
-[; ;main.c: 515: strcpy(OLED_RAM_Buffer.line1, dev_id_str);
-"515
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _dev_id_str `*Cuc ]
-[; ;main.c: 518: strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 517: strcpy(OLED_RAM_Buffer.line0, "Device ID:");
+"517
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 4C ]
 "518
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 6C ]
+[v _dev_id_str `uc ~T0 @X0 -> 17 `i a ]
+[; ;main.c: 518: char dev_id_str[17];
+[; ;main.c: 519: sprintf(dev_id_str,"0x%X",getDeviceID());
 "519
-[v _rev_id_str `uc ~T0 @X0 -> 17 `i a ]
-[; ;main.c: 519: char rev_id_str[17];
-[; ;main.c: 520: sprintf(rev_id_str, "%c%03d", (char) getMajorRevisionID() + 65, getMinorRevisionID());
+[e ( _sprintf (1 , (. , &U _dev_id_str :s 5C ( _getDeviceID ..  ]
+[; ;main.c: 520: strcpy(OLED_RAM_Buffer.line1, dev_id_str);
 "520
-[e ( _sprintf (1 , , (. , &U _rev_id_str :s 7C + -> ( _getMajorRevisionID ..  `i -> 65 `i -> ( _getMinorRevisionID ..  `i ]
-[; ;main.c: 521: strcpy(OLED_RAM_Buffer.line3, rev_id_str);
-"521
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _rev_id_str `*Cuc ]
-[; ;main.c: 523: OLED_UpdateFromRAMBuffer();
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _dev_id_str `*Cuc ]
+[; ;main.c: 523: strcpy(OLED_RAM_Buffer.line2, "Revision ID:");
 "523
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 524: OLED_Frame = Boot_Frame_3;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 6C ]
 "524
-[e = _OLED_Frame . `E18275 2 ]
-[; ;main.c: 526: TMR2_StartTimer();
+[v _rev_id_str `uc ~T0 @X0 -> 17 `i a ]
+[; ;main.c: 524: char rev_id_str[17];
+[; ;main.c: 525: sprintf(rev_id_str, "%c%03d", (char) getMajorRevisionID() + 65, getMinorRevisionID());
+"525
+[e ( _sprintf (1 , , (. , &U _rev_id_str :s 7C + -> ( _getMajorRevisionID ..  `i -> 65 `i -> ( _getMinorRevisionID ..  `i ]
+[; ;main.c: 526: strcpy(OLED_RAM_Buffer.line3, rev_id_str);
 "526
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 528: break;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _rev_id_str `*Cuc ]
+[; ;main.c: 528: OLED_UpdateFromRAMBuffer();
 "528
-[e $U 2063  ]
-[; ;main.c: 530: case Boot_Frame_3:
-"530
-[e :U 2067 ]
-[; ;main.c: 532: TMR2_StopTimer();
-"532
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 533: TMR2_WriteTimer(0);
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 529: OLED_Frame = Boot_Frame_3;
+"529
+[e = _OLED_Frame . `E18275 2 ]
+[; ;main.c: 531: TMR2_StartTimer();
+"531
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 533: break;
 "533
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 534: CountCallBack = 0;
-"534
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 536: strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
-"536
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 8C ]
-[; ;main.c: 537: strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
+[e $U 2063  ]
+[; ;main.c: 535: case Boot_Frame_3:
+"535
+[e :U 2067 ]
+[; ;main.c: 537: TMR2_StopTimer();
 "537
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 9C ]
-[; ;main.c: 538: strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 538: TMR2_WriteTimer(0);
 "538
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 10C ]
-[; ;main.c: 539: strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow");
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 539: CountCallBack = 0;
 "539
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 11C ]
-[; ;main.c: 541: OLED_UpdateFromRAMBuffer();
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 541: strcpy(OLED_RAM_Buffer.line0, "COM Port Setup:");
 "541
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 542: OLED_Frame = Boot_Frame_4;;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 8C ]
+[; ;main.c: 542: strcpy(OLED_RAM_Buffer.line1, "115.2 kbs");
 "542
-[e = _OLED_Frame . `E18275 3 ]
-[; ;main.c: 544: TMR2_StartTimer();
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 9C ]
+[; ;main.c: 543: strcpy(OLED_RAM_Buffer.line2, "8bit, no parity");
+"543
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 10C ]
+[; ;main.c: 544: strcpy(OLED_RAM_Buffer.line3, "1 stp, no flow");
 "544
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 546: break;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 11C ]
+[; ;main.c: 546: OLED_UpdateFromRAMBuffer();
 "546
-[e $U 2063  ]
-[; ;main.c: 548: case Boot_Frame_4:
-"548
-[e :U 2068 ]
-[; ;main.c: 550: TMR2_StopTimer();
-"550
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 551: TMR2_WriteTimer(0);
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 547: OLED_Frame = Boot_Frame_4;;
+"547
+[e = _OLED_Frame . `E18275 3 ]
+[; ;main.c: 549: TMR2_StartTimer();
+"549
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 551: break;
 "551
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 552: CountCallBack = 0;
-"552
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 554: strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
-"554
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 12C ]
-[; ;main.c: 555: strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
+[e $U 2063  ]
+[; ;main.c: 553: case Boot_Frame_4:
+"553
+[e :U 2068 ]
+[; ;main.c: 555: TMR2_StopTimer();
 "555
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 13C ]
-[; ;main.c: 556: strcpy(OLED_RAM_Buffer.line2, "More Settings");
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 556: TMR2_WriteTimer(0);
 "556
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 14C ]
-[; ;main.c: 557: strcpy(OLED_RAM_Buffer.line3, "via USB, 'Help'");
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 557: CountCallBack = 0;
 "557
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 15C ]
-[; ;main.c: 559: OLED_UpdateFromRAMBuffer();
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 559: strcpy(OLED_RAM_Buffer.line0, "Boot Complete");
 "559
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 560: OLED_Frame = Live_Update;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 12C ]
+[; ;main.c: 560: strcpy(OLED_RAM_Buffer.line1, "Load Enabled,");
 "560
-[e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 562: TMR2_StartTimer();
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 13C ]
+[; ;main.c: 561: strcpy(OLED_RAM_Buffer.line2, "More Settings");
+"561
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 14C ]
+[; ;main.c: 562: strcpy(OLED_RAM_Buffer.line3, "via USB, 'Help'");
 "562
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 564: break;
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 15C ]
+[; ;main.c: 564: OLED_UpdateFromRAMBuffer();
 "564
-[e $U 2063  ]
-[; ;main.c: 566: case Load_Enabled:
-"566
-[e :U 2069 ]
-[; ;main.c: 568: TMR2_StopTimer();
-"568
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 569: TMR2_WriteTimer(0);
-"569
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 570: CountCallBack = 0;
-"570
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 572: strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
-"572
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 16C ]
-[; ;main.c: 573: strcpy(OLED_RAM_Buffer.line1, " ");
-"573
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 17C ]
-[; ;main.c: 574: strcpy(OLED_RAM_Buffer.line2, " ");
-"574
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 18C ]
-[; ;main.c: 575: strcpy(OLED_RAM_Buffer.line3, " ");
-"575
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 19C ]
-[; ;main.c: 577: OLED_UpdateFromRAMBuffer();
-"577
 [e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 579: OLED_Frame = Live_Update;
-"579
+[; ;main.c: 565: OLED_Frame = Live_Update;
+"565
 [e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 580: TMR2_Period8BitSet(0x64);
+[; ;main.c: 567: TMR2_StartTimer();
+"567
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 569: break;
+"569
+[e $U 2063  ]
+[; ;main.c: 571: case Load_Enabled:
+"571
+[e :U 2069 ]
+[; ;main.c: 573: TMR2_StopTimer();
+"573
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 574: TMR2_WriteTimer(0);
+"574
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 575: CountCallBack = 0;
+"575
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 577: strcpy(OLED_RAM_Buffer.line0, "Load Enabled");
+"577
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 16C ]
+[; ;main.c: 578: strcpy(OLED_RAM_Buffer.line1, " ");
+"578
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 17C ]
+[; ;main.c: 579: strcpy(OLED_RAM_Buffer.line2, " ");
+"579
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 18C ]
+[; ;main.c: 580: strcpy(OLED_RAM_Buffer.line3, " ");
 "580
-[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
-[; ;main.c: 581: TMR2_StartTimer();
-"581
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 583: break;
-"583
-[e $U 2063  ]
-[; ;main.c: 585: case Load_Disabled:
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 19C ]
+[; ;main.c: 582: OLED_UpdateFromRAMBuffer();
+"582
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 584: OLED_Frame = Live_Update;
+"584
+[e = _OLED_Frame . `E18275 10 ]
+[; ;main.c: 585: TMR2_Period8BitSet(0x64);
 "585
-[e :U 2070 ]
-[; ;main.c: 587: TMR2_StopTimer();
-"587
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 588: TMR2_WriteTimer(0);
-"588
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 589: CountCallBack = 0;
-"589
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 591: strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
-"591
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 20C ]
-[; ;main.c: 592: strcpy(OLED_RAM_Buffer.line1, " ");
-"592
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 21C ]
-[; ;main.c: 593: strcpy(OLED_RAM_Buffer.line2, " ");
-"593
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 22C ]
-[; ;main.c: 594: strcpy(OLED_RAM_Buffer.line3, " ");
-"594
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 23C ]
-[; ;main.c: 596: OLED_UpdateFromRAMBuffer();
-"596
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 598: OLED_Frame = Idle;
-"598
-[e = _OLED_Frame . `E18275 9 ]
-[; ;main.c: 599: TMR2_Period8BitSet(0x64);
-"599
 [e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
-[; ;main.c: 600: TMR2_StartTimer();
-"600
+[; ;main.c: 586: TMR2_StartTimer();
+"586
 [e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 602: break;
-"602
+[; ;main.c: 588: break;
+"588
 [e $U 2063  ]
-[; ;main.c: 604: case Dimming_Enabled:
-"604
-[e :U 2071 ]
-[; ;main.c: 606: TMR2_StopTimer();
-"606
+[; ;main.c: 590: case Load_Disabled:
+"590
+[e :U 2070 ]
+[; ;main.c: 592: TMR2_StopTimer();
+"592
 [e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 607: TMR2_WriteTimer(0);
-"607
+[; ;main.c: 593: TMR2_WriteTimer(0);
+"593
 [e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 608: CountCallBack = 0;
-"608
+[; ;main.c: 594: CountCallBack = 0;
+"594
 [e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 610: strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
-"610
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 24C ]
-[; ;main.c: 611: strcpy(OLED_RAM_Buffer.line1, " ");
-"611
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 25C ]
-[; ;main.c: 612: strcpy(OLED_RAM_Buffer.line2, " ");
-"612
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 26C ]
-[; ;main.c: 613: strcpy(OLED_RAM_Buffer.line3, " ");
-"613
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 27C ]
-[; ;main.c: 615: OLED_UpdateFromRAMBuffer();
-"615
+[; ;main.c: 596: strcpy(OLED_RAM_Buffer.line0, "Load Disabled");
+"596
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 20C ]
+[; ;main.c: 597: strcpy(OLED_RAM_Buffer.line1, " ");
+"597
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 21C ]
+[; ;main.c: 598: strcpy(OLED_RAM_Buffer.line2, " ");
+"598
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 22C ]
+[; ;main.c: 599: strcpy(OLED_RAM_Buffer.line3, " ");
+"599
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 23C ]
+[; ;main.c: 601: OLED_UpdateFromRAMBuffer();
+"601
 [e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 617: if (load_enable) {
+[; ;main.c: 603: OLED_Frame = Idle;
+"603
+[e = _OLED_Frame . `E18275 9 ]
+[; ;main.c: 604: TMR2_Period8BitSet(0x64);
+"604
+[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
+[; ;main.c: 605: TMR2_StartTimer();
+"605
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 607: break;
+"607
+[e $U 2063  ]
+[; ;main.c: 609: case Dimming_Enabled:
+"609
+[e :U 2071 ]
+[; ;main.c: 611: TMR2_StopTimer();
+"611
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 612: TMR2_WriteTimer(0);
+"612
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 613: CountCallBack = 0;
+"613
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 615: strcpy(OLED_RAM_Buffer.line0, "Dimming Enabled");
+"615
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 24C ]
+[; ;main.c: 616: strcpy(OLED_RAM_Buffer.line1, " ");
+"616
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 25C ]
+[; ;main.c: 617: strcpy(OLED_RAM_Buffer.line2, " ");
 "617
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 26C ]
+[; ;main.c: 618: strcpy(OLED_RAM_Buffer.line3, " ");
+"618
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 27C ]
+[; ;main.c: 620: OLED_UpdateFromRAMBuffer();
+"620
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 622: if (load_enable) {
+"622
 [e $ ! _load_enable 2072  ]
 {
-[; ;main.c: 619: OLED_Frame = Live_Update;
-"619
+[; ;main.c: 624: OLED_Frame = Live_Update;
+"624
 [e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 620: TMR2_Period8BitSet(0x64);
-"620
-[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
-[; ;main.c: 621: TMR2_StartTimer();
-"621
-[e ( _TMR2_StartTimer ..  ]
-"623
-}
-[; ;main.c: 623: }
-[e $U 2073  ]
+[; ;main.c: 625: TMR2_Period8BitSet(0x64);
 "625
-[e :U 2072 ]
-[; ;main.c: 625: else {
-{
-[; ;main.c: 627: OLED_Frame = Load_Disabled;
-"627
-[e = _OLED_Frame . `E18275 5 ]
-[; ;main.c: 628: TMR2_Period8BitSet(0xC2);
-"628
-[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
-[; ;main.c: 629: TMR2_StartTimer();
-"629
+[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
+[; ;main.c: 626: TMR2_StartTimer();
+"626
 [e ( _TMR2_StartTimer ..  ]
+"628
+}
+[; ;main.c: 628: }
+[e $U 2073  ]
 "630
+[e :U 2072 ]
+[; ;main.c: 630: else {
+{
+[; ;main.c: 632: OLED_Frame = Load_Disabled;
+"632
+[e = _OLED_Frame . `E18275 5 ]
+[; ;main.c: 633: TMR2_Period8BitSet(0xC2);
+"633
+[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
+[; ;main.c: 634: TMR2_StartTimer();
+"634
+[e ( _TMR2_StartTimer ..  ]
+"635
 }
 [e :U 2073 ]
-[; ;main.c: 630: }
-[; ;main.c: 632: break;
-"632
-[e $U 2063  ]
-[; ;main.c: 634: case Dimming_Disabled:
-"634
-[e :U 2074 ]
-[; ;main.c: 636: TMR2_StopTimer();
-"636
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 637: TMR2_WriteTimer(0);
+[; ;main.c: 635: }
+[; ;main.c: 637: break;
 "637
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 638: CountCallBack = 0;
-"638
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 640: strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
-"640
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 28C ]
-[; ;main.c: 641: strcpy(OLED_RAM_Buffer.line1, " ");
+[e $U 2063  ]
+[; ;main.c: 639: case Dimming_Disabled:
+"639
+[e :U 2074 ]
+[; ;main.c: 641: TMR2_StopTimer();
 "641
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 29C ]
-[; ;main.c: 642: strcpy(OLED_RAM_Buffer.line2, " ");
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 642: TMR2_WriteTimer(0);
 "642
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 30C ]
-[; ;main.c: 643: strcpy(OLED_RAM_Buffer.line3, " ");
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 643: CountCallBack = 0;
 "643
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 31C ]
-[; ;main.c: 645: OLED_UpdateFromRAMBuffer();
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 645: strcpy(OLED_RAM_Buffer.line0, "Dimming Disabled");
 "645
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 647: if (load_enable) {
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 28C ]
+[; ;main.c: 646: strcpy(OLED_RAM_Buffer.line1, " ");
+"646
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 :s 29C ]
+[; ;main.c: 647: strcpy(OLED_RAM_Buffer.line2, " ");
 "647
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 30C ]
+[; ;main.c: 648: strcpy(OLED_RAM_Buffer.line3, " ");
+"648
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 :s 31C ]
+[; ;main.c: 650: OLED_UpdateFromRAMBuffer();
+"650
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 652: if (load_enable) {
+"652
 [e $ ! _load_enable 2075  ]
 {
-[; ;main.c: 649: OLED_Frame = Live_Update;
-"649
+[; ;main.c: 654: OLED_Frame = Live_Update;
+"654
 [e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 650: TMR2_Period8BitSet(0x64);
-"650
-[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
-[; ;main.c: 651: TMR2_StartTimer();
-"651
-[e ( _TMR2_StartTimer ..  ]
-"653
-}
-[; ;main.c: 653: }
-[e $U 2076  ]
+[; ;main.c: 655: TMR2_Period8BitSet(0x64);
 "655
-[e :U 2075 ]
-[; ;main.c: 655: else {
-{
-[; ;main.c: 657: OLED_Frame = Load_Disabled;
-"657
-[e = _OLED_Frame . `E18275 5 ]
-[; ;main.c: 658: TMR2_Period8BitSet(0xC2);
-"658
-[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
-[; ;main.c: 659: TMR2_StartTimer();
-"659
+[e ( _TMR2_Period8BitSet (1 -> -> 100 `i `uc ]
+[; ;main.c: 656: TMR2_StartTimer();
+"656
 [e ( _TMR2_StartTimer ..  ]
+"658
+}
+[; ;main.c: 658: }
+[e $U 2076  ]
 "660
+[e :U 2075 ]
+[; ;main.c: 660: else {
+{
+[; ;main.c: 662: OLED_Frame = Load_Disabled;
+"662
+[e = _OLED_Frame . `E18275 5 ]
+[; ;main.c: 663: TMR2_Period8BitSet(0xC2);
+"663
+[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
+[; ;main.c: 664: TMR2_StartTimer();
+"664
+[e ( _TMR2_StartTimer ..  ]
+"665
 }
 [e :U 2076 ]
-[; ;main.c: 660: }
-[; ;main.c: 662: break;
-"662
-[e $U 2063  ]
-[; ;main.c: 664: case Dimming_Percentage:
-"664
-[e :U 2077 ]
-[; ;main.c: 666: TMR2_StopTimer();
-"666
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 667: TMR2_WriteTimer(0);
+[; ;main.c: 665: }
+[; ;main.c: 667: break;
 "667
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 668: CountCallBack = 0;
-"668
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 669: TMR2_Period8BitSet(0xC2);
+[e $U 2063  ]
+[; ;main.c: 669: case Dimming_Percentage:
 "669
-[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
-[; ;main.c: 671: strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
+[e :U 2077 ]
+[; ;main.c: 671: TMR2_StopTimer();
 "671
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 32C ]
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 672: TMR2_WriteTimer(0);
 "672
-[v _percentage_string `uc ~T0 @X0 -> 17 `i a ]
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 673: CountCallBack = 0;
 "673
-[v _percentage `f ~T0 @X0 1 a ]
-[; ;main.c: 672: char percentage_string[17];
-[; ;main.c: 673: float percentage = (dimming_period / (float) 0xFFFF);
-[e = _percentage / -> _dimming_period `f -> -> 65535 `ui `f ]
-[; ;main.c: 674: percentage = round(percentage * 100.0);
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 674: TMR2_Period8BitSet(0xC2);
 "674
-[e = _percentage -> ( _round (1 * -> _percentage `d .100.0 `f ]
-[; ;main.c: 675: sprintf(percentage_string, "%.3f Percent", percentage);
-"675
-[e ( _sprintf (1 , (. , &U _percentage_string :s 33C -> _percentage `d ]
-[; ;main.c: 676: strcpy(OLED_RAM_Buffer.line1, percentage_string);
+[e ( _TMR2_Period8BitSet (1 -> -> 194 `i `uc ]
+[; ;main.c: 676: strcpy(OLED_RAM_Buffer.line0, "Dimming Percent:");
 "676
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _percentage_string `*Cuc ]
-[; ;main.c: 678: strcpy(OLED_RAM_Buffer.line2, "TRIAC Angle:");
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 :s 32C ]
+"677
+[v _percentage_string `uc ~T0 @X0 -> 17 `i a ]
 "678
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 34C ]
+[v _percentage `f ~T0 @X0 1 a ]
+[; ;main.c: 677: char percentage_string[17];
+[; ;main.c: 678: float percentage = (dimming_period / (float) 0xFFFF);
+[e = _percentage / -> _dimming_period `f -> -> 65535 `ui `f ]
+[; ;main.c: 679: percentage = round(percentage * 100.0);
 "679
-[v _angle_string `uc ~T0 @X0 -> 17 `i a ]
+[e = _percentage -> ( _round (1 * -> _percentage `d .100.0 `f ]
+[; ;main.c: 680: sprintf(percentage_string, "%.3f Percent", percentage);
 "680
-[v _TRIAC_degrees `f ~T0 @X0 1 a ]
-[; ;main.c: 679: char angle_string[17];
-[; ;main.c: 680: float TRIAC_degrees = round(TRIAC_Firing_Angle * (180.0 / acos(-1.0)));
-[e = _TRIAC_degrees -> ( _round (1 * _TRIAC_Firing_Angle / .180.0 ( _acos (1 -U .1.0 `f ]
-[; ;main.c: 681: sprintf(angle_string, "%.3f Deg", TRIAC_degrees);
+[e ( _sprintf (1 , (. , &U _percentage_string :s 33C -> _percentage `d ]
+[; ;main.c: 681: strcpy(OLED_RAM_Buffer.line1, percentage_string);
 "681
-[e ( _sprintf (1 , (. , &U _angle_string :s 35C -> _TRIAC_degrees `d ]
-[; ;main.c: 682: strcpy(OLED_RAM_Buffer.line3, angle_string);
-"682
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _angle_string `*Cuc ]
-[; ;main.c: 684: OLED_UpdateFromRAMBuffer();
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _percentage_string `*Cuc ]
+[; ;main.c: 683: strcpy(OLED_RAM_Buffer.line2, "TRIAC Angle:");
+"683
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 :s 34C ]
 "684
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 686: if (load_enable) {
+[v _angle_string `uc ~T0 @X0 -> 17 `i a ]
+"685
+[v _TRIAC_degrees `f ~T0 @X0 1 a ]
+[; ;main.c: 684: char angle_string[17];
+[; ;main.c: 685: float TRIAC_degrees = round(TRIAC_Firing_Angle * (180.0 / acos(-1.0)));
+[e = _TRIAC_degrees -> ( _round (1 * _TRIAC_Firing_Angle / .180.0 ( _acos (1 -U .1.0 `f ]
+[; ;main.c: 686: sprintf(angle_string, "%.3f Deg", TRIAC_degrees);
 "686
+[e ( _sprintf (1 , (. , &U _angle_string :s 35C -> _TRIAC_degrees `d ]
+[; ;main.c: 687: strcpy(OLED_RAM_Buffer.line3, angle_string);
+"687
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _angle_string `*Cuc ]
+[; ;main.c: 689: OLED_UpdateFromRAMBuffer();
+"689
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 691: if (load_enable) {
+"691
 [e $ ! _load_enable 2078  ]
 {
-[; ;main.c: 688: OLED_Frame = Live_Update;
-"688
+[; ;main.c: 693: OLED_Frame = Live_Update;
+"693
 [e = _OLED_Frame . `E18275 10 ]
-"690
+"695
 }
-[; ;main.c: 690: }
+[; ;main.c: 695: }
 [e $U 2079  ]
-"692
+"697
 [e :U 2078 ]
-[; ;main.c: 692: else {
+[; ;main.c: 697: else {
 {
-[; ;main.c: 694: OLED_Frame = Load_Disabled;
-"694
+[; ;main.c: 699: OLED_Frame = Load_Disabled;
+"699
 [e = _OLED_Frame . `E18275 5 ]
-"696
+"701
 }
 [e :U 2079 ]
-[; ;main.c: 696: }
-[; ;main.c: 698: TMR2_StartTimer();
-"698
+[; ;main.c: 701: }
+[; ;main.c: 703: TMR2_StartTimer();
+"703
 [e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 700: break;
-"700
-[e $U 2063  ]
-[; ;main.c: 702: case Live_Update:
-"702
-[e :U 2080 ]
-[; ;main.c: 704: TMR2_StopTimer();
-"704
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 705: TMR2_WriteTimer(0);
+[; ;main.c: 705: break;
 "705
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 706: CountCallBack = 0;
-"706
-[e = _CountCallBack -> -> 0 `i `ui ]
-[; ;main.c: 709: sprintf(print_Irms_str, "%.3f ARMS", Irms);
+[e $U 2063  ]
+[; ;main.c: 707: case Live_Update:
+"707
+[e :U 2080 ]
+[; ;main.c: 709: TMR2_StopTimer();
 "709
-[e ( _sprintf (1 , (. , &U _print_Irms_str :s 36C _Irms ]
-[; ;main.c: 710: strcpy(OLED_RAM_Buffer.line0, print_Irms_str);
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 710: TMR2_WriteTimer(0);
 "710
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 -> &U _print_Irms_str `*Cuc ]
-[; ;main.c: 713: sprintf(print_Vrms_str, "%.3f VRMS", Vrms);
-"713
-[e ( _sprintf (1 , (. , &U _print_Vrms_str :s 37C _Vrms ]
-[; ;main.c: 714: strcpy(OLED_RAM_Buffer.line1, print_Vrms_str);
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 711: CountCallBack = 0;
+"711
+[e = _CountCallBack -> -> 0 `i `ui ]
+[; ;main.c: 714: sprintf(print_Irms_str, "%.3f ARMS", Irms);
 "714
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _print_Vrms_str `*Cuc ]
-[; ;main.c: 717: sprintf(print_Power_str, "%.3f Watts", Avg_Power);
-"717
-[e ( _sprintf (1 , (. , &U _print_Power_str :s 38C _Avg_Power ]
-[; ;main.c: 718: strcpy(OLED_RAM_Buffer.line2, print_Power_str);
+[e ( _sprintf (1 , (. , &U _print_Irms_str :s 36C _Irms ]
+[; ;main.c: 715: strcpy(OLED_RAM_Buffer.line0, print_Irms_str);
+"715
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 0 -> &U _print_Irms_str `*Cuc ]
+[; ;main.c: 718: sprintf(print_Vrms_str, "%.3f VRMS", Vrms);
 "718
+[e ( _sprintf (1 , (. , &U _print_Vrms_str :s 37C _Vrms ]
+[; ;main.c: 719: strcpy(OLED_RAM_Buffer.line1, print_Vrms_str);
+"719
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 1 -> &U _print_Vrms_str `*Cuc ]
+[; ;main.c: 722: sprintf(print_Power_str, "%.3f Watts", Avg_Power);
+"722
+[e ( _sprintf (1 , (. , &U _print_Power_str :s 38C _Avg_Power ]
+[; ;main.c: 723: strcpy(OLED_RAM_Buffer.line2, print_Power_str);
+"723
 [e ( _strcpy (2 , &U . _OLED_RAM_Buffer 2 -> &U _print_Power_str `*Cuc ]
-[; ;main.c: 721: if (Total_Energy >= 1000.0) {
-"721
+[; ;main.c: 726: if (Total_Energy >= 1000.0) {
+"726
 [e $ ! >= _Total_Energy .1000.0 2081  ]
 {
-[; ;main.c: 723: sprintf(print_Energy_str, "%.3e WHours", Total_Energy);
-"723
+[; ;main.c: 728: sprintf(print_Energy_str, "%.3e WHours", Total_Energy);
+"728
 [e ( _sprintf (1 , (. , &U _print_Energy_str :s 39C _Total_Energy ]
-"725
+"730
 }
-[; ;main.c: 725: }
+[; ;main.c: 730: }
 [e $U 2082  ]
-"727
+"732
 [e :U 2081 ]
-[; ;main.c: 727: else if (Total_Energy >= 100.0) {
+[; ;main.c: 732: else if (Total_Energy >= 100.0) {
 [e $ ! >= _Total_Energy .100.0 2083  ]
 {
-[; ;main.c: 729: sprintf(print_Energy_str, "%.1f WHours", Total_Energy);
-"729
+[; ;main.c: 734: sprintf(print_Energy_str, "%.1f WHours", Total_Energy);
+"734
 [e ( _sprintf (1 , (. , &U _print_Energy_str :s 40C _Total_Energy ]
-"731
+"736
 }
-[; ;main.c: 731: }
+[; ;main.c: 736: }
 [e $U 2084  ]
-"733
+"738
 [e :U 2083 ]
-[; ;main.c: 733: else {
+[; ;main.c: 738: else {
 {
-[; ;main.c: 735: sprintf(print_Energy_str, "%.3f WHours", Total_Energy);
-"735
+[; ;main.c: 740: sprintf(print_Energy_str, "%.3f WHours", Total_Energy);
+"740
 [e ( _sprintf (1 , (. , &U _print_Energy_str :s 41C _Total_Energy ]
-"737
+"742
 }
 [e :U 2084 ]
 [e :U 2082 ]
-[; ;main.c: 737: }
-[; ;main.c: 739: strcpy(OLED_RAM_Buffer.line3, print_Energy_str);
-"739
-[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _print_Energy_str `*Cuc ]
-[; ;main.c: 742: OLED_UpdateFromRAMBuffer();
-"742
-[e ( _OLED_UpdateFromRAMBuffer ..  ]
-[; ;main.c: 744: if (USB_live_update_flag) {
+[; ;main.c: 742: }
+[; ;main.c: 744: strcpy(OLED_RAM_Buffer.line3, print_Energy_str);
 "744
+[e ( _strcpy (2 , &U . _OLED_RAM_Buffer 3 -> &U _print_Energy_str `*Cuc ]
+[; ;main.c: 747: OLED_UpdateFromRAMBuffer();
+"747
+[e ( _OLED_UpdateFromRAMBuffer ..  ]
+[; ;main.c: 749: if (USB_live_update_flag) {
+"749
 [e $ ! _USB_live_update_flag 2085  ]
 {
-[; ;main.c: 747: terminal_clearTerminal();
-"747
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 748: terminal_setCursorHome();
-"748
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 749: terminal_textAttributesReset();
-"749
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 750: printf("Live Measurement Updates:\n\r");
-"750
-[e ( _printf :s 42C ]
-[; ;main.c: 752: terminal_printNewline();
+[; ;main.c: 752: terminal_clearTerminal();
 "752
-[e ( _terminal_printNewline ..  ]
-[; ;main.c: 754: terminal_textAttributes(CYAN, BLACK, NORMAL);
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 753: terminal_setCursorHome();
+"753
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 754: terminal_textAttributesReset();
 "754
-[e ( _terminal_textAttributes (3 , , . `E18238 6 . `E18238 0 . `E18230 0 ]
-[; ;main.c: 755: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 755: printf("Live Measurement Updates:\n\r");
 "755
-[e ( _printf , (. :s 43C _load_on_time ]
-[; ;main.c: 756: printf("RMS Output Current is %.3f Arms\n\r", Irms);
-"756
-[e ( _printf , (. :s 44C _Irms ]
-[; ;main.c: 757: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+[e ( _printf :s 42C ]
+[; ;main.c: 757: terminal_printNewline();
 "757
-[e ( _printf , (. :s 45C _Vrms ]
-[; ;main.c: 758: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
-"758
-[e ( _printf , (. :s 46C _Avg_Power ]
-[; ;main.c: 760: if (Total_Energy >= 1000.0) {
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 759: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"759
+[e ( _terminal_textAttributes (3 , , . `E18238 6 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 760: printf("Load on time since last device reset is %d seconds\n\r", load_on_time);
 "760
+[e ( _printf , (. :s 43C _load_on_time ]
+[; ;main.c: 761: printf("RMS Output Current is %.3f Arms\n\r", Irms);
+"761
+[e ( _printf , (. :s 44C _Irms ]
+[; ;main.c: 762: printf("RMS Output Voltage is %.3f Vrms\n\r", Vrms);
+"762
+[e ( _printf , (. :s 45C _Vrms ]
+[; ;main.c: 763: printf("Output power calculated as %.3f Watts from RMS values\n\r", Avg_Power);
+"763
+[e ( _printf , (. :s 46C _Avg_Power ]
+[; ;main.c: 765: if (Total_Energy >= 1000.0) {
+"765
 [e $ ! >= _Total_Energy .1000.0 2086  ]
 {
-[; ;main.c: 762: printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
-"762
+[; ;main.c: 767: printf("Measured output energy since last measurement reset is %.2e Watt Hours\n\r", Total_Energy);
+"767
 [e ( _printf , (. :s 47C _Total_Energy ]
-"764
+"769
 }
-[; ;main.c: 764: }
+[; ;main.c: 769: }
 [e $U 2087  ]
-"766
+"771
 [e :U 2086 ]
-[; ;main.c: 766: else if (Total_Energy >= 100.0) {
+[; ;main.c: 771: else if (Total_Energy >= 100.0) {
 [e $ ! >= _Total_Energy .100.0 2088  ]
 {
-[; ;main.c: 768: printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
-"768
+[; ;main.c: 773: printf("Measured output energy since last measurement reset is %.2f Watt Hours\n\r", Total_Energy);
+"773
 [e ( _printf , (. :s 48C _Total_Energy ]
-"770
+"775
 }
-[; ;main.c: 770: }
+[; ;main.c: 775: }
 [e $U 2089  ]
-"772
+"777
 [e :U 2088 ]
-[; ;main.c: 772: else {
+[; ;main.c: 777: else {
 {
-[; ;main.c: 774: printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
-"774
+[; ;main.c: 779: printf("Measured output energy since last measurement reset is %.3f Watt Hours\n\r", Total_Energy);
+"779
 [e ( _printf , (. :s 49C _Total_Energy ]
-"776
+"781
 }
 [e :U 2089 ]
 [e :U 2087 ]
-[; ;main.c: 776: }
-[; ;main.c: 778: terminal_printNewline();
-"778
+[; ;main.c: 781: }
+[; ;main.c: 783: terminal_printNewline();
+"783
 [e ( _terminal_printNewline ..  ]
-[; ;main.c: 780: if (LATGbits.LATG0 != 1) {
-"780
+[; ;main.c: 785: if (LATGbits.LATG0 != 1) {
+"785
 [e $ ! != -> . . _LATGbits 0 0 `i -> 1 `i 2090  ]
 {
-[; ;main.c: 782: terminal_textAttributes(GREEN, BLACK, NORMAL);
-"782
-[e ( _terminal_textAttributes (3 , , . `E18238 2 . `E18238 0 . `E18230 0 ]
-[; ;main.c: 783: printf("Dimming is currently enabled\n\r");
-"783
-[e ( _printf :s 50C ]
-"786
-[v _angle_degrees `d ~T0 @X0 1 a ]
-[; ;main.c: 786: double angle_degrees = TRIAC_Firing_Angle * (180.0 / acos(-1.0));
-[e = _angle_degrees * _TRIAC_Firing_Angle / .180.0 ( _acos (1 -U .1.0 ]
+[; ;main.c: 787: terminal_textAttributes(GREEN, BLACK, NORMAL);
 "787
-[v _percentage_print `f ~T0 @X0 1 a ]
-[; ;main.c: 787: float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
-[e = _percentage_print -> ( _round (1 * / - .180.0 _angle_degrees .180.0 .100.0 `f ]
-[; ;main.c: 788: printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+[e ( _terminal_textAttributes (3 , , . `E18238 2 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 788: printf("Dimming is currently enabled\n\r");
 "788
-[e ( _printf , (. :s 51C -> _percentage_print `d ]
-[; ;main.c: 790: terminal_textAttributesReset();
-"790
-[e ( _terminal_textAttributesReset ..  ]
+[e ( _printf :s 50C ]
+"791
+[v _angle_degrees `d ~T0 @X0 1 a ]
+[; ;main.c: 791: double angle_degrees = TRIAC_Firing_Angle * (180.0 / acos(-1.0));
+[e = _angle_degrees * _TRIAC_Firing_Angle / .180.0 ( _acos (1 -U .1.0 ]
 "792
-}
-[; ;main.c: 792: }
-[e $U 2091  ]
+[v _percentage_print `f ~T0 @X0 1 a ]
+[; ;main.c: 792: float percentage_print = round(((180.0 - angle_degrees) / 180.0) * 100.0);
+[e = _percentage_print -> ( _round (1 * / - .180.0 _angle_degrees .180.0 .100.0 `f ]
+[; ;main.c: 793: printf("Dimming has been set to %.2f percent\n\r", percentage_print);
+"793
+[e ( _printf , (. :s 51C -> _percentage_print `d ]
+[; ;main.c: 794: printf("Calculated TRIAC firing angle is %.3f radians (%.3f degrees)\n\r", TRIAC_Firing_Angle, angle_degrees);
 "794
-[e :U 2090 ]
-[; ;main.c: 794: else {
-{
-[; ;main.c: 796: terminal_textAttributes(RED, BLACK, NORMAL);
+[e ( _printf , , (. :s 52C _TRIAC_Firing_Angle _angle_degrees ]
+[; ;main.c: 796: terminal_textAttributesReset();
 "796
+[e ( _terminal_textAttributesReset ..  ]
+"798
+}
+[; ;main.c: 798: }
+[e $U 2091  ]
+"800
+[e :U 2090 ]
+[; ;main.c: 800: else {
+{
+[; ;main.c: 802: terminal_textAttributes(RED, BLACK, NORMAL);
+"802
 [e ( _terminal_textAttributes (3 , , . `E18238 1 . `E18238 0 . `E18230 0 ]
-[; ;main.c: 797: printf("Dimming is currently disabled\n\r");
-"797
-[e ( _printf :s 52C ]
-"799
+[; ;main.c: 803: printf("Dimming is currently disabled\n\r");
+"803
+[e ( _printf :s 53C ]
+"805
 }
 [e :U 2091 ]
-[; ;main.c: 799: }
-[; ;main.c: 801: terminal_printNewline();
-"801
+[; ;main.c: 805: }
+[; ;main.c: 807: terminal_printNewline();
+"807
 [e ( _terminal_printNewline ..  ]
-[; ;main.c: 803: terminal_textAttributes(CYAN, BLACK, NORMAL);
-"803
+[; ;main.c: 809: terminal_textAttributes(CYAN, BLACK, NORMAL);
+"809
 [e ( _terminal_textAttributes (3 , , . `E18238 6 . `E18238 0 . `E18230 0 ]
-[; ;main.c: 805: printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_Irms);
-"805
-[e ( _printf , (. :s 53C _max_Irms ]
-[; ;main.c: 806: printf("Maximum recorded output power is %.3f Watts\n\r", max_Power);
-"806
-[e ( _printf , (. :s 54C _max_Power ]
-[; ;main.c: 808: terminal_printNewline();
-"808
-[e ( _terminal_printNewline ..  ]
-[; ;main.c: 810: terminal_textAttributes(YELLOW, BLACK, NORMAL);
-"810
-[e ( _terminal_textAttributes (3 , , . `E18238 3 . `E18238 0 . `E18230 0 ]
-[; ;main.c: 811: printf("Press enter key to exit\n\r");
+[; ;main.c: 811: printf("Maximum recorded RMS output current is %.3f Arms\n\r", max_Irms);
 "811
-[e ( _printf :s 55C ]
-"813
+[e ( _printf , (. :s 54C _max_Irms ]
+[; ;main.c: 812: printf("Maximum recorded output power is %.3f Watts\n\r", max_Power);
+"812
+[e ( _printf , (. :s 55C _max_Power ]
+[; ;main.c: 814: terminal_printNewline();
+"814
+[e ( _terminal_printNewline ..  ]
+[; ;main.c: 816: terminal_textAttributes(YELLOW, BLACK, NORMAL);
+"816
+[e ( _terminal_textAttributes (3 , , . `E18238 3 . `E18238 0 . `E18230 0 ]
+[; ;main.c: 817: printf("Press enter key to exit\n\r");
+"817
+[e ( _printf :s 56C ]
+"819
 }
 [e :U 2085 ]
-[; ;main.c: 813: }
-[; ;main.c: 815: OLED_Frame = Live_Update;
-"815
-[e = _OLED_Frame . `E18275 10 ]
-[; ;main.c: 816: TMR2_Period8BitSet(0x31);
-"816
-[e ( _TMR2_Period8BitSet (1 -> -> 49 `i `uc ]
-[; ;main.c: 817: TMR2_StartTimer();
-"817
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 819: break;
-"819
-[e $U 2063  ]
-[; ;main.c: 821: case Idle:
+[; ;main.c: 819: }
+[; ;main.c: 821: OLED_Frame = Live_Update;
 "821
-[e :U 2092 ]
-[; ;main.c: 822: break;
+[e = _OLED_Frame . `E18275 10 ]
+[; ;main.c: 822: TMR2_Period8BitSet(0x31);
 "822
-[e $U 2063  ]
-[; ;main.c: 824: default:
-"824
-[e :U 2093 ]
+[e ( _TMR2_Period8BitSet (1 -> -> 49 `i `uc ]
+[; ;main.c: 823: TMR2_StartTimer();
+"823
+[e ( _TMR2_StartTimer ..  ]
 [; ;main.c: 825: break;
 "825
 [e $U 2063  ]
+[; ;main.c: 827: case Idle:
 "827
-}
-[; ;main.c: 827: }
+[e :U 2092 ]
+[; ;main.c: 828: break;
+"828
 [e $U 2063  ]
-"484
+[; ;main.c: 830: default:
+"830
+[e :U 2093 ]
+[; ;main.c: 831: break;
+"831
+[e $U 2063  ]
+"833
+}
+[; ;main.c: 833: }
+[e $U 2063  ]
+"489
 [e :U 2064 ]
 [e [\ _OLED_Frame , $ . `E18275 0 2065
  , $ . `E18275 1 2066
@@ -18353,137 +18360,137 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E18275 10 2080
  , $ . `E18275 9 2092
  2093 ]
-"827
+"833
 [e :U 2063 ]
-[; ;main.c: 829: }
-"829
+[; ;main.c: 835: }
+"835
 [e :UE 2062 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"834
+"840
 [v _main `(v ~T0 @X0 1 ef ]
-"835
+"841
 {
-[; ;main.c: 834: void main(void)
-[; ;main.c: 835: {
+[; ;main.c: 840: void main(void)
+[; ;main.c: 841: {
 [e :U _main ]
 [f ]
-[; ;main.c: 838: reset_cause = getCauseOfReset();
-"838
+[; ;main.c: 844: reset_cause = getCauseOfReset();
+"844
 [e = _reset_cause ( _getCauseOfReset ..  ]
-[; ;main.c: 842: _delay((unsigned long)((250)*(64000000/4000.0)));
-"842
-[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[; ;main.c: 845: SYSTEM_Initialize();
-"845
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 848: recoverSRAMMaxFromEEPROM();
+[; ;main.c: 848: _delay((unsigned long)((250)*(64000000/4000.0)));
 "848
-[e ( _recoverSRAMMaxFromEEPROM ..  ]
-[; ;main.c: 852: LATGbits.LATG0 = 1;
-"852
-[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 853: LATGbits.LATG1 = 0;
-"853
-[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 854: load_enable = 1;
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 851: SYSTEM_Initialize();
+"851
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 854: recoverSRAMMaxFromEEPROM();
 "854
-[e = _load_enable -> -> 1 `i `b ]
-[; ;main.c: 857: TMR2_StopTimer();
-"857
-[e ( _TMR2_StopTimer ..  ]
-[; ;main.c: 858: TMR2_WriteTimer(0);
+[e ( _recoverSRAMMaxFromEEPROM ..  ]
+[; ;main.c: 858: LATGbits.LATG0 = 1;
 "858
-[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
-[; ;main.c: 861: TMR6_SetInterruptHandler(heartbeatTimerCallback);
-"861
-[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
-[; ;main.c: 864: ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
+[e = . . _LATGbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 859: LATGbits.LATG1 = 0;
+"859
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 860: load_enable = 1;
+"860
+[e = _load_enable -> -> 1 `i `b ]
+[; ;main.c: 863: TMR2_StopTimer();
+"863
+[e ( _TMR2_StopTimer ..  ]
+[; ;main.c: 864: TMR2_WriteTimer(0);
 "864
-[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADC_PostProcessingCallback ]
-[; ;main.c: 867: TMR7_SetInterruptHandler(acquisitionTimerCallback);
+[e ( _TMR2_WriteTimer (1 -> -> 0 `i `uc ]
+[; ;main.c: 867: TMR6_SetInterruptHandler(heartbeatTimerCallback);
 "867
-[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
-[; ;main.c: 870: INT0_SetInterruptHandler(dimmingOffTimeCallback);
+[e ( _TMR6_SetInterruptHandler (1 &U _heartbeatTimerCallback ]
+[; ;main.c: 870: ADCC_SetADTIInterruptHandler(ADC_PostProcessingCallback);
 "870
-[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
-[; ;main.c: 873: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
+[e ( _ADCC_SetADTIInterruptHandler (1 &U _ADC_PostProcessingCallback ]
+[; ;main.c: 873: TMR7_SetInterruptHandler(acquisitionTimerCallback);
 "873
-[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
-[; ;main.c: 876: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
+[e ( _TMR7_SetInterruptHandler (1 &U _acquisitionTimerCallback ]
+[; ;main.c: 876: INT0_SetInterruptHandler(dimmingOffTimeCallback);
 "876
-[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
-[; ;main.c: 879: TMR2_SetInterruptHandler(OLED_updateCallback);
+[e ( _INT0_SetInterruptHandler (1 &U _dimmingOffTimeCallback ]
+[; ;main.c: 879: TMR5_SetInterruptHandler(dimmingOnTimeCallback);
 "879
-[e ( _TMR2_SetInterruptHandler (1 &U _OLED_updateCallback ]
-[; ;main.c: 882: TMR5_StopTimer();
+[e ( _TMR5_SetInterruptHandler (1 &U _dimmingOnTimeCallback ]
+[; ;main.c: 882: TMR4_SetInterruptHandler(writeEnergyToEEPROMCallback);
 "882
+[e ( _TMR4_SetInterruptHandler (1 &U _writeEnergyToEEPROMCallback ]
+[; ;main.c: 885: TMR2_SetInterruptHandler(OLED_updateCallback);
+"885
+[e ( _TMR2_SetInterruptHandler (1 &U _OLED_updateCallback ]
+[; ;main.c: 888: TMR5_StopTimer();
+"888
 [e ( _TMR5_StopTimer ..  ]
-[; ;main.c: 883: PIE0bits.INT0IE = 0;
-"883
-[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 886: (INTCONbits.GIEH = 1);
-"886
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-[; ;main.c: 889: (INTCONbits.GIEL = 1);
+[; ;main.c: 889: PIE0bits.INT0IE = 0;
 "889
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-[; ;main.c: 892: terminal_clearTerminal();
+[e = . . _PIE0bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 892: (INTCONbits.GIEH = 1);
 "892
-[e ( _terminal_clearTerminal ..  ]
-[; ;main.c: 893: terminal_setCursorHome();
-"893
-[e ( _terminal_setCursorHome ..  ]
-[; ;main.c: 894: terminal_textAttributesReset();
-"894
-[e ( _terminal_textAttributesReset ..  ]
-[; ;main.c: 897: OLED_Init();
-"897
-[e ( _OLED_Init ..  ]
-[; ;main.c: 898: OLED_Clear();
+[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
+[; ;main.c: 895: (INTCONbits.GIEL = 1);
+"895
+[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
+[; ;main.c: 898: terminal_clearTerminal();
 "898
-[e ( _OLED_Clear ..  ]
-[; ;main.c: 901: OLED_Frame = Boot_Frame_1;
-"901
-[e = _OLED_Frame . `E18275 0 ]
-[; ;main.c: 902: OLED_updateCallback();
-"902
-[e ( _OLED_updateCallback ..  ]
-[; ;main.c: 904: terminal_printResetMessage();
+[e ( _terminal_clearTerminal ..  ]
+[; ;main.c: 899: terminal_setCursorHome();
+"899
+[e ( _terminal_setCursorHome ..  ]
+[; ;main.c: 900: terminal_textAttributesReset();
+"900
+[e ( _terminal_textAttributesReset ..  ]
+[; ;main.c: 903: OLED_Init();
+"903
+[e ( _OLED_Init ..  ]
+[; ;main.c: 904: OLED_Clear();
 "904
-[e ( _terminal_printResetMessage ..  ]
-[; ;main.c: 907: while (1)
+[e ( _OLED_Clear ..  ]
+[; ;main.c: 907: OLED_Frame = Boot_Frame_1;
 "907
-[e :U 2096 ]
-[; ;main.c: 908: {
+[e = _OLED_Frame . `E18275 0 ]
+[; ;main.c: 908: OLED_updateCallback();
 "908
+[e ( _OLED_updateCallback ..  ]
+[; ;main.c: 910: terminal_printResetMessage();
+"910
+[e ( _terminal_printResetMessage ..  ]
+[; ;main.c: 913: while (1)
+"913
+[e :U 2096 ]
+[; ;main.c: 914: {
+"914
 {
-[; ;main.c: 911: if (eusart2RxStringReady) {
-"911
+[; ;main.c: 917: if (eusart2RxStringReady) {
+"917
 [e $ ! _eusart2RxStringReady 2098  ]
 {
-[; ;main.c: 913: terminal_ringBufferPull();
-"913
+[; ;main.c: 919: terminal_ringBufferPull();
+"919
 [e ( _terminal_ringBufferPull ..  ]
-"915
+"921
 }
 [e :U 2098 ]
-[; ;main.c: 915: }
-[; ;main.c: 918: saveSRAMMaxToEEPROM();
-"918
+[; ;main.c: 921: }
+[; ;main.c: 924: saveSRAMMaxToEEPROM();
+"924
 [e ( _saveSRAMMaxToEEPROM ..  ]
-[; ;main.c: 921: updateErrorLEDs();
-"921
+[; ;main.c: 927: updateErrorLEDs();
+"927
 [e ( _updateErrorLEDs ..  ]
-"923
+"929
 }
 [e :U 2095 ]
-"907
+"913
 [e $U 2096  ]
 [e :U 2097 ]
-[; ;main.c: 923: }
-[; ;main.c: 924: }
-"924
+[; ;main.c: 929: }
+[; ;main.c: 930: }
+"930
 [e :UE 2094 ]
 }
 [p f _sprintf 11118724 ]
@@ -18530,16 +18537,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 30C 32 0 ]
 [a 31C 32 0 ]
 [a 51C 68 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 115 101 116 32 116 111 32 37 46 50 102 32 112 101 114 99 101 110 116 10 13 0 ]
-[a 55C 80 114 101 115 115 32 101 110 116 101 114 32 107 101 121 32 116 111 32 101 120 105 116 10 13 0 ]
-[a 54C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
+[a 56C 80 114 101 115 115 32 101 110 116 101 114 32 107 101 121 32 116 111 32 101 120 105 116 10 13 0 ]
+[a 55C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 111 117 116 112 117 116 32 112 111 119 101 114 32 105 115 32 37 46 51 102 32 87 97 116 116 115 10 13 0 ]
 [a 49C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 51 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 48C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 102 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 47C 77 101 97 115 117 114 101 100 32 111 117 116 112 117 116 32 101 110 101 114 103 121 32 115 105 110 99 101 32 108 97 115 116 32 109 101 97 115 117 114 101 109 101 110 116 32 114 101 115 101 116 32 105 115 32 37 46 50 101 32 87 97 116 116 32 72 111 117 114 115 10 13 0 ]
 [a 45C 82 77 83 32 79 117 116 112 117 116 32 86 111 108 116 97 103 101 32 105 115 32 37 46 51 102 32 86 114 109 115 10 13 0 ]
-[a 53C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
+[a 54C 77 97 120 105 109 117 109 32 114 101 99 111 114 100 101 100 32 82 77 83 32 111 117 116 112 117 116 32 99 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
 [a 44C 82 77 83 32 79 117 116 112 117 116 32 67 117 114 114 101 110 116 32 105 115 32 37 46 51 102 32 65 114 109 115 10 13 0 ]
 [a 46C 79 117 116 112 117 116 32 112 111 119 101 114 32 99 97 108 99 117 108 97 116 101 100 32 97 115 32 37 46 51 102 32 87 97 116 116 115 32 102 114 111 109 32 82 77 83 32 118 97 108 117 101 115 10 13 0 ]
 [a 43C 76 111 97 100 32 111 110 32 116 105 109 101 32 115 105 110 99 101 32 108 97 115 116 32 100 101 118 105 99 101 32 114 101 115 101 116 32 105 115 32 37 100 32 115 101 99 111 110 100 115 10 13 0 ]
-[a 52C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 53C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 50C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 42C 76 105 118 101 32 77 101 97 115 117 114 101 109 101 110 116 32 85 112 100 97 116 101 115 58 10 13 0 ]
+[a 52C 67 97 108 99 117 108 97 116 101 100 32 84 82 73 65 67 32 102 105 114 105 110 103 32 97 110 103 108 101 32 105 115 32 37 46 51 102 32 114 97 100 105 97 110 115 32 40 37 46 51 102 32 100 101 103 114 101 101 115 41 10 13 0 ]

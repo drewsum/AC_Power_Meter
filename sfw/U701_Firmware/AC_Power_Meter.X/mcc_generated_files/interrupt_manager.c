@@ -59,14 +59,17 @@ void  INTERRUPT_Initialize (void)
     // HLVDI - high priority
     IPR2bits.HLVDIP = 1;
 
+    // INT0I - high priority
+    IPR0bits.INT0IP = 1;
+
+    // TMRI - high priority
+    IPR5bits.TMR5IP = 1;
+
     // BCLI - high priority
     IPR3bits.BCL1IP = 1;
 
     // SSPI - high priority
     IPR3bits.SSP1IP = 1;
-
-    // INT0I - high priority
-    IPR0bits.INT0IP = 1;
 
     // TMRI - high priority
     IPR5bits.TMR4IP = 1;
@@ -76,9 +79,6 @@ void  INTERRUPT_Initialize (void)
 
     // TXI - high priority
     IPR3bits.TX2IP = 1;
-
-    // TMRI - high priority
-    IPR5bits.TMR5IP = 1;
 
     // ADTI - high priority
     IPR1bits.ADTIP = 1;
@@ -102,6 +102,14 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     {
         HLVD_ISR();
     }
+    else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
+    {
+        INT0_ISR();
+    }
+    else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+    {
+        TMR5_ISR();
+    }
     else if(PIE3bits.BCL1IE == 1 && PIR3bits.BCL1IF == 1)
     {
         I2C1_BusCollisionISR();
@@ -109,10 +117,6 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     else if(PIE3bits.SSP1IE == 1 && PIR3bits.SSP1IF == 1)
     {
         I2C1_ISR();
-    }
-    else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
-    {
-        INT0_ISR();
     }
     else if(PIE5bits.TMR4IE == 1 && PIR5bits.TMR4IF == 1)
     {
@@ -125,10 +129,6 @@ void __interrupt() INTERRUPT_InterruptManagerHigh (void)
     else if(PIE3bits.TX2IE == 1 && PIR3bits.TX2IF == 1)
     {
         EUSART2_TxDefaultInterruptHandler();
-    }
-    else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
-    {
-        TMR5_ISR();
     }
     else if(PIE1bits.ADTIE == 1 && PIR1bits.ADTIF == 1)
     {

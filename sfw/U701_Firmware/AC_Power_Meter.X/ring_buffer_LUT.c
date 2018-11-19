@@ -395,7 +395,7 @@ void ringBufferLUT(char * line) {
         Total_Energy = 0.0;
         writeDoubleToEEPROM(0.0, Total_Energy_address);
         
-        terminal_textAttributes(RED, BLACK, NORMAL);
+        terminal_textAttributes(GREEN, BLACK, NORMAL);
         printf("Measured output energy has been reset to zero Watt Hours\n\r");
         terminal_textAttributesReset();
         
@@ -547,6 +547,15 @@ void ringBufferLUT(char * line) {
     // disable load
     else if ((0 == strcmp(line, "Disable Load"))) {
      
+        // Shutoff dimming timer (TMR5)
+        TMR5_StopTimer();
+
+        // Disable timer 5 interrupt
+        PIE5bits.TMR5IE = 0;
+        
+        // Disable dimming interrupt
+        PIE0bits.INT0IE = 0;
+        
         SSR_DIM_PIN = 0;
         SSR_FORCE_PIN = 0;
         load_enable = 0;
