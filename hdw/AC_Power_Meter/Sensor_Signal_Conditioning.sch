@@ -41,20 +41,6 @@ F 3 "" H 9040 3630 50  0001 C CNN
 	1    9040 3630
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB3EC49
-P 9040 3030
-AR Path="/5BB27B84/5BB3EC49" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB3EC49" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB3EC49" Ref="#PWR0934"  Part="1" 
-F 0 "#PWR0934" H 9040 2880 50  0001 C CNN
-F 1 "+3.3V" H 9040 3170 50  0000 C CNN
-F 2 "" H 9040 3030 50  0000 C CNN
-F 3 "" H 9040 3030 50  0000 C CNN
-	1    9040 3030
-	1    0    0    -1  
-$EndComp
 Text GLabel 9640 3330 2    50   Output ~ 0
 ISNS_ADC
 $Comp
@@ -162,17 +148,6 @@ F 1 "GND" H 4890 3380 50  0000 C CNN
 F 2 "" H 4890 3530 50  0001 C CNN
 F 3 "" H 4890 3530 50  0001 C CNN
 	1    4890 3530
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0921
-U 1 1 5BB40A29
-P 4890 2930
-F 0 "#PWR0921" H 4890 2780 50  0001 C CNN
-F 1 "+3.3V" H 4890 3070 50  0000 C CNN
-F 2 "" H 4890 2930 50  0000 C CNN
-F 3 "" H 4890 2930 50  0000 C CNN
-	1    4890 2930
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -342,20 +317,6 @@ F 3 "" H 1680 4780 50  0001 C CNN
 	1    1680 4780
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB7A67F
-P 1680 4320
-AR Path="/5BB27B84/5BB7A67F" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB7A67F" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB7A67F" Ref="#PWR0901"  Part="1" 
-F 0 "#PWR0901" H 1680 4170 50  0001 C CNN
-F 1 "+3.3V" H 1680 4460 50  0000 C CNN
-F 2 "" H 1680 4320 50  0000 C CNN
-F 3 "" H 1680 4320 50  0000 C CNN
-	1    1680 4320
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1680 4320 1680 4360
 Wire Wire Line
@@ -415,19 +376,6 @@ F 3 "" H 2670 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB7A6A4
-P 2670 4400
-AR Path="/5BB27B24/5BB7A6A4" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB7A6A4" Ref="#PWR0912"  Part="1" 
-F 0 "#PWR0912" H 2670 4250 50  0001 C CNN
-F 1 "+3.3V" H 2670 4540 50  0000 C CNN
-F 2 "" H 2670 4400 50  0000 C CNN
-F 3 "" H 2670 4400 50  0000 C CNN
-	1    2670 4400
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:C_Custom C?
 U 1 1 5BB7A6AE
 P 3320 4550
@@ -460,19 +408,6 @@ F 3 "" H 3320 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB7A6BB
-P 3320 4400
-AR Path="/5BB27B24/5BB7A6BB" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB7A6BB" Ref="#PWR0917"  Part="1" 
-F 0 "#PWR0917" H 3320 4250 50  0001 C CNN
-F 1 "+3.3V" H 3320 4540 50  0000 C CNN
-F 2 "" H 3320 4400 50  0000 C CNN
-F 3 "" H 3320 4400 50  0000 C CNN
-	1    3320 4400
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:LTC6240IS5 U?
 U 1 1 5BB7A6C2
 P 2660 3130
@@ -497,20 +432,6 @@ F 1 "GND" H 2560 3280 50  0000 C CNN
 F 2 "" H 2560 3430 50  0001 C CNN
 F 3 "" H 2560 3430 50  0001 C CNN
 	1    2560 3430
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB7A6CF
-P 2560 2830
-AR Path="/5BB27B84/5BB7A6CF" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB7A6CF" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB7A6CF" Ref="#PWR0908"  Part="1" 
-F 0 "#PWR0908" H 2560 2680 50  0001 C CNN
-F 1 "+3.3V" H 2560 2970 50  0000 C CNN
-F 2 "" H 2560 2830 50  0000 C CNN
-F 3 "" H 2560 2830 50  0000 C CNN
-	1    2560 2830
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -674,20 +595,6 @@ F 3 "" H 4940 4780 50  0001 C CNN
 	1    4940 4780
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB91A19
-P 4940 4320
-AR Path="/5BB27B84/5BB91A19" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB91A19" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB91A19" Ref="#PWR0923"  Part="1" 
-F 0 "#PWR0923" H 4940 4170 50  0001 C CNN
-F 1 "+3.3V" H 4940 4460 50  0000 C CNN
-F 2 "" H 4940 4320 50  0000 C CNN
-F 3 "" H 4940 4320 50  0000 C CNN
-	1    4940 4320
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4940 4320 4940 4360
 Wire Wire Line
@@ -747,19 +654,6 @@ F 3 "" H 5930 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB91A3E
-P 5930 4400
-AR Path="/5BB27B24/5BB91A3E" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB91A3E" Ref="#PWR0925"  Part="1" 
-F 0 "#PWR0925" H 5930 4250 50  0001 C CNN
-F 1 "+3.3V" H 5930 4540 50  0000 C CNN
-F 2 "" H 5930 4400 50  0000 C CNN
-F 3 "" H 5930 4400 50  0000 C CNN
-	1    5930 4400
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:C_Custom C?
 U 1 1 5BB91A48
 P 6580 4550
@@ -789,19 +683,6 @@ F 1 "GND" H 6580 4550 50  0000 C CNN
 F 2 "" H 6580 4700 50  0001 C CNN
 F 3 "" H 6580 4700 50  0001 C CNN
 	1    6580 4700
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB91A55
-P 6580 4400
-AR Path="/5BB27B24/5BB91A55" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB91A55" Ref="#PWR0928"  Part="1" 
-F 0 "#PWR0928" H 6580 4250 50  0001 C CNN
-F 1 "+3.3V" H 6580 4540 50  0000 C CNN
-F 2 "" H 6580 4400 50  0000 C CNN
-F 3 "" H 6580 4400 50  0000 C CNN
-	1    6580 4400
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -875,20 +756,6 @@ F 3 "" H 8300 4780 50  0001 C CNN
 	1    8300 4780
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB928F1
-P 8300 4320
-AR Path="/5BB27B84/5BB928F1" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB928F1" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB928F1" Ref="#PWR0931"  Part="1" 
-F 0 "#PWR0931" H 8300 4170 50  0001 C CNN
-F 1 "+3.3V" H 8300 4460 50  0000 C CNN
-F 2 "" H 8300 4320 50  0000 C CNN
-F 3 "" H 8300 4320 50  0000 C CNN
-	1    8300 4320
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	8300 4320 8300 4360
 Wire Wire Line
@@ -948,19 +815,6 @@ F 3 "" H 9290 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB92916
-P 9290 4400
-AR Path="/5BB27B24/5BB92916" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB92916" Ref="#PWR0936"  Part="1" 
-F 0 "#PWR0936" H 9290 4250 50  0001 C CNN
-F 1 "+3.3V" H 9290 4540 50  0000 C CNN
-F 2 "" H 9290 4400 50  0000 C CNN
-F 3 "" H 9290 4400 50  0000 C CNN
-	1    9290 4400
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:C_Custom C?
 U 1 1 5BB92920
 P 9940 4550
@@ -992,19 +846,6 @@ F 3 "" H 9940 4700 50  0001 C CNN
 	1    9940 4700
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB9292D
-P 9940 4400
-AR Path="/5BB27B24/5BB9292D" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BB9292D" Ref="#PWR0938"  Part="1" 
-F 0 "#PWR0938" H 9940 4250 50  0001 C CNN
-F 1 "+3.3V" H 9940 4540 50  0000 C CNN
-F 2 "" H 9940 4400 50  0000 C CNN
-F 3 "" H 9940 4400 50  0000 C CNN
-	1    9940 4400
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5460 2470 6250 2470
 Wire Wire Line
@@ -1012,7 +853,7 @@ Wire Wire Line
 Wire Wire Line
 	9200 2680 9560 2680
 Text Notes 8500 5340 0    50   ~ 0
-ISNS_ADC Scaling: 5.35ARMS/V
+ISNS_ADC Scaling: 3.787Apk/2V
 $Comp
 L Custom_Library:LTC6240IS5 U?
 U 1 1 5BBA5D6F
@@ -1038,20 +879,6 @@ F 1 "GND" H 2560 6330 50  0000 C CNN
 F 2 "" H 2560 6480 50  0001 C CNN
 F 3 "" H 2560 6480 50  0001 C CNN
 	1    2560 6480
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBA5D7C
-P 2560 5880
-AR Path="/5BB27B84/5BBA5D7C" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BBA5D7C" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BBA5D7C" Ref="#PWR0910"  Part="1" 
-F 0 "#PWR0910" H 2560 5730 50  0001 C CNN
-F 1 "+3.3V" H 2560 6020 50  0000 C CNN
-F 2 "" H 2560 5880 50  0000 C CNN
-F 3 "" H 2560 5880 50  0000 C CNN
-	1    2560 5880
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1125,20 +952,6 @@ F 3 "" H 1680 7480 50  0001 C CNN
 	1    1680 7480
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBA711D
-P 1680 7020
-AR Path="/5BB27B84/5BBA711D" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BBA711D" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BBA711D" Ref="#PWR0903"  Part="1" 
-F 0 "#PWR0903" H 1680 6870 50  0001 C CNN
-F 1 "+3.3V" H 1680 7160 50  0000 C CNN
-F 2 "" H 1680 7020 50  0000 C CNN
-F 3 "" H 1680 7020 50  0000 C CNN
-	1    1680 7020
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1680 7020 1680 7060
 Wire Wire Line
@@ -1198,19 +1011,6 @@ F 3 "" H 2670 7400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBA7142
-P 2670 7100
-AR Path="/5BB27B24/5BBA7142" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BBA7142" Ref="#PWR0914"  Part="1" 
-F 0 "#PWR0914" H 2670 6950 50  0001 C CNN
-F 1 "+3.3V" H 2670 7240 50  0000 C CNN
-F 2 "" H 2670 7100 50  0000 C CNN
-F 3 "" H 2670 7100 50  0000 C CNN
-	1    2670 7100
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:C_Custom C?
 U 1 1 5BBA714C
 P 3320 7250
@@ -1240,19 +1040,6 @@ F 1 "GND" H 3320 7250 50  0000 C CNN
 F 2 "" H 3320 7400 50  0001 C CNN
 F 3 "" H 3320 7400 50  0001 C CNN
 	1    3320 7400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBA7159
-P 3320 7100
-AR Path="/5BB27B24/5BBA7159" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BBA7159" Ref="#PWR0919"  Part="1" 
-F 0 "#PWR0919" H 3320 6950 50  0001 C CNN
-F 1 "+3.3V" H 3320 7240 50  0000 C CNN
-F 2 "" H 3320 7100 50  0000 C CNN
-F 3 "" H 3320 7100 50  0000 C CNN
-	1    3320 7100
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1311,20 +1098,6 @@ $EndComp
 Wire Wire Line
 	1690 6080 1690 5870
 Connection ~ 1690 6080
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBB3E2A
-P 1690 5570
-AR Path="/5BB27B84/5BBB3E2A" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BBB3E2A" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BB5/5BBB3E2A" Ref="#PWR0905"  Part="1" 
-F 0 "#PWR0905" H 1690 5420 50  0001 C CNN
-F 1 "+3.3V" H 1690 5710 50  0000 C CNN
-F 2 "" H 1690 5570 50  0000 C CNN
-F 3 "" H 1690 5570 50  0000 C CNN
-	1    1690 5570
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2360 6280 2190 6280
 Wire Wire Line
@@ -1364,4 +1137,191 @@ Wire Wire Line
 	1720 2950 1720 3030
 Wire Wire Line
 	1720 3030 2360 3030
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A0FE
+P 2560 2830
+F 0 "#PWR?" H 2560 2680 50  0001 C CNN
+F 1 "+3.3V" H 2560 2970 50  0000 C CNN
+F 2 "" H 2560 2830 50  0001 C CNN
+F 3 "" H 2560 2830 50  0001 C CNN
+	1    2560 2830
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A254
+P 4890 2930
+F 0 "#PWR?" H 4890 2780 50  0001 C CNN
+F 1 "+3.3V" H 4890 3070 50  0000 C CNN
+F 2 "" H 4890 2930 50  0001 C CNN
+F 3 "" H 4890 2930 50  0001 C CNN
+	1    4890 2930
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A3C7
+P 9040 3030
+F 0 "#PWR?" H 9040 2880 50  0001 C CNN
+F 1 "+3.3V" H 9040 3170 50  0000 C CNN
+F 2 "" H 9040 3030 50  0001 C CNN
+F 3 "" H 9040 3030 50  0001 C CNN
+	1    9040 3030
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A612
+P 1680 4320
+F 0 "#PWR?" H 1680 4170 50  0001 C CNN
+F 1 "+3.3V" H 1680 4460 50  0000 C CNN
+F 2 "" H 1680 4320 50  0001 C CNN
+F 3 "" H 1680 4320 50  0001 C CNN
+	1    1680 4320
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A7F1
+P 2670 4400
+F 0 "#PWR?" H 2670 4250 50  0001 C CNN
+F 1 "+3.3V" H 2670 4540 50  0000 C CNN
+F 2 "" H 2670 4400 50  0001 C CNN
+F 3 "" H 2670 4400 50  0001 C CNN
+	1    2670 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A88C
+P 3320 4400
+F 0 "#PWR?" H 3320 4250 50  0001 C CNN
+F 1 "+3.3V" H 3320 4540 50  0000 C CNN
+F 2 "" H 3320 4400 50  0001 C CNN
+F 3 "" H 3320 4400 50  0001 C CNN
+	1    3320 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3A8DF
+P 4940 4320
+F 0 "#PWR?" H 4940 4170 50  0001 C CNN
+F 1 "+3.3V" H 4940 4460 50  0000 C CNN
+F 2 "" H 4940 4320 50  0001 C CNN
+F 3 "" H 4940 4320 50  0001 C CNN
+	1    4940 4320
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3AA2E
+P 5930 4400
+F 0 "#PWR?" H 5930 4250 50  0001 C CNN
+F 1 "+3.3V" H 5930 4540 50  0000 C CNN
+F 2 "" H 5930 4400 50  0001 C CNN
+F 3 "" H 5930 4400 50  0001 C CNN
+	1    5930 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3AAC9
+P 6580 4400
+F 0 "#PWR?" H 6580 4250 50  0001 C CNN
+F 1 "+3.3V" H 6580 4540 50  0000 C CNN
+F 2 "" H 6580 4400 50  0001 C CNN
+F 3 "" H 6580 4400 50  0001 C CNN
+	1    6580 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3ABAC
+P 8300 4320
+F 0 "#PWR?" H 8300 4170 50  0001 C CNN
+F 1 "+3.3V" H 8300 4460 50  0000 C CNN
+F 2 "" H 8300 4320 50  0001 C CNN
+F 3 "" H 8300 4320 50  0001 C CNN
+	1    8300 4320
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3AC6B
+P 9290 4400
+F 0 "#PWR?" H 9290 4250 50  0001 C CNN
+F 1 "+3.3V" H 9290 4540 50  0000 C CNN
+F 2 "" H 9290 4400 50  0001 C CNN
+F 3 "" H 9290 4400 50  0001 C CNN
+	1    9290 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3ACBE
+P 9940 4400
+F 0 "#PWR?" H 9940 4250 50  0001 C CNN
+F 1 "+3.3V" H 9940 4540 50  0000 C CNN
+F 2 "" H 9940 4400 50  0001 C CNN
+F 3 "" H 9940 4400 50  0001 C CNN
+	1    9940 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3AD7D
+P 1690 5570
+F 0 "#PWR?" H 1690 5420 50  0001 C CNN
+F 1 "+3.3V" H 1690 5710 50  0000 C CNN
+F 2 "" H 1690 5570 50  0001 C CNN
+F 3 "" H 1690 5570 50  0001 C CNN
+	1    1690 5570
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3AFA4
+P 2560 5880
+F 0 "#PWR?" H 2560 5730 50  0001 C CNN
+F 1 "+3.3V" H 2560 6020 50  0000 C CNN
+F 2 "" H 2560 5880 50  0001 C CNN
+F 3 "" H 2560 5880 50  0001 C CNN
+	1    2560 5880
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3B063
+P 1680 7020
+F 0 "#PWR?" H 1680 6870 50  0001 C CNN
+F 1 "+3.3V" H 1680 7160 50  0000 C CNN
+F 2 "" H 1680 7020 50  0001 C CNN
+F 3 "" H 1680 7020 50  0001 C CNN
+	1    1680 7020
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3B0DA
+P 2670 7100
+F 0 "#PWR?" H 2670 6950 50  0001 C CNN
+F 1 "+3.3V" H 2670 7240 50  0000 C CNN
+F 2 "" H 2670 7100 50  0001 C CNN
+F 3 "" H 2670 7100 50  0001 C CNN
+	1    2670 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3B12D
+P 3320 7100
+F 0 "#PWR?" H 3320 6950 50  0001 C CNN
+F 1 "+3.3V" H 3320 7240 50  0000 C CNN
+F 2 "" H 3320 7100 50  0001 C CNN
+F 3 "" H 3320 7100 50  0001 C CNN
+	1    3320 7100
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

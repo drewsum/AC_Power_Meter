@@ -81,19 +81,6 @@ F 3 "" H 5320 5300 50  0001 C CNN
 	1    5320 5300
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB2A089
-P 5320 4840
-AR Path="/5BB27B84/5BB2A089" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB2A089" Ref="#PWR0302"  Part="1" 
-F 0 "#PWR0302" H 5320 4690 50  0001 C CNN
-F 1 "+3.3V" H 5320 4980 50  0000 C CNN
-F 2 "" H 5320 4840 50  0000 C CNN
-F 3 "" H 5320 4840 50  0000 C CNN
-	1    5320 4840
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5320 4840 5320 4880
 Wire Wire Line
@@ -131,34 +118,8 @@ F 3 "" H 5350 4040 50  0001 C CNN
 	1    5350 4040
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB2ABA3
-P 5350 3240
-AR Path="/5BB27B84/5BB2ABA3" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB2ABA3" Ref="#PWR0304"  Part="1" 
-F 0 "#PWR0304" H 5350 3090 50  0001 C CNN
-F 1 "+3.3V" H 5350 3380 50  0000 C CNN
-F 2 "" H 5350 3240 50  0000 C CNN
-F 3 "" H 5350 3240 50  0000 C CNN
-	1    5350 3240
-	1    0    0    -1  
-$EndComp
 Text GLabel 4950 3740 0    50   Output ~ 0
 ISNS_HT_OUT
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB2B17F
-P 6670 3060
-AR Path="/5BB27B84/5BB2B17F" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27B24/5BB2B17F" Ref="#PWR0306"  Part="1" 
-F 0 "#PWR0306" H 6670 2910 50  0001 C CNN
-F 1 "+3.3V" H 6670 3200 50  0000 C CNN
-F 2 "" H 6670 3060 50  0000 C CNN
-F 3 "" H 6670 3060 50  0000 C CNN
-	1    6670 3060
-	1    0    0    -1  
-$EndComp
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB2B40B
@@ -212,20 +173,8 @@ F 3 "" H 6670 4200 50  0001 C CNN
 	1    6670 4200
 	1    0    0    -1  
 $EndComp
-$Comp
-L Sensor_Current:ACS722xLCTR-20AB U301
-U 1 1 5BB31C32
-P 5350 3640
-F 0 "U301" H 5450 4090 50  0000 L CNN
-F 1 "ACS722LLCTR-20AB" H 5450 3990 50  0000 L CNN
-F 2 "Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm" H 5450 3290 50  0001 L CIN
-F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS722-Datasheet.ashx?la=en" H 5350 3640 50  0001 C CNN
-F 4 "620-1637-1-ND" H 5350 3640 50  0001 C CNN "Digi-Key PN"
-	1    5350 3640
-	1    0    0    -1  
-$EndComp
 Text Notes 3530 4440 0    50   ~ 0
-10.7ARMS Max to support full output swing of conditioning stages
+3.787 Peak Amps Max to support full output swing of conditioning stages
 $Comp
 L power:HT #PWR0301
 U 1 1 5BB463D5
@@ -256,4 +205,49 @@ F 3 "" H 9900 1100 50  0001 C CNN
 $EndComp
 Text GLabel 5750 3440 2    50   Output ~ 0
 ISNS_OUT
+$Comp
+L Sensor_Current:ACS722xLCTR-05AB U301
+U 1 1 5BD3627A
+P 5350 3640
+F 0 "U301" H 5450 4090 50  0000 L CNN
+F 1 "ACS722LLCTR-05AB" H 5450 3990 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 5450 3290 50  0001 L CIN
+F 3 "http://www.allegromicro.com/~/media/Files/Datasheets/ACS722-Datasheet.ashx?la=en" H 5350 3640 50  0001 C CNN
+F 4 "620-1634-1-ND" H 5350 3640 50  0001 C CNN "Digi-Key PN"
+	1    5350 3640
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF32BD1
+P 5320 4840
+F 0 "#PWR?" H 5320 4690 50  0001 C CNN
+F 1 "+3.3V" H 5320 4980 50  0000 C CNN
+F 2 "" H 5320 4840 50  0001 C CNN
+F 3 "" H 5320 4840 50  0001 C CNN
+	1    5320 4840
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF32C07
+P 5350 3240
+F 0 "#PWR?" H 5350 3090 50  0001 C CNN
+F 1 "+3.3V" H 5350 3380 50  0000 C CNN
+F 2 "" H 5350 3240 50  0001 C CNN
+F 3 "" H 5350 3240 50  0001 C CNN
+	1    5350 3240
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF32C66
+P 6670 3060
+F 0 "#PWR?" H 6670 2910 50  0001 C CNN
+F 1 "+3.3V" H 6670 3200 50  0000 C CNN
+F 2 "" H 6670 3060 50  0001 C CNN
+F 3 "" H 6670 3060 50  0001 C CNN
+	1    6670 3060
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

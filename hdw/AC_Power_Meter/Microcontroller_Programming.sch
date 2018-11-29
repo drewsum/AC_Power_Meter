@@ -54,17 +54,6 @@ Wire Wire Line
 Text Notes 540  690  0    100  ~ 20
 Programming Header, ~MCLR~ Reset Filter, ICSP Detection
 $Comp
-L Custom_Library:+3.3V #PWR0821
-U 1 1 5BB281E1
-P 7790 2020
-F 0 "#PWR0821" H 7790 1870 50  0001 C CNN
-F 1 "+3.3V" H 7790 2160 50  0000 C CNN
-F 2 "" H 7790 2020 50  0000 C CNN
-F 3 "" H 7790 2020 50  0000 C CNN
-	1    7790 2020
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0820
 U 1 1 5BB29447
 P 7160 2260
@@ -91,17 +80,6 @@ F 7 "490-8020-1-ND" H 7585 2610 60  0001 C CNN "Digi-Key PN"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR0819
-U 1 1 5BB29458
-P 7160 1960
-F 0 "#PWR0819" H 7160 1810 50  0001 C CNN
-F 1 "+3.3V" H 7160 2100 50  0000 C CNN
-F 2 "" H 7160 1960 50  0000 C CNN
-F 3 "" H 7160 1960 50  0000 C CNN
-	1    7160 1960
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:R_Custom R805
 U 1 1 5BB2A22B
 P 8220 3830
@@ -115,17 +93,6 @@ F 6 "1/10W" H 8330 3750 50  0000 L CNN "Wattage"
 F 7 "RHM10KADCT-ND" H 8520 4230 60  0001 C CNN "Digi-Key PN"
 	1    8220 3830
 	-1   0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR0823
-U 1 1 5BB2A271
-P 8220 3680
-F 0 "#PWR0823" H 8220 3530 50  0001 C CNN
-F 1 "+3.3V" H 8220 3820 50  0000 C CNN
-F 2 "" H 8220 3680 50  0000 C CNN
-F 3 "" H 8220 3680 50  0000 C CNN
-	1    8220 3680
-	1    0    0    -1  
 $EndComp
 $Comp
 L Custom_Library:R_Custom R807
@@ -343,19 +310,6 @@ F 3 "" H 3980 5240 50  0001 C CNN
 	1    3980 5240
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BBA5F28
-P 2670 4740
-AR Path="/5BB27B84/5BBA5F28" Ref="#PWR?"  Part="1" 
-AR Path="/5BB27BA3/5BBA5F28" Ref="#PWR0804"  Part="1" 
-F 0 "#PWR0804" H 2670 4590 50  0001 C CNN
-F 1 "+3.3V" H 2670 4880 50  0000 C CNN
-F 2 "" H 2670 4740 50  0000 C CNN
-F 3 "" H 2670 4740 50  0000 C CNN
-	1    2670 4740
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2670 4740 2670 4820
 Wire Wire Line
@@ -441,4 +395,48 @@ Wire Wire Line
 	6380 5270 6180 5270
 Wire Wire Line
 	6180 5270 6180 5330
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF36CD2
+P 2670 4740
+F 0 "#PWR?" H 2670 4590 50  0001 C CNN
+F 1 "+3.3V" H 2670 4880 50  0000 C CNN
+F 2 "" H 2670 4740 50  0001 C CNN
+F 3 "" H 2670 4740 50  0001 C CNN
+	1    2670 4740
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF36D38
+P 7790 2020
+F 0 "#PWR?" H 7790 1870 50  0001 C CNN
+F 1 "+3.3V" H 7790 2160 50  0000 C CNN
+F 2 "" H 7790 2020 50  0001 C CNN
+F 3 "" H 7790 2020 50  0001 C CNN
+	1    7790 2020
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF36E1B
+P 7160 1960
+F 0 "#PWR?" H 7160 1810 50  0001 C CNN
+F 1 "+3.3V" H 7160 2100 50  0000 C CNN
+F 2 "" H 7160 1960 50  0001 C CNN
+F 3 "" H 7160 1960 50  0001 C CNN
+	1    7160 1960
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF37B59
+P 8220 3680
+F 0 "#PWR?" H 8220 3530 50  0001 C CNN
+F 1 "+3.3V" H 8220 3820 50  0000 C CNN
+F 2 "" H 8220 3680 50  0001 C CNN
+F 3 "" H 8220 3680 50  0001 C CNN
+	1    8220 3680
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

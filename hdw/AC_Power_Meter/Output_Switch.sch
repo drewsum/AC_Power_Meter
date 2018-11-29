@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 17 17
+Sheet 15 17
 Title ""
 Date ""
 Rev ""
@@ -221,17 +221,6 @@ F 3 "" H 3050 3480 50  0001 C CNN
 	1    3050 3480
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR01503
-U 1 1 5BB65575
-P 3050 3280
-F 0 "#PWR01503" H 3050 3130 50  0001 C CNN
-F 1 "+3.3V" H 3050 3420 50  0000 C CNN
-F 2 "" H 3050 3280 50  0000 C CNN
-F 3 "" H 3050 3280 50  0000 C CNN
-	1    3050 3280
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3300 3380 3640 3380
 $Comp
@@ -349,17 +338,6 @@ F 3 "" H 3280 4230 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR01505
-U 1 1 5BB67D1C
-P 3280 3930
-F 0 "#PWR01505" H 3280 3780 50  0001 C CNN
-F 1 "+3.3V" H 3280 4070 50  0000 C CNN
-F 2 "" H 3280 3930 50  0000 C CNN
-F 3 "" H 3280 3930 50  0000 C CNN
-	1    3280 3930
-	1    0    0    -1  
-$EndComp
-$Comp
 L Mechanical:Heatsink HS1501
 U 1 1 5BC1D984
 P 6260 3190
@@ -368,6 +346,28 @@ F 1 "Heatsink" H 6260 3140 50  0000 C CNN
 F 2 "" H 6272 3190 50  0001 C CNN
 F 3 "" H 6272 3190 50  0001 C CNN
 	1    6260 3190
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3EDCB
+P 3280 3930
+F 0 "#PWR?" H 3280 3780 50  0001 C CNN
+F 1 "+3.3V" H 3280 4070 50  0000 C CNN
+F 2 "" H 3280 3930 50  0001 C CNN
+F 3 "" H 3280 3930 50  0001 C CNN
+	1    3280 3930
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3EDF5
+P 3050 3280
+F 0 "#PWR?" H 3050 3130 50  0001 C CNN
+F 1 "+3.3V" H 3050 3420 50  0000 C CNN
+F 2 "" H 3050 3280 50  0001 C CNN
+F 3 "" H 3050 3280 50  0001 C CNN
+	1    3050 3280
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

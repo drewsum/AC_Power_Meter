@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 16 17
+Sheet 14 17
 Title ""
 Date ""
 Rev ""
@@ -32,20 +32,6 @@ F 6 "1/10W" H 6570 4050 50  0000 L CNN "Wattage"
 F 7 "P100KHCT-ND" H 6760 4530 60  0001 C CNN "Digi-Key PN"
 	1    6460 4130
 	-1   0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB3392D
-P 6460 3590
-AR Path="/5BB31314/5BB3392D" Ref="#PWR?"  Part="1" 
-AR Path="/5BB31311/5BB3392D" Ref="#PWR01409"  Part="1" 
-AR Path="/5BBE5EA4/5BB3392D" Ref="#PWR01409"  Part="1" 
-F 0 "#PWR01409" H 6460 3440 50  0001 C CNN
-F 1 "+3.3V" H 6460 3730 50  0000 C CNN
-F 2 "" H 6460 3590 50  0000 C CNN
-F 3 "" H 6460 3590 50  0000 C CNN
-	1    6460 3590
-	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	6460 3590 6460 3670
@@ -297,17 +283,6 @@ F 3 "" H 7060 2930 50  0001 C CNN
 	1    7060 2930
 	1    0    0    -1  
 $EndComp
-$Comp
-L Custom_Library:+3.3V #PWR01414
-U 1 1 5BB38E32
-P 7060 2470
-F 0 "#PWR01414" H 7060 2320 50  0001 C CNN
-F 1 "+3.3V" H 7060 2610 50  0000 C CNN
-F 2 "" H 7060 2470 50  0000 C CNN
-F 3 "" H 7060 2470 50  0000 C CNN
-	1    7060 2470
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7060 2470 7060 2510
 Wire Wire Line
@@ -348,17 +323,6 @@ F 3 "" H 7010 3970 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Custom_Library:+3.3V #PWR01412
-U 1 1 5BB401D8
-P 7010 3770
-F 0 "#PWR01412" H 7010 3620 50  0001 C CNN
-F 1 "+3.3V" H 7010 3910 50  0000 C CNN
-F 2 "" H 7010 3770 50  0000 C CNN
-F 3 "" H 7010 3770 50  0000 C CNN
-	1    7010 3770
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:C_Custom C?
 U 1 1 5BB40215
 P 7390 4530
@@ -386,17 +350,6 @@ F 1 "GND" H 7390 4530 50  0000 C CNN
 F 2 "" H 7390 4680 50  0001 C CNN
 F 3 "" H 7390 4680 50  0001 C CNN
 	1    7390 4680
-	1    0    0    -1  
-$EndComp
-$Comp
-L Custom_Library:+3.3V #PWR01416
-U 1 1 5BB402A4
-P 7390 4380
-F 0 "#PWR01416" H 7390 4230 50  0001 C CNN
-F 1 "+3.3V" H 7390 4520 50  0000 C CNN
-F 2 "" H 7390 4380 50  0000 C CNN
-F 3 "" H 7390 4380 50  0000 C CNN
-	1    7390 4380
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -564,5 +517,49 @@ F 3 "http://www.vishay.com/docs/85543/bav17.pdf" H 5280 3760 50  0001 C CNN
 F 4 "BAV21W-FDICT-ND" H 5280 3760 50  0001 C CNN "Digi-Key PN"
 	1    5280 3760
 	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3DA5B
+P 7390 4380
+F 0 "#PWR?" H 7390 4230 50  0001 C CNN
+F 1 "+3.3V" H 7390 4520 50  0000 C CNN
+F 2 "" H 7390 4380 50  0001 C CNN
+F 3 "" H 7390 4380 50  0001 C CNN
+	1    7390 4380
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3DACD
+P 7010 3770
+F 0 "#PWR?" H 7010 3620 50  0001 C CNN
+F 1 "+3.3V" H 7010 3910 50  0000 C CNN
+F 2 "" H 7010 3770 50  0001 C CNN
+F 3 "" H 7010 3770 50  0001 C CNN
+	1    7010 3770
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3DB68
+P 6460 3590
+F 0 "#PWR?" H 6460 3440 50  0001 C CNN
+F 1 "+3.3V" H 6460 3730 50  0000 C CNN
+F 2 "" H 6460 3590 50  0001 C CNN
+F 3 "" H 6460 3590 50  0001 C CNN
+	1    6460 3590
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3DB93
+P 7060 2470
+F 0 "#PWR?" H 7060 2320 50  0001 C CNN
+F 1 "+3.3V" H 7060 2610 50  0000 C CNN
+F 2 "" H 7060 2470 50  0001 C CNN
+F 3 "" H 7060 2470 50  0001 C CNN
+	1    7060 2470
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

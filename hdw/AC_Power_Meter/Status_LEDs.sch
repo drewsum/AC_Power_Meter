@@ -4,7 +4,7 @@ EELAYER 26 0
 EELAYER END
 $Descr A 11000 8500
 encoding utf-8
-Sheet 14 17
+Sheet 16 17
 Title ""
 Date ""
 Rev ""
@@ -49,19 +49,6 @@ F 5 "160-1447-1-ND" H 2830 2640 60  0001 C CNN "Digi-Key PN"
 $EndComp
 Wire Wire Line
 	2630 2590 2630 2490
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB80225
-P 2630 2190
-AR Path="/5BB27B51/5BB80225" Ref="#PWR?"  Part="1" 
-AR Path="/5BB7FA89/5BB80225" Ref="#PWR01611"  Part="1" 
-F 0 "#PWR01611" H 2630 2040 50  0001 C CNN
-F 1 "+3.3V" H 2630 2330 50  0000 C CNN
-F 2 "" H 2630 2190 50  0000 C CNN
-F 3 "" H 2630 2190 50  0000 C CNN
-	1    2630 2190
-	1    0    0    -1  
-$EndComp
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB8025C
@@ -118,19 +105,6 @@ $EndComp
 Wire Wire Line
 	4890 2590 4890 2490
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB81353
-P 4890 2190
-AR Path="/5BB27B51/5BB81353" Ref="#PWR?"  Part="1" 
-AR Path="/5BB7FA89/5BB81353" Ref="#PWR01624"  Part="1" 
-F 0 "#PWR01624" H 4890 2040 50  0001 C CNN
-F 1 "+3.3V" H 4890 2330 50  0000 C CNN
-F 2 "" H 4890 2190 50  0000 C CNN
-F 3 "" H 4890 2190 50  0000 C CNN
-	1    4890 2190
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB81374
 P 3690 3470
@@ -172,19 +146,6 @@ Wire Wire Line
 	1430 2780 1430 3140
 Connection ~ 1430 3140
 $Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB82E67
-P 1430 2480
-AR Path="/5BB27B51/5BB82E67" Ref="#PWR?"  Part="1" 
-AR Path="/5BB7FA89/5BB82E67" Ref="#PWR01601"  Part="1" 
-F 0 "#PWR01601" H 1430 2330 50  0001 C CNN
-F 1 "+3.3V" H 1430 2620 50  0000 C CNN
-F 2 "" H 1430 2480 50  0000 C CNN
-F 3 "" H 1430 2480 50  0000 C CNN
-	1    1430 2480
-	1    0    0    -1  
-$EndComp
-$Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB83381
 P 7320 2740
@@ -219,19 +180,6 @@ F 5 "160-1447-1-ND" H 7520 2640 60  0001 C CNN "Digi-Key PN"
 $EndComp
 Wire Wire Line
 	7320 2590 7320 2490
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB83394
-P 7320 2190
-AR Path="/5BB27B51/5BB83394" Ref="#PWR?"  Part="1" 
-AR Path="/5BB7FA89/5BB83394" Ref="#PWR01635"  Part="1" 
-F 0 "#PWR01635" H 7320 2040 50  0001 C CNN
-F 1 "+3.3V" H 7320 2330 50  0000 C CNN
-F 2 "" H 7320 2190 50  0000 C CNN
-F 3 "" H 7320 2190 50  0000 C CNN
-	1    7320 2190
-	1    0    0    -1  
-$EndComp
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB833B5
@@ -285,19 +233,6 @@ F 5 "160-1446-1-ND" H 2830 5280 60  0001 C CNN "Digi-Key PN"
 $EndComp
 Wire Wire Line
 	2630 5230 2630 5130
-$Comp
-L Custom_Library:+3.3V #PWR?
-U 1 1 5BB83BD8
-P 2630 4830
-AR Path="/5BB27B51/5BB83BD8" Ref="#PWR?"  Part="1" 
-AR Path="/5BB7FA89/5BB83BD8" Ref="#PWR01612"  Part="1" 
-F 0 "#PWR01612" H 2630 4680 50  0001 C CNN
-F 1 "+3.3V" H 2630 4970 50  0000 C CNN
-F 2 "" H 2630 4830 50  0000 C CNN
-F 3 "" H 2630 4830 50  0000 C CNN
-	1    2630 4830
-	1    0    0    -1  
-$EndComp
 $Comp
 L Custom_Library:R_Custom R?
 U 1 1 5BB83BF9
@@ -537,4 +472,59 @@ Wire Wire Line
 	2160 5780 2330 5780
 Wire Wire Line
 	1430 5780 1860 5780
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3FEED
+P 2630 2190
+F 0 "#PWR?" H 2630 2040 50  0001 C CNN
+F 1 "+3.3V" H 2630 2330 50  0000 C CNN
+F 2 "" H 2630 2190 50  0001 C CNN
+F 3 "" H 2630 2190 50  0001 C CNN
+	1    2630 2190
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3FF9F
+P 1430 2480
+F 0 "#PWR?" H 1430 2330 50  0001 C CNN
+F 1 "+3.3V" H 1430 2620 50  0000 C CNN
+F 2 "" H 1430 2480 50  0001 C CNN
+F 3 "" H 1430 2480 50  0001 C CNN
+	1    1430 2480
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF3FFD2
+P 4890 2190
+F 0 "#PWR?" H 4890 2040 50  0001 C CNN
+F 1 "+3.3V" H 4890 2330 50  0000 C CNN
+F 2 "" H 4890 2190 50  0001 C CNN
+F 3 "" H 4890 2190 50  0001 C CNN
+	1    4890 2190
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF400A5
+P 7320 2190
+F 0 "#PWR?" H 7320 2040 50  0001 C CNN
+F 1 "+3.3V" H 7320 2330 50  0000 C CNN
+F 2 "" H 7320 2190 50  0001 C CNN
+F 3 "" H 7320 2190 50  0001 C CNN
+	1    7320 2190
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5BF401A0
+P 2630 4830
+F 0 "#PWR?" H 2630 4680 50  0001 C CNN
+F 1 "+3.3V" H 2630 4970 50  0000 C CNN
+F 2 "" H 2630 4830 50  0001 C CNN
+F 3 "" H 2630 4830 50  0001 C CNN
+	1    2630 4830
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
