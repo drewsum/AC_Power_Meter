@@ -18,17 +18,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1980 . . . . ]
 "40517
 [v _INTCONbits `VS1980 ~T0 @X0 0 e@4082 ]
-"4096
-[s S237 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S237 . C1IP C2IP C3IP . ZCDIP HLVDIP ]
-"4104
-[s S238 :6 `uc 1 :1 `uc 1 ]
-[n S238 . . CMIP ]
-"4095
-[u S236 `S237 1 `S238 1 ]
-[n S236 . . . ]
-"4109
-[v _IPR2bits `VS236 ~T0 @X0 0 e@3617 ]
 "3998
 [s S232 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S232 . INT0IP INT1IP INT2IP INT3IP IOCIP TMR0IP ]
@@ -48,6 +37,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S245 . . . ]
 "4304
 [v _IPR5bits `VS245 ~T0 @X0 0 e@3620 ]
+"4096
+[s S237 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S237 . C1IP C2IP C3IP . ZCDIP HLVDIP ]
+"4104
+[s S238 :6 `uc 1 :1 `uc 1 ]
+[n S238 . . CMIP ]
+"4095
+[u S236 `S237 1 `S238 1 ]
+[n S236 . . . ]
+"4109
+[v _IPR2bits `VS236 ~T0 @X0 0 e@3617 ]
 "4150
 [s S240 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S240 . SSP1IP BCL1IP SSP2IP BCL2IP TX1IP RC1IP TX2IP RC2IP ]
@@ -72,31 +72,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _IPR1bits `VS233 ~T0 @X0 0 e@3616 ]
 [t ~ __interrupt . k ]
 [t T12 __interrupt  ]
-"4644
-[s S262 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S262 . C1IE C2IE C3IE . ZCDIE HLVDIE ]
-"4652
-[s S263 :6 `uc 1 :1 `uc 1 ]
-[n S263 . . CMIE ]
-"4643
-[u S261 `S262 1 `S263 1 ]
-[n S261 . . . ]
-"4657
-[v _PIE2bits `VS261 ~T0 @X0 0 e@3627 ]
-"5189
-[s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S286 . C1IF C2IF C3IF . ZCDIF HLVDIF ]
-"5197
-[s S287 :6 `uc 1 :1 `uc 1 ]
-[n S287 . . CMIF ]
-"5188
-[u S285 `S286 1 `S287 1 ]
-[n S285 . . . ]
-"5202
-[v _PIR2bits `VS285 ~T0 @X0 0 e@3637 ]
-"290 mcc_generated_files/hlvd.h
-[v _HLVD_ISR `(v ~T0 @X0 0 ef ]
-"4546 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+"4546
 [s S257 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S257 . INT0IE INT1IE INT2IE INT3IE IOCIE TMR0IE ]
 "4545
@@ -132,6 +108,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PIR5bits `VS293 ~T0 @X0 0 e@3640 ]
 "367 mcc_generated_files/tmr5.h
 [v _TMR5_ISR `(v ~T0 @X0 0 ef ]
+"4644 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
+[s S262 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S262 . C1IE C2IE C3IE . ZCDIE HLVDIE ]
+"4652
+[s S263 :6 `uc 1 :1 `uc 1 ]
+[n S263 . . CMIE ]
+"4643
+[u S261 `S262 1 `S263 1 ]
+[n S261 . . . ]
+"4657
+[v _PIE2bits `VS261 ~T0 @X0 0 e@3627 ]
+"5189
+[s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S286 . C1IF C2IF C3IF . ZCDIF HLVDIF ]
+"5197
+[s S287 :6 `uc 1 :1 `uc 1 ]
+[n S287 . . CMIF ]
+"5188
+[u S285 `S286 1 `S287 1 ]
+[n S285 . . . ]
+"5202
+[v _PIR2bits `VS285 ~T0 @X0 0 e@3637 ]
+"290 mcc_generated_files/hlvd.h
+[v _HLVD_ISR `(v ~T0 @X0 0 ef ]
 "4698 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic18lf67k40.h
 [s S265 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S265 . SSP1IE BCL1IE SSP2IE BCL2IE TX1IE RC1IE TX2IE RC2IE ]
@@ -16459,8 +16459,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 "53 mcc_generated_files/../error_handling.h
 [v _error_handler `S2012 ~T0 @X0 1 e ]
 [; ;error_handling.h: 41: struct error_struct {
@@ -16520,6 +16518,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
 [; ;ext_int.h: 272: void INT0_ISR(void);
 [; ;ext_int.h: 296: void INT0_CallBack(void);
@@ -16641,15 +16641,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupt_manager.c: 55: INTCONbits.IPEN = 1;
 "55
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 60: IPR2bits.HLVDIP = 1;
+[; ;interrupt_manager.c: 60: IPR0bits.INT0IP = 1;
 "60
-[e = . . _IPR2bits 0 5 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 63: IPR0bits.INT0IP = 1;
-"63
 [e = . . _IPR0bits 0 0 -> -> 1 `i `uc ]
-[; ;interrupt_manager.c: 66: IPR5bits.TMR5IP = 1;
-"66
+[; ;interrupt_manager.c: 63: IPR5bits.TMR5IP = 1;
+"63
 [e = . . _IPR5bits 0 4 -> -> 1 `i `uc ]
+[; ;interrupt_manager.c: 66: IPR2bits.HLVDIP = 1;
+"66
+[e = . . _IPR2bits 0 5 -> -> 1 `i `uc ]
 [; ;interrupt_manager.c: 69: IPR3bits.BCL1IP = 1;
 "69
 [e = . . _IPR3bits 0 1 -> -> 1 `i `uc ]
@@ -16690,43 +16690,43 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupt_manager.c: 99: {
 [e :U _INTERRUPT_InterruptManagerHigh ]
 [f ]
-[; ;interrupt_manager.c: 101: if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+[; ;interrupt_manager.c: 101: if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
 "101
-[e $ ! && == -> . . _PIE2bits 0 5 `i -> 1 `i == -> . . _PIR2bits 0 5 `i -> 1 `i 2017  ]
+[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 2017  ]
 [; ;interrupt_manager.c: 102: {
 "102
 {
-[; ;interrupt_manager.c: 103: HLVD_ISR();
+[; ;interrupt_manager.c: 103: INT0_ISR();
 "103
-[e ( _HLVD_ISR ..  ]
+[e ( _INT0_ISR ..  ]
 "104
 }
 [; ;interrupt_manager.c: 104: }
 [e $U 2018  ]
 "105
 [e :U 2017 ]
-[; ;interrupt_manager.c: 105: else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
-[e $ ! && == -> . . _PIE0bits 0 0 `i -> 1 `i == -> . . _PIR0bits 0 0 `i -> 1 `i 2019  ]
+[; ;interrupt_manager.c: 105: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
+[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2019  ]
 [; ;interrupt_manager.c: 106: {
 "106
 {
-[; ;interrupt_manager.c: 107: INT0_ISR();
+[; ;interrupt_manager.c: 107: TMR5_ISR();
 "107
-[e ( _INT0_ISR ..  ]
+[e ( _TMR5_ISR ..  ]
 "108
 }
 [; ;interrupt_manager.c: 108: }
 [e $U 2020  ]
 "109
 [e :U 2019 ]
-[; ;interrupt_manager.c: 109: else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
-[e $ ! && == -> . . _PIE5bits 0 4 `i -> 1 `i == -> . . _PIR5bits 0 4 `i -> 1 `i 2021  ]
+[; ;interrupt_manager.c: 109: else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+[e $ ! && == -> . . _PIE2bits 0 5 `i -> 1 `i == -> . . _PIR2bits 0 5 `i -> 1 `i 2021  ]
 [; ;interrupt_manager.c: 110: {
 "110
 {
-[; ;interrupt_manager.c: 111: TMR5_ISR();
+[; ;interrupt_manager.c: 111: HLVD_ISR();
 "111
-[e ( _TMR5_ISR ..  ]
+[e ( _HLVD_ISR ..  ]
 "112
 }
 [; ;interrupt_manager.c: 112: }

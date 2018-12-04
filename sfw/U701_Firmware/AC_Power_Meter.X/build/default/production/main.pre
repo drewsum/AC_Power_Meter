@@ -21965,12 +21965,6 @@ extern void (*TMR2_InterruptHandler)(void);
 # 866
 void TMR2_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 41 "mcc_generated_files/../error_handling.h"
 struct error_struct {
 
@@ -22105,6 +22099,12 @@ void ADCC_ThresholdISR(void);
 
 # 882
 void ADCC_DefaultInterruptHandler(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
 
 # 250 "mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);
@@ -22652,7 +22652,7 @@ double Vpk_const = 169.7056274847714;
 volatile double Vpk;
 volatile double Ipk;
 volatile double Imeas;
-double Irms_offset = 0.0;
+double Imeas_offset = -0.1273;
 volatile double Irms;
 volatile double Vrms;
 volatile double Avg_Power;
@@ -22864,7 +22864,7 @@ case ISNS_ADC:
 
 if (load_enable) {
 
-Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0);
+Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0) + Imeas_offset;
 
 
 
@@ -22994,11 +22994,11 @@ void dimmingOffTimeCallback(void) {
 LATGbits.LATG1 = 0;
 
 
+PIE5bits.TMR5IE = 1;
+
+
 TMR5_WriteTimer(dimming_period);
 TMR5_StartTimer();
-
-
-PIE5bits.TMR5IE = 1;
 
 
 PIE0bits.INT0IE = 0;
@@ -23017,7 +23017,8 @@ TMR5_StopTimer();
 
 PIE5bits.TMR5IE = 0;
 
-_delay((unsigned long)((5)*(64000000/4000000.0)));
+
+_delay((unsigned long)((100)*(64000000/4000000.0)));
 
 
 LATGbits.LATG1 = 0;
@@ -23467,6 +23468,7 @@ OLED_Clear();
 
 OLED_Frame = Boot_Frame_1;
 OLED_updateCallback();
+
 
 terminal_printResetMessage();
 

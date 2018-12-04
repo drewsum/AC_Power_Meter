@@ -21965,12 +21965,6 @@ extern void (*TMR2_InterruptHandler)(void);
 # 866
 void TMR2_DefaultInterruptHandler(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 41 "mcc_generated_files/../error_handling.h"
 struct error_struct {
 
@@ -22105,6 +22099,12 @@ void ADCC_ThresholdISR(void);
 
 # 882
 void ADCC_DefaultInterruptHandler(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
 
 # 250 "mcc_generated_files/ext_int.h"
 void EXT_INT_Initialize(void);
@@ -22357,13 +22357,13 @@ INTCONbits.IPEN = 1;
 
 
 
-IPR2bits.HLVDIP = 1;
-
-
 IPR0bits.INT0IP = 1;
 
 
 IPR5bits.TMR5IP = 1;
+
+
+IPR2bits.HLVDIP = 1;
 
 
 IPR3bits.BCL1IP = 1;
@@ -22398,17 +22398,17 @@ IPR5bits.TMR2IP = 0;
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
 
-if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-{
-HLVD_ISR();
-}
-else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
+if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
 {
 INT0_ISR();
 }
 else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
 {
 TMR5_ISR();
+}
+else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+{
+HLVD_ISR();
 }
 else if(PIE3bits.BCL1IE == 1 && PIR3bits.BCL1IF == 1)
 {

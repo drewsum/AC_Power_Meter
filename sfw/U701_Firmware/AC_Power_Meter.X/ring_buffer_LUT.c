@@ -1406,7 +1406,7 @@ void terminal_printResetMessage(void) {
     // Print initial state of load
     terminal_printNewline();
     terminal_textAttributes(YELLOW, BLACK, NORMAL);
-    printf("Load is currently enabled\n\r");
+    printf("Load is currently enabled, dimming is disabled\n\r");
     
     // Print device measurements
     terminal_printNewline();
