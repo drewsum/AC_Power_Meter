@@ -11,8 +11,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E18301 0 1 2 3 4 5 6 7 8 9 10 .. ]
 [n E18301 . Boot_Frame_1 Boot_Frame_2 Boot_Frame_3 Boot_Frame_4 Load_Enabled Load_Disabled Dimming_Enabled Dimming_Disabled Dimming_Percentage Idle Live_Update  ]
 "42 ring_buffer_LUT.c
-[c E17806 0 4 34 60 61 62 63 .. ]
-[n E17806 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
+[c E17802 0 4 34 60 61 62 63 .. ]
+[n E17802 . ISNS_ADC POS12_ADC POS3P3_ADC channel_VSS channel_Temp channel_DAC1 channel_FVR_buf1  ]
 "45 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "46 mcc_generated_files/../double_to_EEPROM.h
@@ -16476,8 +16476,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr2.h: 830: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr2.h: 848: extern void (*TMR2_InterruptHandler)(void);
 [; ;tmr2.h: 866: void TMR2_DefaultInterruptHandler(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;adcc.h: 74: typedef uint16_t adc_result_t;
 [; ;adcc.h: 91: typedef enum
 [; ;adcc.h: 92: {
@@ -16519,6 +16517,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adcc.h: 848: void ADCC_SetADTIInterruptHandler(void (* InterruptHandler)(void));
 [; ;adcc.h: 864: void ADCC_ThresholdISR(void);
 [; ;adcc.h: 882: void ADCC_DefaultInterruptHandler(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;ext_int.h: 250: void EXT_INT_Initialize(void);
 [; ;ext_int.h: 272: void INT0_ISR(void);
 [; ;ext_int.h: 296: void INT0_CallBack(void);
@@ -16808,7 +16808,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 40: extern volatile bit load_enable;
 [; ;ring_buffer_LUT.c: 41: extern volatile double Total_Energy;
 "42 ring_buffer_LUT.c
-[v _current_adc_channel `E17806 ~T0 @X0 1 e ]
+[v _current_adc_channel `E17802 ~T0 @X0 1 e ]
 [; ;ring_buffer_LUT.c: 42: adcc_channel_t current_adc_channel;
 [; ;ring_buffer_LUT.c: 43: extern reset_t reset_cause;
 [; ;ring_buffer_LUT.c: 46: extern volatile double max_Irms;
@@ -19437,7 +19437,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ring_buffer_LUT.c: 1408: terminal_textAttributes(YELLOW, BLACK, NORMAL);
 "1408
 [e ( _terminal_textAttributes (3 , , . `E18237 3 . `E18237 0 . `E18229 0 ]
-[; ;ring_buffer_LUT.c: 1409: printf("Load is currently enabled\n\r");
+[; ;ring_buffer_LUT.c: 1409: printf("Load is currently enabled, dimming is disabled\n\r");
 "1409
 [e ( _printf :s 217C ]
 [; ;ring_buffer_LUT.c: 1412: terminal_printNewline();
@@ -19646,6 +19646,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 149C 76 111 97 100 32 97 110 100 32 100 105 109 109 105 110 103 32 97 114 101 32 99 117 114 114 101 110 116 108 121 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 84C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 98 117 116 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 148C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 98 117 116 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
+[a 217C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 44 32 100 105 109 109 105 110 103 32 105 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 188C 76 105 118 101 32 109 101 97 115 117 114 101 109 101 110 116 32 117 112 100 97 116 101 115 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 76C 84 82 73 65 67 32 111 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
 [a 87C 76 111 97 100 32 104 97 115 32 98 101 101 110 32 100 105 115 97 98 108 101 100 10 13 0 ]
@@ -19655,7 +19656,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 83C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 146C 68 105 109 109 105 110 103 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 80C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
-[a 217C 76 111 97 100 32 105 115 32 99 117 114 114 101 110 116 108 121 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 72C 79 117 116 112 117 116 32 100 105 109 109 105 110 103 32 104 97 115 32 98 101 101 110 32 101 110 97 98 108 101 100 10 13 0 ]
 [a 16C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]
 [a 116C 68 101 118 105 99 101 32 115 105 108 105 99 111 110 32 114 101 118 105 115 105 111 110 32 73 68 32 97 115 32 115 116 111 114 101 100 32 105 110 32 70 108 97 115 104 32 105 115 58 32 37 99 37 48 51 100 10 13 0 ]

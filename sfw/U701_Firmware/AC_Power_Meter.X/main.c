@@ -83,7 +83,7 @@ double Vpk_const = 169.7056274847714;           // Peak voltage in volts, sqrt(2
 volatile double Vpk;                            // Calculated peak voltage from phase angle in volts
 volatile double Ipk;                            // Calculated peak current from measurements and phase angle in amps
 volatile double Imeas;                          // Measured current in amps
-double Irms_offset = 0.0;                    // RMS current offset in amps
+double Imeas_offset = -0.1273;                    // measured current offset in amps
 volatile double Irms;                           // RMS output current in amps
 volatile double Vrms;                           // Calculated RMS output voltage in volts
 volatile double Avg_Power;                      // Calculated output power in watts
@@ -303,7 +303,7 @@ void ADC_PostProcessingCallback(void) {
 
             if (load_enable) {
             
-                Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0);
+                Imeas = (ADCC_GetFilterValue()) * (POS3P3_ADC_Result / 1023.0) * (3.787 / 2.0) + Imeas_offset;
 
                 // If our phase is controlled, convert measured current to peak current
                 // and peak current to RMS current using TRIAC firing angle
@@ -432,14 +432,14 @@ void dimmingOffTimeCallback(void) {
     // Turn the TRIAC off
     SSR_DIM_PIN = LOW;
     
+    // Enable timer 5 interrupt
+    PIE5bits.TMR5IE = 1;
+    
     // Load timer with pre-load value and start timer
     TMR5_WriteTimer(dimming_period);
     TMR5_StartTimer();
     
-    // Enable timer 5 interrupt
-    PIE5bits.TMR5IE = 1;
-    
-    // Disable dimming interrupt
+    // Disable ZCD interrupt
     PIE0bits.INT0IE = 0;
     
 }
@@ -456,12 +456,13 @@ void dimmingOnTimeCallback(void) {
     // Disable timer 5 interrupt
     PIE5bits.TMR5IE = 0;
     
-    __delay_us(5);
+    // Wait a few microseconds so TRIAC can trigger
+    __delay_us(100);
     
     // End TRIAC on pulse
     SSR_DIM_PIN = LOW;
     
-    // Disable dimming interrupt
+    // Enable ZCD interrupt
     PIE0bits.INT0IE = 1;
     
     
@@ -907,6 +908,7 @@ void main(void)
     OLED_Frame = Boot_Frame_1;
     OLED_updateCallback();
     
+    // Tell user we're up and running
     terminal_printResetMessage();
     
     // Main loop

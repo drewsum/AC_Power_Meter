@@ -56,14 +56,14 @@ void  INTERRUPT_Initialize (void)
 
     // Assign peripheral interrupt priority vectors
 
-    // HLVDI - high priority
-    IPR2bits.HLVDIP = 1;
-
     // INT0I - high priority
     IPR0bits.INT0IP = 1;
 
     // TMRI - high priority
     IPR5bits.TMR5IP = 1;
+
+    // HLVDI - high priority
+    IPR2bits.HLVDIP = 1;
 
     // BCLI - high priority
     IPR3bits.BCL1IP = 1;
@@ -98,17 +98,17 @@ void  INTERRUPT_Initialize (void)
 void __interrupt() INTERRUPT_InterruptManagerHigh (void)
 {
    // interrupt handler
-    if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
-    {
-        HLVD_ISR();
-    }
-    else if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
+    if(PIE0bits.INT0IE == 1 && PIR0bits.INT0IF == 1)
     {
         INT0_ISR();
     }
     else if(PIE5bits.TMR5IE == 1 && PIR5bits.TMR5IF == 1)
     {
         TMR5_ISR();
+    }
+    else if(PIE2bits.HLVDIE == 1 && PIR2bits.HLVDIF == 1)
+    {
+        HLVD_ISR();
     }
     else if(PIE3bits.BCL1IE == 1 && PIR3bits.BCL1IF == 1)
     {
